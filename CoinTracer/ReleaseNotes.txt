@@ -1,0 +1,767 @@
+﻿******************************************************
+Version 0.9.4.2 / 07.04.2019
+----------------------------
+
+*** Erste Open-Source-Version! ***
+
+Verbesserungen:
+- Setup und Programm inkl. Lizenzinformationen.
+- Tabellenanzeige von Gewinnberechnungen optimiert.
+- Bearbeiten von Trades so verändert, dass bei Käufen und 
+  Verkäufen nur noch eine Plattform angegeben werden muss.
+- Drag'n Drop von Import-Files ist jetzt möglich.
+
+
+******************************************************
+Version 0.9.4.1 / 28.03.2019
+----------------------------
+Verbesserungen:
+- Fehler behoben, der bei der Gewinnberechnung auftrat, 
+  wenn die Einstellung "Zu-/Abfluss Wallet-übergreifend"
+  gewählt war.
+- Kleinere GUI-Verbesserungen.
+
+
+******************************************************
+Version 0.9.4 / 24.03.2019
+----------------------------
+Verbesserungen:
+- Gewinnreport komplett überarbeitet. Der Fehler "Nicht 
+  genügend Coins vorhanden" führt nun nicht mehr zu einem
+  Abbruch der Gewinnberechnung. Statt dessen wird nun ein
+  Kauf der  ausgegebenen Coins am gleichen Tag zum Wert
+  von 0,00 EUR angenommen. (Was eigentlich auch nicht
+  besser ist, aber die Fehlersuche für den Anwender
+  etwas erleichtert.)
+- Einige verwirrende und unnötige Einstellmöglichkeiten
+  bei der Gewinnberechnung entfernt (z. B. die Möglich-
+  keit, Coins älter oder jünger als 1 Jahr zu bevorzugen.)
+- Import von Bitfinex.com (mal wieder) überarbeitet.
+- Import von Bitcoin.de aktualisiert.
+- Import von Kraken.com aktualisiert.
+- CSV-Import für das generische CoinTracer-Format über-
+  arbeitet. Achtung: das bisherige Format kann jetzt
+  nicht mehr verarbeitet werden!)
+- Diverse Coins hinzugefügt und das Problem behoben, dass
+  nicht mehr als knapp 60 verschiedene Coin-Arten verwaltet
+  werden konnten. Jetzt sind knapp 10.000 verschiedene
+  problemlos möglich.
+- Diverse kleinere Fehler behoben.
+
+
+******************************************************
+Version 0.9.3.3 / 01.05.2018
+----------------------------
+Verbesserungen:
+- Import von Bitfinex.com (mal wieder) überarbeitet.
+- Import von Bitcoin.de aktualisiert.
+- Import von Kraken.com aktualisiert.
+- Diverse kleinere Fehler behoben.
+
+
+******************************************************
+Version 0.9.3.2 / 16.12.2017
+----------------------------
+Verbesserungen:
+- Import von Bitfinex.com überarbeitet. Jetzt werden auch 
+  Coins mit sehr geringem Wert korrekt verarbeitet.
+- Import von Bitcoin-Core-Wallet aktualisiert.
+- Möglichkeiten des Zurücksetzens der Datenbank erweitert.
+  Es ist jetzt möglich, nur Trade- und Importdaten zurück-
+  zusetzen oder die gesamte Datenbank.
+- Kleinere Verbesserungen bei der Gewinnnberechnung.
+  ACHTUNG: Der Umgang mit Verkäufen Coins gegen Coins
+  ist in der aktuellen Version noch NICHT KORREKT, da
+  diese im Gewinnbericht noch ignoriert werden!!!
+
+
+******************************************************
+Version 0.9.3.1 / 31.10.2017
+----------------------------
+Verbesserungen:
+- Import von Kraken.com überarbeitet. Gebühren werden jetzt
+  auch bei Verkäufen korrekt berücksichtigt, außerdem
+  können Trades mit so geringem Volumen, dass es keine
+  Gegenbuchung gibt, verarbeitet werden.
+- Import von Bitcoin.de überarbeitet. Es können jetzt neben
+  BTC auch BCH und ETH verarbeitet werden. Bitcoin Gold ist 
+  ebenso vorbereitet, wird seitens Bitcoin.de aber noch nicht
+  vollständig unterstützt.
+- Import von Bitfinex.com überarbeitet; funktioniert nun
+  wieder.
+- Gewinnberechnung überarbeitet: es gab Konstellationen,
+  bei denen Transfers bei einer erneuten Berechnung immer
+  wieder gebucht wurden - was zur Fehlermeldung "Nicht mehr
+  genügend Coins" geführt hat.
+- Unter Tabellen den neuen Reiter "Berechnungen" hinzugefügt.
+  Hier lassen sich die einzelnen Gewinnberechnungen nachvoll-
+  ziehen und ggf. für Neuberechnungen rückgängig machen.
+
+
+******************************************************
+Version 0.9.3 / 11.09.2017
+----------------------------
+Verbesserungen:
+- Diverse Importe überarbeitet, um Bitcoin Cash korrekt
+  einzulesen: Kraken.com, Bitstamp.net, Bitcoin.de.
+- IOTA (bzw. MegaIOTA) integriert. Wird aktuell nur auf
+  Bitfinex.com gehandelt.
+- Import von Bitfinex.com aktualisiert.
+- Spendenmöglichkeit für BCH und ETH integriert.
+
+
+******************************************************
+Version 0.9.2.3 / 29.07.2017
+----------------------------
+Verbesserungen:
+- Import von Poloniex.com überarbeitet (identische History-
+  Zeilen werden nicht mehr ignoriert; Infos überarbeitet.)
+- Bitcoin Cash (BCC oder BCH) integriert.
+
+
+******************************************************
+Version 0.9.2.2 / 28.07.2017
+----------------------------
+Verbesserungen:
+- Import von Bitfinex überarbeitet. Transfers zwischen
+  Sub-Accounts werfen nun keine Fehler mehr.
+
+
+******************************************************
+Version 0.9.2.1 / 27.07.2017
+----------------------------
+Verbesserungen:
+- Ripple Token (XRP) integriert.
+- Import von Bitcoin.de überarbeitet. Das neue Export-
+  Format von Bitoin.de kann jetzt verarbeitet werden.
+- Fehler beim Bearbeiten von Trades mit zu vielen 
+  Nachkommastellen im Betrag behoben.
+
+
+******************************************************
+Version 0.9.2 / 25.02.2017
+----------------------------
+Verbesserungen:
+- Ether Classic (ETC) integriert.
+- ZCash (ZEC) integriert.
+- Bitfinex Token (BFX) und Bitfinex Recovery Right Token
+  (RRT) integriert.
+- Monero (XMR) integriert.
+- Import von Bitfinex.com überarbeitet. Der "Zwangsumtausch"
+  in Bitfinex Token wird jetzt korrekt verarbeitet, ebenso
+  die Rückumtäusche der Plattform.
+- Import von Bitcoin.de aktualisiert (Netzwerk-Gebühren
+  werden jetzt korrekt berücksichtigt).
+- Import von Kraken.com verbessert (Gebühren-Einträge 
+  werden jetzt nicht mehr der Plattform 'unbekannt'
+  zugewiesen).
+- Erkennung von Transfers zwischen Börsen verbessert und 
+  Erkennungseinstellungen konfigurierbar gemacht. Transfers
+  können jetzt übersichtlicher bearbeitet werden.
+- Kopieren von Tabellen(zeilen) in die Zwischenablage
+  verbessert.
+- Ordner der Protokolldatei kann jetzt auf Knopfdruck
+  geöffnet werden.
+
+
+******************************************************
+Version 0.9.1.6 / 20.10.2016
+----------------------------
+Verbesserungen:
+- Augur Reputation Tokens (REP) integriert.
+- Import von Poloniex verbessert. Jezt erscheint bei
+  Dateien ohne Import-Zeilen keine missverständliche
+  Meldung mehr.
+- Import von Bitcoin Core verbessert (funktioniert 
+  jetzt auch multilingual).
+
+
+******************************************************
+Version 0.9.1.5 / 24.07.2016
+----------------------------
+Verbesserungen:
+- Lumen (XLM) integriert.
+- Import von Bitfinex erneut überarbeitet.
+- Import von Bitcoin.de verbessert, damit auch das
+  ausgeschüttete Trading-API-Kickback korrekt ein-
+  gelesen wird.
+
+
+******************************************************
+Version 0.9.1.4 / 13.06.2016
+----------------------------
+Verbesserungen:
+- Import von Bitstamp.net kann jetzt korrekt mit Verkäufen
+  umgehen.
+- Import von Bitfinex robuster gestaltet.
+
+
+******************************************************
+Version 0.9.1.3 / 30.05.2016
+----------------------------
+Verbesserungen:
+- Weitere Korrektur des Import von Bitstamp.net.
+
+
+******************************************************
+Version 0.9.1.2 / 29.05.2016
+----------------------------
+Verbesserungen:
+- Import von Bitstamp.net aktualisiert/korrigiert.
+
+
+******************************************************
+Version 0.9.1 / 26.05.2016
+----------------------------
+Verbesserungen:
+- Lisk integriert.
+- Import von Poloniex.com integriert: Es können die
+  Deposit-, Withdrawal- und Trade-History-Exporte
+  eingelesen werden.
+- Generischen CoinTracer-Import verbessert: Transfers
+  werden zuverlässiger erkannt und mehr Toleranz bzgl.
+  der Spaltenformatierung.
+
+
+******************************************************
+Version 0.9.0 / 22.04.2016
+----------------------------
+Verbesserungen:
+- Ether integriert.
+- Import von Bitfinex.com integriert: Es können die
+  History-Dateien aller relevanten Währungen eingelesen
+  oder der API-Import genutzt werden. Berücksichtigt
+  wird nur das Exchange-Wallet!
+
+
+******************************************************
+Version 0.8.9.6 / 05.01.2016
+----------------------------
+Verbesserungen:
+- Korrektur beim Umgang mit Gebühren bei Abhebungen von
+  Kraken.com behoben.
+- Kleine GUI-Verbesserung: die Einstellungen der beiden
+  Splitter in der Übersicht werden jetzt dynamisch
+  gespeichert und beim nächsten Start des Programms
+  wiederhergestellt.
+
+
+******************************************************
+Version 0.8.9.5 / 25.12.2015
+----------------------------
+Verbesserungen:
+- Bei allen Datenimporten die Berücksichtigung der 
+  verschiedenen Zeitzonen überarbeitet.
+- Korrektur eines Fehlers beim Zugriff auf die 
+  Datenbank-Datei.
+
+
+******************************************************
+Version 0.8.9.4 / 20.12.2015
+----------------------------
+Verbesserungen:
+- Api-Datenimporte verbessert und Datenimport allgemein
+  um ein Vielfaches beschleunigt.
+- Es ist jetzt möglich, Trading-Dateien zu importieren,
+  ohne vorher die Plattform ausgewählt zu haben. Wo
+  immer möglich, erkennt der CoinTracer diese automatisch.
+ 
+
+******************************************************
+Version 0.8.9.3 / 15.12.2015
+----------------------------
+Verbesserungen:
+- Fehlerprotokolldatei hinzugefügt inkl. Einstell-
+  möglichkeit des Log Level.
+- Statusanzeigen beim API-Import verbessert.
+- Fehler bei der Anzeige des steuerpflichtigen Gewinn/
+  Verlust behoben.
+
+
+******************************************************
+Version 0.8.9 / 12.12.2015
+----------------------------
+Verbesserungen:
+- Import von Zyado.com hinzugefügt.
+- Import vom Bitcoin Core Client funktioniert wieder.
+
+
+******************************************************
+Version 0.8.8.2 / 09.12.2015
+----------------------------
+Verbesserungen:
+- Kraken-API-Import verbessert und beschleunigt.
+- Hinweise auf notwendige Berechtigungen für API-
+  Keys ergänzt.
+
+
+******************************************************
+Version 0.8.8 / 07.12.2015
+----------------------------
+Verbesserungen:
+- Bitcoin.de-API-Import hinzugefügt. 
+- Kraken-Import überarbeitet: jetzt werden auch die neuen
+  'Kraken Fee Credits' korrekt eingelesen und verarbeitet.
+- (Unfertigen) API-Import für Bitfinex wieder entfernt.
+- Korrektur beim generischen Cointracer-Import: Gebühren
+  werden jetzt korrekt verbucht.
+- Transfers lassen sich jetzt zusammenfassen (im Fenster 
+  zum Bearbeiten von Trades).
+- Korrektur bei der Prüfung, ob es Wechselkurse für die 
+  Gewinnberechnung fehlen: jetzt werden auch Transaktionen
+  mit einem effektiven Betrag von 0,00 USD korrekt
+  erkannt.
+- Korrektur beim Umgang mit Plattformen, die als down
+  gekennzeichnet sind: jetzt werden auch bei nachträglichen
+  Importen für diese Plattformen Verlustbuchungen 
+  angelegt. Außerdem wird bei solchen Plattformen das
+  Kennzeichen "Eigenbesitz" jetzt automatisch gesetzt.
+- Diverse Berechnungen dramatisch beschleunigt.
+
+
+******************************************************
+Version 0.8.7.3 / 31.05.2015
+----------------------------
+Verbesserungen:
+- Dollarkurse ab 01.01.2009 werden automatisch ausge-
+  liefert, so dass nur noch die tagesaktuellen Kurse
+  seit dem letzten Releasedatum über das Programm
+  aktualisiert werden müssen. (Ist notwendig geworden,
+  weil die Bundesbank den Online-Datenabruf geändert
+  hat: es werden nur noch Daten des jeweils aktuellen
+  Jahres zum Download angeboten.)
+- Bitstamp-Import verbessert. (Jetzt werden gleichartige
+  Trades, die zur gleichen Zeit durchgeführt wurden, 
+  korrekt eingelesen.)
+- Fehler bei der Anzeige der Gebühren in der Übersicht
+  behoben (trat auf, wenn es viele gleichartige, gleich-
+  zeitige Trades gab).
+
+
+******************************************************
+Version 0.8.7.2 / 22.04.2015
+----------------------------
+Verbesserungen:
+- Korrektur im Zusammenhang mit leerem Textfeld bei der
+  Einstellung der Haltefrist.
+
+
+******************************************************
+Version 0.8.7.1 / 21.04.2015
+----------------------------
+Verbesserungen:
+- Korrektur des Gewinn-Verlust-Berichts: bestimmte 
+  Einstellungen (u.a. LiFo) wurden bei der Berechnung
+  falsch berücksichtigt (als FiFo).
+- Bei der Zeitraumauswahl ist die Option "Vorletztes
+  Jahr" hinzugekommen.
+
+
+******************************************************
+Version 0.8.7 / 10.04.2015
+----------------------------
+Verbesserungen:
+- Erweiterung des Gewinn-Verlust-Berichts: es ist jetzt
+  möglich
+	a) einen Kommentar anzugeben, der im Kopfbereich 
+	   ausgegeben wird. Hilfreich, um z.B. explizit 
+	   "Berechnungmethode FiFo" o.Ä. anzugeben.
+	b) zwischen der Auflistung aller oder nur der 
+	   steuerpflichtigen Trades zu wählen. Letzeres war 
+	   bisher die Voreinstellung.
+	c) die Plattformen/Börsen, deren Trades ausgewiesen
+	   werden sollen, einzeln auszuwählen.
+- Verluste, die durch die Einstellung des Betriebs einer
+  Plattform (z. B. Mt.Gox) entstanden sind, können
+  automatisch berechnet werden: Hierfür muss im Reiter
+  "Tabellen" unter 'Plattformen bearbeiten' der Haken
+  'Plattform ist down' gesetzt und das Datum der Betriebs-
+  einstellung eingetragen werden. Der CoinTracer erstellt
+  dann automatisch Verlust-Trades zu diesem Datum. D. h.
+  der gesamte Bestand an Coins und Euro/US-Dollar wird
+  zum Gegenwert von 0 EUR verkauft.
+- Bearbeiten von Plattfomen geändert: "Eigenbesitz" kann
+  nun auch bei fixierten Einträgen gearbeitet werden.
+- Im Reiter "Berechnungen" kann jetzt konfiguriert werden
+  ab welcher Haltefrist ein Verkauf steuerfrei ist.
+  Voreinstellung: 1 Jahr
+- In der Bestandsanzeige auf dem Reiter "Übersicht" wird
+  jetzt der durchschnittliche Kauf- und Verkaufpreis von
+  Coins ausgewiesen, was als Orientierung für Trades nützlich
+  sein kann. Unter Extras -> Einstellungen -> Anzeige-
+  Einstellungen kann gewählt werden, ob die für Anzeige Euro-
+  oder US-Dollar-Trades herangezogen werden sollen. (Bei
+  der Berechnung der Preise wird keine automatische
+  Umrechnung von USD in EUR vorgenommen.)
+- Fehlerkorrekturen beim generischen CSV-Import und 
+  Erweiterung um die Möglichkeit, Transfers abzubilden und
+  den Wert in EUR einer Transaktion anzugeben.
+- Vor dem Einlesen von Bitcoin.de-Kontoauszügen wird jetzt
+  eine Erklärung eingeblendet.
+- Beim Import von Vircurex.de kann jetzt das Jahr der
+  jeweiligen Importzeile manuell gewählt werden.
+- Fehlerkorrekturen beim Import von BTC-E.com: Abbuchungen
+  werden jetzt korrekt erfasst.
+- Das Cointracer-Fenster "rutscht" nach Datenimporten nicht 
+  mehr in den Hintergrund und Meldungen stehen erwartungs-
+  gemäß im Vordergrund.
+
+
+******************************************************
+Version 0.8.6.3 / 05.08.2014
+----------------------------
+Verbesserungen:
+- Fehler im Gewinn-Verlust-Bericht behoben, der dazu führte,
+  dass bei Verkäufen, denen Coins mehrerer unterschiedlicher
+  Kaufdaten zugrunde lagen, falsche Teilbeträge ausgewiesen
+  wurden.
+
+
+******************************************************
+Version 0.8.6.2 / 12.06.2014
+----------------------------
+Verbesserungen:
+- Import von Bitstamp.net so angepasst, dass dieser jetzt mit
+  Chrome, Firefox und IE funktioniert.
+- Korrektur bei der Anzeige von Transfers im Gewinn-Verlust-
+  Bericht: Bei einigen Transfers wurden die Transfersummen in 
+  der Anzeige verdoppelt, was nun korrigiert ist (wirkte sich
+  aber nicht auf den berechneten Gewinn aus).
+- Kraken-API-Import etwas beschleunigt.
+
+
+******************************************************
+Version 0.8.6.1 / 05.06.2014
+----------------------------
+Verbesserungen:
+- Import Bitcoin-Core-Client sowie Litecoin-Qt verarbeitet 
+  jetzt auch Dateien, die unter Linux erzeugt wurden.
+- Manuell angelegte Transfers werden bei der Gewinn-Verlust-
+  Berechnung korrekt berücksichtigt.
+- Korrektur bei der Anzeige von Transfers im Gewinn-Verlust-
+  Bericht: es konnte vorkommen, dass zwar alle Aus-, aber
+  nicht alle Einzahlungen aufgelistet wurden (wirkte sich
+  aber nicht auf den berechneten Gewinn aus).
+- Diverse andere Usability-Verbesserungen und Fehler-
+  korrekturen (u.a. Zurücksetzen der Gewinn-Verlust-Berechnung
+  nach Bearbeiten von Trades).
+  
+
+******************************************************
+Version 0.8.6 / 02.06.2014
+----------------------------
+Neue Features:
+- Import von Kraken.com: Es ist jetzt möglich Trade-Daten 
+  per API-Datenabruf zu importieren. Diese Variante ist 
+  wesentlich genauer (und komfortabler) als der Import 
+  via Copy & Paste.
+- Neue Importmöglichkeit für MultiBit (lokaler BTC-Client)
+  implementiert.
+
+Verbesserungen:
+- Fehlermeldung bei Aufruf des Gewinn-Verlust-Berichts
+  entfernt, indem benötigte Komponenten bei der Installation
+  mit ausgeliefert werden.
+- Import von Bitstamp.net überarbeitet: doppelte Zeilen
+  innerhalb einer Import-Datei werden 1:1 eingelesen und
+  Gebühren werden korrekt geschrieben.
+- Import von Vircurex (Copy & Paste) jetzt so angepasst,
+  dass Google Chrome oder Mozilla Firefox verwendet werden 
+  können (Internet Explorer funktioniert nicht!).
+- Fehler beim Copy & Paste-Import für Kraken.com 
+  korrigiert, der dazu geführt hat, dass bestimmte Zeilen 
+  überprungen wurden. Außerdem Umgang mit Gebühreneinträgen
+  korrigiert.
+- Manuelles Bearbeiten von Trade-Daten korrigiert: neu 
+  eingegebene Datensätze werden korrekt gespeichert.
+- Diverse andere Usability-Verbesserungen und Fehler-
+  korrekturen.
+  
+
+******************************************************
+Version 0.8.5.2 / 15.05.2014
+----------------------------
+Verbesserungen:
+- Ablage von Datenbank- und Konfigurationsdaten verbessert.
+  
+
+******************************************************
+Version 0.8.5.1 / 14.05.2014
+----------------------------
+Verbesserungen:
+- "Button1" aus der Übersicht wieder entfernt.
+  
+
+******************************************************
+Version 0.8.5 / 11.05.2014
+--------------------------
+Neue Features:
+- In der Tabellenbearbeitung können jetzt auch Wechselkurs-
+  daten angezeigt und bearbeitet werden.
+
+Verbesserungen:
+- Bei der Gewinn-Verlust-Berechnung wird jetzt intelligenter
+  auf fehlende Wechselkursinformationen reagiert: der Stichtag
+  für die Berechnung wird auf das letzte Datum der vorliegenden
+  USD-Wechselkursdaten zurückgesetzt.
+- Der Kraken-Import arbeitet jetzt auch bei vielen
+  zeitgleichen Trades zuverlässiger.
+- Lokale Anwendungs-Einstellungen werden jetzt immer am
+  selben Speicherort wie die Datenbank gespeichert. Damit 
+  ist der CoinTracer inkl. aller Einstellungen portabel.
+
+
+******************************************************
+Version 0.8.4 / 01.05.2014
+--------------------------
+Neue Features:
+- Der Speicherort der lokalen Datenbank kann jetzt frei gewählt 
+  werden, so dass der CoinTracer auch portabel auf einem USB-
+  Stick gespeichert werden kann.
+
+Verbesserungen:
+- Im Gewinn-Verlust-Bericht wird - bei Käufen oder Verkäufen
+  in USD - jetzt auch der Kauf-/Verkaufswert in US-Dollar
+  dargestellt.
+
+
+******************************************************
+Version 0.8.3 / 25.04.2014
+--------------------------
+Neue Features:
+- Der Gewinn-Verlust-Bericht wird jetzt in einem separaten
+  Vorschau-Fenster angezeigt und kann sowohl direkt gedruckt
+  als auch als PDF-, Word- oder Excel-Datei gespeichert
+  werden.
+
+Verbesserungen:
+- Sporadisch auftretende Fehler beim Abspeichern von Änderungen
+  bei Konten oder Plattformen behoben.
+
+
+******************************************************
+Version 0.8.2 / 21.04.2014
+--------------------------
+Verbesserungen:
+- Unter Extras->Einstellungen können für Web-Zugriffe jetzt 
+  Proxy-Einstellungen vorgenommen werden.
+- Kraken-Import verbessert: CoinTracer merkt sich das einmal
+  gewählte (Datums-)Format, außerdem werden bei Coin-Verkäufen 
+  jetzt die EUR-Gegenwerte wieder korrekt geschrieben (wichtig 
+  für die Gewinn-Verlust-Berechnung!)
+- Gewinn-Verlust-Bericht in Excel beschleunigt & verbessert.
+- Automatisch angelegte Gebühren-Konten haben jetzt nicht mehr
+  die Eigenschaft 'Eigenbesitz', d.h. sie werden jetzt korrekter-
+  weise unter 'Aufwendungen' und nicht mehr unter 'Bestand'
+  angezeigt.
+
+
+******************************************************
+Version 0.8.1 / 19.04.2014
+--------------------------
+Neue Features:
+- Beim Gewinn-Verlust-Bericht können jetzt wahlweise persönliche 
+  Angaben ausgegeben werden.
+
+Verbesserungen:
+- Beim Gewinn-Verlust-Bericht wird jetzt als zusätzliche Spalte
+  auch der ursprüngliche Kaufpreis ausgewiesen.
+- Korrektur bei der Bestandsermittlung: unter bestimmten Umständen
+  wurden Transfer-Gebühren doppelt abgezogen.
+- Diverse Verbesserungen und Korrekturen im Zusammmenhang mit
+  der Gewinn-Verlust-Berechnung und Szenarien.
+
+
+******************************************************
+Version 0.8.0 / 13.04.2014
+--------------------------
+Neue Features:
+- Import von kraken.com (per Copy & Paste) hinzugefügt. Aufgrund
+  der Rundungsungenauigkeiten in der History-Anzeige von kraken.com
+  kann es zu geringen Abweichungen kommen. Dies wird sich erst 
+  mit einer API-Import-Schnittstelle lösen lassen.
+
+Verbesserungen:
+- Diverse interne Korrekturen und Optimierungen bei Imports
+- Korrektur des Verhaltens der freien Datumsauswahl: der letzte 
+  Tag wurde bis dato nicht mit ausgewertet.
+
+
+******************************************************
+Version 0.7.9.1 / 02.04.2014
+--------------------------
+Verbesserungen:
+- Probleme beim Vircurex-Import behoben: die Transfers
+  von und zu "Reserved Funds" werden korrekt eingelesen,
+  außerdem funktioniert der Import jetzt auch mit deutscher
+  Spracheinstellung auf Vircurex.
+
+
+******************************************************
+Version 0.7.9 / 01.04.2014
+--------------------------
+Verbesserungen:
+- Zuletzt gewähltes Szenario bleibt beim Neustart des CoinTracer
+  erhalten.
+- Import von Mt. Gox "robuster" gestaltet: jetzt sollten auch 
+  ältere History-Exporte reibungslos gelesen werden können.
+- Fehlerbehebungen beim Schreiben des Reports in Excel: Über-
+  flüssige Spalten "Steuer" und "SzenarioID" entfernt.
+- Fehlermeldung bei Programm-Ende mit laufendem Hintergrund-Job
+  entfernt.
+
+
+******************************************************
+Version 0.7.8 / 30.03.2014
+--------------------------
+Neue Features:
+- Es gibt ein Verfahren für Börsen, die den Betrieb eingestellt 
+  haben und deren letzter Coin-Bestand daher verloren ist: Wenn
+  man der Plattform in der Tabellen-Bearbeitung das Häkchen
+  "Eigenbesitz" entfernt, werden die dort liegenden Werte im
+  ersten Reiter unter Bestand nicht mehr berücksichtigt (aber
+  bleiben sichtbar, wenn man die Plattformen anzeigen lässt), 
+  außerdem werden Trades, die in diesen Börsen getätigt wurden,
+  im Gewinn-/Verlustbericht nicht mehr ausgewiesen (Transfers
+  von oder auf diese Börse aber schon).
+
+Verbesserungen:
+- Einige Fehler im Zusammenhang mit Szenarien wurden korrigiert
+  (die Anzeige der Gewinnsummen hat vorher nicht nach Szenario
+  unterschieden und daher *alle* Gewinne über alle Szenarien
+  summiert).
+- Vircurex-Import etwas "sprechender".
+- Bitcoin-Qt-Import heißt jetzt Bitcoin-Core-Import.
+- Summenanzeigen auf Startseite optimiert.
+
+
+******************************************************
+Version 0.7.7 / 27.03.2014
+--------------------------
+Neue Features:
+- Einstellungen für die Gewinn-/Verlustberechnung können
+  jetzt in Szenarien gespeichert werden, was eine leichtere
+  Vergleichbarkeit verschiedener Einstellungs-Varianten 
+  ermöglicht.
+- CoinTracer kann jetzt beliebige Trade-Daten in einem
+  eigenen CoinTracer-Format einlesen. Formatbeschreibung
+  unter http://www.cointracer.de
+- Daten in der Tabellenansicht können jetzt gefiltert, 
+  sortiert und vor allem bearbeitet werden. 
+- Importe können in der Tabellenansicht zurückgesetzt werden.
+- Über das Hilfe-Menü kann aus der Applikation heraus geprüft
+  werden, ob es eine neuere Version des CoinTracer gibt.
+- Es gibt jetzt unter Extras einen Option-Dialog, in dem 
+  (im ersten Schritt) Online-/Offline-Einstellungen 
+  vorgenommen werden können.
+
+
+Verbesserungen:
+- Benutzerführung: In den Berichtseinstellungen wird jetzt
+  auf jedem Reiter markiert, ob überhaupt zugehörige Trade-
+  Daten vorhanden sind. Wenn es bspw. keine Transfers zwischen 
+  Börsen gibt, wird dies im betreffenden Reiter angezeigt. Die
+  Einstellungen, die man dort vornimmt, haben also auch keine
+  Auswirkung.
+- In der Übersicht können Bestände und Aufwendungen
+  aufgeschlüsselt nach Plattform angezeigt und gefiltert werden.
+- GUI-Anpassungen: weniger überlappende Texte und Steuerelemente
+  bei Windows-Desktops mit vergrößerter Darstellung.
+
+
+******************************************************
+Version 0.7.6 / 17.02.2014
+--------------------------
+Neue Features:
+- Gesamte Datenbank kann jetzt gesichert und Datenbank-
+  backups können eingelesen werden.
+
+Verbesserungen:
+- Fälschlicherweise im Report enthaltene Fiat-Transfers
+  wurden wieder entfernt.
+
+
+******************************************************
+Version 0.7.5 / 16.02.2014
+--------------------------
+Neue Features:
+- Einlesen von Trades von Bitstamp.net hinzugefügt.
+- Wechselkurse USD/EUR können als Datei eingelesen werden.
+  Damit kann CoinTracer komplett offline, ohne Verbindung
+  mit dem Internet betrieben werden.
+
+Verbesserungen:
+- Mt. Gox-Import erweitert und korrigiert. Jetzt können auch
+  EUR- und USD-History-Exportdateien eingelesen werden.
+
+
+******************************************************
+Version 0.7.4 / 14.02.2014
+--------------------------
+Neue Features:
+- Hilfe in Form von Verlinkung auf Doku-Seite hinzugefügt.
+
+Verbesserungen:
+- Stabilität und Usability bei Import-Fehlern wurde
+  erhöht. Import bricht jetzt nach 5 Fehlern ab, statt
+  jede einzelne ungültige Importzeile zu melden.
+- Fehler bei Excel-Export des Berichts behoben (Zeitangaben
+  Von-Bis waren falsch formatiert).
+
+
+******************************************************
+Version 0.7.3 / 11.02.2014
+--------------------------
+Neue Features:
+- Trades in US-Dollar können verarbeitet werden.
+- Funktion zum Abrufen der Kurse EUR/USD hinzugefügt.
+- Neue Importmöglichkeit für BTC-E.COM hinzugefügt.
+- 7 neue Coin-Arten hinzugefügt: Feathercoin, Mastercoin, 
+  Namecoin, Novacoin, Peercoin, Primecoin, Terracoin.
+- Unvollständige Transfers können manuell bearbeitet werden.
+- Funktion zum Optimieren & Aufräumen der Datenbank hinzugefügt.
+
+Verbesserungen:
+- Benutzer-Oberfläche verbessert (Fortschrittsanzeige, 
+  skalierbare Formulare usw.)
+- Jetzt aber: Vircurex-Import berücksichtigt auch Verkäufe.
+
+Internes:
+- Datenzugriffe wurden optimiert.
+
+
+******************************************************
+Version 0.7.1 / 26.01.2014
+--------------------------
+Neue Features:
+- Wahlmöglichkeit beim Gewinn-Verlust-Bericht: entweder jeden
+  Trade einzeln auflisten oder nach Buchungstag kumuliert.
+- Ansicht von Release Notes in der Anwendung.
+
+Verbesserungen:
+- Trade-Importe kommen jetzt auch mit Zahlenangaben in Exponential-
+  schreibweise klar.
+- Beim Transfer von Coins wird deren Alter nicht wieder zurückgesetzt.
+- Vircurex-Import kann jetzt auch mit Verkäufen umgehen (Hüstel...)
+
+Internes:
+- Datenbankschema-Änderungen sind über beliebige Programmversionen
+  hinweg ohne Verlust der eingelesenen Transferdaten möglich.
+
+
+******************************************************
+Version 0.7.0 / 21.01.2014
+--------------------------
+Features:
+Erste veröffentlichte Version, Key-Features:
+- Einlesen von Trades von Bitcoin.de
+- Einlesen von Trades von Mt. Gox (nur EUR!)
+- Einlesen von Käufen (!) von Vircurex.com
+- Einlesen von Transaktionen eines lokalen Bitcoin-Qt-Wallets
+- Einlesen von Transaktionen eines lokalen Litecoin-Qt-Wallets
+- Konfigurieren von "Coin-Verwendungs-Strategien" für die 
+  unterschiedlichsten Transaktionsvarianten (Verkauf gegen Fiat,
+  Verkauf gegen Coins, Transfer von Börse zu Wallet usw.)
+- Berechnen des realisierten (!) Gewinns innerhalb eines Zeitraums
+- Erstellen eines "Gewinn-Verlust-Berichts" zeitraumbezogen
+- (eher zu Debug-Zwecken:) Ansicht der intern verwendeten Tabellen

@@ -1,0 +1,1451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ **************************************
+ *
+ * Copyright 2013-2019 Andreas Nebinger
+ *
+ * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
+   Folgeversionen der EUPL ("Lizenz");
+ * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
+
+ * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
+ 
+ * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
+   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
+   ausdrücklich oder stillschweigend - verbreitet.
+ * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
+
+ =======
+ English
+ =======
+ 
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
+   subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
+ 
+ * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+ 
+ * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
+   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and limitations under the Licence.
+ *
+ **************************************
+-->
+
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="IDLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="IDLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="IDLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>70, 12</value>
+  </data>
+  <data name="IDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 15</value>
+  </data>
+  <data name="IDLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="IDLabel.Text" xml:space="preserve">
+    <value>ID:</value>
+  </data>
+  <data name="&gt;&gt;IDLabel.Name" xml:space="preserve">
+    <value>IDLabel</value>
+  </data>
+  <data name="&gt;&gt;IDLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;IDLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;IDLabel.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <metadata name="ZeitpunktLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ZeitpunktLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="ZeitpunktLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ZeitpunktLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>302, 12</value>
+  </data>
+  <data name="ZeitpunktLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 15</value>
+  </data>
+  <data name="ZeitpunktLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="ZeitpunktLabel.Text" xml:space="preserve">
+    <value>Erstellt am:</value>
+  </data>
+  <data name="&gt;&gt;ZeitpunktLabel.Name" xml:space="preserve">
+    <value>ZeitpunktLabel</value>
+  </data>
+  <data name="&gt;&gt;ZeitpunktLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ZeitpunktLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ZeitpunktLabel.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <metadata name="AktivLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="AktivLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="AktivLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>54, 186</value>
+  </data>
+  <data name="AktivLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 15</value>
+  </data>
+  <data name="AktivLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="AktivLabel.Text" xml:space="preserve">
+    <value>Aktiv:</value>
+  </data>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>211, 56</value>
+  </metadata>
+  <data name="AktivLabel.ToolTip" xml:space="preserve">
+    <value>Zeigt an, ob diese Daten beim API-Import verwendet werden sollen.</value>
+  </data>
+  <data name="&gt;&gt;AktivLabel.Name" xml:space="preserve">
+    <value>AktivLabel</value>
+  </data>
+  <data name="&gt;&gt;AktivLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AktivLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;AktivLabel.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <metadata name="ImportPlattformIDLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="ImportPlattformIDLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ImportPlattformIDLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 40</value>
+  </data>
+  <data name="ImportPlattformIDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 15</value>
+  </data>
+  <data name="ImportPlattformIDLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="ImportPlattformIDLabel.Text" xml:space="preserve">
+    <value>Plattform:</value>
+  </data>
+  <data name="&gt;&gt;ImportPlattformIDLabel.Name" xml:space="preserve">
+    <value>ImportPlattformIDLabel</value>
+  </data>
+  <data name="&gt;&gt;ImportPlattformIDLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ImportPlattformIDLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ImportPlattformIDLabel.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <metadata name="BezeichnungLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="BezeichnungLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BezeichnungLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 70</value>
+  </data>
+  <data name="BezeichnungLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>78, 15</value>
+  </data>
+  <data name="BezeichnungLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>43</value>
+  </data>
+  <data name="BezeichnungLabel.Text" xml:space="preserve">
+    <value>Bezeichnung:</value>
+  </data>
+  <data name="&gt;&gt;BezeichnungLabel.Name" xml:space="preserve">
+    <value>BezeichnungLabel</value>
+  </data>
+  <data name="&gt;&gt;BezeichnungLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BezeichnungLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;BezeichnungLabel.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <metadata name="ApiKeyLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="ApiKeyLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ApiKeyLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>39, 99</value>
+  </data>
+  <data name="ApiKeyLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>52, 15</value>
+  </data>
+  <data name="ApiKeyLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>45</value>
+  </data>
+  <data name="ApiKeyLabel.Text" xml:space="preserve">
+    <value>API-Key:</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyLabel.Name" xml:space="preserve">
+    <value>ApiKeyLabel</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyLabel.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <metadata name="ApiSecretLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="ApiSecretLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ApiSecretLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>49, 128</value>
+  </data>
+  <data name="ApiSecretLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 15</value>
+  </data>
+  <data name="ApiSecretLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>47</value>
+  </data>
+  <data name="ApiSecretLabel.Text" xml:space="preserve">
+    <value>Secret:</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretLabel.Name" xml:space="preserve">
+    <value>ApiSecretLabel</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <metadata name="LastImportTimestampLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="LastImportTimestampLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LastImportTimestampLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 157</value>
+  </data>
+  <data name="LastImportTimestampLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 15</value>
+  </data>
+  <data name="LastImportTimestampLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>52</value>
+  </data>
+  <data name="LastImportTimestampLabel.Text" xml:space="preserve">
+    <value>Daten holen ab:</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampLabel.Name" xml:space="preserve">
+    <value>LastImportTimestampLabel</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampLabel.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="CallDelayLabel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="CallDelayLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="CallDelayLabel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="CallDelayLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>276, 157</value>
+  </data>
+  <data name="CallDelayLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>139, 15</value>
+  </data>
+  <data name="CallDelayLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="CallDelayLabel.Text" xml:space="preserve">
+    <value>Pause zw. API-Calls (ms):</value>
+  </data>
+  <data name="&gt;&gt;CallDelayLabel.Name" xml:space="preserve">
+    <value>CallDelayLabel</value>
+  </data>
+  <data name="&gt;&gt;CallDelayLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CallDelayLabel.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;CallDelayLabel.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblCurrencies.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCurrencies.Location" type="System.Drawing.Point, System.Drawing">
+    <value>181, 186</value>
+  </data>
+  <data name="lblCurrencies.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 15</value>
+  </data>
+  <data name="lblCurrencies.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="lblCurrencies.Text" xml:space="preserve">
+    <value>Aktive Währungen:</value>
+  </data>
+  <data name="lblCurrencies.ToolTip" xml:space="preserve">
+    <value>Mit welchen Währungen wird auf Bitfinex gehandelt?</value>
+  </data>
+  <data name="&gt;&gt;lblCurrencies.Name" xml:space="preserve">
+    <value>lblCurrencies</value>
+  </data>
+  <data name="&gt;&gt;lblCurrencies.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCurrencies.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;lblCurrencies.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="cmdOK.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="cmdOK.Location" type="System.Drawing.Point, System.Drawing">
+    <value>307, 404</value>
+  </data>
+  <data name="cmdOK.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 29</value>
+  </data>
+  <data name="cmdOK.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="cmdOK.Text" xml:space="preserve">
+    <value>&amp;OK</value>
+  </data>
+  <data name="&gt;&gt;cmdOK.Name" xml:space="preserve">
+    <value>cmdOK</value>
+  </data>
+  <data name="&gt;&gt;cmdOK.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdOK.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cmdOK.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="cmdCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
+  </data>
+  <data name="cmdCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>404, 404</value>
+  </data>
+  <data name="cmdCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>91, 29</value>
+  </data>
+  <data name="cmdCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="&gt;&gt;cmdCancel.Name" xml:space="preserve">
+    <value>cmdCancel</value>
+  </data>
+  <data name="&gt;&gt;cmdCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;cmdCancel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="ApiDatenBindingNavigator.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>726, 17</value>
+  </metadata>
+  <metadata name="ApiDatenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>170, 17</value>
+  </metadata>
+  <metadata name="CoinTracerDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="BindingNavigatorCountItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 22</value>
+  </data>
+  <data name="BindingNavigatorCountItem.Text" xml:space="preserve">
+    <value>of {0}</value>
+  </data>
+  <data name="BindingNavigatorCountItem.ToolTipText" xml:space="preserve">
+    <value>Die Gesamtanzahl der Elemente.</value>
+  </data>
+  <data name="BindingNavigatorMoveFirstItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAASpJREFUOE9jGDygcNbz/00Lnv/PnPj4P1QIA4S3P8Apx5A789n/VUfe/8elKL77
+        wf/ghmu4DciY8vT/wn0fsCqK73n4f+n+///9qy/gNiCh58n/aVveYyiKaL8P1pw56/9/r9ITuA2I7Hr0
+        v3f1BxRFoa33wJpb1wFt7/z73yX/AG4DApsf/q+b/w6uKLjl7v9Fe///7wBqzpjz879d3c//9hnbcRvg
+        UXX/f/60NyiK7Ipv/0+f8/u/f9e3/zqF7/5bJKzHbYB96d3/2ZNfYyjSTzn/36ToxX+VrE//jSOX4TbA
+        Iu/O/9T+11gVGSSd+C+b9vW/bvA83AYYZt3+H9byEqci/dTL/zV8p+E2QCftxn+/6od4Fal4TMBtgFPu
+        lf8gBXgVDULAwAAA8HbAq6XlmnAAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="BindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BindingNavigatorMoveFirstItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="BindingNavigatorMoveFirstItem.Text" xml:space="preserve">
+    <value>Erster Eintrag</value>
+  </data>
+  <data name="BindingNavigatorMovePreviousItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAALZJREFUOE9jGDogvP3BfyiTdBDf/eB/cMM18gyI73n4f+n+///9qy+QbkBE+32w
+        5sxZ//97lZ4gzYDQ1ntgza3rgLZ3/v3vkn+AeAOCW+7+X7T3//8OoOaMOT//29X9/G+fsZ00F9gV3/6f
+        Puf3f/+ub/91Ct/9t0hYT3oY6Kec/29S9OK/Stan/8aRy0g3AAQMkk78l037+l83eB55BoCAfurl/xq+
+        08g3AARUPCZQZsBgBQwMANAUYJgEulBVAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="BindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BindingNavigatorMovePreviousItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="BindingNavigatorMovePreviousItem.Text" xml:space="preserve">
+    <value>Vorheriger Eintrag</value>
+  </data>
+  <data name="BindingNavigatorSeparator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="BindingNavigatorPositionItem.AccessibleName" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="BindingNavigatorPositionItem.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="BindingNavigatorPositionItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 23</value>
+  </data>
+  <data name="BindingNavigatorPositionItem.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BindingNavigatorPositionItem.ToolTipText" xml:space="preserve">
+    <value>Aktuelle Position</value>
+  </data>
+  <data name="BindingNavigatorSeparator1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="BindingNavigatorMoveNextItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAKNJREFUOE9jGHygcNbz/1AmeSB35rP/Cd33yDckY8rT//P2//6f0HWHPEMSep78
+        n73v1//OrX//u5VeJt2QyK5H/6ds+/W/ZOnf/wnT//63yT1LmiGBzQ//t659D9ZsXPLlv3T0tf/GkcuI
+        N8Sj6v7/krnv4JoVXXpIc4F96d3/gS3PyNMMAhZ5d/7bFFwhTzMIGGbdJl8zCOik3SBf81AEDAwAoH5f
+        oAc0QjgAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="BindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BindingNavigatorMoveNextItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="BindingNavigatorMoveNextItem.Text" xml:space="preserve">
+    <value>Nächster Eintrag</value>
+  </data>
+  <data name="BindingNavigatorMoveLastItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAASxJREFUOE9jGFygcNbz/1AmBgDJNS14/j9z4mOcahhyZz77n9B9D6sCkNyqI+//
+        h7c/wG1AxpSn/+ft//0/oesOhiKQ3MJ9H/4HN1zDbUBCz5P/s/f9+t+59e9/t9LLKApBctO2vP/vX30B
+        twGRXY/+T9n263/J0r//E6b//W+TexauGCTXu/rDf6/SE7gNCGx++L917XuwZuOSL/+lo6/9N45cBtYA
+        kqub/+6/S/4B3AZ4VN3/XzL3HVyzoksPXDFILn/am//2GdtxG2Bfevd/YMszDM0gAJLLnvz6v0XCetwG
+        WOTd+W9TcAVDMwiA5FL7X8O9hBUYZt3GqhkEQHJhLS//6wbPw22ATtoNnJIgOb/qh/81fKfhNgAfcMq9
+        8l/FYwIYQ4UGBWBgAAC+0b+zuQxOnAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="BindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BindingNavigatorMoveLastItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="BindingNavigatorMoveLastItem.Text" xml:space="preserve">
+    <value>Letzter Eintrag</value>
+  </data>
+  <data name="BindingNavigatorSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 25</value>
+  </data>
+  <data name="BindingNavigatorAddNewItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAUpJREFUOE9jGLzg7gL2/7fmcf6/Oofr/8UZvP+hwsSD60CNfx41/v/zsOH/yckC
+        pBtwfjov3ICDPSKkG3B8kiBQc93/Pw+q/u9oFydswKWZPP/PTuX7fxKo8Ui/0P993SJAzeX//94r+r++
+        Qeb/qhq5/0srFf/PL1X+P6tIFdPAU0B//nlYD9RUC8SV///cKwHivP9/72b+/3sn+f/f23H//92MAOKQ
+        /5NyNDENONQrDHbu3/ulQI0FQI3ZQI2pQI0J///digZqDPv/70bQ/3/X/f53peliGrCzXeL/lmap/+vA
+        zpX/v6RC8f/fWzFAjeH/p+Zp/J+QpfW/O0P3f3uq/v/mREPCYTIb6E+Qc//dCPjfk6FDWAM6APnz3w1/
+        IPb735qsT7oB3em6YP+CcH2cEekGtCQZ/G+IN/xfE2v8vzLahHQD6AQYGAAkI9iedfyIaQAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
+  <data name="BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BindingNavigatorAddNewItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="BindingNavigatorAddNewItem.Text" xml:space="preserve">
+    <value>Eintrag hinzufügen</value>
+  </data>
+  <data name="BindingNavigatorDeleteItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        vAAADrwBlbxySQAAAW9JREFUOE+1kE0ow2Ecx3dV3krt4oJaOSCTvIRkMqSxyITIzCQHDouEdnFwIOVC
+        DrhIDiQl5UTiNG/z2ppafy1S2gX/uDwfY6i1v7Hie3nqeb7fz+/7/FR/Ilwn0G0Exw4fV5GJlXlEZxXC
+        rIet9bAQvB5Ymgn2sLYAvSZEux7RUQFzE4qQt4bCXAYjPaHvnDoCkLpsRGMB2JqCTGLIijDlwqQ9bEMV
+        i9OIytR3EMNWcJ/BWH8A6j8/bOGFxwXNxYEvGbMQ9XnQ1/K78KfY3/VXzkMY0qFGG2H4RoLGQshJQNbG
+        86CNhdrsX9a/uQZTPhQl4rMY4OLofbl3aX7I8uwPC7y/g1YdjyVJuEvT8e1tfwUYteHUxCCfHChDeHmG
+        QQvokjlOU+PbWA0x3pZnILVVI3uvQyHsbiLnqnGmRCF1NYD8pDhpRxOH7HQoAKZGkFKjceszQbpSrumX
+        bO+G80MFwKUTxgfgcO/b8D9IpXoFiiMDHIQm0skAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="BindingNavigatorDeleteItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 22</value>
+  </data>
+  <data name="BindingNavigatorDeleteItem.Text" xml:space="preserve">
+    <value>Eintrag löschen</value>
+  </data>
+  <data name="ApiDatenBindingNavigator.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 70</value>
+  </data>
+  <data name="ApiDatenBindingNavigator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>506, 25</value>
+  </data>
+  <data name="ApiDatenBindingNavigator.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="ApiDatenBindingNavigator.Text" xml:space="preserve">
+    <value>BindingNavigator1</value>
+  </data>
+  <data name="&gt;&gt;ApiDatenBindingNavigator.Name" xml:space="preserve">
+    <value>ApiDatenBindingNavigator</value>
+  </data>
+  <data name="&gt;&gt;ApiDatenBindingNavigator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingNavigator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApiDatenBindingNavigator.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ApiDatenBindingNavigator.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="IDTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 9</value>
+  </data>
+  <data name="IDTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 23</value>
+  </data>
+  <data name="IDTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;IDTextBox.Name" xml:space="preserve">
+    <value>IDTextBox</value>
+  </data>
+  <data name="&gt;&gt;IDTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;IDTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;IDTextBox.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="pnlDetails.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="CallDelayNumericUpDown.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="CallDelayNumericUpDown.Location" type="System.Drawing.Point, System.Drawing">
+    <value>421, 155</value>
+  </data>
+  <data name="CallDelayNumericUpDown.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 23</value>
+  </data>
+  <data name="CallDelayNumericUpDown.TabIndex" type="System.Int32, mscorlib">
+    <value>81</value>
+  </data>
+  <data name="CallDelayNumericUpDown.ThousandsSeparator" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;CallDelayNumericUpDown.Name" xml:space="preserve">
+    <value>CallDelayNumericUpDown</value>
+  </data>
+  <data name="&gt;&gt;CallDelayNumericUpDown.Type" xml:space="preserve">
+    <value>CoinTracer.TouchedNumericUpDown, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;CallDelayNumericUpDown.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;CallDelayNumericUpDown.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ccbBitfinexCurrencies.IntegralHeight" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ccbBitfinexCurrencies.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 183</value>
+  </data>
+  <data name="ccbBitfinexCurrencies.Size" type="System.Drawing.Size, System.Drawing">
+    <value>190, 24</value>
+  </data>
+  <data name="ccbBitfinexCurrencies.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;ccbBitfinexCurrencies.Name" xml:space="preserve">
+    <value>ccbBitfinexCurrencies</value>
+  </data>
+  <data name="&gt;&gt;ccbBitfinexCurrencies.Type" xml:space="preserve">
+    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ccbBitfinexCurrencies.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ccbBitfinexCurrencies.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="LastImportTimestampDateTimePicker.CustomFormat" xml:space="preserve">
+    <value>dd.MM.yyyy, HH:mm:ss</value>
+  </data>
+  <data name="LastImportTimestampDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 154</value>
+  </data>
+  <data name="LastImportTimestampDateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
+    <value>145, 23</value>
+  </data>
+  <data name="LastImportTimestampDateTimePicker.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampDateTimePicker.Name" xml:space="preserve">
+    <value>LastImportTimestampDateTimePicker</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampDateTimePicker.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampDateTimePicker.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampDateTimePicker.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="ApiSecretDecryptedTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="ApiSecretDecryptedTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 125</value>
+  </data>
+  <data name="ApiSecretDecryptedTextBox.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="ApiSecretDecryptedTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>388, 23</value>
+  </data>
+  <data name="ApiSecretDecryptedTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretDecryptedTextBox.Name" xml:space="preserve">
+    <value>ApiSecretDecryptedTextBox</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretDecryptedTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretDecryptedTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretDecryptedTextBox.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="ApiKeyDecryptedTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="ApiKeyDecryptedTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 96</value>
+  </data>
+  <data name="ApiKeyDecryptedTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>388, 23</value>
+  </data>
+  <data name="ApiKeyDecryptedTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyDecryptedTextBox.Name" xml:space="preserve">
+    <value>ApiKeyDecryptedTextBox</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyDecryptedTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyDecryptedTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyDecryptedTextBox.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="ApiSecretTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="ApiSecretTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 125</value>
+  </data>
+  <data name="ApiSecretTextBox.PasswordChar" type="System.Char, mscorlib" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="ApiSecretTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 23</value>
+  </data>
+  <data name="ApiSecretTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>48</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretTextBox.Name" xml:space="preserve">
+    <value>ApiSecretTextBox</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ApiSecretTextBox.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="ApiKeyTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="ApiKeyTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>353, 96</value>
+  </data>
+  <data name="ApiKeyTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 23</value>
+  </data>
+  <data name="ApiKeyTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>46</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyTextBox.Name" xml:space="preserve">
+    <value>ApiKeyTextBox</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ApiKeyTextBox.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="BezeichnungTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="BezeichnungTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 67</value>
+  </data>
+  <data name="BezeichnungTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>388, 23</value>
+  </data>
+  <data name="BezeichnungTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;BezeichnungTextBox.Name" xml:space="preserve">
+    <value>BezeichnungTextBox</value>
+  </data>
+  <data name="&gt;&gt;BezeichnungTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BezeichnungTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;BezeichnungTextBox.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <metadata name="PlattformenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
+  </metadata>
+  <data name="PlattformIDComboBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 38</value>
+  </data>
+  <data name="PlattformIDComboBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>111, 23</value>
+  </data>
+  <data name="PlattformIDComboBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;PlattformIDComboBox.Name" xml:space="preserve">
+    <value>PlattformIDComboBox</value>
+  </data>
+  <data name="&gt;&gt;PlattformIDComboBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PlattformIDComboBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;PlattformIDComboBox.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="ZeitpunktTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="ZeitpunktTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>373, 9</value>
+  </data>
+  <data name="ZeitpunktTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>112, 23</value>
+  </data>
+  <data name="ZeitpunktTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;ZeitpunktTextBox.Name" xml:space="preserve">
+    <value>ZeitpunktTextBox</value>
+  </data>
+  <data name="&gt;&gt;ZeitpunktTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ZeitpunktTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ZeitpunktTextBox.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="AktivCheckBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 182</value>
+  </data>
+  <data name="AktivCheckBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>31, 24</value>
+  </data>
+  <data name="AktivCheckBox.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="AktivCheckBox.ToolTip" xml:space="preserve">
+    <value>Deaktivierte API-Zugangsdaten werden beim API-Datenabruf nicht berücksichtigt.</value>
+  </data>
+  <data name="&gt;&gt;AktivCheckBox.Name" xml:space="preserve">
+    <value>AktivCheckBox</value>
+  </data>
+  <data name="&gt;&gt;AktivCheckBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;AktivCheckBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;AktivCheckBox.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="LastImportTimestampTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>99, 154</value>
+  </data>
+  <data name="LastImportTimestampTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>117, 23</value>
+  </data>
+  <data name="LastImportTimestampTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampTextBox.Name" xml:space="preserve">
+    <value>LastImportTimestampTextBox</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;LastImportTimestampTextBox.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="lblBitfinex.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lblBitfinex.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Italic</value>
+  </data>
+  <data name="lblBitfinex.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblBitfinex.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 248</value>
+  </data>
+  <data name="lblBitfinex.Size" type="System.Drawing.Size, System.Drawing">
+    <value>398, 36</value>
+  </data>
+  <data name="lblBitfinex.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
+  </data>
+  <data name="lblBitfinex.Text" xml:space="preserve">
+    <value>Einzige notwendige Key Permissions für den API-Key: 'Account Info' und 'Account History'</value>
+  </data>
+  <data name="lblBitfinex.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lblBitfinex.Name" xml:space="preserve">
+    <value>lblBitfinex</value>
+  </data>
+  <data name="&gt;&gt;lblBitfinex.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblBitfinex.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;lblBitfinex.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="lblKraken.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lblKraken.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Italic</value>
+  </data>
+  <data name="lblKraken.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblKraken.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 248</value>
+  </data>
+  <data name="lblKraken.Size" type="System.Drawing.Size, System.Drawing">
+    <value>398, 46</value>
+  </data>
+  <data name="lblKraken.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="lblKraken.Text" xml:space="preserve">
+    <value>Einzige notwendige Key Permission für den API-Key: 'Query Ledger Entries'</value>
+  </data>
+  <data name="lblKraken.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lblKraken.Name" xml:space="preserve">
+    <value>lblKraken</value>
+  </data>
+  <data name="&gt;&gt;lblKraken.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblKraken.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;lblKraken.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="ExtendedInfoTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>119, 154</value>
+  </data>
+  <data name="ExtendedInfoTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>10, 23</value>
+  </data>
+  <data name="ExtendedInfoTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>65</value>
+  </data>
+  <data name="&gt;&gt;ExtendedInfoTextBox.Name" xml:space="preserve">
+    <value>ExtendedInfoTextBox</value>
+  </data>
+  <data name="&gt;&gt;ExtendedInfoTextBox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ExtendedInfoTextBox.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;ExtendedInfoTextBox.ZOrder" xml:space="preserve">
+    <value>25</value>
+  </data>
+  <data name="lblBitcoinDe.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lblBitcoinDe.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Italic</value>
+  </data>
+  <data name="lblBitcoinDe.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblBitcoinDe.Location" type="System.Drawing.Point, System.Drawing">
+    <value>97, 246</value>
+  </data>
+  <data name="lblBitcoinDe.Size" type="System.Drawing.Size, System.Drawing">
+    <value>398, 51</value>
+  </data>
+  <data name="lblBitcoinDe.TabIndex" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="lblBitcoinDe.Text" xml:space="preserve">
+    <value>- Bitcoin.de kann über die Trading-API nur Transaktionen bereitstellen, die bis zum Vortag ausgeführt wurden.
+- Notwendige erlaubte Aktion für den API-Key: 'showAccountLedger'</value>
+  </data>
+  <data name="lblBitcoinDe.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lblBitcoinDe.Name" xml:space="preserve">
+    <value>lblBitcoinDe</value>
+  </data>
+  <data name="&gt;&gt;lblBitcoinDe.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblBitcoinDe.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;lblBitcoinDe.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="lblHinweise.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="lblHinweise.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblHinweise.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt, style=Bold, Italic</value>
+  </data>
+  <data name="lblHinweise.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblHinweise.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 228</value>
+  </data>
+  <data name="lblHinweise.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 15</value>
+  </data>
+  <data name="lblHinweise.TabIndex" type="System.Int32, mscorlib">
+    <value>49</value>
+  </data>
+  <data name="lblHinweise.Text" xml:space="preserve">
+    <value>Hinweise</value>
+  </data>
+  <data name="lblHinweise.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lblHinweise.Name" xml:space="preserve">
+    <value>lblHinweise</value>
+  </data>
+  <data name="&gt;&gt;lblHinweise.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHinweise.Parent" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;lblHinweise.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="pnlDetails.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 98</value>
+  </data>
+  <data name="pnlDetails.Size" type="System.Drawing.Size, System.Drawing">
+    <value>506, 299</value>
+  </data>
+  <data name="pnlDetails.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;pnlDetails.Name" xml:space="preserve">
+    <value>pnlDetails</value>
+  </data>
+  <data name="&gt;&gt;pnlDetails.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlDetails.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlDetails.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="ErrProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>903, 17</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>70</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>7, 15</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>506, 442</value>
+  </data>
+  <data name="Label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="Label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 29</value>
+  </data>
+  <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>486, 37</value>
+  </data>
+  <data name="Label3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>Konfigurieren Sie hier beliebig viele API-Zugangsdaten für die unterstützten Trading-Plattformen. Um Einzelne zu deaktivieren entfernen Sie das Häkchen bei "aktiv".</value>
+  </data>
+  <data name="&gt;&gt;Label3.Name" xml:space="preserve">
+    <value>Label3</value>
+  </data>
+  <data name="&gt;&gt;Label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label3.Parent" xml:space="preserve">
+    <value>pnlEditTrades</value>
+  </data>
+  <data name="&gt;&gt;Label3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Label4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="Label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 8</value>
+  </data>
+  <data name="Label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 17</value>
+  </data>
+  <data name="Label4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="Label4.Text" xml:space="preserve">
+    <value>API-Zugangsdaten bearbeiten</value>
+  </data>
+  <data name="&gt;&gt;Label4.Name" xml:space="preserve">
+    <value>Label4</value>
+  </data>
+  <data name="&gt;&gt;Label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label4.Parent" xml:space="preserve">
+    <value>pnlEditTrades</value>
+  </data>
+  <data name="&gt;&gt;Label4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlEditTrades.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="pnlEditTrades.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="pnlEditTrades.Size" type="System.Drawing.Size, System.Drawing">
+    <value>506, 70</value>
+  </data>
+  <data name="pnlEditTrades.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="&gt;&gt;pnlEditTrades.Name" xml:space="preserve">
+    <value>pnlEditTrades</value>
+  </data>
+  <data name="&gt;&gt;pnlEditTrades.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlEditTrades.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlEditTrades.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
+    <value>522, 481</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>API-Zugangsdaten bearbeiten</value>
+  </data>
+  <data name="&gt;&gt;ApiDatenBindingSource.Name" xml:space="preserve">
+    <value>ApiDatenBindingSource</value>
+  </data>
+  <data name="&gt;&gt;ApiDatenBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CoinTracerDataSet.Name" xml:space="preserve">
+    <value>CoinTracerDataSet</value>
+  </data>
+  <data name="&gt;&gt;CoinTracerDataSet.Type" xml:space="preserve">
+    <value>CoinTracer.CoinTracerDataSet, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorCountItem.Name" xml:space="preserve">
+    <value>BindingNavigatorCountItem</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorCountItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorMoveFirstItem.Name" xml:space="preserve">
+    <value>BindingNavigatorMoveFirstItem</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorMoveFirstItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorMovePreviousItem.Name" xml:space="preserve">
+    <value>BindingNavigatorMovePreviousItem</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorMovePreviousItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorSeparator.Name" xml:space="preserve">
+    <value>BindingNavigatorSeparator</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorSeparator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorPositionItem.Name" xml:space="preserve">
+    <value>BindingNavigatorPositionItem</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorPositionItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripTextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorSeparator1.Name" xml:space="preserve">
+    <value>BindingNavigatorSeparator1</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorMoveNextItem.Name" xml:space="preserve">
+    <value>BindingNavigatorMoveNextItem</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorMoveNextItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorMoveLastItem.Name" xml:space="preserve">
+    <value>BindingNavigatorMoveLastItem</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorMoveLastItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorSeparator2.Name" xml:space="preserve">
+    <value>BindingNavigatorSeparator2</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorAddNewItem.Name" xml:space="preserve">
+    <value>BindingNavigatorAddNewItem</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorAddNewItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorDeleteItem.Name" xml:space="preserve">
+    <value>BindingNavigatorDeleteItem</value>
+  </data>
+  <data name="&gt;&gt;BindingNavigatorDeleteItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PlattformenBindingSource.Name" xml:space="preserve">
+    <value>PlattformenBindingSource</value>
+  </data>
+  <data name="&gt;&gt;PlattformenBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ErrProvider.Name" xml:space="preserve">
+    <value>ErrProvider</value>
+  </data>
+  <data name="&gt;&gt;ErrProvider.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ErrorProvider, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ToolTip1.Name" xml:space="preserve">
+    <value>ToolTip1</value>
+  </data>
+  <data name="&gt;&gt;ToolTip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolTip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TableAdapterManager.Name" xml:space="preserve">
+    <value>TableAdapterManager</value>
+  </data>
+  <data name="&gt;&gt;TableAdapterManager.Type" xml:space="preserve">
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ApiDatenTableAdapter.Name" xml:space="preserve">
+    <value>ApiDatenTableAdapter</value>
+  </data>
+  <data name="&gt;&gt;ApiDatenTableAdapter.Type" xml:space="preserve">
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.ApiDatenTableAdapter, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;PlattformenTableAdapter.Name" xml:space="preserve">
+    <value>PlattformenTableAdapter</value>
+  </data>
+  <data name="&gt;&gt;PlattformenTableAdapter.Type" xml:space="preserve">
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.PlattformenTableAdapter, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmEditApiData</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="TableAdapterManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>553, 17</value>
+  </metadata>
+  <metadata name="ApiDatenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>360, 17</value>
+  </metadata>
+  <metadata name="PlattformenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>310, 56</value>
+  </metadata>
+</root>

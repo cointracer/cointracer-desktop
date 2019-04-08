@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ **************************************
+ *
+ * Copyright 2013-2019 Andreas Nebinger
+ *
+ * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
+   Folgeversionen der EUPL ("Lizenz");
+ * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
+
+ * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
+ 
+ * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
+   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
+   ausdrücklich oder stillschweigend - verbreitet.
+ * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
+
+ =======
+ English
+ =======
+ 
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
+   subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
+ 
+ * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+ 
+ * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
+   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and limitations under the Licence.
+ *
+ **************************************
+-->
+
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lblCategory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>63, 17</value>
+  </data>
+  <data name="lblCategory.Text" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="lbxCategories.Items" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="lbxCategories.Items1" xml:space="preserve">
+    <value>Online settings</value>
+  </data>
+  <data name="lbxCategories.Items2" xml:space="preserve">
+    <value>Paths &amp; folders</value>
+  </data>
+  <data name="lbxCategories.Items3" xml:space="preserve">
+    <value>Log &amp; messages</value>
+  </data>
+  <data name="lbxCategories.Items4" xml:space="preserve">
+    <value>Display settings</value>
+  </data>
+  <data name="rbApiAsk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>94, 19</value>
+  </data>
+  <data name="rbApiAsk.Text" xml:space="preserve">
+    <value>ask next time</value>
+  </data>
+  <data name="rbApiDontAsk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 19</value>
+  </data>
+  <data name="rbApiDontAsk.Text" xml:space="preserve">
+    <value>don't ask</value>
+  </data>
+  <data name="Label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 26</value>
+  </data>
+  <data name="Label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 15</value>
+  </data>
+  <data name="Label6.Text" xml:space="preserve">
+    <value>Ask for password protection for API access data:</value>
+  </data>
+  <data name="grpSecurity.Text" xml:space="preserve">
+    <value>Security</value>
+  </data>
+  <data name="rbBestandUSD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 19</value>
+  </data>
+  <data name="rbBestandUSD.Text" xml:space="preserve">
+    <value>US Dollar</value>
+  </data>
+  <data name="Label8.Text" xml:space="preserve">
+    <value>Use trades in this currency when calculating average prices:</value>
+  </data>
+  <data name="grpBestand.Text" xml:space="preserve">
+    <value>Home: Stock display</value>
+  </data>
+  <data name="grpDisplaySettings.Text" xml:space="preserve">
+    <value>Display settings</value>
+  </data>
+  <data name="rbDBCustom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 19</value>
+  </data>
+  <data name="rbDBCustom.Text" xml:space="preserve">
+    <value>Following directory:</value>
+  </data>
+  <data name="rbDBProgram.Size" type="System.Drawing.Size, System.Drawing">
+    <value>276, 19</value>
+  </data>
+  <data name="rbDBProgram.Text" xml:space="preserve">
+    <value>Program directory (= one database for all users)</value>
+  </data>
+  <data name="rbDBUser.Size" type="System.Drawing.Size, System.Drawing">
+    <value>264, 19</value>
+  </data>
+  <data name="rbDBUser.Text" xml:space="preserve">
+    <value>User directory (= separate databases per user)</value>
+  </data>
+  <data name="Label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>30, 27</value>
+  </data>
+  <data name="Label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 15</value>
+  </data>
+  <data name="Label10.Text" xml:space="preserve">
+    <value>Location of local data:</value>
+  </data>
+  <data name="grpDirectories.Text" xml:space="preserve">
+    <value>Paths &amp;&amp; Folders</value>
+  </data>
+  <data name="rbProxyOn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 4</value>
+  </data>
+  <data name="rbProxyOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 19</value>
+  </data>
+  <data name="rbProxyOn.Text" xml:space="preserve">
+    <value>System proxy</value>
+  </data>
+  <data name="rbProxyOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 19</value>
+  </data>
+  <data name="rbProxyOff.Text" xml:space="preserve">
+    <value>No proxy</value>
+  </data>
+  <data name="Label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>150, 6</value>
+  </data>
+  <data name="Label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 15</value>
+  </data>
+  <data name="Label5.Text" xml:space="preserve">
+    <value>Use Proxy:</value>
+  </data>
+  <data name="rbCoinCoursesOn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 4</value>
+  </data>
+  <data name="rbCoinCoursesOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 19</value>
+  </data>
+  <data name="rbCoinCoursesOn.Text" xml:space="preserve">
+    <value>On program startup</value>
+  </data>
+  <data name="rbCoinCoursesOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 19</value>
+  </data>
+  <data name="rbCoinCoursesOff.Text" xml:space="preserve">
+    <value>Never automatically</value>
+  </data>
+  <data name="rbFiatCoursesOn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 4</value>
+  </data>
+  <data name="rbFiatCoursesOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 19</value>
+  </data>
+  <data name="rbFiatCoursesOn.Text" xml:space="preserve">
+    <value>On program startup</value>
+  </data>
+  <data name="rbFiatCoursesOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 19</value>
+  </data>
+  <data name="rbFiatCoursesOff.Text" xml:space="preserve">
+    <value>Never automatically</value>
+  </data>
+  <data name="rbCheckUpdateOn.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 4</value>
+  </data>
+  <data name="rbCheckUpdateOn.Size" type="System.Drawing.Size, System.Drawing">
+    <value>130, 19</value>
+  </data>
+  <data name="rbCheckUpdateOn.Text" xml:space="preserve">
+    <value>On program startup</value>
+  </data>
+  <data name="rbCheckUpdateOff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>131, 19</value>
+  </data>
+  <data name="rbCheckUpdateOff.Text" xml:space="preserve">
+    <value>Never automatically</value>
+  </data>
+  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 6</value>
+  </data>
+  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>176, 15</value>
+  </data>
+  <data name="Label2.Text" xml:space="preserve">
+    <value>Check for new program version:</value>
+  </data>
+  <data name="rbOnlineMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 24</value>
+  </data>
+  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>42, 15</value>
+  </data>
+  <data name="Label1.Text" xml:space="preserve">
+    <value>Mode:</value>
+  </data>
+  <data name="grpOnlineMode.Text" xml:space="preserve">
+    <value>Online Settings</value>
+  </data>
+  <data name="Label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>48, 21</value>
+  </data>
+  <data name="Label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>103, 15</value>
+  </data>
+  <data name="Label9.Text" xml:space="preserve">
+    <value>Log the following:</value>
+  </data>
+  <data name="GroupBox1.Text" xml:space="preserve">
+    <value>Log file</value>
+  </data>
+  <data name="MessageDescription.HeaderText" xml:space="preserve">
+    <value>Message</value>
+  </data>
+  <data name="Action.HeaderText" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 15</value>
+  </data>
+  <data name="Label7.Text" xml:space="preserve">
+    <value>Following message windows will no longer be displayed:</value>
+  </data>
+  <data name="grpMeldungen.Text" xml:space="preserve">
+    <value>Messages</value>
+  </data>
+  <data name="cmdCancel.Text" xml:space="preserve">
+    <value>&amp;Cancel</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>CoinTracer - Options</value>
+  </data>
+</root>

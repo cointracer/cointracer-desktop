@@ -1,0 +1,1089 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ **************************************
+ *
+ * Copyright 2013-2019 Andreas Nebinger
+ *
+ * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
+   Folgeversionen der EUPL ("Lizenz");
+ * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
+
+ * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
+ 
+ * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
+   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
+   ausdrücklich oder stillschweigend - verbreitet.
+ * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
+
+ =======
+ English
+ =======
+ 
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
+   subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
+ 
+ * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+ 
+ * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
+   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and limitations under the Licence.
+ *
+ **************************************
+-->
+
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="mainCheckUpdates" xml:space="preserve">
+    <value>Neuere Version gefunden!{0}{0}Version {1}.{2}.{3} steht zum Download bereit.{0}{0}Soll nun die URL '{4}' im Standard-Browser geöffnet werden, damit Sie die Version herunterladen können? Der {5} schließt sich dadurch automatisch.</value>
+  </data>
+  <data name="mainCheckUpdatesError" xml:space="preserve">
+    <value>Beim Abrufen der Versionsinformationen ist ein Fehler aufgetreten: {0}</value>
+  </data>
+  <data name="mainCheckUpdatesStillLatest" xml:space="preserve">
+    <value>Ihre {0}-Version {1} ist noch aktuell!</value>
+  </data>
+  <data name="mainCheckUpdatesTitle" xml:space="preserve">
+    <value>Programmversion prüfen</value>
+  </data>
+  <data name="mainCoursesAddedMany" xml:space="preserve">
+    <value>Für {0} Tage wurden Kursinformationen hinzugefügt.</value>
+  </data>
+  <data name="mainCoursesAddedNothing" xml:space="preserve">
+    <value>Es wurden keine Kursinformationen hinzugefügt, der Datenbestand war bereits aktuell.</value>
+  </data>
+  <data name="mainCoursesAddedOne" xml:space="preserve">
+    <value>Für einen Tag wurden neue Kursinformationen hinzugefügt.</value>
+  </data>
+  <data name="mainDataAvailableTo" xml:space="preserve">
+    <value>Daten vorhanden bis: {0}</value>
+  </data>
+  <data name="mainDonateAdvice" xml:space="preserve">
+    <value>Weiterentwicklung unterstützen -</value>
+  </data>
+  <data name="mainEditTradesAdvice" xml:space="preserve">
+    <value>Sie haben Trade-Daten geändert. Um eventuelle Auswirkungen auf die Gewinnberechnung zu berücksichtigen werden jetzt alle berechneten Daten zurückgesetzt.{0}{0}Klicken Sie nur dann auf Abbrechen, wenn Sie sicher sind, dass die vorgenommenen Änderungen keine Auswirkungen auf den berechneten Gewinn/Verlust haben!</value>
+  </data>
+  <data name="mainEditTradesAdviceTitle" xml:space="preserve">
+    <value>Geänderte Trade-Informationen</value>
+  </data>
+  <data name="mainGainingsLastCalculatedTo" xml:space="preserve">
+    <value>(Zuletzt berechnet bis: {0})</value>
+  </data>
+  <data name="mainHidePlatforms" xml:space="preserve">
+    <value>Plattformen ausblenden</value>
+  </data>
+  <data name="mainMsgDeleteDB1" xml:space="preserve">
+    <value>Achtung! Diese Funktion löscht alle Bewegungsdaten in der Datenbank unwiderruflich! Alle Trades, Importe und Gewinnberechnungen werden gelöscht. (Konten, Plattformen, Kursinformationen und API-Zugangsdaten bleiben aber erhalten.){0}{0}Möchten Sie dies wirklich tun?</value>
+  </data>
+  <data name="mainMsgDeleteDB2" xml:space="preserve">
+    <value>Denken Sie bitte noch einmal darüber nach. Möchten Sie wirklich alle Trades, Importe und Gewinnberechnungen löschen?{0}{0}Möchten Sie wirklich forfahren?</value>
+  </data>
+  <data name="mainMsgDeleteDB3" xml:space="preserve">
+    <value>Erledigt, Daten gelöscht!</value>
+  </data>
+  <data name="mainMsgDeleteDBTitle" xml:space="preserve">
+    <value>Bewegungsdaten löschen</value>
+  </data>
+  <data name="mainMsgDisclaimerTitle" xml:space="preserve">
+    <value>Erklärung/Disclaimer</value>
+  </data>
+  <data name="mainMsgGetCourses1" xml:space="preserve">
+    <value>Für eine korrekte Gewinnberechnung fehlen noch Wechselkursinformationen. Sie können die Wechselkurse für USD im Reiter 'Übersicht' unten rechts im Bereich '{1}' abrufen und die Gewinnermittlung anschließend neu starten.{0}{0}Möchten Sie die Wechselkursdaten jetzt automatisch abrufen?</value>
+  </data>
+  <data name="mainMsgGetCourses2" xml:space="preserve">
+    <value>Wechselkursdaten liegen nur bis zum {0} vor, daher wird der Stichtag für die Gewinn-Verlust-Berechnung jetzt auf dieses Datum zurückgesetzt.</value>
+  </data>
+  <data name="mainMsgGetCourses3" xml:space="preserve">
+    <value>Für eine korrekte Gewinnberechnung fehlen noch Wechselkursinformationen (z. B. für dieses Datum: {0}). Bitte aktualisieren Sie erst die Wechselkurse für USD und starten Sie die Gewinnberechnung anschließend erneut.</value>
+  </data>
+  <data name="mainMsgGetCoursesBt1" xml:space="preserve">
+    <value>Kursdaten jetzt abrufen</value>
+  </data>
+  <data name="mainMsgGetCoursesTitle" xml:space="preserve">
+    <value>Fehlende Wechselkursinformationen</value>
+  </data>
+  <data name="mainMsgGetCoursesUSD" xml:space="preserve">
+    <value>Sie rufen die Währungskursdaten EUR &lt;&gt; USD zum ersten Mal ab. Es wird jetzt eine Verbindung mit www.bundesbank.de aufgebaut, um alle verfügbaren Kursdaten abzufragen.{0}{0}Bitte beachten Sie, dass das erste Auffüllen der Kurstabelle etwas Zeit in Anspruch nehmen kann. Sie können den Fortschritt beim Einlesen in der Statuszeile unten rechts verfolgen und während dessen mit dem Programm weiter arbeiten.</value>
+  </data>
+  <data name="mainMsgGetCoursesUSDTitle" xml:space="preserve">
+    <value>Erster Kursdatenabruf</value>
+  </data>
+  <data name="mainMsgGettingCoursesUSD" xml:space="preserve">
+    <value>Rufe Wechselkursdaten EUR &lt;&gt; US-Dollar ab...</value>
+  </data>
+  <data name="mainMsgGotCourses" xml:space="preserve">
+    <value>Gewinnberechnung abgeschlossen!</value>
+  </data>
+  <data name="mainMsgGotCoursesTitle" xml:space="preserve">
+    <value>Gewinne/Verluste berechnen</value>
+  </data>
+  <data name="mainMsgLoadDBError" xml:space="preserve">
+    <value>Fehler beim Öffnen der Datenbank: {0}{1}</value>
+  </data>
+  <data name="mainMsgLoadDBFilter" xml:space="preserve">
+    <value>CoinTracer-Datenbanken (*.data)|*.data|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="mainMsgLoadDBSuccess" xml:space="preserve">
+    <value>Backup der aktuellen Datenbank erfolgreich geladen!{0}{0}Bitte beachten Sie, dass die zusätzlichen Angaben zum Bericht (Name, Steuernummer, Hinweis usw.) nicht in der Datenbank gespeichert sind und daher die bisherigen Einstellungen beibehalten wurden.</value>
+  </data>
+  <data name="mainMsgLoadDBSuccessTitle" xml:space="preserve">
+    <value>Datenbank-Backup einlesen</value>
+  </data>
+  <data name="mainMsgLoadDBTitle" xml:space="preserve">
+    <value>Öffnen einer CoinTracer-Datenbank</value>
+  </data>
+  <data name="mainMsgLoadDBWarning" xml:space="preserve">
+    <value>Achtung: Alle aktuellen Daten werden durch Öffnen einer anderen Datenbank-Datei unwiederbringlich gelöscht!{0}{0}Klicken Sie auf OK, um fortzufahren, andernfalls auf Abbrechen.</value>
+  </data>
+  <data name="mainMsgLoadDBWarningTitle" xml:space="preserve">
+    <value>Warnung vor Datenverlust</value>
+  </data>
+  <data name="mainMsgOptimizeDB1" xml:space="preserve">
+    <value>Die Datenbank wurde erfolgreich reorganisiert und aufgeräumt, die Performance wurde optimiert!</value>
+  </data>
+  <data name="mainMsgOptimizeDB2" xml:space="preserve">
+    <value>{0}{0}Die Datenbank-Datei wurde um {1}kB bereinigt.</value>
+  </data>
+  <data name="mainMsgOptimizeDBTitle" xml:space="preserve">
+    <value>Datenbank optimieren</value>
+  </data>
+  <data name="mainMsgReportReloadNoCalc" xml:space="preserve">
+    <value>Für das Szenario '{1}' wurde noch keine Gewinn-Verlust-Berechnung durchgeführt.{0}{0}Wählen Sie im Reiter '{2}' bitte zuerst einen Stichtag und klicken dort auf die Schaltfläche '{3}', um anschließend hier den Bericht laden zu können.</value>
+  </data>
+  <data name="mainMsgReportReloadNoCalcTitle" xml:space="preserve">
+    <value>Keine Berichtsdaten vorhanden</value>
+  </data>
+  <data name="mainMsgReportToClipboard" xml:space="preserve">
+    <value>Der Gewinn-/Verlust-Bericht wurde in die Zwischenablage kopiert. Sie können ihn nun weiterverarbeiten, z.B. in Microsoft Excel.</value>
+  </data>
+  <data name="mainMsgReportToClipboardTitle" xml:space="preserve">
+    <value>Bericht kopiert</value>
+  </data>
+  <data name="mainMsgSaveDB2" xml:space="preserve">
+    <value>Backup der aktuellen Datenbank erfolgreich gespeichert!</value>
+  </data>
+  <data name="mainMsgSaveDB2Title" xml:space="preserve">
+    <value>Datenbank-Backup speichern</value>
+  </data>
+  <data name="mainMsgSaveDBError" xml:space="preserve">
+    <value>Fehler beim Sichern der Datenbank: {0}</value>
+  </data>
+  <data name="mainMsgSaveDBFilter" xml:space="preserve">
+    <value>CoinTracer-Datenbanken (*.data)|*.data|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="mainMsgSaveDBTitle" xml:space="preserve">
+    <value>Backup der CoinTracer-Datenbank speichern unter...</value>
+  </data>
+  <data name="mainMsgSelectImportMethod" xml:space="preserve">
+    <value>Bitte wählen Sie zuerst aus, was importiert werden soll!</value>
+  </data>
+  <data name="mainMsgSelectImportMethodTitle" xml:space="preserve">
+    <value>Keine Importmethode ausgewählt</value>
+  </data>
+  <data name="mainMsgWarnUnclearTransfers" xml:space="preserve">
+    <value>Es gibt in den Trade-Daten noch Coin-Transfers, bei denen Herkunft- oder Zielplattform nicht bestimmt ist. Das kann die Gewinn-/Verlustberechnung stark verfälschen, weil Transfers ungeklärter Herkunft immer mit 0,00 EUR Kaufpreis berechnet werden.{0}{0}Soll die Gewinn/-Verlustberechnung trotzdem durchgeführt werden?</value>
+  </data>
+  <data name="mainMsgWarnUnclearTransfersTitle" xml:space="preserve">
+    <value>Ungeklärte Transfers</value>
+  </data>
+  <data name="mainNoDataAvailable" xml:space="preserve">
+    <value>- keine Daten vorhanden -</value>
+  </data>
+  <data name="mainShowPlatforms" xml:space="preserve">
+    <value>Plattformen einblenden</value>
+  </data>
+  <data name="mainUpdateCoursesLabel" xml:space="preserve">
+    <value>Wechselkurse aktualisieren</value>
+  </data>
+  <data name="ScenarioDefault" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="globalHour" xml:space="preserve">
+    <value>Stunde</value>
+  </data>
+  <data name="globalHours" xml:space="preserve">
+    <value>Stunden</value>
+  </data>
+  <data name="globalMinute" xml:space="preserve">
+    <value>Minute</value>
+  </data>
+  <data name="globalMinutes" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="importMsgTransfers1stLine" xml:space="preserve">
+    <value>Transfer-Verarbeitung:</value>
+  </data>
+  <data name="importMsgTransfersInserted" xml:space="preserve">
+    <value>Neu angelegte Transfers:</value>
+  </data>
+  <data name="importMsgTransfersUpdated" xml:space="preserve">
+    <value>Erkannte Transfers:</value>
+  </data>
+  <data name="settingsMsgTransferdetection" xml:space="preserve">
+    <value>Achtung! Die automatische Transfer-Erkennung wirkt sich auf die Gewinnberechnung aus. Wenn Sie die Erkennung jetzt erneut durchführen, werden alle berechneten Daten zurückgesetzt.{0}{0}Sind Sie sicher, dass die automatische Transfer-Erkennung jetzt durchgeführt werden soll?</value>
+  </data>
+  <data name="settingsMsgTransferdetectionNoTransfers" xml:space="preserve">
+    <value>Es wurden keine (neuen) Transfers erkannt.</value>
+  </data>
+  <data name="settingsMsgTransferdetectionTitle" xml:space="preserve">
+    <value>Automatische Transfer-Erkennung</value>
+  </data>
+  <data name="dbStrftimeFormat" xml:space="preserve">
+    <value>%d.%m.%Y %H:%M:%S</value>
+    <comment>For Sqlite queries: date format string</comment>
+  </data>
+  <data name="globalNoFilter" xml:space="preserve">
+    <value>- kein Filter -</value>
+  </data>
+  <data name="globalNotAgainSuffix" xml:space="preserve">
+    <value>, &amp;nicht mehr anzeigen</value>
+  </data>
+  <data name="globalPleaseWait" xml:space="preserve">
+    <value>Bitte warten Sie</value>
+  </data>
+  <data name="Ignore" xml:space="preserve">
+    <value>Ignorieren</value>
+  </data>
+  <data name="mainMsgNewTransfers" xml:space="preserve">
+    <value>Es wurden neue Transfers importiert. Möchten Sie jetzt die Transfer-Bearbeitung aufrufen?</value>
+  </data>
+  <data name="mainMsgNewTransfersTitle" xml:space="preserve">
+    <value>Neue ungeklärte Transfers</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Wiederholen</value>
+  </data>
+  <data name="transfersSourcePlatformsUpdated" xml:space="preserve">
+    <value>Die Quellplattform wurde für {0} Transfer(s) aktualisiert.</value>
+  </data>
+  <data name="transfersTargetPlatformsUpdated" xml:space="preserve">
+    <value>Die Zielplattform wurde für {0} Transfer(s) aktualisiert.</value>
+  </data>
+  <data name="transfersTransfersBeingUpdated" xml:space="preserve">
+    <value>Transfers werden aktualisiert</value>
+  </data>
+  <data name="transfersUpdatedCaption" xml:space="preserve">
+    <value>Transfers aktualisiert</value>
+  </data>
+  <data name="transfersUpdateSourcePlatforms" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie allen aufgelisteten Transfers als Quellplattform '{0}' zuweisen wollen? Dieser Vorgang kann nicht rückgängig gemacht werden.</value>
+  </data>
+  <data name="transfersUpdateSourcePlatformsCaption" xml:space="preserve">
+    <value>Quellplattform aktualisieren</value>
+  </data>
+  <data name="transfersUpdateTargetPlatforms" xml:space="preserve">
+    <value>Sind Sie sicher, dass Sie allen aufgelisteten Transfers als Zielplattform '{0}' zuweisen wollen? Dieser Vorgang kann nicht rückgängig gemacht werden.</value>
+  </data>
+  <data name="transfersUpdateTargetPlatformsCaption" xml:space="preserve">
+    <value>Zielplattform aktualisieren</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="importMsgKrakenCSV" xml:space="preserve">
+    <value>Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie "Account", dann "History".{0}3. Klicken Sie auf "Export" und wählen Sie "ledgers" unter "Export Data".{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf "submit". Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie unter "Requests" auf "download".{0}7. Extrahieren Sie das Archiv "ledgers.zip".{0}8. Lesen Sie die Datei "ledgers.csv" im nächsten Fenster ein.</value>
+  </data>
+  <data name="importMsgKrakenCSVCaption" xml:space="preserve">
+    <value>Datenimport von Kraken.com</value>
+  </data>
+  <data name="mainCheckUpdatesMessagesPending" xml:space="preserve">
+    <value> (Es gibt aktuelle Meldungen zu dieser Version!)</value>
+  </data>
+  <data name="importMsgInvalidDataAborting" xml:space="preserve">
+    <value>Es sind zu viele Fehler aufgetreten. Einlesen wird abgebrochen.</value>
+  </data>
+  <data name="importMsgInvalidDataInLine" xml:space="preserve">
+    <value>Fehler beim Einlesen der Import-Datei in Zeile {1}:{0}{0}{2}</value>
+  </data>
+  <data name="importMsgInvalidFileFormat" xml:space="preserve">
+    <value>Die Datei '{0}' hat anscheinend nicht das richtige Format und kann daher nicht eingelesen werden!</value>
+  </data>
+  <data name="importMsgInvalidFileFormatTitle" xml:space="preserve">
+    <value>Ungültige Datei</value>
+  </data>
+  <data name="importLabelAutomatic" xml:space="preserve">
+    <value>--&gt; Automatische Erkennung der Import-Datei(en) &lt;--</value>
+  </data>
+  <data name="importLabelBitcoinCore" xml:space="preserve">
+    <value>Bitcoin Core Client - Exportdatei (*.csv)</value>
+  </data>
+  <data name="importLabelBitcoinDe" xml:space="preserve">
+    <value>Bitcoin.de - Kontoauszug (account_statement[Zeitraum].csv)</value>
+  </data>
+  <data name="importLabelBitfinex" xml:space="preserve">
+    <value>Bitfinex.com - History-Dateien (*.csv)</value>
+  </data>
+  <data name="importLabelBitstamp" xml:space="preserve">
+    <value>Bitstamp.net - Exportdatei (Transactions.csv)</value>
+  </data>
+  <data name="importLabelBtcE" xml:space="preserve">
+    <value>BTC-E.com - History (Copy &amp; Paste)</value>
+  </data>
+  <data name="importLabelCoursesUsd" xml:space="preserve">
+    <value>Wechselkursdaten: EUR/USD</value>
+  </data>
+  <data name="importLabelGeneric" xml:space="preserve">
+    <value>CoinTracer - generischer CSV-Import (*.csv)</value>
+  </data>
+  <data name="importLabelKraken" xml:space="preserve">
+    <value>Kraken - Ledger Export (ledgers.csv)</value>
+  </data>
+  <data name="importLabelLitecoinCore" xml:space="preserve">
+    <value>Litecoin Core Client - Exportdatei (*.csv)</value>
+  </data>
+  <data name="importLabelMtGox" xml:space="preserve">
+    <value>Mt. Gox - Exportdatei (history_BTC/EUR/USD.csv)</value>
+  </data>
+  <data name="importLabelMultibit" xml:space="preserve">
+    <value>MultiBit-Wallet - Exportdatei (*.csv)</value>
+  </data>
+  <data name="importLabelPoloniex" xml:space="preserve">
+    <value>Poloniex.com - History-Dateien (*.csv)</value>
+  </data>
+  <data name="importLabelSeparator" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="importLabelVircurex" xml:space="preserve">
+    <value>Vircurex - Orders und Accounts (Copy &amp; Paste)</value>
+  </data>
+  <data name="importLabelZyado" xml:space="preserve">
+    <value>Zyado.com - Exportdatei (*.csv)</value>
+  </data>
+  <data name="importMsgInvalidApiDataAtRecord" xml:space="preserve">
+    <value>Fehler beim Analysieren des Trade Nr. {1}:{0}{0}{2}</value>
+  </data>
+  <data name="importAllCurrencies" xml:space="preserve">
+    <value>- Alle Währungen -</value>
+  </data>
+  <data name="importMsgImportStarting" xml:space="preserve">
+    <value>Starte Import von {0}. Bitte warten Sie...</value>
+  </data>
+  <data name="apiDataDefaultName" xml:space="preserve">
+    <value>CoinTracer-Import ID {0}</value>
+  </data>
+  <data name="apiDataInvalidKeyError" xml:space="preserve">
+    <value>Bitte geben Sie einen gültigen API-Key ein!</value>
+  </data>
+  <data name="apiDataInvalidSecretError" xml:space="preserve">
+    <value>Bitte geben Sie ein gültiges API-Secret ein!</value>
+  </data>
+  <data name="apiDataMissingCurrenciesBfxError" xml:space="preserve">
+    <value>Bitte wählen Sie alle auf Bitfinex.com gehandelten Währungen aus (mindestens 2)!</value>
+  </data>
+  <data name="apiDataMissingPlatformError" xml:space="preserve">
+    <value>Bitte wählen Sie eine gültige Plattform aus!</value>
+  </data>
+  <data name="importMsgBitcoinDeApi" xml:space="preserve">
+    <value>Bitte beachten Sie: Über die API von Bitcoin.de können nur Transaktionen bis zum Vortag (einschließlich) abgerufen werden.</value>
+  </data>
+  <data name="importMsgBitcoinDeApiTitle" xml:space="preserve">
+    <value>Hinweis API-Import Bitcoin.de</value>
+  </data>
+  <data name="importMsgBitcoinDeApiProgess" xml:space="preserve">
+    <value>Bitcoin.de:{3}{1}: Rufe Trade-Daten für {2} ab ({0}. Seite). Bitte warten Sie...</value>
+  </data>
+  <data name="importMsgBitfinexApiProgess" xml:space="preserve">
+    <value>Bitfinex.com:{0}{2}: Rufe Trade-Daten ({1}) ab. Bitte warten Sie...</value>
+  </data>
+  <data name="importMsgApiAnalyseTrade" xml:space="preserve">
+    <value>Analysiere Trade Nr. {0}...</value>
+  </data>
+  <data name="importMsgApiServerError" xml:space="preserve">
+    <value>Der {0}-Server meldet einen Fehler: "{1}"</value>
+  </data>
+  <data name="importMsgBitcoinDeApiNoNewData" xml:space="preserve">
+    <value>Es stehen keine neuen Daten zur Verfügung.</value>
+  </data>
+  <data name="importMsgBitcoinDeCSV" xml:space="preserve">
+    <value>Hinweis zum Import von Bitcoin.de:{0}{0}1. Melden Sie sich auf Bitcoin.de an.{0}2. Wählen Sie unter "mein Bitcoin.de" die Funktion "Kontoauszug"{0}3. Klicken Sie auf die gewünschte Coin-Art (BTC/BCH/BTG/ETH/BSV - über "Kontoauszug").{0}4. Stellen Sie den gewünschten Zeitraum ein.{0}5. Stellen Sie sicher, dass als Typ "Alles" eingestellt ist.{0}6. Klicken Sie auf "Anzeigen".{0}7. ...und anschließend auf den Link "Kontoauszug als CSV downloaden".{0}8. Lesen Sie die gespeicherte Datei im nächsten Fenster ein.</value>
+  </data>
+  <data name="importMsgBitcoinDeCSVTitle" xml:space="preserve">
+    <value>Datenimport von Bitcoin.de</value>
+  </data>
+  <data name="importMsgKrakenApiErrorPrefix" xml:space="preserve">
+    <value>Kraken.com API-Aufruf: Fehler bei Ledger-Eintrag {0}:</value>
+  </data>
+  <data name="importMsgKrakenApiErrorSuffix" xml:space="preserve">
+    <value>Leger-Daten:</value>
+  </data>
+  <data name="importMsgKrakenErrorNoNegativeValue" xml:space="preserve">
+    <value>Ungültiger Trade {0}: Sowohl Buchung als auch Gegenbuchung haben einen positiven Wert.</value>
+  </data>
+  <data name="importMsgKrakenErrorNoSecondEntry" xml:space="preserve">
+    <value>Konnte keinen zweiten zugehörigen Ledger-Eintrag zum Trade {0} finden.</value>
+  </data>
+  <data name="cvsFifo" xml:space="preserve">
+    <value>Fifo</value>
+  </data>
+  <data name="cvsFifoLong" xml:space="preserve">
+    <value>Älteste Coins zuerst</value>
+  </data>
+  <data name="cvsHifo" xml:space="preserve">
+    <value>Hifo</value>
+  </data>
+  <data name="cvsHifoLong" xml:space="preserve">
+    <value>Teuerste Coins zuerst</value>
+  </data>
+  <data name="cvsLifo" xml:space="preserve">
+    <value>Lifo</value>
+  </data>
+  <data name="cvsLifoLong" xml:space="preserve">
+    <value>Jüngste Coins zuerst</value>
+  </data>
+  <data name="cvsLofo" xml:space="preserve">
+    <value>Lofo</value>
+  </data>
+  <data name="cvsLofoLong" xml:space="preserve">
+    <value>Billigste Coins zuerst</value>
+  </data>
+  <data name="cvsNoPreferrationCvs" xml:space="preserve">
+    <value>Es wird das {0}-Verfahren angewendet ({1}).</value>
+  </data>
+  <data name="cvsPrefAbove1Year1Cvs" xml:space="preserve">
+    <value>Coins älter als 1 Jahr werden bevorzugt, Coins jünger als 1 Jahr werden nachrangig verwendet. Es wird das {0}-Verfahren angewendet ({1}).</value>
+  </data>
+  <data name="cvsPrefAbove1Year2Cvs" xml:space="preserve">
+    <value>Coins älter als 1 Jahr werden bevorzugt, Coins jünger als 1 Jahr werden nachrangig verwendet. Bei Ersteren wird das {0}-Verfahren angewendet ({1}), bei Letzteren das {2}-Verfahren ({3}).</value>
+  </data>
+  <data name="cvsPrefBelow1Year1Cvs" xml:space="preserve">
+    <value>Coins jünger als 1 Jahr werden bevorzugt, Coins älter als 1 Jahr werden nachrangig verwendet. Es wird das {0}-Verfahren angewendet ({1}).</value>
+  </data>
+  <data name="cvsPrefBelow1Year2Cvs" xml:space="preserve">
+    <value>Coins jünger als 1 Jahr werden bevorzugt, Coins älter als 1 Jahr werden nachrangig verwendet. Bei Ersteren wird das {0}-Verfahren angewendet ({1}), bei Letzteren das {2}-Verfahren ({3}).</value>
+  </data>
+  <data name="cvsScenarioC4C" xml:space="preserve">
+    <value>Kauf Coins für Coins:</value>
+  </data>
+  <data name="cvsScenarioC4F" xml:space="preserve">
+    <value>Verkauf Coins für €:</value>
+  </data>
+  <data name="cvsScenarioLongTermPeriod" xml:space="preserve">
+    <value>Haltefrist:</value>
+  </data>
+  <data name="cvsScenarioW2X" xml:space="preserve">
+    <value>Transfer Wallet an Börse:</value>
+  </data>
+  <data name="cvsScenarioWithdrawal" xml:space="preserve">
+    <value>Abbuchung von Coins:</value>
+  </data>
+  <data name="cvsScenarioX2W" xml:space="preserve">
+    <value>Transfer Börse an Wallet:</value>
+  </data>
+  <data name="cvsScenarioX2X" xml:space="preserve">
+    <value>Transfer zwischen Börsen:</value>
+  </data>
+  <data name="cvsWalletUnaware" xml:space="preserve">
+    <value>Coin-Bestände werden wallet-übergreifend betrachtet.</value>
+  </data>
+  <data name="cvsWalletAware" xml:space="preserve">
+    <value>Coin-Bestände werden nach Wallet bzw. Plattform getrennt betrachtet.</value>
+  </data>
+  <data name="globalDays" xml:space="preserve">
+    <value>Tag(e)</value>
+  </data>
+  <data name="mainMsgCalculationRollbackAll" xml:space="preserve">
+    <value>Sie sind dabei, alle Gewinnberechnungen für das Szenario '{0}' zurückzusetzen. Wollen Sie dies wirklich tun?</value>
+  </data>
+  <data name="mainMsgCalculationRollbackConfirmed" xml:space="preserve">
+    <value>Gewinnberechnung erfolgreich zurückgesetzt!</value>
+  </data>
+  <data name="mainMsgCalculationRollbackSingle" xml:space="preserve">
+    <value>Sie sind dabei, eine Gewinnberechnung für das Szenario '{0}' zurückzusetzen. Sie werden danach alle Berechnungen ab dem {1} erneut durchführen müssen. Wollen Sie dies wirklich tun?</value>
+  </data>
+  <data name="mainMsgCalculationRollbackTitle" xml:space="preserve">
+    <value>Gewinnberechnung rückgängig machen</value>
+  </data>
+  <data name="Weeks" xml:space="preserve">
+    <value>Woche(n)</value>
+  </data>
+  <data name="Years" xml:space="preserve">
+    <value>Jahr(e)</value>
+  </data>
+  <data name="msgCopyingTable" xml:space="preserve">
+    <value>Kopiere Tabelle in die Zwischenablage. Bitte warten Sie...</value>
+  </data>
+  <data name="mainMsgNewDB1" xml:space="preserve">
+    <value>Achtung! Diese Funktion löscht alle Daten unwiderruflich! Alle Trades, Importe, Gewinnberechnungen und auch alle API-Zugangsdaten werden gelöscht. Informationen zu Konten/Coins sowie Plattforminformationen werden zurückgesetzt.{0}{0}Möchten Sie dies wirklich tun?</value>
+  </data>
+  <data name="mainMsgNewDB2" xml:space="preserve">
+    <value>Sind Sie wirklich sicher, dass *alle* Daten gelöscht oder auf Standardwerte zurückgesetzt werden sollen?{0}{0}Möchten Sie wirklich forfahren?</value>
+  </data>
+  <data name="mainMsgNewDBError" xml:space="preserve">
+    <value>Fehler beim Zurücksetzen der Datenbank: {0}{1}</value>
+  </data>
+  <data name="mainMsgNewDBSuccess" xml:space="preserve">
+    <value>Die Datenbank wurde erfolgreich zurücksetzt! Alle Bewegungsdaten wurden gelöscht und alle Änderungen an Stammdaten wurden rückgängig gemacht. Auch API-Zugangsdaten wurden gelöscht.</value>
+  </data>
+  <data name="mainMsgNewDBSuccessTitle" xml:space="preserve">
+    <value>Datenbank zurücksetzen</value>
+  </data>
+  <data name="mainMsgNewDBTitle" xml:space="preserve">
+    <value>Gesamte Datenbank zurücksetzen</value>
+  </data>
+  <data name="importMsgStartFileimport" xml:space="preserve">
+    <value>Starte Datenimport. Bitte warten Sie...</value>
+  </data>
+  <data name="importOpenFileError" xml:space="preserve">
+    <value>Fehler beim Öffnen der Datei {0}: {1}</value>
+  </data>
+  <data name="importOpenFileFilterCSV" xml:space="preserve">
+    <value>CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="importOpenFileTitle" xml:space="preserve">
+    <value>Wählen Sie die zu importierende Datei aus...</value>
+  </data>
+  <data name="importOpenMultipleFilesTitel" xml:space="preserve">
+    <value>Wählen Sie die zu importierende(n) Datei(en) aus... (Mehrfachauswahl möglich)</value>
+  </data>
+  <data name="initDbCheckPlatformsError" xml:space="preserve">
+    <value>Beim Überprüfen der Plattform-Einträge ist ein Fehler aufgetreten!</value>
+  </data>
+  <data name="importInfoBitcoinDeAffiliateEarnings" xml:space="preserve">
+    <value>Partnerprogramm / User '{0}'</value>
+  </data>
+  <data name="importInfoBitcoinDeBuy" xml:space="preserve">
+    <value>Kauf {0} - Volumen {1} {0} für {2} {3}</value>
+  </data>
+  <data name="importInfoBitcoinDeBuyFee" xml:space="preserve">
+    <value>Gebühr zu {0}-Kauf Referenz {1}</value>
+  </data>
+  <data name="importInfoBitcoinDeInitialization" xml:space="preserve">
+    <value>Initialisierung Bestand {0}</value>
+  </data>
+  <data name="importInfoBitcoinDeInpayment" xml:space="preserve">
+    <value>{0}-Einzahlung, Transaktions-Hash {1}</value>
+  </data>
+  <data name="importInfoBitcoinDePayout" xml:space="preserve">
+    <value>{0}-Auszahlung, Transaktions-Hash {1}</value>
+  </data>
+  <data name="importInfoBitcoinDePayoutNetworkFee" xml:space="preserve">
+    <value>{0}-Auszahlung Gebührenanteil, Transaktions-Hash {1}</value>
+  </data>
+  <data name="importInfoBitcoinDeRegistration" xml:space="preserve">
+    <value>Registrierung Bitcoin.de</value>
+  </data>
+  <data name="importInfoBitcoinDeSell" xml:space="preserve">
+    <value>Verkauf {0} - Volumen {1} {0} für {2} {3}</value>
+  </data>
+  <data name="importInfoBitcoinDeSellFee" xml:space="preserve">
+    <value>Gebühr zu {0}-Verkauf Referenz {1}</value>
+  </data>
+  <data name="importMsgAmbiguosFileFormat" xml:space="preserve">
+    <value>Die ausgewählte{2} Datei{3} könnte{2} von mehr als einer Plattform/Börse stammen:{0}{0}{1}{0}Bitte starten Sie den Import erneut und wählen vorher explizit die gewünschte Plattform in der Drop-Down-Box.</value>
+  </data>
+  <data name="importMsgAmbiguosFileFormatTitle" xml:space="preserve">
+    <value>Mehrdeutiges Dateiformat</value>
+  </data>
+  <data name="importMsgReadFileError" xml:space="preserve">
+    <value>Fehler beim Öffnen der Datei(en): </value>
+  </data>
+  <data name="importMsgReadingFile" xml:space="preserve">
+    <value>Lese Datei ein... ({0}/{1})</value>
+  </data>
+  <data name="importMsgStartPlatformImport" xml:space="preserve">
+    <value>{0}: Datenimport wird jetzt gestartet.</value>
+  </data>
+  <data name="importMsgStartPlatformImportTitle" xml:space="preserve">
+    <value>Import von Trading-Dateien</value>
+  </data>
+  <data name="importMsgUnknownFileFormat" xml:space="preserve">
+    <value>Das Format der ausgewählten Datei{0} konnte keiner Plattform/Börse zugeordnet werden, ein Import ist daher nicht möglich!</value>
+  </data>
+  <data name="importMsgUnknownFileFormatTitle" xml:space="preserve">
+    <value>Unbekanntes Dateiformat</value>
+  </data>
+  <data name="importOpenFileTitleBitcoinDe" xml:space="preserve">
+    <value>Kontoauszug von Bitcoin.de auswählen... (account_statement[Zeitraum].csv)</value>
+  </data>
+  <data name="importOpenFileTitleCoinTracer" xml:space="preserve">
+    <value>CoinTracer-Importdatei auswählen... (*.csv)</value>
+  </data>
+  <data name="cvsCoin4CoinAware" xml:space="preserve">
+    <value>Kauf/Verkauf Coins für Coins wird steuerlich berücksichtigt.</value>
+  </data>
+  <data name="cvsCoin4CoinUnaware" xml:space="preserve">
+    <value>Kauf/Verkauf Coins für Coins wird steuerneutral betrachtet.</value>
+  </data>
+  <data name="cvsGoupLabelAbove1Year" xml:space="preserve">
+    <value>Verfahren Coins älter als 1 Jahr</value>
+  </data>
+  <data name="cvsGoupLabelBelow1Year" xml:space="preserve">
+    <value>Verfahren Coins jünger als 1 Jahr</value>
+  </data>
+  <data name="cvsGoupLabelDefault" xml:space="preserve">
+    <value>Verbrauchsfolgeverfahren</value>
+  </data>
+  <data name="importMsgBitfinexCSV" xml:space="preserve">
+    <value>Hinweis zum Import von Bitfinex.com:
+
+1. Nachdem Sie sich auf Bitfinex.com angemeldet haben, klicken Sie auf das Symbol oben rechts ("Manage Account"), dann auf "Reports".
+2. Klicken Sie unter "Balances" auf "Ledgers", um zur Reporting-Oberfläche von Bitfinex weitergeleitet zu werden.
+3. Stellen Sie oben links (direkt unter dem Bitfinex-Symbol) den gewünschten Export-Zeitraum ein. Im rechten Bereich werden unmittelbar die entsprechenden Ledger-Einträge angezeigt.
+4. Klicken Sie auf "Export", um die Daten als CSV-Datei zu erhalten. WICHTIG: Datumsformat muss "DD-MM-YY" sein und "Display Milliseconds" darf NICHT angehakt sein.
+5. Sie erhalten nun einen Download-Link per E-Mail, sobald die Daten zusammengestellt wurden. Mit diesem Link laden sie ein Zip-Archiv herunter.
+6. Entpacken Sie die CSV-Datei aus dem Archiv und lesen Sie diese im nachfolgenden Schritt ein.</value>
+  </data>
+  <data name="importMsgBitfinexCSVTitle" xml:space="preserve">
+    <value>Datenimport von Bitfinex.com</value>
+  </data>
+  <data name="importOpenFileFilterTitleBitfinex" xml:space="preserve">
+    <value>Datenexport-Dateien von Bitfinex.com auswählen... (history_[???].csv)</value>
+  </data>
+  <data name="errorDefaultEndApplication" xml:space="preserve">
+    <value>Die Anwendung wird jetzt beendet.</value>
+  </data>
+  <data name="errorDefaultMessage" xml:space="preserve">
+    <value>Es ist ein Fehler aufgetreten!</value>
+  </data>
+  <data name="errorDefaultTitle" xml:space="preserve">
+    <value>Anwendungsfehler</value>
+  </data>
+  <data name="importApiLabel" xml:space="preserve">
+    <value>API-Import</value>
+  </data>
+  <data name="importMsgApiAnalyseHistoryEntry" xml:space="preserve">
+    <value>Analysiere History-Eintrag Nr. {0}...</value>
+  </data>
+  <data name="importMsgApiServerErrorTitle" xml:space="preserve">
+    <value>Fehler beim API-Datenabruf</value>
+  </data>
+  <data name="importMsgMixedFileFormats" xml:space="preserve">
+    <value>Die ausgewählten Dateien haben offenbar kein einheitliches Format. Bitte wählen Sie einheitlich formatierte Dateien aus und versuchen Sie es erneut.</value>
+  </data>
+  <data name="importMsgMixedFileFormatsTitle" xml:space="preserve">
+    <value>Uneinheitliche Dateien ausgewählt</value>
+  </data>
+  <data name="unknownInHyphens" xml:space="preserve">
+    <value>- unbekannt -</value>
+  </data>
+  <data name="importLogKrakenLedgerItem" xml:space="preserve">
+    <value>Kraken.com API-Aufruf: LedgerItem: {0}{1}</value>
+  </data>
+  <data name="importMsgApiImportLabel" xml:space="preserve">
+    <value>API-Import / Konfiguration "{0}"</value>
+  </data>
+  <data name="importMsgApiInvalidPassword" xml:space="preserve">
+    <value>Datenabruf konnte nicht durchgeführt werden. Ungültiges Passwort!</value>
+  </data>
+  <data name="importMsgApiNoConfigs" xml:space="preserve">
+    <value>Es sind keine API-Schnittstellen konfiguriert oder aktiv, daher können keine Daten abgerufen werden.</value>
+  </data>
+  <data name="importMsgApiNoConfigsTitle" xml:space="preserve">
+    <value>Fehlende API-Daten</value>
+  </data>
+  <data name="importMsgApiSummary" xml:space="preserve">
+    <value>Import für Plattform {1} abgeschlossen!{0}{0}Datensätze eingelesen: {2}{0}Datensätze übersprungen: {3}{4}</value>
+  </data>
+  <data name="importMsgApiSummaryTitle" xml:space="preserve">
+    <value>API-Import abgeschlossen</value>
+  </data>
+  <data name="importMsgKrakenApiProgess" xml:space="preserve">
+    <value>Analysiere Trade Nr. {0}...</value>
+  </data>
+  <data name="importOpenFileFilterTitleKraken" xml:space="preserve">
+    <value>Ledger-Datenexport von Kraken.com auswählen... (ledgers.csv)</value>
+  </data>
+  <data name="donateLabelBCH" xml:space="preserve">
+    <value>Bitcoin-Cash-Adresse:</value>
+  </data>
+  <data name="donateLabelBTC" xml:space="preserve">
+    <value>Bitcoin-Adresse:</value>
+  </data>
+  <data name="donateLabelETH" xml:space="preserve">
+    <value>Ethereum-Adresse:</value>
+  </data>
+  <data name="donateLabelIOT" xml:space="preserve">
+    <value>IOTA-Adresse:</value>
+  </data>
+  <data name="donateLabelLTC" xml:space="preserve">
+    <value>Litecoin-Adresse:</value>
+  </data>
+  <data name="gainingsNotEnoughCoinsError" xml:space="preserve">
+    <value>Beim Ermitteln der Gewinne/Verluste ist ein Fehler aufgetreten. Für folgenden Vorgang standen nicht mehr genug Coins zur Verfügung:{0}{0}{1}{0}{0}Das Problem könnte z. B. dadurch entstanden sein, dass Import-Daten fehlen. Eine andere Möglichkeit besteht darin, dass Berechnungsverfahren, die zwischen Wallets unterscheiden, mit Verfahren gemischt werden, die nicht nach Wallet unterscheiden. Bitte überprüfen Sie Ihre Daten bzw. Einstellungen dahingehend.</value>
+  </data>
+  <data name="gainingsNotEnoughCoinsErrorTitle" xml:space="preserve">
+    <value>Fehler bei der Gewinn-/Verlustberechnung</value>
+  </data>
+  <data name="calcGainingsInitProgressMessage" xml:space="preserve">
+    <value>Starte Gewinn-/Verlustberechnung...</value>
+  </data>
+  <data name="calcGainingsProgressMessage" xml:space="preserve">
+    <value>Führe Gewinn-/Verlustberechnung durch (Trade {0} von {1})...</value>
+  </data>
+  <data name="calcGainingsFinalWriteToDbMessage" xml:space="preserve">
+    <value>Speichere Gewinn-/Verlustdaten für {0} Trades. Bitte warten Sie...</value>
+  </data>
+  <data name="calcGainingsIntermediateWriteToDbMessage" xml:space="preserve">
+    <value>Tabellendaten-Zwischenspeicher wird geleert. Bitte warten Sie...</value>
+  </data>
+  <data name="waitFormCancelledCaption" xml:space="preserve">
+    <value>Abgebrochen</value>
+  </data>
+  <data name="mainMsgScenarioDelete" xml:space="preserve">
+    <value>Soll das Szenario '{0}' wirklich unwiderruflich gelöscht werden?</value>
+  </data>
+  <data name="mainMsgScenarioDeleted" xml:space="preserve">
+    <value>Szenario '{0}' wurde unwiederbringlich gelöscht.</value>
+  </data>
+  <data name="mainMsgScenarioDeleteTitle" xml:space="preserve">
+    <value>Szenario löschen</value>
+  </data>
+  <data name="mainMsgScenarioOverwrite" xml:space="preserve">
+    <value>Es gibt bereits ein Szenario mit der Bezeichnung '{0}'. Soll dieses nun überschrieben werden?</value>
+  </data>
+  <data name="mainMsgScenarioSaved" xml:space="preserve">
+    <value>Die Einstellungen für das Szenario '{0}' wurden erfolgreich gespeichert.</value>
+  </data>
+  <data name="mainMsgScenarioSaveTitle" xml:space="preserve">
+    <value>Szenario speichern</value>
+  </data>
+  <data name="errorNoCsvImport" xml:space="preserve">
+    <value>Die CSV-Datei konnte nicht geöffnet werden, ein Import ist nicht möglich.</value>
+  </data>
+  <data name="mainMsgSaveTableError" xml:space="preserve">
+    <value>Fehler beim Speichern der Datentabelle!</value>
+  </data>
+  <data name="mainMsgSaveTableFilter" xml:space="preserve">
+    <value>CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="mainMsgSaveTableSuccess" xml:space="preserve">
+    <value>Datentabelle erfolgreich gespeichert!</value>
+  </data>
+  <data name="mainMsgSaveTableSuccessTitle" xml:space="preserve">
+    <value>Datentabelle speichern</value>
+  </data>
+  <data name="mainMsgSaveTableTitle" xml:space="preserve">
+    <value>Datentabelle speichern unter...</value>
+  </data>
+  <data name="mnuItmClearFilters" xml:space="preserve">
+    <value>Alle Filter entfernen</value>
+  </data>
+  <data name="mnuItmCopyCell" xml:space="preserve">
+    <value>Zelle kopieren</value>
+  </data>
+  <data name="mnuItmCopyRow" xml:space="preserve">
+    <value>Tabellenzeile kopieren</value>
+  </data>
+  <data name="mnuItmCopyTable" xml:space="preserve">
+    <value>Gesamte Tabelle kopieren...</value>
+  </data>
+  <data name="mnuItmExportTable" xml:space="preserve">
+    <value>Gesamte Tabelle als CSV-Datei speichern...</value>
+  </data>
+  <data name="mainMsgCalculationUnclearSpendings" xml:space="preserve">
+    <value>Achtung! Bei der Gewinnberechnung gab es {1} Coin-Veräußerung(en), bei denen die Herkunft der Coins nicht ermittelt werden konnte. In solchen Fällen wird immer ein Erwerb der Coins am gleichen Tag zum Preis von 0,00€ angenommen.{0}{0}Sie können die betreffenden Trades im Reiter 'Bericht' ansehen, indem Sie in der Spalte 'Kaufvorgang' nach 'n/a' suchen oder danach filtern.</value>
+  </data>
+  <data name="mainMsgCalculationUnclearSpendingsTitle" xml:space="preserve">
+    <value>Ungeklärte Veräußerungsvorgänge</value>
+  </data>
+  <data name="ctrlTradeCoreDataErrorImportPlatform" xml:space="preserve">
+    <value>Bitte wählen Sie eine gültige Import-Plattform aus!</value>
+  </data>
+  <data name="ctrlTradeCoreDataErrorSourceAccount" xml:space="preserve">
+    <value>Bitte geben Sie ein Quell-Konto an!</value>
+  </data>
+  <data name="ctrlTradeCoreDataErrorSourcePlatform" xml:space="preserve">
+    <value>Bitte wählen Sie eine gültige Quell-Plattform aus!</value>
+  </data>
+  <data name="ctrlTradeCoreDataErrorTargetAccount" xml:space="preserve">
+    <value>Bitte geben Sie ein Ziel-Konto an!</value>
+  </data>
+  <data name="ctrlTradeCoreDataErrorTargetPlatform" xml:space="preserve">
+    <value>Bitte wählen Sie eine gültige Ziel-Plattform aus!</value>
+  </data>
+  <data name="ctrlTradeCoreDataErrorTradeType" xml:space="preserve">
+    <value>Bitte geben Sie eine Transaktions-Art an!</value>
+  </data>
+  <data name="feePlural" xml:space="preserve">
+    <value>Gebühren</value>
+  </data>
+  <data name="feeSingular" xml:space="preserve">
+    <value>Gebühr</value>
+  </data>
+  <data name="timespanFrom" xml:space="preserve">
+    <value>ab {0}</value>
+  </data>
+  <data name="timespanFromTo" xml:space="preserve">
+    <value>{0} bis {1}</value>
+  </data>
+  <data name="timespanTo" xml:space="preserve">
+    <value>bis {0}</value>
+  </data>
+  <data name="totalInHyphens" xml:space="preserve">
+    <value>- gesamt -</value>
+  </data>
+  <data name="editAccountMsgDeleteFee" xml:space="preserve">
+    <value>Möchten Sie diesen Datensatz inkl. des zugehörigen Gebühren-Kontos wirklich löschen?</value>
+  </data>
+  <data name="editAccountMsgMakeFee" xml:space="preserve">
+    <value>Soll für den aktuell angezeigten Konten-Eintrag jetzt ein passendes Gebühren-Konto angelegt werden?</value>
+  </data>
+  <data name="editAccountMsgTitle" xml:space="preserve">
+    <value>Konten bearbeiten</value>
+  </data>
+  <data name="editMsgDelete" xml:space="preserve">
+    <value>Möchten Sie diesen Datensatz wirklich löschen?</value>
+  </data>
+  <data name="editMsgDeleteError" xml:space="preserve">
+    <value>Beim Löschen des Datensatzes ist ein Fehler aufgetreten:</value>
+  </data>
+  <data name="editMsgDeleteTitle" xml:space="preserve">
+    <value>Eintrag löschen</value>
+  </data>
+  <data name="editMsgNewError" xml:space="preserve">
+    <value>Beim Anlegen des neuen Datensatzes ist ein Fehler aufgetreten:</value>
+  </data>
+  <data name="editMsgSaved" xml:space="preserve">
+    <value>Ihre Änderungen wurden gespeichert.</value>
+  </data>
+  <data name="editMsgSaveError" xml:space="preserve">
+    <value>Fehler beim Speichern der Daten:</value>
+  </data>
+  <data name="importMsgSummary" xml:space="preserve">
+    <value>Import erfolgreich!{0}{0}Datensätze eingelesen: {1}{0}Datensätze übersprungen: {2}{0}{3}</value>
+  </data>
+  <data name="importMsgSummaryTitle" xml:space="preserve">
+    <value>Import abgeschlossen</value>
+  </data>
+  <data name="initDbCheckAccountsError" xml:space="preserve">
+    <value>Beim Überprüfen der Konto- bzw.Währungseinträge ist ein Fehler aufgetreten!</value>
+  </data>
+  <data name="apiDataMsgAskPasswordProtection" xml:space="preserve">
+    <value>Möchten Sie die API-Zugangsdaten mit einem Passwort sichern?{0}{0}Wenn Sie den Passwortschutz wählen, werden die Daten, die Sie hinterlegen, verschlüsselt gespeichert. Sie werden dann bei jedem API-Importdatenabruf nach diesem Passwort gefragt. Sollten Sie Ihr Passwort vergessen, müssen Sie alle API-Zugangsdaten neu hinterlegen.</value>
+  </data>
+  <data name="apiDataMsgAskPasswordProtectionTitle" xml:space="preserve">
+    <value>Passwortschutz</value>
+  </data>
+  <data name="apiDataMsgResetPasswordProtection" xml:space="preserve">
+    <value>Haben Sie die Passwort-Eingabe abgebrochen, weil Sie Ihr Passwort vergessen haben?{0}{0}Falls ja, haben Sie nun die Möglichkeit, den Passwortschutz zurückzusetzen, {0}{0}ABER ACHTUNG!!!{0}{0}Wenn Sie den Passwortschutz zurücksetzen, werden ALLE bisher hinterlegten API-Zugangsdaten gelöscht! Dieser Vorgang kann NICHT rückgängig gemacht werden!</value>
+  </data>
+  <data name="apiDataMsgResetPasswordProtectionButton1" xml:space="preserve">
+    <value>Passwortschutz zurücksetzen!</value>
+  </data>
+  <data name="apiDataMsgResetPasswordProtectionDone" xml:space="preserve">
+    <value>Der Passwortschutz wurde zurückgesetzt. Sie können nun Ihre API-Zugangsdaten neu hinterlegen.</value>
+  </data>
+  <data name="apiDataMsgResetPasswordProtectionDoneTitle" xml:space="preserve">
+    <value>Passwortschutz zurückgesetzt</value>
+  </data>
+  <data name="apiDataMsgResetPasswordProtectionLeft" xml:space="preserve">
+    <value>Okay, es ist nichts passiert. Sie können beim nächsten Mal erneut Ihr Passwort eingeben.</value>
+  </data>
+  <data name="apiDataMsgResetPasswordProtectionLeftTitle" xml:space="preserve">
+    <value>Passwortschutz bleibt bestehen</value>
+  </data>
+  <data name="apiDataMsgResetPasswordProtectionTitle" xml:space="preserve">
+    <value>Passwortschutz zurücksetzen?</value>
+  </data>
+  <data name="apiDataMsgWrongPassword" xml:space="preserve">
+    <value>Das Passwort ist nicht korrekt!</value>
+  </data>
+  <data name="apiDataMsgWrongPasswordTitle" xml:space="preserve">
+    <value>Falsches Passwort</value>
+  </data>
+  <data name="ImportInfoKrakenTradeFeeCredits" xml:space="preserve">
+    <value>Gebühr in Kraken Fee Credits zu Trade Referenz {0}</value>
+  </data>
+  <data name="importInfoTradeFee" xml:space="preserve">
+    <value>Gebühr zu Trade Referenz {0}</value>
+  </data>
+  <data name="globalContinue" xml:space="preserve">
+    <value>Fortsetzen</value>
+  </data>
+  <data name="importMsgApiFatalError" xml:space="preserve">
+    <value>{1}: Der API-Datenabruf konnte nicht durchgeführt werden.{0}{0}Fehlermeldung: {2}.</value>
+  </data>
+  <data name="importMsgApiFatalErrorTitle" xml:space="preserve">
+    <value>Fehler beim API-Datenabruf</value>
+  </data>
+  <data name="importMsgApiResume" xml:space="preserve">
+    <value>Der letzte Import für die Plattform {1} wurde unterbrochen. {0}{0}Klicken Sie auf '{2}', um den Import an der zuletzt abgebrochenen Stelle fortzusetzen. Klicken Sie auf '{3}', um dem Import komplett zu wiederholen.</value>
+  </data>
+  <data name="importMsgApiResumeTitle" xml:space="preserve">
+    <value>Unterbrochenen Import gefunden</value>
+  </data>
+  <data name="importMsgApiStashed" xml:space="preserve">
+    <value>Die bisher abgerufenen Daten wurden zwischengespeichert. Wenn Sie den Import erneut starten, wird er an der abgebrochenen Stelle fortgesetzt.</value>
+  </data>
+  <data name="importMsgApiUserAbort" xml:space="preserve">
+    <value>Sie haben den Import abgebrochen.</value>
+  </data>
+  <data name="importMsgBitfinexApiPageProgess" xml:space="preserve">
+    <value>Bitfinex.com:{0}{2}: Rufe Trade-Daten ({1}), Seite {3} ab. Bitte warten Sie...</value>
+  </data>
+  <data name="importMsgBitfinexApiWarning" xml:space="preserve">
+    <value>Achtung: Der API-Import von Bitfinex.com ist, offen gesagt, aktuell die Pest! 
+
+Bitfinex.com begrenzt die Anzahl der Abrufe pro Minute auf einen unbekannten Wert zwischen 10 und 90... Daher antwortet der Bitfinex-Server beim API-Import regelmäßig mit dem Fehler 429 "Too many requests".
+
+Wenn das passiert, dann warten Sie bitte einfach eine Zeit lang (mindestens eine Minute) und starten Sie den API-Import erneut. Zusätzlich könnten Sie in der Konfiguration der API-Daten die Pause zwischen den Calls erhöhen. Der CoinTracer setzt den Import danach genau an der Stelle fort, an der er beim letzten Mal abgebrochen wurde. Irgendwann, meist nach mehreren Versuchen, wird der Import dann erfolgreich zu Ende gebracht.</value>
+  </data>
+  <data name="importMsgBitfinexApiWarningTitle" xml:space="preserve">
+    <value>Bitfinex API-Import</value>
+  </data>
+  <data name="importMsgAutodetectCSV" xml:space="preserve">
+    <value>Bitte wählen Sie im nächsten Schritt die gewünschte Import-Datei aus. {0} wird versuchen, das Format bzw. die zugehörige Börse/Plattform automatisch zu erkennen.</value>
+  </data>
+  <data name="importMsgAutodetectCSVTitle" xml:space="preserve">
+    <value>Import von Trading-Dateien</value>
+  </data>
+  <data name="importMsgAutodetectOpenFilter" xml:space="preserve">
+    <value>CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="importMsgAutodetectOpenTitle" xml:space="preserve">
+    <value>Trading-Datei auswählen... (*.csv)</value>
+  </data>
+  <data name="initDbUpdateError" xml:space="preserve">
+    <value>Die Datenbank konnte nicht aktualisiert werden!{0}{0}({1})</value>
+  </data>
+  <data name="cvsCoin4CoinAwareness" xml:space="preserve">
+    <value>Käufe Coins für Coins:</value>
+  </data>
+  <data name="cvsInOutTolerance" xml:space="preserve">
+    <value>Zuordnungs-Toleranz:</value>
+  </data>
+  <data name="cvsWalletAwareness" xml:space="preserve">
+    <value>Zu-/Abfluss:</value>
+  </data>
+  <data name="licenseFilename" xml:space="preserve">
+    <value>Lizenz.txt</value>
+  </data>
+  <data name="licenseFormTitle" xml:space="preserve">
+    <value>Lizenzinformationen</value>
+  </data>
+  <data name="errorFileNotFound" xml:space="preserve">
+    <value>Die Datei '{0}' konnte nicht gefunden werden...</value>
+  </data>
+  <data name="errorFileReading" xml:space="preserve">
+    <value>Beim Laden der Datei '{0}' ist ein Fehler aufgetreten...</value>
+  </data>
+  <data name="tradesEditTitle" xml:space="preserve">
+    <value>Trades bearbeiten</value>
+  </data>
+</root>

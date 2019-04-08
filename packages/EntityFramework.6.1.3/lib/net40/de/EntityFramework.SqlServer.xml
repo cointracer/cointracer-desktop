@@ -1,0 +1,1950 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>EntityFramework.SqlServer</name>
+  </assembly>
+  <members>
+    <member name="T:System.Data.Entity.SqlServer.SqlAzureExecutionStrategy">
+      <summary>Eine <see cref="T:System.Data.Entity.Infrastructure.IDbExecutionStrategy" />, die Wiederholungsversuche für Aktionen ausführt, bei denen durch vorübergehende SQL Azure-Fehler Ausnahmen ausgelöst wurden.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlAzureExecutionStrategy.#ctor">
+      <summary>Erstellt eine neue Instanz von <see cref="T:System.Data.Entity.SqlServer.SqlAzureExecutionStrategy" />.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlAzureExecutionStrategy.#ctor(System.Int32,System.TimeSpan)">
+      <summary>Erstellt eine neue Instanz von <see cref="T:System.Data.Entity.SqlServer.SqlAzureExecutionStrategy" /> mit den angegebenen Einschränkungen für die Anzahl von Wiederholungen und die Verzögerung zwischen Wiederholungen.</summary>
+      <param name="maxRetryCount">Die maximale Anzahl von Wiederholungsversuchen.</param>
+      <param name="maxDelay">Die maximale Verzögerung in Millisekunden zwischen Wiederholungen.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlAzureExecutionStrategy.ShouldRetryOn(System.Exception)">
+      <summary>Ermittelt, ob für die angegebene Ausnahme eine Wiederholung versucht werden sollte.</summary>
+      <returns>TRUE, wenn für die angegebene Ausnahme eine Wiederholung versucht werden sollte; andernfalls FALSE.</returns>
+      <param name="exception">Die Ausnahme, bei der die Aktion wiederholt wird.</param>
+    </member>
+    <member name="T:System.Data.Entity.SqlServer.SqlFunctions">
+      <summary>Enthält Funktionsstubs, die SqlServer-Methoden in Linq to Entities verfügbar macht.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Acos(System.Nullable{System.Decimal})">
+      <summary>Eine mathematische Funktion, die für den im numerischen Wert angegebenen Kosinus den Winkel im Bogenmaß zurückgibt.Dieser Winkel wird als Arkuskosinus bezeichnet.</summary>
+      <returns>Ein im Bogenmaß angegebener Winkel.</returns>
+      <param name="arg1">Der Kosinus eines Winkels.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Acos(System.Nullable{System.Double})">
+      <summary>Eine mathematische Funktion, die für den im numerischen Wert angegebenen Kosinus den Winkel im Bogenmaß zurückgibt.Dieser Winkel wird als Arkuskosinus bezeichnet.</summary>
+      <returns>Der Winkel im Bogenmaß, definiert durch den Kosinus im Eingabewert.</returns>
+      <param name="arg1">Der Kosinus eines Winkels.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Ascii(System.String)">
+      <summary>Gibt den ASCII-Codewert für das äußerste linke Zeichen eines Zeichenausdrucks zurück.</summary>
+      <returns>Der ASCII-Code des ersten Zeichens in der Eingabezeichenfolge.</returns>
+      <param name="arg">Eine gültige Zeichenfolge.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Asin(System.Nullable{System.Decimal})">
+      <summary>Eine mathematische Funktion, die für den im numerischen Wert angegebenen Sinus den Winkel im Bogenmaß zurückgibt.Dieser Winkel wird als Arkussinus bezeichnet.</summary>
+      <returns>Ein im Bogenmaß angegebener Winkel.</returns>
+      <param name="arg">Der Sinus eines Winkels.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Asin(System.Nullable{System.Double})">
+      <summary>Eine mathematische Funktion, die für den im numerischen Wert angegebenen Sinus den Winkel im Bogenmaß zurückgibt.Dieser Winkel wird als Arkussinus bezeichnet.</summary>
+      <returns>Ein im Bogenmaß angegebener Winkel.</returns>
+      <param name="arg">Der Sinus eines Winkels.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Atan(System.Nullable{System.Decimal})">
+      <summary>Eine mathematische Funktion, die für den im numerischen Wert angegebenen Tangens den Winkel im Bogenmaß zurückgibt.Dieser Winkel wird als Arkustangens bezeichnet.</summary>
+      <returns>Ein im Bogenmaß angegebener Winkel.</returns>
+      <param name="arg">Der Tangens eines Winkels.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Atan(System.Nullable{System.Double})">
+      <summary>Eine mathematische Funktion, die für den im numerischen Wert angegebenen Tangens den Winkel im Bogenmaß zurückgibt.Dieser Winkel wird als Arkustangens bezeichnet.</summary>
+      <returns>Ein im Bogenmaß angegebener Winkel.</returns>
+      <param name="arg">Der Tangens eines Winkels.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Atan2(System.Nullable{System.Decimal},System.Nullable{System.Decimal})">
+      <summary>Gibt den positiven Winkel im Bogenmaß zwischen der positiven x-Achse und dem Strahl vom Ursprung durch den Punkt (x, y) zurück, wobei x und y die beiden angegebenen numerischen Werte sind.Der erste an die Funktion übergebene Parameter ist der y-Wert, und der zweite Parameter ist der x-Wert.</summary>
+      <returns>Ein im Bogenmaß angegebener Winkel.</returns>
+      <param name="arg1">Die y-Koordinate eines Punkts.</param>
+      <param name="arg2">Die x-Koordinate eines Punkts.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Atan2(System.Nullable{System.Double},System.Nullable{System.Double})">
+      <summary>Gibt den positiven Winkel im Bogenmaß zwischen der positiven x-Achse und dem Strahl vom Ursprung durch den Punkt (x, y) zurück, wobei x und y die beiden angegebenen numerischen Werte sind.Der erste an die Funktion übergebene Parameter ist der y-Wert, und der zweite Parameter ist der x-Wert.</summary>
+      <returns>Ein im Bogenmaß angegebener Winkel.</returns>
+      <param name="arg1">Die y-Koordinate eines Punkts.</param>
+      <param name="arg2">Die x-Koordinate eines Punkts.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Char(System.Nullable{System.Int32})">
+      <summary>Gibt das Zeichen zurück, das dem angegebenen ganzzahligen ASCII-Wert entspricht.</summary>
+      <returns>Das dem angegebenen ASCII-Wert entsprechende Zeichen.</returns>
+      <param name="arg">Ein ASCII-Code.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.Byte[],System.Byte[])">
+      <summary>Gibt die Anfangsposition eines Ausdrucks zurück, der in einem anderen Ausdruck gefunden wurde.</summary>
+      <returns>Die Anfangsposition des Ziels, wenn dieses in toSearch gefunden wurde.</returns>
+      <param name="toSearch">Der zu durchsuchende Zeichenfolgenausdruck.</param>
+      <param name="target">Der zu suchende Zeichenfolgenausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.Byte[],System.Byte[],System.Nullable{System.Int32})">
+      <summary>Gibt die Anfangsposition eines Ausdrucks zurück, der in einem anderen Ausdruck gefunden wurde.</summary>
+      <returns>Die Anfangsposition des Ziels, wenn dieses in toSearch gefunden wurde.</returns>
+      <param name="toSearch">Der zu durchsuchende Zeichenfolgenausdruck.</param>
+      <param name="target">Der zu suchende Zeichenfolgenausdruck.</param>
+      <param name="startLocation">Die Zeichenposition in toSearch, an der die Suche beginnt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.Byte[],System.Byte[],System.Nullable{System.Int64})">
+      <summary>Gibt die Anfangsposition eines Ausdrucks zurück, der in einem anderen Ausdruck gefunden wurde.</summary>
+      <returns>Die Anfangsposition des Ziels, wenn dieses in toSearch gefunden wurde.</returns>
+      <param name="toSearch">Der zu durchsuchende Zeichenfolgenausdruck.</param>
+      <param name="target">Der zu suchende Zeichenfolgenausdruck.</param>
+      <param name="startLocation">Die Zeichenposition in toSearch, an der die Suche beginnt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.String,System.String)">
+      <summary>Gibt die Anfangsposition eines Ausdrucks zurück, der in einem anderen Ausdruck gefunden wurde.</summary>
+      <returns>Die Anfangsposition des Ziels, wenn dieses in toSearch gefunden wurde.</returns>
+      <param name="toSearch">Der zu durchsuchende Zeichenfolgenausdruck.</param>
+      <param name="target">Der zu suchende Zeichenfolgenausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.String,System.String,System.Nullable{System.Int32})">
+      <summary>Gibt die Anfangsposition eines Ausdrucks zurück, der in einem anderen Ausdruck gefunden wurde.</summary>
+      <returns>Die Anfangsposition des Ziels, wenn dieses in toSearch gefunden wurde.</returns>
+      <param name="toSearch">Der zu durchsuchende Zeichenfolgenausdruck.</param>
+      <param name="target">Der zu suchende Zeichenfolgenausdruck.</param>
+      <param name="startLocation">Die Zeichenposition in toSearch, an der die Suche beginnt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CharIndex(System.String,System.String,System.Nullable{System.Int64})">
+      <summary>Gibt die Anfangsposition eines Ausdrucks zurück, der in einem anderen Ausdruck gefunden wurde.</summary>
+      <returns>Ein <see cref="T:System.Nullable`1" /><see cref="T:System.Int64" />-Wert, der die Anfangsposition des Ziels angibt, wenn dieses in toSearch gefunden wurde.</returns>
+      <param name="toSearch">Der zu durchsuchende Zeichenfolgenausdruck.</param>
+      <param name="target">Der zu suchende Zeichenfolgenausdruck.</param>
+      <param name="startLocation">Die Zeichenposition in toSearch, an der die Suche beginnt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Byte[])">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über den Eingabewert berechnet wird.</returns>
+      <param name="arg1">Das Zeichenarray, für das die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Byte[],System.Byte[])">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Das Zeichenarray, für das die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Das Zeichenarray, für das die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Byte[],System.Byte[],System.Byte[])">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Das Zeichenarray, für das die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Das Zeichenarray, für das die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Das Zeichenarray, für das die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Boolean})">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über den Eingabewert berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.DateTime})">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über den Eingabewert berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Decimal})">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über den Eingabewert berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Decimal},System.Nullable{System.Decimal})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Decimal},System.Nullable{System.Decimal},System.Nullable{System.Decimal})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Double})">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über den Eingabewert berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Double},System.Nullable{System.Double})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Double})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Guid})">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über den Eingabewert berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Guid},System.Nullable{System.Guid})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.Guid},System.Nullable{System.Guid},System.Nullable{System.Guid})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.TimeSpan})">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über den Eingabewert berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.String)">
+      <summary>Gibt den Prüfsummenwert zurück, der über das Eingabeargument berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über den Eingabewert berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.String,System.String)">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Checksum(System.String,System.String,System.String)">
+      <summary>Gibt den Prüfsummenwert zurück, der über die Eingabeargumente berechnet wurde.</summary>
+      <returns>Die Prüfsumme, die über die Eingabewerte berechnet wird.</returns>
+      <param name="arg1">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg2">Der Wert, für den die Prüfsumme berechnet wird.</param>
+      <param name="arg3">Der Wert, für den die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.ChecksumAggregate(System.Collections.Generic.IEnumerable{System.Int32})">
+      <summary>Gibt die Prüfsumme der Werte in einer Auflistung zurück.NULL-Werte werden ignoriert.</summary>
+      <returns>Die aus der Eingabeauflistung berechnete Prüfsumme.</returns>
+      <param name="arg">Die Auflistung von Werten, über der die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.ChecksumAggregate(System.Collections.Generic.IEnumerable{System.Nullable{System.Int32}})">
+      <summary>Gibt die Prüfsumme der Werte in einer Auflistung zurück.NULL-Werte werden ignoriert.</summary>
+      <returns>Die aus der Eingabeauflistung berechnete Prüfsumme.</returns>
+      <param name="arg">Die Auflistung von Werten, über der die Prüfsumme berechnet wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Cos(System.Nullable{System.Decimal})">
+      <summary>Gibt den trigonometrischen Kosinus des angegebenen Winkels im Bogenmaß im angegebenen Ausdruck zurück.</summary>
+      <returns>Der trigonometrische Kosinus des angegebenen Winkels.</returns>
+      <param name="arg">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Cos(System.Nullable{System.Double})">
+      <summary>Gibt den trigonometrischen Kosinus des angegebenen Winkels im Bogenmaß im angegebenen Ausdruck zurück.</summary>
+      <returns>Der trigonometrische Kosinus des angegebenen Winkels.</returns>
+      <param name="arg">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Cot(System.Nullable{System.Decimal})">
+      <summary>Eine mathematische Funktion, die den trigonometrischen Kotangens des angegebenen Winkels im Bogenmaß zurückgibt.</summary>
+      <returns>Der trigonometrische Kotangens des angegebenen Winkels.</returns>
+      <param name="arg">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Cot(System.Nullable{System.Double})">
+      <summary>Eine mathematische Funktion, die den trigonometrischen Kotangens des angegebenen Winkels im Bogenmaß zurückgibt.</summary>
+      <returns>Der trigonometrische Kotangens des angegebenen Winkels.</returns>
+      <param name="arg">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CurrentTimestamp">
+      <summary>Gibt das aktuelle Datum und die aktuelle Uhrzeit zurück.</summary>
+      <returns>Das aktuelle Datum und die aktuelle Uhrzeit.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.CurrentUser">
+      <summary>Gibt den Namen des aktuellen Benutzers zurück.</summary>
+      <returns>Der Name des aktuellen Benutzers.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.Byte[])">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Länge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.Nullable{System.Boolean})">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Datenlänge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.Nullable{System.DateTime})">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Datenlänge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Datenlänge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.Nullable{System.Decimal})">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Datenlänge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.Nullable{System.Double})">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Datenlänge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.Nullable{System.Guid})">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Datenlänge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.Nullable{System.TimeSpan})">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Datenlänge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DataLength(System.String)">
+      <summary>Gibt die Anzahl von Bytes zurück, die für die Darstellung eines Ausdrucks verwendet werden.</summary>
+      <returns>Die Anzahl der Bytes im Eingabewert.</returns>
+      <param name="arg">Der Wert, dessen Datenlänge untersucht werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateAdd(System.String,System.Nullable{System.Double},System.Nullable{System.DateTime})">
+      <summary>Gibt einen neuen datetime-Wert zurück, der durch Addieren eines Intervalls zum angegebenen Datum berechnet wird.</summary>
+      <returns>Das neue Datum.</returns>
+      <param name="datePartArg">Der zu inkrementierende Teil des Datums.</param>
+      <param name="number">Der Wert, mit dem ein Datum um einen angegebenen Betrag inkrementiert wird.</param>
+      <param name="date">Das zu inkrementierende Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateAdd(System.String,System.Nullable{System.Double},System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt einen neuen Datumswert zurück, der durch Addieren eines Intervalls zum angegebenen Datum berechnet wird.</summary>
+      <returns>Der neue Zeitpunkt relativ zur Coordinated Universal Time (UTC), der durch Datum und Uhrzeit dargestellt wird.</returns>
+      <param name="datePartArg">Der zu inkrementierende Teil des Datums.</param>
+      <param name="number">Der Wert, mit dem ein Datum um einen angegebenen Betrag inkrementiert wird.</param>
+      <param name="dateTimeOffsetArg">Das zu inkrementierende Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateAdd(System.String,System.Nullable{System.Double},System.Nullable{System.TimeSpan})">
+      <summary>Gibt einen neuen Zeitspannenwert zurück, der auf der Addition eines Intervalls zur angegebenen Zeitspanne basiert.</summary>
+      <returns>Die neue Zeitspanne.</returns>
+      <param name="datePartArg">Der zu inkrementierende Teil des Datums.</param>
+      <param name="number">Der Wert, mit dem ein Datum um einen angegebenen Betrag inkrementiert wird.</param>
+      <param name="time">Die zu inkrementierende Zeitspanne.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateAdd(System.String,System.Nullable{System.Double},System.String)">
+      <summary>Gibt einen neuen datetime-Wert zurück, der durch Addieren eines Intervalls zum angegebenen Datum berechnet wird.</summary>
+      <returns>Ein <see cref="T:System.Nullable`1" /><see cref="T:System.DateTime" />-Wert, der das neue Datum darstellt.</returns>
+      <param name="datePartArg">Der zu inkrementierende Teil des Datums.</param>
+      <param name="number">Der Wert, mit dem ein Datum um einen angegebenen Betrag inkrementiert wird.</param>
+      <param name="date">Das zu inkrementierende Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.DateTime},System.Nullable{System.TimeSpan})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.DateTime},System.String)">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTime})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.DateTimeOffset},System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.DateTimeOffset},System.Nullable{System.TimeSpan})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.DateTimeOffset},System.String)">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.TimeSpan},System.Nullable{System.DateTime})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.TimeSpan},System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.TimeSpan},System.Nullable{System.TimeSpan})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.Nullable{System.TimeSpan},System.String)">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.String,System.Nullable{System.DateTime})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.String,System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.String,System.Nullable{System.TimeSpan})">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Der Wert, der die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben angibt.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateDiff(System.String,System.String,System.String)">
+      <summary>Gibt die Anzahl der angegebenen DatePart-Begrenzungen zurück, die zwischen dem angegebenen Anfangs- und Enddatum überschritten wurden.</summary>
+      <returns>Die Anzahl von Zeitintervallen zwischen den beiden Datumsangaben.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="startDate">Das erste Datum.</param>
+      <param name="endDate">Das zweite Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateName(System.String,System.Nullable{System.DateTime})">
+      <summary>Gibt eine Zeichenfolge zurück, die den angegebenen DatePart-Wert des angegebenen Datums darstellt.</summary>
+      <returns>Der angegebene Teil des angegebenen Datums.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="date">Das Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateName(System.String,System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt eine Zeichenfolge zurück, die den angegebenen DatePart-Wert des angegebenen Datums darstellt.</summary>
+      <returns>Der angegebene Teil des angegebenen Datums.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="date">Das Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateName(System.String,System.Nullable{System.TimeSpan})">
+      <summary>Gibt eine Zeichenfolge zurück, die den angegebenen DatePart-Wert des angegebenen Datums darstellt.</summary>
+      <returns>Der angegebene Teil des angegebenen Datums.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="date">Das Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DateName(System.String,System.String)">
+      <summary>Gibt eine Zeichenfolge zurück, die den angegebenen DatePart-Wert des angegebenen Datums darstellt.</summary>
+      <returns>Der angegebene Teil des angegebenen Datums.</returns>
+      <param name="datePartArg">Der Teil des Datums, der zum Berechnen der abweichenden Anzahl von Zeitintervallen verwendet wird.</param>
+      <param name="date">Das Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DatePart(System.String,System.Nullable{System.DateTime})">
+      <summary>Gibt eine ganze Zahl zurück, die den angegebenen DatePart-Wert des angegebenen Datums darstellt.</summary>
+      <returns>Der angegebene DatePart-Wert des angegebenen Datums.</returns>
+      <param name="datePartArg">Der Teil des Datums, der den Wert zurückgibt.</param>
+      <param name="date">Das Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DatePart(System.String,System.Nullable{System.DateTimeOffset})">
+      <summary>Gibt eine ganze Zahl zurück, die den angegebenen DatePart-Wert des angegebenen Datums darstellt.</summary>
+      <returns>Der angegebene DatePart-Wert des angegebenen Datums.</returns>
+      <param name="datePartArg">Der Teil des Datums, der den Wert zurückgibt.</param>
+      <param name="date">Das Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DatePart(System.String,System.Nullable{System.TimeSpan})">
+      <summary>Gibt eine ganze Zahl zurück, die den angegebenen DatePart-Wert des angegebenen Datums darstellt.</summary>
+      <returns>Der angegebene DatePart-Wert des angegebenen Datums.</returns>
+      <param name="datePartArg">Der Teil des Datums, der den Wert zurückgibt.</param>
+      <param name="date">Das Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.DatePart(System.String,System.String)">
+      <summary>Gibt eine ganze Zahl zurück, die den angegebenen DatePart-Wert des angegebenen Datums darstellt.</summary>
+      <returns>Der angegebene DatePart-Wert des angegebenen Datums.</returns>
+      <param name="datePartArg">Der Teil des Datums, der den Wert zurückgibt.</param>
+      <param name="date">Das Datum.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Degrees(System.Nullable{System.Decimal})">
+      <summary>Gibt für einen im Bogenmaß angegebenen Winkel den entsprechenden Winkel in Grad zurück.</summary>
+      <returns>Der in Grad konvertierte angegebene Winkel.</returns>
+      <param name="arg1">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Degrees(System.Nullable{System.Double})">
+      <summary>Gibt für einen im Bogenmaß angegebenen Winkel den entsprechenden Winkel in Grad zurück.</summary>
+      <returns>Der in Grad konvertierte angegebene Winkel.</returns>
+      <param name="arg1">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Degrees(System.Nullable{System.Int32})">
+      <summary>Gibt für einen im Bogenmaß angegebenen Winkel den entsprechenden Winkel in Grad zurück.</summary>
+      <returns>Der in Grad konvertierte angegebene Winkel.</returns>
+      <param name="arg1">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Degrees(System.Nullable{System.Int64})">
+      <summary>Gibt für einen im Bogenmaß angegebenen Winkel den entsprechenden Winkel in Grad zurück.</summary>
+      <returns>Der in Grad konvertierte angegebene Winkel.</returns>
+      <param name="arg1">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Difference(System.String,System.String)">
+      <summary>Gibt einen ganzzahligen Wert zurück, der die Differenz zwischen den SOUNDEX-Werten von zwei Zeichenausdrücken angibt.</summary>
+      <returns>Die SOUNDEX-Differenz zwischen den beiden Zeichenfolgen.</returns>
+      <param name="string1">Die erste Zeichenfolge.</param>
+      <param name="string2">Die zweite Zeichenfolge.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Exp(System.Nullable{System.Decimal})">
+      <summary>Gibt den Exponentialwert des angegebenen Gleitkommaausdrucks zurück.</summary>
+      <returns>Die mit dem Eingabewert potenzierte Konstante e.</returns>
+      <param name="arg">Der Eingabewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Exp(System.Nullable{System.Double})">
+      <summary>Gibt den Exponentialwert des angegebenen Gleitkommaausdrucks zurück.</summary>
+      <returns>Die mit dem Eingabewert potenzierte Konstante e.</returns>
+      <param name="arg">Der Eingabewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.GetDate">
+      <summary>Gibt den aktuellen Timestamp des Datenbanksystems als DateTime-Wert ohne den Zeitzonenoffset der Datenbank zurück.Dieser Wert wird vom Betriebssystem des Computers abgeleitet, auf dem die Instanz von SQL Server ausgeführt wird.</summary>
+      <returns>Der aktuelle Datenbanktimestamp.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.GetUtcDate">
+      <summary>Gibt den aktuellen Timestamp des Datenbanksystems als DateTime-Wert zurück.Der Zeitzonenoffset der Datenbank ist nicht eingeschlossen.Dieser Wert stellt die aktuelle UTC (Coordinated Universal Time)-Zeit dar.Dieser Wert wird vom Betriebssystem des Computers abgeleitet, auf dem die Instanz von SQL Server ausgeführt wird.</summary>
+      <returns>Der aktuelle Datenbank-UTC-Timestamp.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.HostName">
+      <summary>Gibt den Namen der Arbeitsstation zurück.</summary>
+      <returns>Der Name der Arbeitsstation.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.IsDate(System.String)">
+      <summary>Gibt an, ob der Eingabewert ein gültiges Datum oder eine gültige Uhrzeit ist.</summary>
+      <returns>1, wenn der Eingabeausdruck ein gültiger Datums- oder Uhrzeitwert vom Datentyp DateTime oder SmallDateTime ist, andernfalls 0.</returns>
+      <param name="arg">Der überprüfte Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.IsNumeric(System.String)">
+      <summary>Gibt an, ob der Eingabewert ein gültiger numerischer Typ ist.</summary>
+      <returns>1, wenn der Eingabeausdruck ein gültiger numerischer Datentyp ist, andernfalls 0.</returns>
+      <param name="arg">Ein Zeichenfolgenausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Log(System.Nullable{System.Decimal})">
+      <summary>Gibt den natürlichen Logarithmus des angegebenen Eingabewerts zurück.</summary>
+      <returns>Der natürliche Logarithmus des Eingabewerts.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Log(System.Nullable{System.Double})">
+      <summary>Gibt den natürlichen Logarithmus des angegebenen Eingabewerts zurück.</summary>
+      <returns>Der natürliche Logarithmus des Eingabewerts.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Log10(System.Nullable{System.Decimal})">
+      <summary>Gibt den Logarithmus des angegebenen Eingabewerts zur Basis 10 zurück.</summary>
+      <returns>Der Logarithmus des Eingabewerts zur Basis 10.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Log10(System.Nullable{System.Double})">
+      <summary>Gibt den Logarithmus des angegebenen Eingabewerts zur Basis 10 zurück.</summary>
+      <returns>Der Logarithmus des Eingabewerts zur Basis 10.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.NChar(System.Nullable{System.Int32})">
+      <summary>Gibt das Unicode-Zeichen mit dem angegebenen ganzzahligen Code gemäß der Definition durch den Unicode-Standard zurück.</summary>
+      <returns>Das Zeichen, das dem Eingabezeichencode entspricht.</returns>
+      <param name="arg">Ein Zeichencode.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.PatIndex(System.String,System.String)">
+      <summary>Gibt für alle gültigen Text- und Zeichenfolgendatentypen die Anfangsposition des ersten Vorkommens eines Musters in einem angegebenen Ausdruck zurück, oder Nullen, wenn das Muster nicht gefunden wird.</summary>
+      <returns>Die Position des ersten Zeichens in der Zeichenfolge, in der das Zeichenfolgenmuster gefunden wurde.</returns>
+      <param name="stringPattern">Ein zu suchendes Zeichenfolgenmuster.</param>
+      <param name="target">Die zu durchsuchende Zeichenfolge.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Pi">
+      <summary>Gibt den konstanten Wert von Pi zurück.</summary>
+      <returns>Der numerische Wert von Pi.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.QuoteName(System.String)">
+      <summary>Gibt eine Unicode-Zeichenfolge mit hinzugefügten Trennzeichen zurück, um die Eingabezeichenfolge als gültigen Bezeichner mit Trennzeichen für Microsoft SQL Server festzulegen.</summary>
+      <returns>Die ursprüngliche Zeichenfolge mit hinzugefügten Klammern.</returns>
+      <param name="stringArg">Der Ausdruck, dem Anführungszeichen hinzugefügt werden.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.QuoteName(System.String,System.String)">
+      <summary>Gibt eine Unicode-Zeichenfolge mit hinzugefügten Trennzeichen zurück, um die Eingabezeichenfolge als gültigen Bezeichner mit Trennzeichen für Microsoft SQL Server festzulegen.</summary>
+      <returns>Die ursprüngliche Zeichenfolge, der die angegebenen Anführungszeichen hinzugefügt sind.</returns>
+      <param name="stringArg">Der Ausdruck, dem Anführungszeichen hinzugefügt werden.</param>
+      <param name="quoteCharacter">Die aus einem Zeichen bestehende Zeichenfolge, die als Trennzeichen verwendet werden soll.Hierbei kann es sich um ein einfaches Anführungszeichen ('), eine linke oder rechte eckige Klammer ([ ]) oder ein doppeltes Anführungszeichen (") handeln.Wenn kein Anführungszeichen angegeben wird, werden eckige Klammern verwendet.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Radians(System.Nullable{System.Decimal})">
+      <summary>Gibt den Bogenmaßwert zurück, der dem angegebenen Winkel in Grad entspricht.</summary>
+      <returns>Der Bogenmaßwert des angegebenen Winkels.</returns>
+      <param name="arg">Der Winkel in Grad.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Radians(System.Nullable{System.Double})">
+      <summary>Gibt den Bogenmaßwert zurück, der dem angegebenen Winkel in Grad entspricht.</summary>
+      <returns>Der Bogenmaßwert des angegebenen Winkels.</returns>
+      <param name="arg">Der Winkel in Grad.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Radians(System.Nullable{System.Int32})">
+      <summary>Gibt den Bogenmaßwert zurück, der dem angegebenen Winkel in Grad entspricht.</summary>
+      <returns>Der Bogenmaßwert des angegebenen Winkels.</returns>
+      <param name="arg">Der Winkel in Grad</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Radians(System.Nullable{System.Int64})">
+      <summary>Gibt den Bogenmaßwert zurück, der dem angegebenen Winkel in Grad entspricht.</summary>
+      <returns>Der Bogenmaßwert des angegebenen Winkels.</returns>
+      <param name="arg">Der Winkel in Grad</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Rand">
+      <summary>Gibt einen pseudozufälligen Gleitkommawert von 0 bis 1, exklusive, zurück.</summary>
+      <returns>Der pseudozufällige Wert.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Rand(System.Nullable{System.Int32})">
+      <summary>Gibt einen pseudozufälligen Gleitkommawert von 0 bis 1, exklusive, zurück.</summary>
+      <returns>Der pseudozufällige Wert.</returns>
+      <param name="seed">Der Startwert.Ist der seed-Wert nicht angegeben, fügt das Datenbankmodul von SQL Server einen Zufallsstartwert hinzu.Für einen angegebenen Startwert wird immer dasselbe Ergebnis zurückgegeben.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Replicate(System.String,System.Nullable{System.Int32})">
+      <summary>Führt eine angegebene Anzahl von Wiederholungen eines Zeichenfolgenwerts aus.</summary>
+      <returns>Die Zielzeichenfolge mit der in count angegebenen Anzahl an Wiederholungen.</returns>
+      <param name="target">Eine gültige Zeichenfolge.</param>
+      <param name="count">Der Wert, der die Anzahl der Wiederholungen des Ziels angibt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Sign(System.Nullable{System.Decimal})">
+      <summary>Gibt das positive (+1) oder negative Vorzeichen (-1) oder das Vorzeichen 0 (null) des angegebenen Ausdrucks zurück.</summary>
+      <returns>Das Vorzeichen des Eingabeausdrucks.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Sign(System.Nullable{System.Double})">
+      <summary>Gibt das positive (+1) oder negative Vorzeichen (-1) oder das Vorzeichen 0 (null) des angegebenen Ausdrucks zurück.</summary>
+      <returns>Das Vorzeichen des Eingabeausdrucks.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Sign(System.Nullable{System.Int32})">
+      <summary>Gibt das positive (+1) oder negative Vorzeichen (-1) oder das Vorzeichen 0 (null) des angegebenen Ausdrucks zurück.</summary>
+      <returns>Das Vorzeichen des Eingabeausdrucks.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Sign(System.Nullable{System.Int64})">
+      <summary>Gibt das positive (+1) oder negative Vorzeichen (-1) oder das Vorzeichen 0 (null) des angegebenen Ausdrucks zurück.</summary>
+      <returns>Das Vorzeichen des Eingabeausdrucks.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Sin(System.Nullable{System.Decimal})">
+      <summary>Gibt den trigonometrischen Sinus des angegebenen Winkels zurück.</summary>
+      <returns>Der trigonometrische Sinus des Eingabeausdrucks.</returns>
+      <param name="arg">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Sin(System.Nullable{System.Double})">
+      <summary>Gibt den trigonometrischen Sinus des angegebenen Winkels zurück.</summary>
+      <returns>Der trigonometrische Sinus des Eingabeausdrucks.</returns>
+      <param name="arg">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.SoundCode(System.String)">
+      <summary>Konvertiert eine alphanumerische Zeichenfolge in einen aus vier Zeichen bestehenden Code (SOUNDEX), um ähnlich klingende Wörter oder Namen zu suchen.</summary>
+      <returns>Der SOUNDEX-Code der Eingabezeichenfolge.</returns>
+      <param name="arg">Eine gültige Zeichenfolge.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Space(System.Nullable{System.Int32})">
+      <summary>Gibt eine Zeichenfolge aus mehreren Leerzeichen zurück.</summary>
+      <returns>Eine Zeichenfolge, die aus der angegebenen Anzahl von Leerzeichen besteht.</returns>
+      <param name="arg1">Die Anzahl der Leerzeichen.Bei einem negativen Wert wird eine NULL-Zeichenfolge zurückgegeben.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Square(System.Nullable{System.Decimal})">
+      <summary>Gibt das Quadrat der angegebenen Zahl zurück.</summary>
+      <returns>Das Quadrat des Eingabewerts.</returns>
+      <param name="arg1">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Square(System.Nullable{System.Double})">
+      <summary>Gibt das Quadrat der angegebenen Zahl zurück.</summary>
+      <returns>Das Quadrat des Eingabewerts.</returns>
+      <param name="arg1">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.SquareRoot(System.Nullable{System.Decimal})">
+      <summary>Gibt die Quadratwurzel der angegebenen Zahl zurück.</summary>
+      <returns>Die Quadratwurzel des Eingabewerts.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.SquareRoot(System.Nullable{System.Double})">
+      <summary>Gibt die Quadratwurzel der angegebenen Zahl zurück.</summary>
+      <returns>Die Quadratwurzel des Eingabewerts.</returns>
+      <param name="arg">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.StringConvert(System.Nullable{System.Decimal})">
+      <summary>Gibt Zeichendaten zurück, die aus numerischen Daten konvertiert wurden.</summary>
+      <returns>Der in eine Zeichenfolge konvertierte Eingabeausdruck.</returns>
+      <param name="number">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.StringConvert(System.Nullable{System.Decimal},System.Nullable{System.Int32})">
+      <summary>Gibt Zeichendaten zurück, die aus numerischen Daten konvertiert wurden.</summary>
+      <returns>Der in eine Zeichenfolge konvertierte Eingabeausdruck.</returns>
+      <param name="number">Ein numerischer Ausdruck.</param>
+      <param name="length">Die Gesamtlänge der Zeichenfolge.Diese schließt Dezimaltrennzeichen, Vorzeichen, Ziffern und Leerzeichen ein.Der Standardwert ist 10.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.StringConvert(System.Nullable{System.Decimal},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+      <summary>Gibt Zeichendaten zurück, die aus numerischen Daten konvertiert wurden.</summary>
+      <returns>Der in eine Zeichenfolge konvertierte Eingabeausdruck.</returns>
+      <param name="number">Ein numerischer Ausdruck.</param>
+      <param name="length">Die Gesamtlänge der Zeichenfolge.Diese schließt Dezimaltrennzeichen, Vorzeichen, Ziffern und Leerzeichen ein.Der Standardwert ist 10.</param>
+      <param name="decimalArg">Die Anzahl der Stellen rechts vom Dezimaltrennzeichen.Der Wert für "decimal" muss kleiner oder gleich 16 sein.Wenn der Wert für "decimal" größer als 16 ist, wird das Ergebnis auf 16 Stellen nach dem Dezimaltrennzeichen gekürzt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.StringConvert(System.Nullable{System.Double})">
+      <summary>Gibt Zeichendaten zurück, die aus numerischen Daten konvertiert wurden.</summary>
+      <returns>Der in eine Zeichenfolge konvertierte numerische Eingabeausdruck.</returns>
+      <param name="number">Ein numerischer Ausdruck.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.StringConvert(System.Nullable{System.Double},System.Nullable{System.Int32})">
+      <summary>Gibt Zeichendaten zurück, die aus numerischen Daten konvertiert wurden.</summary>
+      <returns>Der in eine Zeichenfolge konvertierte numerische Eingabeausdruck.</returns>
+      <param name="number">Ein numerischer Ausdruck.</param>
+      <param name="length">Die Gesamtlänge der Zeichenfolge.Diese schließt Dezimaltrennzeichen, Vorzeichen, Ziffern und Leerzeichen ein.Der Standardwert ist 10.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.StringConvert(System.Nullable{System.Double},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+      <summary>Gibt Zeichendaten zurück, die aus numerischen Daten konvertiert wurden.</summary>
+      <returns>Der in eine Zeichenfolge konvertierte numerische Eingabeausdruck.</returns>
+      <param name="number">Ein numerischer Ausdruck.</param>
+      <param name="length">Die Gesamtlänge der Zeichenfolge.Diese schließt Dezimaltrennzeichen, Vorzeichen, Ziffern und Leerzeichen ein.Der Standardwert ist 10.</param>
+      <param name="decimalArg">Die Anzahl der Stellen rechts vom Dezimaltrennzeichen.Der Wert für "decimal" muss kleiner oder gleich 16 sein.Wenn der Wert für "decimal" größer als 16 ist, wird das Ergebnis auf 16 Stellen nach dem Dezimaltrennzeichen gekürzt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Stuff(System.String,System.Nullable{System.Int32},System.Nullable{System.Int32},System.String)">
+      <summary>Fügt eine Zeichenfolge in eine andere Zeichenfolge ein.Löscht in der Zielzeichenfolge an der Anfangsposition eine angegebene Länge von Zeichen und fügt dann die zweite Zeichenfolge an der Anfangsposition in die Zielzeichenfolge ein.</summary>
+      <returns>Eine Zeichenfolge, die aus den beiden Zeichenfolgen besteht.</returns>
+      <param name="stringInput">Die Zielzeichenfolge.</param>
+      <param name="start">Die Zeichenposition in stringInput, an der die Ersetzungszeichenfolge eingefügt werden soll.</param>
+      <param name="length">Die Anzahl der aus stringInput einzufügenden Zeichen.Wenn die Länge größer als stringInput ist, wird bis zum letzten Zeichen in stringReplacement gelöscht.</param>
+      <param name="stringReplacement">Die in stringInput einzufügende Teilzeichenfolge.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Tan(System.Nullable{System.Decimal})">
+      <summary>Gibt den trigonometrischen Tangens des Eingabeausdrucks zurück.</summary>
+      <returns>Die Tangente des Eingabewinkels.</returns>
+      <param name="arg">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Tan(System.Nullable{System.Double})">
+      <summary>Gibt den trigonometrischen Tangens des Eingabeausdrucks zurück.</summary>
+      <returns>Die Tangente des Eingabewinkels.</returns>
+      <param name="arg">Ein im Bogenmaß angegebener Winkel.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.Unicode(System.String)">
+      <summary>Gibt den durch den Unicode-Standard definierten ganzzahligen Wert für das erste Zeichen des Eingabeausdrucks zurück.</summary>
+      <returns>Der Zeichencode für das erste Zeichen in der Eingabezeichenfolge.</returns>
+      <param name="arg">Eine gültige Zeichenfolge.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.UserName">
+      <summary>Gibt einen Datenbank-Benutzernamen zurück, der einer angegebenen ID entspricht.</summary>
+      <returns>Der Benutzername.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlFunctions.UserName(System.Nullable{System.Int32})">
+      <summary>Gibt einen Datenbank-Benutzernamen zurück, der einer angegebenen ID entspricht.</summary>
+      <returns>Der Benutzername.</returns>
+      <param name="arg">Eine Benutzer-ID.</param>
+    </member>
+    <member name="T:System.Data.Entity.SqlServer.SqlProviderServices">
+      <summary>Die DbProviderServices-Implementierung für den SqlClient-Anbieter für SQL Server.</summary>
+    </member>
+    <member name="P:System.Data.Entity.SqlServer.SqlProviderServices.Instance">
+      <summary>Die Singletoninstanz des SqlProviderServices-Typs.</summary>
+      <returns>
+        <see cref="T:System.Data.Entity.SqlServer.SqlProviderServices" />.</returns>
+    </member>
+    <member name="F:System.Data.Entity.SqlServer.SqlProviderServices.ProviderInvariantName">
+      <summary>Hierbei handelt es sich um die bekannte Zeichenfolge, die in Konfigurationsdateien und codebasierter Konfiguration als "invarianter Anbietername" zum Angeben der Anbieterdienste Microsoft SQL Server für ADO.NET und Entity Framework verwendet wird.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlProviderServices.RegisterInfoMessageHandler(System.Data.Common.DbConnection,System.Action{System.String})">
+      <summary>Registriert einen Handler zur Verarbeitung von vom Datenbankanbieter stammenden Fehlermeldungen ohne Fehler.</summary>
+      <param name="connection">Die Verbindung, für die Informationen empfangen werden sollen.</param>
+      <param name="handler">Der Handler zur Verarbeitung von Meldungen.</param>
+    </member>
+    <member name="P:System.Data.Entity.SqlServer.SqlProviderServices.SqlServerTypesAssemblyName">
+      <summary>Wird auf den vollständigen Namen der Microsoft.SqlServer.Types-Assembly festgelegt, um die Standardauswahl zu überschreiben</summary>
+    </member>
+    <member name="P:System.Data.Entity.SqlServer.SqlProviderServices.TruncateDecimalsToScale">
+      <summary>Legen Sie dieses Flag auf false fest, um ein Abschneiden der <see cref="T:System.Decimal" />-Werte auf die für die Spalte definierten Dezimalstellen zu verhindern.Der Standardwert ist true, wodurch angegeben wird, dass die Dezimalwerte abgeschnitten werden, um Fehler in vorhandenen Anwendungen zu vermeiden, die dieses Verhalten erwarten.</summary>
+      <returns>Gibt <see cref="T:System.Boolean" /> zurück.</returns>
+    </member>
+    <member name="T:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator">
+      <summary>Stellt einen Anbieter zum Konvertieren anbieteragnostischer Migrationsvorgänge in SQL-Befehle dar, der auf einer Microsoft SQL Server-Datenbank ausgeführt werden kann.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator" />-Klasse.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.BuildColumnType(System.Data.Entity.Migrations.Model.ColumnModel)">
+      <summary>Generiert einen SQL-Befehl, um den Datentyp einer Spalte anzugeben.Durch diese Methode wird nur der tatsächliche Typ generiert und nicht der SQL-Befehl zum Erstellen der Spalte.</summary>
+      <returns>SQL-Befehl, der den Datentyp darstellt.</returns>
+      <param name="columnModel">Die Definition der Spalte.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.CreateConnection">
+      <summary>Erstellt eine leere Verbindung für den aktuellen Anbieter.Erlaubt abgeleiteten Anbietern die Verwendung einer anderen Verbindung als <see cref="T:System.Data.SqlClient.SqlConnection" />.</summary>
+      <returns>Eine leere Verbindung für den aktuellen Anbieter.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.DropDefaultConstraint(System.String,System.String,System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+      <summary>Mit dieser Methode können Sie SQL erzeugen, das versuchen wird, die bei der Erstellung der Spalte ebenfalls erstellte Standardeinschränkung zu löschen.Diese Methode wird normalerweise von Code aufgerufen, der die Erstellung oder Änderung von Spalten überschreibt.</summary>
+      <param name="table">Die Tabelle, auf die sich die Einschränkung bezieht.</param>
+      <param name="column">Die Spalte, auf die sich die Einschränkung bezieht.</param>
+      <param name="writer">Der Writer, in den der generierte SQL-Code geschrieben werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Boolean)">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten Boolean-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Byte[])">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten byte[]-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Collections.Generic.IEnumerable{System.Data.Entity.Migrations.Model.MigrationOperation},System.String)">
+      <summary>Konvertiert eine Gruppe von Migrationsvorgängen in eine Microsoft SQL Server-spezifische SQL-Anweisung.</summary>
+      <returns>Eine Liste von SQL-Anweisungen, mit denen Migrationsvorgänge ausgeführt werden.</returns>
+      <param name="migrationOperations">Die zu konvertierenden Vorgänge.</param>
+      <param name="providerManifestToken">Token, das die SQL Server-Zielversion darstellt (d. h. "2005", "2008").</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AddColumnOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.AddColumnOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="addColumnOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AddForeignKeyOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.AddForeignKeyOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="addForeignKeyOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.AddPrimaryKeyOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="addPrimaryKeyOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AlterColumnOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.AlterColumnOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="alterColumnOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AlterProcedureOperation)">
+      <summary>Erzeugt den angegebenen Vorgang zum Ändern einer gespeicherten Prozedur.</summary>
+      <param name="alterProcedureOperation">Der Vorgang zum Ändern der gespeicherten Prozedur.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.AlterTableOperation)">
+      <summary>Überschreiben Sie diese Methode, um SQL zu erzeugen, wenn die Definition einer Tabelle oder ihrer Attribute geändert werden.Die Standardimplementierung dieser Methode hat keine Funktion.</summary>
+      <param name="alterTableOperation">Der Vorgang, der die Änderungen an der Tabelle beschreibt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.ColumnModel,System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+      <summary>Generiert SQL für das angegebene Spaltenmodell.Diese Methode wird von anderen Methoden aufgerufen, die Spalten verarbeiten, und kann überschrieben werden, um das erzeugte SQL zu ändern.</summary>
+      <param name="column">Die Spalte, für die das SQL generiert wird.</param>
+      <param name="writer">Der Writer, in den der generierte SQL-Code geschrieben werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.CreateIndexOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.CreateIndexOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="createIndexOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.CreateProcedureOperation)">
+      <summary>Erzeugt den angegebenen Vorgang zum Erstellen einer gespeicherten Prozedur.</summary>
+      <param name="createProcedureOperation">Der Vorgang zum Erstellen der gespeicherten Prozedur.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.CreateTableOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.CreateTableOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="createTableOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropColumnOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.DropColumnOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="dropColumnOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropForeignKeyOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.DropForeignKeyOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="dropForeignKeyOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropIndexOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.DropIndexOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="dropIndexOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropPrimaryKeyOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.DropPrimaryKeyOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="dropPrimaryKeyOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropProcedureOperation)">
+      <summary>Erzeugt den angegebenen Vorgang zum Löschen einer gespeicherten Prozedur.</summary>
+      <param name="dropProcedureOperation">Der Vorgang zum Löschen der gespeicherten Prozedur.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.DropTableOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.DropTableOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="dropTableOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.HistoryOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.HistoryOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="historyOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.MigrationOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.MigrationOperation" />.Erlaubt abgeleiteten Anbietern die Verwendung zusätzlicher Vorgangstypen.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="migrationOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.MoveProcedureOperation)">
+      <summary>Erzeugt den angegebenen Vorgang zum Verschieben einer gespeicherten Prozedur.</summary>
+      <param name="moveProcedureOperation">Der Vorgang zum Verschieben der gespeicherten Prozedur.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.MoveTableOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.MoveTableOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="moveTableOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.RenameColumnOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.RenameColumnOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="renameColumnOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.RenameIndexOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.RenameIndexOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="renameIndexOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.RenameProcedureOperation)">
+      <summary>Erzeugt den angegebenen Vorgang zum Umbenennen einer gespeicherten Prozedur.</summary>
+      <param name="renameProcedureOperation">Der Vorgang zum Umbenennen der gespeicherten Prozedur.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.RenameTableOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.RenameTableOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="renameTableOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.SqlOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.SqlOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="sqlOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Migrations.Model.UpdateDatabaseOperation)">
+      <summary>Erzeugt den angegebenen Vorgang zum Ändern der Datenbank, der eine Reihe von Migrationen darstellt.Das erzeugte Skript ist idempotent, enthält also eine bedingte Logik, die prüft, ob einzelne Migrationen bereits angewendet wurden und nur die ausstehenden Migrationen anwendet.</summary>
+      <param name="updateDatabaseOperation">Der Vorgang zur Änderung der Datenbank.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Generiert eine SQL-Anweisung, um einen für eine Spalte festgelegten, konstanten Geography-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten Geometry-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.DateTime)">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten DateTime-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.DateTimeOffset)">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten DateTimeOffset-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Guid)">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten GUID-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.Object)">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.String)">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten String-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Generate(System.TimeSpan)">
+      <summary>Generiert einen SQL-Befehl, um einen für eine Spalte festgelegten, konstanten TimeSpan-Standardwert anzugeben.Durch diese Methode wird nur der tatsächliche Wert generiert und nicht der SQL-Befehl zum Festlegen des Standardwerts.</summary>
+      <returns>SQL-Befehl, der den Standardwert darstellt.</returns>
+      <param name="defaultValue">Der festzulegende Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.GenerateCreateSchema(System.String)">
+      <summary>Generiert einen SQL-Befehl zum Erstellen eines Datenbankschemas.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="schema">Der Name des zu erstellenden Schemas.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.GenerateMakeSystemTable(System.Data.Entity.Migrations.Model.CreateTableOperation,System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+      <summary>Generiert einen SQL-Befehl zum Kennzeichnen einer Tabelle als Systemtabelle.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="createTableOperation">Die als Systemtabelle zu kennzeichnende Tabelle.</param>
+      <param name="writer">Der <see cref="T:System.Data.Entity.Migrations.Utilities.IndentedTextWriter" />, in den das erzeugte SQL geschrieben werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.GenerateProcedureBody(System.Collections.Generic.ICollection{System.Data.Entity.Core.Common.CommandTrees.DbModificationCommandTree},System.String,System.String)">
+      <summary>Erzeugt den SQL-Text für eine gespeicherte Prozedur.</summary>
+      <returns>Der SQL-Text für die gespeicherte Prozedur.</returns>
+      <param name="commandTrees">Die Befehlsstrukturen, die die Befehle für einen Einfüge-, Aktualisierungs- oder Löschvorgang darstellen.</param>
+      <param name="rowsAffectedParameter">Die vom Parameternamen betroffenen Zeilen.</param>
+      <param name="providerManifestToken">Das Anbietermanifesttoken.</param>
+    </member>
+    <member name="P:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.GuidColumnDefault">
+      <summary>Liefert den Spaltenstandardwert zurück, der für im Speicher generierte GUID-Spalten verwendet werden soll, wenn bei der Migration kein expliziter Wert angegeben wird.Liefert newsequentialid() für lokale SQL Server 2005 und höher zurück.Liefert newid() für SQL Azure zurück.</summary>
+      <returns>Entweder newsequentialid() oder newid() wie oben beschrieben.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Name(System.String)">
+      <summary>Generiert einen in Anführungszeichen gesetzten Namen.Der angegebene Name enthält möglicherweise das Schema.</summary>
+      <returns>Der in Anführungszeichen gesetzte Name.</returns>
+      <param name="name">Der in Anführungszeichen zu setzende Name.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Quote(System.String)">
+      <summary>Setzt einen Bezeichner für SQL Server in Anführungszeichen.</summary>
+      <returns>Der in Anführungszeichen gesetzte Bezeichner.</returns>
+      <param name="identifier">Der Bezeichner, der in Anführungszeichen gesetzt werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Statement(System.Data.Entity.Migrations.Utilities.IndentedTextWriter,System.String)">
+      <summary>Fügt eine neue Anweisung hinzu, die für die Datenbank ausgeführt werden soll.</summary>
+      <param name="writer">Der Writer, in dem die auszuführende SQL-Anweisung enthalten ist.</param>
+      <param name="batchTerminator">Das Batchabschlusszeichen für den Datenbankanbieter.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Statement(System.String,System.Boolean,System.String)">
+      <summary>Fügt eine neue Anweisung hinzu, die für die Datenbank ausgeführt werden soll.</summary>
+      <param name="sql">Die auszuführende Anweisung.</param>
+      <param name="suppressTransaction">Gibt an, ob diese Anweisung außerhalb des Transaktionsbereichs ausgeführt werden soll, in dem der Migrationsprozess normalerweise ausgeführt wird.Wenn auf TRUE festgelegt, wird für diesen Vorgang bei einem Migrationsprozessfehler kein Rollback ausgeführt.</param>
+      <param name="batchTerminator">Das Batchabschlusszeichen für den Datenbankanbieter.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.StatementBatch(System.String,System.Boolean)">
+      <summary>Bricht SQL-Zeichenfolge in mindestens eine Anweisung auf, und behandelt Anweisungen des T-SQL-Hilfsprogramms wie erforderlich.</summary>
+      <param name="sqlBatch">SQL, in mindestens eine auszuführende Anweisung aufgeteilt.</param>
+      <param name="suppressTransaction">Ruft einen Wert ab, der angibt, ob diese Anweisung außerhalb des Transaktionsbereichs ausgeführt werden soll, in dem der Migrationsprozess normalerweise ausgeführt wird, oder legt ihn fest.Wenn auf TRUE festgelegt, wird für diesen Vorgang bei einem Migrationsprozessfehler kein Rollback ausgeführt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.WriteCreateTable(System.Data.Entity.Migrations.Model.CreateTableOperation)">
+      <summary>Generiert einen SQL-Befehl für <see cref="T:System.Data.Entity.Migrations.Model.CreateTableOperation" />.Der generierte SQL-Befehl sollte mithilfe der Statement-Methode hinzugefügt werden.</summary>
+      <param name="createTableOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.WriteCreateTable(System.Data.Entity.Migrations.Model.CreateTableOperation,System.Data.Entity.Migrations.Utilities.IndentedTextWriter)">
+      <summary>Schreibt CREATE TABLE SQL zum Zielwriter.</summary>
+      <param name="createTableOperation">Der Vorgang, für den der SQL-Befehl erstellt wird.</param>
+      <param name="writer">Der Zielwriter.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlServerMigrationSqlGenerator.Writer">
+      <summary>Ruft einen neuen <see cref="T:System.Data.Entity.Migrations.Utilities.IndentedTextWriter" /> ab, der zum Erstellen der SQL-Anweisung verwendet werden kann.Dies ist eine Hilfsmethode zum Erstellen eines Writers.Das Schreiben in den Writer führt nicht dazu, dass die SQL-Anweisung für die Ausführung registriert wird.Sie müssen die generierte SQL-Anweisung an die Statement-Methode übergeben.</summary>
+      <returns>Ein leerer Textwriter, der für die SQL-Generierung verwendet werden soll.</returns>
+    </member>
+    <member name="T:System.Data.Entity.SqlServer.SqlSpatialFunctions">
+      <summary>Enthält Funktionsstubs, die SqlServer-Methoden in Linq to Entities verfügbar macht.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.AsTextZM(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt die Open Geospatial Consortium (OGC) Well-Known Text (WKT)-Darstellung einer Geografieinstanz zurück, die mit allen Werten Z (Erhebung) und M (Maßeinheit), die von der Instanz übertragen werden, erweitert wird.</summary>
+      <returns>Die OGC-WKT-Darstellung (Open Geospatial Consortium Well-Known Text) einer Geografieinstanz.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.AsTextZM(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt die Open Geospatial Consortium (OGC) Well-Known Text (WKT)-Darstellung einer Geografieinstanz zurück, die mit allen Werten Z (Erhebung) und M (Maßeinheit), die von der Instanz übertragen werden, erweitert wird.</summary>
+      <returns>Die OGC-WKT-Darstellung (Open Geospatial Consortium Well-Known Text) einer Geometrieinstanz.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.BufferWithTolerance(System.Data.Entity.Spatial.DbGeography,System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Boolean})">
+      <summary>Gibt ein geometrisches Objekt zurück, das die Vereinigung aller Punktwerte darstellt, deren Abstand von einer Geografieinstanz kleiner oder gleich einem angegebenen Wert ist, wodurch eine angegebene Toleranz ermöglicht wird.</summary>
+      <returns>Die Vereinigung aller Punktwerte, deren Abstand zu einer Geografieinstanz kleiner oder gleich einem angegebenen Wert ist.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+      <param name="distance">Der Abstand.</param>
+      <param name="tolerance">Die angegebene Toleranz.</param>
+      <param name="relative">Gibt an, ob der Toleranzwert relativ oder absolut ist.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.BufferWithTolerance(System.Data.Entity.Spatial.DbGeometry,System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Boolean})">
+      <summary>Gibt ein geometrisches Objekt zurück, das die Vereinigung aller Punktwerte darstellt, deren Abstand von einer Geometrieinstanz kleiner oder gleich einem angegebenen Wert ist, wodurch eine angegebene Toleranz ermöglicht wird.</summary>
+      <returns>Die Vereinigung aller Punktwerte, deren Abstand zu einer Geometrieinstanz kleiner oder gleich einem angegebenen Wert ist.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+      <param name="distance">Der Abstand.</param>
+      <param name="tolerance">Die angegebene Toleranz.</param>
+      <param name="relative">Gibt an, ob der Toleranzwert relativ oder absolut ist.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.EnvelopeAngle(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt den maximalen Winkel zwischen dem Punkt, der von EnvelopeCenter() zurückgegeben wurde, und einem Punkt in der Geografieinstanz in Grad zurück.</summary>
+      <returns>Der maximale Winkel zwischen dem durch EnvelopeCenter() zurückgegeben Punkt.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.EnvelopeCenter(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt einen Punkt zurück, der als Mittelpunkt eines umschließenden Kreises für die Geografieinstanz verwendet werden kann.</summary>
+      <returns>Ein SqlGeography-Wert, der die Position des Mittelpunkts eines umschließenden Kreises angibt.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.Filter(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Bietet eine schnelle, ausschließlich indexgestützte Schnittmengenmethode an, um zu bestimmen, ob eine Geografieinstanz eine andere SqlGeography-Instanz überschneidet. Es wird vorausgesetzt, dass ein Index verfügbar ist.</summary>
+      <returns>True, wenn eine Geografieinstanz möglicherweise eine Überschneidung mit einer anderen SqlGeography-Instanz aufweist, andernfalls false.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+      <param name="geographyOther">Eine weitere Geografieinstanz, die mit der Instanz verglichen werden soll, für die ein Filter aufgerufen wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.Filter(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bietet eine schnelle, ausschließlich indexgestützte Schnittmengenmethode an, um zu bestimmen, ob eine Geografieinstanz eine andere SqlGeometry-Instanz überschneidet. Es wird vorausgesetzt, dass ein Index verfügbar ist.</summary>
+      <returns>True, wenn eine Geografieinstanz möglicherweise eine Überschneidung mit einer anderen SqlGeography-Instanz aufweist, andernfalls false.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+      <param name="geometryOther">Eine weitere Geografieinstanz, die mit der Instanz verglichen werden soll, für die ein Filter aufgerufen wird.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.InstanceOf(System.Data.Entity.Spatial.DbGeography,System.String)">
+      <summary>Überprüft, ob die SqlGeography-Instanz die gleiche wie der angegebene Typ ist.</summary>
+      <returns>Eine Zeichenfolge, die einen der 12 Typen angibt, die in der Geografietyp-Hierarchie verfügbar gemacht werden.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+      <param name="geometryTypeName">Eine Zeichenfolge, die einen der 12 Typen angibt, die in der Geografietyp-Hierarchie verfügbar gemacht werden.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.InstanceOf(System.Data.Entity.Spatial.DbGeometry,System.String)">
+      <summary>Überprüft, ob die SqlGeometry-Instanz die gleiche wie der angegebene Typ ist.</summary>
+      <returns>Eine Zeichenfolge, die einen der 12 Typen angibt, die in der Geografietyp-Hierarchie verfügbar gemacht werden.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+      <param name="geometryTypeName">Eine Zeichenfolge, die einen der 12 Typen angibt, die in der Geografietyp-Hierarchie verfügbar gemacht werden.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.MakeValid(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Konvertiert eine ungültige Geometrieinstanz in eine Geometrieinstanz mit einem gültigen Open Geospatial Consortium (OGC)-Typ.</summary>
+      <returns>Die konvertierte Geometrieinstanz.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.NumRings(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt die Gesamtanzahl der Ringe in einer Polygoninstanz zurück.</summary>
+      <returns>Die Gesamtzahl von Ringen.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.PointGeography(System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32})">
+      <summary>Erstellt aus den x- und y-Werten und einer räumlichen Bezugs-ID (SRID) eine Geografieinstanz, die eine Punktinstanz darstellt.</summary>
+      <returns>Die erstellte Geografieinstanz.</returns>
+      <param name="latitude">Die x-Koordinate des zu generierenden Punkts.</param>
+      <param name="longitude">Die y-Koordinate des zu generierenden Punkts.</param>
+      <param name="spatialReferenceId">Die SRID der Geografieinstanz.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.PointGeometry(System.Nullable{System.Double},System.Nullable{System.Double},System.Nullable{System.Int32})">
+      <summary>Erstellt aus den x- und y-Werten und einer räumlichen Bezugs-ID (SRID) eine Geometrieinstanz, die eine Punktinstanz darstellt.</summary>
+      <returns>Die erstellte Geometrieinstanz.</returns>
+      <param name="xCoordinate">Die x-Koordinate des zu generierenden Punkts.</param>
+      <param name="yCoordinate">Die y-Koordinate des zu generierenden Punkts.</param>
+      <param name="spatialReferenceId">Die SRID der Geografieinstanz.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.Reduce(System.Data.Entity.Spatial.DbGeography,System.Nullable{System.Double})">
+      <summary>Gibt einen Näherungswert der angegebenen Geografieinstanz zurück, die durch Ausführen des Douglas-Peucker-Algorithmus für die Instanz mit der angegebenen Toleranz erzeugt wird.</summary>
+      <returns>Gibt <see cref="T:System.Data.Entity.Spatial.DbGeography" /> zurück.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+      <param name="tolerance">Die Toleranz, die in den Douglas-Peucker-Algorithmus eingegeben werden soll.Die Toleranz muss eine positive Zahl sein.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.Reduce(System.Data.Entity.Spatial.DbGeometry,System.Nullable{System.Double})">
+      <summary>Gibt einen Näherungswert der angegebenen Geografieinstanz zurück, die durch Ausführen des Douglas-Peucker-Algorithmus für die Instanz mit der angegebenen Toleranz erzeugt wird.</summary>
+      <returns>Gibt <see cref="T:System.Data.Entity.Spatial.DbGeometry" /> zurück.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+      <param name="tolerance">Die Toleranz, die in den Douglas-Peucker-Algorithmus eingegeben werden soll.Die Toleranz muss eine positive Zahl sein.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialFunctions.RingN(System.Data.Entity.Spatial.DbGeography,System.Nullable{System.Int32})">
+      <summary>Gibt den angegebenen Ring der SqlGeography-Instanz zurück: 1 ≤ n ≤ NumRings().</summary>
+      <returns>Ein SqlGeography-Objekt, das den Ring darstellt, der durch "n" angegeben wird.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+      <param name="index">Ein int-Ausdruck zwischen 1 und der Anzahl der Ringe in einer Polygonobjektinstanz.</param>
+    </member>
+    <member name="T:System.Data.Entity.SqlServer.SqlSpatialServices">
+      <summary>Eine Implementierung von <see cref="T:System.Data.Entity.Spatial.DbSpatialServices" />, um räumliche Typen bei der Verwendung von Entity Framework mit Microsoft SQL Server zu unterstützen.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.AsBinary(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Ruft die bekannte binäre Darstellung des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts ab.</summary>
+      <returns>Die bekannte binäre Darstellung des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geographyValue">Der Geografiewert, für den das WKB-Format (well-known binary) generiert werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.AsBinary(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Ruft die bekannte binäre Darstellung des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts ab.</summary>
+      <returns>Die bekannte binäre Darstellung des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert, für den das WKB-Format (well-known binary) generiert werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.AsGml(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Generiert die Darstellung in der GML (Geography Markup Language) dieses <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</summary>
+      <returns>Eine Zeichenfolge, die die GML-Darstellung dieses DbGeography-Werts enthält.</returns>
+      <param name="geographyValue">Der Geografiewert, für den die GML generiert werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.AsGml(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Generiert die Darstellung in der GML (Geography Markup Language) dieses <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</summary>
+      <returns>Eine Zeichenfolge, die die GML-Darstellung dieses DbGeometry-Werts enthält.</returns>
+      <param name="geometryValue">Der Geometriewert, für den die GML generiert werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.AsText(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Ruft die bekannte binäre Darstellung des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts ab.Dieser Wert sollte nur die Länge und Breite von Punkten enthalten.</summary>
+      <returns>Eine Zeichenfolge, die die bekannte Textdarstellung von <paramref name="geographyValue" /> enthält.</returns>
+      <param name="geographyValue">Der Geografiewert, für den das WKT-Format (well-known text) generiert werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.AsText(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Ruft die bekannte Textdarstellung des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts ab und schließt nur die X- und Y-Koordinaten für Punkte ein.</summary>
+      <returns>Eine Zeichenfolge, die die bekannte Textdarstellung von <paramref name="geometryValue" /> enthält.</returns>
+      <param name="geometryValue">Der Geometriewert, für den das WKT-Format (well-known text) generiert werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.AsTextIncludingElevationAndMeasure(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt eine Textdarstellung der <see cref="T:System.Data.Entity.SqlServer.SqlSpatialServices" /> mit Erhebung und Maßeinheiten zurück.</summary>
+      <returns>Eine Textdarstellung von <see cref="T:System.Data.Entity.SqlServer.SqlSpatialServices" />.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.AsTextIncludingElevationAndMeasure(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt eine Textdarstellung der <see cref="T:System.Data.Entity.SqlServer.SqlSpatialServices" /> mit Erhebung und Maßeinheiten zurück.</summary>
+      <returns>Eine Textdarstellung von <see cref="T:System.Data.Entity.SqlServer.SqlSpatialServices" />.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Buffer(System.Data.Entity.Spatial.DbGeography,System.Double)">
+      <summary>Erstellt einen Geografiewert, der alle Punkte darstellt, die kleiner oder gleich dem Abstand zum angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert sind.</summary>
+      <returns>Ein neuer DbGeography-Wert, der alle Punkte darstellt, die kleiner oder gleich dem Abstand zu <paramref name="geographyValue" /> sind.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+      <param name="distance">Ein Double-Wert, der angibt, in welcher Entfernung von <paramref name="geographyValue" /> gepuffert werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Buffer(System.Data.Entity.Spatial.DbGeometry,System.Double)">
+      <summary>Erstellt einen Geometriewert, der alle Punkte darstellt, die kleiner oder gleich dem Abstand zum angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert sind.</summary>
+      <returns>Ein neuer DbGeometry-Wert, der alle Punkte darstellt, die kleiner oder gleich dem Abstand zu <paramref name="geometryValue" /> sind.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+      <param name="distance">Ein Double-Wert, der angibt, in welcher Entfernung von <paramref name="geometryValue" /> gepuffert werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Contains(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bestimmt, ob ein <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert räumlich den anderen Wert enthält.</summary>
+      <returns>true, wenn <paramref name="geometryValue" /><paramref name="otherGeometry" /> enthält; andernfalls false.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geometrie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.CreateProviderValue(System.Data.Entity.Spatial.DbGeographyWellKnownValue)">
+      <summary>Erstellt einen anbieterspezifischen Wert, der mit dieser räumlichen Dienstimplementierung auf Grundlage der angegebenen bekannten <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Darstellung kompatibel ist.</summary>
+      <returns>Ein anbieterspezifischer Wert, der die Informationen in <paramref name="wellKnownValue" /> in einer Weise kodiert, die mit dieser räumlichen Dienstimplementierung kompatibel ist.</returns>
+      <param name="wellKnownValue">Eine Instanz von <see cref="T:System.Data.Entity.Spatial.DbGeographyWellKnownValue" />, die die bekannte Darstellung eines Geografiewerts enthält.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.CreateProviderValue(System.Data.Entity.Spatial.DbGeometryWellKnownValue)">
+      <summary>Erstellt einen anbieterspezifischen Wert, der mit dieser räumlichen Dienstimplementierung auf Grundlage der angegebenen bekannten <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Darstellung kompatibel ist.</summary>
+      <returns>Ein anbieterspezifischer Wert, der die Informationen in <paramref name="wellKnownValue" /> in einer Weise kodiert, die mit dieser räumlichen Dienstimplementierung kompatibel ist.</returns>
+      <param name="wellKnownValue">Eine Instanz von <see cref="T:System.Data.Entity.Spatial.DbGeometryWellKnownValue" />, die die bekannte Darstellung eines Geometriewerts enthält.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.CreateWellKnownValue(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Erstellt eine Instanz von <see cref="T:System.Data.Entity.Spatial.DbGeographyWellKnownValue" />, die den angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert mithilfe eines oder der beiden bekannten räumlichen Standardformate darstellt.</summary>
+      <returns>Die bekannte Darstellung von <paramref name="geographyValue" /> als neuer <see cref="T:System.Data.Entity.Spatial.DbGeographyWellKnownValue" />.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.CreateWellKnownValue(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Erstellt eine Instanz von <see cref="T:System.Data.Entity.Spatial.DbGeometryWellKnownValue" />, die den angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert mithilfe eines oder der beiden bekannten räumlichen Standardformate darstellt.</summary>
+      <returns>Die bekannte Darstellung von <paramref name="geometryValue" /> als neuer <see cref="T:System.Data.Entity.Spatial.DbGeometryWellKnownValue" />.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Crosses(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werte räumlich überschneiden.</summary>
+      <returns>true, wenn <paramref name="geometryValue" /><paramref name="otherGeometry" /> kreuzt, andernfalls false.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geometrie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Difference(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Berechnet den Unterschied zwischen zwei <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werten.</summary>
+      <returns>Ein neuer DbGeography-Wert, der den Unterschied zwischen <paramref name="geographyValue" /> und <paramref name="otherGeography" /> darstellt.</returns>
+      <param name="geographyValue">Der erste Geografiewert.</param>
+      <param name="otherGeography">Der zweite Geografie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Difference(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Berechnet den Unterschied zwischen zwei <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werten.</summary>
+      <returns>Ein neuer DbGeometry-Wert, der den Unterschied zwischen <paramref name="geometryValue" /> und <paramref name="otherGeometry" /> darstellt.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geometrie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Disjoint(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werte räumlich disjunkt sind.</summary>
+      <returns>true, wenn <paramref name="geographyValue" /> von <paramref name="otherGeography" /> disjunkt ist, andernfalls false.</returns>
+      <param name="geographyValue">Der erste auf Disjunktheit zu vergleichende Geografiewert.</param>
+      <param name="otherGeography">Der zweite auf Disjunktheit zu vergleichende Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Disjoint(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werte räumlich disjunkt sind.</summary>
+      <returns>true, wenn <paramref name="geometryValue" /> von <paramref name="otherGeometry" /> disjunkt ist, andernfalls false.</returns>
+      <param name="geometryValue">Der erste auf Disjunktheit zu vergleichende Geometriewert.</param>
+      <param name="otherGeometry">Der zweite auf Disjunktheit zu vergleichende Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Distance(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Berechnet die Entfernung zwischen den nächsten Punkten in zwei <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werten.</summary>
+      <returns>Ein Double-Wert, der den Abstand zwischen den beiden nächsten Punkten von <paramref name="geographyValue" /> und <paramref name="otherGeography" /> angibt.</returns>
+      <param name="geographyValue">Der erste Geografiewert.</param>
+      <param name="otherGeography">Der zweite Geografie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Distance(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Berechnet die Entfernung zwischen den nächsten Punkten in zwei <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werten.</summary>
+      <returns>Ein Double-Wert, der den Abstand zwischen den beiden nächsten Punkten von <paramref name="geographyValue" /> und <paramref name="otherGeography" /> angibt.</returns>
+      <param name="geometryValue">Der erste Geografiewert.</param>
+      <param name="otherGeometry">Der zweite Geografie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.ElementAt(System.Data.Entity.Spatial.DbGeography,System.Int32)">
+      <summary>Gibt ein Element des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts zurück, wenn er eine Geografiesammlung darstellt.</summary>
+      <returns>Das Element in <paramref name="geographyValue" /> am Positions<paramref name="index" />, wenn es eine Auflistung von anderen Geografiewerten darstellt; andernfalls null.</returns>
+      <param name="geographyValue">Der Geografiewert, der keine Geografieauflistung darzustellen braucht.</param>
+      <param name="index">Die Position innerhalb des Geografiewerts, an der das Element abgerufen werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.ElementAt(System.Data.Entity.Spatial.DbGeometry,System.Int32)">
+      <summary>Gibt ein Element des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts zurück, wenn er eine Geometriesammlung darstellt.</summary>
+      <returns>Das Element in <paramref name="geographyValue" /> am Positions<paramref name="index" />, wenn es eine Auflistung von anderen Geografiewerten darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Geometrieauflistung darzustellen braucht.</param>
+      <param name="index">Die Position innerhalb des Geometriewerts, an der das Element abgerufen werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyCollectionFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Sammlungswert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="geographyCollectionWellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyCollectionFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Sammlungswert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="geographyCollectionWellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyFromBinary(System.Byte[])">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert auf Grundlage des angegebenen bekannten Binärwert.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Binärwert mit der standardmäßigen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="wellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geografiewerts enthält.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="wellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyFromGml(System.String)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert auf Grundlage des angegebenen GML-Werts (Geography Markup Language).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den GML-Wert mit der standardmäßigen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="geographyMarkup">Eine Zeichenfolge, die eine Darstellung der Geometry-Markupsprache (GML) des Geografiewerts enthält.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyFromGml(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert auf Grundlage des angegebenen GML-Werts (Geography Markup Language) und Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den GML-Wert mit der angegebenen Koordinatensystem-ID (SRID) definiert.</returns>
+      <param name="geographyMarkup">Eine Zeichenfolge, die eine Darstellung der Geometry-Markupsprache (GML) des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyFromProviderValue(System.Object)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert auf Grundlage eines anbieterspezifischen Werts, der mit dieser räumlichen Dienstimplementierung kompatibel ist.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, unterstützt durch diese räumliche Dienstimplementierung und den angegebenen Anbieterwert.</returns>
+      <param name="providerValue">Ein anbieterspezifischer Wert, den die räumliche Dienstimplementierung zum Interpretieren als Geografiewert nutzt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyFromText(System.String)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert auf Grundlage des angegebenen bekannten Textwerts.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Textwert mit der standardmäßigen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="wellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geografiewerts enthält.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="wellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyLineFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Zeilenwert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="lineWellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyLineFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Zeilenwert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="lineWellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyMultiLineFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiLine-Wert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID.</summary>
+      <returns>Der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiLine-Wert.</returns>
+      <param name="multiLineWellKnownBinary">Der bekannte Binärwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyMultiLineFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiLine-Wert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiLine-Wert.</returns>
+      <param name="multiLineWellKnownText">Der bekannte Textwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyMultiPointFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiPoint-Wert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiPoint-Wert.</returns>
+      <param name="multiPointWellKnownBinary">Der bekannte Binärwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyMultiPointFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiPoint-Wert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiPoint-Wert.</returns>
+      <param name="multiPointWellKnownText">Der bekannte Textwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyMultiPolygonFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiPolygon-Wert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiPolygon-Wert.</returns>
+      <param name="multiPolygonWellKnownBinary">Der bekannte Binärwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyMultiPolygonFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiPolygon-Wert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-MultiPolygon-Wert.</returns>
+      <param name="multiPolygonKnownText">Der bekannte Textwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyPointFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Punktwert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="pointWellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyPointFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Punktwert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="pointWellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyPolygonFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Polygonwert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="polygonWellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeographyPolygonFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Polygonwert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeography.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="polygonWellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geografiewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryCollectionFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Sammlungswert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="geometryCollectionWellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryCollectionFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Sammlungswert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="geometryCollectionWellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryFromBinary(System.Byte[])">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert auf Grundlage des angegebenen bekannten Binärwert.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Binärwert mit der standardmäßigen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="wellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geometriewerts enthält.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="wellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryFromGml(System.String)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert auf Grundlage des angegebenen GML-Werts (Geography Markup Language).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den GML-Wert mit der standardmäßigen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="geometryMarkup">Eine Zeichenfolge, die eine Darstellung der Geografie-Markupsprache (GML) des Geometriewerts enthält.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryFromGml(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert auf Grundlage des angegebenen GML-Werts (Geography Markup Language) und Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den GML-Wert mit der angegebenen Koordinatensystem-ID (SRID) definiert.</returns>
+      <param name="geometryMarkup">Eine Zeichenfolge, die eine Darstellung der Geografie-Markupsprache (GML) des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryFromProviderValue(System.Object)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert auf Grundlage eines anbieterspezifischen Werts, der mit dieser räumlichen Dienstimplementierung kompatibel ist.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, unterstützt durch diese räumliche Dienstimplementierung und den angegebenen Anbieterwert.</returns>
+      <param name="providerValue">Ein anbieterspezifischer Wert, den die räumliche Dienstimplementierung zum Interpretieren als Geometriewert nutzt.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryFromText(System.String)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert auf Grundlage des angegebenen bekannten Textwerts.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Textwert mit der standardmäßigen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="wellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geometriewerts enthält.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="wellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryLineFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Zeilenwert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="lineWellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryLineFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Zeilenwert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="lineWellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryMultiLineFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiLine-Wert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID.</summary>
+      <returns>Der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiLine-Wert.</returns>
+      <param name="multiLineWellKnownBinary">Der bekannte Binärwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryMultiLineFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiLine-Wert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiLine-Wert.</returns>
+      <param name="multiLineWellKnownText">Der bekannte Textwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryMultiPointFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiPoint-Wert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiPoint-Wert.</returns>
+      <param name="multiPointWellKnownBinary">Der bekannte Binärwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryMultiPointFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiPoint-Wert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiPoint-Wert.</returns>
+      <param name="multiPointWellKnownText">Der bekannte Textwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryMultiPolygonFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiPolygon-Wert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiPolygon-Wert.</returns>
+      <param name="multiPolygonWellKnownBinary">Der bekannte Binärwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryMultiPolygonFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiPolygon-Wert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-MultiPolygon-Wert.</returns>
+      <param name="multiPolygonKnownText">Der bekannte Textwert.</param>
+      <param name="coordinateSystemId">Die Koordinatensystem-ID.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryPointFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Punktwert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="pointWellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryPointFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Punktwert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="pointWellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryPolygonFromBinary(System.Byte[],System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Polygonwert auf Grundlage des angegebenen bekannten Binärwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Binärwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="polygonWellKnownBinary">Ein Bytearray, das eine bekannte binäre Darstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GeometryPolygonFromText(System.String,System.Int32)">
+      <summary>Erstellt einen neuen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Polygonwert auf Grundlage des angegebenen bekannten Textwerts und der Koordinatensystem-ID (SRID).</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, wie durch den bekannten Textwert mit der angegebenen Koordinatensystem-ID (SRID) (<see cref="P:System.Data.Entity.Spatial.DbGeometry.DefaultCoordinateSystemId" />) definiert.</returns>
+      <param name="polygonWellKnownText">Eine Zeichenfolge, die die bekannte Textdarstellung des Geometriewerts enthält.</param>
+      <param name="coordinateSystemId">Der Bezeichner des Koordinatensystems, das der neue <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert verwenden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetArea(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt einen double-Wert zurück, der Nullwerte zulässt und der den Bereich des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts angibt. Kann null sein, wenn der Wert keine Oberfläche darstellt.</summary>
+      <returns>Ein double-Wert, der Nullwerte zulässt und der den Bereich des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts angibt.</returns>
+      <param name="geographyValue">Der Geografiewert, der keine Oberfläche darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetArea(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen double-Wert zurück, der Nullwerte zulässt und der den Bereich des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts angibt. Kann null sein, wenn der Wert keine Oberfläche darstellt.</summary>
+      <returns>Ein double-Wert, der Nullwerte zulässt und der den Bereich des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts angibt.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Oberfläche darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetBoundary(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen double-Wert zurück, der Nullwerte zulässt und der die Grenze des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts angibt.</summary>
+      <returns>Die Begrenzung des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetCentroid(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, der den Schwerpunkt des angegebenen DbGeometry-Werts darstellt. Kann null sein, wenn der Wert keine Oberfläche darstellt.</summary>
+      <returns>Der Schwerpunkt von <paramref name="geometryValue" />, wenn er eine Oberfläche darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Oberfläche darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetConvexHull(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen double-Wert zurück, der Nullwerte zulässt und der die konvexe Hülle des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts angibt.</summary>
+      <returns>Die konvexe Hülle des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetCoordinateSystemId(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt den Bezeichner des Koordinatensystems des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts zurück.</summary>
+      <returns>Der Koordinatensystem-Bezeichner des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetCoordinateSystemId(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt den Bezeichner des Koordinatensystems des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts zurück.</summary>
+      <returns>Der Koordinatensystem-Bezeichner des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetDimension(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Ruft die Dimension des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts ab, oder die größte Elementdimension, wenn der Wert eine Auflistung ist.</summary>
+      <returns>Die Dimension von <paramref name="geographyValue" /> oder die größte Elementdimension, wenn <see cref="T:System.Data.Entity.Spatial.DbGeography" /> eine Auflistung ist.</returns>
+      <param name="geographyValue">Der Geografiewert, für den der Dimensionswert abgerufen werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetDimension(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Ruft die Dimension des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts ab, oder die größte Elementdimension, wenn der Wert eine Auflistung ist.</summary>
+      <returns>Die Dimension von <paramref name="geometryValue" /> oder die größte Elementdimension, wenn <see cref="T:System.Data.Entity.Spatial.DbGeometry" /> eine Auflistung ist.</returns>
+      <param name="geometryValue">Der Geometriewert, für den der Dimensionswert abgerufen werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetElementCount(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt die Anzahl der Elemente im angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert zurück, wenn er eine Geografiesammlung darstellt.</summary>
+      <returns>Die Anzahl an Elementen in <paramref name="geographyValue" />, wenn der Wert eine Auflistung anderer Geografiewerte darstellt; andernfalls null.</returns>
+      <param name="geographyValue">Der Geografiewert, der keine Geografieauflistung darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetElementCount(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt die Anzahl der Elemente im angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, wenn er eine Geometriesammlung darstellt.</summary>
+      <returns>Die Anzahl an Elementen in <paramref name="geometryValue" />, wenn der Wert eine Auflistung anderer Geometriewerte darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Geometrieauflistung darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetElevation(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt die Erhöhung (Z-Koordinate) des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts zurück, wenn er einen Punkt darstellt.</summary>
+      <returns>Die Höhe (Z-Koordinate) von <paramref name="geographyValue" />, wenn der Wert einen Punkt darstellt; andernfalls null.</returns>
+      <param name="geographyValue">Der Geografiewert, der keinen Punkt darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetElevation(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt die Erhöhung (Z) des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts zurück, wenn er einen Punkt darstellt.</summary>
+      <returns>Die Höhe (Z) von <paramref name="geometryValue" />, wenn der Wert einen Punkt darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, der keinen Punkt darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetEndPoint(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt einen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert zurück, der den Endpunkt des gegebenen DbGeography-Werts angibt. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>Der Endpunkt von <paramref name="geographyValue" />, wenn er eine Kurve darstellt; andernfalls null.</returns>
+      <param name="geographyValue">Der Geografiewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetEndPoint(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, der den Endpunkt des gegebenen DbGeometry-Werts angibt. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>Der Endpunkt von <paramref name="geometryValue" />, wenn er eine Kurve darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetEnvelope(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Ruft den Umschlag (minimaler Begrenzungsrahmen) des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts als Geometriewert ab.</summary>
+      <returns>Der Umschlag von <paramref name="geometryValue" /> als <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert.</returns>
+      <param name="geometryValue">Der Geometriewert, für den der Enveloppenwert abgerufen werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetExteriorRing(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, der den äußeren Ring des angegebenen DbGeometry-Werts darstellt. Kann null sein, wenn der Wert kein Polygon darstellt.</summary>
+      <returns>Ein DbGeometry-Wert, der den Außenring von <paramref name="geometryValue" /> darstellt, wenn er ein Polygon darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, der kein Polygon darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetInteriorRingCount(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt die Anzahl der inneren Ringe im angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, wenn er ein Polygon darstellt.</summary>
+      <returns>Die Anzahl an Elementen in <paramref name="geometryValue" />, wenn der Wert ein Polygon darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, der kein Polygon darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetIsClosed(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt einen booleschen Wert zurück, der Nullwerte zulässt und der angibt, ob der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert geschlossen ist. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>true, wenn der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert geschlossen ist, andernfalls false.</returns>
+      <param name="geographyValue">Der Geografiewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetIsClosed(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen booleschen Wert zurück, der Nullwerte zulässt und der angibt, ob der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert geschlossen ist. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>true, wenn der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert geschlossen ist, andernfalls false.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetIsEmpty(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt einen booleschen Wert zurück, der Nullwerte zulässt und der angibt, ob der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert leer ist.</summary>
+      <returns>Gibt TRUE zurück, wenn der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert leer ist; andernfalls FALSE.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetIsEmpty(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen booleschen Wert zurück, der Nullwerte zulässt und der angibt, ob der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert leer ist.</summary>
+      <returns>Gibt TRUE zurück, wenn der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert leer ist; andernfalls FALSE.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetIsRing(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen booleschen Wert zurück, der Nullwerte zulässt und der angibt, ob der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert ein Ring ist. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>true, wenn der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert ein Ring ist, andernfalls false.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetIsSimple(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen booleschen Wert zurück, der Nullwerte zulässt und der angibt, ob der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert einfach ist.</summary>
+      <returns>Gibt TRUE zurück, wenn der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert einfach ist; andernfalls FALSE.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetIsValid(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen booleschen Wert zurück, der Nullwerte zulässt und der angibt, ob der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert gültig ist.</summary>
+      <returns>Gibt TRUE zurück, wenn der gegebene <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert gültig ist; andernfalls FALSE.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetLatitude(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt die Breitenkoordinate des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts zurück, wenn er einen Punkt darstellt.</summary>
+      <returns>Die Breitenkoordinate des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geographyValue">Der Geografiewert, der keinen Punkt darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetLength(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt einen double-Wert zurück, der Nullwerte zulässt und der die Länge des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts angibt. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>Die Länge des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geographyValue">Der Geografiewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetLength(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen double-Wert zurück, der Nullwerte zulässt und der die Länge des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts angibt. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>Die Länge des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetLongitude(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt die Längenkoordinate des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts zurück, wenn er einen Punkt darstellt.</summary>
+      <returns>Die Längenkoordinate des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geographyValue">Der Geografiewert, der keinen Punkt darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetMeasure(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt die M (Measure) -Koordinate des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts zurück, wenn er einen Punkt darstellt.</summary>
+      <returns>Die M (Measure)-Koordinate des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geographyValue">Der Geografiewert, der keinen Punkt darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetMeasure(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt die M (Measure) -Koordinate des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts zurück, wenn er einen Punkt darstellt.</summary>
+      <returns>Die M (Measure)-Koordinate des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert, der keinen Punkt darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetPointCount(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt die Anzahl von Punkten im angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert zurück, wenn er einen Linestring oder einen linearen Ring darstellt.</summary>
+      <returns>Die Anzahl der Punkte im gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert.</returns>
+      <param name="geographyValue">Der Geografiewert, die keinen LineString oder LinearRing darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetPointCount(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt die Anzahl von Punkten im angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, wenn er einen Linestring oder einen linearen Ring darstellt.</summary>
+      <returns>Die Anzahl der Punkte im gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert.</returns>
+      <param name="geometryValue">Der Geometriewert, die keinen LineString oder LinearRing darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetPointOnSurface(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, der einen Punkt auf der Oberfläche des gegebenen DbGeometry-Werts darstellt. Kann null sein, wenn der Wert keine Oberfläche darstellt.</summary>
+      <returns>Ein <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, der einen Punkt auf der Oberfläche des gegebenen <paramref name="geometryValue" />-Werts darstellt.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Oberfläche darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetSpatialTypeName(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt einen Wert zurück, der den räumlichen Typnamen des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts angibt.</summary>
+      <returns>Der räumliche Typenname des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geographyValue">Der Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetSpatialTypeName(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen Wert zurück, der den räumlichen Typnamen des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts angibt.</summary>
+      <returns>Der räumliche Typenname des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetStartPoint(System.Data.Entity.Spatial.DbGeography)">
+      <summary>Gibt einen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert zurück, der den Startpunkt des gegebenen DbGeography-Werts angibt. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>Der Startpunkt des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts.</returns>
+      <param name="geographyValue">Der Geografiewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetStartPoint(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt einen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, der den Startpunkt des gegebenen DbGeometry-Werts angibt. Kann null sein, wenn der Wert keine Kurve darstellt.</summary>
+      <returns>Der Startpunkt des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert, der keine Kurve darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetXCoordinate(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt die X-Koordinate des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts zurück, wenn er einen Punkt darstellt.</summary>
+      <returns>Der x-Koordinatenwert des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert, der keinen Punkt darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.GetYCoordinate(System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Gibt die Y-Koordinate des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts zurück, wenn er einen Punkt darstellt.</summary>
+      <returns>Der y-Koordinatenwert des gegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts.</returns>
+      <param name="geometryValue">Der Geometriewert, der keinen Punkt darzustellen braucht.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.InteriorRingAt(System.Data.Entity.Spatial.DbGeometry,System.Int32)">
+      <summary>Gibt einen inneren Ring aus dem angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert zurück, wenn er ein Polygon darstellt.</summary>
+      <returns>Der innere Ring in <paramref name="geometryValue" /> am Positions<paramref name="index" />, wenn er ein Polygon darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, der kein Polygon darzustellen braucht.</param>
+      <param name="index">Die Position innerhalb des Geometriewerts, an der das Element abgerufen werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Intersection(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Berechnet die Schnittmenge von zwei <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werten.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, der die Schnittmenge von <paramref name="geographyValue" /> und <paramref name="otherGeography" /> darstellt.</returns>
+      <param name="geographyValue">Der erste Geografiewert.</param>
+      <param name="otherGeography">Der zweite Geografie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Intersection(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Berechnet die Schnittmenge von zwei <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werten.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, der die Schnittmenge von <paramref name="geographyValue" /> und <paramref name="otherGeography" /> darstellt.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geografie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Intersects(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werte räumlich überschneiden.</summary>
+      <returns>true, wenn <paramref name="geographyValue" /><paramref name="otherGeography" /> schneidet, andernfalls false.</returns>
+      <param name="geographyValue">Der erste auf Überschneidung zu vergleichende Geografiewert.</param>
+      <param name="otherGeography">Der zweite auf Schnittmenge zu vergleichende Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Intersects(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werte räumlich überschneiden.</summary>
+      <returns>true, wenn <paramref name="geometryValue" /><paramref name="otherGeometry" /> schneidet, andernfalls false.</returns>
+      <param name="geometryValue">Der erste auf Überschneidung zu vergleichende Geometriewert.</param>
+      <param name="otherGeometry">Der zweite auf Schnittmenge zu vergleichende Geometriewert.</param>
+    </member>
+    <member name="P:System.Data.Entity.SqlServer.SqlSpatialServices.NativeTypesAvailable">
+      <summary>Ruft einen Wert ab, der angibt, ob EF unter der Annahme fortgesetzt wird, dass dem Anbieter die notwendigen Typen/Ressourcen zur Verfügung stehen und er nicht sofort scheitert.Der Standardwert ist true.</summary>
+      <returns>true, wenn EF unter der Annahme fortgesetzt wird, dass dem Anbieter die notwendigen Typen/Ressourcen zur Verfügung stehen und er nicht sofort scheitert; andernfalls false.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Overlaps(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werte überlappen.</summary>
+      <returns>true, wenn <paramref name="geometryValue" /><paramref name="otherGeometry" /> überlappt, andernfalls false.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geometrie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.PointAt(System.Data.Entity.Spatial.DbGeography,System.Int32)">
+      <summary>Gibt ein Punktelement des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werts zurück, wenn er ein Linestring oder einen linearen Ring darstellt.</summary>
+      <returns>Der Punkt in <paramref name="geographyValue" /> am Positions<paramref name="index" />, wenn er ein Linestring oder einen linearen Ring darstellt; andernfalls null.</returns>
+      <param name="geographyValue">Der Geografiewert, die keinen LineString oder LinearRing darzustellen braucht.</param>
+      <param name="index">Die Position innerhalb des Geografiewerts, an der das Element abgerufen werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.PointAt(System.Data.Entity.Spatial.DbGeometry,System.Int32)">
+      <summary>Gibt ein Punktelement des angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werts zurück, wenn er ein Linestring oder einen linearen Ring darstellt.</summary>
+      <returns>Der Punkt in <paramref name="geometryValue" /> am Positions<paramref name="index" />, wenn er ein Linestring oder einen linearen Ring darstellt; andernfalls null.</returns>
+      <param name="geometryValue">Der Geometriewert, die keinen LineString oder LinearRing darzustellen braucht.</param>
+      <param name="index">Die Position innerhalb des Geometriewerts, an der das Element abgerufen werden soll.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Relate(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry,System.String)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werte sich räumlich entsprechend auf das angegebene dimensional erweiterte Neun-Schnittmenge Modell (DE-9IM) Schnittmengenmuster beziehen.</summary>
+      <returns>true, wenn sich dieser <paramref name="geometryValue" />-Wert nach der angegebenen Schnittmengenmuster<paramref name="matrix" /> auf <paramref name="otherGeometry" /> bezieht, andernfalls false.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der Geometriewert, der mit dem ersten Geometriewert bezüglich der Relation verglichen werden soll.</param>
+      <param name="matrix">Eine Zeichenfolge, die die Textdarstellung des (DE-9IM) Schnittmengenmusters enthält, das die Verbindung definiert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.SpatialEquals(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werte räumlich gleich sind.</summary>
+      <returns>true, wenn <paramref name="geographyValue" /> räumlich gleich <paramref name="otherGeography" /> ist, andernfalls false.</returns>
+      <param name="geographyValue">Der erste auf Gleichheit zu vergleichende Geografiewert.</param>
+      <param name="otherGeography">Der zweite auf Gleichheit zu vergleichende Geografiewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.SpatialEquals(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bestimmt, ob die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werte räumlich gleich sind.</summary>
+      <returns>true, wenn <paramref name="geometryValue" /> räumlich gleich <paramref name="otherGeometry" /> ist, andernfalls false.</returns>
+      <param name="geometryValue">Der erste auf Gleichheit zu vergleichende Geometriewert.</param>
+      <param name="otherGeometry">Der zweite auf Gleichheit zu vergleichende Geometriewert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.SymmetricDifference(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Berechnet die symmetrische Differenz zweier <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werte.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />- Wert, der die symmetrische Differenz von <paramref name="geographyValue" /> und <paramref name="otherGeography" /> darstellt.</returns>
+      <param name="geographyValue">Der erste Geografiewert.</param>
+      <param name="otherGeography">Der zweite Geografie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.SymmetricDifference(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Berechnet den symmetrischen Unterschied zwischen zwei <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werten.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />- Wert, der die symmetrische Differenz zwischen <paramref name="geometryValue" /> und <paramref name="otherGeometry" /> darstellt.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geometrie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Touches(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bestimmt, ob sich die beiden angegebenen <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werte berühren.</summary>
+      <returns>true, wenn <paramref name="geometryValue" /><paramref name="otherGeometry" /> berührt, andernfalls false.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geometrie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Union(System.Data.Entity.Spatial.DbGeography,System.Data.Entity.Spatial.DbGeography)">
+      <summary>Berechnet die Gesamtmenge von zwei <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Werten.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeography" />-Wert, der die Gesamtmenge von <paramref name="geographyValue" /> und <paramref name="otherGeography" /> darstellt.</returns>
+      <param name="geographyValue">Der erste Geografiewert.</param>
+      <param name="otherGeography">Der zweite Geografie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Union(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Berechnet die Gesamtmenge von zwei <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Werten.</summary>
+      <returns>Ein neuer <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert, der die Gesamtmenge von <paramref name="geometryValue" /> und <paramref name="otherGeometry" /> darstellt.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geometrie-Wert.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.SqlSpatialServices.Within(System.Data.Entity.Spatial.DbGeometry,System.Data.Entity.Spatial.DbGeometry)">
+      <summary>Bestimmt, ob ein <see cref="T:System.Data.Entity.Spatial.DbGeometry" />-Wert räumlich im anderen ist.</summary>
+      <returns>True, wenn sich geometryValue innerhalb von otherGeometry befindet; andernfalls false.</returns>
+      <param name="geometryValue">Der erste Geometriewert.</param>
+      <param name="otherGeometry">Der zweite Geometrie-Wert.</param>
+    </member>
+    <member name="T:System.Data.Entity.SqlServer.Utilities.TaskExtensions">
+      <summary>Enthält Erweiterungsmethoden für die <see cref="T:System.Threading.Tasks.Task" />-Klasse.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.WithCurrentCulture(System.Threading.Tasks.Task)">
+      <summary>Konfiguriert einen Awaiter, der für Await von <see cref="T:System.Threading.Tasks.Task" /> verwendet wird, um Marshalling der Fortsetzung zurück zum Originalkontext zu vermeiden, aber die aktuelle Kultur und UI-Kultur erhält.</summary>
+      <returns>Ein Objekt, das für Await dieser Aufgabe verwendet wird.</returns>
+      <param name="task">Die Aufgabe für Await.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.WithCurrentCulture``1(System.Threading.Tasks.Task{``0})">
+      <summary>Konfiguriert einen Awaiter, der für Await von <see cref="T:System.Threading.Tasks.Task`1" /> verwendet wird, um Marshalling der Fortsetzung zurück zum Originalkontext zu vermeiden, aber die aktuelle Kultur und UI-Kultur erhält.</summary>
+      <returns>Ein Objekt, das für Await dieser Aufgabe verwendet wird.</returns>
+      <param name="task">Die Aufgabe für Await.</param>
+      <typeparam name="T">Der Typ des von <see cref="T:System.Threading.Tasks.Task`1" /> erstellten Ergebnisses.</typeparam>
+    </member>
+    <member name="T:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter">
+      <summary>Stellt ein Awaitable-Objekt dar, das Awaits auf <see cref="T:System.Threading.Tasks.Task" /> ermöglicht, was die Kultur erhält.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter.#ctor(System.Threading.Tasks.Task)">
+      <summary>Erstellt eine neue Instanz der <see cref="T:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter" />-Klasse.</summary>
+      <param name="task">Die Aufgabe für Await.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter.GetAwaiter">
+      <summary>Ruft einen Awaiter auf, der für Await von <see cref="T:System.Threading.Tasks.Task" /> verwendet wird.</summary>
+      <returns>Eine Awaiter-Instanz.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter.GetResult">
+      <summary>Beendet await der abgeschlossenen <see cref="T:System.Threading.Tasks.Task" />.</summary>
+      <exception cref="T:System.NullReferenceException">Der Awaiter wurde nicht korrekt initialisiert.</exception>
+      <exception cref="T:System.Threading.Tasks.TaskCanceledException">Die Aufgabe wurde abgebrochen.</exception>
+      <exception cref="T:System.Exception">Die Aufgabe wurde in einem fehlerhaften Status abgeschlossen.</exception>
+    </member>
+    <member name="P:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter.IsCompleted">
+      <summary>Ruft ab, ob diese <see cref="T:System.Threading.Tasks.Task" /> abgeschlossen wurde.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter.OnCompleted(System.Action)">
+      <summary>Diese Methode ist nicht implementiert und sollte nicht aufgerufen werden.</summary>
+      <param name="continuation">Die aufzurufende Aktion, wenn der Await-Vorgang abgeschlossen ist.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter.UnsafeOnCompleted(System.Action)">
+      <summary>Plant die Fortsetzung der <see cref="T:System.Threading.Tasks.Task" />, die dieser <see cref="T:System.Runtime.CompilerServices.TaskAwaiter" /> zugeordnet ist.</summary>
+      <param name="continuation">Die aufzurufende Aktion, wenn der Await-Vorgang abgeschlossen ist.</param>
+      <exception cref="T:System.ArgumentNullException">Das <paramref name="continuation" />-Argument ist NULL (Nothing in Visual Basic).</exception>
+      <exception cref="T:System.InvalidOperationException">Der Awaiter wurde nicht korrekt initialisiert.</exception>
+    </member>
+    <member name="T:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter`1">
+      <summary>Stellt ein Awaitable-Objekt dar, das Awaits auf <see cref="T:System.Threading.Tasks.Task`1" /> ermöglicht, was die Kultur erhält.</summary>
+      <typeparam name="T">Der Typ des von <see cref="T:System.Threading.Tasks.Task`1" /> erstellten Ergebnisses.</typeparam>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter`1.#ctor(System.Threading.Tasks.Task{`0})">
+      <summary>Erstellt eine neue Instanz der <see cref="T:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter`1" />-Klasse.</summary>
+      <param name="task">Die Aufgabe für Await.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter`1.GetAwaiter">
+      <summary>Ruft einen Awaiter auf, der für Await von <see cref="T:System.Threading.Tasks.Task`1" /> verwendet wird.</summary>
+      <returns>Eine Awaiter-Instanz.</returns>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter`1.GetResult">
+      <summary>Beendet await der abgeschlossenen <see cref="T:System.Threading.Tasks.Task`1" />.</summary>
+      <returns>Das Ergebnis der abgeschlossenen <see cref="T:System.Threading.Tasks.Task`1" />.</returns>
+      <exception cref="T:System.NullReferenceException">Der Awaiter wurde nicht korrekt initialisiert.</exception>
+      <exception cref="T:System.Threading.Tasks.TaskCanceledException">Die Aufgabe wurde abgebrochen.</exception>
+      <exception cref="T:System.Exception">Die Aufgabe wurde in einem fehlerhaften Status abgeschlossen.</exception>
+    </member>
+    <member name="P:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter`1.IsCompleted">
+      <summary>Ruft ab, ob diese <see cref="T:System.Threading.Tasks.Task" /> abgeschlossen wurde.</summary>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter`1.OnCompleted(System.Action)">
+      <summary>Diese Methode ist nicht implementiert und sollte nicht aufgerufen werden.</summary>
+      <param name="continuation">Die aufzurufende Aktion, wenn der Await-Vorgang abgeschlossen ist.</param>
+    </member>
+    <member name="M:System.Data.Entity.SqlServer.Utilities.TaskExtensions.CultureAwaiter`1.UnsafeOnCompleted(System.Action)">
+      <summary>Plant die Fortsetzung der <see cref="T:System.Threading.Tasks.Task`1" />, die dieser <see cref="T:System.Runtime.CompilerServices.TaskAwaiter`1" /> zugeordnet ist.</summary>
+      <param name="continuation">Die aufzurufende Aktion, wenn der Await-Vorgang abgeschlossen ist.</param>
+      <exception cref="T:System.ArgumentNullException">Das <paramref name="continuation" />-Argument ist NULL (Nothing in Visual Basic).</exception>
+      <exception cref="T:System.InvalidOperationException">Der Awaiter wurde nicht korrekt initialisiert.</exception>
+    </member>
+  </members>
+</doc>

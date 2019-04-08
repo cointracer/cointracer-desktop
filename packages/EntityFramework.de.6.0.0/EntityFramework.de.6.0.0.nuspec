@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>EntityFramework.de</id>
+    <version>6.0.0</version>
+    <title>Deutsche Ressourcen für Entity Framework</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <licenseUrl>http://go.microsoft.com/fwlink/?LinkId=316838&amp;clcid=0x407</licenseUrl>
+    <projectUrl>http://go.microsoft.com/fwlink/?LinkId=316837&amp;clcid=0x407</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Dieses Paket enthält die deutschen Satellitenassemblys für Entity Framework.</description>
+    <summary>Deutsche Ressourcen für das Entity Framework-Paket</summary>
+    <language>de</language>
+    <dependencies>
+      <dependency id="EntityFramework" version="[6.0.0]" />
+    </dependencies>
+  </metadata>
+</package>

@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ **************************************
+ *
+ * Copyright 2013-2019 Andreas Nebinger
+ *
+ * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
+   Folgeversionen der EUPL ("Lizenz");
+ * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
+
+ * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
+ 
+ * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
+   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
+   ausdrücklich oder stillschweigend - verbreitet.
+ * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
+
+ =======
+ English
+ =======
+ 
+ * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
+   subsequent versions of the EUPL (the "Licence");
+ * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
+ 
+ * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+ 
+ * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
+   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the Licence for the specific language governing permissions and limitations under the Licence.
+ *
+ **************************************
+-->
+
+<root>
+	<!-- 
+		Microsoft ResX Schema 
+		
+		Version 2.0
+		
+		The primary goals of this format is to allow a simple XML format 
+		that is mostly human readable. The generation and parsing of the 
+		various data types are done through the TypeConverter classes 
+		associated with the data types.
+		
+		Example:
+		
+		... ado.net/XML headers & schema ...
+		<resheader name="resmimetype">text/microsoft-resx</resheader>
+		<resheader name="version">2.0</resheader>
+		<resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+		<resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+		<data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+		<data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+		<data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+				<value>[base64 mime encoded serialized .NET Framework object]</value>
+		</data>
+		<data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+				<value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+				<comment>This is a comment</comment>
+		</data>
+								
+		There are any number of "resheader" rows that contain simple 
+		name/value pairs.
+		
+		Each data row contains a name, and value. The row also contains a 
+		type or mimetype. Type corresponds to a .NET class that support 
+		text/value conversion through the TypeConverter architecture. 
+		Classes that don't support this are serialized and stored with the 
+		mimetype set.
+		
+		The mimetype is used for serialized objects, and tells the 
+		ResXResourceReader how to depersist the object. This is currently not 
+		extensible. For a given mimetype the value must be set accordingly:
+		
+		Note - application/x-microsoft.net.object.binary.base64 is the format 
+		that the ResXResourceWriter will generate, however the reader can 
+		read any of the formats listed below.
+		
+		mimetype: application/x-microsoft.net.object.binary.base64
+		value   : The object must be serialized with 
+						: System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+						: and then encoded with base64 encoding.
+		
+		mimetype: application/x-microsoft.net.object.soap.base64
+		value   : The object must be serialized with 
+						: System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+						: and then encoded with base64 encoding.
+
+		mimetype: application/x-microsoft.net.object.bytearray.base64
+		value   : The object must be serialized into a byte array 
+						: using a System.ComponentModel.TypeConverter
+						: and then encoded with base64 encoding.
+		-->
+	<xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+		<xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+		<xsd:element name="root" msdata:IsDataSet="true">
+			<xsd:complexType>
+				<xsd:choice maxOccurs="unbounded">
+					<xsd:element name="metadata">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" />
+							</xsd:sequence>
+							<xsd:attribute name="name" use="required" type="xsd:string" />
+							<xsd:attribute name="type" type="xsd:string" />
+							<xsd:attribute name="mimetype" type="xsd:string" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="assembly">
+						<xsd:complexType>
+							<xsd:attribute name="alias" type="xsd:string" />
+							<xsd:attribute name="name" type="xsd:string" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="data">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+								<xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+							<xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+							<xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+							<xsd:attribute ref="xml:space" />
+						</xsd:complexType>
+					</xsd:element>
+					<xsd:element name="resheader">
+						<xsd:complexType>
+							<xsd:sequence>
+								<xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+							</xsd:sequence>
+							<xsd:attribute name="name" type="xsd:string" use="required" />
+						</xsd:complexType>
+					</xsd:element>
+				</xsd:choice>
+			</xsd:complexType>
+		</xsd:element>
+	</xsd:schema>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="db_v38_01" xml:space="preserve">
+		<value>alter table [Szenarien] add column [Coins4Coins] BOOLEAN DEFAULT '0'</value>
+	</data>
+	<data name="db_v38_02" xml:space="preserve">
+		<value>CREATE TABLE IF NOT EXISTS [Bestaende] (
+[ID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
+[TradeID] INTEGER  NULL,
+[Zeitpunkt] TIMESTAMP  NULL,
+[PlattformID] INTEGER  NULL,
+[Bestand] NUMERIC  NULL, 
+[KontoID] INTEGER  NULL,
+[BestandEUR] NUMERIC  NULL);</value>
+	</data>
+	<data name="db_v38_03" xml:space="preserve">
+		<value>CREATE INDEX IF NOT EXISTS [IDX_Bestaende_ZeitpunktKontoPlattform] ON [Bestaende] (
+[Zeitpunkt]  ASC,
+[KontoID]  ASC,
+[PlattformID]  ASC);</value>
+	</data>
+	<data name="db_v38_04" xml:space="preserve">
+		<value>DROP TABLE IF EXISTS [ApiDaten_tmp]</value>
+	</data>
+	<data name="db_v38_05" xml:space="preserve">
+		<value>CREATE TABLE [ApiDaten_tmp] (
+[ID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
+[PlattformID] INTEGER  NULL,
+[Zeitpunkt] TIMESTAMP  NOT NULL,
+[Bezeichnung] VARCHAR(150)  NULL,
+[ApiKey] VARCHAR(250)  NULL,
+[ApiSecret] VARCHAR(350)  NULL,
+[Salt] VARCHAR(250)  NULL,
+[Aktiv] BOOLEAN DEFAULT '1',
+[LastImportTimestamp] INTEGER DEFAULT '0' NULL, 
+[ExtendedInfo] VARCHAR(2048) DEFAULT '' NULL)</value>
+	</data>
+	<data name="db_v38_06" xml:space="preserve">
+		<value>INSERT INTO [ApiDaten_tmp] SELECT ID, PlattformID, Zeitpunkt, Bezeichnung, ApiKey, ApiSecret, Salt, Aktiv, LastImportTimestamp, ExtendedInfo FROM [ApiDaten]</value>
+	</data>
+	<data name="db_v38_07" xml:space="preserve">
+		<value>DROP TABLE [ApiDaten]</value>
+	</data>
+	<data name="db_v38_08" xml:space="preserve">
+		<value>ALTER TABLE [ApiDaten_tmp] RENAME TO [ApiDaten]</value>
+	</data>
+	<data name="db_v38_09" xml:space="preserve">
+		<value>ALTER TABLE [Trades] ADD COLUMN [InZeitpunkt] TIMESTAMP</value>
+	</data>
+	<data name="db_v38_10" xml:space="preserve">
+		<value>UPDATE Trades SET InZeitpunkt = Date(Zeitpunkt)</value>
+	</data>
+	<data name="db_v38_11" xml:space="preserve">
+		<value>CREATE TABLE IF NOT EXISTS [Out2In] (
+[ID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
+[SzenarioID] INTEGER NOT NULL,
+[KalkulationID] INTEGER NOT NULL,
+[MainOutTradeID] INTEGER NOT NULL,
+[OutTradeID] INTEGER NOT NULL,
+[InTradeID] INTEGER NOT NULL,
+[InZeitpunkt] TIMESTAMP NULL,
+[MainBetrag] NUMERIC DEFAULT '0' NULL,
+[Betrag] NUMERIC DEFAULT '0' NULL,
+[WertEUR] NUMERIC NULL,
+[Level] INTEGER NOT NULL DEFAULT '0',
+[IstFiat] BOOLEAN DEFAULT '0', 
+[IstTransfer] BOOLEAN DEFAULT '0', 
+[IstLangzeit] BOOLEAN DEFAULT '0')</value>
+	</data>
+	<data name="db_v38_12" xml:space="preserve">
+		<value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Kalkulation] ON [Out2In]([KalkulationID]  ASC)</value>
+	</data>
+	<data name="db_v38_13" xml:space="preserve">
+		<value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_MainOutTrade] ON [Out2In]([SzenarioID] ASC, [MainOutTradeID] ASC, [Level] ASC)</value>
+	</data>
+	<data name="db_v38_14" xml:space="preserve">
+		<value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_InTrade] ON [Out2In]([SzenarioID] ASC, [InTradeID] ASC, [Level] ASC)</value>
+	</data>
+	<data name="db_v38_15" xml:space="preserve">
+		<value>DROP VIEW IF EXISTS [VW_InCoins]</value>
+	</data>
+	<data name="db_v38_16" xml:space="preserve">
+		<value>CREATE VIEW IF NOT EXISTS [VW_InCoins] AS 
+select
+	t.ID TradeID,
+	t.BetragNachGebuehr Betrag,
+	t.ZielKontoID KontoID,
+	case 
+		when t.TradeTypID = 5 and (pt.Eigen and ps.Eigen) then
+			case
+				when ps.Boerse and pt.Boerse then 37
+				when ps.Boerse and not pt.Boerse then 101
+				else 69
+			end
+		when t.TradeTypID in (3, 4) and not ks.IstFiat and not kt.IstFiat then 19
+		else t.TradeTypID
+	end InTypID,
+	t.ZielPlattformID PlattformID,
+	t.ZeitpunktZiel Zeitpunkt,
+	t.InZeitpunkt InZeitpunkt,
+	t.WertEUR WertEUR,
+	cast(t.WertEUR / t.BetragNachGebuehr as NUMERIC) KursEUR,
+	t.QuellPlattformID OutPlattformID,
+	t.QuellBetrag OutBetrag,
+	t.QuellKontoID OutKontoID,
+	t.Zeitpunkt OutZeitpunkt
+from Trades as t
+inner join Konten as ks on ks.ID = t.QuellKontoID
+inner join Konten as kt on kt.ID = t.ZielKontoID
+inner join Plattformen as pt on pt.ID = ZielPlattformID
+inner join Plattformen as ps on ps.ID = QuellPlattformID
+where t.TradeTypID in (3, 4, 5, 7)
+	and not kt.IstFiat
+order by t.ZeitpunktZiel, t.ID</value>
+	</data>
+	<data name="db_v38_17" xml:space="preserve">
+		<value>DROP VIEW IF EXISTS [VW_OutCoins]</value>
+	</data>
+	<data name="db_v38_18" xml:space="preserve">
+		<value>CREATE VIEW IF NOT EXISTS [VW_OutCoins] AS 
+select
+	t.ID TradeID,
+	t.QuellBetrag Betrag,
+	t.QuellKontoID KontoID,
+	case
+		when t.TradeTypID = 5 and (pt.Eigen and ps.Eigen) then
+			case
+				when ps.Boerse and pt.Boerse then 37
+				when ps.Boerse and not pt.Boerse then 101
+				else 69
+			end
+		when t.TradeTypID in (3, 4) and not ks.IstFiat and not kt.IstFiat then 19
+		else t.TradeTypID
+	end OutTypID,
+	t.QuellPlattformID PlattformID,
+	t.Zeitpunkt
+from Trades as t
+inner join Konten as ks on ks.ID = t.QuellKontoID
+inner join Konten as kt on kt.ID = t.ZielKontoID
+inner join Plattformen as pt on pt.ID = ZielPlattformID
+inner join Plattformen as ps on ps.ID = QuellPlattformID
+where t.TradeTypID in (3, 4, 5, 7)
+	and not ks.IstFiat
+	and (t.TradeTypID &lt;&gt; 5 or ps.Eigen)
+order by t.Zeitpunkt, t.ID</value>
+	</data>
+	<data name="db_v38_19" xml:space="preserve">
+		<value>delete from TradeTypen where ID in (19, 37, 69, 101)</value>
+	</data>
+	<data name="db_v38_20" xml:space="preserve">
+		<value>insert into TradeTypen(ID, Bezeichnung, Code, Beschreibung, SortID) values
+	(19, 'Kauf Coins für Coins','BUYC4C', 'Kauf von Coins mit Coins als Zahlmittel', 19),
+	(37, 'Transfer Börse zu Börse','TRNSP2P', 'Transfer von Coins zwischen zwei Börsen', 37),
+	(69, 'Transfer Wallet zu Börse','TRNSW2P', 'Transfer von Coins von einem Wallet auf eine Börse', 69),
+	(101, 'Transfer Börse zu Wallet','TRNSP2W', 'Transfer von Coins von einer Börse auf eine Wallet', 101)</value>
+	</data>
+	<data name="db_v38_21" xml:space="preserve">
+		<value>DROP VIEW IF EXISTS [VW_Gainings]</value>
+	</data>
+	<data name="db_v38_22" xml:space="preserve">
+		<value>CREATE VIEW IF NOT EXISTS [VW_Gainings] AS
+select
+t.Zeitpunkt Zeitpunkt,
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
+	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
+	when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
+	else 0
+end [Gesamtgewinn EUR],
+case when coalesce(max(o2i.IstLangzeit), 1) then 0
+	else case t.TradeTypID
+		when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
+		when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
+		when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
+		else 0 
+	end
+end [Gewinn EUR steuerpflichtig],	
+round(0, 2) [Gewinn EUR Plattformen],
+',' || t.QuellPlattformID || ',' as _QuellPlattformID,
+sz.ID _SzenarioID
+from Trades t
+inner join Plattformen qp on t.QuellPlattformID = qp.ID
+inner join Plattformen zp on t.ZielPlattformID = zp.ID
+inner join Konten qk on t.QuellKontoID = qk.ID
+inner join Konten zk on t.ZielKontoID = zk.ID
+left join Out2In o2i on (o2i.MainOutTradeID = t.ID and not o2i.IstTransfer )
+left join Szenarien sz 
+where t.TradeTypID in (3, 4, 7) and not t.Steuerirrelevant and (qp.Eigen or zp.Eigen)
+	and (o2i.SzenarioID = sz.ID or o2i.SzenarioID is null)
+group by t.ID, o2i.ID, sz.ID</value>
+	</data>
+	<data name="db_v38_23" xml:space="preserve">
+		<value>DROP VIEW IF EXISTS [VW_GainingsReport2]</value>
+	</data>
+	<data name="db_v38_24" xml:space="preserve">
+		<value>CREATE VIEW [VW_GainingsReport2] AS 
+select 
+t.ID Vorgang,
+t.Zeitpunkt Zeitpunkt,
+tt.Bezeichnung Art,
+case t.TradeTypID
+	when 5 then qp.Bezeichnung || ' → ' || zp.Bezeichnung
+	else qp.Bezeichnung 
+end Plattform,
+case t.TradeTypID
+	when 3 then zk.Bezeichnung
+	else qk.Bezeichnung 
+end [Coin-Art],
+case t.TradeTypID
+	when 3 then round(t.BetragNachGebuehr, 8)
+	else round(t.QuellBetrag, 8) 
+end [Coin-Menge],
+case t.TradeTypID
+	when 3 then qk.Bezeichnung
+	when 5 then '-'
+	else zk.Bezeichnung 
+end [Zahlmittel],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then round(t.QuellBetrag, 2) else round(t.QuellBetrag, 8) end
+	when 5 then '-'
+	else case when zk.IstFiat then round(t.BetragNachGebuehr, 2) else round(t.BetragNachGebuehr, 8) end 
+end [Gesamtpreis],
+case t.TradeTypID
+	when 5 then '-'
+	when 7 then 0
+	else case 
+		when not qk.IstFiat and not zk.IstFiat then case 
+			when sz.Coins4Coins then round(t.WertEUR, 2) 
+			else round(sum(o2i.WertEUR), 2) end
+		else round(t.WertEUR, 2) end
+end [Gesamtwert EUR],
+case t.TradeTypID
+	when 3 then case
+		when not sz.Coins4Coins and not qk.IstFiat and not zk.IstFiat then round(sum(o2i.WertEUR)/t.BetragNachGebuehr, 2)
+		else round(t.WertEUR/t.BetragNachGebuehr, 2) end
+	when 4 then case
+		when not sz.Coins4Coins and not qk.IstFiat and not zk.IstFiat then round(sum(o2i.WertEUR)/t.QuellBetrag, 2)
+		else round(t.WertEUR/t.QuellBetrag, 2) end
+	when 7 then 0
+	else '-' 
+end [Kurs EUR],
+coalesce(case o2i.InTradeID when -1 then 'n/a' else o2i.InTradeID end, '-') [Vorgang Anschaffung],
+coalesce(date(o2i.InZeitpunkt), date(t.InZeitpunkt)) [Anschaffungsdatum],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(o2i.MainBetrag), 0), 8) end
+	else round(coalesce(sum(o2i.MainBetrag), t.BetragNachGebuehr), 8) 
+end [Coin-Anteil],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
+	-- when 5 then '-'
+	else round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2)
+end [Kaufpreis EUR],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(o2i.WertEUR), t.WertEUR) / coalesce(sum(o2i.MainBetrag), t.BetragNachGebuehr), 2) end
+	-- when 5 then '-'
+	else round(coalesce(sum(o2i.WertEUR), t.WertEUR) / coalesce(sum(o2i.MainBetrag), t.BetragNachGebuehr), 2)
+end [Kaufkurs EUR],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else round(coalesce(sum(o2i.WertEUR), 0), 2) end end
+	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag, 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag, 2) else round(coalesce(sum(o2i.WertEUR), 0), 2) end end
+	when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
+	else '-'
+end [Verkaufspreis EUR],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
+	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
+	when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
+	else '-'
+end [Gewinn EUR],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else max(o2i.IstLangzeit) end
+	when 4 then max(o2i.IstLangzeit)
+	when 7 then max(o2i.IstLangzeit)
+	else '-'
+end [Steuerfrei],
+coalesce(t.Kommentar, '') Kommentar,
+sz.ID _SzenarioID, 
+t.QuellPlattformID _QuellPlattformID,
+t.ZielPlattformID _ZielPlattformID,
+coalesce(
+	(select min(IstLangzeit)
+	from Out2In
+	where Out2In.MainOutTradeID = t.ID and t.TradeTypID &lt;&gt; 5 and not Out2In.IstTransfer and Out2In.SzenarioID = sz.ID), -1) as _Steuerfrei
+from Trades t
+inner join TradeTypen tt on t.TradeTypID = tt.ID
+inner join Plattformen qp on t.QuellPlattformID = qp.ID
+inner join Plattformen zp on t.ZielPlattformID = zp.ID
+inner join Konten qk on t.QuellKontoID = qk.ID
+inner join Konten zk on t.ZielKontoID = zk.ID
+left join Out2In o2i on (o2i.MainOutTradeID = t.ID and not o2i.IstTransfer)
+left join Szenarien sz
+where (t.TradeTypID in (3, 4, 7) or (t.TradeTypID = 5 and not zk.IstFiat)) and not t.Steuerirrelevant and (qp.Eigen or zp.Eigen)
+	and (o2i.SzenarioID = sz.ID or o2i.SzenarioID is NULL)
+group by sz.ID, t.ID, o2i.ID
+order by sz.ID, t.Zeitpunkt, tt.ID, t.ID</value>
+	</data>
+	<data name="db_v38_25" xml:space="preserve">
+		<value>ALTER TABLE [ApiDaten] ADD COLUMN [CallDelay] INTEGER NOT NULL DEFAULT 0</value>
+	</data>
+	<data name="db_v38_26" xml:space="preserve">
+		<value>UPDATE [ApiDaten] SET [CallDelay] = 2000 WHERE PlattformID = 207</value>
+	</data>
+  <data name="db_v38_27" xml:space="preserve">
+		<value>UPDATE [ApiDaten] SET [CallDelay] = 11000 WHERE PlattformID = 206</value>
+	</data>
+</root>
