@@ -1,4 +1,16 @@
 ﻿******************************************************
+Version 0.9.4.3 / 28.11.2019
+----------------------------
+
+Verbesserungen:
+- Import von Kraken.com aktualisiert bzw. die Fehler-
+  toleranz erhöht.
+- Aufwendungen werden in der Übersicht klarer dargestellt.
+- 15 Coins hinzugefügt.
+- Bugfixing
+
+
+******************************************************
 Version 0.9.4.2 / 07.04.2019
 ----------------------------
 

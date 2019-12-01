@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -1210,7 +1210,8 @@ Public Class DBInit
                                         "set GebuehrKontoID = (select ID from Konten k2 where k2.Code = 'fee' || Konten.Code) " & NewLine &
                                         "where not Konten.IstFiat and not Konten.Fix and Konten.ID < 311 and Konten.GebuehrKontoID is NULL"),
         New SqlUpdateSequenceStruct(VersionID:=37, CustomAction:=3),
-        New SqlUpdateSequenceStruct(VersionID:=38, CustomAction:=-1)
+        New SqlUpdateSequenceStruct(VersionID:=38, CustomAction:=-1),
+        New SqlUpdateSequenceStruct(VersionID:=39, CustomAction:=-1)
     }
 
 
@@ -1382,12 +1383,8 @@ Public Class DBInit
         If Not File.Exists(DBFile) Then
             ' Offenbar der erste Start - ggf. fragen, wohin die Datenbank gespeichert werden soll.
             If CheckIfWritable(DatabaseDirectory(DataBaseDirectories.ApplicationDirectory)) Then
-                MsgBoxEx.PatchMsgBox(New String() {"Separate Daten je Benutzer", "Zentrale Datenablage"})
-                If MessageBox.Show("Sie starten das Programm offenbar zum ersten Mal. Bitte entscheiden Sie, ob jeder Benutzer dieses " &
-                                   "Computers einen eigenen Datenbestand verwenden oder ob alle Benutzer mit ein und denselben Daten " &
-                                   "arbeiten sollen (in diesem Fall wird der Datenbestand im gleichen Ordner gespeichert, in dem auch " &
-                                   "das Programm liegt)." & Environment.NewLine & Environment.NewLine &
-                                   "Wählen Sie 'Separate Daten je Benutzer' oder 'Zentrale Datenablage'.", "Speicherort Datenbestand auswählen",
+                MsgBoxEx.PatchMsgBox(New String() {My.Resources.MyStrings.initMsgSelectDbFolderOptionUser, My.Resources.MyStrings.initMsgSelectDbFolderOptionGlobal})
+                If MessageBox.Show(My.Resources.MyStrings.initMsgSelectDbFolder, My.Resources.MyStrings.initMsgSelectDbFolderTitle,
                                    MessageBoxButtons.RetryCancel, MessageBoxIcon.Question) = DialogResult.Retry Then
                     My.Settings.DataDirectory = DatabaseDirectory(DataBaseDirectories.UserAppDataDirectory)
                 Else

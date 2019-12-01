@@ -243,10 +243,10 @@ Partial Class frmMain
         Me.DisclaimerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InhaltToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReleaseNotesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LizenzinformationenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.toolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
         Me.CheckForUpdatesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
-        Me.LizenzinformationenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InfoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tctlMain = New System.Windows.Forms.TabControl()
         Me.tabDashboard = New System.Windows.Forms.TabPage()
@@ -580,6 +580,7 @@ Partial Class frmMain
         Me.dshgrdAbgaenge.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dshgrdAbgaenge.ColumnName = ""
         Me.dshgrdAbgaenge.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.dshgrdAbgaenge.ExpensesOnly = True
         Me.dshgrdAbgaenge.GroupBySQL = ""
         Me.dshgrdAbgaenge.Name = "dshgrdAbgaenge"
         Me.dshgrdAbgaenge.OrderBySQL = ""
@@ -822,6 +823,11 @@ Partial Class frmMain
         Me.ReleaseNotesToolStripMenuItem.Name = "ReleaseNotesToolStripMenuItem"
         resources.ApplyResources(Me.ReleaseNotesToolStripMenuItem, "ReleaseNotesToolStripMenuItem")
         '
+        'LizenzinformationenToolStripMenuItem
+        '
+        Me.LizenzinformationenToolStripMenuItem.Name = "LizenzinformationenToolStripMenuItem"
+        resources.ApplyResources(Me.LizenzinformationenToolStripMenuItem, "LizenzinformationenToolStripMenuItem")
+        '
         'toolStripSeparator5
         '
         Me.toolStripSeparator5.Name = "toolStripSeparator5"
@@ -836,11 +842,6 @@ Partial Class frmMain
         '
         Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
         resources.ApplyResources(Me.ToolStripSeparator2, "ToolStripSeparator2")
-        '
-        'LizenzinformationenToolStripMenuItem
-        '
-        Me.LizenzinformationenToolStripMenuItem.Name = "LizenzinformationenToolStripMenuItem"
-        resources.ApplyResources(Me.LizenzinformationenToolStripMenuItem, "LizenzinformationenToolStripMenuItem")
         '
         'InfoToolStripMenuItem
         '
@@ -1426,6 +1427,7 @@ Partial Class frmMain
         '
         'Art
         '
+        Me.Art.CaptionAllValues = "(Alles auswählen)"
         Me.Art.DataPropertyName = "Art"
         resources.ApplyResources(Me.Art, "Art")
         Me.Art.Name = "Art"
@@ -1434,6 +1436,7 @@ Partial Class frmMain
         '
         'Plattform
         '
+        Me.Plattform.CaptionAllValues = "(Alles auswählen)"
         Me.Plattform.DataPropertyName = "Plattform"
         resources.ApplyResources(Me.Plattform, "Plattform")
         Me.Plattform.Name = "Plattform"
@@ -1442,6 +1445,7 @@ Partial Class frmMain
         '
         'TypeCoins
         '
+        Me.TypeCoins.CaptionAllValues = "(Alles auswählen)"
         Me.TypeCoins.DataPropertyName = "Coin-Art"
         Me.TypeCoins.FillWeight = 105.0!
         resources.ApplyResources(Me.TypeCoins, "TypeCoins")
@@ -1463,6 +1467,7 @@ Partial Class frmMain
         '
         'PriceUSD
         '
+        Me.PriceUSD.CaptionAllValues = "(Alles auswählen)"
         Me.PriceUSD.DataPropertyName = "Zahlmittel"
         resources.ApplyResources(Me.PriceUSD, "PriceUSD")
         Me.PriceUSD.Name = "PriceUSD"
@@ -1504,6 +1509,7 @@ Partial Class frmMain
         '
         'Kaufvorgang
         '
+        Me.Kaufvorgang.CaptionAllValues = "(Alles auswählen)"
         Me.Kaufvorgang.DataPropertyName = "Vorgang Anschaffung"
         resources.ApplyResources(Me.Kaufvorgang, "Kaufvorgang")
         Me.Kaufvorgang.Name = "Kaufvorgang"
@@ -1512,6 +1518,7 @@ Partial Class frmMain
         '
         'Kaufdatum
         '
+        Me.Kaufdatum.CaptionAllValues = "(Alles auswählen)"
         Me.Kaufdatum.DataPropertyName = "Anschaffungsdatum"
         DataGridViewCellStyle7.Format = "d"
         DataGridViewCellStyle7.NullValue = "-"
@@ -1577,6 +1584,7 @@ Partial Class frmMain
         '
         'TaxFree
         '
+        Me.TaxFree.CaptionAllValues = "(Alles auswählen)"
         Me.TaxFree.DataPropertyName = "Steuerfrei"
         DataGridViewCellStyle13.NullValue = "-"
         Me.TaxFree.DefaultCellStyle = DataGridViewCellStyle13
@@ -2007,6 +2015,7 @@ Partial Class frmMain
         '
         'DataGridViewAutoFilterTextBoxColumn4
         '
+        Me.DataGridViewAutoFilterTextBoxColumn4.CaptionAllValues = "(Alles auswählen)"
         Me.DataGridViewAutoFilterTextBoxColumn4.DataPropertyName = "Art"
         resources.ApplyResources(Me.DataGridViewAutoFilterTextBoxColumn4, "DataGridViewAutoFilterTextBoxColumn4")
         Me.DataGridViewAutoFilterTextBoxColumn4.Name = "DataGridViewAutoFilterTextBoxColumn4"
@@ -2014,6 +2023,7 @@ Partial Class frmMain
         '
         'DataGridViewAutoFilterTextBoxColumn5
         '
+        Me.DataGridViewAutoFilterTextBoxColumn5.CaptionAllValues = "(Alles auswählen)"
         Me.DataGridViewAutoFilterTextBoxColumn5.DataPropertyName = "Plattform"
         resources.ApplyResources(Me.DataGridViewAutoFilterTextBoxColumn5, "DataGridViewAutoFilterTextBoxColumn5")
         Me.DataGridViewAutoFilterTextBoxColumn5.Name = "DataGridViewAutoFilterTextBoxColumn5"
@@ -2031,6 +2041,7 @@ Partial Class frmMain
         '
         'DataGridViewAutoFilterTextBoxColumn6
         '
+        Me.DataGridViewAutoFilterTextBoxColumn6.CaptionAllValues = "(Alles auswählen)"
         Me.DataGridViewAutoFilterTextBoxColumn6.DataPropertyName = "Art Coins"
         resources.ApplyResources(Me.DataGridViewAutoFilterTextBoxColumn6, "DataGridViewAutoFilterTextBoxColumn6")
         Me.DataGridViewAutoFilterTextBoxColumn6.Name = "DataGridViewAutoFilterTextBoxColumn6"
@@ -2079,6 +2090,7 @@ Partial Class frmMain
         '
         'DataGridViewAutoFilterTextBoxColumn7
         '
+        Me.DataGridViewAutoFilterTextBoxColumn7.CaptionAllValues = "(Alles auswählen)"
         Me.DataGridViewAutoFilterTextBoxColumn7.DataPropertyName = "Steuerfrei"
         resources.ApplyResources(Me.DataGridViewAutoFilterTextBoxColumn7, "DataGridViewAutoFilterTextBoxColumn7")
         Me.DataGridViewAutoFilterTextBoxColumn7.Name = "DataGridViewAutoFilterTextBoxColumn7"

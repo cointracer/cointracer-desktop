@@ -23,7 +23,7 @@
    subsequent versions of the EUPL (the "Licence");
  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
  
- * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+ * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
  
  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -407,7 +407,7 @@
     <value>Ja</value>
   </data>
   <data name="importMsgKrakenCSV" xml:space="preserve">
-    <value>Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie "Account", dann "History".{0}3. Klicken Sie auf "Export" und wählen Sie "ledgers" unter "Export Data".{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf "submit". Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie unter "Requests" auf "download".{0}7. Extrahieren Sie das Archiv "ledgers.zip".{0}8. Lesen Sie die Datei "ledgers.csv" im nächsten Fenster ein.</value>
+    <value>Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie unter Ihrem Account-Symbol (oben rechts) "History".{0}3. Klicken Sie auf "Export" und stellen Sie unter "Export Data" "Ledgers" ein (nicht Trades!).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf "Select All" und anschließend auf "Submit". Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie unter "Requests" auf "download".{0}7. Extrahieren Sie das Archiv "ledgers.zip".{0}8. Lesen Sie die Datei "ledgers.csv" im nächsten Fenster ein.</value>
   </data>
   <data name="importMsgKrakenCSVCaption" xml:space="preserve">
     <value>Datenimport von Kraken.com</value>
@@ -878,6 +878,23 @@
   <data name="mainMsgSaveTableSuccessTitle" xml:space="preserve">
     <value>Datentabelle speichern</value>
   </data>
+  <data name="initMsgSelectDbFolder" xml:space="preserve">
+    <value>Sie starten das Programm offenbar zum ersten Mal. Bitte entscheiden Sie, ob jeder Benutzer dieses
+Computers einen eigenen Datenbestand verwenden oder ob alle Benutzer mit ein und denselben Daten
+arbeiten sollen (in diesem Fall wird der Datenbestand im gleichen Ordner gespeichert, in dem auch
+das Programm liegt).
+
+Wählen Sie 'Separate Daten je Benutzer' oder 'Zentrale Datenablage'.</value>
+  </data>
+  <data name="initMsgSelectDbFolderTitle" xml:space="preserve">
+    <value>Speicherort Datenbestand auswählen</value>
+  </data>
+  <data name="initMsgSelectDbFolderOptionUser" xml:space="preserve">
+    <value>Separate Daten je Benutzer</value>
+  </data>
+  <data name="initMsgSelectDbFolderOptionGlobal" xml:space="preserve">
+    <value>Zentrale Datenablage</value>
+  </data>
   <data name="mainMsgSaveTableTitle" xml:space="preserve">
     <value>Datentabelle speichern unter...</value>
   </data>
@@ -1086,4 +1103,16 @@ Wenn das passiert, dann warten Sie bitte einfach eine Zeit lang (mindestens eine
   <data name="tradesEditTitle" xml:space="preserve">
     <value>Trades bearbeiten</value>
   </data>
+  <data name="disclaimerNotErrorFreeNoWarranty" xml:space="preserve">
+    <value>Bitte beachten Sie auch, dass sich diese Software noch im Entwicklungsstadium befindet. Sie wurde zwar nach bestem Wissen und Gewissen entwickelt, aber dennoch: Fehler können nicht ausgeschlossen werden - sie sind im Gegenteil sogar wahrscheinlich. Sie verwenden diese Software auf eigenes Risiko, für finanzielle und sonstige Schäden, die sich aus dem Gebrauch ergeben, kann der Autor keine Haftung übernehmen. Darüber hinaus wird der {0} so wie er ist kostenfrei zur Verfügung gestellt. Ein Anspruch auf Fehlerkorrekturen, Gewährleistung oder Weiterentwicklung ist nicht gegeben.</value>
+  </data>
+  <data name="disclaimerTaxingUnclear" xml:space="preserve">
+    <value>Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (April 2019) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungsmöglichkeiten und Berechnungsverfahren - zunächst einmal unabhängig davon, ob diese zu einem zukünftigen Zeitpunkt als zulässig oder unzulässig erklärt werden!
+
+Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ihren Steuerberater! {0} ist als private Initiative des Autors mit dem Zweck entstanden, tabellarische Zusammenstellungen von Handelsaktivitäten einfach und  automatisiert erzeugen zu können. Die Applikation ist keine geprüfte Steuersoftware!</value>
+  </data>
+  <data name="disclaimerNoWarranty" xml:space="preserve">
+    <value>Achtung: Keine Gewähr!</value>
+  </data>
+
 </root>

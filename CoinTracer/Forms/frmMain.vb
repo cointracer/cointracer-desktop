@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -361,10 +361,10 @@ Public Class frmMain
         Me.Text = Application.ProductName & " " & Application.ProductVersion & " (public beta)"
         PlatformManager.LoadImportComboBox(cbxImports, False)
 
-        ' Anzahl angezeigter Warnhinweise
+        ' Reset number of shown warnings
         ShownWarnings = 0
 
-        ' Alte Einstellungen aus My.Settings laden
+        ' Restore settings from My.Settings
         Try
             Dim SplitDis As Long = My.Settings.Layout_SplitterDistance1 * spltCntDashboard.Width / 1000
             If SplitDis > 100 Then
@@ -674,7 +674,7 @@ Public Class frmMain
 
         If cbxImports.SelectedIndex >= 0 Then
             Dim SelectedPlatform As PlatformManager.Platforms = PlatformManager.GetPlatformFromComboBox(cbxImports, Fiat)
-            If Not Fiat AndAlso SelectedPlatform <> PlatformManager.Platforms.Invalid Then
+            If Fiat OrElse SelectedPlatform <> PlatformManager.Platforms.Invalid Then
                 My.Settings.LastImportMethod = cbxImports.SelectedIndex
                 If Fiat Then
                     ' Get fiat course data (USD)
@@ -2023,19 +2023,16 @@ Public Class frmMain
     ''' Initiate drag'n drop event: set mouse icon
     ''' </summary>
     Private Sub frmMain_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
-        If e.Data.GetDataPresent(DataFormats.FileDrop) Then e.Effect = DragDropEffects.Move
+        If Not InvokeRequired AndAlso e.Data.GetDataPresent(DataFormats.FileDrop) Then e.Effect = DragDropEffects.Move
     End Sub
-
-    Private Sub frmMain_DragLeave(sender As Object, e As EventArgs) Handles Me.DragLeave
-        ' DirectCast(e, DragEventArgs).Effect = DragDropEffects.None
-    End Sub
-
 
     Private Sub frmMain_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
-        Dim DragFiles() As String = e.Data.GetData(DataFormats.FileDrop)
-        If DragFiles?.Length > 0 Then
-            ' Use these files for import
-            PerformFileImport(PlatformManager.Platforms.Unknown, DragFiles)
+        If Not InvokeRequired Then
+            Dim DragFiles() As String = e.Data.GetData(DataFormats.FileDrop)
+            If DragFiles?.Length > 0 Then
+                ' Use these files for import
+                PerformFileImport(PlatformManager.Platforms.Unknown, DragFiles)
+            End If
         End If
     End Sub
 
@@ -2046,12 +2043,24 @@ Public Class frmMain
 
 #If CONFIG = "Debug" Then
 
+    ''' <summary>
+    ''' For Testing only: switch to a specific database file
+    ''' </summary>
+    ''' <param name="DatabaseFilename">Fully qualified name of the file to use as the database</param>
     Public Sub UseDatabase(DatabaseFilename As String)
         Dim DBInit As New DBInit
         _DBName = DatabaseFilename
         DBInit.InitDatabase(DatabaseFilename)
         DBInit.UpdateDatabase()
         frmMain_Load(Me, New EventArgs)
+    End Sub
+
+    Private Sub grdTrades_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdTrades.CellDoubleClick
+
+    End Sub
+
+    Private Sub grdTables_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdPlattformen.CellDoubleClick, grdKurse.CellDoubleClick, grdKonten.CellDoubleClick, grdBerechnungen.CellDoubleClick
+
     End Sub
 
 #End If

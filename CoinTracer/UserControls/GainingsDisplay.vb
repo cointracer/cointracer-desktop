@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -60,22 +60,28 @@ Public Class GainingsDisplay
             Dim Delta As Single = lblWinLossValue2.Height - 2
             If value Then
                 ' Control vergrößern
-                Me.Height += Delta
-                Loc = Me.lblTaxable.Location
+                Height += Delta
+                Loc = lblTaxable.Location
                 Loc.Y += Delta
-                Me.lblTaxable.Location = Loc
-                Loc = Me.lblStichtag.Location
+                lblTaxable.Location = Loc
+                Loc = lblInfo.Location
+                Loc.Y = lblTaxable.Location.Y - 6
+                lblInfo.Location = Loc
+                Loc = lblStichtag.Location
                 Loc.Y += Delta
-                Me.lblStichtag.Location = Loc
+                lblStichtag.Location = Loc
             Else
                 ' Control verkleinern
-                Me.Height -= Delta
-                Loc = Me.lblTaxable.Location
+                Height -= Delta
+                Loc = lblTaxable.Location
                 Loc.Y -= Delta
-                Me.lblTaxable.Location = Loc
-                Loc = Me.lblStichtag.Location
+                lblTaxable.Location = Loc
+                Loc = lblInfo.Location
+                Loc.Y = lblTaxable.Location.Y - 6
+                lblInfo.Location = Loc
+                Loc = lblStichtag.Location
                 Loc.Y -= Delta
-                Me.lblStichtag.Location = Loc
+                lblStichtag.Location = Loc
             End If
         End Set
     End Property
@@ -133,6 +139,11 @@ Public Class GainingsDisplay
         Set(ByVal value As Decimal)
             _TaxableGainings = value
             lblTaxable.Text = _LabelTaxable & " " & _TaxableGainings.ToString("N2") & " €"
+            ' Place info label depending on with of taxable gainings label
+            Dim TextLength As Size = TextRenderer.MeasureText(lblTaxable.Text,
+                                                              lblTaxable.Font)
+            lblInfo.Left = lblTaxable.Left + TextLength.Width - 2
+            lblInfo.Visible = True
             If Not _DontRaiseChangedEvent Then RaiseEvent Changed(Me, New System.EventArgs())
         End Set
     End Property
@@ -215,13 +226,13 @@ Public Class GainingsDisplay
             Dim TaxableGainings As Decimal
             Dim PlatformGainings As Decimal
             If _ShowPlatformGainings Then
-                Me.Gainings = _TVM.CalculateGainings(_TPCrtl.DateFrom, _TPCrtl.DateTo, TaxableGainings, Me.PlatformIDs, PlatformGainings)
+                Gainings = _TVM.CalculateGainings(_TPCrtl.DateFrom, _TPCrtl.DateTo, TaxableGainings, PlatformIDs, PlatformGainings)
                 Me.PlatformGainings = PlatformGainings
             Else
-                Me.Gainings = _TVM.CalculateGainings(_TPCrtl.DateFrom, _TPCrtl.DateTo, TaxableGainings)
+                Gainings = _TVM.CalculateGainings(_TPCrtl.DateFrom, _TPCrtl.DateTo, TaxableGainings)
             End If
             Me.TaxableGainings = TaxableGainings
-            Me.CutOffDay = _TVM.GetGainingsCutOffDay
+            CutOffDay = _TVM.GetGainingsCutOffDay
             If Not _DontRaiseChangedEvent And Not DontRaiseChangedEvent Then RaiseEvent Changed(Me, New System.EventArgs())
             ' TODO: Entfernen!
             'Me.Gainings = 99.99
@@ -255,6 +266,7 @@ Public Class GainingsDisplay
             lblWinLossValue1.ForeColor = Color.Black
             lblStichtag.Text = _LabelCutOffDay & _naLabel
             lblTaxable.Text = ""
+            lblInfo.Visible = False
         End If
         If Not _DontRaiseChangedEvent Then RaiseEvent Changed(Me, New System.EventArgs())
     End Sub
@@ -276,29 +288,29 @@ Public Class GainingsDisplay
         _DontRaiseChangedEvent = True
         Dim PeriodSelected As Boolean
         If SourceGainingsDisplay.IsReset Then
-            Me.ResetDisplay()
+            ResetDisplay()
         Else
-            Me.Gainings = SourceGainingsDisplay.Gainings
-            Me.TaxableGainings = SourceGainingsDisplay.TaxableGainings
-            Me.CutOffDay = SourceGainingsDisplay.CutOffDay
-            If Me.ShowPlatformGainings AndAlso Not SourceGainingsDisplay.ShowPlatformGainings Then
-                Me.ResetDisplay(True)
+            Gainings = SourceGainingsDisplay.Gainings
+            TaxableGainings = SourceGainingsDisplay.TaxableGainings
+            CutOffDay = SourceGainingsDisplay.CutOffDay
+            If ShowPlatformGainings AndAlso Not SourceGainingsDisplay.ShowPlatformGainings Then
+                ResetDisplay(True)
             Else
-                Me.PlatformGainings = SourceGainingsDisplay.PlatformGainings
+                PlatformGainings = SourceGainingsDisplay.PlatformGainings
             End If
-            If Me.TimePeriodControl IsNot Nothing AndAlso SourceGainingsDisplay.TimePeriodControl IsNot Nothing Then
+            If TimePeriodControl IsNot Nothing AndAlso SourceGainingsDisplay.TimePeriodControl IsNot Nothing Then
                 PeriodSelected = SourceGainingsDisplay.TimePeriodControl.RadioButton1.Checked
-                Me.TimePeriodControl.dtpFrom.Value = SourceGainingsDisplay.TimePeriodControl.dtpFrom.Value
-                Me.TimePeriodControl.dtpTo.Value = SourceGainingsDisplay.TimePeriodControl.dtpTo.Value
+                TimePeriodControl.dtpFrom.Value = SourceGainingsDisplay.TimePeriodControl.dtpFrom.Value
+                TimePeriodControl.dtpTo.Value = SourceGainingsDisplay.TimePeriodControl.dtpTo.Value
                 If PeriodSelected Then
-                    Me.TimePeriodControl.RadioButton1.Checked = True
-                    Me.TimePeriodControl.RadioButton2.Checked = False
+                    TimePeriodControl.RadioButton1.Checked = True
+                    TimePeriodControl.RadioButton2.Checked = False
                 Else
-                    Me.TimePeriodControl.RadioButton1.Checked = False
-                    Me.TimePeriodControl.RadioButton2.Checked = True
+                    TimePeriodControl.RadioButton1.Checked = False
+                    TimePeriodControl.RadioButton2.Checked = True
                 End If
                 If SourceGainingsDisplay.TimePeriodControl.ComboBox1.SelectedIndex >= 0 Then
-                    Me.TimePeriodControl.ComboBox1.SelectedIndex = SourceGainingsDisplay.TimePeriodControl.ComboBox1.SelectedIndex
+                    TimePeriodControl.ComboBox1.SelectedIndex = SourceGainingsDisplay.TimePeriodControl.ComboBox1.SelectedIndex
                 End If
             End If
         End If

@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -665,7 +665,7 @@ Public Class Import_Bitfinex
                                     LedgerItem2.Processed = True
 
                                 Case Else
-                                    ' undefined ledger type: do not import
+                                    ' undefined or fee ledger type: do not import
                                     .DoNotImport = True
 
                             End Select
@@ -690,7 +690,7 @@ Public Class Import_Bitfinex
 
             Next l
 
-            MainImportObject.Import_Records(ImportRecords, FileNames(0), ReadImportdataPercentage, , False)
+            MainImportObject.Import_Records(ImportRecords, FileNames(0), ReadImportdataPercentage, , True)
             Cursor.Current = Cursors.Default
 
         End If

@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -286,7 +286,7 @@ Public Class Import_Kraken
                                         End If
                                         NextTLO = New KrakenLineObject(MainImportObject, NextRow(2), NextRow(0), NextRow(1), NextRow(3), NextRow(5), NextRow(6), NextRow(7))
                                         Dim QuellKontoRow As KontenRow
-                                        If TLO.Amount < 0 Then
+                                        If TLO.Amount < 0 OrElse (TLO.Amount = 0 And NextTLO.Amount > 0) Then
                                             SourceTLO = TLO
                                             TargetTLO = NextTLO
                                             QuellKontoRow = KontoRow

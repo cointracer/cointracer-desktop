@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -109,6 +109,21 @@ Public NotInheritable Class AccountManager
         BTG = 222
         BSV = 223
         FEE = 224
+        BAT = 233
+        BTS = 234
+        LINK = 235
+        ATOM = 236
+        FCT = 237
+        ICX = 238
+        MAID = 239
+        NANO = 240
+        OMG = 241
+        PAX = 242
+        SC = 243
+        SAI = 244
+        USDT = 245
+        USDC = 246
+        WAVES = 247
         feeEUR = 10101
         feeUSD = 10102
         feeBTC = 10201
@@ -135,6 +150,21 @@ Public NotInheritable Class AccountManager
         feeBTG = 10222
         feeBSV = 10223
         feeFEE = 10224
+        feeBAT = 10233
+        feeBTS = 10234
+        feeLINK = 10235
+        feeATOM = 10236
+        feeFCT = 10237
+        feeICX = 10238
+        feeMAID = 10239
+        feeNANO = 10240
+        feeOMG = 10241
+        feePAX = 10242
+        feeSC = 10243
+        feeSAI = 10244
+        feeUSDT = 10245
+        feeUSDC = 10246
+        feeWAVES = 10247
     End Enum
 
     ' All valid platforms - keep database ids in sync with enum above!!!
@@ -168,14 +198,29 @@ Public NotInheritable Class AccountManager
             New AccountDetails(222, "Bitcoin Gold", "BTG", "Bitcoin Gold", False, False, True, False, 10222),
             New AccountDetails(223, "Bitcoin SV", "BSV", "Bitcoin SV", False, False, True, False, 10223),
             New AccountDetails(224, "Kraken Fee Credit", "FEE", "Kraken Fee Credit", False, False, True, False, 10224),
-            New AccountDetails(225, "Dodgecoin", "XDG", "Dodgecoin", False, False, True, False, 10225),
+            New AccountDetails(225, "Dogecoin", "XDG", "Dogecoin", False, False, True, False, 10225),
             New AccountDetails(226, "Dash", "DASH", "Dash", False, False, True, False, 10226),
-            New AccountDetails(227, "Melon", "MLN", "Melon", False, False, True, False, 10227),
+            New AccountDetails(227, "WaterMelon", "MLN", "WaterMelon", False, False, True, False, 10227),
             New AccountDetails(228, "Gnosis", "GNO", "Gnosis", False, False, True, False, 10228),
             New AccountDetails(229, "EOS", "EOS", "EOS", False, False, True, False, 10229),
             New AccountDetails(230, "QTUM", "QTUM", "QTUM", False, False, True, False, 10230),
             New AccountDetails(231, "Cardano", "ADA", "Cardano", False, False, True, False, 10231),
-            New AccountDetails(232, "Tezos", "XTZ", "Tezos", False, False, True, False, 10232)
+            New AccountDetails(232, "Tezos", "XTZ", "Tezos", False, False, True, False, 10232),
+            New AccountDetails(233, "Basic Attention Token", "BAT", "Basic Attention Token", False, False, True, False, 10233),
+            New AccountDetails(234, "BitShares", "BTS", "BitShares", False, False, True, False, 10234),
+            New AccountDetails(235, "ChainLink", "LINK", "ChainLink", False, False, True, False, 10235),
+            New AccountDetails(236, "Cosmos", "ATOM", "Cosmos", False, False, True, False, 10236),
+            New AccountDetails(237, "Factom", "FCT", "Factom", False, False, True, False, 10237),
+            New AccountDetails(238, "ICON", "ICX", "ICON", False, False, True, False, 10238),
+            New AccountDetails(239, "MaidSafeCoin", "MAID", "MaidSafeCoin", False, False, True, False, 10239),
+            New AccountDetails(240, "Nano", "NANO", "Nano", False, False, True, False, 10240),
+            New AccountDetails(241, "OmiseGo", "OMG", "OmiseGo", False, False, True, False, 10241),
+            New AccountDetails(242, "PAX Gold", "PAX", "PAX Gold", False, False, True, False, 10242),
+            New AccountDetails(243, "SiaCoin", "SC", "SiaCoin", False, False, True, False, 10243),
+            New AccountDetails(244, "Single Collateral DAI", "SAI", "Single Collateral DAI", False, False, True, False, 10244),
+            New AccountDetails(245, "Tether", "USDT", "Tether", False, False, True, False, 10245),
+            New AccountDetails(246, "USD Coin", "USDC", "USD Coin", False, False, True, False, 10246),
+            New AccountDetails(247, "Waves", "WAVES", "Waves", False, False, True, False, 10247)
         }
     End Function
 

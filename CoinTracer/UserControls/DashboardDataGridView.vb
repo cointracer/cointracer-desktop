@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,12 +29,30 @@
 '  *
 '  **************************************
 
+Imports System.ComponentModel
+
 Public Class DashboardDataGridView
     Inherits DataGridView
 
     Private _MaxCols As Int16 = 0
 
     Private _Initialized As Boolean
+    Private _ExpensesOnly As Boolean
+
+    <Browsable(True)>
+    <Description("Determines if the control displays expenses only.")>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
+    <Category("Appearance")>
+    <DefaultValue(False)>
+    Public Property ExpensesOnly() As Boolean
+        Get
+            Return _ExpensesOnly
+        End Get
+        Set(ByVal value As Boolean)
+            _ExpensesOnly = value
+            Invalidate()
+        End Set
+    End Property
 
     Protected Overrides Sub OnPaint(ByVal e As System.Windows.Forms.PaintEventArgs)
         MyBase.OnPaint(e)
@@ -42,8 +60,8 @@ Public Class DashboardDataGridView
         'Benutzerdefinierten Zeichnungscode hier einfügen
         If Not _Initialized Then
             ' Kontextmenü ggf. erstellen & initialisieren
-            If Me.ContextMenuStrip Is Nothing Then
-                Me.ContextMenuStrip = New ContextMenuStrip()
+            If ContextMenuStrip Is Nothing Then
+                ContextMenuStrip = New ContextMenuStrip()
             End If
             ContextMenuStripInit()
             _Initialized = True
@@ -119,9 +137,9 @@ Public Class DashboardDataGridView
     End Property
 
 
-    Public Sub SetSQL(ByVal SelectSQL As String, _
-                      ByVal WhereSQL As String, _
-                      ByVal GroupBySQL As String, _
+    Public Sub SetSQL(ByVal SelectSQL As String,
+                      ByVal WhereSQL As String,
+                      ByVal GroupBySQL As String,
                       ByVal OrderBySQL As String)
         Me.SelectSQL = SelectSQL
         Me.WhereSQL = WhereSQL
@@ -155,10 +173,10 @@ Public Class DashboardDataGridView
                 SetBindingSource(DS, DS.Tables(0).TableName)
                 ' Spalten binden
                 For i = 0 To _MaxCols - 1
-                    Me.Columns(i).DataPropertyName = DS.Tables(0).Columns(i).ColumnName
+                    Columns(i).DataPropertyName = DS.Tables(0).Columns(i).ColumnName
                     ' Besonderheit: Währung in Spaltentitel bei Kauf- und Verkaufspreis-Spalten
                     If i > 6 Then
-                        Me.Columns(i).Name = String.Format("Ø {0} {1}", IIf(i = 7, "Kauf", "Verkauf"), IIf(DS.Tables(0).Columns(i).ColumnName.Contains("EUR"), "€", "$"))
+                        Columns(i).Name = String.Format("Ø {0} {1}", IIf(i = 7, "Kauf", "Verkauf"), IIf(DS.Tables(0).Columns(i).ColumnName.Contains("EUR"), "€", "$"))
                     End If
                 Next
                 SetCellFormats()
@@ -174,25 +192,25 @@ Public Class DashboardDataGridView
     Private Sub SetCellFormats()
         Dim r As Int16
         Dim FormatString As String
-        For r = 0 To Me.Rows.Count - 1
-            If Me.Rows(r).Cells(0).Value Then
+        For r = 0 To Rows.Count - 1
+            If Rows(r).Cells(0).Value Then
                 FormatString = "N2"
                 ' Besonderheit: An- und Verkaufspreise (ab Spalte 7) hier ausblenen
-                If Me.Columns.Count > 6 Then
-                    For c As Integer = 7 To Me.Columns.Count - 1
-                        Me.Rows(r).Cells(c).Value = DBNull.Value
+                If Columns.Count > 6 Then
+                    For c As Integer = 7 To Columns.Count - 1
+                        Rows(r).Cells(c).Value = DBNull.Value
                     Next
                 End If
             Else
                 FormatString = "#,###,##0.00000000"
                 ' Besonderheit: An- und Verkaufspreise (ab Spalte 7) nur zweistellig
-                If Me.Columns.Count > 6 Then
-                    For c As Integer = 7 To Me.Columns.Count - 1
-                        Me.Rows(r).Cells(c).Style.Format = "#,###,##0.00"
+                If Columns.Count > 6 Then
+                    For c As Integer = 7 To Columns.Count - 1
+                        Rows(r).Cells(c).Style.Format = "#,###,##0.00"
                     Next
                 End If
             End If
-            Me.Rows(r).DefaultCellStyle.Format = FormatString
+            Rows(r).DefaultCellStyle.Format = FormatString
         Next r
     End Sub
 
@@ -212,12 +230,12 @@ Public Class DashboardDataGridView
         _TPCrtl = Nothing
 
         ' Sonstige Eigenschaften
-        Me.AllowUserToAddRows = False
-        Me.AllowUserToDeleteRows = False
-        Me.AllowUserToResizeRows = True
-        Me.EditMode = DataGridViewEditMode.EditProgrammatically
-        Me.RowHeadersVisible = False
-        Me.AutoGenerateColumns = False
+        AllowUserToAddRows = False
+        AllowUserToDeleteRows = False
+        AllowUserToResizeRows = True
+        EditMode = DataGridViewEditMode.EditProgrammatically
+        RowHeadersVisible = False
+        AutoGenerateColumns = False
 
     End Sub
 
@@ -225,10 +243,9 @@ Public Class DashboardDataGridView
     ''' Anlegen der Spalten (muss nicht unbedingt dynamisch passieren, aber so what...)
     ''' </summary>
     Private Sub InitColumns()
-        ' Exit Sub
-        ' Spalten initialisieren
-        If Me.Columns.Count = 0 Then
-            Dim Col As DataGridViewColumn = _
+        ' Init DataGrid columns
+        If Columns.Count = 0 Then
+            Dim Col As DataGridViewColumn =
                 New DataGridViewTextBoxColumn
             With Col
                 .Name = "IstFiat"
@@ -237,7 +254,7 @@ Public Class DashboardDataGridView
                 .FillWeight = 4
                 .Resizable = DataGridViewTriState.False
                 .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
-                Me.Columns.Add(Col)
+                Columns.Add(Col)
             End With
             Dim ColAF As DataGridViewAutoFilterTextBoxColumn = New DataGridViewAutoFilterTextBoxColumn
             With ColAF
@@ -249,7 +266,7 @@ Public Class DashboardDataGridView
                 .CaptionAllValues = "(Alles auswählen)"
                 .CaptionBlankValues = "(Leere)"
                 .CaptionCancelButton = "Abbrechen"
-                Me.Columns.Add(ColAF)
+                Columns.Add(ColAF)
             End With
             ColAF = New DataGridViewAutoFilterTextBoxColumn
             With ColAF
@@ -262,7 +279,7 @@ Public Class DashboardDataGridView
                 .CaptionAllValues = "(Alles auswählen)"
                 .CaptionBlankValues = "(Leere)"
                 .CaptionCancelButton = "Abbrechen"
-                Me.Columns.Add(ColAF)
+                Columns.Add(ColAF)
             End With
             ColAF = New DataGridViewAutoFilterTextBoxColumn
             With ColAF
@@ -276,7 +293,7 @@ Public Class DashboardDataGridView
                 .CaptionBlankValues = "(Leere)"
                 .CaptionCancelButton = "Abbrechen"
                 .Visible = False
-                Me.Columns.Add(ColAF)
+                Columns.Add(ColAF)
             End With
             Col = New DataGridViewTextBoxColumn
             With Col
@@ -286,7 +303,8 @@ Public Class DashboardDataGridView
                 .Resizable = DataGridViewTriState.NotSet
                 .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
                 .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                Me.Columns.Add(Col)
+                .Visible = Not _ExpensesOnly
+                Columns.Add(Col)
             End With
             Col = New DataGridViewTextBoxColumn
             With Col
@@ -296,18 +314,19 @@ Public Class DashboardDataGridView
                 .Resizable = DataGridViewTriState.NotSet
                 .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
                 .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                Me.Columns.Add(Col)
+                .Visible = Not _ExpensesOnly
+                Columns.Add(Col)
             End With
             Col = New DataGridViewTextBoxColumn
             With Col
-                .Name = "Bestand"
+                .Name = IIf(_ExpensesOnly, "Aufwand", "Bestand")
                 .Width = 90
                 .FillWeight = 90
                 .Resizable = DataGridViewTriState.NotSet
                 .AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells
                 .DefaultCellStyle.Font = New Font(MyBase.Font, FontStyle.Bold)
                 .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-                Me.Columns.Add(Col)
+                Columns.Add(Col)
             End With
 
             For Each ColName As String In New String() {"Ø Kauf €", "Ø Verkauf €"}
@@ -321,15 +340,15 @@ Public Class DashboardDataGridView
                     .SortMode = DataGridViewColumnSortMode.NotSortable
                     .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
                     .DefaultCellStyle.Format = "#,###,##0.00"
-                    Me.Columns.Add(Col)
+                    Columns.Add(Col)
                 End With
             Next
 
-            _MaxCols = Me.Columns.Count
-        ElseIf Me.Columns.Count > _MaxCols Then
+            _MaxCols = Columns.Count
+        ElseIf Columns.Count > _MaxCols Then
             Dim c As Int16
-            For c = Me.Columns.Count - 1 To _MaxCols Step -1
-                Me.Columns(c).Visible = False
+            For c = Columns.Count - 1 To _MaxCols Step -1
+                Columns(c).Visible = False
             Next c
         End If
     End Sub
@@ -338,7 +357,7 @@ Public Class DashboardDataGridView
     ''' Initialisiert die Standard-Menü-Items des Kontextmenüs
     ''' </summary>
     Private Sub ContextMenuStripInit()
-        With Me.ContextMenuStrip
+        With ContextMenuStrip
             ' Prüfen, ob Default-Kontextmenüeinträge schon vorhanden sind
             If .Items.ContainsKey("mnuItmCopyCell") Then
                 Exit Sub
@@ -346,8 +365,8 @@ Public Class DashboardDataGridView
             If .Items.Count > 0 Then
                 .Items.Add("-")
             End If
-            Dim mnuItem As New ToolStripMenuItem() With {.Text = "Gesamte Tabelle kopieren", _
-                                                         .Name = "mnuItmCopyTable", _
+            Dim mnuItem As New ToolStripMenuItem() With {.Text = "Gesamte Tabelle kopieren",
+                                                         .Name = "mnuItmCopyTable",
                                                          .Image = DirectCast(My.Resources.edit_copytable_icon_16x16, Bitmap)}
             AddHandler mnuItem.Click, AddressOf mnuItmCopyTable_Click
             .Items.Add(mnuItem)
@@ -359,6 +378,6 @@ Public Class DashboardDataGridView
     End Sub
 
     Private Sub DashboardDataGridView_SelectionChanged(sender As Object, e As EventArgs) Handles Me.SelectionChanged
-        Me.ClearSelection()
+        ClearSelection()
     End Sub
 End Class

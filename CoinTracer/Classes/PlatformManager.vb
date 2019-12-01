@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -138,18 +138,18 @@ Public NotInheritable Class PlatformManager
             .Add(My.Resources.MyStrings.importLabelBitcoinCore)
             .Add(My.Resources.MyStrings.importLabelBitfinex)
             .Add(My.Resources.MyStrings.importLabelBitstamp)
-            .Add(My.Resources.MyStrings.importLabelBtcE)
             .Add(My.Resources.MyStrings.importLabelGeneric)
             .Add(My.Resources.MyStrings.importLabelKraken)
             .Add(My.Resources.MyStrings.importLabelLitecoinCore)
             .Add(My.Resources.MyStrings.importLabelPoloniex)
-            .Add(My.Resources.MyStrings.importLabelVircurex)
             .Add(My.Resources.MyStrings.importLabelZyado)
             .Add(My.Resources.MyStrings.importLabelCoursesUsd)
             If ShowHistoricImports Then
                 .Add(My.Resources.MyStrings.importLabelSeparator)
+                .Add(My.Resources.MyStrings.importLabelBtcE)
                 .Add(My.Resources.MyStrings.importLabelMultibit)
                 .Add(My.Resources.MyStrings.importLabelMtGox)
+                .Add(My.Resources.MyStrings.importLabelVircurex)
             End If
             If OldSelecetd < .Count AndAlso OldSelecetd >= 0 Then
                 ImportComboBox.SelectedIndex = OldSelecetd
@@ -183,35 +183,35 @@ Public NotInheritable Class PlatformManager
                 ' Bitstamp.net
                 Result = Platforms.BitstampNet
             Case 5
-                ' BTC-E
-                Result = Platforms.BtcE
-            Case 6
                 ' Generic CSV import
                 Result = Platforms.CoinTracer
-            Case 7
+            Case 6
                 ' Kraken CSV
                 Result = Platforms.Kraken
-            Case 8
+            Case 7
                 ' Litecoin-Core
                 Result = Platforms.WalletLTC
-            Case 9
+            Case 8
                 ' Poloniex
                 Result = Platforms.Poloniex
-            Case 10
-                ' Vircurex
-                Result = Platforms.Vircurex
-            Case 11
+            Case 9
                 ' Zyado
                 Result = Platforms.Zyado
-            Case 12
+            Case 10
                 ' Course data EUR/USD
                 Fiat = True
-            Case 14
+            Case 12
+                ' BTC-E
+                Result = Platforms.BtcE
+            Case 13
                 ' MultiBit
                 Result = Platforms.MultiBit
-            Case 15
+            Case 14
                 ' Mt. Gox
                 Result = Platforms.MtGox
+            Case 15
+                ' Vircurex
+                Result = Platforms.Vircurex
         End Select
         Return Result
     End Function

@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -2808,13 +2808,13 @@ Public Class Import
     ''' <param name="Filename">Name der eingelesenen Datei (wird in Tabelle Importe geschrieben)</param>
     ''' <param name="StartPercentage">Für ProgressWaitWindow: Anfangsprozentsatz, ab dem der Fortschrittsbalken weitergezeichnet wird</param>
     ''' <param name="ProcessFeeEntries">Wenn True, werden für neu hinzugekommene Fee-Einträge die jeweils zugehörigen Transaktion angepasst: BetragNachGebuehr und WertEUR werden ggf. verringert (notwendig für Mt. Gox)</param>
-    ''' <param name="IgnoreDublicates">Wenn True, werden Zeilen mit gleicher SourceID innerhalb der übergebenen dtoTradeRecords-Liste 1:1 (also auch mehrfach) eingelesen. Notwendig z.B. für BitstampNet.</param>
+    ''' <param name="IgnoreDuplicates">Wenn True, werden Zeilen mit gleicher SourceID innerhalb der übergebenen dtoTradeRecords-Liste 1:1 (also auch mehrfach) eingelesen. Notwendig z.B. für BitstampNet.</param>
     ''' <remarks>Im Anschluss an den Import erfolgt ggf. die automatische Weiterverarbeitung ein Ein- und Auszahlungen sowie die Kontrolle, ob die Gewinn-/Verlustberechnung zurückgesetzt werden muss</remarks>
     Friend Sub Import_Records(ImportRecords As List(Of dtoTradesRecord),
                                Optional ByVal Filename As String = "",
                                Optional ByVal StartPercentage As Integer = 70,
                                Optional ByVal ProcessFeeEntries As Boolean = False,
-                               Optional ByVal IgnoreDublicates As Boolean = False,
+                               Optional ByVal IgnoreDuplicates As Boolean = False,
                                Optional ByVal ApiDatenID As Long = 0,
                                Optional ByVal LastImportTimestamp As Long = 0,
                                Optional ByVal Verbose As Boolean = True)
@@ -2864,7 +2864,7 @@ Public Class Import
                         ElseIf .TradetypID = DBHelper.TradeTypen.Auszahlung Or .TradetypID = DBHelper.TradeTypen.Einzahlung Then
                             HasTransfers = True
                         End If
-                        If Not IgnoreDublicates Then
+                        If Not IgnoreDuplicates Then
                             CheckDoublesDict.Add(IR.SourceID, 0)
                         End If
                     End If
@@ -3356,6 +3356,8 @@ Public Class Import
                 ' Import_Kraken(Filename, CheckFirstLine)
             Case PlatformManager.Platforms.Bitfinex
                 ThisImport = New Import_Bitfinex(Me)
+            Case PlatformManager.Platforms.CoinTracer
+                ThisImport = New Import_CoinTracer(Me)
         End Select
 
         If ThisImport IsNot Nothing Then
@@ -3392,6 +3394,8 @@ Public Class Import
                 ThisImport.CallDelay = 6000
         End Select
         If ThisImport IsNot Nothing Then
+            Dim LogLevel As TraceEventType = My.Settings.LogLevel
+            My.Settings.LogLevel = TraceEventType.Verbose
             With ThisImport
                 .ApiKey = ApiKey
                 .ApiSecret = ApiSecret
@@ -3402,6 +3406,7 @@ Public Class Import
                 .DateTimeEnd = DateTimeEnd
                 .PerformImport()
             End With
+            My.Settings.LogLevel = LogLevel
         End If
 
     End Sub
