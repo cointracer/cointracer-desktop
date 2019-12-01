@@ -23,7 +23,7 @@
    subsequent versions of the EUPL (the "Licence");
  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
  
- * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+ * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
  
  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -193,7 +193,7 @@
     <value>tpDashboard</value>
   </data>
   <data name="&gt;&gt;tpDashboard.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpDashboard.Parent" xml:space="preserve">
     <value>TableLayoutPanel3</value>
@@ -223,7 +223,7 @@
     <value>gnd1stTab</value>
   </data>
   <data name="&gt;&gt;gnd1stTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd1stTab.Parent" xml:space="preserve">
     <value>TableLayoutPanel4</value>
@@ -382,7 +382,7 @@
     <value>dshgrdBestaende</value>
   </data>
   <data name="&gt;&gt;dshgrdBestaende.Type" xml:space="preserve">
-    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dshgrdBestaende.Parent" xml:space="preserve">
     <value>spltCntGainings.Panel1</value>
@@ -421,7 +421,7 @@
     <value>dshgrdAbgaenge</value>
   </data>
   <data name="&gt;&gt;dshgrdAbgaenge.Type" xml:space="preserve">
-    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dshgrdAbgaenge.Parent" xml:space="preserve">
     <value>spltCntGainings.Panel2</value>
@@ -910,7 +910,7 @@
     <value>cmdCourses</value>
   </data>
   <data name="&gt;&gt;cmdCourses.Type" xml:space="preserve">
-    <value>CoinTracer.PaddingButton, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.PaddingButton, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cmdCourses.Parent" xml:space="preserve">
     <value>grpCourses</value>
@@ -1196,7 +1196,7 @@
     <value>Gesamte Datenbank zurücksetzen...</value>
   </data>
   <data name="ExtrasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 19</value>
+    <value>50, 19</value>
   </data>
   <data name="ExtrasToolStripMenuItem.Text" xml:space="preserve">
     <value>E&amp;xtras</value>
@@ -1361,7 +1361,7 @@
     <value>cbxSzenario</value>
   </data>
   <data name="&gt;&gt;cbxSzenario.Type" xml:space="preserve">
-    <value>CoinTracer.DataBoundComboBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataBoundComboBox, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbxSzenario.Parent" xml:space="preserve">
     <value>grpSzenarien</value>
@@ -1577,7 +1577,7 @@
     <value>252, 24</value>
   </data>
   <data name="Label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 15</value>
+    <value>151, 15</value>
   </data>
   <data name="Label11.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -1742,7 +1742,7 @@
     <value>tpGainings</value>
   </data>
   <data name="&gt;&gt;tpGainings.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpGainings.Parent" xml:space="preserve">
     <value>grpGainings</value>
@@ -1769,7 +1769,7 @@
     <value>gnd2ndTab</value>
   </data>
   <data name="&gt;&gt;gnd2ndTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd2ndTab.Parent" xml:space="preserve">
     <value>grpGainings</value>
@@ -2127,7 +2127,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>dpctlHaltefrist</value>
   </data>
   <data name="&gt;&gt;dpctlHaltefrist.Type" xml:space="preserve">
-    <value>CoinTracer.DataPeriodControl, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataPeriodControl, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dpctlHaltefrist.Parent" xml:space="preserve">
     <value>tbpGeneral</value>
@@ -2316,7 +2316,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>vssCoins4Fiat</value>
   </data>
   <data name="&gt;&gt;vssCoins4Fiat.Type" xml:space="preserve">
-    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;vssCoins4Fiat.Parent" xml:space="preserve">
     <value>tbpCoins4Fiat</value>
@@ -2483,7 +2483,7 @@ getauscht wurden? Welche Coins sollen hierfür bevorzugt eingesetzt werden?</val
     <value>vssCoins4Coins</value>
   </data>
   <data name="&gt;&gt;vssCoins4Coins.Type" xml:space="preserve">
-    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;vssCoins4Coins.Parent" xml:space="preserve">
     <value>tbpCoins4Coins</value>
@@ -2613,7 +2613,7 @@ umgegangen werden? Welche Coins sollen hierfür bevorzugt eingesetzt werden?</va
     <value>vssXChange2Wallet</value>
   </data>
   <data name="&gt;&gt;vssXChange2Wallet.Type" xml:space="preserve">
-    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;vssXChange2Wallet.Parent" xml:space="preserve">
     <value>tbpXChange2Wallet</value>
@@ -2743,7 +2743,7 @@ umgegangen werden? Welche Coins sollen hierfür bevorzugt eingesetzt werden?</va
     <value>vssWallet2XChange</value>
   </data>
   <data name="&gt;&gt;vssWallet2XChange.Type" xml:space="preserve">
-    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;vssWallet2XChange.Parent" xml:space="preserve">
     <value>tbpWallet2XChange</value>
@@ -2873,7 +2873,7 @@ umgegangen werden? Welche Coins sollen hierfür bevorzugt eingesetzt werden?</va
     <value>vssXChange2XChange</value>
   </data>
   <data name="&gt;&gt;vssXChange2XChange.Type" xml:space="preserve">
-    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;vssXChange2XChange.Parent" xml:space="preserve">
     <value>tbpXChange2XChange</value>
@@ -3003,7 +3003,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>vssWithdrawal</value>
   </data>
   <data name="&gt;&gt;vssWithdrawal.Type" xml:space="preserve">
-    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;vssWithdrawal.Parent" xml:space="preserve">
     <value>tbpWithdrawal</value>
@@ -3339,7 +3339,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>267, 110</value>
   </data>
   <data name="Label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 15</value>
+    <value>88, 15</value>
   </data>
   <data name="Label8.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -3717,7 +3717,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>ccbReportPlatforms</value>
   </data>
   <data name="&gt;&gt;ccbReportPlatforms.Type" xml:space="preserve">
-    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ccbReportPlatforms.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -3735,7 +3735,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>266, 5</value>
   </data>
   <data name="gnd3rdTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 191</value>
+    <value>297, 236</value>
   </data>
   <data name="gnd3rdTab.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3744,7 +3744,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>gnd3rdTab</value>
   </data>
   <data name="&gt;&gt;gnd3rdTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd3rdTab.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -3777,7 +3777,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>tpReport</value>
   </data>
   <data name="&gt;&gt;tpReport.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpReport.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -3879,7 +3879,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>563, 17</value>
   </data>
   <data name="lblRightMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>377, 13</value>
+    <value>378, 13</value>
   </data>
   <data name="lblRightMouse.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3909,13 +3909,13 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>748, 17</value>
   </metadata>
   <data name="tsmiEditTrades.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 22</value>
+    <value>175, 22</value>
   </data>
   <data name="tsmiEditTrades.Text" xml:space="preserve">
     <value>Trades bearbeiten...</value>
   </data>
   <data name="cmnTrades.Size" type="System.Drawing.Size, System.Drawing">
-    <value>177, 26</value>
+    <value>176, 26</value>
   </data>
   <data name="&gt;&gt;cmnTrades.Name" xml:space="preserve">
     <value>cmnTrades</value>
@@ -3939,7 +3939,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>grdTrades</value>
   </data>
   <data name="&gt;&gt;grdTrades.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdTrades.Parent" xml:space="preserve">
     <value>tabTrades</value>
@@ -4011,7 +4011,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>grdImporte</value>
   </data>
   <data name="&gt;&gt;grdImporte.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdImporte.Parent" xml:space="preserve">
     <value>tabImporte</value>
@@ -4083,7 +4083,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>grdPlattformen</value>
   </data>
   <data name="&gt;&gt;grdPlattformen.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdPlattformen.Parent" xml:space="preserve">
     <value>tabPlattformen</value>
@@ -4155,7 +4155,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>grdKonten</value>
   </data>
   <data name="&gt;&gt;grdKonten.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdKonten.Parent" xml:space="preserve">
     <value>tabKonten</value>
@@ -4227,7 +4227,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>grdKurse</value>
   </data>
   <data name="&gt;&gt;grdKurse.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdKurse.Parent" xml:space="preserve">
     <value>tabKurse</value>
@@ -4305,7 +4305,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>grdBerechnungen</value>
   </data>
   <data name="&gt;&gt;grdBerechnungen.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdBerechnungen.Parent" xml:space="preserve">
     <value>tabBerechnungen</value>
@@ -4351,7 +4351,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADo
-        CQAAAk1TRnQBSQFMAwEBAAGAAQkBgAEJARgBAAEYAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
+        CQAAAk1TRnQBSQFMAwEBAAGYAQkBmAEJARgBAAEYAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
         AWADAAEYAwABAQEAAQgGAAEJGAABgAIAAYADAAKAAQABgAMAAYABAAGAAQACgAIAA8ABAAHAAdwBwAEA
         AfABygGmAQABMwUAATMBAAEzAQABMwEAAjMCAAMWAQADHAEAAyIBAAMpAQADVQEAA00BAANCAQADOQEA
         AYABfAH/AQACUAH/AQABkwEAAdYBAAH/AewBzAEAAcYB1gHvAQAB1gLnAQABkAGpAa0CAAH/ATMDAAFm
@@ -4458,7 +4458,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADI
-        FAAAAk1TRnQBSQFMAgEBBAEAAYABCQGAAQkBIAEAASABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        FAAAAk1TRnQBSQFMAgEBBAEAAZgBCQGYAQkBIAEAASABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABgAMAAUADAAEBAQABCAYAASAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -4986,7 +4986,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>ThreadsafeStatusStrip1</value>
   </data>
   <data name="&gt;&gt;ThreadsafeStatusStrip1.Type" xml:space="preserve">
-    <value>CoinTracer.ThreadsafeStatusStrip, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ThreadsafeStatusStrip, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ThreadsafeStatusStrip1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -6124,6 +6124,12 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
   <data name="&gt;&gt;ReleaseNotesToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;LizenzinformationenToolStripMenuItem.Name" xml:space="preserve">
+    <value>LizenzinformationenToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;LizenzinformationenToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
     <value>toolStripSeparator5</value>
   </data>
@@ -6141,12 +6147,6 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
   </data>
   <data name="&gt;&gt;ToolStripSeparator2.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;LizenzinformationenToolStripMenuItem.Name" xml:space="preserve">
-    <value>LizenzinformationenToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;LizenzinformationenToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;InfoToolStripMenuItem.Name" xml:space="preserve">
     <value>InfoToolStripMenuItem</value>
@@ -6170,19 +6170,19 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>Art</value>
   </data>
   <data name="&gt;&gt;Art.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;Plattform.Name" xml:space="preserve">
     <value>Plattform</value>
   </data>
   <data name="&gt;&gt;Plattform.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;TypeCoins.Name" xml:space="preserve">
     <value>TypeCoins</value>
   </data>
   <data name="&gt;&gt;TypeCoins.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AmountCoins.Name" xml:space="preserve">
     <value>AmountCoins</value>
@@ -6194,7 +6194,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>PriceUSD</value>
   </data>
   <data name="&gt;&gt;PriceUSD.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;Total.Name" xml:space="preserve">
     <value>Total</value>
@@ -6218,13 +6218,13 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>Kaufvorgang</value>
   </data>
   <data name="&gt;&gt;Kaufvorgang.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;Kaufdatum.Name" xml:space="preserve">
     <value>Kaufdatum</value>
   </data>
   <data name="&gt;&gt;Kaufdatum.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;CoinAnteil.Name" xml:space="preserve">
     <value>CoinAnteil</value>
@@ -6260,7 +6260,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>TaxFree</value>
   </data>
   <data name="&gt;&gt;TaxFree.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tsmiEditTrades.Name" xml:space="preserve">
     <value>tsmiEditTrades</value>
@@ -6344,13 +6344,13 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>DataGridViewAutoFilterTextBoxColumn4</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn4.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn5.Name" xml:space="preserve">
     <value>DataGridViewAutoFilterTextBoxColumn5</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn5.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewTextBoxColumn5.Name" xml:space="preserve">
     <value>DataGridViewTextBoxColumn5</value>
@@ -6362,7 +6362,7 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>DataGridViewAutoFilterTextBoxColumn6</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn6.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewTextBoxColumn6.Name" xml:space="preserve">
     <value>DataGridViewTextBoxColumn6</value>
@@ -6398,13 +6398,13 @@ Welche Coins sollen hierfür bevorzugt eingesetzt werden?</value>
     <value>DataGridViewAutoFilterTextBoxColumn7</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn7.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Name" xml:space="preserve">
     <value>EnhancedToolTip1</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Type" xml:space="preserve">
-    <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmMain</value>

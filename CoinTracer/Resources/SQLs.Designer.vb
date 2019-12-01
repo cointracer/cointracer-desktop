@@ -67,9 +67,9 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die alter table [Szenarien] add column [Coins4Coins] BOOLEAN DEFAULT &apos;0&apos; ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_01() As String
+        Friend Shared ReadOnly Property db_v39_01() As String
             Get
-                Return ResourceManager.GetString("db_v38_01", resourceCulture)
+                Return ResourceManager.GetString("db_v39_01", resourceCulture)
             End Get
         End Property
         
@@ -83,9 +83,9 @@ Namespace My.Resources
         '''[KontoID] INTEGER  NULL,
         '''[BestandEUR] NUMERIC  NULL); ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_02() As String
+        Friend Shared ReadOnly Property db_v39_02() As String
             Get
-                Return ResourceManager.GetString("db_v38_02", resourceCulture)
+                Return ResourceManager.GetString("db_v39_02", resourceCulture)
             End Get
         End Property
         
@@ -95,18 +95,18 @@ Namespace My.Resources
         '''[KontoID]  ASC,
         '''[PlattformID]  ASC); ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_03() As String
+        Friend Shared ReadOnly Property db_v39_03() As String
             Get
-                Return ResourceManager.GetString("db_v38_03", resourceCulture)
+                Return ResourceManager.GetString("db_v39_03", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die DROP TABLE IF EXISTS [ApiDaten_tmp] ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_04() As String
+        Friend Shared ReadOnly Property db_v39_04() As String
             Get
-                Return ResourceManager.GetString("db_v38_04", resourceCulture)
+                Return ResourceManager.GetString("db_v39_04", resourceCulture)
             End Get
         End Property
         
@@ -123,54 +123,54 @@ Namespace My.Resources
         '''[LastImportTimestamp] INTEGER DEFAULT &apos;0&apos; NULL, 
         '''[ExtendedInfo] VARCHAR(2048) DEFAULT &apos;&apos; NULL) ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_05() As String
+        Friend Shared ReadOnly Property db_v39_05() As String
             Get
-                Return ResourceManager.GetString("db_v38_05", resourceCulture)
+                Return ResourceManager.GetString("db_v39_05", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die INSERT INTO [ApiDaten_tmp] SELECT ID, PlattformID, Zeitpunkt, Bezeichnung, ApiKey, ApiSecret, Salt, Aktiv, LastImportTimestamp, ExtendedInfo FROM [ApiDaten] ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_06() As String
+        Friend Shared ReadOnly Property db_v39_06() As String
             Get
-                Return ResourceManager.GetString("db_v38_06", resourceCulture)
+                Return ResourceManager.GetString("db_v39_06", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die DROP TABLE [ApiDaten] ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_07() As String
+        Friend Shared ReadOnly Property db_v39_07() As String
             Get
-                Return ResourceManager.GetString("db_v38_07", resourceCulture)
+                Return ResourceManager.GetString("db_v39_07", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die ALTER TABLE [ApiDaten_tmp] RENAME TO [ApiDaten] ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_08() As String
+        Friend Shared ReadOnly Property db_v39_08() As String
             Get
-                Return ResourceManager.GetString("db_v38_08", resourceCulture)
+                Return ResourceManager.GetString("db_v39_08", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die ALTER TABLE [Trades] ADD COLUMN [InZeitpunkt] TIMESTAMP ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_09() As String
+        Friend Shared ReadOnly Property db_v39_09() As String
             Get
-                Return ResourceManager.GetString("db_v38_09", resourceCulture)
+                Return ResourceManager.GetString("db_v39_09", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Trades SET InZeitpunkt = Date(Zeitpunkt) ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_10() As String
+        Friend Shared ReadOnly Property db_v39_10() As String
             Get
-                Return ResourceManager.GetString("db_v38_10", resourceCulture)
+                Return ResourceManager.GetString("db_v39_10", resourceCulture)
             End Get
         End Property
         
@@ -191,45 +191,45 @@ Namespace My.Resources
         '''[IstTransfer] BOOLEAN DEFAULT &apos;0&apos;, 
         '''[IstLangzeit] B [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_11() As String
+        Friend Shared ReadOnly Property db_v39_11() As String
             Get
-                Return ResourceManager.GetString("db_v38_11", resourceCulture)
+                Return ResourceManager.GetString("db_v39_11", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_Out2In_Kalkulation] ON [Out2In]([KalkulationID]  ASC) ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_12() As String
+        Friend Shared ReadOnly Property db_v39_12() As String
             Get
-                Return ResourceManager.GetString("db_v38_12", resourceCulture)
+                Return ResourceManager.GetString("db_v39_12", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_MainOutTrade] ON [Out2In]([SzenarioID] ASC, [MainOutTradeID] ASC, [Level] ASC) ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_13() As String
+        Friend Shared ReadOnly Property db_v39_13() As String
             Get
-                Return ResourceManager.GetString("db_v38_13", resourceCulture)
+                Return ResourceManager.GetString("db_v39_13", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_InTrade] ON [Out2In]([SzenarioID] ASC, [InTradeID] ASC, [Level] ASC) ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_14() As String
+        Friend Shared ReadOnly Property db_v39_14() As String
             Get
-                Return ResourceManager.GetString("db_v38_14", resourceCulture)
+                Return ResourceManager.GetString("db_v39_14", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS [VW_InCoins] ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_15() As String
+        Friend Shared ReadOnly Property db_v39_15() As String
             Get
-                Return ResourceManager.GetString("db_v38_15", resourceCulture)
+                Return ResourceManager.GetString("db_v39_15", resourceCulture)
             End Get
         End Property
         
@@ -254,18 +254,18 @@ Namespace My.Resources
         '''	t.InZeitpunkt InZeitpunkt,
         ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_16() As String
+        Friend Shared ReadOnly Property db_v39_16() As String
             Get
-                Return ResourceManager.GetString("db_v38_16", resourceCulture)
+                Return ResourceManager.GetString("db_v39_16", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS [VW_OutCoins] ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_17() As String
+        Friend Shared ReadOnly Property db_v39_17() As String
             Get
-                Return ResourceManager.GetString("db_v38_17", resourceCulture)
+                Return ResourceManager.GetString("db_v39_17", resourceCulture)
             End Get
         End Property
         
@@ -290,18 +290,18 @@ Namespace My.Resources
         '''from Trades as t
         '''inner join Konten as ks on ks [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_18() As String
+        Friend Shared ReadOnly Property db_v39_18() As String
             Get
-                Return ResourceManager.GetString("db_v38_18", resourceCulture)
+                Return ResourceManager.GetString("db_v39_18", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die delete from TradeTypen where ID in (19, 37, 69, 101) ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_19() As String
+        Friend Shared ReadOnly Property db_v39_19() As String
             Get
-                Return ResourceManager.GetString("db_v38_19", resourceCulture)
+                Return ResourceManager.GetString("db_v39_19", resourceCulture)
             End Get
         End Property
         
@@ -312,18 +312,18 @@ Namespace My.Resources
         '''	(69, &apos;Transfer Wallet zu Börse&apos;,&apos;TRNSW2P&apos;, &apos;Transfer von Coins von einem Wallet auf eine Börse&apos;, 69),
         '''	(101, &apos;Transfer Börse zu Wallet&apos;,&apos;TRNSP2W&apos;, &apos;Transfer von Coins von einer Börse auf eine Wallet&apos;, 101) ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_20() As String
+        Friend Shared ReadOnly Property db_v39_20() As String
             Get
-                Return ResourceManager.GetString("db_v38_20", resourceCulture)
+                Return ResourceManager.GetString("db_v39_20", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS [VW_Gainings] ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_21() As String
+        Friend Shared ReadOnly Property db_v39_21() As String
             Get
-                Return ResourceManager.GetString("db_v38_21", resourceCulture)
+                Return ResourceManager.GetString("db_v39_21", resourceCulture)
             End Get
         End Property
         
@@ -335,18 +335,18 @@ Namespace My.Resources
         '''	when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
         '''	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(su [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_22() As String
+        Friend Shared ReadOnly Property db_v39_22() As String
             Get
-                Return ResourceManager.GetString("db_v38_22", resourceCulture)
+                Return ResourceManager.GetString("db_v39_22", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS [VW_GainingsReport2] ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_23() As String
+        Friend Shared ReadOnly Property db_v39_23() As String
             Get
-                Return ResourceManager.GetString("db_v38_23", resourceCulture)
+                Return ResourceManager.GetString("db_v39_23", resourceCulture)
             End Get
         End Property
         
@@ -374,36 +374,36 @@ Namespace My.Resources
         '''	else zk.Bezeichnung 
         ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_24() As String
+        Friend Shared ReadOnly Property db_v39_24() As String
             Get
-                Return ResourceManager.GetString("db_v38_24", resourceCulture)
+                Return ResourceManager.GetString("db_v39_24", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die ALTER TABLE [ApiDaten] ADD COLUMN [CallDelay] INTEGER NOT NULL DEFAULT 0 ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_25() As String
+        Friend Shared ReadOnly Property db_v39_25() As String
             Get
-                Return ResourceManager.GetString("db_v38_25", resourceCulture)
+                Return ResourceManager.GetString("db_v39_25", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE [ApiDaten] SET [CallDelay] = 2000 WHERE PlattformID = 207 ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_26() As String
+        Friend Shared ReadOnly Property db_v39_26() As String
             Get
-                Return ResourceManager.GetString("db_v38_26", resourceCulture)
+                Return ResourceManager.GetString("db_v39_26", resourceCulture)
             End Get
         End Property
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE [ApiDaten] SET [CallDelay] = 11000 WHERE PlattformID = 206 ähnelt.
         '''</summary>
-        Friend Shared ReadOnly Property db_v38_27() As String
+        Friend Shared ReadOnly Property db_v39_27() As String
             Get
-                Return ResourceManager.GetString("db_v38_27", resourceCulture)
+                Return ResourceManager.GetString("db_v39_27", resourceCulture)
             End Get
         End Property
     End Class

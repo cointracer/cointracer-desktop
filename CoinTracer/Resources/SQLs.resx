@@ -23,7 +23,7 @@
    subsequent versions of the EUPL (the "Licence");
  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
  
- * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+ * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
  
  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -150,10 +150,10 @@
 	<resheader name="writer">
 		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
 	</resheader>
-	<data name="db_v38_01" xml:space="preserve">
+	<data name="db_v39_01" xml:space="preserve">
 		<value>alter table [Szenarien] add column [Coins4Coins] BOOLEAN DEFAULT '0'</value>
 	</data>
-	<data name="db_v38_02" xml:space="preserve">
+	<data name="db_v39_02" xml:space="preserve">
 		<value>CREATE TABLE IF NOT EXISTS [Bestaende] (
 [ID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
 [TradeID] INTEGER  NULL,
@@ -163,16 +163,16 @@
 [KontoID] INTEGER  NULL,
 [BestandEUR] NUMERIC  NULL);</value>
 	</data>
-	<data name="db_v38_03" xml:space="preserve">
+	<data name="db_v39_03" xml:space="preserve">
 		<value>CREATE INDEX IF NOT EXISTS [IDX_Bestaende_ZeitpunktKontoPlattform] ON [Bestaende] (
 [Zeitpunkt]  ASC,
 [KontoID]  ASC,
 [PlattformID]  ASC);</value>
 	</data>
-	<data name="db_v38_04" xml:space="preserve">
+	<data name="db_v39_04" xml:space="preserve">
 		<value>DROP TABLE IF EXISTS [ApiDaten_tmp]</value>
 	</data>
-	<data name="db_v38_05" xml:space="preserve">
+	<data name="db_v39_05" xml:space="preserve">
 		<value>CREATE TABLE [ApiDaten_tmp] (
 [ID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
 [PlattformID] INTEGER  NULL,
@@ -185,22 +185,22 @@
 [LastImportTimestamp] INTEGER DEFAULT '0' NULL, 
 [ExtendedInfo] VARCHAR(2048) DEFAULT '' NULL)</value>
 	</data>
-	<data name="db_v38_06" xml:space="preserve">
+	<data name="db_v39_06" xml:space="preserve">
 		<value>INSERT INTO [ApiDaten_tmp] SELECT ID, PlattformID, Zeitpunkt, Bezeichnung, ApiKey, ApiSecret, Salt, Aktiv, LastImportTimestamp, ExtendedInfo FROM [ApiDaten]</value>
 	</data>
-	<data name="db_v38_07" xml:space="preserve">
+	<data name="db_v39_07" xml:space="preserve">
 		<value>DROP TABLE [ApiDaten]</value>
 	</data>
-	<data name="db_v38_08" xml:space="preserve">
+	<data name="db_v39_08" xml:space="preserve">
 		<value>ALTER TABLE [ApiDaten_tmp] RENAME TO [ApiDaten]</value>
 	</data>
-	<data name="db_v38_09" xml:space="preserve">
+	<data name="db_v39_09" xml:space="preserve">
 		<value>ALTER TABLE [Trades] ADD COLUMN [InZeitpunkt] TIMESTAMP</value>
 	</data>
-	<data name="db_v38_10" xml:space="preserve">
+	<data name="db_v39_10" xml:space="preserve">
 		<value>UPDATE Trades SET InZeitpunkt = Date(Zeitpunkt)</value>
 	</data>
-	<data name="db_v38_11" xml:space="preserve">
+	<data name="db_v39_11" xml:space="preserve">
 		<value>CREATE TABLE IF NOT EXISTS [Out2In] (
 [ID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
 [SzenarioID] INTEGER NOT NULL,
@@ -217,19 +217,19 @@
 [IstTransfer] BOOLEAN DEFAULT '0', 
 [IstLangzeit] BOOLEAN DEFAULT '0')</value>
 	</data>
-	<data name="db_v38_12" xml:space="preserve">
+	<data name="db_v39_12" xml:space="preserve">
 		<value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Kalkulation] ON [Out2In]([KalkulationID]  ASC)</value>
 	</data>
-	<data name="db_v38_13" xml:space="preserve">
+	<data name="db_v39_13" xml:space="preserve">
 		<value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_MainOutTrade] ON [Out2In]([SzenarioID] ASC, [MainOutTradeID] ASC, [Level] ASC)</value>
 	</data>
-	<data name="db_v38_14" xml:space="preserve">
+	<data name="db_v39_14" xml:space="preserve">
 		<value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_InTrade] ON [Out2In]([SzenarioID] ASC, [InTradeID] ASC, [Level] ASC)</value>
 	</data>
-	<data name="db_v38_15" xml:space="preserve">
+	<data name="db_v39_15" xml:space="preserve">
 		<value>DROP VIEW IF EXISTS [VW_InCoins]</value>
 	</data>
-	<data name="db_v38_16" xml:space="preserve">
+	<data name="db_v39_16" xml:space="preserve">
 		<value>CREATE VIEW IF NOT EXISTS [VW_InCoins] AS 
 select
 	t.ID TradeID,
@@ -263,10 +263,10 @@ where t.TradeTypID in (3, 4, 5, 7)
 	and not kt.IstFiat
 order by t.ZeitpunktZiel, t.ID</value>
 	</data>
-	<data name="db_v38_17" xml:space="preserve">
+	<data name="db_v39_17" xml:space="preserve">
 		<value>DROP VIEW IF EXISTS [VW_OutCoins]</value>
 	</data>
-	<data name="db_v38_18" xml:space="preserve">
+	<data name="db_v39_18" xml:space="preserve">
 		<value>CREATE VIEW IF NOT EXISTS [VW_OutCoins] AS 
 select
 	t.ID TradeID,
@@ -294,20 +294,20 @@ where t.TradeTypID in (3, 4, 5, 7)
 	and (t.TradeTypID &lt;&gt; 5 or ps.Eigen)
 order by t.Zeitpunkt, t.ID</value>
 	</data>
-	<data name="db_v38_19" xml:space="preserve">
+	<data name="db_v39_19" xml:space="preserve">
 		<value>delete from TradeTypen where ID in (19, 37, 69, 101)</value>
 	</data>
-	<data name="db_v38_20" xml:space="preserve">
+	<data name="db_v39_20" xml:space="preserve">
 		<value>insert into TradeTypen(ID, Bezeichnung, Code, Beschreibung, SortID) values
 	(19, 'Kauf Coins für Coins','BUYC4C', 'Kauf von Coins mit Coins als Zahlmittel', 19),
 	(37, 'Transfer Börse zu Börse','TRNSP2P', 'Transfer von Coins zwischen zwei Börsen', 37),
 	(69, 'Transfer Wallet zu Börse','TRNSW2P', 'Transfer von Coins von einem Wallet auf eine Börse', 69),
 	(101, 'Transfer Börse zu Wallet','TRNSP2W', 'Transfer von Coins von einer Börse auf eine Wallet', 101)</value>
 	</data>
-	<data name="db_v38_21" xml:space="preserve">
+	<data name="db_v39_21" xml:space="preserve">
 		<value>DROP VIEW IF EXISTS [VW_Gainings]</value>
 	</data>
-	<data name="db_v38_22" xml:space="preserve">
+	<data name="db_v39_22" xml:space="preserve">
 		<value>CREATE VIEW IF NOT EXISTS [VW_Gainings] AS
 select
 t.Zeitpunkt Zeitpunkt,
@@ -339,10 +339,10 @@ where t.TradeTypID in (3, 4, 7) and not t.Steuerirrelevant and (qp.Eigen or zp.E
 	and (o2i.SzenarioID = sz.ID or o2i.SzenarioID is null)
 group by t.ID, o2i.ID, sz.ID</value>
 	</data>
-	<data name="db_v38_23" xml:space="preserve">
+	<data name="db_v39_23" xml:space="preserve">
 		<value>DROP VIEW IF EXISTS [VW_GainingsReport2]</value>
 	</data>
-	<data name="db_v38_24" xml:space="preserve">
+	<data name="db_v39_24" xml:space="preserve">
 		<value>CREATE VIEW [VW_GainingsReport2] AS 
 select 
 t.ID Vorgang,
@@ -444,13 +444,13 @@ where (t.TradeTypID in (3, 4, 7) or (t.TradeTypID = 5 and not zk.IstFiat)) and n
 group by sz.ID, t.ID, o2i.ID
 order by sz.ID, t.Zeitpunkt, tt.ID, t.ID</value>
 	</data>
-	<data name="db_v38_25" xml:space="preserve">
+	<data name="db_v39_25" xml:space="preserve">
 		<value>ALTER TABLE [ApiDaten] ADD COLUMN [CallDelay] INTEGER NOT NULL DEFAULT 0</value>
 	</data>
-	<data name="db_v38_26" xml:space="preserve">
+	<data name="db_v39_26" xml:space="preserve">
 		<value>UPDATE [ApiDaten] SET [CallDelay] = 2000 WHERE PlattformID = 207</value>
 	</data>
-  <data name="db_v38_27" xml:space="preserve">
+	<data name="db_v39_27" xml:space="preserve">
 		<value>UPDATE [ApiDaten] SET [CallDelay] = 11000 WHERE PlattformID = 206</value>
 	</data>
 </root>

@@ -21,7 +21,7 @@
 '    subsequent versions of the EUPL (the "Licence");
 '  * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
 '  
-'  * https://joinup.ec.europa.eu/release/eupl/v12  (or within the file "License.txt", which is part of this project)
+'  * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
 '  
 '  * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
 '    distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -276,6 +276,7 @@ Public Class BoundDataGridView
                 Clipboard.SetDataObject(o, True)
             End If
         Catch ex As Exception
+            Debug.Print("mnuItmCopyCell_Click")
         End Try
     End Sub
 
@@ -290,6 +291,7 @@ Public Class BoundDataGridView
                 RaiseEvent CheckBoxColumnClicked(Me, New EventArgs())
             End If
         Catch ex As Exception
+            Debug.Print("BoundDataGridView_CellClick")
         End Try
     End Sub
 
@@ -334,6 +336,7 @@ Public Class BoundDataGridView
                     Next
                 End If
             Catch ex As Exception
+                Debug.Print("BoundDataGridView_DataBindingComplete")
             Finally
                 _NoRecursion = False
             End Try

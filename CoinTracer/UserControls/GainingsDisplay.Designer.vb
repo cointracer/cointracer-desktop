@@ -27,6 +27,8 @@ Partial Class GainingsDisplay
         Me.lblStichtag = New System.Windows.Forms.Label()
         Me.lblTaxable = New System.Windows.Forms.Label()
         Me.lblWinLossValue2 = New System.Windows.Forms.Label()
+        Me.lblInfo = New System.Windows.Forms.Label()
+        Me.EnhancedToolTip1 = New CoinTracer.EnhancedToolTip()
         Me.SuspendLayout()
         '
         'lblWinLossValue1
@@ -43,11 +45,18 @@ Partial Class GainingsDisplay
         '
         resources.ApplyResources(Me.lblTaxable, "lblTaxable")
         Me.lblTaxable.Name = "lblTaxable"
+        Me.EnhancedToolTip1.SetToolTip(Me.lblTaxable, resources.GetString("lblTaxable.ToolTip"))
         '
         'lblWinLossValue2
         '
         resources.ApplyResources(Me.lblWinLossValue2, "lblWinLossValue2")
         Me.lblWinLossValue2.Name = "lblWinLossValue2"
+        '
+        'lblInfo
+        '
+        resources.ApplyResources(Me.lblInfo, "lblInfo")
+        Me.lblInfo.Name = "lblInfo"
+        Me.EnhancedToolTip1.SetToolTip(Me.lblInfo, resources.GetString("lblInfo.ToolTip"))
         '
         'GainingsDisplay
         '
@@ -57,6 +66,7 @@ Partial Class GainingsDisplay
         Me.Controls.Add(Me.lblTaxable)
         Me.Controls.Add(Me.lblStichtag)
         Me.Controls.Add(Me.lblWinLossValue1)
+        Me.Controls.Add(Me.lblInfo)
         Me.Name = "GainingsDisplay"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -66,5 +76,6 @@ Partial Class GainingsDisplay
     Protected WithEvents lblStichtag As System.Windows.Forms.Label
     Protected WithEvents lblTaxable As System.Windows.Forms.Label
     Protected WithEvents lblWinLossValue2 As System.Windows.Forms.Label
-
+    Friend WithEvents lblInfo As Label
+    Friend WithEvents EnhancedToolTip1 As EnhancedToolTip
 End Class

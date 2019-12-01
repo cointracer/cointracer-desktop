@@ -587,6 +587,33 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Bitte beachten Sie auch, dass sich diese Software noch im Entwicklungsstadium befindet. Sie wurde zwar nach bestem Wissen und Gewissen entwickelt, aber dennoch: Fehler können nicht ausgeschlossen werden - sie sind im Gegenteil sogar wahrscheinlich. Sie verwenden diese Software auf eigenes Risiko, für finanzielle und sonstige Schäden, die sich aus dem Gebrauch ergeben, kann der Autor keine Haftung übernehmen. Darüber hinaus wird der {0} so wie er ist kostenfrei zur Verfügung gestellt. Ein Anspruch auf Fehler [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property disclaimerNotErrorFreeNoWarranty() As String
+            Get
+                Return ResourceManager.GetString("disclaimerNotErrorFreeNoWarranty", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Achtung: Keine Gewähr! ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property disclaimerNoWarranty() As String
+            Get
+                Return ResourceManager.GetString("disclaimerNoWarranty", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (April 2019) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungsmö [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property disclaimerTaxingUnclear() As String
+            Get
+                Return ResourceManager.GetString("disclaimerTaxingUnclear", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Bitcoin-Cash-Adresse: ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property donateLabelBCH() As String
@@ -1568,7 +1595,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie &quot;Account&quot;, dann &quot;History&quot;.{0}3. Klicken Sie auf &quot;Export&quot; und wählen Sie &quot;ledgers&quot; unter &quot;Export Data&quot;.{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf &quot;submit&quot;. Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie unter &quot;Requests&quot; auf &quot;download&quot;.{0}7. Extrahieren Sie das Archiv &quot;ledgers.zip&quot;.{0}8. Lesen Sie die Datei &quot;ledgers.csv&quot; im nächsten Fenster ein. ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie unter Ihrem Account-Symbol (oben rechts) &quot;History&quot;.{0}3. Klicken Sie auf &quot;Export&quot; und stellen Sie unter &quot;Export Data&quot; &quot;Ledgers&quot; ein (nicht Trades!).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf &quot;Select All&quot; und anschließend auf &quot;Submit&quot;. Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie unter &quot;Requests&quot; auf &quot;download&quot;.{0}7. Extrahieren Sie das Archiv &quot;ledge [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgKrakenCSV() As String
             Get
@@ -1825,6 +1852,47 @@ Namespace My.Resources
         Friend Shared ReadOnly Property initDbUpdateError() As String
             Get
                 Return ResourceManager.GetString("initDbUpdateError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Sie starten das Programm offenbar zum ersten Mal. Bitte entscheiden Sie, ob jeder Benutzer dieses
+        '''Computers einen eigenen Datenbestand verwenden oder ob alle Benutzer mit ein und denselben Daten
+        '''arbeiten sollen (in diesem Fall wird der Datenbestand im gleichen Ordner gespeichert, in dem auch
+        '''das Programm liegt).
+        '''
+        '''Wählen Sie &apos;Separate Daten je Benutzer&apos; oder &apos;Zentrale Datenablage&apos;. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property initMsgSelectDbFolder() As String
+            Get
+                Return ResourceManager.GetString("initMsgSelectDbFolder", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Zentrale Datenablage ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property initMsgSelectDbFolderOptionGlobal() As String
+            Get
+                Return ResourceManager.GetString("initMsgSelectDbFolderOptionGlobal", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Separate Daten je Benutzer ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property initMsgSelectDbFolderOptionUser() As String
+            Get
+                Return ResourceManager.GetString("initMsgSelectDbFolderOptionUser", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Speicherort Datenbestand auswählen ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property initMsgSelectDbFolderTitle() As String
+            Get
+                Return ResourceManager.GetString("initMsgSelectDbFolderTitle", resourceCulture)
             End Get
         End Property
         
