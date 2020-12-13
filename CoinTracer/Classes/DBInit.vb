@@ -1211,7 +1211,8 @@ Public Class DBInit
                                         "where not Konten.IstFiat and not Konten.Fix and Konten.ID < 311 and Konten.GebuehrKontoID is NULL"),
         New SqlUpdateSequenceStruct(VersionID:=37, CustomAction:=3),
         New SqlUpdateSequenceStruct(VersionID:=38, CustomAction:=-1),
-        New SqlUpdateSequenceStruct(VersionID:=39, CustomAction:=-1)
+        New SqlUpdateSequenceStruct(VersionID:=39, CustomAction:=-1),
+        New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=-1)
     }
 
 

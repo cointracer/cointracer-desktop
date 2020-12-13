@@ -236,23 +236,21 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW IF NOT EXISTS [VW_InCoins] AS 
         '''select
-        '''	t.ID TradeID,
-        '''	t.BetragNachGebuehr Betrag,
-        '''	t.ZielKontoID KontoID,
-        '''	case 
-        '''		when t.TradeTypID = 5 and (pt.Eigen and ps.Eigen) then
-        '''			case
-        '''				when ps.Boerse and pt.Boerse then 37
-        '''				when ps.Boerse and not pt.Boerse then 101
-        '''				else 69
-        '''			end
-        '''		when t.TradeTypID in (3, 4) and not ks.IstFiat and not kt.IstFiat then 19
-        '''		else t.TradeTypID
-        '''	end InTypID,
-        '''	t.ZielPlattformID PlattformID,
-        '''	t.ZeitpunktZiel Zeitpunkt,
-        '''	t.InZeitpunkt InZeitpunkt,
-        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  t.ID TradeID,
+        '''  t.BetragNachGebuehr Betrag,
+        '''  t.ZielKontoID KontoID,
+        '''  case 
+        '''    when t.TradeTypID = 5 and (pt.Eigen and ps.Eigen) then
+        '''      case
+        '''        when ps.Boerse and pt.Boerse then 37
+        '''        when ps.Boerse and not pt.Boerse then 101
+        '''        else 69
+        '''      end
+        '''    when t.TradeTypID in (3, 4) and not ks.IstFiat and not kt.IstFiat then 19
+        '''    else t.TradeTypID
+        '''  end InTypID,
+        '''  t.ZielPlattformID PlattformID,
+        '''  t.ZeitpunktZiel Zeitpunkt, [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property db_v39_16() As String
             Get
@@ -272,23 +270,22 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW IF NOT EXISTS [VW_OutCoins] AS 
         '''select
-        '''	t.ID TradeID,
-        '''	t.QuellBetrag Betrag,
-        '''	t.QuellKontoID KontoID,
-        '''	case
-        '''		when t.TradeTypID = 5 and (pt.Eigen and ps.Eigen) then
-        '''			case
-        '''				when ps.Boerse and pt.Boerse then 37
-        '''				when ps.Boerse and not pt.Boerse then 101
-        '''				else 69
-        '''			end
-        '''		when t.TradeTypID in (3, 4) and not ks.IstFiat and not kt.IstFiat then 19
-        '''		else t.TradeTypID
-        '''	end OutTypID,
-        '''	t.QuellPlattformID PlattformID,
-        '''	t.Zeitpunkt
-        '''from Trades as t
-        '''inner join Konten as ks on ks [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  t.ID TradeID,
+        '''  t.QuellBetrag Betrag,
+        '''  t.QuellKontoID KontoID,
+        '''  case
+        '''    when t.TradeTypID = 5 and (pt.Eigen and ps.Eigen) then
+        '''      case
+        '''        when ps.Boerse and pt.Boerse then 37
+        '''        when ps.Boerse and not pt.Boerse then 101
+        '''        else 69
+        '''      end
+        '''    when t.TradeTypID in (3, 4) and not ks.IstFiat and not kt.IstFiat then 19
+        '''    else t.TradeTypID
+        '''  end OutTypID,
+        '''  t.QuellPlattformID PlattformID,
+        '''  t.Zeitpunkt
+        '''from Trades as t [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property db_v39_18() As String
             Get
@@ -307,10 +304,10 @@ Namespace My.Resources
         
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die insert into TradeTypen(ID, Bezeichnung, Code, Beschreibung, SortID) values
-        '''	(19, &apos;Kauf Coins für Coins&apos;,&apos;BUYC4C&apos;, &apos;Kauf von Coins mit Coins als Zahlmittel&apos;, 19),
-        '''	(37, &apos;Transfer Börse zu Börse&apos;,&apos;TRNSP2P&apos;, &apos;Transfer von Coins zwischen zwei Börsen&apos;, 37),
-        '''	(69, &apos;Transfer Wallet zu Börse&apos;,&apos;TRNSW2P&apos;, &apos;Transfer von Coins von einem Wallet auf eine Börse&apos;, 69),
-        '''	(101, &apos;Transfer Börse zu Wallet&apos;,&apos;TRNSP2W&apos;, &apos;Transfer von Coins von einer Börse auf eine Wallet&apos;, 101) ähnelt.
+        '''  (19, &apos;Kauf Coins für Coins&apos;,&apos;BUYC4C&apos;, &apos;Kauf von Coins mit Coins als Zahlmittel&apos;, 19),
+        '''  (37, &apos;Transfer Börse zu Börse&apos;,&apos;TRNSP2P&apos;, &apos;Transfer von Coins zwischen zwei Börsen&apos;, 37),
+        '''  (69, &apos;Transfer Wallet zu Börse&apos;,&apos;TRNSW2P&apos;, &apos;Transfer von Coins von einem Wallet auf eine Börse&apos;, 69),
+        '''  (101, &apos;Transfer Börse zu Wallet&apos;,&apos;TRNSP2W&apos;, &apos;Transfer von Coins von einer Börse auf eine Wallet&apos;, 101) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property db_v39_20() As String
             Get
@@ -332,8 +329,8 @@ Namespace My.Resources
         '''select
         '''t.Zeitpunkt Zeitpunkt,
         '''case t.TradeTypID
-        '''	when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
-        '''	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(su [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
+        '''  when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce( [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property db_v39_22() As String
             Get
@@ -357,22 +354,21 @@ Namespace My.Resources
         '''t.Zeitpunkt Zeitpunkt,
         '''tt.Bezeichnung Art,
         '''case t.TradeTypID
-        '''	when 5 then qp.Bezeichnung || &apos; → &apos; || zp.Bezeichnung
-        '''	else qp.Bezeichnung 
+        '''  when 5 then qp.Bezeichnung || &apos; → &apos; || zp.Bezeichnung
+        '''  else qp.Bezeichnung 
         '''end Plattform,
         '''case t.TradeTypID
-        '''	when 3 then zk.Bezeichnung
-        '''	else qk.Bezeichnung 
+        '''  when 3 then zk.Bezeichnung
+        '''  else qk.Bezeichnung 
         '''end [Coin-Art],
         '''case t.TradeTypID
-        '''	when 3 then round(t.BetragNachGebuehr, 8)
-        '''	else round(t.QuellBetrag, 8) 
+        '''  when 3 then round(t.BetragNachGebuehr, 8)
+        '''  else round(t.QuellBetrag, 8) 
         '''end [Coin-Menge],
         '''case t.TradeTypID
-        '''	when 3 then qk.Bezeichnung
-        '''	when 5 then &apos;-&apos;
-        '''	else zk.Bezeichnung 
-        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  when 3 then qk.Bezeichnung
+        '''  when 5 then &apos;-&apos;
+        '''  else zk.Bezei [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property db_v39_24() As String
             Get
@@ -404,6 +400,78 @@ Namespace My.Resources
         Friend Shared ReadOnly Property db_v39_27() As String
             Get
                 Return ResourceManager.GetString("db_v39_27", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Plattformen set Boerse = 0 where Boerse = &apos;N&apos; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_01() As String
+            Get
+                Return ResourceManager.GetString("db_v40_01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Plattformen set Boerse = 1 where Boerse in (&apos;J&apos;, &apos;Y&apos;) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_02() As String
+            Get
+                Return ResourceManager.GetString("db_v40_02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Plattformen set Eigen = 0 where Eigen = &apos;N&apos; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_03() As String
+            Get
+                Return ResourceManager.GetString("db_v40_03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Plattformen set Eigen = 1 where Eigen in (&apos;J&apos;, &apos;Y&apos;) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_04() As String
+            Get
+                Return ResourceManager.GetString("db_v40_04", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Konten set IstFiat = 0 where IstFiat = &apos;N&apos; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_05() As String
+            Get
+                Return ResourceManager.GetString("db_v40_05", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Konten set IstFiat = 1 where IstFiat in (&apos;J&apos;, &apos;Y&apos;) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_06() As String
+            Get
+                Return ResourceManager.GetString("db_v40_06", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Konten set Eigen = 0 where Eigen = &apos;N&apos; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_07() As String
+            Get
+                Return ResourceManager.GetString("db_v40_07", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Konten set Eigen = 1 where Eigen in (&apos;J&apos;, &apos;Y&apos;) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_08() As String
+            Get
+                Return ResourceManager.GetString("db_v40_08", resourceCulture)
             End Get
         End Property
     End Class

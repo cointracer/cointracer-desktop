@@ -1041,7 +1041,7 @@ Public Class TradeValueManager
             Case CoinValueStrategies.MostExpensiveFirst
                 SortSql = "KursEUR DESC"                   ' Same applies here...
             Case Else
-                ' Standard: Fifo
+                ' Default: Fifo
                 SortSql = "Zeitpunkt ASC"
         End Select
 
@@ -1160,7 +1160,7 @@ Public Class TradeValueManager
                                           (InCoinRow.InTypID And 15) = DBHelper.TradeTypen.Transfer,
                                           IsNotTaxable(InCoinRow.InZeitpunkt, OutZeitpunkt))
                             If (InCoinRow.InTypID And 15) = DBHelper.TradeTypen.Transfer Then
-                                ' This InTrade was a transfer, so dig for the corresponding Out2In entries (= the entries, that are no transfers)
+                                ' This InTrade was a transfer, so dig for the corresponding Out2In entries (= the entries that are no transfers)
                                 AssignFromTransfer(OutTradeID,
                                                    OutZeitpunkt,
                                                    MainAmountToAssign * (InCoinAssignedAmount / InitialAmountToAssign),
