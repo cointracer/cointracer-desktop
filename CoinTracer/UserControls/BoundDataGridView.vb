@@ -40,7 +40,7 @@ Public Class BoundDataGridView
 
     ' IDisposable
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        If Not Me.disposedValue Then
+        If Not disposedValue Then
             Try
                 If _DBO IsNot Nothing Then
                     _DBO.Dispose()
@@ -48,10 +48,10 @@ Public Class BoundDataGridView
                 End If
                 If disposing Then
                     If components IsNot Nothing Then
-                        RemoveHandler Me.ContextMenuStrip.Items("mnuItmClearFilters").Click, AddressOf mnuItmClearFilters_Click
-                        RemoveHandler Me.ContextMenuStrip.Items("mnuItmCopyTable").Click, AddressOf mnuItmCopyTable_Click
-                        RemoveHandler Me.ContextMenuStrip.Items("mnuItmCopyRow").Click, AddressOf mnuItmCopyRow_Click
-                        RemoveHandler Me.ContextMenuStrip.Items("mnuItmCopyCell").Click, AddressOf mnuItmCopyCell_Click
+                        RemoveHandler ContextMenuStrip.Items("mnuItmClearFilters").Click, AddressOf mnuItmClearFilters_Click
+                        RemoveHandler ContextMenuStrip.Items("mnuItmCopyTable").Click, AddressOf mnuItmCopyTable_Click
+                        RemoveHandler ContextMenuStrip.Items("mnuItmCopyRow").Click, AddressOf mnuItmCopyRow_Click
+                        RemoveHandler ContextMenuStrip.Items("mnuItmCopyCell").Click, AddressOf mnuItmCopyCell_Click
                         components.Dispose()
                     End If
                 End If
@@ -59,7 +59,7 @@ Public Class BoundDataGridView
                 MyBase.Dispose(disposing)
             End Try
         End If
-        Me.disposedValue = True
+        disposedValue = True
     End Sub
 
 #End Region
@@ -90,8 +90,8 @@ Public Class BoundDataGridView
         'Benutzerdefinierten Zeichnungscode hier einfügen
         If Not _Initialized Then
             ' Kontextmenü ggf. erstellen & initialisieren
-            If Me.ContextMenuStrip Is Nothing Then
-                Me.ContextMenuStrip = New ContextMenuStrip()
+            If ContextMenuStrip Is Nothing Then
+                ContextMenuStrip = New ContextMenuStrip()
             End If
             ContextMenuStripInit()
             _Initialized = True
@@ -133,7 +133,7 @@ Public Class BoundDataGridView
     Public Sub BindGrid(SQL As String, Connection As SQLite.SQLiteConnection)
         _SQLStatement = SQL
         _Cnn = Connection
-        Me.AutoGenerateColumns = False
+        AutoGenerateColumns = False
     End Sub
     ''' <summary>
     ''' Bindet das GridView an den übergebenen TableAdapter
@@ -141,7 +141,7 @@ Public Class BoundDataGridView
     ''' <param name="DataTableAdapter">Ein SQLiteDataAdapter oder ein typisierter CoinTracerDataSetTableAdapter</param>
     Public Sub BindGrid(DataTableAdapter As Object)
         _TbA = DataTableAdapter
-        Me.AutoGenerateColumns = False
+        AutoGenerateColumns = False
     End Sub
 
     Private Sub SetBindingSource(DataSource As Object)
@@ -163,7 +163,7 @@ Public Class BoundDataGridView
             ' Nicht 100% robust - aber besser, als jeden TableAdapter-Typ einzeln abzufragen.
             ' Die unten stehende Zeile ist eine relativ elegante Lösung, um unabhängig vom aktuellen
             ' TableAdapter das notwendige DataTable-Objekt zu definieren. Well done!!
-            Dim Tb As Object = Activator.CreateInstance(Assembly.GetExecutingAssembly.FullName, _
+            Dim Tb As Object = Activator.CreateInstance(Assembly.GetExecutingAssembly.FullName,
                                                         Application.ProductName & ".CoinTracerDataSet+" & _TbA.GetType().Name.Replace("TableAdapter", "DataTable")).Unwrap()
             'Dim Tb As Object
             'Dim TaTyp As String = _TbA.GetType.Name
@@ -200,7 +200,7 @@ Public Class BoundDataGridView
     ''' Initialisiert die Standard-Menü-Items des Kontextmenüs
     ''' </summary>
     Private Sub ContextMenuStripInit()
-        With Me.ContextMenuStrip
+        With ContextMenuStrip
             ' Prüfen, ob Default-Kontextmenüeinträge schon vorhanden sind
             If .Items.ContainsKey("mnuItmCopyCell") Then
                 Exit Sub
@@ -251,7 +251,7 @@ Public Class BoundDataGridView
             .FileName = String.Format("cointracer_{1}_{0}.csv", Now.ToString("yyyy-MM-dd_HH.mm"), ControlName)
             If .ShowDialog(Me) = DialogResult.OK Then
                 Try
-                    CsvReaderWriter.WriteDataTableToCsv(TryCast(Me.DataSource.DataSource, DataTable), .FileName, True)
+                    CsvReaderWriter.WriteDataTableToCsv(TryCast(DataSource.DataSource, DataTable), .FileName, True)
                     MessageBox.Show(My.Resources.MyStrings.mainMsgSaveTableSuccess, My.Resources.MyStrings.mainMsgSaveTableSuccessTitle,
                                     MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Catch ex As Exception
@@ -262,17 +262,17 @@ Public Class BoundDataGridView
     End Sub
 
     Private Sub mnuItmCopyRow_Click(sender As Object, e As EventArgs)
-        If Me.SelectedCells.Count > 0 Then
-            DataGridViewToClipboard(Me, Me.CurrentCell.RowIndex)
+        If SelectedCells.Count > 0 Then
+            DataGridViewToClipboard(Me, CurrentCell.RowIndex)
         End If
 
     End Sub
 
     Private Sub mnuItmCopyCell_Click(sender As Object, e As EventArgs)
         Try
-            If Me.SelectedCells.Count > 0 Then
+            If SelectedCells.Count > 0 Then
                 Dim o As New DataObject
-                o.SetText(Me.CurrentCell.Value)
+                o.SetText(CurrentCell.Value)
                 Clipboard.SetDataObject(o, True)
             End If
         Catch ex As Exception
@@ -297,7 +297,7 @@ Public Class BoundDataGridView
 
     Private Sub BoundDataGridView_CellMouseDown(sender As Object, e As DataGridViewCellMouseEventArgs) Handles Me.CellMouseDown
         If e.ColumnIndex >= 0 And e.RowIndex >= 0 Then
-            Me.CurrentCell = Me.Rows(e.RowIndex).Cells(e.ColumnIndex)
+            CurrentCell = Rows(e.RowIndex).Cells(e.ColumnIndex)
         End If
     End Sub
 
@@ -308,10 +308,10 @@ Public Class BoundDataGridView
     ''' </summary>
     Private Sub BoundDataGridView_DataBindingComplete(sender As Object, e As DataGridViewBindingCompleteEventArgs) Handles Me.DataBindingComplete
 
-        If Not _NoRecursion And Me.Columns.Count = 0 Then
+        If Not _NoRecursion And Columns.Count = 0 Then
             Try
                 _NoRecursion = True
-                Dim Table As DataTable = TryCast(Me.DataSource.DataSource, DataTable)
+                Dim Table As DataTable = TryCast(DataSource.DataSource, DataTable)
                 If Table IsNot Nothing Then
                     For Each TableColumn As DataColumn In Table.Columns
                         Dim GridColumn As Object
@@ -329,10 +329,10 @@ Public Class BoundDataGridView
                             .Name = TableColumn.ColumnName
                             .DataPropertyName = TableColumn.ColumnName
                             .HeaderText = .Name
-                            .AutoSizeMode = Me.AutoSizeColumnsMode
-                            .ReadOnly = Me.ReadOnly
+                            .AutoSizeMode = AutoSizeColumnsMode
+                            .ReadOnly = [ReadOnly]
                         End With
-                        Me.Columns.Add(GridColumn)
+                        Columns.Add(GridColumn)
                     Next
                 End If
             Catch ex As Exception

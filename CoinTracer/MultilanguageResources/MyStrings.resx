@@ -863,6 +863,9 @@
   <data name="mainMsgScenarioSaveTitle" xml:space="preserve">
     <value>Szenario speichern</value>
   </data>
+  <data name="mainMsgScenarioUnsavedChanges" xml:space="preserve">
+    <value>Das Szenario '{0}' wurde verändert. Soll die Änderungen gespeichert werden?</value>
+  </data>
   <data name="errorNoCsvImport" xml:space="preserve">
     <value>Die CSV-Datei konnte nicht geöffnet werden, ein Import ist nicht möglich.</value>
   </data>

@@ -59,7 +59,7 @@ Public Class DataBoundComboBox
             Return _IDColumn
         End Get
         Set(ByVal value As String)
-            Me.ValueMember = value
+            ValueMember = value
             _IDColumn = value
         End Set
     End Property
@@ -70,23 +70,25 @@ Public Class DataBoundComboBox
             Return _DisplayColumn
         End Get
         Set(ByVal value As String)
-            Me.DisplayMember = value
+            DisplayMember = value
             _DisplayColumn = value
         End Set
     End Property
 
     Private _OriginalLabel As String
+    Private _TypedLabel As String
+    Private _AvoidCascade As Boolean
 
     Public ReadOnly Property LabelSticky() As Boolean
         Get
-            Return Me.Text <> "" And Me.Text <> _OriginalLabel
+            Return Text <> "" AndAlso _OriginalLabel <> _TypedLabel AndAlso _OriginalLabel <> ""
         End Get
     End Property
 
     Private _CustomSticky As Boolean
     Public Property Sticky() As Boolean
         Get
-            Return Me.LabelSticky Or _CustomSticky
+            Return LabelSticky Or _CustomSticky
         End Get
         Set(value As Boolean)
             _CustomSticky = value
@@ -134,14 +136,14 @@ Public Class DataBoundComboBox
     Public ReadOnly Property LabelPresent() As Boolean
         Get
             ' Prüfen, ob es den aktuellen Eintrag bereits gibt
-            Dim Present As Boolean = (Me.Text.Trim <> "")
-            If TryCast(Me.DataSource, DataTable) IsNot Nothing Then
-                Dim DV As New DataView(DirectCast(Me.DataSource, DataTable), _
-                                       String.Format("{0} = '{1}'", _DisplayColumn, Me.MaskedText), _
+            Dim Present As Boolean = (Text.Trim <> "")
+            If TryCast(DataSource, DataTable) IsNot Nothing Then
+                Dim DV As New DataView(DirectCast(DataSource, DataTable),
+                                       String.Format("{0} = '{1}'", _DisplayColumn, MaskedText),
                                        "", DataViewRowState.OriginalRows)
                 Present = Present And DV.Count > 0
             Else
-                Present = Present And Me.Items.Contains(Me.Text.Trim)
+                Present = Present And Items.Contains(Text.Trim)
             End If
             Return Present
         End Get
@@ -152,7 +154,7 @@ Public Class DataBoundComboBox
     ''' </summary>
     Public ReadOnly Property MaskedText() As String
         Get
-            Return Me.Text.Trim.Replace("'", "\'").Replace("""", "\'")
+            Return Text.Trim.Replace("'", "\'").Replace("""", "\'")
         End Get
     End Property
 
@@ -168,20 +170,21 @@ Public Class DataBoundComboBox
         _CustomSticky = False
         _DeleteButton = Nothing
         _SaveButton = Nothing
+        _AvoidCascade = False
 
     End Sub
 
-    Public Sub Initialize(Connection As Data.SQLite.SQLiteConnection, _
-                          SelectSQL As String, _
-                          Optional IDColumnName As String = "ID", _
-                          Optional DisplayColumnName As String = "Bezeichnung", _
-                          Optional SaveButton As Button = Nothing, _
+    Public Sub Initialize(Connection As Data.SQLite.SQLiteConnection,
+                          SelectSQL As String,
+                          Optional IDColumnName As String = "ID",
+                          Optional DisplayColumnName As String = "Bezeichnung",
+                          Optional SaveButton As Button = Nothing,
                           Optional DeleteButton As Button = Nothing)
         _cnn = Connection
         _SelectSQL = SelectSQL
         Try
             Dim DBO As DBObjects = New DBObjects(SelectSQL, Connection)
-            Me.DataSource = DBO.DataTable
+            DataSource = DBO.DataTable
             DBO.Dispose()
         Catch ex As Exception
             Throw
@@ -206,18 +209,19 @@ Public Class DataBoundComboBox
     ''' Lädt die Datenquelle des Controls neu
     ''' </summary>
     Public Sub Reload(Optional SelectValue As String = "")
-        If Me.Connection IsNot Nothing AndAlso Me.SelectSQL <> "" Then
+        If Connection IsNot Nothing AndAlso SelectSQL <> "" Then
+            _AvoidCascade = True
             Dim DBO As DBObjects = New DBObjects(SelectSQL, Connection)
-            Me.DataSource = DBO.DataTable
+            DataSource = DBO.DataTable
             DBO.Dispose()
-            Me.DisplayMember = _DisplayColumn
-            Me.ValueMember = _IDColumn
+            DisplayMember = _DisplayColumn
+            ValueMember = _IDColumn
             _CustomSticky = False
             If SelectValue <> "" Then
                 Try
-                    For i As Integer = 0 To Me.Items.Count
-                        If Me.Items(i)(_DisplayColumn).ToString = SelectValue Then
-                            Me.SelectedItem = Me.Items(i)
+                    For i As Integer = 0 To Items.Count
+                        If Items(i)(_DisplayColumn).ToString = SelectValue Then
+                            SelectedItem = Items(i)
                             Exit For
                         End If
                     Next
@@ -225,6 +229,7 @@ Public Class DataBoundComboBox
                     Debug.Print("DataBoundComboBox_Reload")
                 End Try
             End If
+            _AvoidCascade = False
         End If
     End Sub
 
@@ -236,9 +241,9 @@ Public Class DataBoundComboBox
     ''' Prüft, ob es Änderungen gibt und löst ggf. das Event "UnsavedChanges" aus
     ''' </summary>
     Private Sub CheckForChanges()
-        If LabelSticky OrElse _CustomSticky Then
+        If Not _AvoidCascade AndAlso (LabelSticky OrElse _CustomSticky) Then
             ' Event auslösen (Label geändert)
-            RaiseEvent UnsavedChanges(Me, New DataBoundComboBoxUnsavedChangesEventArgs(_OriginalLabel, Me.Text, Me.LabelPresent))
+            RaiseEvent UnsavedChanges(Me, New DataBoundComboBoxUnsavedChangesEventArgs(_TypedLabel, Text, LabelPresent))
         End If
     End Sub
 
@@ -259,15 +264,20 @@ Public Class DataBoundComboBox
 #Region "Control events"
 
     Private Sub DataBoundComboBox_TextChanged(sender As Object, e As EventArgs) Handles Me.TextChanged
-        DisEnableButtons()
+        If Not _AvoidCascade Then DisEnableButtons()
     End Sub
 
     Private Sub DataBoundComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Me.SelectedIndexChanged
         CheckForChanges()
-        _OriginalLabel = Me.Text
+        _OriginalLabel = Text
+        _TypedLabel = _OriginalLabel
         _CustomSticky = False
         DisEnableButtons()
         'MyBase.OnSelectedIndexChanged(e)
+    End Sub
+
+    Private Sub DataBoundComboBox_Click(sender As Object, e As EventArgs) Handles Me.Click
+        _TypedLabel = Text
     End Sub
 
 #End Region

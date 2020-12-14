@@ -44,14 +44,12 @@ Public Class ValueStrategySelector
     Protected Overrides Sub ScaleControl(factor As SizeF, specified As BoundsSpecified)
         MyBase.ScaleControl(factor, specified)
         ' Record the running scale factor used
-        Me.currentScaleFactor.Width *= factor.Width
-        Me.currentScaleFactor.Height *= factor.Height
+        currentScaleFactor.Width *= factor.Width
+        currentScaleFactor.Height *= factor.Height
         ' control specific positioning and sizing
         If factor.Width <> 1 Or factor.Height <> 1 Then
-            Me.Width *= currentScaleFactor.Width
+            Width *= currentScaleFactor.Width
             grpCVS1.Width *= currentScaleFactor.Width
-            grpCVS2.Width *= currentScaleFactor.Width
-            cbxAgePref.Left *= currentScaleFactor.Width
         End If
     End Sub
 
@@ -82,16 +80,8 @@ Public Class ValueStrategySelector
             _CVSObj = CoinValueStrategyObject
         End If
         With _CVSObj
-            Select Case .Preferration
-                Case CoinValuePreferrations.Above1YearPreferred
-                    cbxAgePref.SelectedItem = 1
-                Case CoinValuePreferrations.Below1YearPreferred
-                    cbxAgePref.SelectedItem = 2
-                Case Else
-                    cbxAgePref.SelectedItem = 0
-            End Select
             _AvoidCascade = True
-            Select Case _CVSObj.Below1YearStrategy
+            Select Case _CVSObj.ConsumptionStrategy
                 Case CoinValueStrategies.CheapestFirst
                     rbLofo.Checked = True
                 Case CoinValueStrategies.MostExpensiveFirst
@@ -101,18 +91,8 @@ Public Class ValueStrategySelector
                 Case CoinValueStrategies.OldestFirst
                     rbFifo.Checked = True
             End Select
-            Select Case _CVSObj.Above1YearStrategy
-                Case CoinValueStrategies.CheapestFirst
-                    rbLofo2.Checked = True
-                Case CoinValueStrategies.MostExpensiveFirst
-                    rbHifo2.Checked = True
-                Case CoinValueStrategies.YoungestFirst
-                    rbLifo2.Checked = True
-                Case CoinValueStrategies.OldestFirst
-                    rbFifo2.Checked = True
-            End Select
             StartEdit()
-            Me.Invalidate()
+            Invalidate()
         End With
         _AvoidCascade = False
     End Sub
@@ -122,31 +102,14 @@ Public Class ValueStrategySelector
     ''' </summary>
     Public Function GetValues() As CoinValueStrategy
         With _CVSObj
-            Select Case cbxAgePref.SelectedIndex
-                Case 1
-                    .Preferration = CoinValuePreferrations.Above1YearPreferred
-                Case 2
-                    .Preferration = CoinValuePreferrations.Below1YearPreferred
-                Case Else
-                    .Preferration = CoinValuePreferrations.NothingPreferred
-            End Select
             If rbFifo.Checked Then
-                .Below1YearStrategy = CoinValueStrategies.OldestFirst
+                .ConsumptionStrategy = CoinValueStrategies.OldestFirst
             ElseIf rbHifo.Checked Then
-                .Below1YearStrategy = CoinValueStrategies.MostExpensiveFirst
+                .ConsumptionStrategy = CoinValueStrategies.MostExpensiveFirst
             ElseIf rbLifo.Checked Then
-                .Below1YearStrategy = CoinValueStrategies.YoungestFirst
+                .ConsumptionStrategy = CoinValueStrategies.YoungestFirst
             Else
-                .Below1YearStrategy = CoinValueStrategies.CheapestFirst
-            End If
-            If rbFifo2.Checked Then
-                .Above1YearStrategy = CoinValueStrategies.OldestFirst
-            ElseIf rbHifo2.Checked Then
-                .Above1YearStrategy = CoinValueStrategies.MostExpensiveFirst
-            ElseIf rbLifo2.Checked Then
-                .Above1YearStrategy = CoinValueStrategies.YoungestFirst
-            Else
-                .Above1YearStrategy = CoinValueStrategies.CheapestFirst
+                .ConsumptionStrategy = CoinValueStrategies.CheapestFirst
             End If
         End With
         Return _CVSObj
@@ -156,7 +119,7 @@ Public Class ValueStrategySelector
     ''' Merkt sich die aktuell eingestellte Strategie und verwendet diese für den "Sticky"-Vergleich
     ''' </summary>
     Public Sub StartEdit()
-        _StartEditStrategy = Me.GetValues.ToString
+        _StartEditStrategy = GetValues.ToString
     End Sub
 
     ''' <summary>
@@ -164,19 +127,16 @@ Public Class ValueStrategySelector
     ''' </summary>
     Public ReadOnly Property Sticky() As Boolean
         Get
-            Return (Me.GetValues.ToString <> _StartEditStrategy)
+            Return (GetValues.ToString <> _StartEditStrategy)
         End Get
     End Property
 
 
     Private Sub rbSomething_CheckedChanged(sender As Object, e As EventArgs) Handles rbFifo.CheckedChanged,
-        rbFifo2.CheckedChanged,
         rbHifo.CheckedChanged,
-        rbHifo2.CheckedChanged,
         rbLifo.CheckedChanged,
-        rbLifo2.CheckedChanged,
-        rbLofo.CheckedChanged,
-        rbLofo2.CheckedChanged
+        rbLofo.CheckedChanged
+
         If Not _AvoidCascade Then
             RaiseEvent SettingsChanged(Me, New EventArgs())
         End If
@@ -187,7 +147,7 @@ Public Class ValueStrategySelector
     ''' </summary>
     ''' <remarks></remarks>
     Private Sub ResetControls()
-        SetValues("2,2,2,1,0")
+        SetValues(DefaultPropertyString)
     End Sub
 
     Public Sub New()
@@ -212,61 +172,10 @@ Public Class ValueStrategySelector
         End Get
         Set(ByVal value As Boolean)
             _FineTuning = value
-            cbxAgePref.Enabled = value
-            If Not value Then
-                cbxAgePref.SelectedIndex = 0
-            End If
             rbHifo.Enabled = value
             rbLofo.Enabled = value
-            Me.Invalidate()
+            Invalidate()
         End Set
     End Property
-
-    <Description("Legt fest, ob Coins älter oder jünger als 1 Jahr bevozugt werden und getrennte Verbrauchsfolgeverfahren einstellbar sein sollen.")>
-    <Category("Appearance")>
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
-    Public Property CoinPreferration() As CoinValuePreferrations
-        Get
-            Select Case cbxAgePref.SelectedIndex
-                Case 1
-                    Return CoinValuePreferrations.Above1YearPreferred
-                Case 2
-                    Return CoinValuePreferrations.Below1YearPreferred
-                Case Else
-                    Return CoinValuePreferrations.NothingPreferred
-            End Select
-        End Get
-        Set(ByVal value As CoinValuePreferrations)
-            Select Case value
-                Case CoinValuePreferrations.Above1YearPreferred
-                    cbxAgePref.SelectedIndex = 1
-                Case CoinValuePreferrations.Below1YearPreferred
-                    cbxAgePref.SelectedIndex = 2
-                Case Else
-                    cbxAgePref.SelectedIndex = 0
-            End Select
-            Me.Invalidate()
-        End Set
-    End Property
-
-
-    Private Sub cbxAgePref_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxAgePref.SelectedIndexChanged
-        If Not _AvoidCascade Then
-            pnlOlderCoins.Visible = (DirectCast(sender, ComboBox).SelectedIndex <> 0)
-            If pnlOlderCoins.Visible Then
-                grpCVS1.Text = My.Resources.MyStrings.cvsGoupLabelBelow1Year
-                grpCVS2.Text = My.Resources.MyStrings.cvsGoupLabelAbove1Year
-            Else
-                grpCVS1.Text = My.Resources.MyStrings.cvsGoupLabelDefault
-            End If
-            RaiseEvent SettingsChanged(Me, New EventArgs())
-        End If
-    End Sub
-
-    Private Sub cbxWalletAware_SelectedIndexChanged(sender As Object, e As EventArgs)
-        If Not _AvoidCascade Then
-            RaiseEvent SettingsChanged(Me, New EventArgs())
-        End If
-    End Sub
 
 End Class

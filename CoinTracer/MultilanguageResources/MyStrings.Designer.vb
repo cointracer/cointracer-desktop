@@ -2572,6 +2572,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Das Szenario &apos;{0}&apos; wurde verändert. Soll die Änderungen gespeichert werden? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property mainMsgScenarioUnsavedChanges() As String
+            Get
+                Return ResourceManager.GetString("mainMsgScenarioUnsavedChanges", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Bitte wählen Sie zuerst aus, was importiert werden soll! ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property mainMsgSelectImportMethod() As String

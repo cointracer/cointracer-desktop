@@ -36,10 +36,10 @@ Public Class DataPeriodControl
     Public Event SettingsChanged As EventHandler(Of EventArgs)
 
     Private _Cnn As SQLite.SQLiteConnection
-
     Private _LastValue As String
-
     Private _DS As CoinTracerDataSet
+    Private _AvoidCascade As Boolean = False
+
     Public ReadOnly Property DataSet() As CoinTracerDataSet
         Get
             Return _DS
@@ -111,6 +111,7 @@ Public Class DataPeriodControl
                 Throw New Exception
             End If
             tbxValue.Text = Convert.ToInt16(Parts(0))
+            _AvoidCascade = True
             Select Case Parts(1)
                 Case "years"
                     cbxUnit.SelectedIndex = 0
@@ -124,6 +125,8 @@ Public Class DataPeriodControl
             _LastValue = FromString
         Catch ex As Exception
             Throw New Exception(String.Format("Fehler bei der Interpretation des SQL-Date-Modifiers '{0}'! Ungültiges Format.", FromString))
+        Finally
+            _AvoidCascade = False
         End Try
 
     End Sub
@@ -160,16 +163,15 @@ Public Class DataPeriodControl
     ''' Speichert die aktuelle Einstellung des Controls in der Datenbank
     ''' </summary>
     Public Sub UpdateData()
-        _DS.Konfiguration(0).Wert = Me.ToString
+        _DS.Konfiguration(0).Wert = ToString()
         _KonfigurationTa.Update(_DS)
     End Sub
 
     Public ReadOnly Property Sticky() As Boolean
         Get
-            Return Not _LastValue = Me.ToString
+            Return (_LastValue <> "") AndAlso (Not _LastValue = ToString())
         End Get
     End Property
-
 
 
     Private Sub cbxUnit_KeyPress(sender As Object, e As KeyPressEventArgs) Handles cbxUnit.KeyPress
@@ -177,12 +179,16 @@ Public Class DataPeriodControl
     End Sub
 
     Private Sub cbxUnit_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxUnit.SelectedIndexChanged
-        RaiseEvent SettingsChanged(Me, e)
+        If Not _AvoidCascade Then
+            RaiseEvent SettingsChanged(Me, e)
+        End If
     End Sub
 
 
     Private Sub tbxValue_TextChanged(sender As Object, e As EventArgs) Handles tbxValue.TextChanged
-        RaiseEvent SettingsChanged(Me, e)
+        If Not _AvoidCascade Then
+            RaiseEvent SettingsChanged(Me, e)
+        End If
     End Sub
 
 End Class

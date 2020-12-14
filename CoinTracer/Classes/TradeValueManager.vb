@@ -449,8 +449,9 @@ Public Class TradeValueManager
     Private _TCS As frmMain.TaxCalculationSettings
 
     ' The following is needed only while assigning OutCoins to InCoins and is held class-wide for performance reasons
-    Private _CVSDictionary As Dictionary(Of Integer, CoinValueStrategy)
     Private _LongTermInterval As LongTermTaxPeriod
+    Private _CVS As CoinValueStrategy
+
 
     ''' <summary>
     ''' Initalisiert die Progressform für dieses Modul
@@ -496,17 +497,6 @@ Public Class TradeValueManager
     Public ReadOnly Property CointrackerDB() As DBHelper
         Get
             Return _CtDB
-        End Get
-    End Property
-
-    Private _CVS() As CoinValueStrategy
-    Public ReadOnly Property CoinValueStrategy(CoinBusinessCase As CoinBusinessCases) As CoinValueStrategy
-        Get
-            If _CVS(CoinBusinessCase) Is Nothing OrElse _CVS(CoinBusinessCase).IsEmpty Then
-                Return _CVS(CoinBusinessCases._Default)
-            Else
-                Return _CVS(CoinBusinessCase)
-            End If
         End Get
     End Property
 
@@ -891,16 +881,9 @@ Public Class TradeValueManager
                     Dim TotalOutRows As Long
                     Dim ChunkRowCount As Long
                     Dim OutTradeMinOutToInIDs As New Dictionary(Of Long, Long)
-                    Dim CVS As CoinValueStrategy
-                    _CVSDictionary = New Dictionary(Of Integer, CoinValueStrategy) From {
-                        {DBHelper.TradeTypen.Verkauf, _TCS.CoinValueStrategy(CoinBusinessCases.SellForFiat)},
-                        {DBHelper.TradeTypen.Verlust, _TCS.CoinValueStrategy(CoinBusinessCases.SellForFiat)},
-                        {DBHelper.TradeTypen.KaufCoin4Coin, _TCS.CoinValueStrategy(CoinBusinessCases.BuyForCoins)},
-                        {DBHelper.TradeTypen.Transfer, _TCS.CoinValueStrategy(CoinBusinessCases.Withdraw)},
-                        {DBHelper.TradeTypen.TransferBörseBörse, _TCS.CoinValueStrategy(CoinBusinessCases.TransferExchangeToExchange)},
-                        {DBHelper.TradeTypen.TransferBörseWallet, _TCS.CoinValueStrategy(CoinBusinessCases.TransferExchangeToWallet)},
-                        {DBHelper.TradeTypen.TransferWalletBörse, _TCS.CoinValueStrategy(CoinBusinessCases.TransferWalletToExchange)}}
+
                     _LongTermInterval = New LongTermTaxPeriod(_TCS.LongTermPeriodSQL)
+                    _CVS = _TCS.CoinValueStrategy
 
                     TotalOutRows = OutCoinsTb.Rows.Count
 
@@ -928,7 +911,6 @@ Public Class TradeValueManager
                             If Not OutTradesInCalculation.Contains("," & OutCoinRow.TradeID & ",") Then
                                 ' The OutTradeID may have already been cleared (by recursive call), so check this here
 
-                                CVS = _CVSDictionary(OutCoinRow.OutTypID)
                                 OutTradesInCalculation &= OutCoinRow.TradeID & ","
                                 Try
                                     AssignOutCoinToInCoins(OutCoinRow.Betrag,
@@ -940,7 +922,6 @@ Public Class TradeValueManager
                                                            InCoinsTb,
                                                            OutToInTb,
                                                            CalculationID,
-                                                           CVS,
                                                            New List(Of Long) From {OutCoinRow.TradeID},
                                                            OutTradesInCalculation,
                                                            OutTradeMinOutToInIDs)
@@ -1013,7 +994,6 @@ Public Class TradeValueManager
                                             ByRef InCoinsTable As VW_InCoinsDataTable,
                                             ByRef OutToInTable As Out2InDataTable,
                                             ByVal CalculationID As Long,
-                                            ByRef CVS As CoinValueStrategy,
                                             ByRef OutTradeIDs As List(Of Long),
                                             ByRef OutTradesInCalculation As String,
                                             ByRef OutTradeMinOutToInIDs As Dictionary(Of Long, Long)) As Decimal
@@ -1031,7 +1011,7 @@ Public Class TradeValueManager
         Dim FactorRow As Decimal
 
         ' Take care of the various CoinValuePreferences
-        Select Case CVS.CoinValueStrategy
+        Select Case _CVS.ConsumptionStrategy
             Case CoinValueStrategies.OldestFirst
                 SortSql = "Zeitpunkt ASC"
             Case CoinValueStrategies.YoungestFirst
@@ -1120,7 +1100,6 @@ Public Class TradeValueManager
                                                            InCoinsTable,
                                                            OutToInTable,
                                                            CalculationID,
-                                                           _CVSDictionary(InCoinRow.InTypID),
                                                            OutTradeIDs,
                                                            OutTradesInCalculation,
                                                            OutTradeMinOutToInIDs)

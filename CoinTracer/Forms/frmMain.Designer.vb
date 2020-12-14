@@ -46,29 +46,10 @@ Partial Class frmMain
     Friend WithEvents imlTabs As System.Windows.Forms.ImageList
     Friend WithEvents grpBestand As System.Windows.Forms.GroupBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents tctlCoinValueStrats As System.Windows.Forms.TabControl
-    Friend WithEvents tbpXChange2Wallet As System.Windows.Forms.TabPage
-    Friend WithEvents tbpWallet2XChange As System.Windows.Forms.TabPage
-    Friend WithEvents LabelXChange2Wallet As System.Windows.Forms.Label
-    Friend WithEvents LabelWallet2XChange As System.Windows.Forms.Label
-    Friend WithEvents tbpXChange2XChange As System.Windows.Forms.TabPage
-    Friend WithEvents LabelXChange2XChange As System.Windows.Forms.Label
-    Friend WithEvents vssXChange2Wallet As CoinTracer.ValueStrategySelector
-    Friend WithEvents vssWallet2XChange As CoinTracer.ValueStrategySelector
-    Friend WithEvents vssXChange2XChange As CoinTracer.ValueStrategySelector
-    Friend WithEvents tbpCoins4Fiat As System.Windows.Forms.TabPage
-    Friend WithEvents vssCoins4Fiat As CoinTracer.ValueStrategySelector
-    Friend WithEvents LabelCoins4Fiat As System.Windows.Forms.Label
-    Friend WithEvents tbpCoins4Coins As System.Windows.Forms.TabPage
-    Friend WithEvents vssCoins4Coins As CoinTracer.ValueStrategySelector
-    Friend WithEvents LabelCoins4Coins As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents cmdReloadDash As System.Windows.Forms.Button
     Friend WithEvents dshgrdAbgaenge As CoinTracer.DashboardDataGridView
     Friend WithEvents dshgrdBestaende As CoinTracer.DashboardDataGridView
-    Friend WithEvents tbpWithdrawal As System.Windows.Forms.TabPage
-    Friend WithEvents vssWithdrawal As CoinTracer.ValueStrategySelector
-    Friend WithEvents LabelWithdrawal As System.Windows.Forms.Label
     Friend WithEvents pnlDonate As System.Windows.Forms.Panel
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents cmdDonateBTC As System.Windows.Forms.Button
@@ -135,12 +116,6 @@ Partial Class frmMain
     Friend WithEvents tsmiEditPlattformen As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents cmnKonten As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents tsmiEditKonten As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents LabelWithdrawalNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelXChange2XChangeNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelWallet2XChangeNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelXChange2WalletNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelCoins4CoinsNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelCoins4FiatNotThere As System.Windows.Forms.Label
     Friend WithEvents lblRightMouse As System.Windows.Forms.Label
     Friend WithEvents lblSzenarioRpt As System.Windows.Forms.Label
     Friend WithEvents grpReportAdditionalData As System.Windows.Forms.GroupBox
@@ -158,10 +133,6 @@ Partial Class frmMain
     Friend WithEvents DataGridViewAutoFilterTextBoxColumn3 As CoinTracer.DataGridViewAutoFilterTextBoxColumn
     Friend WithEvents tbxReportAdvice As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents tbpGeneral As System.Windows.Forms.TabPage
-    Friend WithEvents lblHaltefrist As System.Windows.Forms.Label
-    Friend WithEvents dpctlHaltefrist As CoinTracer.DataPeriodControl
-    Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents ccbReportPlatforms As CoinTracer.CheckComboBox.CheckedComboBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
@@ -270,12 +241,8 @@ Partial Class frmMain
         Me.gnd2ndTab = New CoinTracer.GainingsDisplay()
         Me.cmdReloadGainings = New System.Windows.Forms.Button()
         Me.grpSettings = New System.Windows.Forms.GroupBox()
-        Me.tctlCoinValueStrats = New System.Windows.Forms.TabControl()
-        Me.tbpGeneral = New System.Windows.Forms.TabPage()
+        Me.vssGlobalStrategy = New CoinTracer.ValueStrategySelector()
         Me.cmdTCSExtended = New System.Windows.Forms.Button()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Separator1 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.cbxCoins4CoinsAccounting = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -285,30 +252,6 @@ Partial Class frmMain
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.tbpCoins4Fiat = New System.Windows.Forms.TabPage()
-        Me.LabelCoins4FiatNotThere = New System.Windows.Forms.Label()
-        Me.vssCoins4Fiat = New CoinTracer.ValueStrategySelector()
-        Me.LabelCoins4Fiat = New System.Windows.Forms.Label()
-        Me.tbpCoins4Coins = New System.Windows.Forms.TabPage()
-        Me.LabelCoins4CoinsNotThere = New System.Windows.Forms.Label()
-        Me.LabelCoins4Coins = New System.Windows.Forms.Label()
-        Me.vssCoins4Coins = New CoinTracer.ValueStrategySelector()
-        Me.tbpXChange2Wallet = New System.Windows.Forms.TabPage()
-        Me.LabelXChange2WalletNotThere = New System.Windows.Forms.Label()
-        Me.LabelXChange2Wallet = New System.Windows.Forms.Label()
-        Me.vssXChange2Wallet = New CoinTracer.ValueStrategySelector()
-        Me.tbpWallet2XChange = New System.Windows.Forms.TabPage()
-        Me.LabelWallet2XChangeNotThere = New System.Windows.Forms.Label()
-        Me.LabelWallet2XChange = New System.Windows.Forms.Label()
-        Me.vssWallet2XChange = New CoinTracer.ValueStrategySelector()
-        Me.tbpXChange2XChange = New System.Windows.Forms.TabPage()
-        Me.LabelXChange2XChangeNotThere = New System.Windows.Forms.Label()
-        Me.LabelXChange2XChange = New System.Windows.Forms.Label()
-        Me.vssXChange2XChange = New CoinTracer.ValueStrategySelector()
-        Me.tbpWithdrawal = New System.Windows.Forms.TabPage()
-        Me.LabelWithdrawalNotThere = New System.Windows.Forms.Label()
-        Me.LabelWithdrawal = New System.Windows.Forms.Label()
-        Me.vssWithdrawal = New CoinTracer.ValueStrategySelector()
         Me.tabReports = New System.Windows.Forms.TabPage()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.grpReportAdditionalData = New System.Windows.Forms.GroupBox()
@@ -432,14 +375,6 @@ Partial Class frmMain
         Me.grpCalculate.SuspendLayout()
         Me.grpGainings.SuspendLayout()
         Me.grpSettings.SuspendLayout()
-        Me.tctlCoinValueStrats.SuspendLayout()
-        Me.tbpGeneral.SuspendLayout()
-        Me.tbpCoins4Fiat.SuspendLayout()
-        Me.tbpCoins4Coins.SuspendLayout()
-        Me.tbpXChange2Wallet.SuspendLayout()
-        Me.tbpWallet2XChange.SuspendLayout()
-        Me.tbpXChange2XChange.SuspendLayout()
-        Me.tbpWithdrawal.SuspendLayout()
         Me.tabReports.SuspendLayout()
         Me.grpReportAdditionalData.SuspendLayout()
         CType(Me.grdReport, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1012,65 +947,31 @@ Partial Class frmMain
         'grpSettings
         '
         resources.ApplyResources(Me.grpSettings, "grpSettings")
-        Me.grpSettings.Controls.Add(Me.tctlCoinValueStrats)
+        Me.grpSettings.Controls.Add(Me.vssGlobalStrategy)
+        Me.grpSettings.Controls.Add(Me.cmdTCSExtended)
+        Me.grpSettings.Controls.Add(Me.Label17)
+        Me.grpSettings.Controls.Add(Me.cbxCoins4CoinsAccounting)
+        Me.grpSettings.Controls.Add(Me.Label16)
+        Me.grpSettings.Controls.Add(Me.cbxWalletAware)
+        Me.grpSettings.Controls.Add(Me.lblHaltefrist)
+        Me.grpSettings.Controls.Add(Me.dpctlHaltefrist)
+        Me.grpSettings.Controls.Add(Me.Label5)
+        Me.grpSettings.Controls.Add(Me.Label18)
+        Me.grpSettings.Controls.Add(Me.Label14)
         Me.grpSettings.Name = "grpSettings"
         Me.grpSettings.TabStop = False
         '
-        'tctlCoinValueStrats
+        'vssGlobalStrategy
         '
-        resources.ApplyResources(Me.tctlCoinValueStrats, "tctlCoinValueStrats")
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpGeneral)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpCoins4Fiat)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpCoins4Coins)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpXChange2Wallet)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpWallet2XChange)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpXChange2XChange)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpWithdrawal)
-        Me.tctlCoinValueStrats.Name = "tctlCoinValueStrats"
-        Me.tctlCoinValueStrats.SelectedIndex = 0
-        '
-        'tbpGeneral
-        '
-        Me.tbpGeneral.Controls.Add(Me.cmdTCSExtended)
-        Me.tbpGeneral.Controls.Add(Me.Label20)
-        Me.tbpGeneral.Controls.Add(Me.Label19)
-        Me.tbpGeneral.Controls.Add(Me.Separator1)
-        Me.tbpGeneral.Controls.Add(Me.Label17)
-        Me.tbpGeneral.Controls.Add(Me.cbxCoins4CoinsAccounting)
-        Me.tbpGeneral.Controls.Add(Me.Label16)
-        Me.tbpGeneral.Controls.Add(Me.cbxWalletAware)
-        Me.tbpGeneral.Controls.Add(Me.lblHaltefrist)
-        Me.tbpGeneral.Controls.Add(Me.dpctlHaltefrist)
-        Me.tbpGeneral.Controls.Add(Me.Label5)
-        Me.tbpGeneral.Controls.Add(Me.Label18)
-        Me.tbpGeneral.Controls.Add(Me.Label14)
-        resources.ApplyResources(Me.tbpGeneral, "tbpGeneral")
-        Me.tbpGeneral.Name = "tbpGeneral"
-        Me.tbpGeneral.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.vssGlobalStrategy, "vssGlobalStrategy")
+        Me.vssGlobalStrategy.FineTuningEnabled = True
+        Me.vssGlobalStrategy.Name = "vssGlobalStrategy"
         '
         'cmdTCSExtended
         '
         resources.ApplyResources(Me.cmdTCSExtended, "cmdTCSExtended")
         Me.cmdTCSExtended.Name = "cmdTCSExtended"
         Me.cmdTCSExtended.UseVisualStyleBackColor = True
-        '
-        'Label20
-        '
-        resources.ApplyResources(Me.Label20, "Label20")
-        Me.Label20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label20.Name = "Label20"
-        '
-        'Label19
-        '
-        resources.ApplyResources(Me.Label19, "Label19")
-        Me.Label19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label19.Name = "Label19"
-        '
-        'Separator1
-        '
-        resources.ApplyResources(Me.Separator1, "Separator1")
-        Me.Separator1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Separator1.Name = "Separator1"
         '
         'Label17
         '
@@ -1125,168 +1026,6 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.Label14, "Label14")
         Me.Label14.Name = "Label14"
-        '
-        'tbpCoins4Fiat
-        '
-        Me.tbpCoins4Fiat.Controls.Add(Me.LabelCoins4FiatNotThere)
-        Me.tbpCoins4Fiat.Controls.Add(Me.vssCoins4Fiat)
-        Me.tbpCoins4Fiat.Controls.Add(Me.LabelCoins4Fiat)
-        resources.ApplyResources(Me.tbpCoins4Fiat, "tbpCoins4Fiat")
-        Me.tbpCoins4Fiat.Name = "tbpCoins4Fiat"
-        Me.tbpCoins4Fiat.UseVisualStyleBackColor = True
-        '
-        'LabelCoins4FiatNotThere
-        '
-        resources.ApplyResources(Me.LabelCoins4FiatNotThere, "LabelCoins4FiatNotThere")
-        Me.LabelCoins4FiatNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelCoins4FiatNotThere.Name = "LabelCoins4FiatNotThere"
-        '
-        'vssCoins4Fiat
-        '
-        resources.ApplyResources(Me.vssCoins4Fiat, "vssCoins4Fiat")
-        Me.vssCoins4Fiat.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssCoins4Fiat.FineTuningEnabled = False
-        Me.vssCoins4Fiat.Name = "vssCoins4Fiat"
-        '
-        'LabelCoins4Fiat
-        '
-        resources.ApplyResources(Me.LabelCoins4Fiat, "LabelCoins4Fiat")
-        Me.LabelCoins4Fiat.Name = "LabelCoins4Fiat"
-        '
-        'tbpCoins4Coins
-        '
-        Me.tbpCoins4Coins.Controls.Add(Me.LabelCoins4CoinsNotThere)
-        Me.tbpCoins4Coins.Controls.Add(Me.LabelCoins4Coins)
-        Me.tbpCoins4Coins.Controls.Add(Me.vssCoins4Coins)
-        resources.ApplyResources(Me.tbpCoins4Coins, "tbpCoins4Coins")
-        Me.tbpCoins4Coins.Name = "tbpCoins4Coins"
-        Me.tbpCoins4Coins.UseVisualStyleBackColor = True
-        '
-        'LabelCoins4CoinsNotThere
-        '
-        resources.ApplyResources(Me.LabelCoins4CoinsNotThere, "LabelCoins4CoinsNotThere")
-        Me.LabelCoins4CoinsNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelCoins4CoinsNotThere.Name = "LabelCoins4CoinsNotThere"
-        '
-        'LabelCoins4Coins
-        '
-        resources.ApplyResources(Me.LabelCoins4Coins, "LabelCoins4Coins")
-        Me.LabelCoins4Coins.Name = "LabelCoins4Coins"
-        '
-        'vssCoins4Coins
-        '
-        resources.ApplyResources(Me.vssCoins4Coins, "vssCoins4Coins")
-        Me.vssCoins4Coins.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssCoins4Coins.FineTuningEnabled = True
-        Me.vssCoins4Coins.Name = "vssCoins4Coins"
-        '
-        'tbpXChange2Wallet
-        '
-        Me.tbpXChange2Wallet.Controls.Add(Me.LabelXChange2WalletNotThere)
-        Me.tbpXChange2Wallet.Controls.Add(Me.LabelXChange2Wallet)
-        Me.tbpXChange2Wallet.Controls.Add(Me.vssXChange2Wallet)
-        resources.ApplyResources(Me.tbpXChange2Wallet, "tbpXChange2Wallet")
-        Me.tbpXChange2Wallet.Name = "tbpXChange2Wallet"
-        Me.tbpXChange2Wallet.UseVisualStyleBackColor = True
-        '
-        'LabelXChange2WalletNotThere
-        '
-        resources.ApplyResources(Me.LabelXChange2WalletNotThere, "LabelXChange2WalletNotThere")
-        Me.LabelXChange2WalletNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelXChange2WalletNotThere.Name = "LabelXChange2WalletNotThere"
-        '
-        'LabelXChange2Wallet
-        '
-        resources.ApplyResources(Me.LabelXChange2Wallet, "LabelXChange2Wallet")
-        Me.LabelXChange2Wallet.Name = "LabelXChange2Wallet"
-        '
-        'vssXChange2Wallet
-        '
-        resources.ApplyResources(Me.vssXChange2Wallet, "vssXChange2Wallet")
-        Me.vssXChange2Wallet.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssXChange2Wallet.FineTuningEnabled = True
-        Me.vssXChange2Wallet.Name = "vssXChange2Wallet"
-        '
-        'tbpWallet2XChange
-        '
-        Me.tbpWallet2XChange.Controls.Add(Me.LabelWallet2XChangeNotThere)
-        Me.tbpWallet2XChange.Controls.Add(Me.LabelWallet2XChange)
-        Me.tbpWallet2XChange.Controls.Add(Me.vssWallet2XChange)
-        resources.ApplyResources(Me.tbpWallet2XChange, "tbpWallet2XChange")
-        Me.tbpWallet2XChange.Name = "tbpWallet2XChange"
-        Me.tbpWallet2XChange.UseVisualStyleBackColor = True
-        '
-        'LabelWallet2XChangeNotThere
-        '
-        resources.ApplyResources(Me.LabelWallet2XChangeNotThere, "LabelWallet2XChangeNotThere")
-        Me.LabelWallet2XChangeNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelWallet2XChangeNotThere.Name = "LabelWallet2XChangeNotThere"
-        '
-        'LabelWallet2XChange
-        '
-        resources.ApplyResources(Me.LabelWallet2XChange, "LabelWallet2XChange")
-        Me.LabelWallet2XChange.Name = "LabelWallet2XChange"
-        '
-        'vssWallet2XChange
-        '
-        resources.ApplyResources(Me.vssWallet2XChange, "vssWallet2XChange")
-        Me.vssWallet2XChange.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssWallet2XChange.FineTuningEnabled = True
-        Me.vssWallet2XChange.Name = "vssWallet2XChange"
-        '
-        'tbpXChange2XChange
-        '
-        Me.tbpXChange2XChange.Controls.Add(Me.LabelXChange2XChangeNotThere)
-        Me.tbpXChange2XChange.Controls.Add(Me.LabelXChange2XChange)
-        Me.tbpXChange2XChange.Controls.Add(Me.vssXChange2XChange)
-        resources.ApplyResources(Me.tbpXChange2XChange, "tbpXChange2XChange")
-        Me.tbpXChange2XChange.Name = "tbpXChange2XChange"
-        Me.tbpXChange2XChange.UseVisualStyleBackColor = True
-        '
-        'LabelXChange2XChangeNotThere
-        '
-        resources.ApplyResources(Me.LabelXChange2XChangeNotThere, "LabelXChange2XChangeNotThere")
-        Me.LabelXChange2XChangeNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelXChange2XChangeNotThere.Name = "LabelXChange2XChangeNotThere"
-        '
-        'LabelXChange2XChange
-        '
-        resources.ApplyResources(Me.LabelXChange2XChange, "LabelXChange2XChange")
-        Me.LabelXChange2XChange.Name = "LabelXChange2XChange"
-        '
-        'vssXChange2XChange
-        '
-        resources.ApplyResources(Me.vssXChange2XChange, "vssXChange2XChange")
-        Me.vssXChange2XChange.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssXChange2XChange.FineTuningEnabled = True
-        Me.vssXChange2XChange.Name = "vssXChange2XChange"
-        '
-        'tbpWithdrawal
-        '
-        Me.tbpWithdrawal.Controls.Add(Me.LabelWithdrawalNotThere)
-        Me.tbpWithdrawal.Controls.Add(Me.LabelWithdrawal)
-        Me.tbpWithdrawal.Controls.Add(Me.vssWithdrawal)
-        resources.ApplyResources(Me.tbpWithdrawal, "tbpWithdrawal")
-        Me.tbpWithdrawal.Name = "tbpWithdrawal"
-        Me.tbpWithdrawal.UseVisualStyleBackColor = True
-        '
-        'LabelWithdrawalNotThere
-        '
-        resources.ApplyResources(Me.LabelWithdrawalNotThere, "LabelWithdrawalNotThere")
-        Me.LabelWithdrawalNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelWithdrawalNotThere.Name = "LabelWithdrawalNotThere"
-        '
-        'LabelWithdrawal
-        '
-        resources.ApplyResources(Me.LabelWithdrawal, "LabelWithdrawal")
-        Me.LabelWithdrawal.Name = "LabelWithdrawal"
-        '
-        'vssWithdrawal
-        '
-        resources.ApplyResources(Me.vssWithdrawal, "vssWithdrawal")
-        Me.vssWithdrawal.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssWithdrawal.FineTuningEnabled = True
-        Me.vssWithdrawal.Name = "vssWithdrawal"
         '
         'tabReports
         '
@@ -2148,21 +1887,7 @@ Partial Class frmMain
         Me.grpGainings.ResumeLayout(False)
         Me.grpGainings.PerformLayout()
         Me.grpSettings.ResumeLayout(False)
-        Me.tctlCoinValueStrats.ResumeLayout(False)
-        Me.tbpGeneral.ResumeLayout(False)
-        Me.tbpGeneral.PerformLayout()
-        Me.tbpCoins4Fiat.ResumeLayout(False)
-        Me.tbpCoins4Fiat.PerformLayout()
-        Me.tbpCoins4Coins.ResumeLayout(False)
-        Me.tbpCoins4Coins.PerformLayout()
-        Me.tbpXChange2Wallet.ResumeLayout(False)
-        Me.tbpXChange2Wallet.PerformLayout()
-        Me.tbpWallet2XChange.ResumeLayout(False)
-        Me.tbpWallet2XChange.PerformLayout()
-        Me.tbpXChange2XChange.ResumeLayout(False)
-        Me.tbpXChange2XChange.PerformLayout()
-        Me.tbpWithdrawal.ResumeLayout(False)
-        Me.tbpWithdrawal.PerformLayout()
+        Me.grpSettings.PerformLayout()
         Me.tabReports.ResumeLayout(False)
         Me.tabReports.PerformLayout()
         Me.grpReportAdditionalData.ResumeLayout(False)
@@ -2239,16 +1964,6 @@ Partial Class frmMain
     Friend WithEvents tsmiViewCalculations As ToolStripMenuItem
     Friend WithEvents NewDBToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents cmdDonateIota As Button
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents cbxWalletAware As ComboBox
-    Friend WithEvents Label18 As Label
-    Friend WithEvents Label17 As Label
-    Friend WithEvents cbxCoins4CoinsAccounting As ComboBox
-    Friend WithEvents cmdTCSExtended As Button
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Separator1 As Label
     Friend WithEvents Vorgang As DataGridViewTextBoxColumn
     Friend WithEvents Timestamp As DataGridViewTextBoxColumn
     Friend WithEvents Art As DataGridViewAutoFilterTextBoxColumn
@@ -2268,4 +1983,15 @@ Partial Class frmMain
     Friend WithEvents Gaining As DataGridViewTextBoxColumn
     Friend WithEvents TaxFree As DataGridViewAutoFilterTextBoxColumn
     Friend WithEvents LizenzinformationenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents cmdTCSExtended As Button
+    Friend WithEvents Label17 As Label
+    Friend WithEvents cbxCoins4CoinsAccounting As ComboBox
+    Friend WithEvents Label16 As Label
+    Friend WithEvents cbxWalletAware As ComboBox
+    Friend WithEvents lblHaltefrist As Label
+    Friend WithEvents dpctlHaltefrist As DataPeriodControl
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents vssGlobalStrategy As ValueStrategySelector
 End Class

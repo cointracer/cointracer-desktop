@@ -32,8 +32,7 @@
 Imports CoinTracer.DBHelper
 Imports System.IO
 Imports System.Environment
-
-
+Imports CoinTracer
 
 Public Class frmMain
 
@@ -45,8 +44,15 @@ Public Class frmMain
     Public Class TaxCalculationSettings
 
         Private _frmMain As frmMain
+        Private _LoadedLongTermPeriod As String
+        Private _LoadedCVS As String
+        Private _LoadedCoins4CoinsAccounting As Boolean
+        Private _LoadedToleranceMinutes As Long
+        Private _LoadedWalletAware As Boolean
+        Private _AvoidCascade As Boolean
 
         Public Sub New(FormInstance As frmMain)
+            _AvoidCascade = False
             _frmMain = FormInstance
         End Sub
 
@@ -56,12 +62,7 @@ Public Class frmMain
         ''' <returns>String mit den Einstellungen aller Reiter</returns>
         Public Overrides Function ToString() As String
             Dim AllVals As String = ""
-            AllVals = _frmMain.vssXChange2Wallet.GetValues.ToString & "|" &
-            _frmMain.vssWallet2XChange.GetValues.ToString & "|" &
-            _frmMain.vssXChange2XChange.GetValues.ToString & "|" &
-            _frmMain.vssCoins4Coins.GetValues.ToString & "|" &
-            _frmMain.vssCoins4Fiat.GetValues.ToString & "|" &
-            _frmMain.vssWithdrawal.GetValues.ToString & "|" &
+            AllVals = _frmMain.vssGlobalStrategy.GetValues.ToString & "|" &
             _frmMain.dpctlHaltefrist.ToString & "|" &
             WalletAware.ToString & "|" &
             Coins4CoinsAccounting.ToString & "|" &
@@ -76,13 +77,9 @@ Public Class frmMain
         Public Sub FromString(AllCoinValueStrategies As String)
             Dim CVS() As String
             CVS = Split(AllCoinValueStrategies, "|")
+            _AvoidCascade = True
             If DirectCast(CVS, ICollection).Count >= 6 Then
-                _frmMain.vssXChange2Wallet.SetValues(CVS(0))
-                _frmMain.vssWallet2XChange.SetValues(CVS(1))
-                _frmMain.vssXChange2XChange.SetValues(CVS(2))
-                _frmMain.vssCoins4Coins.SetValues(CVS(3))
-                _frmMain.vssCoins4Fiat.SetValues(CVS(4))
-                _frmMain.vssWithdrawal.SetValues(CVS(5))
+                _frmMain.vssGlobalStrategy.SetValues(CVS(0))
                 If DirectCast(CVS, ICollection).Count > 6 Then
                     _frmMain.dpctlHaltefrist.FromString(CVS(6))
                 Else
@@ -104,7 +101,20 @@ Public Class frmMain
                 Else
                     ToleranceMinutes = 10       ' Default value!
                 End If
+            ElseIf DirectCast(CVS, ICollection).Count = 5 Then
+                ' new, stripped features (sincs 2020-12)
+                _LoadedWalletAware = CVS(2)
+                _LoadedCoins4CoinsAccounting = CVS(3)
+                WalletAware = CVS(2)
+                Coins4CoinsAccounting = CVS(3)
+                _LoadedToleranceMinutes = CVS(4)
+                ToleranceMinutes = CVS(4)
+                _LoadedCVS = CVS(0)
+                _frmMain.vssGlobalStrategy.SetValues(CVS(0))
+                _LoadedLongTermPeriod = CVS(1)
+                _frmMain.dpctlHaltefrist.FromString(CVS(1))
             End If
+            _AvoidCascade = False
         End Sub
 
         ''' <summary>
@@ -153,13 +163,6 @@ Public Class frmMain
             End Set
         End Property
 
-        Private _LoadedWalletAware As Boolean
-        Public ReadOnly Property LoadedWalletAware() As Boolean
-            Get
-                Return _LoadedWalletAware
-            End Get
-        End Property
-
         Public Property Coins4CoinsAccounting() As Boolean
             Get
                 Return _frmMain.cbxCoins4CoinsAccounting.SelectedIndex = 1
@@ -173,38 +176,32 @@ Public Class frmMain
             End Set
         End Property
 
-        Private _LoadedCoins4CoinsAccounting As Boolean
-        Public ReadOnly Property LoadedCoins4CoinsAccounting() As Boolean
-            Get
-                Return _LoadedCoins4CoinsAccounting
-            End Get
-        End Property
-
         Public ReadOnly Property LongTermPeriodSQL() As String
             Get
                 Return _frmMain.dpctlHaltefrist.ToString
             End Get
         End Property
 
-        Public Function CoinValueStrategy(ByVal BusinessCase As CoinBusinessCases) As CoinValueStrategy
-            Select Case BusinessCase
-                Case CoinBusinessCases.TransferExchangeToWallet
-                    Return New CoinValueStrategy(_frmMain.vssXChange2Wallet.GetValues.ToString)
-                Case CoinBusinessCases.TransferWalletToExchange
-                    Return New CoinValueStrategy(_frmMain.vssWallet2XChange.GetValues.ToString)
-                Case CoinBusinessCases.TransferExchangeToExchange
-                    Return New CoinValueStrategy(_frmMain.vssXChange2XChange.GetValues.ToString)
-                Case CoinBusinessCases.BuyForCoins, CoinBusinessCases.SellForCoins
-                    Return New CoinValueStrategy(_frmMain.vssCoins4Coins.GetValues.ToString)
-                Case CoinBusinessCases.SellForFiat
-                    Return New CoinValueStrategy(_frmMain.vssCoins4Fiat.GetValues.ToString)
-                Case CoinBusinessCases.Withdraw
-                    Return New CoinValueStrategy(_frmMain.vssWithdrawal.GetValues.ToString)
-                Case Else
-                    Return Nothing
-            End Select
+        Public Function CoinValueStrategy() As CoinValueStrategy
+            Dim Result = New CoinValueStrategy(_frmMain.vssGlobalStrategy.GetValues.ToString)
+            Result.WalletAware = WalletAware
+            Result.Coin4CoinAware = Coins4CoinsAccounting
+            Return Result
         End Function
 
+        Public ReadOnly Property Sticky() As Boolean
+            Get
+                If _AvoidCascade Then
+                    Return False
+                Else
+                    Return (_LoadedCoins4CoinsAccounting <> Coins4CoinsAccounting) _
+                        Or (_LoadedWalletAware <> WalletAware) _
+                        Or (_LoadedToleranceMinutes <> ToleranceMinutes) _
+                        Or (_LoadedLongTermPeriod <> LongTermPeriodSQL) _
+                        Or (_LoadedCVS <> _frmMain.vssGlobalStrategy.GetValues.ToString)
+                End If
+            End Get
+        End Property
     End Class
 
 #End Region
@@ -480,9 +477,6 @@ Public Class frmMain
         ' Generierung von Spalten in ausgewählten DataGridViews ausschalten
         grdReport.AutoGenerateColumns = False
 
-        ' Tabs im CoinValueStrategySelector
-        RefreshCoinValueStrats()
-
         ' Tabellen-Grids initialisieren
         grdTrades.BindGrid(New CoinTracerDataSetTableAdapters.VW_TradesTableAdapter())
         grdImporte.BindGrid(New CoinTracerDataSetTableAdapters.VW_ImporteTableAdapter())
@@ -726,7 +720,6 @@ Public Class frmMain
         FillDataTimesGrid()
         dshgrdBestaende.Reload()
         dshgrdAbgaenge.Reload()
-        RefreshCoinValueStrats()
         If TradeImport.LastTransfersInserted > 0 Then
             If MsgBoxEx.ShowWithNotAgainOption("GoToTransfersAfterImport", Windows.Forms.DialogResult.No,
                                                My.Resources.MyStrings.mainMsgNewTransfers,
@@ -773,7 +766,6 @@ Public Class frmMain
                 RefreshCourseDisplays()
                 FillDataTimesGrid()
                 ClearReportsGrid()
-                RefreshCoinValueStrats(True)
                 ReloadTablesTab()
                 _TVM_GainingsCutOffDayChanged(_TVM, New GainingsCutOffDayEventArgs(_TVM.GetGainingsCutOffDay))
                 MessageBox.Show(My.Resources.MyStrings.mainMsgDeleteDB3, DlgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1269,31 +1261,6 @@ Public Class frmMain
         End Try
     End Sub
 
-    ''' <summary>
-    ''' De-/Aktiviert die Tabs des CoinValueStrategyTabstrips anhand der Trade-Daten
-    ''' </summary>
-    ''' <remarks></remarks>
-    Private Sub RefreshCoinValueStrats(Optional DisableAll As Boolean = False)
-        With tctlCoinValueStrats
-            Dim Items As String()() = {({"Coins4Fiat", CInt(CoinBusinessCases.SellForFiat).ToString}),
-                                    ({"Coins4Coins", CInt(CoinBusinessCases.BuyForCoins).ToString}),
-                                    ({"XChange2Wallet", CInt(CoinBusinessCases.TransferExchangeToWallet).ToString}),
-                                    ({"Wallet2XChange", CInt(CoinBusinessCases.TransferWalletToExchange).ToString}),
-                                    ({"XChange2XChange", CInt(CoinBusinessCases.TransferExchangeToExchange).ToString}),
-                                    ({"Withdrawal", CInt(CoinBusinessCases.Withdraw).ToString})}
-
-            For i As Integer = 0 To UBound(Items)
-                If DisableAll = False AndAlso _TVM.CoinBusinessCasePresent(Items(i)(1)) > 0 Then
-                    Me.Controls.Find("Label" & Items(i)(0) & "NotThere", True)(0).Visible = False
-                    Me.Controls.Find("Label" & Items(i)(0), True)(0).Text = Me.Controls.Find("Label" & Items(i)(0), True)(0).Text.Trim
-                Else
-                    Me.Controls.Find("Label" & Items(i)(0) & "NotThere", True)(0).Visible = True
-                    Me.Controls.Find("Label" & Items(i)(0), True)(0).Text = Me.Controls.Find("Label" & Items(i)(0), True)(0).Text.Trim & NewLine
-                End If
-            Next i
-        End With
-    End Sub
-
     Private Sub tctlTables_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tctlTables.SelectedIndexChanged
         ReloadTablesTab()
     End Sub
@@ -1350,7 +1317,6 @@ Public Class frmMain
         RefreshOpenTransfers()
         dshgrdBestaende.Reload()
         dshgrdAbgaenge.Reload()
-        RefreshCoinValueStrats()
     End Sub
 
     Private Sub tsmiEditTrades_Click(sender As Object, e As EventArgs) Handles tsmiEditTrades.Click
@@ -1490,7 +1456,6 @@ Public Class frmMain
                             ReloadDashGrids()
                             RefreshCourseDisplays()
                             FillDataTimesGrid()
-                            RefreshCoinValueStrats()
                             ReloadTablesTab()
                             ' Bei gelöschtem API-Import auf ggf. notwendige Zeitanpassung hinweisen
                             If ApiDatenID > 0 Then
@@ -1532,10 +1497,24 @@ Public Class frmMain
         End If
         If Not Cancel Then
             ' Save scenario
-            Dim TA As New CoinTracerDataSetTableAdapters.SzenarienTableAdapter
-            Dim Tb As New CoinTracerDataSet.SzenarienDataTable
-            If Present Then
-                If TA.FillBy(Tb, cbxSzenario.Text) > 0 Then
+            SaveScenario(cbxSzenario.Text, Present, cbxSzenario.Text)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Save the current scenario details as scenario [ScenarioToSaveLabel]
+    ''' </summary>
+    ''' <param name="ScenarioToSaveLabel">Name of the scenario. Will be created if not already present</param>
+    ''' <param name="AlreadyPresent">True if the scenario already exists, false otherwise</param>
+    ''' <param name="ScenarioToLoadLabel">Switch to this scenario after saving</param>
+    Private Sub SaveScenario(ScenarioToSaveLabel As String,
+                             AlreadyPresent As Boolean,
+                             ScenarioToLoadLabel As String)
+        Dim TA As New CoinTracerDataSetTableAdapters.SzenarienTableAdapter
+        Dim Tb As New CoinTracerDataSet.SzenarienDataTable
+        Try
+            If AlreadyPresent Then
+                If TA.FillBy(Tb, ScenarioToSaveLabel) > 0 Then
                     With DirectCast(Tb.Rows(0), CoinTracerDataSet.SzenarienRow)
                         .CVS = _TCS.ToString
                         .Coins4Coins = _TCS.Coins4CoinsAccounting
@@ -1543,14 +1522,16 @@ Public Class frmMain
                     TA.Update(Tb)
                 End If
             Else
-                TA.Insert(cbxSzenario.Text, _TCS.ToString, _TCS.Coins4CoinsAccounting)
+                TA.Insert(ScenarioToSaveLabel, _TCS.ToString, _TCS.Coins4CoinsAccounting)
             End If
-            MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgScenarioSaved, NewLabel),
-                            My.Resources.MyStrings.mainMsgScenarioSaveTitle,
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Information)
-            cbxSzenario.Reload(NewLabel)
-        End If
+            MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgScenarioSaved, ScenarioToSaveLabel),
+                        My.Resources.MyStrings.mainMsgScenarioSaveTitle,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information)
+            cbxSzenario.Reload(ScenarioToLoadLabel)
+        Catch ex As Exception
+            DefaultErrorHandler(ex, ex.Message)
+        End Try
     End Sub
 
     Private Sub cmdSzenarioDelete_Click(sender As Object, e As EventArgs) Handles cmdSzenarioDelete.Click
@@ -1577,13 +1558,8 @@ Public Class frmMain
     ''' <param name="e"></param>
     ''' <remarks></remarks>
     Private Sub vssSomething_SettingsChanged(sender As Object, e As EventArgs) Handles _
-            vssCoins4Fiat.SettingsChanged,
-            vssCoins4Coins.SettingsChanged,
-            vssWallet2XChange.SettingsChanged,
-            vssWithdrawal.SettingsChanged,
-            vssXChange2Wallet.SettingsChanged,
-            vssXChange2XChange.SettingsChanged,
-            dpctlHaltefrist.SettingsChanged
+        vssGlobalStrategy.SettingsChanged,
+        dpctlHaltefrist.SettingsChanged
 
         Try
             If sender.GetType Is GetType(ValueStrategySelector) Then
@@ -1609,6 +1585,20 @@ Public Class frmMain
             DefaultErrorHandler(ex, ex.Message)
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Save scenario if there are unsaved changes and we are about to switch to another scenario
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    Private Sub cbxSzenario_UnsavedChanges(sender As Object, e As DataBoundComboBoxUnsavedChangesEventArgs) Handles cbxSzenario.UnsavedChanges
+        If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgScenarioUnsavedChanges, e.OriginalValue),
+                           My.Resources.MyStrings.mainMsgScenarioSaveTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+                           MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.Yes Then
+            SaveScenario(e.OriginalValue, True, e.ActualValue)
+        End If
+    End Sub
+
 
     ''' <summary>
     ''' Beim Starten (oder Beenden) von asynchronen Threads bestimmte Funktionen der GUI temporär de-/aktivieren.
@@ -1715,7 +1705,6 @@ Public Class frmMain
                     FillDataTimesGrid()
                     dshgrdBestaende.Reload()
                     dshgrdAbgaenge.Reload()
-                    RefreshCoinValueStrats()
                 End If
                 .Dispose()
             End With
@@ -2009,13 +1998,11 @@ Public Class frmMain
     ''' take care of the cbxSettings sticky property
     ''' </summary>
     Private Sub cbxWalletAware_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxWalletAware.SelectedIndexChanged
-        cbxSzenario.Sticky = cbxSzenario.Sticky Or ((DirectCast(sender, ComboBox).SelectedIndex = 1 AndAlso _TCS.LoadedWalletAware) Or
-            (DirectCast(sender, ComboBox).SelectedIndex = 0 AndAlso Not _TCS.LoadedWalletAware))
+        cbxSzenario.Sticky = cbxSzenario.Sticky Or _TCS.Sticky
     End Sub
 
     Private Sub cbxCoins4CoinsAccounting_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxCoins4CoinsAccounting.SelectedIndexChanged
-        cbxSzenario.Sticky = cbxSzenario.Sticky Or ((DirectCast(sender, ComboBox).SelectedIndex = 0 AndAlso _TCS.LoadedCoins4CoinsAccounting) Or
-            (DirectCast(sender, ComboBox).SelectedIndex = 1 AndAlso Not _TCS.LoadedCoins4CoinsAccounting))
+        cbxSzenario.Sticky = cbxSzenario.Sticky Or _TCS.Sticky
     End Sub
 
 
@@ -2053,14 +2040,6 @@ Public Class frmMain
         DBInit.InitDatabase(DatabaseFilename)
         DBInit.UpdateDatabase()
         frmMain_Load(Me, New EventArgs)
-    End Sub
-
-    Private Sub grdTrades_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdTrades.CellDoubleClick
-
-    End Sub
-
-    Private Sub grdTables_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdPlattformen.CellDoubleClick, grdKurse.CellDoubleClick, grdKonten.CellDoubleClick, grdBerechnungen.CellDoubleClick
-
     End Sub
 
 #End If
