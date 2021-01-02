@@ -185,7 +185,7 @@ Public NotInheritable Class AccountManager
             New AccountDetails(209, "Terracoin", "TRC", "Terracoin", False, False, True, False, 10209),
             New AccountDetails(210, "Ether", "ETH", "Ether", False, False, True, False, 10210),
             New AccountDetails(211, "Lisk", "LSK", "Lisk", False, False, True, False, 10211),
-            New AccountDetails(212, "Lumen", "XLM", "Lumen", False, False, True, False, 10212),
+            New AccountDetails(212, "Stellar", "XLM", "Stellar Lumens", False, False, True, False, 10212),
             New AccountDetails(213, "Augur Token", "REP", "Augur Token", False, False, True, False, 10213),
             New AccountDetails(214, "BFX Token", "BFX", "Bitfinex Token", False, False, True, False, 10214),
             New AccountDetails(215, "Ether Classic", "ETC", "Ether Classic", False, False, True, False, 10215),

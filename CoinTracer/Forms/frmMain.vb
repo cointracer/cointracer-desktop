@@ -32,7 +32,6 @@
 Imports CoinTracer.DBHelper
 Imports System.IO
 Imports System.Environment
-Imports CoinTracer
 
 Public Class frmMain
 

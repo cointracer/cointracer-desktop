@@ -874,7 +874,7 @@ Public Class TradeValueManager
                     CalculationID = 0
                 Else
 
-                    ' Loop over every OutCoin entry (in chunks for the sake of performance)
+                    ' Loop over every OutCoin entry (in chunks for the sake of performance and user interactiveness)
                     Dim AllWritten As Boolean = False
                     Dim OutToInTA As New Out2InTableAdapter
                     Dim OutToInTb As New Out2InDataTable
@@ -906,8 +906,8 @@ Public Class TradeValueManager
                             RowCount += 1
                             ChunkRowCount += 1
                             ProgressWaitManager.UpdateProgress(RowCount / TotalOutRows * 97,
-                                                           String.Format(My.Resources.MyStrings.calcGainingsProgressMessage,
-                                                                         RowCount.ToString(Import.MESSAGENUMBERFORMAT), TotalOutRows.ToString(Import.MESSAGENUMBERFORMAT)))
+                                                               String.Format(My.Resources.MyStrings.calcGainingsProgressMessage,
+                                                                             RowCount.ToString(Import.MESSAGENUMBERFORMAT), TotalOutRows.ToString(Import.MESSAGENUMBERFORMAT)))
                             If Not OutTradesInCalculation.Contains("," & OutCoinRow.TradeID & ",") Then
                                 ' The OutTradeID may have already been cleared (by recursive call), so check this here
 
@@ -1206,8 +1206,8 @@ Public Class TradeValueManager
     End Function
 
     ''' <summary>
-    ''' Copies (and transforms) the Out2In entries of a certain OutTradeID to the MainOutTradeID. Used as replacement for recursive calls and also because there is (usually)
-    ''' no need to dig into the origin of an OutTrade over and over again.
+    ''' Copies (and transforms) the Out2In entries of a certain OutTradeID to the MainOutTradeID. Used as replacement for recursive calls and also because 
+    ''' there is (usually) no need to dig into the origin of an OutTrade over and over again.
     ''' </summary>
     ''' <param name="MainOutTradeID">ID of the OutTrade whose entries will be written</param>
     ''' <param name="MainAmountToAssign">Amount that needs to be assigned to this OutTrade</param>
