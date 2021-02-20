@@ -1,4 +1,22 @@
 ﻿******************************************************
+Version 0.9.5 / 20.02.2021
+----------------------------
+
+Verbesserungen:
+- Gewinnberechnung überarbeitet, so dass interne Transfers 
+  von Coins zwischen Wallets und Börsen korrekt
+  berücksichtigt werden.
+- Gewinnberechungs-Einstellungen vereinfacht: das
+  Verbrauchsfolgeverfahren wird jetzt pauschal gewählt
+  (statt es für verschiedene Geschäftsvorfälle jeweils
+  separat auswählen zu müssen).
+- Kraken-Import aktualisiert, so dass aktuell Ledger-
+  Exportdateien wieder eingelesen werden können.
+- 34 Coins hinzugefügt.
+- Bugfixing und diverse Verbesserungen.
+
+
+******************************************************
 Version 0.9.4.3 / 28.11.2019
 ----------------------------
 
@@ -7,7 +25,7 @@ Verbesserungen:
   toleranz erhöht.
 - Aufwendungen werden in der Übersicht klarer dargestellt.
 - 15 Coins hinzugefügt.
-- Bugfixing
+- Bugfixing.
 
 
 ******************************************************

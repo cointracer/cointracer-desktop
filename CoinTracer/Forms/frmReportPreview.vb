@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -111,7 +111,9 @@ Public Class frmReportPreview
         Dim RendExts() As RenderingExtension
         RendExts = ReportViewer1.LocalReport.ListRenderingExtensions
         For Each RE As RenderingExtension In RendExts
-            cbxExportTypes.Items.Add(New RenderingExtensionListboxItem(RE))
+            If Not RE.LocalizedName.Contains("2003") Then
+                cbxExportTypes.Items.Add(New RenderingExtensionListboxItem(RE))
+            End If
         Next
         cbxExportTypes.SelectedIndex = My.Settings.ReportLastRenderingExtension
 

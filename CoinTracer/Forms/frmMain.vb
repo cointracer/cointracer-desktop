@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -32,6 +32,7 @@
 Imports CoinTracer.DBHelper
 Imports System.IO
 Imports System.Environment
+Imports System.Net
 
 Public Class frmMain
 
@@ -318,11 +319,7 @@ Public Class frmMain
         My.Settings.Layout_SplitterDistance2 = CLng(spltCntGainings.SplitterDistance * 1000 / spltCntGainings.Height)
         _TCS.WriteSettings()
         My.Settings.LastCvsScenarioID = cbxSzenario.SelectedIndex
-        If cbxReportGrouping.SelectedIndex = 0 Then
-            My.Settings.ReportDetail1 = "1"
-        Else
-            My.Settings.ReportDetail1 = "0"
-        End If
+        My.Settings.ReportDetail1 = cbxReportTransfers.SelectedIndex.ToString
         If cbxReportTradeSelection.SelectedIndex = 1 Then
             My.Settings.ReportDetail2 = "1"
         Else
@@ -386,10 +383,10 @@ Public Class frmMain
         ' Init tax report settings
         _TCS = New TaxCalculationSettings(Me)
 
-        If My.Settings.ReportDetail1 = "1" Then
-            cbxReportGrouping.SelectedIndex = 0
+        If IsNumeric(My.Settings.ReportDetail1) Then
+            cbxReportTransfers.SelectedIndex = My.Settings.ReportDetail1
         Else
-            cbxReportGrouping.SelectedIndex = 1
+            cbxReportTransfers.SelectedIndex = 0
         End If
         If My.Settings.ReportDetail2 = "1" Then
             cbxReportTradeSelection.SelectedIndex = 1
@@ -457,24 +454,23 @@ Public Class frmMain
         With gnd1stTab
             .LinkTimePeriodControl(tpDashboard)
             .LinkTradeValueManager(_TVM)
-            .Reload(True)
         End With
         With gnd2ndTab
             .LinkTimePeriodControl(tpGainings)
             .LinkTradeValueManager(_TVM)
-            .Reload(True)
         End With
         With gnd3rdTab
             .LinkTimePeriodControl(tpReport)
             .LinkTradeValueManager(_TVM)
-            .Reload(True)
         End With
 
         ' Initiales Anzeigen des letzten Gaining-Cut-Off-Days
-        _TVM_GainingsCutOffDayChanged(_TVM, New GainingsCutOffDayEventArgs(_TVM.GetGainingsCutOffDay))
+        ' TODO: Check, if we still need this?
+        ' _TVM_GainingsCutOffDayChanged(_TVM, New GainingsCutOffDayEventArgs(_TVM.GetGainingsCutOffDay))
 
         ' Generierung von Spalten in ausgewählten DataGridViews ausschalten
         grdReport.AutoGenerateColumns = False
+        DataGridViewDoubleBuffer(grdReport)
 
         ' Tabellen-Grids initialisieren
         grdTrades.BindGrid(New CoinTracerDataSetTableAdapters.VW_TradesTableAdapter())
@@ -499,7 +495,7 @@ Public Class frmMain
             .Initialize(_cnn, "select ID, Bezeichnung from " &
                         "(select 0 ID, '- alle Börsen -' Bezeichnung, -1 SortID, 1 Boerse " &
                         "union select ID, Bezeichnung, SortID, Boerse from Plattformen where Boerse=1 order by SortID)", , , True)
-            .MaxDropDownItems = 15
+            .MaxDropDownItems = 20
             ReloadPlatformsCbx()
             If My.Settings.ReportLastPlatforms.Length = 0 Then
                 ' Noch kein Parameter in My.Settings - also alle Plattformen anhaken
@@ -522,7 +518,7 @@ Public Class frmMain
         HandleOfflineMode()
 
         ' Hintergrundbild für TabPages laden
-        _BckGrndImg = DirectCast(My.Resources.ct_icon_clp_lgt, Bitmap)
+        _BckGrndImg = My.Resources.ct_icon_clp_lgt
 
         ' Gewünschte Prozesse zum Start initiieren
         StartInitialBackgroundActions()
@@ -743,16 +739,13 @@ Public Class frmMain
                         DlgTitle, MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
                 Try
+                    Dim TableNames As String() = New String() {"Importe", "Kalkulationen", "Trades", "TradesWerte", "TradeTx"}
                     With _DB
-                        .ExecuteSQL("DELETE FROM Trades")
-                        .ExecuteSQL("DELETE FROM Importe")
-                        ' .ExecuteSQL("DELETE FROM ZeitstempelWerte")
-                        ' .ExecuteSQL("DELETE FROM TradesWerte")
-                        .ExecuteSQL("DELETE FROM Out2In")
-                        .ExecuteSQL("DELETE FROM Kalkulationen")
-                        .ExecuteSQL("DELETE FROM GewinnReport")
+                        For Each Table In TableNames
+                            .ExecuteSQL(String.Format("DELETE FROM [{0}]", Table))
+                            .ExecuteSQL(String.Format("DELETE FROM sqlite_sequence where [name] = '{0}'", Table))
+                        Next
                         .ExecuteSQL("UPDATE Plattformen SET IstDown = 0, DownSeit = NULL")
-                        .ExecuteSQL("DELETE FROM sqlite_sequence where [name] in ('Trades', 'Importe', 'Out2In', 'Kalkulationen', 'GewinnReport')")
                         .ExecuteSQL("VACUUM;")
                         Dim InitDB As New DBInit(_cnn)
                         InitDB.InitCourseData()
@@ -813,8 +806,8 @@ Public Class frmMain
     Private Sub _TVM_GainingsCutOffDayChanged(sender As Object, e As GainingsCutOffDayEventArgs) Handles _TVM.GainingsCutOffDayChanged
         Dim OldDate As Date
         gnd1stTab.Reload(True)
-        gnd2ndTab.Reload(True)
-        gnd3rdTab.Reload(True)
+        gnd2ndTab.CloneFrom(gnd1stTab)
+        gnd3rdTab.CloneFrom(gnd1stTab)
         OldDate = e.GainingsCutOffDay
         Label15.Text = String.Format(My.Resources.MyStrings.mainGainingsLastCalculatedTo, IIf(OldDate = DATENULLVALUE, "n.n.", OldDate.ToString("dd.MM.yyyy")))
         OldDate = tpReport.DateTo
@@ -843,7 +836,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub cmdDonateBTC_Click(sender As Object, e As EventArgs) Handles cmdDonateBTC.Click, cmdDonateLTC.Click, cmdDonateBCH.Click, cmdDonateETH.Click, cmdDonateIota.Click
+    Private Sub cmdDonateBTC_Click(sender As Object, e As EventArgs) Handles cmdDonateBTC.Click, cmdDonateLTC.Click, cmdDonateBCH.Click, cmdDonateETH.Click
         Dim Donate As New frmDonate
         Donate.CoinType = DirectCast(sender, Button).Tag
         Donate.ShowDialog()
@@ -915,8 +908,6 @@ Public Class frmMain
             End If
             ' Berechnung durchführen
             _TVM.CalculateOutCoinsToInCoins(ToDate)
-            _DB.Reset_DataAdapter(TableNames.ZeitstempelWerte)
-            ' ReloadDashGrids()
             gnd2ndTab.Reload()
             ' Issue a warning when we had some spendings of unclear origin
             If _TVM.LastUnclearSpendings > 0 Then
@@ -961,11 +952,8 @@ Public Class frmMain
             Try
                 Cursor.Current = Cursors.WaitCursor
                 ' Report-Helper konfigurieren
-                If cbxReportGrouping.SelectedIndex = 1 Then
-                    _RP.ReportType = CTReport.ReportTypes.GainingsReport
-                Else
-                    _RP.ReportType = CTReport.ReportTypes.GainingsReportDetailed
-                End If
+                _RP.Parameters.ShowTransfers = (2 - cbxReportTransfers.SelectedIndex)
+                _RP.ReportType = CTReport.ReportTypes.GainingsReportDetailed
                 _RP.GainingsCutOffDay = _TVM.GetGainingsCutOffDay
                 _RP.SzenarioID = _TVM.SzenarioID
                 If cbxReportTradeSelection.SelectedIndex = 0 Then
@@ -975,11 +963,13 @@ Public Class frmMain
                 End If
                 _RP.Parameters.FromDate = tpReport.DateFrom
                 _RP.Parameters.ToDate = tpReport.DateTo
-                ' _RP.PeriodSQL = tpReport.DateSql
                 _RP.PlatformIDs = ccbReportPlatforms.GetCheckedItemsIDs
                 gnd3rdTab.PlatformIDs = _RP.PlatformIDs
                 ' Report laden
                 _RP.Reload()
+                If _RP.Parameters.FromDate > CDate("2009-01-01") Then
+                    _RP.LoadReferencedTrades()
+                End If
                 ' DataGridView neu binden und konfigurieren
                 With grdReport
                     .SuspendLayout()
@@ -1120,8 +1110,8 @@ Public Class frmMain
     ''' <returns>String mit Filtereinstellungen</returns>
     Private Function GetReportFilterString() As String
         Return tpReport.DateSql &
-            "|" & CBool(cbxReportGrouping.SelectedIndex = 0) &
-            "|" & CBool(cbxReportTradeSelection.SelectedIndex = 1) &
+            "|" & cbxReportTransfers.SelectedIndex &
+            "|" & (cbxReportTradeSelection.SelectedIndex = 1) &
             "|" & ccbReportPlatforms.GetCheckedItemsIDs
     End Function
 
@@ -1165,7 +1155,7 @@ Public Class frmMain
         cmdReportExport.Enabled = cmdReportPreview.Enabled
     End Sub
 
-    Private Sub cbxReport_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxReportGrouping.SelectedIndexChanged, cbxReportTradeSelection.SelectedIndexChanged
+    Private Sub cbxReport_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxReportTransfers.SelectedIndexChanged, cbxReportTradeSelection.SelectedIndexChanged
         SetReportExportButtonStates()
     End Sub
 
@@ -1319,10 +1309,11 @@ Public Class frmMain
     End Sub
 
     Private Sub tsmiEditTrades_Click(sender As Object, e As EventArgs) Handles tsmiEditTrades.Click
-        Dim OpenTransfersForm As New frmEditTrades
+        Dim EditTradesForm As New frmEditTrades
         Dim Grd As BoundDataGridView
         Grd = grdTrades
-        With OpenTransfersForm
+        Cursor = Cursors.WaitCursor
+        With EditTradesForm
             .EditMode = frmEditTrades.TradesEditModes.AllTypes
             If Grd.SelectedCells.Count > 0 Then
                 .StartID = Grd.Rows(Grd.CurrentCell.RowIndex).Cells(0).Value
@@ -1332,6 +1323,7 @@ Public Class frmMain
             End If
             .Dispose()
         End With
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub cmdTogglePlatforms_Click(sender As Object, e As EventArgs) Handles cmdTogglePlatforms.Click
@@ -1358,6 +1350,8 @@ Public Class frmMain
 
         Dim HttpRequest As New UriRequest(URICheck)
         Dim LatestVersion As String
+        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12
+
 
         ' Versionsnummer abholen
         Try
@@ -1484,7 +1478,7 @@ Public Class frmMain
 
     Private Sub cmdSzenarioSave_Click(sender As Object, e As EventArgs) Handles cmdSzenarioSave.Click
         Dim Cancel As Boolean = False
-        Dim Present As Boolean = cbxSzenario.LabelPresent
+        Dim Present As Boolean = cbxSzenario.LabelInDataSource
         Dim NewLabel As String = cbxSzenario.Text.Trim
         If Present AndAlso cbxSzenario.SelectedIndex < 0 Then
             ' This scenario label already exists - overwrite scenario?
@@ -1572,17 +1566,22 @@ Public Class frmMain
     End Sub
 
     Private Sub cbxSzenario_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxSzenario.SelectedIndexChanged
-        Try
-            If cbxSzenario.SelectedIndex >= 0 AndAlso cbxSzenario.SelectedItem("CVS").ToString <> "" Then
-                _TCS.FromString(cbxSzenario.SelectedItem("CVS").ToString)
-                _TVM.SzenarioID = cbxSzenario.SelectedItem("ID")
-            End If
-            If cbxSzenario.SelectedIndex >= 0 Then
-                lblSzenarioRpt.Text = "Szenario: " & cbxSzenario.SelectedItem("Bezeichnung")
-            End If
-        Catch ex As Exception
-            DefaultErrorHandler(ex, ex.Message)
-        End Try
+        If Not cbxSzenario.Initializing Then
+            cbxSzenario.Initializing = True
+            Try
+                If cbxSzenario.SelectedIndex >= 0 AndAlso cbxSzenario.SelectedItem("CVS").ToString <> "" Then
+                    _TCS.FromString(cbxSzenario.SelectedItem("CVS").ToString)
+                    _TVM.SzenarioID = cbxSzenario.SelectedItem("ID")
+                    ClearReportsGrid()
+                End If
+            Catch ex As Exception
+                DefaultErrorHandler(ex, ex.Message)
+            End Try
+            cbxSzenario.Initializing = False
+        End If
+        If cbxSzenario.SelectedIndex >= 0 Then
+            lblSzenarioRpt.Text = "Szenario: " & cbxSzenario.SelectedItem("Bezeichnung")
+        End If
     End Sub
 
     ''' <summary>
@@ -1662,6 +1661,7 @@ Public Class frmMain
         tsmiViewCalculations.Click
         Dim ShowForm As Object
         Dim Grd As BoundDataGridView
+        Cursor = Cursors.WaitCursor
         Try
             Select Case tctlTables.SelectedIndex    ' sender.Name
                 Case 4  ' "tsmiEditKurse"
@@ -1682,6 +1682,7 @@ Public Class frmMain
                     ShowForm = New frmEditKonten
                     _DB.Reset_DataAdapter(TableNames.Konten)
             End Select
+            Cursor = Cursors.Default
             With ShowForm
                 If Grd.SelectedCells.Count > 0 Then
                     .StartID = Grd.Rows(Grd.CurrentCell.RowIndex).Cells(0).Value
@@ -1708,6 +1709,7 @@ Public Class frmMain
                 .Dispose()
             End With
         Catch ex As Exception
+            Cursor = Cursors.Default
             DefaultErrorHandler(ex, ex.Message)
         End Try
     End Sub
@@ -1988,6 +1990,7 @@ Public Class frmMain
             .MinutesTolerance = _TCS.ToleranceMinutes
             If .ShowDialog(Me) = DialogResult.OK Then
                 _TCS.ToleranceMinutes = .MinutesTolerance
+                cbxSzenario.Sticky = cbxSzenario.Sticky Or _TCS.Sticky
             End If
             .Dispose()
         End With
@@ -2033,12 +2036,22 @@ Public Class frmMain
     ''' For Testing only: switch to a specific database file
     ''' </summary>
     ''' <param name="DatabaseFilename">Fully qualified name of the file to use as the database</param>
-    Public Sub UseDatabase(DatabaseFilename As String)
-        Dim DBInit As New DBInit
+    Public Sub UseDatabase(DatabaseFilename As String, Optional Interactive As Boolean = True)
         _DBName = DatabaseFilename
-        DBInit.InitDatabase(DatabaseFilename)
-        DBInit.UpdateDatabase()
-        frmMain_Load(Me, New EventArgs)
+        With New DBInit
+            .Interactive = Interactive
+            .InitDatabase(DatabaseFilename)
+            .UpdateDatabase()
+            frmMain_Load(Me, New EventArgs)
+        End With
+    End Sub
+
+    Private Sub grdTrades_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdTrades.CellDoubleClick
+
+    End Sub
+
+    Private Sub grdTables_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdPlattformen.CellDoubleClick, grdKurse.CellDoubleClick, grdKonten.CellDoubleClick, grdBerechnungen.CellDoubleClick
+
     End Sub
 
 #End If

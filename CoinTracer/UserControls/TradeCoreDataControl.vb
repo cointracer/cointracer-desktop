@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -497,7 +497,7 @@ Public Class TradeCoreDataControl
                     WertEURTextBox.Text = "0"
                 End If
                 If InZeitpunktDateTimePicker.Value > ZeitpunktZielDateTimePicker.Value Then
-                    InZeitpunktDateTimePicker.Value = ZeitpunktZielDateTimePicker.Value.Date()
+                    InZeitpunktDateTimePicker.Value = ZeitpunktZielDateTimePicker.Value
                 End If
                 If Not QuellPlattformIDComboBox.Visible AndAlso Not IsNothing(ImportPlattformIDComboBox.SelectedValue) Then
                     ' Make sure the source and target platforms are identical to the import platform
@@ -548,7 +548,7 @@ Public Class TradeCoreDataControl
         ' Check if the other control can be kept in sync
         If CheckStateManualInput() Then
             If Not ZeitpunktZielDateTimePicker.Touched Then ZeitpunktZielDateTimePicker.Value = DirectCast(sender, TouchedDateTimePicker).Value
-            If Not InZeitpunktDateTimePicker.Touched Then InZeitpunktDateTimePicker.Value = DirectCast(sender, TouchedDateTimePicker).Value.Date
+            If Not InZeitpunktDateTimePicker.Touched Then InZeitpunktDateTimePicker.Value = DirectCast(sender, TouchedDateTimePicker).Value
         End If
     End Sub
 
@@ -556,7 +556,7 @@ Public Class TradeCoreDataControl
         ' Check if the other control can be kept in sync
         If CheckStateManualInput() Then
             If Not ZeitpunktDateTimePicker.Touched Then ZeitpunktDateTimePicker.Value = DirectCast(sender, TouchedDateTimePicker).Value
-            If Not InZeitpunktDateTimePicker.Touched Then InZeitpunktDateTimePicker.Value = DirectCast(sender, TouchedDateTimePicker).Value.Date
+            If Not InZeitpunktDateTimePicker.Touched Then InZeitpunktDateTimePicker.Value = DirectCast(sender, TouchedDateTimePicker).Value
         End If
     End Sub
 

@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -193,6 +193,7 @@ Public Class BoundDataGridView
         Thread.CurrentThread.CurrentCulture = New CultureInfo(My.Settings.CurrentCulture)
         ' Dieser Aufruf ist für den Designer erforderlich.
         InitializeComponent()
+        DoubleBuffered = True
         _Initialized = False
     End Sub
 

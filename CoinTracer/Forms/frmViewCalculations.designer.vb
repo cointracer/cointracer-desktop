@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -301,14 +301,12 @@ Partial Class frmViewCalculations
         Me.TableAdapterManager.KonfigurationTableAdapter = Nothing
         Me.TableAdapterManager.KontenTableAdapter = Nothing
         Me.TableAdapterManager.KurseTableAdapter = Nothing
-        Me.TableAdapterManager.Out2InTableAdapter = Nothing
         Me.TableAdapterManager.PlattformenTableAdapter = Nothing
         Me.TableAdapterManager.SzenarienTableAdapter = Nothing
         Me.TableAdapterManager.TradesTableAdapter = Nothing
         Me.TableAdapterManager.TradesWerteTableAdapter = Nothing
         Me.TableAdapterManager.TradeTypenTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        Me.TableAdapterManager.ZeitstempelWerteTableAdapter = Nothing
         '
         'frmViewCalculations
         '

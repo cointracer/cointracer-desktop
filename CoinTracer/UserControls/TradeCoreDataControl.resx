@@ -1,37 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
- **************************************
- *
- * Copyright 2013-2019 Andreas Nebinger
- *
- * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
-   Folgeversionen der EUPL ("Lizenz");
- * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
-
- * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
- 
- * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
-   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
-   ausdrücklich oder stillschweigend - verbreitet.
- * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
-
- =======
- English
- =======
- 
- * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
-   subsequent versions of the EUPL (the "Licence");
- * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
- 
- * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
- 
- * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
-   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the Licence for the specific language governing permissions and limitations under the Licence.
- *
- **************************************
--->
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -285,7 +252,7 @@
     <value>1, 72</value>
   </data>
   <data name="TradeTypIDLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 15</value>
+    <value>70, 15</value>
   </data>
   <data name="TradeTypIDLabel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -304,33 +271,6 @@
   </data>
   <data name="&gt;&gt;TradeTypIDLabel.ZOrder" xml:space="preserve">
     <value>11</value>
-  </data>
-  <data name="QuellPlattformIDLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="QuellPlattformIDLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 81</value>
-  </data>
-  <data name="QuellPlattformIDLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 15</value>
-  </data>
-  <data name="QuellPlattformIDLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="QuellPlattformIDLabel.Text" xml:space="preserve">
-    <value>Plattform:</value>
-  </data>
-  <data name="&gt;&gt;QuellPlattformIDLabel.Name" xml:space="preserve">
-    <value>QuellPlattformIDLabel</value>
-  </data>
-  <data name="&gt;&gt;QuellPlattformIDLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;QuellPlattformIDLabel.Parent" xml:space="preserve">
-    <value>grpVon</value>
-  </data>
-  <data name="&gt;&gt;QuellPlattformIDLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
   </data>
   <metadata name="QuellBetragLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -391,33 +331,6 @@
   </data>
   <data name="&gt;&gt;QuellKontoIDLabel.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="ZielPlattformIDLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="ZielPlattformIDLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>64, 81</value>
-  </data>
-  <data name="ZielPlattformIDLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 15</value>
-  </data>
-  <data name="ZielPlattformIDLabel.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="ZielPlattformIDLabel.Text" xml:space="preserve">
-    <value>Plattform:</value>
-  </data>
-  <data name="&gt;&gt;ZielPlattformIDLabel.Name" xml:space="preserve">
-    <value>ZielPlattformIDLabel</value>
-  </data>
-  <data name="&gt;&gt;ZielPlattformIDLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;ZielPlattformIDLabel.Parent" xml:space="preserve">
-    <value>grpTo</value>
-  </data>
-  <data name="&gt;&gt;ZielPlattformIDLabel.ZOrder" xml:space="preserve">
-    <value>14</value>
   </data>
   <metadata name="ZielBetragLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
@@ -703,16 +616,16 @@
     <value>NoControl</value>
   </data>
   <data name="InZeitpunktLabel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 53</value>
+    <value>46, 53</value>
   </data>
   <data name="InZeitpunktLabel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 15</value>
+    <value>78, 15</value>
   </data>
   <data name="InZeitpunktLabel.TabIndex" type="System.Int32, mscorlib">
     <value>43</value>
   </data>
   <data name="InZeitpunktLabel.Text" xml:space="preserve">
-    <value>Anschaffungsdatum:</value>
+    <value>Anschaffung:</value>
   </data>
   <data name="&gt;&gt;InZeitpunktLabel.Name" xml:space="preserve">
     <value>InZeitpunktLabel</value>
@@ -725,6 +638,60 @@
   </data>
   <data name="&gt;&gt;InZeitpunktLabel.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="QuellPlattformIDLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="QuellPlattformIDLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 81</value>
+  </data>
+  <data name="QuellPlattformIDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 15</value>
+  </data>
+  <data name="QuellPlattformIDLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="QuellPlattformIDLabel.Text" xml:space="preserve">
+    <value>Plattform:</value>
+  </data>
+  <data name="&gt;&gt;QuellPlattformIDLabel.Name" xml:space="preserve">
+    <value>QuellPlattformIDLabel</value>
+  </data>
+  <data name="&gt;&gt;QuellPlattformIDLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;QuellPlattformIDLabel.Parent" xml:space="preserve">
+    <value>grpVon</value>
+  </data>
+  <data name="&gt;&gt;QuellPlattformIDLabel.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="ZielPlattformIDLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ZielPlattformIDLabel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>64, 81</value>
+  </data>
+  <data name="ZielPlattformIDLabel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 15</value>
+  </data>
+  <data name="ZielPlattformIDLabel.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="ZielPlattformIDLabel.Text" xml:space="preserve">
+    <value>Plattform:</value>
+  </data>
+  <data name="&gt;&gt;ZielPlattformIDLabel.Name" xml:space="preserve">
+    <value>ZielPlattformIDLabel</value>
+  </data>
+  <data name="&gt;&gt;ZielPlattformIDLabel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ZielPlattformIDLabel.Parent" xml:space="preserve">
+    <value>grpTo</value>
+  </data>
+  <data name="&gt;&gt;ZielPlattformIDLabel.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
   <metadata name="TradesBindingNavigator.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>336, 17</value>
@@ -938,6 +905,9 @@
   <data name="&gt;&gt;TradesBindingNavigator.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="CoinTracerDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>519, 17</value>
+  </metadata>
   <data name="IDTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>243, 37</value>
   </data>
@@ -951,7 +921,7 @@
     <value>IDTextBox</value>
   </data>
   <data name="&gt;&gt;IDTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;IDTextBox.Parent" xml:space="preserve">
     <value>pnlTrade</value>
@@ -975,7 +945,7 @@
     <value>SourceIDTextBox</value>
   </data>
   <data name="&gt;&gt;SourceIDTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;SourceIDTextBox.Parent" xml:space="preserve">
     <value>pnlTrade</value>
@@ -999,7 +969,7 @@
     <value>ZeitpunktDateTimePicker</value>
   </data>
   <data name="&gt;&gt;ZeitpunktDateTimePicker.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedDateTimePicker, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedDateTimePicker, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ZeitpunktDateTimePicker.Parent" xml:space="preserve">
     <value>grpVon</value>
@@ -1020,7 +990,7 @@
     <value>QuellBetragTextBox</value>
   </data>
   <data name="&gt;&gt;QuellBetragTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;QuellBetragTextBox.Parent" xml:space="preserve">
     <value>grpVon</value>
@@ -1041,7 +1011,7 @@
     <value>ZielBetragTextBox</value>
   </data>
   <data name="&gt;&gt;ZielBetragTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ZielBetragTextBox.Parent" xml:space="preserve">
     <value>grpTo</value>
@@ -1062,7 +1032,7 @@
     <value>WertEURTextBox</value>
   </data>
   <data name="&gt;&gt;WertEURTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;WertEURTextBox.Parent" xml:space="preserve">
     <value>grpTo</value>
@@ -1083,7 +1053,7 @@
     <value>BetragNachGebuehrTextBox</value>
   </data>
   <data name="&gt;&gt;BetragNachGebuehrTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;BetragNachGebuehrTextBox.Parent" xml:space="preserve">
     <value>grpTo</value>
@@ -1107,7 +1077,7 @@
     <value>ZeitpunktZielDateTimePicker</value>
   </data>
   <data name="&gt;&gt;ZeitpunktZielDateTimePicker.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedDateTimePicker, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedDateTimePicker, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ZeitpunktZielDateTimePicker.Parent" xml:space="preserve">
     <value>grpTo</value>
@@ -1137,7 +1107,7 @@
     <value>InfoTextBox</value>
   </data>
   <data name="&gt;&gt;InfoTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;InfoTextBox.Parent" xml:space="preserve">
     <value>pnlTrade</value>
@@ -1161,7 +1131,7 @@
     <value>ImportPlattformIDComboBox</value>
   </data>
   <data name="&gt;&gt;ImportPlattformIDComboBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ImportPlattformIDComboBox.Parent" xml:space="preserve">
     <value>pnlTrade</value>
@@ -1169,6 +1139,9 @@
   <data name="&gt;&gt;ImportPlattformIDComboBox.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <metadata name="TradesPlattformenImportBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>672, 17</value>
+  </metadata>
   <metadata name="TradesTradeTypenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>526, 56</value>
   </metadata>
@@ -1185,7 +1158,7 @@
     <value>TradeTypIDComboBox</value>
   </data>
   <data name="&gt;&gt;TradeTypIDComboBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;TradeTypIDComboBox.Parent" xml:space="preserve">
     <value>pnlTrade</value>
@@ -1193,6 +1166,9 @@
   <data name="&gt;&gt;TradeTypIDComboBox.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <metadata name="TradesTradeTypenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>526, 56</value>
+  </metadata>
   <metadata name="TradesPlattformenQuellBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>
   </metadata>
@@ -1209,7 +1185,7 @@
     <value>QuellPlattformIDComboBox</value>
   </data>
   <data name="&gt;&gt;QuellPlattformIDComboBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;QuellPlattformIDComboBox.Parent" xml:space="preserve">
     <value>grpVon</value>
@@ -1217,6 +1193,9 @@
   <data name="&gt;&gt;QuellPlattformIDComboBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <metadata name="TradesPlattformenQuellBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 56</value>
+  </metadata>
   <metadata name="TradesPlattformenZielBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>276, 56</value>
   </metadata>
@@ -1233,7 +1212,7 @@
     <value>ZielPlattformIDComboBox</value>
   </data>
   <data name="&gt;&gt;ZielPlattformIDComboBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ZielPlattformIDComboBox.Parent" xml:space="preserve">
     <value>grpTo</value>
@@ -1241,6 +1220,9 @@
   <data name="&gt;&gt;ZielPlattformIDComboBox.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
+  <metadata name="TradesPlattformenZielBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>276, 56</value>
+  </metadata>
   <metadata name="TradesKontenQuellBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>756, 56</value>
   </metadata>
@@ -1257,7 +1239,7 @@
     <value>QuellKontoComboBox</value>
   </data>
   <data name="&gt;&gt;QuellKontoComboBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;QuellKontoComboBox.Parent" xml:space="preserve">
     <value>grpVon</value>
@@ -1265,6 +1247,9 @@
   <data name="&gt;&gt;QuellKontoComboBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <metadata name="TradesKontenQuellBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>756, 56</value>
+  </metadata>
   <metadata name="TradesKontenZielBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 95</value>
   </metadata>
@@ -1281,7 +1266,7 @@
     <value>ZielKontoComboBox</value>
   </data>
   <data name="&gt;&gt;ZielKontoComboBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedComboBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ZielKontoComboBox.Parent" xml:space="preserve">
     <value>grpTo</value>
@@ -1289,8 +1274,56 @@
   <data name="&gt;&gt;ZielKontoComboBox.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <metadata name="TradesKontenZielBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 95</value>
+  </metadata>
   <data name="grpVon.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
+  </data>
+  <data name="&gt;&gt;QuellBetragNachGebuehrTextBox.Name" xml:space="preserve">
+    <value>QuellBetragNachGebuehrTextBox</value>
+  </data>
+  <data name="&gt;&gt;QuellBetragNachGebuehrTextBox.Type" xml:space="preserve">
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;QuellBetragNachGebuehrTextBox.Parent" xml:space="preserve">
+    <value>grpVon</value>
+  </data>
+  <data name="&gt;&gt;QuellBetragNachGebuehrTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblFrom.Name" xml:space="preserve">
+    <value>lblFrom</value>
+  </data>
+  <data name="&gt;&gt;lblFrom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblFrom.Parent" xml:space="preserve">
+    <value>grpVon</value>
+  </data>
+  <data name="&gt;&gt;lblFrom.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpVon.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 118</value>
+  </data>
+  <data name="grpVon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>297, 228</value>
+  </data>
+  <data name="grpVon.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;grpVon.Name" xml:space="preserve">
+    <value>grpVon</value>
+  </data>
+  <data name="&gt;&gt;grpVon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpVon.Parent" xml:space="preserve">
+    <value>pnlTrade</value>
+  </data>
+  <data name="&gt;&gt;grpVon.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
   <data name="QuellBetragNachGebuehrTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>133, 136</value>
@@ -1305,7 +1338,7 @@
     <value>QuellBetragNachGebuehrTextBox</value>
   </data>
   <data name="&gt;&gt;QuellBetragNachGebuehrTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;QuellBetragNachGebuehrTextBox.Parent" xml:space="preserve">
     <value>grpVon</value>
@@ -1342,27 +1375,6 @@
   </data>
   <data name="&gt;&gt;lblFrom.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="grpVon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 118</value>
-  </data>
-  <data name="grpVon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 228</value>
-  </data>
-  <data name="grpVon.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;grpVon.Name" xml:space="preserve">
-    <value>grpVon</value>
-  </data>
-  <data name="&gt;&gt;grpVon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpVon.Parent" xml:space="preserve">
-    <value>pnlTrade</value>
-  </data>
-  <data name="&gt;&gt;grpVon.ZOrder" xml:space="preserve">
-    <value>6</value>
   </data>
   <data name="PictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
@@ -1440,14 +1452,59 @@
   <data name="grpTo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
+  <data name="&gt;&gt;InZeitpunktDateTimePicker.Name" xml:space="preserve">
+    <value>InZeitpunktDateTimePicker</value>
+  </data>
+  <data name="&gt;&gt;InZeitpunktDateTimePicker.Type" xml:space="preserve">
+    <value>CoinTracer.TouchedDateTimePicker, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;InZeitpunktDateTimePicker.Parent" xml:space="preserve">
+    <value>grpTo</value>
+  </data>
+  <data name="&gt;&gt;InZeitpunktDateTimePicker.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblTo.Name" xml:space="preserve">
+    <value>lblTo</value>
+  </data>
+  <data name="&gt;&gt;lblTo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTo.Parent" xml:space="preserve">
+    <value>grpTo</value>
+  </data>
+  <data name="&gt;&gt;lblTo.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpTo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>426, 118</value>
+  </data>
+  <data name="grpTo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>296, 228</value>
+  </data>
+  <data name="grpTo.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;grpTo.Name" xml:space="preserve">
+    <value>grpTo</value>
+  </data>
+  <data name="&gt;&gt;grpTo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpTo.Parent" xml:space="preserve">
+    <value>pnlTrade</value>
+  </data>
+  <data name="&gt;&gt;grpTo.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <data name="InZeitpunktDateTimePicker.CustomFormat" xml:space="preserve">
-    <value>dd.MM.yyyy</value>
+    <value>dd.MM.yyyy, HH:mm:ss</value>
   </data>
   <data name="InZeitpunktDateTimePicker.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 49</value>
   </data>
   <data name="InZeitpunktDateTimePicker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>111, 23</value>
+    <value>145, 23</value>
   </data>
   <data name="InZeitpunktDateTimePicker.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1456,7 +1513,7 @@
     <value>InZeitpunktDateTimePicker</value>
   </data>
   <data name="&gt;&gt;InZeitpunktDateTimePicker.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedDateTimePicker, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedDateTimePicker, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;InZeitpunktDateTimePicker.Parent" xml:space="preserve">
     <value>grpTo</value>
@@ -1493,27 +1550,6 @@
   </data>
   <data name="&gt;&gt;lblTo.ZOrder" xml:space="preserve">
     <value>2</value>
-  </data>
-  <data name="grpTo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>426, 118</value>
-  </data>
-  <data name="grpTo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>296, 228</value>
-  </data>
-  <data name="grpTo.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;grpTo.Name" xml:space="preserve">
-    <value>grpTo</value>
-  </data>
-  <data name="&gt;&gt;grpTo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpTo.Parent" xml:space="preserve">
-    <value>pnlTrade</value>
-  </data>
-  <data name="&gt;&gt;grpTo.ZOrder" xml:space="preserve">
-    <value>4</value>
   </data>
   <data name="SteuerIrrelevantCheckBox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1557,42 +1593,6 @@
   <data name="$this.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="pnlTrade.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="SourceKommentarTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="SourceKommentarTextBox.Location" type="System.Drawing.Point, System.Drawing">
-    <value>391, 7</value>
-  </data>
-  <data name="SourceKommentarTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>329, 23</value>
-  </data>
-  <data name="SourceKommentarTextBox.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;SourceKommentarTextBox.Name" xml:space="preserve">
-    <value>SourceKommentarTextBox</value>
-  </data>
-  <data name="&gt;&gt;SourceKommentarTextBox.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;SourceKommentarTextBox.Parent" xml:space="preserve">
-    <value>pnlTrade</value>
-  </data>
-  <data name="&gt;&gt;SourceKommentarTextBox.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="pnlTrade.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="pnlTrade.Size" type="System.Drawing.Size, System.Drawing">
-    <value>729, 351</value>
-  </data>
-  <data name="pnlTrade.TabIndex" type="System.Int32, mscorlib">
-    <value>42</value>
-  </data>
   <data name="&gt;&gt;pnlTrade.Name" xml:space="preserve">
     <value>pnlTrade</value>
   </data>
@@ -1621,7 +1621,7 @@
     <value>CoinTracerDataSet</value>
   </data>
   <data name="&gt;&gt;CoinTracerDataSet.Type" xml:space="preserve">
-    <value>CoinTracer.CoinTracerDataSet, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CoinTracerDataSet, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;BindingNavigatorCountItem.Name" xml:space="preserve">
     <value>BindingNavigatorCountItem</value>
@@ -1741,25 +1741,85 @@
     <value>TradeTypenTableAdapter</value>
   </data>
   <data name="&gt;&gt;TradeTypenTableAdapter.Type" xml:space="preserve">
-    <value>CoinTracer.CoinTracerDataSetTableAdapters.TradeTypenTableAdapter, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.TradeTypenTableAdapter, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;TradesTableAdapter.Name" xml:space="preserve">
     <value>TradesTableAdapter</value>
   </data>
   <data name="&gt;&gt;TradesTableAdapter.Type" xml:space="preserve">
-    <value>CoinTracer.CoinTracerDataSetTableAdapters.TradesTableAdapter, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.TradesTableAdapter, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;TableAdapterManager.Name" xml:space="preserve">
     <value>TableAdapterManager</value>
   </data>
   <data name="&gt;&gt;TableAdapterManager.Type" xml:space="preserve">
-    <value>CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager, CoinTracer, Version=0.9.4.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>TradeCoreDataControl</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.UserControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="pnlTrade.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;SourceKommentarTextBox.Name" xml:space="preserve">
+    <value>SourceKommentarTextBox</value>
+  </data>
+  <data name="&gt;&gt;SourceKommentarTextBox.Type" xml:space="preserve">
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SourceKommentarTextBox.Parent" xml:space="preserve">
+    <value>pnlTrade</value>
+  </data>
+  <data name="&gt;&gt;SourceKommentarTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="pnlTrade.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="pnlTrade.Size" type="System.Drawing.Size, System.Drawing">
+    <value>729, 351</value>
+  </data>
+  <data name="pnlTrade.TabIndex" type="System.Int32, mscorlib">
+    <value>42</value>
+  </data>
+  <data name="&gt;&gt;pnlTrade.Name" xml:space="preserve">
+    <value>pnlTrade</value>
+  </data>
+  <data name="&gt;&gt;pnlTrade.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlTrade.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlTrade.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="SourceKommentarTextBox.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="SourceKommentarTextBox.Location" type="System.Drawing.Point, System.Drawing">
+    <value>391, 7</value>
+  </data>
+  <data name="SourceKommentarTextBox.Size" type="System.Drawing.Size, System.Drawing">
+    <value>329, 23</value>
+  </data>
+  <data name="SourceKommentarTextBox.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;SourceKommentarTextBox.Name" xml:space="preserve">
+    <value>SourceKommentarTextBox</value>
+  </data>
+  <data name="&gt;&gt;SourceKommentarTextBox.Type" xml:space="preserve">
+    <value>CoinTracer.TouchedTextBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;SourceKommentarTextBox.Parent" xml:space="preserve">
+    <value>pnlTrade</value>
+  </data>
+  <data name="&gt;&gt;SourceKommentarTextBox.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <metadata name="TradeTypenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>354, 95</value>

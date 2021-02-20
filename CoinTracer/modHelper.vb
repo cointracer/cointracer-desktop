@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -31,10 +31,12 @@
 
 Imports System.Text
 Imports System.Security.Cryptography
+Imports System.Reflection
 
 Module modHelper
 
     Public Const DATENULLVALUE As Date = #12:00:00 AM#
+    Public Const DATEMAXVALUE As Date = #2099-12-31 12:00:00 AM#
 
     Public Sub DefaultErrorHandler(ex As Exception, Optional Message As String = "", Optional EndApplication As Boolean = False, Optional DialogBoxTitle As String = "")
         Cursor.Current = Cursors.Default
@@ -79,7 +81,6 @@ Module modHelper
         End If
     End Sub
 
-
     ''' <summary>
     ''' Wandelt einen Zahlen-String englischer Notation in einen Decimal-Wert um
     ''' </summary>
@@ -95,7 +96,6 @@ Module modHelper
         End If
         Return CDec(NumberAsString)
     End Function
-
 
     ''' <summary>
     ''' Gibt den MD5-Hash eines Strings als String zurück
@@ -219,13 +219,20 @@ Module modHelper
     End Function
 
     ''' <summary>
+    ''' Enables double buffering for DataGridViews to speed up it's rendering.
+    ''' </summary>
+    ''' <param name="dgv">DataGridView whose DoubeBuffered property will be set to True.</param>
+    Friend Sub DataGridViewDoubleBuffer(ByVal dgv As DataGridView)
+        dgv.GetType.GetProperty("DoubleBuffered", (BindingFlags.NonPublic Or BindingFlags.Instance)).SetValue(dgv, True, Nothing)
+    End Sub
+
+    ''' <summary>
     ''' Konvertiert einen Unix-Timestamp in einen DateTime-Wert
     ''' </summary>
     Friend Function DateFromUnixTimestamp(timestamp As Double) As DateTime
         Dim origin As New DateTime(1970, 1, 1, 0, 0, 0, 0)
         Return origin.AddSeconds(timestamp)
     End Function
-
 
     ''' <summary>
     ''' Konvertiert einen DateTime-Wert in einen Unix-Timestamp

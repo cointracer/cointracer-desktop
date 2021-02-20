@@ -81,11 +81,11 @@ Partial Class frmAboutBox
         '
         'Panel1
         '
-        resources.ApplyResources(Me.Panel1, "Panel1")
         Me.Panel1.Controls.Add(Me.LabelProductName)
         Me.Panel1.Controls.Add(Me.LabelCompanyName)
         Me.Panel1.Controls.Add(Me.LabelCopyright)
         Me.Panel1.Controls.Add(Me.LabelVersion)
+        resources.ApplyResources(Me.Panel1, "Panel1")
         Me.Panel1.Name = "Panel1"
         '
         'LabelProductName
@@ -110,9 +110,9 @@ Partial Class frmAboutBox
         '
         'Panel2
         '
-        resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Controls.Add(Me.cmdJsonNetLicense)
         Me.Panel2.Controls.Add(Me.Label1)
+        resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Name = "Panel2"
         '
         'cmdJsonNetLicense

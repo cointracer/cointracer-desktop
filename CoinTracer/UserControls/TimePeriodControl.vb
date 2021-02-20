@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -205,7 +205,7 @@ Public Class TimePeriodControl
     ''' Gibt ein SQL-Snipplet zurück, das den übergebenen Feldnamen in einen BETWEEN-Ausdruck einbaut
     ''' </summary>
     ''' <remarks>SQL-Snipplet hat den Aufbau [Feldname] BETWEEN [Startdatum] AND [Enddatum]. Leerstring, wenn gesamter Zeitraum ausgewählt wurde.</remarks>
-    <Description("Gibt an, ob ein Zeitraum ausgewählt wurde (TRUE) oder nicht (FALSE)")> _
+    <Description("Gibt ein SQL-Snipplet zurück, das den übergebenen Feldnamen in einen BETWEEN-Ausdruck einbaut")>
     Public ReadOnly Property DateSql(Optional ByVal FieldName As String = "") As String
         Get
             If Me.PeriodSelected Then

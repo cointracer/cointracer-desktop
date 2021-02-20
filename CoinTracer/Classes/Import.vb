@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -35,6 +35,7 @@ Imports CoinTracer.CoinTracerDataSetTableAdapters
 Imports System.IO
 Imports System.Text
 Imports Newtonsoft.Json.Linq
+Imports CoinTracer.PlatformManager
 
 ''' <summary>
 ''' Exception thrown if there are too many invalid items during a trade data import 
@@ -634,6 +635,7 @@ Public Class Import
                             .FilterIndex = 1
                             .Title = "Datenexport von Mt. Gox auswählen... (history_BTC/EUR/USD.csv)"
                             .RestoreDirectory = True
+                            .Multiselect = True
                             If .ShowDialog() = DialogResult.OK Then
                                 Content1 = .FileName
                                 Import_MtGox(Content1)
@@ -2994,7 +2996,10 @@ Public Class Import
             TradeRec = New dtoTradesRecord(tbTrades.Rows(trNum))
             With TradeRec
                 If .TradetypID = DBHelper.TradeTypen.Einzahlung Then
-
+                    ' Assume that all fiat deposits come from Platfroms.Bank
+                    If (.QuellKontoID = DBHelper.Konten.EUR Or .QuellKontoID = DBHelper.Konten.USD) AndAlso .QuellPlattformID = Platforms.Unknown Then
+                        .QuellPlattformID = Platforms.Bank
+                    End If
                     ' Offene *Einzahlung* - Transfer-Eintrag mit Auszahlungsinformationen suchen
                     SQL = "where QuellKontoID=" & .ZielKontoID & " and TradeTypID=" & DBHelper.TradeTypen.Transfer & " and " &
                         " QuellPlattformID<>" & .ZielPlattformID & " and (" &
@@ -3070,13 +3075,13 @@ Public Class Import
 
                     ' Offene *Auszahlung* - Transfer-Eintrag mit Einzahlungsinformationen suchen
                     SQL = "where ZielKontoID=" & .QuellKontoID & " and TradeTypID=" & DBHelper.TradeTypen.Transfer & " and " &
-                        " ZielPlattformID<>" & .QuellPlattformID & " and (" &
-                        "OutTradeID=0 or OutTradeID=-1) and (" &
-                        "ZielBetrag>=" & Convert.ToString(.QuellBetrag - .QuellBetrag * TransferDetection.AmountPercentTolerance).Replace(",", ".") & " and " &
-                        "ZielBetrag<=" & Convert.ToString(.QuellBetrag + .QuellBetrag * TransferDetection.AmountPercentTolerance).Replace(",", ".") & ") and (" &
-                        "Zeitpunkt>='" & DateAdd(DateInterval.Minute, -TransferDetection.MinutesTolerance, .Zeitpunkt).ToString("yyyy-MM-dd HH:mm:ss") & "' and " &
-                        "Zeitpunkt<='" & DateAdd(DateInterval.Minute, TransferDetection.MinutesTolerance, .Zeitpunkt).ToString("yyyy-MM-dd HH:mm:ss") & "') " &
-                        "order by abs(ZielBetrag < " & .QuellBetrag.ToString("########0.0#######", CultureInfo.InvariantCulture) & ")"
+                    " ZielPlattformID<>" & .QuellPlattformID & " and (" &
+                    "OutTradeID=0 or OutTradeID=-1) and (" &
+                    "ZielBetrag>=" & Convert.ToString(.QuellBetrag - .QuellBetrag * TransferDetection.AmountPercentTolerance).Replace(",", ".") & " and " &
+                    "ZielBetrag<=" & Convert.ToString(.QuellBetrag + .QuellBetrag * TransferDetection.AmountPercentTolerance).Replace(",", ".") & ") and (" &
+                    "Zeitpunkt>='" & DateAdd(DateInterval.Minute, -TransferDetection.MinutesTolerance, .Zeitpunkt).ToString("yyyy-MM-dd HH:mm:ss") & "' and " &
+                    "Zeitpunkt<='" & DateAdd(DateInterval.Minute, TransferDetection.MinutesTolerance, .Zeitpunkt).ToString("yyyy-MM-dd HH:mm:ss") & "') " &
+                    "order by abs(ZielBetrag < " & .QuellBetrag.ToString("########0.0#######", CultureInfo.InvariantCulture) & ")"
                     TradesTableAdapter.FillBySQL(FoundTrades, SQL)
                     If FoundTrades.Count >= 1 Then
                         ' Found at least one matching transfer (first one is the most likely)

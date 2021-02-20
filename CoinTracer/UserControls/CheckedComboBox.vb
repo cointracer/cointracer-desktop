@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -29,6 +29,7 @@
 '  *
 '  **************************************
 
+Imports System.ComponentModel
 Imports System.Text
 
 Namespace CheckComboBox
@@ -266,7 +267,10 @@ Namespace CheckComboBox
             Public Function GetCheckedItemsIDs() As String
                 Dim Value As String = ""
                 Dim StartIndex As Integer
-                If ccbParent.FirstLineIsCheckAll AndAlso cclb.Items.Count > 0 AndAlso cclb.GetItemChecked(0) Then ' AndAlso cclb.Items(0).IsChecked Then
+                If ccbParent.FirstLineIsCheckAll AndAlso cclb.Items.Count > 0 Then
+                    If ccbParent.ReturnEmptyOnAllSelected AndAlso cclb.GetItemChecked(0) Then
+                        Return String.Empty
+                    End If
                     StartIndex = 1
                 Else
                     StartIndex = 0
@@ -379,6 +383,21 @@ Namespace CheckComboBox
         ' The valueSeparator character(s) between the ticked elements as they appear in the 
         ' text portion of the CheckedComboBox.
         Private _valueSeparator As String
+
+        Private _ReturnEmptyOnAllSelected As Boolean
+        <Browsable(True)>
+        <Description("Legt fest, ob bei Anhaken aller Optionen ein Leerstring zurückgegeben werden soll.")>
+        <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
+        <Category("Behavior")>
+        <DefaultValue(False)>
+        Public Property ReturnEmptyOnAllSelected As Boolean
+            Get
+                Return _ReturnEmptyOnAllSelected
+            End Get
+            Set(ByVal value As Boolean)
+                _ReturnEmptyOnAllSelected = value
+            End Set
+        End Property
 
         Public Property ValueSeparator As String
             Get

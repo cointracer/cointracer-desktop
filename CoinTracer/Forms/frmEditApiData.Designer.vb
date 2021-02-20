@@ -453,14 +453,12 @@ Partial Class frmEditApiData
         Me.TableAdapterManager.KonfigurationTableAdapter = Nothing
         Me.TableAdapterManager.KontenTableAdapter = Nothing
         Me.TableAdapterManager.KurseTableAdapter = Nothing
-        Me.TableAdapterManager.Out2InTableAdapter = Nothing
         Me.TableAdapterManager.PlattformenTableAdapter = Nothing
         Me.TableAdapterManager.SzenarienTableAdapter = Nothing
         Me.TableAdapterManager.TradesTableAdapter = Nothing
         Me.TableAdapterManager.TradesWerteTableAdapter = Nothing
         Me.TableAdapterManager.TradeTypenTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        Me.TableAdapterManager.ZeitstempelWerteTableAdapter = Nothing
         '
         'ApiDatenTableAdapter
         '

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
  **************************************
  *
- * Copyright 2013-2019 Andreas Nebinger
+ * Copyright 2013-2021 Andreas Nebinger
  *
  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
    Folgeversionen der EUPL ("Lizenz");
@@ -200,69 +200,6 @@
   <data name="db_v39_10" xml:space="preserve">
     <value>UPDATE Trades SET InZeitpunkt = Date(Zeitpunkt)</value>
   </data>
-  <data name="db_v39_11" xml:space="preserve">
-    <value>CREATE TABLE IF NOT EXISTS [Out2In] (
-[ID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
-[SzenarioID] INTEGER NOT NULL,
-[KalkulationID] INTEGER NOT NULL,
-[MainOutTradeID] INTEGER NOT NULL,
-[OutTradeID] INTEGER NOT NULL,
-[InTradeID] INTEGER NOT NULL,
-[InZeitpunkt] TIMESTAMP NULL,
-[MainBetrag] NUMERIC DEFAULT '0' NULL,
-[Betrag] NUMERIC DEFAULT '0' NULL,
-[WertEUR] NUMERIC NULL,
-[Level] INTEGER NOT NULL DEFAULT '0',
-[IstFiat] BOOLEAN DEFAULT '0', 
-[IstTransfer] BOOLEAN DEFAULT '0', 
-[IstLangzeit] BOOLEAN DEFAULT '0')</value>
-  </data>
-  <data name="db_v39_12" xml:space="preserve">
-    <value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Kalkulation] ON [Out2In]([KalkulationID]  ASC)</value>
-  </data>
-  <data name="db_v39_13" xml:space="preserve">
-    <value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_MainOutTrade] ON [Out2In]([SzenarioID] ASC, [MainOutTradeID] ASC, [Level] ASC)</value>
-  </data>
-  <data name="db_v39_14" xml:space="preserve">
-    <value>CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_InTrade] ON [Out2In]([SzenarioID] ASC, [InTradeID] ASC, [Level] ASC)</value>
-  </data>
-  <data name="db_v39_15" xml:space="preserve">
-    <value>DROP VIEW IF EXISTS [VW_InCoins]</value>
-  </data>
-  <data name="db_v39_16" xml:space="preserve">
-    <value>CREATE VIEW IF NOT EXISTS [VW_InCoins] AS 
-select
-  t.ID TradeID,
-  t.BetragNachGebuehr Betrag,
-  t.ZielKontoID KontoID,
-  case 
-    when t.TradeTypID = 5 and (pt.Eigen and ps.Eigen) then
-      case
-        when ps.Boerse and pt.Boerse then 37
-        when ps.Boerse and not pt.Boerse then 101
-        else 69
-      end
-    when t.TradeTypID in (3, 4) and not ks.IstFiat and not kt.IstFiat then 19
-    else t.TradeTypID
-  end InTypID,
-  t.ZielPlattformID PlattformID,
-  t.ZeitpunktZiel Zeitpunkt,
-  t.InZeitpunkt InZeitpunkt,
-  t.WertEUR WertEUR,
-  cast(t.WertEUR / t.BetragNachGebuehr as NUMERIC) KursEUR,
-  t.QuellPlattformID OutPlattformID,
-  t.QuellBetrag OutBetrag,
-  t.QuellKontoID OutKontoID,
-  t.Zeitpunkt OutZeitpunkt
-from Trades as t
-inner join Konten as ks on ks.ID = t.QuellKontoID
-inner join Konten as kt on kt.ID = t.ZielKontoID
-inner join Plattformen as pt on pt.ID = ZielPlattformID
-inner join Plattformen as ps on ps.ID = QuellPlattformID
-where t.TradeTypID in (3, 4, 5, 7)
-  and not kt.IstFiat
-order by t.ZeitpunktZiel, t.ID</value>
-  </data>
   <data name="db_v39_17" xml:space="preserve">
     <value>DROP VIEW IF EXISTS [VW_OutCoins]</value>
   </data>
@@ -304,146 +241,6 @@ order by t.Zeitpunkt, t.ID</value>
   (69, 'Transfer Wallet zu Börse','TRNSW2P', 'Transfer von Coins von einem Wallet auf eine Börse', 69),
   (101, 'Transfer Börse zu Wallet','TRNSP2W', 'Transfer von Coins von einer Börse auf eine Wallet', 101)</value>
   </data>
-  <data name="db_v39_21" xml:space="preserve">
-    <value>DROP VIEW IF EXISTS [VW_Gainings]</value>
-  </data>
-  <data name="db_v39_22" xml:space="preserve">
-    <value>CREATE VIEW IF NOT EXISTS [VW_Gainings] AS
-select
-t.Zeitpunkt Zeitpunkt,
-case t.TradeTypID
-  when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
-  when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
-  when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
-  else 0
-end [Gesamtgewinn EUR],
-case when coalesce(max(o2i.IstLangzeit), 1) then 0
-  else case t.TradeTypID
-    when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
-    when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
-    when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
-    else 0 
-  end
-end [Gewinn EUR steuerpflichtig],	
-round(0, 2) [Gewinn EUR Plattformen],
-',' || t.QuellPlattformID || ',' as _QuellPlattformID,
-sz.ID _SzenarioID
-from Trades t
-inner join Plattformen qp on t.QuellPlattformID = qp.ID
-inner join Plattformen zp on t.ZielPlattformID = zp.ID
-inner join Konten qk on t.QuellKontoID = qk.ID
-inner join Konten zk on t.ZielKontoID = zk.ID
-left join Out2In o2i on (o2i.MainOutTradeID = t.ID and not o2i.IstTransfer )
-left join Szenarien sz 
-where t.TradeTypID in (3, 4, 7) and not t.Steuerirrelevant and (qp.Eigen or zp.Eigen)
-  and (o2i.SzenarioID = sz.ID or o2i.SzenarioID is null)
-group by t.ID, o2i.ID, sz.ID</value>
-  </data>
-  <data name="db_v39_23" xml:space="preserve">
-    <value>DROP VIEW IF EXISTS [VW_GainingsReport2]</value>
-  </data>
-  <data name="db_v39_24" xml:space="preserve">
-    <value>CREATE VIEW [VW_GainingsReport2] AS 
-select 
-t.ID Vorgang,
-t.Zeitpunkt Zeitpunkt,
-tt.Bezeichnung Art,
-case t.TradeTypID
-  when 5 then qp.Bezeichnung || ' → ' || zp.Bezeichnung
-  else qp.Bezeichnung 
-end Plattform,
-case t.TradeTypID
-  when 3 then zk.Bezeichnung
-  else qk.Bezeichnung 
-end [Coin-Art],
-case t.TradeTypID
-  when 3 then round(t.BetragNachGebuehr, 8)
-  else round(t.QuellBetrag, 8) 
-end [Coin-Menge],
-case t.TradeTypID
-  when 3 then qk.Bezeichnung
-  when 5 then '-'
-  else zk.Bezeichnung 
-end [Zahlmittel],
-case t.TradeTypID
-  when 3 then case when qk.IstFiat then round(t.QuellBetrag, 2) else round(t.QuellBetrag, 8) end
-  when 5 then '-'
-  else case when zk.IstFiat then round(t.BetragNachGebuehr, 2) else round(t.BetragNachGebuehr, 8) end 
-end [Gesamtpreis],
-case t.TradeTypID
-  when 5 then '-'
-  when 7 then 0
-  else case 
-    when not qk.IstFiat and not zk.IstFiat then case 
-      when sz.Coins4Coins then round(t.WertEUR, 2) 
-      else round(sum(o2i.WertEUR), 2) end
-    else round(t.WertEUR, 2) end
-end [Gesamtwert EUR],
-case t.TradeTypID
-  when 3 then case
-    when not sz.Coins4Coins and not qk.IstFiat and not zk.IstFiat then round(sum(o2i.WertEUR)/t.BetragNachGebuehr, 2)
-    else round(t.WertEUR/t.BetragNachGebuehr, 2) end
-  when 4 then case
-    when not sz.Coins4Coins and not qk.IstFiat and not zk.IstFiat then round(sum(o2i.WertEUR)/t.QuellBetrag, 2)
-    else round(t.WertEUR/t.QuellBetrag, 2) end
-  when 7 then 0
-  else '-' 
-end [Kurs EUR],
-coalesce(case o2i.InTradeID when -1 then 'n/a' else o2i.InTradeID end, '-') [Vorgang Anschaffung],
-coalesce(date(o2i.InZeitpunkt), date(t.InZeitpunkt)) [Anschaffungsdatum],
-case t.TradeTypID
-  when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(o2i.MainBetrag), 0), 8) end
-  else round(coalesce(sum(o2i.MainBetrag), t.BetragNachGebuehr), 8) 
-end [Coin-Anteil],
-case t.TradeTypID
-  when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
-  -- when 5 then '-'
-  else round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2)
-end [Kaufpreis EUR],
-case t.TradeTypID
-  when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(o2i.WertEUR), t.WertEUR) / coalesce(sum(o2i.MainBetrag), t.BetragNachGebuehr), 2) end
-  -- when 5 then '-'
-  else round(coalesce(sum(o2i.WertEUR), t.WertEUR) / coalesce(sum(o2i.MainBetrag), t.BetragNachGebuehr), 2)
-end [Kaufkurs EUR],
-case t.TradeTypID
-  when 3 then case when qk.IstFiat then '-' else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else round(coalesce(sum(o2i.WertEUR), 0), 2) end end
-  when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag, 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag, 2) else round(coalesce(sum(o2i.WertEUR), 0), 2) end end
-  when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
-  else '-'
-end [Verkaufspreis EUR],
-case t.TradeTypID
-  when 3 then case when qk.IstFiat then '-' else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
-  when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
-  when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(o2i.WertEUR), t.WertEUR), 2) end
-  else '-'
-end [Gewinn EUR],
-case t.TradeTypID
-  when 3 then case when qk.IstFiat then '-' else max(o2i.IstLangzeit) end
-  when 4 then max(o2i.IstLangzeit)
-  when 7 then max(o2i.IstLangzeit)
-  else '-'
-end [Steuerfrei],
-coalesce(t.Kommentar, '') Kommentar,
-sz.ID _SzenarioID, 
-t.QuellPlattformID _QuellPlattformID,
-t.ZielPlattformID _ZielPlattformID,
-coalesce(
-  (select min(IstLangzeit)
-  from Out2In
-  where Out2In.MainOutTradeID = t.ID and t.TradeTypID &lt;&gt; 5 and not Out2In.IstTransfer and Out2In.SzenarioID = sz.ID), -1) as _Steuerfrei
-from Trades t
-inner join TradeTypen tt on t.TradeTypID = tt.ID
-inner join Plattformen qp on t.QuellPlattformID = qp.ID
-inner join Plattformen zp on t.ZielPlattformID = zp.ID
-inner join Konten qk on t.QuellKontoID = qk.ID
-inner join Konten zk on t.ZielKontoID = zk.ID
-left join Out2In o2i on (o2i.MainOutTradeID = t.ID and not o2i.IstTransfer)
-left join Szenarien sz
-where (t.TradeTypID in (3, 4, 7) or (t.TradeTypID = 5 and not zk.IstFiat)) and not t.Steuerirrelevant and (qp.Eigen or zp.Eigen)
-  and (o2i.SzenarioID = sz.ID or o2i.SzenarioID is NULL)
-group by sz.ID, t.ID, o2i.ID
-order by sz.ID, t.Zeitpunkt, tt.ID, t.ID</value>
-  </data>
   <data name="db_v39_25" xml:space="preserve">
     <value>ALTER TABLE [ApiDaten] ADD COLUMN [CallDelay] INTEGER NOT NULL DEFAULT 0</value>
   </data>
@@ -476,5 +273,227 @@ order by sz.ID, t.Zeitpunkt, tt.ID, t.ID</value>
   </data>
   <data name="db_v40_08" xml:space="preserve">
     <value>update Konten set Eigen = 1 where Eigen in ('J', 'Y')</value>
+  </data>
+  <data name="db_v40_09" xml:space="preserve">
+    <value>drop table if exists GewinnReport</value>
+  </data>
+  <data name="db_v40_10" xml:space="preserve">
+    <value>drop table if exists [ZeitstempelWerte]</value>
+  </data>
+  <data name="db_v40_11" xml:space="preserve">
+    <value>drop view if exists VW_GainingsReport</value>
+  </data>
+  <data name="db_v40_12" xml:space="preserve">
+    <value>delete from [TradeTypen] where ID in (37,101)</value>
+  </data>
+  <data name="db_v40_13" xml:space="preserve">
+    <value>update [TradeTypen] set Bezeichnung = 'Transfer intern', Code = 'TRNSINT', Beschreibung = 'Interner Transfer von Coins' where ID = 69</value>
+  </data>
+  <data name="db_v40_14" xml:space="preserve">
+    <value>DROP TABLE IF EXISTS [TradeTx]</value>
+  </data>
+  <data name="db_v40_15" xml:space="preserve">
+    <value>CREATE TABLE [TradeTx] (
+[TxID] INTEGER  PRIMARY KEY NOT NULL,
+[SzenarioID] INTEGER NOT NULL,
+[InKalkulationID] INTEGER NOT NULL,
+[InTradeID] INTEGER NOT NULL, -- trade id of initial coin acquiring
+[InTransferID] INTEGER DEFAULT '0' NOT NULL, -- trade id of last internal transfer, if appropriate
+[TransferIDHistory] VARCHAR(500) NULL, -- keeps tracks of former transfer trade ids, in case coins have been moved more than once
+[PlattformID] INTEGER NOT NULL,
+[KontoID] INTEGER NOT NULL,
+[Zeitpunkt] TIMESTAMP NULL, -- timestamp of this very coin movement
+[KaufZeitpunkt] TIMESTAMP NULL, -- timestamp of initial coin acquiring
+[Betrag] NUMERIC DEFAULT '0' NULL,
+[WertEUR] NUMERIC NULL,
+[ParentTxID] INTEGER DEFAULT '0' NOT NULL, -- id of the transaction this tx is derived from
+[IstRest] BOOLEAN DEFAULT '0', -- marks if this entry is a remaining value of a parent entry
+[OutKalkulationID] INTEGER DEFAULT '0' NOT NULL, -- id of the calculation in which this tx has been discharged
+[OutTradeID] INTEGER DEFAULT '0' NOT NULL, -- trade id of final purchase or transfer to external target
+[Entwertet] BOOLEAN DEFAULT '0',
+[IstLangzeit] BOOLEAN DEFAULT '0' -- marks if this tx is a long term take-out
+)</value>
+  </data>
+  <data name="db_v40_16" xml:space="preserve">
+    <value>CREATE INDEX IF NOT EXISTS [IDX_TradeTx_SzenarioInTrade] ON [TradeTx] ( 
+[SzenarioID]  ASC,
+[InTradeID]  ASC)</value>
+  </data>
+  <data name="db_v40_17" xml:space="preserve">
+    <value>CREATE INDEX IF NOT EXISTS [IDX_TradeTx_SzenarioInTransfer] ON [TradeTx] ( 
+[SzenarioID]  ASC,
+[InTransferID]  ASC)</value>
+  </data>
+  <data name="db_v40_18" xml:space="preserve">
+    <value>CREATE INDEX IF NOT EXISTS [IDX_TradeTx_SzenarioOutTrade] ON [TradeTx] ( 
+[SzenarioID]  ASC,
+[OutTradeID]  ASC)</value>
+  </data>
+  <data name="db_v40_19" xml:space="preserve">
+    <value>CREATE INDEX IF NOT EXISTS [IDX_TradeTx_Kaufzeit] ON [TradeTx] ( 
+[KaufZeitpunkt]  ASC)</value>
+  </data>
+  <data name="db_v40_20" xml:space="preserve">
+    <value>CREATE INDEX IF NOT EXISTS [IDX_TradeTx_SzenarioKontoEntwertetZeit] ON [TradeTx] ( 
+[SzenarioID]  ASC,
+[KontoID]  ASC,
+[Entwertet]  ASC,
+[Zeitpunkt]  ASC)</value>
+  </data>
+  <data name="db_v40_21" xml:space="preserve">
+    <value>DROP VIEW IF EXISTS "VW_InCoins"</value>
+  </data>
+  <data name="db_v40_22" xml:space="preserve">
+    <value>DROP VIEW IF EXISTS "VW_Gainings"</value>
+  </data>
+  <data name="db_v40_23" xml:space="preserve">
+    <value>DROP TABLE IF EXISTS "Out2In"</value>
+  </data>
+  <data name="db_v40_24" xml:space="preserve">
+    <value>DROP VIEW IF EXISTS "VW_GainingsReport2"</value>
+  </data>
+  <data name="db_v40_25" xml:space="preserve">
+    <value>CREATE VIEW "VW_GainingsReport2" AS 
+select 
+t.ID Vorgang,
+t.Zeitpunkt Zeitpunkt,
+tt.Bezeichnung Art,
+case t.TradeTypID
+	when 5 then qp.Bezeichnung || ' → ' || zp.Bezeichnung
+	else qp.Bezeichnung 
+end Plattform,
+case t.TradeTypID
+	when 3 then zk.Bezeichnung
+	else qk.Bezeichnung 
+end [Coin-Art],
+case t.TradeTypID
+	when 3 then round(t.BetragNachGebuehr, 8)
+	else round(t.QuellBetrag, 8) 
+end [Coin-Menge],
+case t.TradeTypID
+	when 3 then qk.Bezeichnung
+	when 5 then '-'
+	else zk.Bezeichnung 
+end [Zahlmittel],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then round(t.QuellBetrag, 2) else round(t.QuellBetrag, 8) end
+	when 5 then '-'
+	else case when zk.IstFiat then round(t.BetragNachGebuehr, 2) else round(t.BetragNachGebuehr, 8) end 
+end [Gesamtpreis],
+case t.TradeTypID
+	when 5 then '-'
+	when 7 then 0
+	else case 
+		when not qk.IstFiat and not zk.IstFiat then case 
+			when sz.Coins4Coins then round(t.WertEUR, 2) 
+			else round(sum(a.WertEUR), 2) end
+		else round(t.WertEUR, 2) end
+end [Gesamtwert EUR],
+case t.TradeTypID
+	when 3 then case
+		when not sz.Coins4Coins and not qk.IstFiat and not zk.IstFiat then round(sum(a.WertEUR)/t.BetragNachGebuehr, 2)
+		else round(t.WertEUR/t.BetragNachGebuehr, 2) end
+	when 4 then case
+		when not sz.Coins4Coins and not qk.IstFiat and not zk.IstFiat then round(sum(a.WertEUR)/t.QuellBetrag, 2)
+		else round(t.WertEUR/t.QuellBetrag, 2) end
+	when 7 then 0
+	else '-' 
+end [Kurs EUR],
+coalesce(case 
+	when (a.InTransferID = 0 or a.InTransferID = t.ID) and a.TransferIDHistory = "" then replace(a.InTradeID, '-1', 'n/a')
+	when a.InTransferID = t.ID and a.TransferIDHistory != "" then replace(a.InTradeID, '-1', 'n/a') || ' (' || a.TransferIDHistory || ')'
+	else replace(a.InTradeID, '-1', 'n/a') || ' (' || a.InTransferID || ')' 
+end, '-') [Vorgang Anschaffung],
+coalesce(date(a.KaufZeitpunkt), date(t.InZeitpunkt)) [Anschaffungsdatum],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(a.Betrag), 0), 8) end
+	else round(coalesce(sum(a.Betrag), t.BetragNachGebuehr), 8) 
+end [Coin-Anteil],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(a.WertEUR), t.WertEUR) / coalesce(sum(a.Betrag), t.BetragNachGebuehr), 2) end
+	-- when 5 then '-'
+	else round(coalesce(sum(a.WertEUR), t.WertEUR) / coalesce(sum(a.Betrag), t.BetragNachGebuehr), 2)
+end [Kaufkurs EUR],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else round(coalesce(sum(a.WertEUR), t.WertEUR), 2) end
+	-- when 5 then '-'
+	else round(coalesce(sum(a.WertEUR), t.WertEUR), 2)
+end [Kaufpreis EUR],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr, 2) else round(coalesce(sum(a.WertEUR), 0), 2) end end
+	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag, 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag, 2) else round(coalesce(sum(a.WertEUR), 0), 2) end end
+	when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(a.WertEUR), t.WertEUR), 2) end
+	else '-'
+end [Verkaufspreis EUR],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+	when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(a.WertEUR), t.WertEUR), 2) end
+	else '-'
+end [Gewinn EUR],
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then '-' else max(a.IstLangzeit) end
+	when 4 then max(a.IstLangzeit)
+	when 7 then max(a.IstLangzeit)
+	else '-'
+end [Steuerfrei],
+coalesce(t.Kommentar, '') Kommentar,
+sz.ID _SzenarioID, 
+t.QuellPlattformID _QuellPlattformID,
+t.ZielPlattformID _ZielPlattformID,
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then -1 else max(a.IstLangzeit) end
+	when 4 then max(a.IstLangzeit)
+	when 7 then max(a.IstLangzeit)
+	else -1
+end [_Steuerfrei],
+case t.TradeTypID
+	when 5 then case when qp.Eigen then 2 else 1 end
+	else 0
+end [_TradeTyp]
+from Trades t
+inner join TradeTypen tt on t.TradeTypID = tt.ID
+inner join Plattformen qp on t.QuellPlattformID = qp.ID
+inner join Plattformen zp on t.ZielPlattformID = zp.ID
+inner join Konten qk on t.QuellKontoID = qk.ID
+inner join Konten zk on t.ZielKontoID = zk.ID
+left join TradeTx a on (a.OutTradeID = t.ID or (a.InTransferID = t.ID and IstRest = 0))
+left join Szenarien sz
+where (t.TradeTypID in (3, 4, 7) or (t.TradeTypID = 5 and not zk.IstFiat)) and not t.Steuerirrelevant and (qp.Eigen or zp.Eigen)
+	and (a.SzenarioID = sz.ID or a.SzenarioID is NULL)
+group by sz.ID, t.ID, a.InTradeID, a.InTransferID, a.TransferIdHistory, a.OutTradeID
+order by sz.ID, t.Zeitpunkt, tt.ID, t.ID, a.TxID</value>
+  </data>
+  <data name="db_v40_26" xml:space="preserve">
+    <value>CREATE VIEW "VW_Gainings" AS 
+select
+t.Zeitpunkt Zeitpunkt,
+case t.TradeTypID
+	when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+	when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(a.WertEUR), t.WertEUR), 2) end
+	else 0
+end [Gesamtgewinn EUR],
+case when coalesce(max(a.IstLangzeit), 1) then 0
+	else case t.TradeTypID
+		when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+		when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+		when 7 then case when qk.IstFiat then -round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr, 2) else -round(coalesce(sum(a.WertEUR), t.WertEUR), 2) end
+		else 0
+	end
+end [Gewinn EUR steuerpflichtig],	
+round(0, 2) [Gewinn EUR Plattformen],
+',' || t.QuellPlattformID || ',' as _QuellPlattformID,
+sz.ID _SzenarioID
+from Trades t
+inner join Plattformen qp on t.QuellPlattformID = qp.ID
+inner join Plattformen zp on t.ZielPlattformID = zp.ID
+inner join Konten qk on t.QuellKontoID = qk.ID
+inner join Konten zk on t.ZielKontoID = zk.ID
+left join TradeTx a on a.OutTradeID = t.ID
+left join Szenarien sz 
+where t.TradeTypID in (3, 4, 7) and not t.Steuerirrelevant and (qp.Eigen or zp.Eigen)
+	and (a.SzenarioID = sz.ID or a.SzenarioID is null)
+group by t.ID, a.TxID, sz.ID</value>
   </data>
 </root>

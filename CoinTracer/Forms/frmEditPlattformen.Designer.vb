@@ -336,7 +336,6 @@ Partial Class frmEditPlattformen
         Me.TableAdapterManager.TradesWerteTableAdapter = Nothing
         Me.TableAdapterManager.TradeTypenTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        Me.TableAdapterManager.ZeitstempelWerteTableAdapter = Nothing
         '
         'pnlDownSeit
         '

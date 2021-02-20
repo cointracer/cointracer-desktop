@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -32,6 +32,8 @@
 Imports CoinTracer.CoinValueStrategy
 Imports CoinTracer.CoinTracerDataSetTableAdapters
 Imports CoinTracer.CoinTracerDataSet
+Imports CoinTracer.My.Resources
+Imports System.Linq
 
 Public Enum CoinBusinessCases
     _Default = 0
@@ -416,6 +418,26 @@ Public Class TradeValueManager
     End Sub
 #End Region
 
+    Private Structure CalculationParameters
+        Public CalculationID As Long
+        Public LongTermInterval As String
+        Public TradeIDsCleared As List(Of Long)
+        Public TradeIDsRetries As List(Of Long)
+        Public TradesTb As TradesDataTable
+        Public TxTA As TradeTxTableAdapter
+        Public TxTb As TradeTxDataTable
+        Public KontenTb As KontenDataTable
+        Public PlattformenTb As PlattformenDataTable
+        Public TradeValuesTA As TradesWerteTableAdapter
+        Public TradeValuesTb As TradesWerteDataTable
+        Public AssignTrades As List(Of TradesRow)
+        Public FilterKontoID As Long
+        Public FilterPlattformID As Long
+        Public FilterZeitpunkt As Date
+        Public FilterTxFunction As Func(Of TradeTxRow, Boolean)
+        Public SortTxFunction As Func(Of TradeTxRow, Double)
+    End Structure
+
     Private Class LongTermTaxPeriod
         Public IntervalUnit As DateInterval
         Public IntervalValue As Integer
@@ -451,7 +473,7 @@ Public Class TradeValueManager
     ' The following is needed only while assigning OutCoins to InCoins and is held class-wide for performance reasons
     Private _LongTermInterval As LongTermTaxPeriod
     Private _CVS As CoinValueStrategy
-
+    Private _CalcParams As CalculationParameters
 
     ''' <summary>
     ''' Initalisiert die Progressform für dieses Modul
@@ -657,9 +679,16 @@ Public Class TradeValueManager
     ''' </summary>
     Private Sub RollbackCalculation(ByVal KalkulationID As Long)
         Try
-            _DS.ExecuteSQL("delete from Out2In where KalkulationID=" & KalkulationID)
-            _DS.ExecuteSQL("delete from Kalkulationen where ID=" & KalkulationID)
+            With New TradeTxTableAdapter
+                .DeleteByKalkulationID(KalkulationID)
+                .RevertByKalkulationID(KalkulationID)
+            End With
+            With New KalkulationenTableAdapter
+                .DeleteByID(KalkulationID)
+            End With
         Catch ex As Exception
+            Debug.Print(String.Format("Error on RollbackCalculation({0})", KalkulationID))
+            Throw ex
         End Try
     End Sub
 
@@ -800,523 +829,398 @@ Public Class TradeValueManager
     End Property
 
     ''' <summary>
-    ''' Calculates the source and tax value of all outgoing coins to the given timestamp by filling up the Out2In table
+    ''' Calculates the source and tax value of all outgoing coins to the given timestamp by filling up the TradeTx table
     ''' </summary>
     ''' <param name="UntilTime">Timestamp for the calculation. All outgoing coins up to this date will be calculated.</param>
     ''' <returns>Number of clarified outcoin entries</returns>
     Public Function CalculateOutCoinsToInCoins(Optional UntilTime As Date = DATENULLVALUE) As Integer
         Const CALCULATIONCHUNKSECONDS = 20          ' Seconds until the data is written to the database and the calculation starts over again
-        Dim OutCoinsTA As VW_OutCoinsTableAdapter
-        Dim InCoinsTA As VW_InCoinsTableAdapter
-        Dim OutCoinsTb As New VW_OutCoinsDataTable
-        Dim InCoinsTb As New VW_InCoinsDataTable
-        Dim CalculationID As Long = 0
-        Dim RowCount As Long = 0
+
+        Dim RowTotalOutRows As Long = 0
+        Dim FromTime As DateTime
+        Dim AllWritten As Boolean
+        Dim TotalOutRows As Long
 
         Cursor.Current = Cursors.WaitCursor
         InitProgressForm(My.Resources.MyStrings.calcGainingsInitProgressMessage)
-
         Try
             ' Write new calculation entry, rollback other calculations if needed
             If UntilTime = DATENULLVALUE Then
                 UntilTime = Now
             End If
-            CalculationID = WriteCalculationEntry(_TCS.ToString, UntilTime)
-            If CalculationID > 0 Then      ' Nothing to do if CalculationID = 0!
+            _CalcParams.CalculationID = WriteCalculationEntry(_TCS.ToString, UntilTime)
+            If _CalcParams.CalculationID > 0 Then       ' Nothing to do if CalculationID = 0!
 
-                Dim OutCoinsSql As String
-                Dim InCoinsSql As String
-                Dim FromTime As Date = DATENULLVALUE
-                Dim OutTradesInCalculation As String = "0,"
-
+                FromTime = DATENULLVALUE
                 _LastUnclearSpendings = 0
-                ' Set Sql Template for OutCoins
-                OutCoinsTA = New VW_OutCoinsTableAdapter
-                If Not _TCS.WalletAware Then
-                    OutCoinsSql = String.Format("and not OutTypID in ({0}, {1}, {2}) ",
-                                                CInt(DBHelper.TradeTypen.TransferBörseBörse),
-                                                CInt(DBHelper.TradeTypen.TransferBörseWallet),
-                                                CInt(DBHelper.TradeTypen.TransferWalletBörse))
-                Else
-                    OutCoinsSql = ""
-                End If
-                ' Select all OutCoins that are not completely clear
-                OutCoinsSql = "select o.* from VW_OutCoins as o " &
-                    "left join Out2In as o2i on (o2i.OutTradeID = o.TradeID and not o2i.IstTransfer and o2i.SzenarioID = " & _SzenarioID & ") " &
-                    "where o.Zeitpunkt >= '{0}' and o.Zeitpunkt < '{1}' and o.Betrag > 0 and not o.TradeID in ({2}) " &
-                    OutCoinsSql &
-                    " group by o.TradeID " &
-                    "having sum(ifnull(o2i.MainBetrag, 0)) < o.Betrag " &
-                    "order by o.Zeitpunkt, o.TradeID"
-                ' Set Sql Template for InCoins
-                InCoinsTA = New VW_InCoinsTableAdapter
-                If Not _TCS.WalletAware Then
-                    InCoinsSql = String.Format("and not InTypID in ({0}, {1}, {2}) ",
-                                                CInt(DBHelper.TradeTypen.TransferBörseBörse),
-                                                CInt(DBHelper.TradeTypen.TransferBörseWallet),
-                                                CInt(DBHelper.TradeTypen.TransferWalletBörse))
-                Else
-                    InCoinsSql = ""
-                End If
-                ' Also select all InCoins that are not completely assigned
-                InCoinsSql = "select i.* from VW_InCoins As i " &
-                    "left join Out2In As o2i on (o2i.InTradeID = i.TradeID and not o2i.IstTransfer and o2i.SzenarioID = " & _SzenarioID & ") " &
-                    "where i.Zeitpunkt < '{0}' " & InCoinsSql &
-                    "group by i.TradeID " &
-                    "having sum(ifnull(o2i.Betrag, 0)) < i.Betrag " &
-                    "order by i.Zeitpunkt desc, i.TradeID desc"
+                ' Get open trade rows
+                With New TradesTableAdapter With {.ClearBeforeFill = False}
+                    _CalcParams.TradesTb = .GetOpenTradesBySzenarioID(_SzenarioID, UntilTime)
+                End With
+                If (_CalcParams.TradesTb.Rows.Count <> 0) Then
 
-                If OutCoinsTA.FillBySQL(OutCoinsTb, String.Format(OutCoinsSql,
-                                                                  ConvertToSqlDate(FromTime),
-                                                                  ConvertToSqlDate(UntilTime, False),
-                                                                  "0")) = 0 Then
-                    ' No OutCoins - nothing to do
-                    CalculationID = 0
-                Else
-
-                    ' Loop over every OutCoin entry (in chunks for the sake of performance and user interactiveness)
-                    Dim AllWritten As Boolean = False
-                    Dim OutToInTA As New Out2InTableAdapter
-                    Dim OutToInTb As New Out2InDataTable
-                    Dim TotalOutRows As Long
-                    Dim ChunkRowCount As Long
-                    Dim OutTradeMinOutToInIDs As New Dictionary(Of Long, Long)
-
+                    ' Fill some base tables
+                    With New PlattformenTableAdapter
+                        _CalcParams.PlattformenTb = .GetData()
+                    End With
+                    With New KontenTableAdapter
+                        _CalcParams.KontenTb = .GetData()
+                    End With
                     _LongTermInterval = New LongTermTaxPeriod(_TCS.LongTermPeriodSQL)
+
+                    ' Initialize TradeTx data
+                    _CalcParams.TxTA = New TradeTxTableAdapter With {.ClearBeforeFill = False}
+                    _CalcParams.TxTb = _CalcParams.TxTA.GetBySzenarioID(_SzenarioID)
+                    _CalcParams.TxTb.MaxID = _CalcParams.TxTA.GetMaxID()
+
+                    ' Initialize TradeTx filter function
                     _CVS = _TCS.CoinValueStrategy
+                    If _CVS.WalletAware Then
+                        _CalcParams.FilterTxFunction = Function(r As TradeTxRow)
+                                                           Return (Not r.Entwertet AndAlso ((Decimal.Compare(r.Betrag, 0) > 0) AndAlso ((r.PlattformID = _CalcParams.FilterPlattformID) AndAlso (r.KontoID = _CalcParams.FilterKontoID)))) AndAlso (DateTime.Compare(r.Zeitpunkt, _CalcParams.FilterZeitpunkt) <= 0)
+                                                       End Function
+                    Else
+                        _CalcParams.FilterTxFunction = Function(r As TradeTxRow)
+                                                           Return ((Not r.Entwertet AndAlso ((Decimal.Compare(r.Betrag, 0) > 0) AndAlso (r.KontoID = _CalcParams.FilterKontoID))) AndAlso (DateTime.Compare(r.Zeitpunkt, _CalcParams.FilterZeitpunkt) <= 0))
+                                                       End Function
+                    End If
 
-                    TotalOutRows = OutCoinsTb.Rows.Count
+                    ' Initialize TradeTx sort function
+                    Select Case _CVS.ConsumptionStrategy
+                        Case CoinValueStrategies.YoungestFirst
+                            _CalcParams.SortTxFunction = Function(r As TradeTxRow)
+                                                             Return (DATEMAXVALUE - r.KaufZeitpunkt).TotalMinutes
+                                                         End Function
+                        Case CoinValueStrategies.CheapestFirst
+                            _CalcParams.SortTxFunction = Function(r As TradeTxRow)
+                                                             Return Decimal.ToDouble(r.WertEUR) / Decimal.ToDouble(r.Betrag)
+                                                         End Function
+                        Case CoinValueStrategies.MostExpensiveFirst
+                            _CalcParams.SortTxFunction = Function(r As TradeTxRow)
+                                                             Return -Decimal.ToDouble(r.WertEUR) / Decimal.ToDouble(r.Betrag)
+                                                         End Function
+                        Case Else
+                            ' FiFo
+                            _CalcParams.SortTxFunction = Function(r As TradeTxRow)
+                                                             Return (r.KaufZeitpunkt - DATENULLVALUE).TotalMinutes
+                                                         End Function
+                    End Select
 
-                    ' Get all possible InCoins for this set of OutCoins
-                    InCoinsTA.FillBySQL(InCoinsTb, String.Format(InCoinsSql,
-                                                                 ConvertToSqlDate(UntilTime.AddMinutes(_TCS.ToleranceMinutes), False)))
-                    OutToInTA.Fill(OutToInTb)
-
+                    AllWritten = False
+                    _CalcParams.AssignTrades = New List(Of TradesRow)
+                    _CalcParams.TradeIDsCleared = New List(Of Long)
+                    _CalcParams.TradeIDsRetries = New List(Of Long)
+                    TotalOutRows = _CalcParams.TradesTb.Rows.Count
                     ProgressWaitManager.WithCancelOption = True
+
+                    Dim RowCount As Long
 
                     Do Until AllWritten
 
                         FromTime = Now
-                        ChunkRowCount = 0
-
-
-                        ' Loop over each OutCoin entry
+                        RowCount = 0
                         AllWritten = True
-                        For Each OutCoinRow As VW_OutCoinsRow In OutCoinsTb
-                            RowCount += 1
-                            ChunkRowCount += 1
-                            ProgressWaitManager.UpdateProgress(RowCount / TotalOutRows * 97,
-                                                               String.Format(My.Resources.MyStrings.calcGainingsProgressMessage,
-                                                                             RowCount.ToString(Import.MESSAGENUMBERFORMAT), TotalOutRows.ToString(Import.MESSAGENUMBERFORMAT)))
-                            If Not OutTradesInCalculation.Contains("," & OutCoinRow.TradeID & ",") Then
-                                ' The OutTradeID may have already been cleared (by recursive call), so check this here
 
-                                OutTradesInCalculation &= OutCoinRow.TradeID & ","
-                                Try
-                                    AssignOutCoinToInCoins(OutCoinRow.Betrag,
-                                                           OutCoinRow.TradeID,
-                                                           OutCoinRow.KontoID,
-                                                           OutCoinRow.PlattformID,
-                                                           OutCoinRow.Zeitpunkt,
-                                                           OutCoinRow.Betrag,
-                                                           InCoinsTb,
-                                                           OutToInTb,
-                                                           CalculationID,
-                                                           New List(Of Long) From {OutCoinRow.TradeID},
-                                                           OutTradesInCalculation,
-                                                           OutTradeMinOutToInIDs)
-                                Catch ex As Exception
-                                    Debug.Print("OutTrade ID " & OutCoinRow.TradeID)
-                                End Try
-                                ' Check if user has canceled
-                                If ProgressWaitManager.Canceled Then
-                                    ' get out of here!
-                                    Dim DBO As New DBObjects(String.Format("update Kalkulationen set Zeitpunkt = '{0}' where ID = {1}",
-                                                                       ConvertToSqlDate(OutCoinRow.Zeitpunkt), CalculationID),
-                                                         Me.Connection)
-                                    AllWritten = True
-                                    Exit For
+                        ' Loop over every Trades entry
+                        For Each Trade In _CalcParams.TradesTb
+
+                            RowTotalOutRows += 1
+                            RowCount += 1
+                            ProgressWaitManager.UpdateProgress(Math.Round((RowTotalOutRows / TotalOutRows) * 97),
+                                                                String.Format(MyStrings.calcGainingsProgressMessage,
+                                                                                RowTotalOutRows.ToString(Import.MESSAGENUMBERFORMAT),
+                                                                                TotalOutRows.ToString(Import.MESSAGENUMBERFORMAT)))
+                            If _CalcParams.TradeIDsCleared.Contains(Trade.ID) Then
+                                Continue For
+                            End If
+                            Try
+                                _CalcParams.AssignTrades.Add(Trade)
+                                Do Until _CalcParams.AssignTrades.Count = 0
+                                    AssignTradesToTx
+                                Loop
+                            Catch ex As Exception
+                                If (_CalcParams.AssignTrades.Count > 0) Then
+                                    Debug.Print(("Error while processing Trade ID " & _CalcParams.AssignTrades(0).ID))
+                                Else
+                                    Debug.Print(("Error while processing Trade ID " & Trade.ID))
                                 End If
-                                ' check if we need a break
-                                If (Now - FromTime).TotalSeconds >= CALCULATIONCHUNKSECONDS Then
-                                    ProgressWaitManager.UpdateProgress(RowCount / TotalOutRows * 97, My.Resources.MyStrings.calcGainingsIntermediateWriteToDbMessage)
-                                    OutToInTA.Update(OutToInTb)
-                                    ' Load next chunk of OutCoins
-                                    FromTime = OutCoinRow.Zeitpunkt
-                                    OutCoinsTA.FillBySQL(OutCoinsTb, String.Format(OutCoinsSql,
-                                                                               ConvertToSqlDate(FromTime),
-                                                                               ConvertToSqlDate(UntilTime, False),
-                                                                               OutTradesInCalculation.Substring(0, OutTradesInCalculation.Length - 1)))
-                                    AllWritten = False
-                                    Exit For
+                            End Try
+
+                            If ProgressWaitManager.Canceled Then
+                                ' User has cancelled the calculation
+                                ProgressWaitManager.UpdateProgress(Math.Round((RowTotalOutRows / TotalOutRows) * 99),
+                                                                    String.Format(MyStrings.calcGainingsFinalWriteToDbMessage, RowCount.ToString(Import.MESSAGENUMBERFORMAT)))
+                                Dim KalkulationenTA As New KalkulationenTableAdapter
+                                KalkulationenTA.UpdateZeitpunkt(Trade.Zeitpunkt, _CalcParams.CalculationID)
+                                _CalcParams.TxTA.Update(_CalcParams.TxTb)
+                                KalkulationenTA = Nothing
+                                AllWritten = True
+                            Else
+                                If (Debugger.IsAttached OrElse ((Now - FromTime).TotalSeconds < CALCULATIONCHUNKSECONDS)) Then
+                                    Continue For
                                 End If
+                                ' Time out: Save data to db and fetch next chunk
+                                ProgressWaitManager.UpdateProgress(Math.Round((RowTotalOutRows / TotalOutRows) * 97), MyStrings.calcGainingsIntermediateWriteToDbMessage)
+                                FromTime = Trade.Zeitpunkt
+                                _CalcParams.TxTA.Update(_CalcParams.TxTb)
+                                With New TradesTableAdapter With {.ClearBeforeFill = True}
+                                    _CalcParams.TradesTb = .GetOpenTradesBySzenarioID(_SzenarioID, New Date?(UntilTime))
+                                End With
+                                AllWritten = False
                             End If
                         Next
+
+                        If AllWritten Then
+                            ' We are done - update TradeTx table and raise event
+                            ProgressWaitManager.UpdateProgress(Math.Round((RowTotalOutRows / CDbl(TotalOutRows)) * 99),
+                                                               String.Format(MyStrings.calcGainingsFinalWriteToDbMessage,
+                                                                             RowCount.ToString(Import.MESSAGENUMBERFORMAT)))
+                            _CalcParams.TxTA.Update(_CalcParams.TxTb)
+                            RaiseEvent GainingsCutOffDayChanged(Me, New GainingsCutOffDayEventArgs(GetGainingsCutOffDay))
+                        End If
                     Loop
 
-                    ' Write to database
-                    ProgressWaitManager.UpdateProgress(RowCount / TotalOutRows * 99, String.Format(My.Resources.MyStrings.calcGainingsFinalWriteToDbMessage,
-                                                                                                   ChunkRowCount.ToString(Import.MESSAGENUMBERFORMAT)))
-                    OutToInTA.Update(OutToInTb)
                 End If
             End If
         Catch ex As Exception
-            If CalculationID > 0 Then
-                ' Rollback entries of current calculation
-                RollbackCalculation(CalculationID)
+            If (_CalcParams.CalculationID > 0) Then
+                RollbackCalculation(_CalcParams.CalculationID)
             End If
             Cursor.Current = Cursors.Default
             DestroyProgressForm()
             Throw
-            Exit Function
         End Try
 
         Cursor.Current = Cursors.Default
         DestroyProgressForm()
+        Return RowTotalOutRows
 
-        Return RowCount
+    End Function
 
+    ''' <summary>
+    ''' Assigns the given Trades row to their corresponding TradeTx entries. Uses the _CalcParams structure to retrieve all parameters 
+    ''' needed for the calculation. In case of not being able to assign the value of an outgoing trade completely, this routine will 
+    ''' search for helpful TradeRow candidates and put these onto the _CalcParams.AssignTrades stack.
+    ''' </summary>
+    Private Sub AssignTradesToTx()
+        Dim Trade As TradesRow = _CalcParams.AssignTrades(0)
+        If Not _CalcParams.TradeIDsCleared.Contains(Trade.ID) Then
+            Dim TargetIsFiat As Boolean = _CalcParams.KontenTb.FindByID(Trade.ZielKontoID).IstFiat
+            Dim AmountToAssign As Decimal
+            If ((Trade.TradeTypID = DBHelper.TradeTypen.Kauf) OrElse ((Trade.TradeTypID = DBHelper.TradeTypen.Transfer) And Not TargetIsFiat)) Then
+                ' Buy or crypto transfer from external source: charge values
+                AmountToAssign = ChargeTx(Trade)
+            ElseIf ((Trade.TradeTypID = DBHelper.TradeTypen.Verkauf) OrElse ((Trade.TradeTypID = DBHelper.TradeTypen.Verlust) And Not TargetIsFiat)) Then
+                ' Sell or loss: discharge values
+                AmountToAssign = DischargeTx(Trade, False)
+            ElseIf (Trade.TradeTypID = DBHelper.TradeTypen.TransferIntern) Then
+                ' Internal crypto transfer: shift values form one platform to another
+                AmountToAssign = DischargeTx(Trade, True)
+            ElseIf (Trade.TradeTypID = DBHelper.TradeTypen.KaufCoin4Coin) Then
+                ' Buy crypto with crypto: evaluate value of given coins and assign it to purchased coins
+                Dim WertEUR As Decimal?
+                AmountToAssign = DischargeTx(Trade, False, WertEUR)
+                If AmountToAssign <= AMOUNT_TOLERANCE Then
+                    AmountToAssign = ChargeTx(Trade, WertEUR)
+                End If
+            End If
+            If AmountToAssign <= AMOUNT_TOLERANCE Then
+                ' Assignment successful: remove Trade from stack
+                _CalcParams.AssignTrades.RemoveAt(0)
+                _CalcParams.TradeIDsCleared.Add(Trade.ID)
+            End If
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Creates a new tx ledger entry for the given TradesRow object. Always returns 0.
+    ''' </summary>
+    ''' <param name="Trade">The (ingoing) trade, whose coin value will be charged to the tx ledger.</param>
+    ''' <param name="WertEUR">If set, WertEUR is the fiat value of the given crypto. If not set WertEUR from Trade row will be used.</param>
+    ''' <returns>0.0</returns>
+    Private Function ChargeTx(ByVal Trade As TradesRow,
+                              ByVal Optional WertEUR As Decimal? = Nothing) As Decimal
+        Dim TxRow As TradeTxRow = _CalcParams.TxTb.NewTradeTxRow
+        With TxRow
+            .TxID = _CalcParams.TxTb.MaxID
+            .SzenarioID = _SzenarioID
+            .InKalkulationID = _CalcParams.CalculationID
+            .InTradeID = Trade.ID
+            .TransferIDHistory = ""
+            .PlattformID = Trade.ZielPlattformID
+            .KontoID = Trade.ZielKontoID
+            .Zeitpunkt = Trade.ZeitpunktZiel
+            .KaufZeitpunkt = Trade.InZeitpunkt
+            .Betrag = Trade.BetragNachGebuehr
+            .WertEUR = IIf(WertEUR Is Nothing, Trade.WertEUR, WertEUR)
+            .Entwertet = False
+            .IstLangzeit = False
+            .IstRest = False
+        End With
+        _CalcParams.TxTb.Rows.Add(TxRow)
+        Return 0
     End Function
 
 
     ''' <summary>
-    ''' Assigns the given OutCoin entry to corresponding InCoin entries (according to the given CoinValueStrategies)
+    ''' Tries to discharge the tx ledger regarding the given TradesRow object. Returns 0 if successful, the remaining amount otherwise. 
     ''' </summary>
-    ''' <param name="InCoinsTable">InCoins data table</param>
-    ''' <param name="OutTradeIDs">List of OutTradeIDs whose values are currently under assignment, used as stack for recursive calls</param>
-    ''' <returns>Amount that still needs to be assigned (return value needed for recursion)</returns>
-    Private Function AssignOutCoinToInCoins(ByVal MainAmountToAssign As Decimal,
-                                            ByVal OutTradeID As Long,
-                                            ByVal OutKontoID As Long,
-                                            ByVal OutPlattform As Long,
-                                            ByVal OutZeitpunkt As Date,
-                                            ByVal AmountToAssign As Decimal,
-                                            ByRef InCoinsTable As VW_InCoinsDataTable,
-                                            ByRef OutToInTable As Out2InDataTable,
-                                            ByVal CalculationID As Long,
-                                            ByRef OutTradeIDs As List(Of Long),
-                                            ByRef OutTradesInCalculation As String,
-                                            ByRef OutTradeMinOutToInIDs As Dictionary(Of Long, Long)) As Decimal
+    ''' <param name="Trade">The (outgoing) trade that needs to be discharged from the tx ledger.</param>
+    ''' <param name="TransferMode">True, if an internal transfer needs to be discharged. In this case, every single discharged tx ledger entry will immediately
+    ''' be copied to the target platform (instead of simply being discharged)</param>
+    ''' <param name="SumWertEUR">If set, this variable will hold the WertEUR equivalent of the discharged coin value (used for coin 4 coin trades).</param>
+    ''' <returns>0 on success, otherwise the remaining crypto amount.</returns>
+    Private Function DischargeTx(ByVal Trade As TradesRow,
+                                 ByVal TransferMode As Boolean,
+                                 ByRef Optional SumWertEUR As Decimal? = Nothing) As Decimal
+        Dim TxDischarged As New List(Of TradeTxRow)
+        Dim AmountToAssign As Decimal = Trade.QuellBetrag
+        Dim InitialTxRows As Long = _CalcParams.TxTb.Rows.Count
+        Dim TransferFee As Decimal = IIf(TransferMode, Trade.QuellBetrag - Trade.BetragNachGebuehr, 0)
+        SumWertEUR = 0
 
-        Dim MatchTimeMinutesTolerance As Long = 0
-        Dim InCoinRows() As VW_InCoinsRow
-        Dim Sql As String
-        Dim SortSql As String
-        Dim OutToInRowCount As Long = OutToInTable.Rows.Count
-        Dim OutToInRows() As Out2InRow
-        Dim OutToInRow As Out2InRow
-        Dim InCoinAssignedAmount As Decimal
-        Dim InitialAmountToAssign As Decimal = AmountToAssign
-        Dim WertEUR As Decimal
-        Dim FactorRow As Decimal
-
-        ' Take care of the various CoinValuePreferences
-        Select Case _CVS.ConsumptionStrategy
-            Case CoinValueStrategies.OldestFirst
-                SortSql = "Zeitpunkt ASC"
-            Case CoinValueStrategies.YoungestFirst
-                SortSql = "Zeitpunkt DESC"
-            Case CoinValueStrategies.CheapestFirst
-                SortSql = "KursEUR ASC"                    ' This is not accurate, because there are no values in transfers or (probably) in sells coins for coins - but anyway...
-            Case CoinValueStrategies.MostExpensiveFirst
-                SortSql = "KursEUR DESC"                   ' Same applies here...
-            Case Else
-                ' Default: Fifo
-                SortSql = "Zeitpunkt ASC"
-        End Select
-
-        ' Keep track of the Out2In rowcount for later recursive calls
-        If Not OutTradeMinOutToInIDs.ContainsKey(OutTradeID) Then
-            OutTradeMinOutToInIDs.Add(OutTradeID, OutToInRowCount)
+        ' Select appropriate tx rows
+        _CalcParams.FilterKontoID = Trade.QuellKontoID
+        _CalcParams.FilterPlattformID = Trade.QuellPlattformID
+        If _CalcParams.TradeIDsRetries.Contains(Trade.ID) Then
+            ' This is the 2nd trial: enlarge the time frame for finding TradeTx entries
+            _CalcParams.FilterZeitpunkt = Trade.Zeitpunkt.AddMinutes(_TCS.ToleranceMinutes)
+        Else
+            ' This is the 1st trial: search within normal timeframe
+            _CalcParams.FilterZeitpunkt = Trade.Zeitpunkt
         End If
-
-        Do Until MatchTimeMinutesTolerance < 0                      ' ...just a signal to leave this loop
-            ' Loop over corresponding InCoin entries
-            If _TCS.WalletAware Then
-                Sql = "and PlattformID = " & OutPlattform
-            Else
-                Sql = ""
-            End If
-            Sql = String.Format("KontoID = {0} and Zeitpunkt <= '{1}' {2}",
-                                OutKontoID,
-                                ConvertToSqlDate(OutZeitpunkt.AddMinutes(MatchTimeMinutesTolerance)),
-                                Sql)
-            InCoinRows = InCoinsTable.Select(Sql, SortSql)
-            For Each InCoinRow As VW_InCoinsRow In InCoinRows
-
-                ' Make sure we are not looping here
-                If OutTradeIDs.IndexOf(InCoinRow.TradeID) = -1 Then
-                    ' Now check if this InCoin entry has some unassigned value
-                    InCoinAssignedAmount = 0
-                    OutToInRows = OutToInTable.Select(String.Format("InTradeID = {0} and SzenarioID = {1} and not IstTransfer",
-                                                                    InCoinRow.TradeID,
-                                                                    _SzenarioID))
-                    For i As Long = 0 To Math.Min(OutTradeMinOutToInIDs(OutTradeID), OutToInRows.LongLength) - 1
-                        If OutToInRows(i).RowState <> DataRowState.Deleted AndAlso (OutToInTable.Rows.IndexOf(OutToInRows(i)) < OutTradeMinOutToInIDs(OutTradeID)) Then
-                            InCoinAssignedAmount += OutToInRows(i).Betrag
-                        End If
-                    Next
-
-                    If InCoinAssignedAmount < InCoinRow.Betrag Then
-                        ' There is some amount not assigned yet - so go ahead
-                        If InCoinRow.InTypID = DBHelper.TradeTypen.Kauf _
-                            Or (InCoinRow.InTypID = DBHelper.TradeTypen.KaufCoin4Coin And _TCS.Coins4CoinsAccounting) _
-                            Or InCoinRow.InTypID = DBHelper.TradeTypen.Transfer Then
-                            ' InCoin has a taxable value - so assign it
-                            InCoinAssignedAmount = Math.Min(InCoinRow.Betrag - InCoinAssignedAmount, AmountToAssign)
-                            AddOutToInRow(OutToInTable,
-                                          _SzenarioID,
-                                          CalculationID,
-                                          OutTradeID,
-                                          OutTradeID,
-                                          InCoinRow.TradeID,
-                                          InCoinRow.InZeitpunkt,
-                                          MainAmountToAssign * (InCoinAssignedAmount / InitialAmountToAssign),
-                                          InCoinAssignedAmount,
-                                          InCoinRow.WertEUR * (InCoinAssignedAmount / InCoinRow.Betrag),
-                                          1,
-                                          True,
-                                          False,
-                                          IsNotTaxable(InCoinRow.InZeitpunkt, OutZeitpunkt))
-                            AmountToAssign -= InCoinAssignedAmount
-                            If AmountToAssign <= AMOUNT_TOLERANCE Then
-                                Exit For
-                            End If
-                        ElseIf InCoinRow.InTypID = DBHelper.TradeTypen.KaufCoin4Coin Or
-                            (InCoinRow.InTypID And 15) = DBHelper.TradeTypen.Transfer Then
-                            ' Buy/sell coin4coin or internal transfer: Determine tax value and write Out2In entries
-                            OutToInRows = OutToInTable.Select(String.Format("MainOutTradeID = {0} and SzenarioID = {1}",
-                                                                            InCoinRow.TradeID,
-                                                                            _SzenarioID), "ID")
-                            If OutToInRows.LongLength = 0 Then
-                                ' This InTrade/OutTrade has not been assigned yet - so do it now
-                                Try
-                                    AssignOutCoinToInCoins(InCoinRow.OutBetrag,
-                                                           InCoinRow.TradeID,
-                                                           InCoinRow.OutKontoID,
-                                                           InCoinRow.OutPlattformID,
-                                                           InCoinRow.OutZeitpunkt,
-                                                           InCoinRow.OutBetrag,
-                                                           InCoinsTable,
-                                                           OutToInTable,
-                                                           CalculationID,
-                                                           OutTradeIDs,
-                                                           OutTradesInCalculation,
-                                                           OutTradeMinOutToInIDs)
-                                    OutTradesInCalculation &= InCoinRow.TradeID & ","
-                                    OutTradeIDs.Add(InCoinRow.TradeID)
-                                Catch ex As StackOverflowException
-                                    ' We had a problem here!
-                                    Debug.Print("Problem in finding amounts! (Recursion)")
-                                End Try
-                            End If
-                            ' Determine tax value ('WertEUR')
-                            WertEUR = 0
-                            For Each OutToInRow In OutToInRows
-                                If Not OutToInRow.IstTransfer Then
-                                    WertEUR += OutToInRow.WertEUR
-                                End If
-                            Next
-                            ' Calculate the partial values for the assignment
-                            InCoinAssignedAmount = Math.Min(InCoinRow.Betrag - InCoinAssignedAmount, AmountToAssign)
-                            If InCoinAssignedAmount = InCoinRow.Betrag Then
-                                FactorRow = 1
-                            Else
-                                FactorRow = InCoinAssignedAmount / InCoinRow.Betrag
-                            End If
-                            AddOutToInRow(OutToInTable,
-                                          _SzenarioID,
-                                          CalculationID,
-                                          OutTradeID,
-                                          OutTradeID,
-                                          InCoinRow.TradeID,
-                                          InCoinRow.InZeitpunkt,
-                                          MainAmountToAssign * (InCoinAssignedAmount / InitialAmountToAssign),
-                                          InCoinAssignedAmount,
-                                          WertEUR * FactorRow,
-                                          1,
-                                          True,
-                                          (InCoinRow.InTypID And 15) = DBHelper.TradeTypen.Transfer,
-                                          IsNotTaxable(InCoinRow.InZeitpunkt, OutZeitpunkt))
-                            If (InCoinRow.InTypID And 15) = DBHelper.TradeTypen.Transfer Then
-                                ' This InTrade was a transfer, so dig for the corresponding Out2In entries (= the entries that are no transfers)
-                                AssignFromTransfer(OutTradeID,
-                                                   OutZeitpunkt,
-                                                   MainAmountToAssign * (InCoinAssignedAmount / InitialAmountToAssign),
-                                                   InCoinAssignedAmount,
-                                                   InCoinRow.TradeID,
-                                                   OutToInTable,
-                                                   CalculationID)
-
-                            End If
-
-
-                            AmountToAssign -= InCoinAssignedAmount
-                            If AmountToAssign <= AMOUNT_TOLERANCE Then
-                                Exit For
-                            End If
-                        Else
-                            ' Some unexpected type of InCoin occured...
-                            Debug.Print("Warning: InCoinType " & InCoinRow.InTypID & " encountered at OutTradeID " & OutTradeID)
+        Dim SelectedTx = _CalcParams.TxTb.Where(_CalcParams.FilterTxFunction).OrderBy(_CalcParams.SortTxFunction)
+        For Each TxRow In SelectedTx
+            If (TxRow.Betrag > AmountToAssign) Or TransferMode Then
+                ' TxRow has more value than needed or we are transferring value: derive rows
+                Dim RowAmountToAssign As Decimal = Math.Min(TxRow.Betrag, AmountToAssign)
+                Dim DerivedTxRow As TradeTxRow = TxRow.Derive
+                With DerivedTxRow
+                    .ParentTxID = TxRow.TxID
+                    .InKalkulationID = _CalcParams.CalculationID
+                    If TransferFee > RowAmountToAssign Then
+                        .Betrag = 0
+                        TransferFee -= RowAmountToAssign
+                    Else
+                        .Betrag = RowAmountToAssign - TransferFee
+                        TransferFee = 0
+                    End If
+                    .WertEUR = (TxRow.WertEUR / TxRow.Betrag) * RowAmountToAssign
+                    SumWertEUR += .WertEUR
+                    If (.InTransferID > 0) Then
+                        .TransferIDHistory = DerivedTxRow.InTransferID
+                    End If
+                    If TransferMode Then
+                        .PlattformID = Trade.ZielPlattformID
+                        .InTransferID = Trade.ID
+                        .IstRest = False
+                    Else
+                        .Entwertet = True
+                        .OutTradeID = Trade.ID
+                        .OutKalkulationID = .InKalkulationID
+                        If (Trade.TradeTypID <> DBHelper.TradeTypen.Transfer) Then
+                            .IstLangzeit = IsNotTaxable(TxRow.KaufZeitpunkt, Trade.Zeitpunkt)
                         End If
                     End If
+                End With
+                _CalcParams.TxTb.AddTradeTxRow(DerivedTxRow)
+                If TxRow.Betrag > AmountToAssign Then
+                    ' We have some remaining value
+                    Dim RemainTxRow As TradeTxRow = TxRow.Derive
+                    With RemainTxRow
+                        .InKalkulationID = _CalcParams.CalculationID
+                        .Betrag = TxRow.Betrag - AmountToAssign
+                        .WertEUR = (TxRow.WertEUR / TxRow.Betrag) * .Betrag
+                        .ParentTxID = TxRow.TxID
+                    End With
+                    _CalcParams.TxTb.AddTradeTxRow(RemainTxRow)
                 End If
-            Next
-            If AmountToAssign > AMOUNT_TOLERANCE Then
-                ' OutCoin value still not completely assigned
-                If MatchTimeMinutesTolerance = 0 AndAlso _TCS.ToleranceMinutes > 0 Then
-                    ' Try again, but this time add some tolerance to the cut off time
-                    MatchTimeMinutesTolerance = _TCS.ToleranceMinutes
-                    ' Erase Out2In entries from first trial
-                    For i As Long = OutToInTable.Rows.Count - 1 To OutToInRowCount Step -1
-                        If OutToInTable.Rows(i).RowState <> DataRowState.Deleted Then
-                            OutToInTable.Rows(i).Delete()
-                        End If
-                    Next
-                Else
-                    ' 2nd trial was not successful either, so create "fake" OutToInCoin entry
-                    AddOutToInRow(OutToInTable,
-                                  _SzenarioID,
-                                  CalculationID,
-                                  OutTradeID,
-                                  OutTradeID,
-                                  -1,
-                                  OutZeitpunkt.Date, 'Date.FromOADate(Math.Floor(OutZeitpunkt.ToOADate)),
-                                  MainAmountToAssign * (AmountToAssign / InitialAmountToAssign),
-                                  AmountToAssign,
-                                  0,
-                                  1,
-                                  True,
-                                  False,
-                                  False)
-                    AmountToAssign = 0
-                    _LastUnclearSpendings += 1
-                    ' leave the loop
-                    MatchTimeMinutesTolerance = -1
-                End If
+                TxRow.OutKalkulationID = _CalcParams.CalculationID
+                TxRow.Entwertet = True
+                AmountToAssign -= RowAmountToAssign
+                TxDischarged.Add(TxRow)
             Else
-                ' leave the loop
-                AmountToAssign = 0
-                MatchTimeMinutesTolerance = -1
+                ' TxRow needs to be discharged completely
+                With TxRow
+                    .OutTradeID = Trade.ID
+                    SumWertEUR += .WertEUR
+                    If (Trade.TradeTypID <> DBHelper.TradeTypen.Transfer) Then
+                        .IstLangzeit = IsNotTaxable(.KaufZeitpunkt, Trade.Zeitpunkt)
+                    End If
+                    .OutKalkulationID = _CalcParams.CalculationID
+                    .Entwertet = True
+                    AmountToAssign -= .Betrag
+                End With
+                TxDischarged.Add(TxRow)
             End If
-        Loop
-        ' Remove last OutTradeID from stack
-        OutTradeIDs.RemoveAt(OutTradeIDs.Count - 1)
+            ' Are we done?
+            If AmountToAssign <= AMOUNT_TOLERANCE Then
+                Exit For
+            End If
+        Next
+        If AmountToAssign <= AMOUNT_TOLERANCE Then
+            ' Everything has been assigned, we can leave here
+            Return AmountToAssign
+        End If
+        ' The is some remaining value...
+        Dim FoundTradesRow As TradesRow = Nothing
+        If _TCS.ToleranceMinutes > 0 And Not _CalcParams.TradeIDsRetries.Contains(Trade.ID) Then
+            ' value could not be completely assigned. Try to find possible incoming trades within tolerance timeframe.
+            FoundTradesRow = _CalcParams.TradesTb.Where(Function(r)
+                                                            Return r.ZeitpunktZiel <= Trade.Zeitpunkt.AddMinutes(_TCS.ToleranceMinutes) AndAlso
+                                                                r.ZeitpunktZiel >= Trade.Zeitpunkt AndAlso
+                                                                r.ZielKontoID = Trade.QuellKontoID AndAlso
+                                                                (r.ZielPlattformID = Trade.QuellPlattformID OrElse Not _CVS.WalletAware)
+                                                        End Function).OrderBy(Function(r) r.ZeitpunktZiel).FirstOrDefault
+            If FoundTradesRow IsNot Nothing Then
+                ' Revert all changes made to table TradeTx
+                For Each TxRow In TxDischarged
+                    TxRow.Entwertet = False
+                    TxRow.OutTradeID = 0
+                    TxRow.IstLangzeit = False
+                Next
+                Do While _CalcParams.TxTb.Count > InitialTxRows
+                    _CalcParams.TxTb.Rows.RemoveAt(InitialTxRows)
+                Loop
+                ' Put found trade onto stack
+                _CalcParams.AssignTrades.Insert(0, FoundTradesRow)
+                ' Mark this trade for a 2nd trial
+                _CalcParams.TradeIDsRetries.Add(Trade.ID)
+            End If
+        End If
+        If FoundTradesRow Is Nothing Then
+            ' Trade could not be assigned completely: create a dummy entry in TradeTx
+            Dim DummyTxRow = _CalcParams.TxTb.NewTradeTxRow
+            With DummyTxRow
+                .TxID = _CalcParams.TxTb.MaxID
+                .SzenarioID = _SzenarioID
+                .InKalkulationID = _CalcParams.CalculationID
+                .InTradeID = -1
+                .TransferIDHistory = ""
+                .KontoID = Trade.QuellKontoID
+                .Zeitpunkt = Trade.Zeitpunkt
+                .KaufZeitpunkt = .Zeitpunkt
+                .Betrag = AmountToAssign
+                .WertEUR = 0
+                .OutKalkulationID = _SzenarioID
+                .IstRest = False
+                If TransferMode Then
+                    .PlattformID = Trade.ZielPlattformID
+                    .InTransferID = Trade.ID
+                    .Entwertet = False
+                Else
+                    .PlattformID = Trade.QuellPlattformID
+                    .OutTradeID = Trade.ID
+                    .Entwertet = True
+                End If
+            End With
+            _CalcParams.TxTb.Rows.Add(DummyTxRow)
+            AmountToAssign = 0
+            _LastUnclearSpendings += 1
+        End If
         Return AmountToAssign
     End Function
 
-    ''' <summary>
-    ''' Copies (and transforms) the Out2In entries of a certain OutTradeID to the MainOutTradeID. Used as replacement for recursive calls and also because 
-    ''' there is (usually) no need to dig into the origin of an OutTrade over and over again.
-    ''' </summary>
-    ''' <param name="MainOutTradeID">ID of the OutTrade whose entries will be written</param>
-    ''' <param name="MainAmountToAssign">Amount that needs to be assigned to this OutTrade</param>
-    ''' <param name="AmountToAssign">Amount converted into the MainAmount of the OutTrade to copy</param>
-    ''' <param name="OutTradeID">ID of the OutTrade whose entries will be copied</param>
-    ''' <returns>Tax value ('WertEUR') of OutTradeID</returns>
-    Private Function AssignFromTransfer(ByVal MainOutTradeID As Long,
-                                        ByVal OutTime As Date,
-                                        ByVal MainAmountToAssign As Decimal,
-                                        ByVal AmountToAssign As Decimal,
-                                        ByVal OutTradeID As Long,
-                                        ByRef OutToInTable As Out2InDataTable,
-                                        ByVal CalculationID As Long) As Decimal
-        Dim OutToInRows() As Out2InRow
-        Dim RowAmountToAssign As Decimal
-        Dim RowAmount As Decimal
-        Dim RowWertEur As Decimal
-        Dim SumWertEur As Decimal = 0
-        Dim FactorRow As Decimal
-        Dim FactorNewToOld As Decimal
-        Dim OutToInRow As Out2InRow
-        Dim NewOutToInRow As Out2InRow
-
-        ' Factor for 'translation' of former MainBetrag to new MainBetrag amounts (prevent rounding issues)
-        If MainAmountToAssign = AmountToAssign Then
-            FactorNewToOld = 1
-        Else
-            FactorNewToOld = MainAmountToAssign / AmountToAssign
-        End If
-
-        OutToInRows = OutToInTable.Select(String.Format("MainOutTradeID = {0} and SzenarioID = {1}",
-                                                        OutTradeID,
-                                                        _SzenarioID), "ID")
-        For Each OutToInRow In OutToInRows
-            RowAmountToAssign = Math.Min(OutToInRow.MainBetrag, AmountToAssign) ' Currency: 'MainBetrag' of each row read (this will NOT be copied to the new rows)
-            ' This is to prevent rounding issues
-            If RowAmountToAssign = OutToInRow.MainBetrag Then
-                FactorRow = 1
-            Else
-                FactorRow = (RowAmountToAssign / OutToInRow.MainBetrag)
-            End If
-            RowAmount = OutToInRow.Betrag * FactorRow
-            RowWertEur = OutToInRow.WertEUR * FactorRow
-            ' Now copy the entry
-            NewOutToInRow = OutToInTable.AddOut2InRow(_SzenarioID,
-                                      CalculationID,
-                                      MainOutTradeID,
-                                      OutToInRow.OutTradeID,
-                                      OutToInRow.InTradeID,
-                                      OutToInRow.InZeitpunkt,
-                                      RowAmountToAssign * FactorNewToOld,
-                                      RowAmount,
-                                      RowWertEur,
-                                      OutToInRow.Level + 1,
-                                      OutToInRow.IstFiat,
-                                      OutToInRow.IstTransfer,
-                                      IsNotTaxable(OutToInRow.InZeitpunkt, OutTime))
-            If Not OutToInRow.IstTransfer Then
-                MainAmountToAssign -= RowAmountToAssign * FactorNewToOld
-                AmountToAssign -= RowAmountToAssign
-                SumWertEur += RowWertEur
-                If MainAmountToAssign <= AMOUNT_TOLERANCE Then
-                    Exit For
-                End If
-            Else
-                ' This is a transfer, so keep on digging
-                SumWertEur += AssignFromTransfer(MainOutTradeID,
-                                                 OutTime,
-                                                 RowAmount,
-                                                 RowAmount,
-                                                 OutToInRow.InTradeID,
-                                                 OutToInTable,
-                                                 CalculationID)
-            End If
-        Next
-        Return SumWertEur
-    End Function
-
-    ''' <summary>
-    ''' Adds a new entry to the OutToIn DataTable for each OutTradeID given
-    ''' </summary>
-    Private Sub AddOutToInRow(ByRef OutToInTable As Out2InDataTable,
-                              ByVal SzenarioID As Long,
-                              ByVal KalkulationID As Long,
-                              ByVal MainOutTradeID As Long,
-                              ByVal OutTradeID As Long,
-                              ByVal InTradeID As Long,
-                              ByVal InZeitpunkt As Date,
-                              ByVal MainBetrag As Decimal,
-                              ByVal Betrag As Decimal,
-                              ByVal WertEUR As Decimal,
-                              ByVal Level As Integer,
-                              ByVal IsFiat As Boolean,
-                              ByVal IsTransfer As Boolean,
-                              Optional ByVal IsNotTaxable As Boolean = False)
-        OutToInTable.AddOut2InRow(SzenarioID,
-                                  KalkulationID,
-                                  MainOutTradeID,
-                                  OutTradeID,
-                                  InTradeID,
-                                  InZeitpunkt,
-                                  MainBetrag,
-                                  Betrag,
-                                  WertEUR,
-                                  Level,
-                                  IsFiat,
-                                  IsTransfer,
-                                  IsNotTaxable)
-    End Sub
 
     ''' <summary>
     ''' Checks if the given time period exceeds the taxable short term interval
@@ -1325,7 +1229,7 @@ Public Class TradeValueManager
     ''' <param name="OutDate">Date of sale</param>
     ''' <returns>True, if the time period is smaller than the required long term period, false otherwise</returns>
     Private Function IsNotTaxable(ByVal InDate As Date,
-                               ByVal OutDate As Date) As Boolean
+                                  ByVal OutDate As Date) As Boolean
         Return DateAdd(_LongTermInterval.IntervalUnit, _LongTermInterval.IntervalValue, Date.FromOADate(Math.Floor(InDate.ToOADate))) <= Date.FromOADate(Math.Floor(OutDate.ToOADate))
     End Function
 

@@ -41,10 +41,6 @@ Partial Public Class CoinTracerDataSet
     
     Private tableTradeTypen As TradeTypenDataTable
     
-    Private tableZeitstempelWerte As ZeitstempelWerteDataTable
-    
-    Private tableVW_GainingsReport As VW_GainingsReportDataTable
-    
     Private tableVW_GainingsReportDaily As VW_GainingsReportDailyDataTable
     
     Private tableVW_ZugangAbgang As VW_ZugangAbgangDataTable
@@ -73,15 +69,11 @@ Partial Public Class CoinTracerDataSet
     
     Private tableBestaende As BestaendeDataTable
     
-    Private tableVW_OutCoins As VW_OutCoinsDataTable
-    
-    Private tableVW_InCoins As VW_InCoinsDataTable
-    
-    Private tableOut2In As Out2InDataTable
-    
     Private tableVW_Gainings As VW_GainingsDataTable
     
     Private tableVW_GainingsReport2 As VW_GainingsReport2DataTable
+    
+    Private tableTradeTx As TradeTxDataTable
     
     Private relationImporte_Plattformen As Global.System.Data.DataRelation
     
@@ -96,12 +88,6 @@ Partial Public Class CoinTracerDataSet
     Private relationTrades_Konten_Quell As Global.System.Data.DataRelation
     
     Private relationTrades_Konten_Ziel As Global.System.Data.DataRelation
-    
-    Private relationZeitstempelWerte_Plattformen As Global.System.Data.DataRelation
-    
-    Private relationZeitstempelWerte_Konten As Global.System.Data.DataRelation
-    
-    Private relationZeitstempelWerte_Szenarien As Global.System.Data.DataRelation
     
     Private relationTrades_Plattformen_Import As Global.System.Data.DataRelation
     
@@ -170,12 +156,6 @@ Partial Public Class CoinTracerDataSet
             If (Not (ds.Tables("TradeTypen")) Is Nothing) Then
                 MyBase.Tables.Add(New TradeTypenDataTable(ds.Tables("TradeTypen")))
             End If
-            If (Not (ds.Tables("ZeitstempelWerte")) Is Nothing) Then
-                MyBase.Tables.Add(New ZeitstempelWerteDataTable(ds.Tables("ZeitstempelWerte")))
-            End If
-            If (Not (ds.Tables("VW_GainingsReport")) Is Nothing) Then
-                MyBase.Tables.Add(New VW_GainingsReportDataTable(ds.Tables("VW_GainingsReport")))
-            End If
             If (Not (ds.Tables("VW_GainingsReportDaily")) Is Nothing) Then
                 MyBase.Tables.Add(New VW_GainingsReportDailyDataTable(ds.Tables("VW_GainingsReportDaily")))
             End If
@@ -218,20 +198,14 @@ Partial Public Class CoinTracerDataSet
             If (Not (ds.Tables("Bestaende")) Is Nothing) Then
                 MyBase.Tables.Add(New BestaendeDataTable(ds.Tables("Bestaende")))
             End If
-            If (Not (ds.Tables("VW_OutCoins")) Is Nothing) Then
-                MyBase.Tables.Add(New VW_OutCoinsDataTable(ds.Tables("VW_OutCoins")))
-            End If
-            If (Not (ds.Tables("VW_InCoins")) Is Nothing) Then
-                MyBase.Tables.Add(New VW_InCoinsDataTable(ds.Tables("VW_InCoins")))
-            End If
-            If (Not (ds.Tables("Out2In")) Is Nothing) Then
-                MyBase.Tables.Add(New Out2InDataTable(ds.Tables("Out2In")))
-            End If
             If (Not (ds.Tables("VW_Gainings")) Is Nothing) Then
                 MyBase.Tables.Add(New VW_GainingsDataTable(ds.Tables("VW_Gainings")))
             End If
             If (Not (ds.Tables("VW_GainingsReport2")) Is Nothing) Then
                 MyBase.Tables.Add(New VW_GainingsReport2DataTable(ds.Tables("VW_GainingsReport2")))
+            End If
+            If (Not (ds.Tables("TradeTx")) Is Nothing) Then
+                MyBase.Tables.Add(New TradeTxDataTable(ds.Tables("TradeTx")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -327,26 +301,6 @@ Partial Public Class CoinTracerDataSet
     Public ReadOnly Property TradeTypen() As TradeTypenDataTable
         Get
             Return Me.tableTradeTypen
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property ZeitstempelWerte() As ZeitstempelWerteDataTable
-        Get
-            Return Me.tableZeitstempelWerte
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property VW_GainingsReport() As VW_GainingsReportDataTable
-        Get
-            Return Me.tableVW_GainingsReport
         End Get
     End Property
     
@@ -494,36 +448,6 @@ Partial Public Class CoinTracerDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property VW_OutCoins() As VW_OutCoinsDataTable
-        Get
-            Return Me.tableVW_OutCoins
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property VW_InCoins() As VW_InCoinsDataTable
-        Get
-            Return Me.tableVW_InCoins
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property Out2In() As Out2InDataTable
-        Get
-            Return Me.tableOut2In
-        End Get
-    End Property
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-     Global.System.ComponentModel.Browsable(false),  _
-     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
     Public ReadOnly Property VW_Gainings() As VW_GainingsDataTable
         Get
             Return Me.tableVW_Gainings
@@ -537,6 +461,16 @@ Partial Public Class CoinTracerDataSet
     Public ReadOnly Property VW_GainingsReport2() As VW_GainingsReport2DataTable
         Get
             Return Me.tableVW_GainingsReport2
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property TradeTx() As TradeTxDataTable
+        Get
+            Return Me.tableTradeTx
         End Get
     End Property
     
@@ -631,12 +565,6 @@ Partial Public Class CoinTracerDataSet
             If (Not (ds.Tables("TradeTypen")) Is Nothing) Then
                 MyBase.Tables.Add(New TradeTypenDataTable(ds.Tables("TradeTypen")))
             End If
-            If (Not (ds.Tables("ZeitstempelWerte")) Is Nothing) Then
-                MyBase.Tables.Add(New ZeitstempelWerteDataTable(ds.Tables("ZeitstempelWerte")))
-            End If
-            If (Not (ds.Tables("VW_GainingsReport")) Is Nothing) Then
-                MyBase.Tables.Add(New VW_GainingsReportDataTable(ds.Tables("VW_GainingsReport")))
-            End If
             If (Not (ds.Tables("VW_GainingsReportDaily")) Is Nothing) Then
                 MyBase.Tables.Add(New VW_GainingsReportDailyDataTable(ds.Tables("VW_GainingsReportDaily")))
             End If
@@ -679,20 +607,14 @@ Partial Public Class CoinTracerDataSet
             If (Not (ds.Tables("Bestaende")) Is Nothing) Then
                 MyBase.Tables.Add(New BestaendeDataTable(ds.Tables("Bestaende")))
             End If
-            If (Not (ds.Tables("VW_OutCoins")) Is Nothing) Then
-                MyBase.Tables.Add(New VW_OutCoinsDataTable(ds.Tables("VW_OutCoins")))
-            End If
-            If (Not (ds.Tables("VW_InCoins")) Is Nothing) Then
-                MyBase.Tables.Add(New VW_InCoinsDataTable(ds.Tables("VW_InCoins")))
-            End If
-            If (Not (ds.Tables("Out2In")) Is Nothing) Then
-                MyBase.Tables.Add(New Out2InDataTable(ds.Tables("Out2In")))
-            End If
             If (Not (ds.Tables("VW_Gainings")) Is Nothing) Then
                 MyBase.Tables.Add(New VW_GainingsDataTable(ds.Tables("VW_Gainings")))
             End If
             If (Not (ds.Tables("VW_GainingsReport2")) Is Nothing) Then
                 MyBase.Tables.Add(New VW_GainingsReport2DataTable(ds.Tables("VW_GainingsReport2")))
+            End If
+            If (Not (ds.Tables("TradeTx")) Is Nothing) Then
+                MyBase.Tables.Add(New TradeTxDataTable(ds.Tables("TradeTx")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -772,18 +694,6 @@ Partial Public Class CoinTracerDataSet
         If (initTable = true) Then
             If (Not (Me.tableTradeTypen) Is Nothing) Then
                 Me.tableTradeTypen.InitVars
-            End If
-        End If
-        Me.tableZeitstempelWerte = CType(MyBase.Tables("ZeitstempelWerte"),ZeitstempelWerteDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableZeitstempelWerte) Is Nothing) Then
-                Me.tableZeitstempelWerte.InitVars
-            End If
-        End If
-        Me.tableVW_GainingsReport = CType(MyBase.Tables("VW_GainingsReport"),VW_GainingsReportDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableVW_GainingsReport) Is Nothing) Then
-                Me.tableVW_GainingsReport.InitVars
             End If
         End If
         Me.tableVW_GainingsReportDaily = CType(MyBase.Tables("VW_GainingsReportDaily"),VW_GainingsReportDailyDataTable)
@@ -870,24 +780,6 @@ Partial Public Class CoinTracerDataSet
                 Me.tableBestaende.InitVars
             End If
         End If
-        Me.tableVW_OutCoins = CType(MyBase.Tables("VW_OutCoins"),VW_OutCoinsDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableVW_OutCoins) Is Nothing) Then
-                Me.tableVW_OutCoins.InitVars
-            End If
-        End If
-        Me.tableVW_InCoins = CType(MyBase.Tables("VW_InCoins"),VW_InCoinsDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableVW_InCoins) Is Nothing) Then
-                Me.tableVW_InCoins.InitVars
-            End If
-        End If
-        Me.tableOut2In = CType(MyBase.Tables("Out2In"),Out2InDataTable)
-        If (initTable = true) Then
-            If (Not (Me.tableOut2In) Is Nothing) Then
-                Me.tableOut2In.InitVars
-            End If
-        End If
         Me.tableVW_Gainings = CType(MyBase.Tables("VW_Gainings"),VW_GainingsDataTable)
         If (initTable = true) Then
             If (Not (Me.tableVW_Gainings) Is Nothing) Then
@@ -900,6 +792,12 @@ Partial Public Class CoinTracerDataSet
                 Me.tableVW_GainingsReport2.InitVars
             End If
         End If
+        Me.tableTradeTx = CType(MyBase.Tables("TradeTx"),TradeTxDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableTradeTx) Is Nothing) Then
+                Me.tableTradeTx.InitVars
+            End If
+        End If
         Me.relationImporte_Plattformen = Me.Relations("Importe_Plattformen")
         Me.relationKalkulationen_Szenarien = Me.Relations("Kalkulationen_Szenarien")
         Me.relationTrades_TradeTypen = Me.Relations("Trades_TradeTypen")
@@ -907,9 +805,6 @@ Partial Public Class CoinTracerDataSet
         Me.relationTrades_Plattformen_Ziel = Me.Relations("Trades_Plattformen_Ziel")
         Me.relationTrades_Konten_Quell = Me.Relations("Trades_Konten_Quell")
         Me.relationTrades_Konten_Ziel = Me.Relations("Trades_Konten_Ziel")
-        Me.relationZeitstempelWerte_Plattformen = Me.Relations("ZeitstempelWerte_Plattformen")
-        Me.relationZeitstempelWerte_Konten = Me.Relations("ZeitstempelWerte_Konten")
-        Me.relationZeitstempelWerte_Szenarien = Me.Relations("ZeitstempelWerte_Szenarien")
         Me.relationTrades_Plattformen_Import = Me.Relations("Trades_Plattformen_Import")
         Me.relationTradesWerte_Trades = Me.Relations("TradesWerte_Trades")
         Me.relationKurse_Konten_Quell = Me.Relations("Kurse_Konten_Quell")
@@ -943,10 +838,6 @@ Partial Public Class CoinTracerDataSet
         MyBase.Tables.Add(Me.tableTrades)
         Me.tableTradeTypen = New TradeTypenDataTable()
         MyBase.Tables.Add(Me.tableTradeTypen)
-        Me.tableZeitstempelWerte = New ZeitstempelWerteDataTable()
-        MyBase.Tables.Add(Me.tableZeitstempelWerte)
-        Me.tableVW_GainingsReport = New VW_GainingsReportDataTable()
-        MyBase.Tables.Add(Me.tableVW_GainingsReport)
         Me.tableVW_GainingsReportDaily = New VW_GainingsReportDailyDataTable()
         MyBase.Tables.Add(Me.tableVW_GainingsReportDaily)
         Me.tableVW_ZugangAbgang = New VW_ZugangAbgangDataTable()
@@ -975,16 +866,12 @@ Partial Public Class CoinTracerDataSet
         MyBase.Tables.Add(Me.tableVW_Berechnungen)
         Me.tableBestaende = New BestaendeDataTable()
         MyBase.Tables.Add(Me.tableBestaende)
-        Me.tableVW_OutCoins = New VW_OutCoinsDataTable()
-        MyBase.Tables.Add(Me.tableVW_OutCoins)
-        Me.tableVW_InCoins = New VW_InCoinsDataTable()
-        MyBase.Tables.Add(Me.tableVW_InCoins)
-        Me.tableOut2In = New Out2InDataTable()
-        MyBase.Tables.Add(Me.tableOut2In)
         Me.tableVW_Gainings = New VW_GainingsDataTable()
         MyBase.Tables.Add(Me.tableVW_Gainings)
         Me.tableVW_GainingsReport2 = New VW_GainingsReport2DataTable()
         MyBase.Tables.Add(Me.tableVW_GainingsReport2)
+        Me.tableTradeTx = New TradeTxDataTable()
+        MyBase.Tables.Add(Me.tableTradeTx)
         Me.relationImporte_Plattformen = New Global.System.Data.DataRelation("Importe_Plattformen", New Global.System.Data.DataColumn() {Me.tableImporte.PlattformIDColumn}, New Global.System.Data.DataColumn() {Me.tablePlattformen.IDColumn}, false)
         Me.Relations.Add(Me.relationImporte_Plattformen)
         Me.relationKalkulationen_Szenarien = New Global.System.Data.DataRelation("Kalkulationen_Szenarien", New Global.System.Data.DataColumn() {Me.tableKalkulationen.SzenarioIDColumn}, New Global.System.Data.DataColumn() {Me.tableSzenarien.IDColumn}, false)
@@ -999,12 +886,6 @@ Partial Public Class CoinTracerDataSet
         Me.Relations.Add(Me.relationTrades_Konten_Quell)
         Me.relationTrades_Konten_Ziel = New Global.System.Data.DataRelation("Trades_Konten_Ziel", New Global.System.Data.DataColumn() {Me.tableTrades.ZielKontoIDColumn}, New Global.System.Data.DataColumn() {Me.tableKonten.IDColumn}, false)
         Me.Relations.Add(Me.relationTrades_Konten_Ziel)
-        Me.relationZeitstempelWerte_Plattformen = New Global.System.Data.DataRelation("ZeitstempelWerte_Plattformen", New Global.System.Data.DataColumn() {Me.tableZeitstempelWerte.PlattformIDColumn}, New Global.System.Data.DataColumn() {Me.tablePlattformen.IDColumn}, false)
-        Me.Relations.Add(Me.relationZeitstempelWerte_Plattformen)
-        Me.relationZeitstempelWerte_Konten = New Global.System.Data.DataRelation("ZeitstempelWerte_Konten", New Global.System.Data.DataColumn() {Me.tableZeitstempelWerte.KontoIDColumn}, New Global.System.Data.DataColumn() {Me.tableKonten.IDColumn}, false)
-        Me.Relations.Add(Me.relationZeitstempelWerte_Konten)
-        Me.relationZeitstempelWerte_Szenarien = New Global.System.Data.DataRelation("ZeitstempelWerte_Szenarien", New Global.System.Data.DataColumn() {Me.tableZeitstempelWerte.SzenarioIDColumn}, New Global.System.Data.DataColumn() {Me.tableSzenarien.IDColumn}, false)
-        Me.Relations.Add(Me.relationZeitstempelWerte_Szenarien)
         Me.relationTrades_Plattformen_Import = New Global.System.Data.DataRelation("Trades_Plattformen_Import", New Global.System.Data.DataColumn() {Me.tableTrades.ImportPlattformIDColumn}, New Global.System.Data.DataColumn() {Me.tablePlattformen.IDColumn}, false)
         Me.Relations.Add(Me.relationTrades_Plattformen_Import)
         Me.relationTradesWerte_Trades = New Global.System.Data.DataRelation("TradesWerte_Trades", New Global.System.Data.DataColumn() {Me.tableTradesWerte.TradeIDColumn}, New Global.System.Data.DataColumn() {Me.tableTrades.IDColumn}, false)
@@ -1066,18 +947,6 @@ Partial Public Class CoinTracerDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Private Function ShouldSerializeTradeTypen() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeZeitstempelWerte() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeVW_GainingsReport() As Boolean
         Return false
     End Function
     
@@ -1167,24 +1036,6 @@ Partial Public Class CoinTracerDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeVW_OutCoins() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeVW_InCoins() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Private Function ShouldSerializeOut2In() As Boolean
-        Return false
-    End Function
-    
-    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Private Function ShouldSerializeVW_Gainings() As Boolean
         Return false
     End Function
@@ -1192,6 +1043,12 @@ Partial Public Class CoinTracerDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Private Function ShouldSerializeVW_GainingsReport2() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Private Function ShouldSerializeTradeTx() As Boolean
         Return false
     End Function
     
@@ -1278,12 +1135,6 @@ Partial Public Class CoinTracerDataSet
     Public Delegate Sub TradeTypenRowChangeEventHandler(ByVal sender As Object, ByVal e As TradeTypenRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub ZeitstempelWerteRowChangeEventHandler(ByVal sender As Object, ByVal e As ZeitstempelWerteRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub VW_GainingsReportRowChangeEventHandler(ByVal sender As Object, ByVal e As VW_GainingsReportRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub VW_GainingsReportDailyRowChangeEventHandler(ByVal sender As Object, ByVal e As VW_GainingsReportDailyRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -1326,19 +1177,13 @@ Partial Public Class CoinTracerDataSet
     Public Delegate Sub BestaendeRowChangeEventHandler(ByVal sender As Object, ByVal e As BestaendeRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub VW_OutCoinsRowChangeEventHandler(ByVal sender As Object, ByVal e As VW_OutCoinsRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub VW_InCoinsRowChangeEventHandler(ByVal sender As Object, ByVal e As VW_InCoinsRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Delegate Sub Out2InRowChangeEventHandler(ByVal sender As Object, ByVal e As Out2InRowChangeEvent)
-    
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub VW_GainingsRowChangeEventHandler(ByVal sender As Object, ByVal e As VW_GainingsRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub VW_GainingsReport2RowChangeEventHandler(ByVal sender As Object, ByVal e As VW_GainingsReport2RowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Delegate Sub TradeTxRowChangeEventHandler(ByVal sender As Object, ByVal e As TradeTxRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -4304,850 +4149,6 @@ Partial Public Class CoinTracerDataSet
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "TradeTypenDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class ZeitstempelWerteDataTable
-        Inherits Global.System.Data.TypedTableBase(Of ZeitstempelWerteRow)
-        
-        Private columnID As Global.System.Data.DataColumn
-        
-        Private columnZeitpunkt As Global.System.Data.DataColumn
-        
-        Private columnPlattformID As Global.System.Data.DataColumn
-        
-        Private columnBetrag As Global.System.Data.DataColumn
-        
-        Private columnKontoID As Global.System.Data.DataColumn
-        
-        Private columnWertEUR As Global.System.Data.DataColumn
-        
-        Private columnInTradeID As Global.System.Data.DataColumn
-        
-        Private columnOutTradeID As Global.System.Data.DataColumn
-        
-        Private columnParentID As Global.System.Data.DataColumn
-        
-        Private columnEntwertet As Global.System.Data.DataColumn
-        
-        Private columnSzenarioID As Global.System.Data.DataColumn
-        
-        Private columnEntwertetKalkulationID As Global.System.Data.DataColumn
-        
-        Private columnAnlageKalkulationID As Global.System.Data.DataColumn
-        
-        Private columnKaufdatum As Global.System.Data.DataColumn
-        
-        Private columnBestandPlattform As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "ZeitstempelWerte"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ZeitpunktColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnZeitpunkt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PlattformIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPlattformID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property BetragColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBetrag
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property KontoIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKontoID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property WertEURColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnWertEUR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property InTradeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInTradeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property OutTradeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOutTradeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ParentIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnParentID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property EntwertetColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEntwertet
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property SzenarioIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSzenarioID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property EntwertetKalkulationIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnEntwertetKalkulationID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property AnlageKalkulationIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnAnlageKalkulationID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property KaufdatumColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKaufdatum
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property BestandPlattformColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBestandPlattform
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As ZeitstempelWerteRow
-            Get
-                Return CType(Me.Rows(index),ZeitstempelWerteRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event ZeitstempelWerteRowChanging As ZeitstempelWerteRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event ZeitstempelWerteRowChanged As ZeitstempelWerteRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event ZeitstempelWerteRowDeleting As ZeitstempelWerteRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event ZeitstempelWerteRowDeleted As ZeitstempelWerteRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddZeitstempelWerteRow(ByVal row As ZeitstempelWerteRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddZeitstempelWerteRow(ByVal ID As Long, ByVal Zeitpunkt As Date, ByVal PlattformID As Long, ByVal Betrag As Decimal, ByVal KontoID As Long, ByVal WertEUR As Decimal, ByVal InTradeID As Long, ByVal OutTradeID As Long, ByVal ParentID As Long, ByVal Entwertet As Boolean, ByVal SzenarioID As Long, ByVal EntwertetKalkulationID As Long, ByVal AnlageKalkulationID As Long, ByVal Kaufdatum As Date, ByVal BestandPlattform As Decimal) As ZeitstempelWerteRow
-            Dim rowZeitstempelWerteRow As ZeitstempelWerteRow = CType(Me.NewRow,ZeitstempelWerteRow)
-            Dim columnValuesArray() As Object = New Object() {ID, Zeitpunkt, PlattformID, Betrag, KontoID, WertEUR, InTradeID, OutTradeID, ParentID, Entwertet, SzenarioID, EntwertetKalkulationID, AnlageKalkulationID, Kaufdatum, BestandPlattform}
-            rowZeitstempelWerteRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowZeitstempelWerteRow)
-            Return rowZeitstempelWerteRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByID(ByVal ID As Long) As ZeitstempelWerteRow
-            Return CType(Me.Rows.Find(New Object() {ID}),ZeitstempelWerteRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As ZeitstempelWerteDataTable = CType(MyBase.Clone,ZeitstempelWerteDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New ZeitstempelWerteDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnID = MyBase.Columns("ID")
-            Me.columnZeitpunkt = MyBase.Columns("Zeitpunkt")
-            Me.columnPlattformID = MyBase.Columns("PlattformID")
-            Me.columnBetrag = MyBase.Columns("Betrag")
-            Me.columnKontoID = MyBase.Columns("KontoID")
-            Me.columnWertEUR = MyBase.Columns("WertEUR")
-            Me.columnInTradeID = MyBase.Columns("InTradeID")
-            Me.columnOutTradeID = MyBase.Columns("OutTradeID")
-            Me.columnParentID = MyBase.Columns("ParentID")
-            Me.columnEntwertet = MyBase.Columns("Entwertet")
-            Me.columnSzenarioID = MyBase.Columns("SzenarioID")
-            Me.columnEntwertetKalkulationID = MyBase.Columns("EntwertetKalkulationID")
-            Me.columnAnlageKalkulationID = MyBase.Columns("AnlageKalkulationID")
-            Me.columnKaufdatum = MyBase.Columns("Kaufdatum")
-            Me.columnBestandPlattform = MyBase.Columns("BestandPlattform")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnID)
-            Me.columnZeitpunkt = New Global.System.Data.DataColumn("Zeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnZeitpunkt)
-            Me.columnPlattformID = New Global.System.Data.DataColumn("PlattformID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPlattformID)
-            Me.columnBetrag = New Global.System.Data.DataColumn("Betrag", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBetrag)
-            Me.columnKontoID = New Global.System.Data.DataColumn("KontoID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKontoID)
-            Me.columnWertEUR = New Global.System.Data.DataColumn("WertEUR", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnWertEUR)
-            Me.columnInTradeID = New Global.System.Data.DataColumn("InTradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInTradeID)
-            Me.columnOutTradeID = New Global.System.Data.DataColumn("OutTradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOutTradeID)
-            Me.columnParentID = New Global.System.Data.DataColumn("ParentID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnParentID)
-            Me.columnEntwertet = New Global.System.Data.DataColumn("Entwertet", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEntwertet)
-            Me.columnSzenarioID = New Global.System.Data.DataColumn("SzenarioID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSzenarioID)
-            Me.columnEntwertetKalkulationID = New Global.System.Data.DataColumn("EntwertetKalkulationID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnEntwertetKalkulationID)
-            Me.columnAnlageKalkulationID = New Global.System.Data.DataColumn("AnlageKalkulationID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAnlageKalkulationID)
-            Me.columnKaufdatum = New Global.System.Data.DataColumn("Kaufdatum", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKaufdatum)
-            Me.columnBestandPlattform = New Global.System.Data.DataColumn("BestandPlattform", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBestandPlattform)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
-            Me.columnID.AutoIncrementSeed = 1
-            Me.columnID.AllowDBNull = false
-            Me.columnID.Unique = true
-            Me.columnKontoID.AllowDBNull = false
-            Me.columnInTradeID.AllowDBNull = false
-            Me.columnSzenarioID.AllowDBNull = false
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewZeitstempelWerteRow() As ZeitstempelWerteRow
-            Return CType(Me.NewRow,ZeitstempelWerteRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New ZeitstempelWerteRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(ZeitstempelWerteRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.ZeitstempelWerteRowChangedEvent) Is Nothing) Then
-                RaiseEvent ZeitstempelWerteRowChanged(Me, New ZeitstempelWerteRowChangeEvent(CType(e.Row,ZeitstempelWerteRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.ZeitstempelWerteRowChangingEvent) Is Nothing) Then
-                RaiseEvent ZeitstempelWerteRowChanging(Me, New ZeitstempelWerteRowChangeEvent(CType(e.Row,ZeitstempelWerteRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.ZeitstempelWerteRowDeletedEvent) Is Nothing) Then
-                RaiseEvent ZeitstempelWerteRowDeleted(Me, New ZeitstempelWerteRowChangeEvent(CType(e.Row,ZeitstempelWerteRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.ZeitstempelWerteRowDeletingEvent) Is Nothing) Then
-                RaiseEvent ZeitstempelWerteRowDeleting(Me, New ZeitstempelWerteRowChangeEvent(CType(e.Row,ZeitstempelWerteRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveZeitstempelWerteRow(ByVal row As ZeitstempelWerteRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As CoinTracerDataSet = New CoinTracerDataSet()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "ZeitstempelWerteDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class VW_GainingsReportDataTable
-        Inherits Global.System.Data.TypedTableBase(Of VW_GainingsReportRow)
-        
-        Private columnSzenarioID As Global.System.Data.DataColumn
-        
-        Private columnZeitpunkt As Global.System.Data.DataColumn
-        
-        Private columnArt As Global.System.Data.DataColumn
-        
-        Private columnPlattform As Global.System.Data.DataColumn
-        
-        Private columnMenge_Coins As Global.System.Data.DataColumn
-        
-        Private columnArt_Coins As Global.System.Data.DataColumn
-        
-        Private columnPreis_USD As Global.System.Data.DataColumn
-        
-        Private columnPreis_EUR As Global.System.Data.DataColumn
-        
-        Private columnKaufdatum_Coins As Global.System.Data.DataColumn
-        
-        Private columnKaufpreis_EUR As Global.System.Data.DataColumn
-        
-        Private columnGewinn_EUR As Global.System.Data.DataColumn
-        
-        Private columnSteuerfrei As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "VW_GainingsReport"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property SzenarioIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSzenarioID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ZeitpunktColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnZeitpunkt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ArtColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnArt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PlattformColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPlattform
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Menge_CoinsColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMenge_Coins
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Art_CoinsColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnArt_Coins
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Preis_USDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPreis_USD
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Preis_EURColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPreis_EUR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Kaufdatum_CoinsColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKaufdatum_Coins
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Kaufpreis_EURColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKaufpreis_EUR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Gewinn_EURColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnGewinn_EUR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property SteuerfreiColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSteuerfrei
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As VW_GainingsReportRow
-            Get
-                Return CType(Me.Rows(index),VW_GainingsReportRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_GainingsReportRowChanging As VW_GainingsReportRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_GainingsReportRowChanged As VW_GainingsReportRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_GainingsReportRowDeleting As VW_GainingsReportRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_GainingsReportRowDeleted As VW_GainingsReportRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddVW_GainingsReportRow(ByVal row As VW_GainingsReportRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddVW_GainingsReportRow(ByVal SzenarioID As Long, ByVal Zeitpunkt As Date, ByVal Art As String, ByVal Plattform As Object, ByVal Menge_Coins As Object, ByVal Art_Coins As Object, ByVal Preis_USD As Object, ByVal Preis_EUR As Object, ByVal Kaufdatum_Coins As String, ByVal Kaufpreis_EUR As Object, ByVal Gewinn_EUR As Object, ByVal Steuerfrei As Object) As VW_GainingsReportRow
-            Dim rowVW_GainingsReportRow As VW_GainingsReportRow = CType(Me.NewRow,VW_GainingsReportRow)
-            Dim columnValuesArray() As Object = New Object() {SzenarioID, Zeitpunkt, Art, Plattform, Menge_Coins, Art_Coins, Preis_USD, Preis_EUR, Kaufdatum_Coins, Kaufpreis_EUR, Gewinn_EUR, Steuerfrei}
-            rowVW_GainingsReportRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowVW_GainingsReportRow)
-            Return rowVW_GainingsReportRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As VW_GainingsReportDataTable = CType(MyBase.Clone,VW_GainingsReportDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New VW_GainingsReportDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnSzenarioID = MyBase.Columns("SzenarioID")
-            Me.columnZeitpunkt = MyBase.Columns("Zeitpunkt")
-            Me.columnArt = MyBase.Columns("Art")
-            Me.columnPlattform = MyBase.Columns("Plattform")
-            Me.columnMenge_Coins = MyBase.Columns("Menge Coins")
-            Me.columnArt_Coins = MyBase.Columns("Art Coins")
-            Me.columnPreis_USD = MyBase.Columns("Preis USD")
-            Me.columnPreis_EUR = MyBase.Columns("Preis EUR")
-            Me.columnKaufdatum_Coins = MyBase.Columns("Kaufdatum Coins")
-            Me.columnKaufpreis_EUR = MyBase.Columns("Kaufpreis EUR")
-            Me.columnGewinn_EUR = MyBase.Columns("Gewinn EUR")
-            Me.columnSteuerfrei = MyBase.Columns("Steuerfrei")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnSzenarioID = New Global.System.Data.DataColumn("SzenarioID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSzenarioID)
-            Me.columnZeitpunkt = New Global.System.Data.DataColumn("Zeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnZeitpunkt)
-            Me.columnArt = New Global.System.Data.DataColumn("Art", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnArt)
-            Me.columnPlattform = New Global.System.Data.DataColumn("Plattform", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPlattform)
-            Me.columnMenge_Coins = New Global.System.Data.DataColumn("Menge Coins", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMenge_Coins)
-            Me.columnArt_Coins = New Global.System.Data.DataColumn("Art Coins", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnArt_Coins)
-            Me.columnPreis_USD = New Global.System.Data.DataColumn("Preis USD", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPreis_USD)
-            Me.columnPreis_EUR = New Global.System.Data.DataColumn("Preis EUR", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPreis_EUR)
-            Me.columnKaufdatum_Coins = New Global.System.Data.DataColumn("Kaufdatum Coins", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKaufdatum_Coins)
-            Me.columnKaufpreis_EUR = New Global.System.Data.DataColumn("Kaufpreis EUR", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKaufpreis_EUR)
-            Me.columnGewinn_EUR = New Global.System.Data.DataColumn("Gewinn EUR", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnGewinn_EUR)
-            Me.columnSteuerfrei = New Global.System.Data.DataColumn("Steuerfrei", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSteuerfrei)
-            Me.columnSzenarioID.AllowDBNull = false
-            Me.columnArt.MaxLength = 50
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewVW_GainingsReportRow() As VW_GainingsReportRow
-            Return CType(Me.NewRow,VW_GainingsReportRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New VW_GainingsReportRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(VW_GainingsReportRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.VW_GainingsReportRowChangedEvent) Is Nothing) Then
-                RaiseEvent VW_GainingsReportRowChanged(Me, New VW_GainingsReportRowChangeEvent(CType(e.Row,VW_GainingsReportRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.VW_GainingsReportRowChangingEvent) Is Nothing) Then
-                RaiseEvent VW_GainingsReportRowChanging(Me, New VW_GainingsReportRowChangeEvent(CType(e.Row,VW_GainingsReportRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.VW_GainingsReportRowDeletedEvent) Is Nothing) Then
-                RaiseEvent VW_GainingsReportRowDeleted(Me, New VW_GainingsReportRowChangeEvent(CType(e.Row,VW_GainingsReportRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.VW_GainingsReportRowDeletingEvent) Is Nothing) Then
-                RaiseEvent VW_GainingsReportRowDeleting(Me, New VW_GainingsReportRowChangeEvent(CType(e.Row,VW_GainingsReportRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveVW_GainingsReportRow(ByVal row As VW_GainingsReportRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As CoinTracerDataSet = New CoinTracerDataSet()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "VW_GainingsReportDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -10209,1197 +9210,6 @@ Partial Public Class CoinTracerDataSet
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class VW_OutCoinsDataTable
-        Inherits Global.System.Data.TypedTableBase(Of VW_OutCoinsRow)
-        
-        Private columnTradeID As Global.System.Data.DataColumn
-        
-        Private columnBetrag As Global.System.Data.DataColumn
-        
-        Private columnKontoID As Global.System.Data.DataColumn
-        
-        Private columnOutTypID As Global.System.Data.DataColumn
-        
-        Private columnPlattformID As Global.System.Data.DataColumn
-        
-        Private columnZeitpunkt As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "VW_OutCoins"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property TradeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTradeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property BetragColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBetrag
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property KontoIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKontoID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property OutTypIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOutTypID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PlattformIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPlattformID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ZeitpunktColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnZeitpunkt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As VW_OutCoinsRow
-            Get
-                Return CType(Me.Rows(index),VW_OutCoinsRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_OutCoinsRowChanging As VW_OutCoinsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_OutCoinsRowChanged As VW_OutCoinsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_OutCoinsRowDeleting As VW_OutCoinsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_OutCoinsRowDeleted As VW_OutCoinsRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddVW_OutCoinsRow(ByVal row As VW_OutCoinsRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddVW_OutCoinsRow(ByVal Betrag As Decimal, ByVal KontoID As Long, ByVal OutTypID As Long, ByVal PlattformID As Long, ByVal Zeitpunkt As Date) As VW_OutCoinsRow
-            Dim rowVW_OutCoinsRow As VW_OutCoinsRow = CType(Me.NewRow,VW_OutCoinsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Betrag, KontoID, OutTypID, PlattformID, Zeitpunkt}
-            rowVW_OutCoinsRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowVW_OutCoinsRow)
-            Return rowVW_OutCoinsRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByTradeID(ByVal TradeID As Long) As VW_OutCoinsRow
-            Return CType(Me.Rows.Find(New Object() {TradeID}),VW_OutCoinsRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As VW_OutCoinsDataTable = CType(MyBase.Clone,VW_OutCoinsDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New VW_OutCoinsDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnTradeID = MyBase.Columns("TradeID")
-            Me.columnBetrag = MyBase.Columns("Betrag")
-            Me.columnKontoID = MyBase.Columns("KontoID")
-            Me.columnOutTypID = MyBase.Columns("OutTypID")
-            Me.columnPlattformID = MyBase.Columns("PlattformID")
-            Me.columnZeitpunkt = MyBase.Columns("Zeitpunkt")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnTradeID = New Global.System.Data.DataColumn("TradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTradeID)
-            Me.columnBetrag = New Global.System.Data.DataColumn("Betrag", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBetrag)
-            Me.columnKontoID = New Global.System.Data.DataColumn("KontoID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKontoID)
-            Me.columnOutTypID = New Global.System.Data.DataColumn("OutTypID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOutTypID)
-            Me.columnPlattformID = New Global.System.Data.DataColumn("PlattformID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPlattformID)
-            Me.columnZeitpunkt = New Global.System.Data.DataColumn("Zeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnZeitpunkt)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnTradeID}, true))
-            Me.columnTradeID.AutoIncrement = true
-            Me.columnTradeID.AutoIncrementSeed = -1
-            Me.columnTradeID.AutoIncrementStep = -1
-            Me.columnTradeID.AllowDBNull = false
-            Me.columnTradeID.Unique = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewVW_OutCoinsRow() As VW_OutCoinsRow
-            Return CType(Me.NewRow,VW_OutCoinsRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New VW_OutCoinsRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(VW_OutCoinsRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.VW_OutCoinsRowChangedEvent) Is Nothing) Then
-                RaiseEvent VW_OutCoinsRowChanged(Me, New VW_OutCoinsRowChangeEvent(CType(e.Row,VW_OutCoinsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.VW_OutCoinsRowChangingEvent) Is Nothing) Then
-                RaiseEvent VW_OutCoinsRowChanging(Me, New VW_OutCoinsRowChangeEvent(CType(e.Row,VW_OutCoinsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.VW_OutCoinsRowDeletedEvent) Is Nothing) Then
-                RaiseEvent VW_OutCoinsRowDeleted(Me, New VW_OutCoinsRowChangeEvent(CType(e.Row,VW_OutCoinsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.VW_OutCoinsRowDeletingEvent) Is Nothing) Then
-                RaiseEvent VW_OutCoinsRowDeleting(Me, New VW_OutCoinsRowChangeEvent(CType(e.Row,VW_OutCoinsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveVW_OutCoinsRow(ByVal row As VW_OutCoinsRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As CoinTracerDataSet = New CoinTracerDataSet()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "VW_OutCoinsDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class VW_InCoinsDataTable
-        Inherits Global.System.Data.TypedTableBase(Of VW_InCoinsRow)
-        
-        Private columnTradeID As Global.System.Data.DataColumn
-        
-        Private columnBetrag As Global.System.Data.DataColumn
-        
-        Private columnKontoID As Global.System.Data.DataColumn
-        
-        Private columnInTypID As Global.System.Data.DataColumn
-        
-        Private columnPlattformID As Global.System.Data.DataColumn
-        
-        Private columnZeitpunkt As Global.System.Data.DataColumn
-        
-        Private columnWertEUR As Global.System.Data.DataColumn
-        
-        Private columnKursEUR As Global.System.Data.DataColumn
-        
-        Private columnOutPlattformID As Global.System.Data.DataColumn
-        
-        Private columnOutBetrag As Global.System.Data.DataColumn
-        
-        Private columnOutKontoID As Global.System.Data.DataColumn
-        
-        Private columnOutZeitpunkt As Global.System.Data.DataColumn
-        
-        Private columnInZeitpunkt As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "VW_InCoins"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property TradeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnTradeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property BetragColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBetrag
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property KontoIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKontoID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property InTypIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInTypID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PlattformIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPlattformID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ZeitpunktColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnZeitpunkt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property WertEURColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnWertEUR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property KursEURColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKursEUR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property OutPlattformIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOutPlattformID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property OutBetragColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOutBetrag
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property OutKontoIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOutKontoID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property OutZeitpunktColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOutZeitpunkt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property InZeitpunktColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInZeitpunkt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As VW_InCoinsRow
-            Get
-                Return CType(Me.Rows(index),VW_InCoinsRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_InCoinsRowChanging As VW_InCoinsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_InCoinsRowChanged As VW_InCoinsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_InCoinsRowDeleting As VW_InCoinsRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event VW_InCoinsRowDeleted As VW_InCoinsRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddVW_InCoinsRow(ByVal row As VW_InCoinsRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddVW_InCoinsRow(ByVal Betrag As Decimal, ByVal KontoID As Long, ByVal InTypID As Long, ByVal PlattformID As Long, ByVal Zeitpunkt As Date, ByVal WertEUR As Decimal, ByVal KursEUR As Decimal, ByVal OutPlattformID As Long, ByVal OutBetrag As Decimal, ByVal OutKontoID As Long, ByVal OutZeitpunkt As Date, ByVal InZeitpunkt As Date) As VW_InCoinsRow
-            Dim rowVW_InCoinsRow As VW_InCoinsRow = CType(Me.NewRow,VW_InCoinsRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Betrag, KontoID, InTypID, PlattformID, Zeitpunkt, WertEUR, KursEUR, OutPlattformID, OutBetrag, OutKontoID, OutZeitpunkt, InZeitpunkt}
-            rowVW_InCoinsRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowVW_InCoinsRow)
-            Return rowVW_InCoinsRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByTradeID(ByVal TradeID As Long) As VW_InCoinsRow
-            Return CType(Me.Rows.Find(New Object() {TradeID}),VW_InCoinsRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As VW_InCoinsDataTable = CType(MyBase.Clone,VW_InCoinsDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New VW_InCoinsDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnTradeID = MyBase.Columns("TradeID")
-            Me.columnBetrag = MyBase.Columns("Betrag")
-            Me.columnKontoID = MyBase.Columns("KontoID")
-            Me.columnInTypID = MyBase.Columns("InTypID")
-            Me.columnPlattformID = MyBase.Columns("PlattformID")
-            Me.columnZeitpunkt = MyBase.Columns("Zeitpunkt")
-            Me.columnWertEUR = MyBase.Columns("WertEUR")
-            Me.columnKursEUR = MyBase.Columns("KursEUR")
-            Me.columnOutPlattformID = MyBase.Columns("OutPlattformID")
-            Me.columnOutBetrag = MyBase.Columns("OutBetrag")
-            Me.columnOutKontoID = MyBase.Columns("OutKontoID")
-            Me.columnOutZeitpunkt = MyBase.Columns("OutZeitpunkt")
-            Me.columnInZeitpunkt = MyBase.Columns("InZeitpunkt")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnTradeID = New Global.System.Data.DataColumn("TradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTradeID)
-            Me.columnBetrag = New Global.System.Data.DataColumn("Betrag", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBetrag)
-            Me.columnKontoID = New Global.System.Data.DataColumn("KontoID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKontoID)
-            Me.columnInTypID = New Global.System.Data.DataColumn("InTypID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInTypID)
-            Me.columnPlattformID = New Global.System.Data.DataColumn("PlattformID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPlattformID)
-            Me.columnZeitpunkt = New Global.System.Data.DataColumn("Zeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnZeitpunkt)
-            Me.columnWertEUR = New Global.System.Data.DataColumn("WertEUR", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnWertEUR)
-            Me.columnKursEUR = New Global.System.Data.DataColumn("KursEUR", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKursEUR)
-            Me.columnOutPlattformID = New Global.System.Data.DataColumn("OutPlattformID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOutPlattformID)
-            Me.columnOutBetrag = New Global.System.Data.DataColumn("OutBetrag", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOutBetrag)
-            Me.columnOutKontoID = New Global.System.Data.DataColumn("OutKontoID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOutKontoID)
-            Me.columnOutZeitpunkt = New Global.System.Data.DataColumn("OutZeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOutZeitpunkt)
-            Me.columnInZeitpunkt = New Global.System.Data.DataColumn("InZeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInZeitpunkt)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnTradeID}, true))
-            Me.columnTradeID.AutoIncrement = true
-            Me.columnTradeID.AutoIncrementSeed = -1
-            Me.columnTradeID.AutoIncrementStep = -1
-            Me.columnTradeID.AllowDBNull = false
-            Me.columnTradeID.Unique = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewVW_InCoinsRow() As VW_InCoinsRow
-            Return CType(Me.NewRow,VW_InCoinsRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New VW_InCoinsRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(VW_InCoinsRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.VW_InCoinsRowChangedEvent) Is Nothing) Then
-                RaiseEvent VW_InCoinsRowChanged(Me, New VW_InCoinsRowChangeEvent(CType(e.Row,VW_InCoinsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.VW_InCoinsRowChangingEvent) Is Nothing) Then
-                RaiseEvent VW_InCoinsRowChanging(Me, New VW_InCoinsRowChangeEvent(CType(e.Row,VW_InCoinsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.VW_InCoinsRowDeletedEvent) Is Nothing) Then
-                RaiseEvent VW_InCoinsRowDeleted(Me, New VW_InCoinsRowChangeEvent(CType(e.Row,VW_InCoinsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.VW_InCoinsRowDeletingEvent) Is Nothing) Then
-                RaiseEvent VW_InCoinsRowDeleting(Me, New VW_InCoinsRowChangeEvent(CType(e.Row,VW_InCoinsRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveVW_InCoinsRow(ByVal row As VW_InCoinsRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As CoinTracerDataSet = New CoinTracerDataSet()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "VW_InCoinsDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class Out2InDataTable
-        Inherits Global.System.Data.TypedTableBase(Of Out2InRow)
-        
-        Private columnID As Global.System.Data.DataColumn
-        
-        Private columnSzenarioID As Global.System.Data.DataColumn
-        
-        Private columnKalkulationID As Global.System.Data.DataColumn
-        
-        Private columnMainOutTradeID As Global.System.Data.DataColumn
-        
-        Private columnOutTradeID As Global.System.Data.DataColumn
-        
-        Private columnInTradeID As Global.System.Data.DataColumn
-        
-        Private columnInZeitpunkt As Global.System.Data.DataColumn
-        
-        Private columnMainBetrag As Global.System.Data.DataColumn
-        
-        Private columnBetrag As Global.System.Data.DataColumn
-        
-        Private columnWertEUR As Global.System.Data.DataColumn
-        
-        Private columnLevel As Global.System.Data.DataColumn
-        
-        Private columnIstFiat As Global.System.Data.DataColumn
-        
-        Private columnIstAnschaffung As Global.System.Data.DataColumn
-        
-        Private columnIstLangzeit As Global.System.Data.DataColumn
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.TableName = "Out2In"
-            Me.BeginInit
-            Me.InitClass
-            Me.EndInit
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal table As Global.System.Data.DataTable)
-            MyBase.New
-            Me.TableName = table.TableName
-            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
-                Me.CaseSensitive = table.CaseSensitive
-            End If
-            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
-                Me.Locale = table.Locale
-            End If
-            If (table.Namespace <> table.DataSet.Namespace) Then
-                Me.Namespace = table.Namespace
-            End If
-            Me.Prefix = table.Prefix
-            Me.MinimumCapacity = table.MinimumCapacity
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
-            MyBase.New(info, context)
-            Me.InitVars
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property SzenarioIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSzenarioID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property KalkulationIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKalkulationID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property MainOutTradeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMainOutTradeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property OutTradeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnOutTradeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property InTradeIDColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInTradeID
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property InZeitpunktColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnInZeitpunkt
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property MainBetragColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnMainBetrag
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property BetragColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnBetrag
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property WertEURColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnWertEUR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property LevelColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnLevel
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property IstFiatColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIstFiat
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property IstAnschaffungColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIstAnschaffung
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property IstLangzeitColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnIstLangzeit
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Browsable(false)>  _
-        Public ReadOnly Property Count() As Integer
-            Get
-                Return Me.Rows.Count
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As Out2InRow
-            Get
-                Return CType(Me.Rows(index),Out2InRow)
-            End Get
-        End Property
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Out2InRowChanging As Out2InRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Out2InRowChanged As Out2InRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Out2InRowDeleting As Out2InRowChangeEventHandler
-        
-        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Event Out2InRowDeleted As Out2InRowChangeEventHandler
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Sub AddOut2InRow(ByVal row As Out2InRow)
-            Me.Rows.Add(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overloads Function AddOut2InRow(ByVal SzenarioID As Long, ByVal KalkulationID As Long, ByVal MainOutTradeID As Long, ByVal OutTradeID As Long, ByVal InTradeID As Long, ByVal InZeitpunkt As Date, ByVal MainBetrag As Decimal, ByVal Betrag As Decimal, ByVal WertEUR As Decimal, ByVal Level As Long, ByVal IstFiat As Boolean, ByVal IstTransfer As Boolean, ByVal IstLangzeit As Boolean) As Out2InRow
-            Dim rowOut2InRow As Out2InRow = CType(Me.NewRow,Out2InRow)
-            Dim columnValuesArray() As Object = New Object() {Nothing, SzenarioID, KalkulationID, MainOutTradeID, OutTradeID, InTradeID, InZeitpunkt, MainBetrag, Betrag, WertEUR, Level, IstFiat, IstTransfer, IstLangzeit}
-            rowOut2InRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowOut2InRow)
-            Return rowOut2InRow
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function FindByID(ByVal ID As Long) As Out2InRow
-            Return CType(Me.Rows.Find(New Object() {ID}),Out2InRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As Out2InDataTable = CType(MyBase.Clone,Out2InDataTable)
-            cln.InitVars
-            Return cln
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New Out2InDataTable()
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub InitVars()
-            Me.columnID = MyBase.Columns("ID")
-            Me.columnSzenarioID = MyBase.Columns("SzenarioID")
-            Me.columnKalkulationID = MyBase.Columns("KalkulationID")
-            Me.columnMainOutTradeID = MyBase.Columns("MainOutTradeID")
-            Me.columnOutTradeID = MyBase.Columns("OutTradeID")
-            Me.columnInTradeID = MyBase.Columns("InTradeID")
-            Me.columnInZeitpunkt = MyBase.Columns("InZeitpunkt")
-            Me.columnMainBetrag = MyBase.Columns("MainBetrag")
-            Me.columnBetrag = MyBase.Columns("Betrag")
-            Me.columnWertEUR = MyBase.Columns("WertEUR")
-            Me.columnLevel = MyBase.Columns("Level")
-            Me.columnIstFiat = MyBase.Columns("IstFiat")
-            Me.columnIstAnschaffung = MyBase.Columns("IstTransfer")
-            Me.columnIstLangzeit = MyBase.Columns("IstLangzeit")
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitClass()
-            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnID)
-            Me.columnSzenarioID = New Global.System.Data.DataColumn("SzenarioID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSzenarioID)
-            Me.columnKalkulationID = New Global.System.Data.DataColumn("KalkulationID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKalkulationID)
-            Me.columnMainOutTradeID = New Global.System.Data.DataColumn("MainOutTradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMainOutTradeID)
-            Me.columnOutTradeID = New Global.System.Data.DataColumn("OutTradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnOutTradeID)
-            Me.columnInTradeID = New Global.System.Data.DataColumn("InTradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInTradeID)
-            Me.columnInZeitpunkt = New Global.System.Data.DataColumn("InZeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnInZeitpunkt)
-            Me.columnMainBetrag = New Global.System.Data.DataColumn("MainBetrag", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnMainBetrag)
-            Me.columnBetrag = New Global.System.Data.DataColumn("Betrag", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnBetrag)
-            Me.columnWertEUR = New Global.System.Data.DataColumn("WertEUR", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnWertEUR)
-            Me.columnLevel = New Global.System.Data.DataColumn("Level", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnLevel)
-            Me.columnIstFiat = New Global.System.Data.DataColumn("IstFiat", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIstFiat)
-            Me.columnIstAnschaffung = New Global.System.Data.DataColumn("IstTransfer", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            Me.columnIstAnschaffung.ExtendedProperties.Add("Generator_ColumnPropNameInTable", "IstAnschaffungColumn")
-            Me.columnIstAnschaffung.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "columnIstAnschaffung")
-            Me.columnIstAnschaffung.ExtendedProperties.Add("Generator_UserColumnName", "IstTransfer")
-            MyBase.Columns.Add(Me.columnIstAnschaffung)
-            Me.columnIstLangzeit = New Global.System.Data.DataColumn("IstLangzeit", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnIstLangzeit)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
-            Me.columnID.AutoIncrement = true
-            Me.columnID.AutoIncrementSeed = -1
-            Me.columnID.AutoIncrementStep = -1
-            Me.columnID.AllowDBNull = false
-            Me.columnID.Unique = true
-            Me.columnSzenarioID.AllowDBNull = false
-            Me.columnKalkulationID.AllowDBNull = false
-            Me.columnMainOutTradeID.AllowDBNull = false
-            Me.columnOutTradeID.AllowDBNull = false
-            Me.columnInTradeID.AllowDBNull = false
-            Me.columnLevel.AllowDBNull = false
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function NewOut2InRow() As Out2InRow
-            Return CType(Me.NewRow,Out2InRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New Out2InRow(builder)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(Out2InRow)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanged(e)
-            If (Not (Me.Out2InRowChangedEvent) Is Nothing) Then
-                RaiseEvent Out2InRowChanged(Me, New Out2InRowChangeEvent(CType(e.Row,Out2InRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowChanging(e)
-            If (Not (Me.Out2InRowChangingEvent) Is Nothing) Then
-                RaiseEvent Out2InRowChanging(Me, New Out2InRowChangeEvent(CType(e.Row,Out2InRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleted(e)
-            If (Not (Me.Out2InRowDeletedEvent) Is Nothing) Then
-                RaiseEvent Out2InRowDeleted(Me, New Out2InRowChangeEvent(CType(e.Row,Out2InRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
-            MyBase.OnRowDeleting(e)
-            If (Not (Me.Out2InRowDeletingEvent) Is Nothing) Then
-                RaiseEvent Out2InRowDeleting(Me, New Out2InRowChangeEvent(CType(e.Row,Out2InRow), e.Action))
-            End If
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub RemoveOut2InRow(ByVal row As Out2InRow)
-            Me.Rows.Remove(row)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
-            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
-            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
-            Dim ds As CoinTracerDataSet = New CoinTracerDataSet()
-            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
-            any1.MinOccurs = New Decimal(0)
-            any1.MaxOccurs = Decimal.MaxValue
-            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any1)
-            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
-            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
-            any2.MinOccurs = New Decimal(1)
-            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
-            sequence.Items.Add(any2)
-            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute1.Name = "namespace"
-            attribute1.FixedValue = ds.Namespace
-            type.Attributes.Add(attribute1)
-            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
-            attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "Out2InDataTable"
-            type.Attributes.Add(attribute2)
-            type.Particle = sequence
-            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
-            If xs.Contains(dsSchema.TargetNamespace) Then
-                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
-                Try 
-                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
-                    dsSchema.Write(s1)
-                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
-                    Do While schemas.MoveNext
-                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
-                        s2.SetLength(0)
-                        schema.Write(s2)
-                        If (s1.Length = s2.Length) Then
-                            s1.Position = 0
-                            s2.Position = 0
-                            
-                            Do While ((s1.Position <> s1.Length)  _
-                                        AndAlso (s1.ReadByte = s2.ReadByte))
-                                
-                                
-                            Loop
-                            If (s1.Position = s1.Length) Then
-                                Return type
-                            End If
-                        End If
-                        
-                    Loop
-                Finally
-                    If (Not (s1) Is Nothing) Then
-                        s1.Close
-                    End If
-                    If (Not (s2) Is Nothing) Then
-                        s2.Close
-                    End If
-                End Try
-            End If
-            xs.Add(dsSchema)
-            Return type
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the strongly named DataTable class.
-    '''</summary>
-    <Global.System.Serializable(),  _
-     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
     Partial Public Class VW_GainingsDataTable
         Inherits Global.System.Data.TypedTableBase(Of VW_GainingsRow)
         
@@ -11687,23 +9497,13 @@ Partial Public Class CoinTracerDataSet
         
         Private columnArt As Global.System.Data.DataColumn
         
-        Private columnPlattform As Global.System.Data.DataColumn
-        
-        Private _columnCoin_Art As Global.System.Data.DataColumn
-        
         Private _columnCoin_Menge As Global.System.Data.DataColumn
-        
-        Private columnZahlmittel As Global.System.Data.DataColumn
         
         Private columnGesamtpreis As Global.System.Data.DataColumn
         
         Private columnGesamtwert_EUR As Global.System.Data.DataColumn
         
         Private columnKurs_EUR As Global.System.Data.DataColumn
-        
-        Private columnVorgang_Anschaffung As Global.System.Data.DataColumn
-        
-        Private columnAnschaffungsdatum As Global.System.Data.DataColumn
         
         Private _columnCoin_Anteil As Global.System.Data.DataColumn
         
@@ -11715,10 +9515,6 @@ Partial Public Class CoinTracerDataSet
         
         Private columnGewinn_EUR As Global.System.Data.DataColumn
         
-        Private columnSteuerfrei As Global.System.Data.DataColumn
-        
-        Private columnKommentar As Global.System.Data.DataColumn
-        
         Private column_SzenarioID As Global.System.Data.DataColumn
         
         Private column_QuellPlattformID As Global.System.Data.DataColumn
@@ -11726,6 +9522,22 @@ Partial Public Class CoinTracerDataSet
         Private column_ZielPlattformID As Global.System.Data.DataColumn
         
         Private column_Steuerfrei As Global.System.Data.DataColumn
+        
+        Private column_TradeTyp As Global.System.Data.DataColumn
+        
+        Private columnPlattform As Global.System.Data.DataColumn
+        
+        Private _columnCoin_Art As Global.System.Data.DataColumn
+        
+        Private columnZahlmittel As Global.System.Data.DataColumn
+        
+        Private columnVorgang_Anschaffung As Global.System.Data.DataColumn
+        
+        Private columnAnschaffungsdatum As Global.System.Data.DataColumn
+        
+        Private columnSteuerfrei As Global.System.Data.DataColumn
+        
+        Private columnKommentar As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -11788,33 +9600,9 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property PlattformColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPlattform
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property _Coin_ArtColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me._columnCoin_Art
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property _Coin_MengeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me._columnCoin_Menge
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property ZahlmittelColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnZahlmittel
             End Get
         End Property
         
@@ -11839,22 +9627,6 @@ Partial Public Class CoinTracerDataSet
         Public ReadOnly Property Kurs_EURColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnKurs_EUR
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Vorgang_AnschaffungColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnVorgang_Anschaffung
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property AnschaffungsdatumColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnAnschaffungsdatum
             End Get
         End Property
         
@@ -11900,22 +9672,6 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property SteuerfreiColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSteuerfrei
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property KommentarColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnKommentar
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property _SzenarioIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.column_SzenarioID
@@ -11943,6 +9699,70 @@ Partial Public Class CoinTracerDataSet
         Public ReadOnly Property _SteuerfreiColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.column_Steuerfrei
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _TradeTypColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.column_TradeTyp
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PlattformColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPlattform
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property _Coin_ArtColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me._columnCoin_Art
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ZahlmittelColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnZahlmittel
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Vorgang_AnschaffungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVorgang_Anschaffung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property AnschaffungsdatumColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAnschaffungsdatum
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SteuerfreiColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSteuerfrei
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property KommentarColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKommentar
             End Get
         End Property
         
@@ -11986,27 +9806,28 @@ Partial Public Class CoinTracerDataSet
         Public Overloads Function AddVW_GainingsReport2Row( _
                     ByVal Zeitpunkt As Date,  _
                     ByVal Art As String,  _
-                    ByVal Plattform As String,  _
-                    ByVal _Coin_Art As String,  _
                     ByVal _Coin_Menge As Object,  _
-                    ByVal Zahlmittel As String,  _
                     ByVal Gesamtpreis As Object,  _
                     ByVal Gesamtwert_EUR As Object,  _
                     ByVal Kurs_EUR As Object,  _
-                    ByVal Vorgang_Anschaffung As String,  _
-                    ByVal Anschaffungsdatum As Date,  _
                     ByVal _Coin_Anteil As Object,  _
                     ByVal Kaufpreis_EUR As Object,  _
                     ByVal Kaufkurs_EUR As Object,  _
                     ByVal Verkaufspreis_EUR As Object,  _
                     ByVal Gewinn_EUR As Object,  _
-                    ByVal Steuerfrei As String,  _
-                    ByVal Kommentar As String,  _
                     ByVal _QuellPlattformID As Long,  _
                     ByVal _ZielPlattformID As Long,  _
-                    ByVal _Steuerfrei As Long) As VW_GainingsReport2Row
+                    ByVal _Steuerfrei As Long,  _
+                    ByVal _TradeTyp As Long,  _
+                    ByVal Plattform As Object,  _
+                    ByVal _Coin_Art As String,  _
+                    ByVal Zahlmittel As String,  _
+                    ByVal Vorgang_Anschaffung As String,  _
+                    ByVal Anschaffungsdatum As Date,  _
+                    ByVal Steuerfrei As String,  _
+                    ByVal Kommentar As String) As VW_GainingsReport2Row
             Dim rowVW_GainingsReport2Row As VW_GainingsReport2Row = CType(Me.NewRow,VW_GainingsReport2Row)
-            Dim columnValuesArray() As Object = New Object() {Nothing, Zeitpunkt, Art, Plattform, _Coin_Art, _Coin_Menge, Zahlmittel, Gesamtpreis, Gesamtwert_EUR, Kurs_EUR, Vorgang_Anschaffung, Anschaffungsdatum, _Coin_Anteil, Kaufpreis_EUR, Kaufkurs_EUR, Verkaufspreis_EUR, Gewinn_EUR, Steuerfrei, Kommentar, Nothing, _QuellPlattformID, _ZielPlattformID, _Steuerfrei}
+            Dim columnValuesArray() As Object = New Object() {Nothing, Zeitpunkt, Art, _Coin_Menge, Gesamtpreis, Gesamtwert_EUR, Kurs_EUR, _Coin_Anteil, Kaufpreis_EUR, Kaufkurs_EUR, Verkaufspreis_EUR, Gewinn_EUR, Nothing, _QuellPlattformID, _ZielPlattformID, _Steuerfrei, _TradeTyp, Plattform, _Coin_Art, Zahlmittel, Vorgang_Anschaffung, Anschaffungsdatum, Steuerfrei, Kommentar}
             rowVW_GainingsReport2Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowVW_GainingsReport2Row)
             Return rowVW_GainingsReport2Row
@@ -12032,26 +9853,27 @@ Partial Public Class CoinTracerDataSet
             Me.columnVorgang = MyBase.Columns("Vorgang")
             Me.columnZeitpunkt = MyBase.Columns("Zeitpunkt")
             Me.columnArt = MyBase.Columns("Art")
-            Me.columnPlattform = MyBase.Columns("Plattform")
-            Me._columnCoin_Art = MyBase.Columns("Coin-Art")
             Me._columnCoin_Menge = MyBase.Columns("Coin-Menge")
-            Me.columnZahlmittel = MyBase.Columns("Zahlmittel")
             Me.columnGesamtpreis = MyBase.Columns("Gesamtpreis")
             Me.columnGesamtwert_EUR = MyBase.Columns("Gesamtwert EUR")
             Me.columnKurs_EUR = MyBase.Columns("Kurs EUR")
-            Me.columnVorgang_Anschaffung = MyBase.Columns("Vorgang Anschaffung")
-            Me.columnAnschaffungsdatum = MyBase.Columns("Anschaffungsdatum")
             Me._columnCoin_Anteil = MyBase.Columns("Coin-Anteil")
             Me.columnKaufpreis_EUR = MyBase.Columns("Kaufpreis EUR")
             Me.columnKaufkurs_EUR = MyBase.Columns("Kaufkurs EUR")
             Me.columnVerkaufspreis_EUR = MyBase.Columns("Verkaufspreis EUR")
             Me.columnGewinn_EUR = MyBase.Columns("Gewinn EUR")
-            Me.columnSteuerfrei = MyBase.Columns("Steuerfrei")
-            Me.columnKommentar = MyBase.Columns("Kommentar")
             Me.column_SzenarioID = MyBase.Columns("_SzenarioID")
             Me.column_QuellPlattformID = MyBase.Columns("_QuellPlattformID")
             Me.column_ZielPlattformID = MyBase.Columns("_ZielPlattformID")
             Me.column_Steuerfrei = MyBase.Columns("_Steuerfrei")
+            Me.column_TradeTyp = MyBase.Columns("_TradeTyp")
+            Me.columnPlattform = MyBase.Columns("Plattform")
+            Me._columnCoin_Art = MyBase.Columns("Coin-Art")
+            Me.columnZahlmittel = MyBase.Columns("Zahlmittel")
+            Me.columnVorgang_Anschaffung = MyBase.Columns("Vorgang Anschaffung")
+            Me.columnAnschaffungsdatum = MyBase.Columns("Anschaffungsdatum")
+            Me.columnSteuerfrei = MyBase.Columns("Steuerfrei")
+            Me.columnKommentar = MyBase.Columns("Kommentar")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12063,28 +9885,16 @@ Partial Public Class CoinTracerDataSet
             MyBase.Columns.Add(Me.columnZeitpunkt)
             Me.columnArt = New Global.System.Data.DataColumn("Art", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnArt)
-            Me.columnPlattform = New Global.System.Data.DataColumn("Plattform", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPlattform)
-            Me._columnCoin_Art = New Global.System.Data.DataColumn("Coin-Art", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            Me._columnCoin_Art.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnCoin_Art")
-            Me._columnCoin_Art.ExtendedProperties.Add("Generator_UserColumnName", "Coin-Art")
-            MyBase.Columns.Add(Me._columnCoin_Art)
             Me._columnCoin_Menge = New Global.System.Data.DataColumn("Coin-Menge", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
             Me._columnCoin_Menge.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnCoin_Menge")
             Me._columnCoin_Menge.ExtendedProperties.Add("Generator_UserColumnName", "Coin-Menge")
             MyBase.Columns.Add(Me._columnCoin_Menge)
-            Me.columnZahlmittel = New Global.System.Data.DataColumn("Zahlmittel", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnZahlmittel)
             Me.columnGesamtpreis = New Global.System.Data.DataColumn("Gesamtpreis", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGesamtpreis)
             Me.columnGesamtwert_EUR = New Global.System.Data.DataColumn("Gesamtwert EUR", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGesamtwert_EUR)
             Me.columnKurs_EUR = New Global.System.Data.DataColumn("Kurs EUR", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnKurs_EUR)
-            Me.columnVorgang_Anschaffung = New Global.System.Data.DataColumn("Vorgang Anschaffung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnVorgang_Anschaffung)
-            Me.columnAnschaffungsdatum = New Global.System.Data.DataColumn("Anschaffungsdatum", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAnschaffungsdatum)
             Me._columnCoin_Anteil = New Global.System.Data.DataColumn("Coin-Anteil", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
             Me._columnCoin_Anteil.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnCoin_Anteil")
             Me._columnCoin_Anteil.ExtendedProperties.Add("Generator_UserColumnName", "Coin-Anteil")
@@ -12097,10 +9907,6 @@ Partial Public Class CoinTracerDataSet
             MyBase.Columns.Add(Me.columnVerkaufspreis_EUR)
             Me.columnGewinn_EUR = New Global.System.Data.DataColumn("Gewinn EUR", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGewinn_EUR)
-            Me.columnSteuerfrei = New Global.System.Data.DataColumn("Steuerfrei", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSteuerfrei)
-            Me.columnKommentar = New Global.System.Data.DataColumn("Kommentar", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnKommentar)
             Me.column_SzenarioID = New Global.System.Data.DataColumn("_SzenarioID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.column_SzenarioID)
             Me.column_QuellPlattformID = New Global.System.Data.DataColumn("_QuellPlattformID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
@@ -12109,6 +9915,24 @@ Partial Public Class CoinTracerDataSet
             MyBase.Columns.Add(Me.column_ZielPlattformID)
             Me.column_Steuerfrei = New Global.System.Data.DataColumn("_Steuerfrei", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.column_Steuerfrei)
+            Me.column_TradeTyp = New Global.System.Data.DataColumn("_TradeTyp", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.column_TradeTyp)
+            Me.columnPlattform = New Global.System.Data.DataColumn("Plattform", GetType(Object), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPlattform)
+            Me._columnCoin_Art = New Global.System.Data.DataColumn("Coin-Art", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me._columnCoin_Art.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "_columnCoin_Art")
+            Me._columnCoin_Art.ExtendedProperties.Add("Generator_UserColumnName", "Coin-Art")
+            MyBase.Columns.Add(Me._columnCoin_Art)
+            Me.columnZahlmittel = New Global.System.Data.DataColumn("Zahlmittel", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnZahlmittel)
+            Me.columnVorgang_Anschaffung = New Global.System.Data.DataColumn("Vorgang Anschaffung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVorgang_Anschaffung)
+            Me.columnAnschaffungsdatum = New Global.System.Data.DataColumn("Anschaffungsdatum", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAnschaffungsdatum)
+            Me.columnSteuerfrei = New Global.System.Data.DataColumn("Steuerfrei", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSteuerfrei)
+            Me.columnKommentar = New Global.System.Data.DataColumn("Kommentar", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKommentar)
             Me.columnVorgang.AutoIncrement = true
             Me.columnVorgang.AutoIncrementSeed = -1
             Me.columnVorgang.AutoIncrementStep = -1
@@ -12204,6 +10028,523 @@ Partial Public Class CoinTracerDataSet
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "VW_GainingsReport2DataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class TradeTxDataTable
+        Inherits Global.System.Data.TypedTableBase(Of TradeTxRow)
+        
+        Private columnTxID As Global.System.Data.DataColumn
+        
+        Private columnSzenarioID As Global.System.Data.DataColumn
+        
+        Private columnInKalkulationID As Global.System.Data.DataColumn
+        
+        Private columnInTradeID As Global.System.Data.DataColumn
+        
+        Private columnInTransferID As Global.System.Data.DataColumn
+        
+        Private columnTransferIDHistory As Global.System.Data.DataColumn
+        
+        Private columnPlattformID As Global.System.Data.DataColumn
+        
+        Private columnKontoID As Global.System.Data.DataColumn
+        
+        Private columnZeitpunkt As Global.System.Data.DataColumn
+        
+        Private columnKaufZeitpunkt As Global.System.Data.DataColumn
+        
+        Private columnBetrag As Global.System.Data.DataColumn
+        
+        Private columnWertEUR As Global.System.Data.DataColumn
+        
+        Private columnParentTxID As Global.System.Data.DataColumn
+        
+        Private columnIstRest As Global.System.Data.DataColumn
+        
+        Private columnOutKalkulationID As Global.System.Data.DataColumn
+        
+        Private columnOutTradeID As Global.System.Data.DataColumn
+        
+        Private columnEntwertet As Global.System.Data.DataColumn
+        
+        Private columnIstLangzeit As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "TradeTx"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property TxIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTxID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SzenarioIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSzenarioID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property InKalkulationIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnInKalkulationID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property InTradeIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnInTradeID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property InTransferIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnInTransferID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property TransferIDHistoryColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTransferIDHistory
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property PlattformIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPlattformID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property KontoIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKontoID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ZeitpunktColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnZeitpunkt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property KaufZeitpunktColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnKaufZeitpunkt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BetragColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBetrag
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property WertEURColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnWertEUR
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ParentTxIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnParentTxID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IstRestColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIstRest
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property OutKalkulationIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOutKalkulationID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property OutTradeIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOutTradeID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property EntwertetColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEntwertet
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IstLangzeitColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIstLangzeit
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As TradeTxRow
+            Get
+                Return CType(Me.Rows(index),TradeTxRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event TradeTxRowChanging As TradeTxRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event TradeTxRowChanged As TradeTxRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event TradeTxRowDeleting As TradeTxRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event TradeTxRowDeleted As TradeTxRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddTradeTxRow(ByVal row As TradeTxRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddTradeTxRow( _
+                    ByVal TxID As Long,  _
+                    ByVal SzenarioID As Long,  _
+                    ByVal InKalkulationID As Long,  _
+                    ByVal InTradeID As Long,  _
+                    ByVal InTransferID As Long,  _
+                    ByVal TransferIDHistory As String,  _
+                    ByVal PlattformID As Long,  _
+                    ByVal KontoID As Long,  _
+                    ByVal Zeitpunkt As Date,  _
+                    ByVal KaufZeitpunkt As Date,  _
+                    ByVal Betrag As Decimal,  _
+                    ByVal WertEUR As Decimal,  _
+                    ByVal ParentTxID As Long,  _
+                    ByVal IstRest As Boolean,  _
+                    ByVal OutKalkulationID As Long,  _
+                    ByVal OutTradeID As Long,  _
+                    ByVal Entwertet As Boolean,  _
+                    ByVal IstLangzeit As Boolean) As TradeTxRow
+            Dim rowTradeTxRow As TradeTxRow = CType(Me.NewRow,TradeTxRow)
+            Dim columnValuesArray() As Object = New Object() {TxID, SzenarioID, InKalkulationID, InTradeID, InTransferID, TransferIDHistory, PlattformID, KontoID, Zeitpunkt, KaufZeitpunkt, Betrag, WertEUR, ParentTxID, IstRest, OutKalkulationID, OutTradeID, Entwertet, IstLangzeit}
+            rowTradeTxRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowTradeTxRow)
+            Return rowTradeTxRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByTxID(ByVal TxID As Long) As TradeTxRow
+            Return CType(Me.Rows.Find(New Object() {TxID}),TradeTxRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As TradeTxDataTable = CType(MyBase.Clone,TradeTxDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New TradeTxDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnTxID = MyBase.Columns("TxID")
+            Me.columnSzenarioID = MyBase.Columns("SzenarioID")
+            Me.columnInKalkulationID = MyBase.Columns("InKalkulationID")
+            Me.columnInTradeID = MyBase.Columns("InTradeID")
+            Me.columnInTransferID = MyBase.Columns("InTransferID")
+            Me.columnTransferIDHistory = MyBase.Columns("TransferIDHistory")
+            Me.columnPlattformID = MyBase.Columns("PlattformID")
+            Me.columnKontoID = MyBase.Columns("KontoID")
+            Me.columnZeitpunkt = MyBase.Columns("Zeitpunkt")
+            Me.columnKaufZeitpunkt = MyBase.Columns("KaufZeitpunkt")
+            Me.columnBetrag = MyBase.Columns("Betrag")
+            Me.columnWertEUR = MyBase.Columns("WertEUR")
+            Me.columnParentTxID = MyBase.Columns("ParentTxID")
+            Me.columnIstRest = MyBase.Columns("IstRest")
+            Me.columnOutKalkulationID = MyBase.Columns("OutKalkulationID")
+            Me.columnOutTradeID = MyBase.Columns("OutTradeID")
+            Me.columnEntwertet = MyBase.Columns("Entwertet")
+            Me.columnIstLangzeit = MyBase.Columns("IstLangzeit")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnTxID = New Global.System.Data.DataColumn("TxID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTxID)
+            Me.columnSzenarioID = New Global.System.Data.DataColumn("SzenarioID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSzenarioID)
+            Me.columnInKalkulationID = New Global.System.Data.DataColumn("InKalkulationID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnInKalkulationID)
+            Me.columnInTradeID = New Global.System.Data.DataColumn("InTradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnInTradeID)
+            Me.columnInTransferID = New Global.System.Data.DataColumn("InTransferID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnInTransferID)
+            Me.columnTransferIDHistory = New Global.System.Data.DataColumn("TransferIDHistory", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTransferIDHistory)
+            Me.columnPlattformID = New Global.System.Data.DataColumn("PlattformID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPlattformID)
+            Me.columnKontoID = New Global.System.Data.DataColumn("KontoID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKontoID)
+            Me.columnZeitpunkt = New Global.System.Data.DataColumn("Zeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnZeitpunkt)
+            Me.columnKaufZeitpunkt = New Global.System.Data.DataColumn("KaufZeitpunkt", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnKaufZeitpunkt)
+            Me.columnBetrag = New Global.System.Data.DataColumn("Betrag", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBetrag)
+            Me.columnWertEUR = New Global.System.Data.DataColumn("WertEUR", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnWertEUR)
+            Me.columnParentTxID = New Global.System.Data.DataColumn("ParentTxID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnParentTxID)
+            Me.columnIstRest = New Global.System.Data.DataColumn("IstRest", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIstRest)
+            Me.columnOutKalkulationID = New Global.System.Data.DataColumn("OutKalkulationID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOutKalkulationID)
+            Me.columnOutTradeID = New Global.System.Data.DataColumn("OutTradeID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOutTradeID)
+            Me.columnEntwertet = New Global.System.Data.DataColumn("Entwertet", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEntwertet)
+            Me.columnIstLangzeit = New Global.System.Data.DataColumn("IstLangzeit", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIstLangzeit)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnTxID}, true))
+            Me.columnTxID.AllowDBNull = false
+            Me.columnTxID.Unique = true
+            Me.columnSzenarioID.AllowDBNull = false
+            Me.columnInKalkulationID.AllowDBNull = false
+            Me.columnInTradeID.AllowDBNull = false
+            Me.columnInTradeID.DefaultValue = CType(0,Long)
+            Me.columnInTransferID.AllowDBNull = false
+            Me.columnInTransferID.DefaultValue = CType(0,Long)
+            Me.columnTransferIDHistory.MaxLength = 500
+            Me.columnPlattformID.AllowDBNull = false
+            Me.columnKontoID.AllowDBNull = false
+            Me.columnWertEUR.DefaultValue = CType(0D,Decimal)
+            Me.columnParentTxID.AllowDBNull = false
+            Me.columnParentTxID.DefaultValue = CType(0,Long)
+            Me.columnOutKalkulationID.AllowDBNull = false
+            Me.columnOutKalkulationID.DefaultValue = CType(0,Long)
+            Me.columnOutTradeID.AllowDBNull = false
+            Me.columnOutTradeID.DefaultValue = CType(0,Long)
+            Me.columnIstLangzeit.DefaultValue = CType(false,Boolean)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewTradeTxRow() As TradeTxRow
+            Return CType(Me.NewRow,TradeTxRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New TradeTxRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(TradeTxRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.TradeTxRowChangedEvent) Is Nothing) Then
+                RaiseEvent TradeTxRowChanged(Me, New TradeTxRowChangeEvent(CType(e.Row,TradeTxRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.TradeTxRowChangingEvent) Is Nothing) Then
+                RaiseEvent TradeTxRowChanging(Me, New TradeTxRowChangeEvent(CType(e.Row,TradeTxRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.TradeTxRowDeletedEvent) Is Nothing) Then
+                RaiseEvent TradeTxRowDeleted(Me, New TradeTxRowChangeEvent(CType(e.Row,TradeTxRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.TradeTxRowDeletingEvent) Is Nothing) Then
+                RaiseEvent TradeTxRowDeleting(Me, New TradeTxRowChangeEvent(CType(e.Row,TradeTxRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemoveTradeTxRow(ByVal row As TradeTxRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As CoinTracerDataSet = New CoinTracerDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "TradeTxDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -12881,17 +11222,6 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ZeitstempelWerteRow() As ZeitstempelWerteRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("ZeitstempelWerte_Konten")),ZeitstempelWerteRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("ZeitstempelWerte_Konten"))
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property KurseRowByKurse_Konten_Quell() As KurseRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("Kurse_Konten_Quell")),KurseRow)
@@ -13231,17 +11561,6 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ZeitstempelWerteRow() As ZeitstempelWerteRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("ZeitstempelWerte_Plattformen")),ZeitstempelWerteRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("ZeitstempelWerte_Plattformen"))
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property TradesRowByTrades_Plattformen_Import() As TradesRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("Trades_Plattformen_Import")),TradesRow)
@@ -13473,17 +11792,6 @@ Partial Public Class CoinTracerDataSet
             End Get
             Set
                 Me.SetParentRow(value, Me.Table.ParentRelations("Kalkulationen_Szenarien"))
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ZeitstempelWerteRow() As ZeitstempelWerteRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("ZeitstempelWerte_Szenarien")),ZeitstempelWerteRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("ZeitstempelWerte_Szenarien"))
             End Set
         End Property
         
@@ -14386,718 +12694,6 @@ Partial Public Class CoinTracerDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetSortIDNull()
             Me(Me.tableTradeTypen.SortIDColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class ZeitstempelWerteRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableZeitstempelWerte As ZeitstempelWerteDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableZeitstempelWerte = CType(Me.Table,ZeitstempelWerteDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ID() As Long
-            Get
-                Return CType(Me(Me.tableZeitstempelWerte.IDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Zeitpunkt() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.ZeitpunktColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Zeitpunkt in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.ZeitpunktColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property PlattformID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.PlattformIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte PlattformID in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.PlattformIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Betrag() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.BetragColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Betrag in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.BetragColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property KontoID() As Long
-            Get
-                Return CType(Me(Me.tableZeitstempelWerte.KontoIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.KontoIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property WertEUR() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.WertEURColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte WertEUR in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.WertEURColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property InTradeID() As Long
-            Get
-                Return CType(Me(Me.tableZeitstempelWerte.InTradeIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.InTradeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property OutTradeID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.OutTradeIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte OutTradeID in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.OutTradeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ParentID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.ParentIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ParentID in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.ParentIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Entwertet() As Boolean
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.EntwertetColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Entwertet in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.EntwertetColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property SzenarioID() As Long
-            Get
-                Return CType(Me(Me.tableZeitstempelWerte.SzenarioIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.SzenarioIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property EntwertetKalkulationID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.EntwertetKalkulationIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte EntwertetKalkulationID in Tabelle ZeitstempelWerte ist DBNull"& _ 
-                            ".", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.EntwertetKalkulationIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property AnlageKalkulationID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.AnlageKalkulationIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte AnlageKalkulationID in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.AnlageKalkulationIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Kaufdatum() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.KaufdatumColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Kaufdatum in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.KaufdatumColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property BestandPlattform() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableZeitstempelWerte.BestandPlattformColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte BestandPlattform in Tabelle ZeitstempelWerte ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableZeitstempelWerte.BestandPlattformColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsZeitpunktNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.ZeitpunktColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetZeitpunktNull()
-            Me(Me.tableZeitstempelWerte.ZeitpunktColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPlattformIDNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.PlattformIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPlattformIDNull()
-            Me(Me.tableZeitstempelWerte.PlattformIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBetragNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.BetragColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBetragNull()
-            Me(Me.tableZeitstempelWerte.BetragColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsWertEURNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.WertEURColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetWertEURNull()
-            Me(Me.tableZeitstempelWerte.WertEURColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsOutTradeIDNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.OutTradeIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetOutTradeIDNull()
-            Me(Me.tableZeitstempelWerte.OutTradeIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsParentIDNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.ParentIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetParentIDNull()
-            Me(Me.tableZeitstempelWerte.ParentIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsEntwertetNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.EntwertetColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetEntwertetNull()
-            Me(Me.tableZeitstempelWerte.EntwertetColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsEntwertetKalkulationIDNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.EntwertetKalkulationIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetEntwertetKalkulationIDNull()
-            Me(Me.tableZeitstempelWerte.EntwertetKalkulationIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsAnlageKalkulationIDNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.AnlageKalkulationIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetAnlageKalkulationIDNull()
-            Me(Me.tableZeitstempelWerte.AnlageKalkulationIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsKaufdatumNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.KaufdatumColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetKaufdatumNull()
-            Me(Me.tableZeitstempelWerte.KaufdatumColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBestandPlattformNull() As Boolean
-            Return Me.IsNull(Me.tableZeitstempelWerte.BestandPlattformColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBestandPlattformNull()
-            Me(Me.tableZeitstempelWerte.BestandPlattformColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetPlattformenRows() As PlattformenRow()
-            If (Me.Table.ChildRelations("ZeitstempelWerte_Plattformen") Is Nothing) Then
-                Return New PlattformenRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("ZeitstempelWerte_Plattformen")),PlattformenRow())
-            End If
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetKontenRows() As KontenRow()
-            If (Me.Table.ChildRelations("ZeitstempelWerte_Konten") Is Nothing) Then
-                Return New KontenRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("ZeitstempelWerte_Konten")),KontenRow())
-            End If
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function GetSzenarienRows() As SzenarienRow()
-            If (Me.Table.ChildRelations("ZeitstempelWerte_Szenarien") Is Nothing) Then
-                Return New SzenarienRow(-1) {}
-            Else
-                Return CType(MyBase.GetChildRows(Me.Table.ChildRelations("ZeitstempelWerte_Szenarien")),SzenarienRow())
-            End If
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class VW_GainingsReportRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableVW_GainingsReport As VW_GainingsReportDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableVW_GainingsReport = CType(Me.Table,VW_GainingsReportDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property SzenarioID() As Long
-            Get
-                Return CType(Me(Me.tableVW_GainingsReport.SzenarioIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.SzenarioIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Zeitpunkt() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.ZeitpunktColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Zeitpunkt in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.ZeitpunktColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Art() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.ArtColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Art in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.ArtColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Plattform() As Object
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.PlattformColumn),Object)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Plattform in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.PlattformColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Menge_Coins() As Object
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.Menge_CoinsColumn),Object)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Menge Coins in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.Menge_CoinsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Art_Coins() As Object
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.Art_CoinsColumn),Object)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Art Coins in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.Art_CoinsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Preis_USD() As Object
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.Preis_USDColumn),Object)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Preis USD in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.Preis_USDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Preis_EUR() As Object
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.Preis_EURColumn),Object)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Preis EUR in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.Preis_EURColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Kaufdatum_Coins() As String
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.Kaufdatum_CoinsColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Kaufdatum Coins in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.Kaufdatum_CoinsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Kaufpreis_EUR() As Object
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.Kaufpreis_EURColumn),Object)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Kaufpreis EUR in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.Kaufpreis_EURColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Gewinn_EUR() As Object
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.Gewinn_EURColumn),Object)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Gewinn EUR in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.Gewinn_EURColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Steuerfrei() As Object
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport.SteuerfreiColumn),Object)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Steuerfrei in Tabelle VW_GainingsReport ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport.SteuerfreiColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsZeitpunktNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.ZeitpunktColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetZeitpunktNull()
-            Me(Me.tableVW_GainingsReport.ZeitpunktColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsArtNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.ArtColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetArtNull()
-            Me(Me.tableVW_GainingsReport.ArtColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPlattformNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.PlattformColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPlattformNull()
-            Me(Me.tableVW_GainingsReport.PlattformColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsMenge_CoinsNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.Menge_CoinsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetMenge_CoinsNull()
-            Me(Me.tableVW_GainingsReport.Menge_CoinsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsArt_CoinsNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.Art_CoinsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetArt_CoinsNull()
-            Me(Me.tableVW_GainingsReport.Art_CoinsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPreis_USDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.Preis_USDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPreis_USDNull()
-            Me(Me.tableVW_GainingsReport.Preis_USDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPreis_EURNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.Preis_EURColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPreis_EURNull()
-            Me(Me.tableVW_GainingsReport.Preis_EURColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsKaufdatum_CoinsNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.Kaufdatum_CoinsColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetKaufdatum_CoinsNull()
-            Me(Me.tableVW_GainingsReport.Kaufdatum_CoinsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsKaufpreis_EURNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.Kaufpreis_EURColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetKaufpreis_EURNull()
-            Me(Me.tableVW_GainingsReport.Kaufpreis_EURColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsGewinn_EURNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.Gewinn_EURColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetGewinn_EURNull()
-            Me(Me.tableVW_GainingsReport.Gewinn_EURColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsSteuerfreiNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport.SteuerfreiColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetSteuerfreiNull()
-            Me(Me.tableVW_GainingsReport.SteuerfreiColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -18217,801 +15813,6 @@ Partial Public Class CoinTracerDataSet
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class VW_OutCoinsRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableVW_OutCoins As VW_OutCoinsDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableVW_OutCoins = CType(Me.Table,VW_OutCoinsDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property TradeID() As Long
-            Get
-                Return CType(Me(Me.tableVW_OutCoins.TradeIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableVW_OutCoins.TradeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Betrag() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_OutCoins.BetragColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Betrag in Tabelle VW_OutCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_OutCoins.BetragColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property KontoID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_OutCoins.KontoIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte KontoID in Tabelle VW_OutCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_OutCoins.KontoIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property OutTypID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_OutCoins.OutTypIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte OutTypID in Tabelle VW_OutCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_OutCoins.OutTypIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property PlattformID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_OutCoins.PlattformIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte PlattformID in Tabelle VW_OutCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_OutCoins.PlattformIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Zeitpunkt() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_OutCoins.ZeitpunktColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Zeitpunkt in Tabelle VW_OutCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_OutCoins.ZeitpunktColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBetragNull() As Boolean
-            Return Me.IsNull(Me.tableVW_OutCoins.BetragColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBetragNull()
-            Me(Me.tableVW_OutCoins.BetragColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsKontoIDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_OutCoins.KontoIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetKontoIDNull()
-            Me(Me.tableVW_OutCoins.KontoIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsOutTypIDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_OutCoins.OutTypIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetOutTypIDNull()
-            Me(Me.tableVW_OutCoins.OutTypIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPlattformIDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_OutCoins.PlattformIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPlattformIDNull()
-            Me(Me.tableVW_OutCoins.PlattformIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsZeitpunktNull() As Boolean
-            Return Me.IsNull(Me.tableVW_OutCoins.ZeitpunktColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetZeitpunktNull()
-            Me(Me.tableVW_OutCoins.ZeitpunktColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class VW_InCoinsRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableVW_InCoins As VW_InCoinsDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableVW_InCoins = CType(Me.Table,VW_InCoinsDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property TradeID() As Long
-            Get
-                Return CType(Me(Me.tableVW_InCoins.TradeIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.TradeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Betrag() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.BetragColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Betrag in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.BetragColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property KontoID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.KontoIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte KontoID in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.KontoIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property InTypID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.InTypIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte InTypID in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.InTypIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property PlattformID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.PlattformIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte PlattformID in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.PlattformIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Zeitpunkt() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.ZeitpunktColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Zeitpunkt in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.ZeitpunktColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property WertEUR() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.WertEURColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte WertEUR in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.WertEURColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property KursEUR() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.KursEURColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte KursEUR in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.KursEURColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property OutPlattformID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.OutPlattformIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte OutPlattformID in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.OutPlattformIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property OutBetrag() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.OutBetragColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte OutBetrag in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.OutBetragColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property OutKontoID() As Long
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.OutKontoIDColumn),Long)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte OutKontoID in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.OutKontoIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property OutZeitpunkt() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.OutZeitpunktColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte OutZeitpunkt in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.OutZeitpunktColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property InZeitpunkt() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_InCoins.InZeitpunktColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte InZeitpunkt in Tabelle VW_InCoins ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_InCoins.InZeitpunktColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBetragNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.BetragColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBetragNull()
-            Me(Me.tableVW_InCoins.BetragColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsKontoIDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.KontoIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetKontoIDNull()
-            Me(Me.tableVW_InCoins.KontoIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsInTypIDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.InTypIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetInTypIDNull()
-            Me(Me.tableVW_InCoins.InTypIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPlattformIDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.PlattformIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPlattformIDNull()
-            Me(Me.tableVW_InCoins.PlattformIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsZeitpunktNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.ZeitpunktColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetZeitpunktNull()
-            Me(Me.tableVW_InCoins.ZeitpunktColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsWertEURNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.WertEURColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetWertEURNull()
-            Me(Me.tableVW_InCoins.WertEURColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsKursEURNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.KursEURColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetKursEURNull()
-            Me(Me.tableVW_InCoins.KursEURColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsOutPlattformIDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.OutPlattformIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetOutPlattformIDNull()
-            Me(Me.tableVW_InCoins.OutPlattformIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsOutBetragNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.OutBetragColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetOutBetragNull()
-            Me(Me.tableVW_InCoins.OutBetragColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsOutKontoIDNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.OutKontoIDColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetOutKontoIDNull()
-            Me(Me.tableVW_InCoins.OutKontoIDColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsOutZeitpunktNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.OutZeitpunktColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetOutZeitpunktNull()
-            Me(Me.tableVW_InCoins.OutZeitpunktColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsInZeitpunktNull() As Boolean
-            Return Me.IsNull(Me.tableVW_InCoins.InZeitpunktColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetInZeitpunktNull()
-            Me(Me.tableVW_InCoins.InZeitpunktColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
-    Partial Public Class Out2InRow
-        Inherits Global.System.Data.DataRow
-        
-        Private tableOut2In As Out2InDataTable
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
-            MyBase.New(rb)
-            Me.tableOut2In = CType(Me.Table,Out2InDataTable)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ID() As Long
-            Get
-                Return CType(Me(Me.tableOut2In.IDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableOut2In.IDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property SzenarioID() As Long
-            Get
-                Return CType(Me(Me.tableOut2In.SzenarioIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableOut2In.SzenarioIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property KalkulationID() As Long
-            Get
-                Return CType(Me(Me.tableOut2In.KalkulationIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableOut2In.KalkulationIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property MainOutTradeID() As Long
-            Get
-                Return CType(Me(Me.tableOut2In.MainOutTradeIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableOut2In.MainOutTradeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property OutTradeID() As Long
-            Get
-                Return CType(Me(Me.tableOut2In.OutTradeIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableOut2In.OutTradeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property InTradeID() As Long
-            Get
-                Return CType(Me(Me.tableOut2In.InTradeIDColumn),Long)
-            End Get
-            Set
-                Me(Me.tableOut2In.InTradeIDColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property InZeitpunkt() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableOut2In.InZeitpunktColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte InZeitpunkt in Tabelle Out2In ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableOut2In.InZeitpunktColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property MainBetrag() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableOut2In.MainBetragColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte MainBetrag in Tabelle Out2In ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableOut2In.MainBetragColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Betrag() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableOut2In.BetragColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Betrag in Tabelle Out2In ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableOut2In.BetragColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property WertEUR() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tableOut2In.WertEURColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte WertEUR in Tabelle Out2In ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableOut2In.WertEURColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Level() As Long
-            Get
-                Return CType(Me(Me.tableOut2In.LevelColumn),Long)
-            End Get
-            Set
-                Me(Me.tableOut2In.LevelColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property IstFiat() As Boolean
-            Get
-                Try 
-                    Return CType(Me(Me.tableOut2In.IstFiatColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte IstFiat in Tabelle Out2In ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableOut2In.IstFiatColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property IstTransfer() As Boolean
-            Get
-                Try 
-                    Return CType(Me(Me.tableOut2In.IstAnschaffungColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte IstTransfer in Tabelle Out2In ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableOut2In.IstAnschaffungColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property IstLangzeit() As Boolean
-            Get
-                Try 
-                    Return CType(Me(Me.tableOut2In.IstLangzeitColumn),Boolean)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte IstLangzeit in Tabelle Out2In ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableOut2In.IstLangzeitColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsInZeitpunktNull() As Boolean
-            Return Me.IsNull(Me.tableOut2In.InZeitpunktColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetInZeitpunktNull()
-            Me(Me.tableOut2In.InZeitpunktColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsMainBetragNull() As Boolean
-            Return Me.IsNull(Me.tableOut2In.MainBetragColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetMainBetragNull()
-            Me(Me.tableOut2In.MainBetragColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsBetragNull() As Boolean
-            Return Me.IsNull(Me.tableOut2In.BetragColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetBetragNull()
-            Me(Me.tableOut2In.BetragColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsWertEURNull() As Boolean
-            Return Me.IsNull(Me.tableOut2In.WertEURColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetWertEURNull()
-            Me(Me.tableOut2In.WertEURColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsIstFiatNull() As Boolean
-            Return Me.IsNull(Me.tableOut2In.IstFiatColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetIstFiatNull()
-            Me(Me.tableOut2In.IstFiatColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsIstTransferNull() As Boolean
-            Return Me.IsNull(Me.tableOut2In.IstAnschaffungColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetIstTransferNull()
-            Me(Me.tableOut2In.IstAnschaffungColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsIstLangzeitNull() As Boolean
-            Return Me.IsNull(Me.tableOut2In.IstLangzeitColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetIstLangzeitNull()
-            Me(Me.tableOut2In.IstLangzeitColumn) = Global.System.Convert.DBNull
-        End Sub
-    End Class
-    
-    '''<summary>
-    '''Represents strongly named DataRow class.
-    '''</summary>
     Partial Public Class VW_GainingsRow
         Inherits Global.System.Data.DataRow
         
@@ -19165,36 +15966,6 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Plattform() As String
-            Get
-                If Me.IsPlattformNull Then
-                    Return Nothing
-                Else
-                    Return CType(Me(Me.tableVW_GainingsReport2.PlattformColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport2.PlattformColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property _Coin_Art() As String
-            Get
-                If Me.Is_Coin_ArtNull Then
-                    Return Nothing
-                Else
-                    Return CType(Me(Me.tableVW_GainingsReport2._Coin_ArtColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport2._Coin_ArtColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property _Coin_Menge() As Object
             Get
                 Try 
@@ -19205,21 +15976,6 @@ Partial Public Class CoinTracerDataSet
             End Get
             Set
                 Me(Me.tableVW_GainingsReport2._Coin_MengeColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Zahlmittel() As String
-            Get
-                If Me.IsZahlmittelNull Then
-                    Return Nothing
-                Else
-                    Return CType(Me(Me.tableVW_GainingsReport2.ZahlmittelColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport2.ZahlmittelColumn) = value
             End Set
         End Property
         
@@ -19265,36 +16021,6 @@ Partial Public Class CoinTracerDataSet
             End Get
             Set
                 Me(Me.tableVW_GainingsReport2.Kurs_EURColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Vorgang_Anschaffung() As String
-            Get
-                If Me.IsVorgang_AnschaffungNull Then
-                    Return Nothing
-                Else
-                    Return CType(Me(Me.tableVW_GainingsReport2.Vorgang_AnschaffungColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport2.Vorgang_AnschaffungColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Anschaffungsdatum() As Date
-            Get
-                Try 
-                    Return CType(Me(Me.tableVW_GainingsReport2.AnschaffungsdatumColumn),Date)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Anschaffungsdatum in Tabelle VW_GainingsReport2 ist DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport2.AnschaffungsdatumColumn) = value
             End Set
         End Property
         
@@ -19375,36 +16101,6 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Steuerfrei() As String
-            Get
-                If Me.IsSteuerfreiNull Then
-                    Return Nothing
-                Else
-                    Return CType(Me(Me.tableVW_GainingsReport2.SteuerfreiColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport2.SteuerfreiColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property Kommentar() As String
-            Get
-                If Me.IsKommentarNull Then
-                    Return Nothing
-                Else
-                    Return CType(Me(Me.tableVW_GainingsReport2.KommentarColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableVW_GainingsReport2.KommentarColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property _SzenarioID() As Long
             Get
                 Return CType(Me(Me.tableVW_GainingsReport2._SzenarioIDColumn),Long)
@@ -19461,6 +16157,126 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _TradeTyp() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableVW_GainingsReport2._TradeTypColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte _TradeTyp in Tabelle VW_GainingsReport2 ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVW_GainingsReport2._TradeTypColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Plattform() As Object
+            Get
+                Try 
+                    Return CType(Me(Me.tableVW_GainingsReport2.PlattformColumn),Object)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Plattform in Tabelle VW_GainingsReport2 ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVW_GainingsReport2.PlattformColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property _Coin_Art() As String
+            Get
+                If Me.Is_Coin_ArtNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableVW_GainingsReport2._Coin_ArtColumn),String)
+                End If
+            End Get
+            Set
+                Me(Me.tableVW_GainingsReport2._Coin_ArtColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Zahlmittel() As String
+            Get
+                If Me.IsZahlmittelNull Then
+                    Return Nothing
+                Else
+                    Return CType(Me(Me.tableVW_GainingsReport2.ZahlmittelColumn),String)
+                End If
+            End Get
+            Set
+                Me(Me.tableVW_GainingsReport2.ZahlmittelColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Vorgang_Anschaffung() As String
+            Get
+                If Me.IsVorgang_AnschaffungNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableVW_GainingsReport2.Vorgang_AnschaffungColumn),String)
+                End If
+            End Get
+            Set
+                Me(Me.tableVW_GainingsReport2.Vorgang_AnschaffungColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Anschaffungsdatum() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableVW_GainingsReport2.AnschaffungsdatumColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Anschaffungsdatum in Tabelle VW_GainingsReport2 ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableVW_GainingsReport2.AnschaffungsdatumColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Steuerfrei() As String
+            Get
+                If Me.IsSteuerfreiNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableVW_GainingsReport2.SteuerfreiColumn),String)
+                End If
+            End Get
+            Set
+                Me(Me.tableVW_GainingsReport2.SteuerfreiColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Kommentar() As String
+            Get
+                If Me.IsKommentarNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableVW_GainingsReport2.KommentarColumn),String)
+                End If
+            End Get
+            Set
+                Me(Me.tableVW_GainingsReport2.KommentarColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function IsZeitpunktNull() As Boolean
             Return Me.IsNull(Me.tableVW_GainingsReport2.ZeitpunktColumn)
         End Function
@@ -19485,30 +16301,6 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsPlattformNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport2.PlattformColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetPlattformNull()
-            Me(Me.tableVW_GainingsReport2.PlattformColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function Is_Coin_ArtNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport2._Coin_ArtColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub Set_Coin_ArtNull()
-            Me(Me.tableVW_GainingsReport2._Coin_ArtColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function Is_Coin_MengeNull() As Boolean
             Return Me.IsNull(Me.tableVW_GainingsReport2._Coin_MengeColumn)
         End Function
@@ -19517,18 +16309,6 @@ Partial Public Class CoinTracerDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub Set_Coin_MengeNull()
             Me(Me.tableVW_GainingsReport2._Coin_MengeColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsZahlmittelNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport2.ZahlmittelColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetZahlmittelNull()
-            Me(Me.tableVW_GainingsReport2.ZahlmittelColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -19565,30 +16345,6 @@ Partial Public Class CoinTracerDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub SetKurs_EURNull()
             Me(Me.tableVW_GainingsReport2.Kurs_EURColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsVorgang_AnschaffungNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport2.Vorgang_AnschaffungColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetVorgang_AnschaffungNull()
-            Me(Me.tableVW_GainingsReport2.Vorgang_AnschaffungColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsAnschaffungsdatumNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport2.AnschaffungsdatumColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetAnschaffungsdatumNull()
-            Me(Me.tableVW_GainingsReport2.AnschaffungsdatumColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -19653,30 +16409,6 @@ Partial Public Class CoinTracerDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsSteuerfreiNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport2.SteuerfreiColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetSteuerfreiNull()
-            Me(Me.tableVW_GainingsReport2.SteuerfreiColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Function IsKommentarNull() As Boolean
-            Return Me.IsNull(Me.tableVW_GainingsReport2.KommentarColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub SetKommentarNull()
-            Me(Me.tableVW_GainingsReport2.KommentarColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Function Is_QuellPlattformIDNull() As Boolean
             Return Me.IsNull(Me.tableVW_GainingsReport2._QuellPlattformIDColumn)
         End Function
@@ -19709,6 +16441,444 @@ Partial Public Class CoinTracerDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Sub Set_SteuerfreiNull()
             Me(Me.tableVW_GainingsReport2._SteuerfreiColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_TradeTypNull() As Boolean
+            Return Me.IsNull(Me.tableVW_GainingsReport2._TradeTypColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_TradeTypNull()
+            Me(Me.tableVW_GainingsReport2._TradeTypColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsPlattformNull() As Boolean
+            Return Me.IsNull(Me.tableVW_GainingsReport2.PlattformColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetPlattformNull()
+            Me(Me.tableVW_GainingsReport2.PlattformColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function Is_Coin_ArtNull() As Boolean
+            Return Me.IsNull(Me.tableVW_GainingsReport2._Coin_ArtColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub Set_Coin_ArtNull()
+            Me(Me.tableVW_GainingsReport2._Coin_ArtColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsZahlmittelNull() As Boolean
+            Return Me.IsNull(Me.tableVW_GainingsReport2.ZahlmittelColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetZahlmittelNull()
+            Me(Me.tableVW_GainingsReport2.ZahlmittelColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsVorgang_AnschaffungNull() As Boolean
+            Return Me.IsNull(Me.tableVW_GainingsReport2.Vorgang_AnschaffungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetVorgang_AnschaffungNull()
+            Me(Me.tableVW_GainingsReport2.Vorgang_AnschaffungColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsAnschaffungsdatumNull() As Boolean
+            Return Me.IsNull(Me.tableVW_GainingsReport2.AnschaffungsdatumColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetAnschaffungsdatumNull()
+            Me(Me.tableVW_GainingsReport2.AnschaffungsdatumColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSteuerfreiNull() As Boolean
+            Return Me.IsNull(Me.tableVW_GainingsReport2.SteuerfreiColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSteuerfreiNull()
+            Me(Me.tableVW_GainingsReport2.SteuerfreiColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsKommentarNull() As Boolean
+            Return Me.IsNull(Me.tableVW_GainingsReport2.KommentarColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetKommentarNull()
+            Me(Me.tableVW_GainingsReport2.KommentarColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class TradeTxRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableTradeTx As TradeTxDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableTradeTx = CType(Me.Table,TradeTxDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property TxID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.TxIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.TxIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SzenarioID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.SzenarioIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.SzenarioIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property InKalkulationID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.InKalkulationIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.InKalkulationIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property InTradeID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.InTradeIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.InTradeIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property InTransferID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.InTransferIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.InTransferIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property TransferIDHistory() As String
+            Get
+                If Me.IsTransferIDHistoryNull Then
+                    Return String.Empty
+                Else
+                    Return CType(Me(Me.tableTradeTx.TransferIDHistoryColumn),String)
+                End If
+            End Get
+            Set
+                Me(Me.tableTradeTx.TransferIDHistoryColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property PlattformID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.PlattformIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.PlattformIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property KontoID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.KontoIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.KontoIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Zeitpunkt() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTradeTx.ZeitpunktColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Zeitpunkt in Tabelle TradeTx ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTradeTx.ZeitpunktColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property KaufZeitpunkt() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableTradeTx.KaufZeitpunktColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte KaufZeitpunkt in Tabelle TradeTx ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTradeTx.KaufZeitpunktColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Betrag() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableTradeTx.BetragColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Betrag in Tabelle TradeTx ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTradeTx.BetragColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property WertEUR() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableTradeTx.WertEURColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte WertEUR in Tabelle TradeTx ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTradeTx.WertEURColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ParentTxID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.ParentTxIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.ParentTxIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IstRest() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableTradeTx.IstRestColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte IstRest in Tabelle TradeTx ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTradeTx.IstRestColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property OutKalkulationID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.OutKalkulationIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.OutKalkulationIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property OutTradeID() As Long
+            Get
+                Return CType(Me(Me.tableTradeTx.OutTradeIDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableTradeTx.OutTradeIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Entwertet() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableTradeTx.EntwertetColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Entwertet in Tabelle TradeTx ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTradeTx.EntwertetColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IstLangzeit() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableTradeTx.IstLangzeitColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte IstLangzeit in Tabelle TradeTx ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableTradeTx.IstLangzeitColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsTransferIDHistoryNull() As Boolean
+            Return Me.IsNull(Me.tableTradeTx.TransferIDHistoryColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetTransferIDHistoryNull()
+            Me(Me.tableTradeTx.TransferIDHistoryColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsZeitpunktNull() As Boolean
+            Return Me.IsNull(Me.tableTradeTx.ZeitpunktColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetZeitpunktNull()
+            Me(Me.tableTradeTx.ZeitpunktColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsKaufZeitpunktNull() As Boolean
+            Return Me.IsNull(Me.tableTradeTx.KaufZeitpunktColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetKaufZeitpunktNull()
+            Me(Me.tableTradeTx.KaufZeitpunktColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBetragNull() As Boolean
+            Return Me.IsNull(Me.tableTradeTx.BetragColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBetragNull()
+            Me(Me.tableTradeTx.BetragColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsWertEURNull() As Boolean
+            Return Me.IsNull(Me.tableTradeTx.WertEURColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetWertEURNull()
+            Me(Me.tableTradeTx.WertEURColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsIstRestNull() As Boolean
+            Return Me.IsNull(Me.tableTradeTx.IstRestColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetIstRestNull()
+            Me(Me.tableTradeTx.IstRestColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEntwertetNull() As Boolean
+            Return Me.IsNull(Me.tableTradeTx.EntwertetColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEntwertetNull()
+            Me(Me.tableTradeTx.EntwertetColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsIstLangzeitNull() As Boolean
+            Return Me.IsNull(Me.tableTradeTx.IstLangzeitColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetIstLangzeitNull()
+            Me(Me.tableTradeTx.IstLangzeitColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -19986,78 +17156,6 @@ Partial Public Class CoinTracerDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property Row() As TradeTypenRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class ZeitstempelWerteRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As ZeitstempelWerteRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As ZeitstempelWerteRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As ZeitstempelWerteRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class VW_GainingsReportRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As VW_GainingsReportRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As VW_GainingsReportRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As VW_GainingsReportRow
             Get
                 Return Me.eventRow
             End Get
@@ -20580,114 +17678,6 @@ Partial Public Class CoinTracerDataSet
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class VW_OutCoinsRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As VW_OutCoinsRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As VW_OutCoinsRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As VW_OutCoinsRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class VW_InCoinsRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As VW_InCoinsRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As VW_InCoinsRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As VW_InCoinsRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-    Public Class Out2InRowChangeEvent
-        Inherits Global.System.EventArgs
-        
-        Private eventRow As Out2InRow
-        
-        Private eventAction As Global.System.Data.DataRowAction
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New(ByVal row As Out2InRow, ByVal action As Global.System.Data.DataRowAction)
-            MyBase.New
-            Me.eventRow = row
-            Me.eventAction = action
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Row() As Out2InRow
-            Get
-                Return Me.eventRow
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
-            Get
-                Return Me.eventAction
-            End Get
-        End Property
-    End Class
-    
-    '''<summary>
-    '''Row event argument class
-    '''</summary>
-    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Class VW_GainingsRowChangeEvent
         Inherits Global.System.EventArgs
         
@@ -20742,6 +17732,42 @@ Partial Public Class CoinTracerDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property Row() As VW_GainingsReport2Row
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class TradeTxRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As TradeTxRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As TradeTxRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As TradeTxRow
             Get
                 Return Me.eventRow
             End Get
@@ -22403,11 +19429,48 @@ Namespace CoinTracerDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(3) {}
             Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT [ID], [SzenarioID], [Zeitpunkt],[CVS] FROM [Kalkulationen]"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "DELETE FROM [main].[sqlite_default_schema].[Kalkulationen]"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "DELETE FROM [main].[sqlite_default_schema].[Kalkulationen] WHERE ([ID] = @Origina"& _ 
+                "l_ID)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "ID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "UPDATE [main].[sqlite_default_schema].[Kalkulationen] SET [Zeitpunkt] = @Zeitpunk"& _ 
+                "t WHERE [ID] = @Original_ID"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Zeitpunkt"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.Size = 8
+            param.SourceColumn = "Zeitpunkt"
+            Me._commandCollection(3).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "ID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(3).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -22574,6 +19637,75 @@ Namespace CoinTracerDataSetTableAdapters
                     Me.Adapter.UpdateCommand.Connection.Close
                 End If
             End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
+        Public Overloads Overridable Function DeleteAllRows() As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(1)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
+        Public Overloads Overridable Function DeleteByID(ByVal Original_ID As Long) As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(2)
+            command.Parameters(0).Value = CType(Original_ID,Long)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateZeitpunkt(ByVal Zeitpunkt As Date, ByVal Original_ID As Long) As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(3)
+            command.Parameters(0).Value = CType(Zeitpunkt,Date)
+            command.Parameters(1).Value = CType(Original_ID,Long)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
         End Function
     End Class
     
@@ -25714,11 +22846,42 @@ Namespace CoinTracerDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        *"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Trades"
+            Me._commandCollection(0).CommandText = "SELECT * FROM Trades"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "select t.ID, t.SourceID, t.Zeitpunkt,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"case "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    when t.TradeTypID = 5 and ps.Ei"& _ 
+                "gen = 1 then 69"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    when (t.TradeTypID = 3 or t.TradeTypID = 4) and ks.IstFiat "& _ 
+                "= 0 and kt.IstFiat = 0 then 19"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    else t.TradeTypID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"end as TradeTypID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"t.Que"& _ 
+                "llPlattformID, t.QuellBetrag, t.QuellKontoID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"t.ZielPlattformID, t.ZielBetrag, "& _ 
+                "t.ZielKontoID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"t.WertEUR, t.Info, t.BetragNachGebuehr,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"t.ImportPlattformID, t."& _ 
+                "ImportID, t.RefTradeID, t.InTradeID, t.OutTradeID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"t.ZeitpunktZiel, t.Entwertet"& _ 
+                ", t.Steuerirrelevant, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"t.QuellBetragNachGebuehr, t.Kommentar, t.InZeitpunkt"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"fr"& _ 
+                "om Trades t"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"inner join Konten as ks on ks.ID = t.QuellKontoID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"inner join Konte"& _ 
+                "n as kt on kt.ID = t.ZielKontoID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"inner join Plattformen as pt on pt.ID = t.Ziel"& _ 
+                "PlattformID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"inner join Plattformen as ps on ps.ID = t.QuellPlattformID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"left jo"& _ 
+                "in TradeTx tx on ((tx.InTradeID = t.ID or tx.OutTradeID = t.ID or tx.InTransferI"& _ 
+                "D = t.ID) "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&"and tx.SzenarioID = @SzenarioID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where t.Entwertet = 0 and t.Steue"& _ 
+                "rirrelevant = 0 and t.Zeitpunkt < @UntilDate and t.TradeTypID in (3, 4, 5, 7)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"g"& _ 
+                "roup by t.ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"having count(tx.TxID) = 0"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"order by t.Zeitpunkt, t.ID desc"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@SzenarioID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "SzenarioID"
+            Me._commandCollection(1).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@UntilDate"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.Size = 8
+            param.SourceColumn = "Zeitpunkt"
+            Me._commandCollection(1).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -25737,9 +22900,15 @@ Namespace CoinTracerDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As CoinTracerDataSet.TradesDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetOpenTradesBySzenarioID(ByVal SzenarioID As Long, ByVal UntilDate As Global.System.Nullable(Of Date)) As CoinTracerDataSet.TradesDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(SzenarioID,Long)
+            If (UntilDate.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(1).Value = CType(UntilDate.Value,Date)
+            Else
+                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
+            End If
             Dim dataTable As CoinTracerDataSet.TradesDataTable = New CoinTracerDataSet.TradesDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -26703,1382 +23872,6 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
         Public Overloads Overridable Function Update(ByVal Bezeichnung As String, ByVal Code As String, ByVal Beschreibung As String, ByVal SortID As Global.System.Nullable(Of Long), ByVal Original_ID As Long, ByVal Original_Bezeichnung As String, ByVal Original_Code As String, ByVal Original_Beschreibung As String, ByVal Original_SortID As Global.System.Nullable(Of Long)) As Integer
             Return Me.Update(Original_ID, Bezeichnung, Code, Beschreibung, SortID, Original_ID, Original_Bezeichnung, Original_Code, Original_Beschreibung, Original_SortID)
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class ZeitstempelWerteTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SQLite.SQLiteDataAdapter
-        
-        Private _connection As Global.System.Data.SQLite.SQLiteConnection
-        
-        Private _transaction As Global.System.Data.SQLite.SQLiteTransaction
-        
-        Private _commandCollection() As Global.System.Data.SQLite.SQLiteCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SQLite.SQLiteDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SQLite.SQLiteTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SQLite.SQLiteCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SQLite.SQLiteDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "ZeitstempelWerte"
-            tableMapping.ColumnMappings.Add("ID", "ID")
-            tableMapping.ColumnMappings.Add("Zeitpunkt", "Zeitpunkt")
-            tableMapping.ColumnMappings.Add("PlattformID", "PlattformID")
-            tableMapping.ColumnMappings.Add("Betrag", "Betrag")
-            tableMapping.ColumnMappings.Add("KontoID", "KontoID")
-            tableMapping.ColumnMappings.Add("WertEUR", "WertEUR")
-            tableMapping.ColumnMappings.Add("InTradeID", "InTradeID")
-            tableMapping.ColumnMappings.Add("OutTradeID", "OutTradeID")
-            tableMapping.ColumnMappings.Add("ParentID", "ParentID")
-            tableMapping.ColumnMappings.Add("Entwertet", "Entwertet")
-            tableMapping.ColumnMappings.Add("SzenarioID", "SzenarioID")
-            tableMapping.ColumnMappings.Add("EntwertetKalkulationID", "EntwertetKalkulationID")
-            tableMapping.ColumnMappings.Add("AnlageKalkulationID", "AnlageKalkulationID")
-            tableMapping.ColumnMappings.Add("Kaufdatum", "Kaufdatum")
-            tableMapping.ColumnMappings.Add("BestandPlattform", "BestandPlattform")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [main].[sqlite_default_schema].[ZeitstempelWerte] WHERE (([ID] = @Ori"& _ 
-                "ginal_ID) AND ((@IsNull_Zeitpunkt = 1 AND [Zeitpunkt] IS NULL) OR ([Zeitpunkt] ="& _ 
-                " @Original_Zeitpunkt)) AND ((@IsNull_PlattformID = 1 AND [PlattformID] IS NULL) "& _ 
-                "OR ([PlattformID] = @Original_PlattformID)) AND ((@IsNull_Betrag = 1 AND [Betrag"& _ 
-                "] IS NULL) OR ([Betrag] = @Original_Betrag)) AND ([KontoID] = @Original_KontoID)"& _ 
-                " AND ((@IsNull_WertEUR = 1 AND [WertEUR] IS NULL) OR ([WertEUR] = @Original_Wert"& _ 
-                "EUR)) AND ([InTradeID] = @Original_InTradeID) AND ((@IsNull_OutTradeID = 1 AND ["& _ 
-                "OutTradeID] IS NULL) OR ([OutTradeID] = @Original_OutTradeID)) AND ((@IsNull_Par"& _ 
-                "entID = 1 AND [ParentID] IS NULL) OR ([ParentID] = @Original_ParentID)) AND ((@I"& _ 
-                "sNull_Entwertet = 1 AND [Entwertet] IS NULL) OR ([Entwertet] = @Original_Entwert"& _ 
-                "et)) AND ([SzenarioID] = @Original_SzenarioID) AND ((@IsNull_EntwertetKalkulatio"& _ 
-                "nID = 1 AND [EntwertetKalkulationID] IS NULL) OR ([EntwertetKalkulationID] = @Or"& _ 
-                "iginal_EntwertetKalkulationID)) AND ((@IsNull_AnlageKalkulationID = 1 AND [Anlag"& _ 
-                "eKalkulationID] IS NULL) OR ([AnlageKalkulationID] = @Original_AnlageKalkulation"& _ 
-                "ID)) AND ((@IsNull_Kaufdatum = 1 AND [Kaufdatum] IS NULL) OR ([Kaufdatum] = @Ori"& _ 
-                "ginal_Kaufdatum)) AND ((@IsNull_BestandPlattform = 1 AND [BestandPlattform] IS N"& _ 
-                "ULL) OR ([BestandPlattform] = @Original_BestandPlattform)))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_ID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "ID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Zeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "Zeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_PlattformID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "PlattformID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_PlattformID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "PlattformID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Betrag"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Betrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Betrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "Betrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_KontoID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "KontoID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_WertEUR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "WertEUR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_WertEUR"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "WertEUR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_InTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "InTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "OutTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "OutTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_ParentID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "ParentID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_ParentID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "ParentID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Entwertet"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Entwertet"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Entwertet"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "Entwertet"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "SzenarioID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_EntwertetKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "EntwertetKalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_EntwertetKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "EntwertetKalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_AnlageKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "AnlageKalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_AnlageKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "AnlageKalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Kaufdatum"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Kaufdatum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Kaufdatum"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "Kaufdatum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_BestandPlattform"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "BestandPlattform"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_BestandPlattform"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "BestandPlattform"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            Me._adapter.InsertCommand = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [main].[sqlite_default_schema].[ZeitstempelWerte] ([Zeitpunkt], [Plat"& _ 
-                "tformID], [Betrag], [KontoID], [WertEUR], [InTradeID], [OutTradeID], [ParentID],"& _ 
-                " [Entwertet], [SzenarioID], [EntwertetKalkulationID], [AnlageKalkulationID], [Ka"& _ 
-                "ufdatum], [BestandPlattform]) VALUES (@Zeitpunkt, @PlattformID, @Betrag, @KontoI"& _ 
-                "D, @WertEUR, @InTradeID, @OutTradeID, @ParentID, @Entwertet, @SzenarioID, @Entwe"& _ 
-                "rtetKalkulationID, @AnlageKalkulationID, @Kaufdatum, @BestandPlattform)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "Zeitpunkt"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@PlattformID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "PlattformID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Betrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "Betrag"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@KontoID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "KontoID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@WertEUR"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "WertEUR"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@InTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "InTradeID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "OutTradeID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@ParentID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "ParentID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Entwertet"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "Entwertet"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "SzenarioID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@EntwertetKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "EntwertetKalkulationID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@AnlageKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "AnlageKalkulationID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Kaufdatum"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "Kaufdatum"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@BestandPlattform"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "BestandPlattform"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            Me._adapter.UpdateCommand = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [main].[sqlite_default_schema].[ZeitstempelWerte] SET [Zeitpunkt] = @Zeitp"& _ 
-                "unkt, [PlattformID] = @PlattformID, [Betrag] = @Betrag, [KontoID] = @KontoID, [W"& _ 
-                "ertEUR] = @WertEUR, [InTradeID] = @InTradeID, [OutTradeID] = @OutTradeID, [Paren"& _ 
-                "tID] = @ParentID, [Entwertet] = @Entwertet, [SzenarioID] = @SzenarioID, [Entwert"& _ 
-                "etKalkulationID] = @EntwertetKalkulationID, [AnlageKalkulationID] = @AnlageKalku"& _ 
-                "lationID, [Kaufdatum] = @Kaufdatum, [BestandPlattform] = @BestandPlattform WHERE"& _ 
-                " (([ID] = @Original_ID) AND ((@IsNull_Zeitpunkt = 1 AND [Zeitpunkt] IS NULL) OR "& _ 
-                "([Zeitpunkt] = @Original_Zeitpunkt)) AND ((@IsNull_PlattformID = 1 AND [Plattfor"& _ 
-                "mID] IS NULL) OR ([PlattformID] = @Original_PlattformID)) AND ((@IsNull_Betrag ="& _ 
-                " 1 AND [Betrag] IS NULL) OR ([Betrag] = @Original_Betrag)) AND ([KontoID] = @Ori"& _ 
-                "ginal_KontoID) AND ((@IsNull_WertEUR = 1 AND [WertEUR] IS NULL) OR ([WertEUR] = "& _ 
-                "@Original_WertEUR)) AND ([InTradeID] = @Original_InTradeID) AND ((@IsNull_OutTra"& _ 
-                "deID = 1 AND [OutTradeID] IS NULL) OR ([OutTradeID] = @Original_OutTradeID)) AND"& _ 
-                " ((@IsNull_ParentID = 1 AND [ParentID] IS NULL) OR ([ParentID] = @Original_Paren"& _ 
-                "tID)) AND ((@IsNull_Entwertet = 1 AND [Entwertet] IS NULL) OR ([Entwertet] = @Or"& _ 
-                "iginal_Entwertet)) AND ([SzenarioID] = @Original_SzenarioID) AND ((@IsNull_Entwe"& _ 
-                "rtetKalkulationID = 1 AND [EntwertetKalkulationID] IS NULL) OR ([EntwertetKalkul"& _ 
-                "ationID] = @Original_EntwertetKalkulationID)) AND ((@IsNull_AnlageKalkulationID "& _ 
-                "= 1 AND [AnlageKalkulationID] IS NULL) OR ([AnlageKalkulationID] = @Original_Anl"& _ 
-                "ageKalkulationID)) AND ((@IsNull_Kaufdatum = 1 AND [Kaufdatum] IS NULL) OR ([Kau"& _ 
-                "fdatum] = @Original_Kaufdatum)) AND ((@IsNull_BestandPlattform = 1 AND [BestandP"& _ 
-                "lattform] IS NULL) OR ([BestandPlattform] = @Original_BestandPlattform)))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "Zeitpunkt"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@PlattformID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "PlattformID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Betrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "Betrag"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@KontoID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "KontoID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@WertEUR"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "WertEUR"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@InTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "InTradeID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "OutTradeID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@ParentID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "ParentID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Entwertet"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "Entwertet"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "SzenarioID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@EntwertetKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "EntwertetKalkulationID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@AnlageKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "AnlageKalkulationID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Kaufdatum"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "Kaufdatum"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@BestandPlattform"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "BestandPlattform"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_ID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "ID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Zeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Zeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "Zeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_PlattformID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "PlattformID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_PlattformID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "PlattformID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Betrag"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Betrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Betrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "Betrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_KontoID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "KontoID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_WertEUR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "WertEUR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_WertEUR"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "WertEUR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_InTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "InTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "OutTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "OutTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_ParentID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "ParentID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_ParentID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "ParentID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Entwertet"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Entwertet"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Entwertet"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "Entwertet"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "SzenarioID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_EntwertetKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "EntwertetKalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_EntwertetKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "EntwertetKalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_AnlageKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "AnlageKalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_AnlageKalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "AnlageKalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Kaufdatum"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Kaufdatum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Kaufdatum"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "Kaufdatum"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_BestandPlattform"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "BestandPlattform"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_BestandPlattform"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "BestandPlattform"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SQLite.SQLiteConnection()
-            Me._connection.ConnectionString = Global.CoinTracer.My.MySettings.Default.CoinTracerCS
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, Zeitpunkt, PlattformID, Betrag, KontoID, WertEUR, InTradeID, Ou"& _ 
-                "tTradeID, ParentID, Entwertet, SzenarioID, EntwertetKalkulationID, AnlageKalkula"& _ 
-                "tionID, Kaufdatum, BestandPlattform"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            ZeitstempelWerte"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.ZeitstempelWerteDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As CoinTracerDataSet.ZeitstempelWerteDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As CoinTracerDataSet.ZeitstempelWerteDataTable = New CoinTracerDataSet.ZeitstempelWerteDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As CoinTracerDataSet.ZeitstempelWerteDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As CoinTracerDataSet) As Integer
-            Return Me.Adapter.Update(dataSet, "ZeitstempelWerte")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_ID As Long, ByVal Original_Zeitpunkt As Global.System.Nullable(Of Date), ByVal Original_PlattformID As Global.System.Nullable(Of Long), ByVal Original_Betrag As Global.System.Nullable(Of Decimal), ByVal Original_KontoID As Long, ByVal Original_WertEUR As Global.System.Nullable(Of Decimal), ByVal Original_InTradeID As Long, ByVal Original_OutTradeID As Global.System.Nullable(Of Long), ByVal Original_ParentID As Global.System.Nullable(Of Long), ByVal Original_Entwertet As Global.System.Nullable(Of Boolean), ByVal Original_SzenarioID As Long, ByVal Original_EntwertetKalkulationID As Global.System.Nullable(Of Long), ByVal Original_AnlageKalkulationID As Global.System.Nullable(Of Long), ByVal Original_Kaufdatum As Global.System.Nullable(Of Date), ByVal Original_BestandPlattform As Global.System.Nullable(Of Decimal)) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Long)
-            If (Original_Zeitpunkt.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_Zeitpunkt.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(1).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            If (Original_PlattformID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_PlattformID.Value,Long)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(3).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Betrag.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(Original_Betrag.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(5).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_KontoID,Long)
-            If (Original_WertEUR.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_WertEUR.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.DeleteCommand.Parameters(10).Value = CType(Original_InTradeID,Long)
-            If (Original_OutTradeID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(Original_OutTradeID.Value,Long)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ParentID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_ParentID.Value,Long)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(14).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Entwertet.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_Entwertet.Value,Boolean)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.DeleteCommand.Parameters(17).Value = CType(Original_SzenarioID,Long)
-            If (Original_EntwertetKalkulationID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(Original_EntwertetKalkulationID.Value,Long)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(19).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AnlageKalkulationID.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(21).Value = CType(Original_AnlageKalkulationID.Value,Long)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(21).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Kaufdatum.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(23).Value = CType(Original_Kaufdatum.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(22).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            If (Original_BestandPlattform.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(25).Value = CType(Original_BestandPlattform.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(24).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(25).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal Zeitpunkt As Global.System.Nullable(Of Date), ByVal PlattformID As Global.System.Nullable(Of Long), ByVal Betrag As Global.System.Nullable(Of Decimal), ByVal KontoID As Long, ByVal WertEUR As Global.System.Nullable(Of Decimal), ByVal InTradeID As Long, ByVal OutTradeID As Global.System.Nullable(Of Long), ByVal ParentID As Global.System.Nullable(Of Long), ByVal Entwertet As Global.System.Nullable(Of Boolean), ByVal SzenarioID As Long, ByVal EntwertetKalkulationID As Global.System.Nullable(Of Long), ByVal AnlageKalkulationID As Global.System.Nullable(Of Long), ByVal Kaufdatum As Global.System.Nullable(Of Date), ByVal BestandPlattform As Global.System.Nullable(Of Decimal)) As Integer
-            If (Zeitpunkt.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(0).Value = CType(Zeitpunkt.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (PlattformID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(1).Value = CType(PlattformID.Value,Long)
-            Else
-                Me.Adapter.InsertCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (Betrag.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(2).Value = CType(Betrag.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(KontoID,Long)
-            If (WertEUR.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(4).Value = CType(WertEUR.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.InsertCommand.Parameters(5).Value = CType(InTradeID,Long)
-            If (OutTradeID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(OutTradeID.Value,Long)
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (ParentID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(ParentID.Value,Long)
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Entwertet.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Entwertet.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.InsertCommand.Parameters(9).Value = CType(SzenarioID,Long)
-            If (EntwertetKalkulationID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(EntwertetKalkulationID.Value,Long)
-            Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (AnlageKalkulationID.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(AnlageKalkulationID.Value,Long)
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (Kaufdatum.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(Kaufdatum.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (BestandPlattform.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(13).Value = CType(BestandPlattform.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal Zeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal PlattformID As Global.System.Nullable(Of Long),  _
-                    ByVal Betrag As Global.System.Nullable(Of Decimal),  _
-                    ByVal KontoID As Long,  _
-                    ByVal WertEUR As Global.System.Nullable(Of Decimal),  _
-                    ByVal InTradeID As Long,  _
-                    ByVal OutTradeID As Global.System.Nullable(Of Long),  _
-                    ByVal ParentID As Global.System.Nullable(Of Long),  _
-                    ByVal Entwertet As Global.System.Nullable(Of Boolean),  _
-                    ByVal SzenarioID As Long,  _
-                    ByVal EntwertetKalkulationID As Global.System.Nullable(Of Long),  _
-                    ByVal AnlageKalkulationID As Global.System.Nullable(Of Long),  _
-                    ByVal Kaufdatum As Global.System.Nullable(Of Date),  _
-                    ByVal BestandPlattform As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_ID As Long,  _
-                    ByVal Original_Zeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal Original_PlattformID As Global.System.Nullable(Of Long),  _
-                    ByVal Original_Betrag As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_KontoID As Long,  _
-                    ByVal Original_WertEUR As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_InTradeID As Long,  _
-                    ByVal Original_OutTradeID As Global.System.Nullable(Of Long),  _
-                    ByVal Original_ParentID As Global.System.Nullable(Of Long),  _
-                    ByVal Original_Entwertet As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_SzenarioID As Long,  _
-                    ByVal Original_EntwertetKalkulationID As Global.System.Nullable(Of Long),  _
-                    ByVal Original_AnlageKalkulationID As Global.System.Nullable(Of Long),  _
-                    ByVal Original_Kaufdatum As Global.System.Nullable(Of Date),  _
-                    ByVal Original_BestandPlattform As Global.System.Nullable(Of Decimal)) As Integer
-            If (Zeitpunkt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(0).Value = CType(Zeitpunkt.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (PlattformID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(1).Value = CType(PlattformID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (Betrag.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(2).Value = CType(Betrag.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(2).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(KontoID,Long)
-            If (WertEUR.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(4).Value = CType(WertEUR.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(4).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(5).Value = CType(InTradeID,Long)
-            If (OutTradeID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(OutTradeID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (ParentID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(ParentID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Entwertet.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Entwertet.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(SzenarioID,Long)
-            If (EntwertetKalkulationID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(EntwertetKalkulationID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (AnlageKalkulationID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(AnlageKalkulationID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (Kaufdatum.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(Kaufdatum.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            If (BestandPlattform.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(BestandPlattform.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_ID,Long)
-            If (Original_Zeitpunkt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_Zeitpunkt.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            If (Original_PlattformID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_PlattformID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(18).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Betrag.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_Betrag.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(21).Value = CType(Original_KontoID,Long)
-            If (Original_WertEUR.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(Original_WertEUR.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(23).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_InTradeID,Long)
-            If (Original_OutTradeID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_OutTradeID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
-            End If
-            If (Original_ParentID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(Original_ParentID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(27).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(28).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Entwertet.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(Original_Entwertet.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(30).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_SzenarioID,Long)
-            If (Original_EntwertetKalkulationID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_EntwertetKalkulationID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
-            End If
-            If (Original_AnlageKalkulationID.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = CType(Original_AnlageKalkulationID.Value,Long)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(34).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(35).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Kaufdatum.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = CType(Original_Kaufdatum.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(36).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(37).Value = Global.System.DBNull.Value
-            End If
-            If (Original_BestandPlattform.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = CType(Original_BestandPlattform.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(38).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(39).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class VW_GainingsReportTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SQLite.SQLiteDataAdapter
-        
-        Private _connection As Global.System.Data.SQLite.SQLiteConnection
-        
-        Private _transaction As Global.System.Data.SQLite.SQLiteTransaction
-        
-        Private _commandCollection() As Global.System.Data.SQLite.SQLiteCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SQLite.SQLiteDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SQLite.SQLiteTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SQLite.SQLiteCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SQLite.SQLiteDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "VW_GainingsReport"
-            tableMapping.ColumnMappings.Add("SzenarioID", "SzenarioID")
-            tableMapping.ColumnMappings.Add("Zeitpunkt", "Zeitpunkt")
-            tableMapping.ColumnMappings.Add("Art", "Art")
-            tableMapping.ColumnMappings.Add("Plattform", "Plattform")
-            tableMapping.ColumnMappings.Add("Menge Coins", "Menge Coins")
-            tableMapping.ColumnMappings.Add("Art Coins", "Art Coins")
-            tableMapping.ColumnMappings.Add("Preis USD", "Preis USD")
-            tableMapping.ColumnMappings.Add("Preis EUR", "Preis EUR")
-            tableMapping.ColumnMappings.Add("Kaufdatum Coins", "Kaufdatum Coins")
-            tableMapping.ColumnMappings.Add("Kaufpreis EUR", "Kaufpreis EUR")
-            tableMapping.ColumnMappings.Add("Gewinn EUR", "Gewinn EUR")
-            tableMapping.ColumnMappings.Add("Steuerfrei", "Steuerfrei")
-            Me._adapter.TableMappings.Add(tableMapping)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SQLite.SQLiteConnection()
-            Me._connection.ConnectionString = Global.CoinTracer.My.MySettings.Default.CoinTracerCS
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        VW_GainingsReport.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            VW_GainingsReport"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.VW_GainingsReportDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As CoinTracerDataSet.VW_GainingsReportDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As CoinTracerDataSet.VW_GainingsReportDataTable = New CoinTracerDataSet.VW_GainingsReportDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
         End Function
     End Class
     
@@ -33028,1373 +28821,6 @@ Namespace CoinTracerDataSetTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class VW_OutCoinsTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SQLite.SQLiteDataAdapter
-        
-        Private _connection As Global.System.Data.SQLite.SQLiteConnection
-        
-        Private _transaction As Global.System.Data.SQLite.SQLiteTransaction
-        
-        Private _commandCollection() As Global.System.Data.SQLite.SQLiteCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SQLite.SQLiteDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SQLite.SQLiteTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SQLite.SQLiteCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SQLite.SQLiteDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "VW_OutCoins"
-            tableMapping.ColumnMappings.Add("TradeID", "TradeID")
-            tableMapping.ColumnMappings.Add("Betrag", "Betrag")
-            tableMapping.ColumnMappings.Add("KontoID", "KontoID")
-            tableMapping.ColumnMappings.Add("OutTyp", "OutTypID")
-            tableMapping.ColumnMappings.Add("PlattformID", "PlattformID")
-            tableMapping.ColumnMappings.Add("Zeitpunkt", "Zeitpunkt")
-            Me._adapter.TableMappings.Add(tableMapping)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SQLite.SQLiteConnection()
-            Me._connection.ConnectionString = Global.CoinTracer.My.MySettings.Default.CoinTracerCS
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        VW_OutCoins.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            VW_OutCoins"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.VW_OutCoinsDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As CoinTracerDataSet.VW_OutCoinsDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As CoinTracerDataSet.VW_OutCoinsDataTable = New CoinTracerDataSet.VW_OutCoinsDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class VW_InCoinsTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SQLite.SQLiteDataAdapter
-        
-        Private _connection As Global.System.Data.SQLite.SQLiteConnection
-        
-        Private _transaction As Global.System.Data.SQLite.SQLiteTransaction
-        
-        Private _commandCollection() As Global.System.Data.SQLite.SQLiteCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SQLite.SQLiteDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SQLite.SQLiteTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SQLite.SQLiteCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SQLite.SQLiteDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "VW_InCoins"
-            tableMapping.ColumnMappings.Add("TradeID", "TradeID")
-            tableMapping.ColumnMappings.Add("Betrag", "Betrag")
-            tableMapping.ColumnMappings.Add("KontoID", "KontoID")
-            tableMapping.ColumnMappings.Add("InTypID", "InTypID")
-            tableMapping.ColumnMappings.Add("Plattform", "PlattformID")
-            tableMapping.ColumnMappings.Add("Zeitpunkt", "Zeitpunkt")
-            tableMapping.ColumnMappings.Add("WertEUR", "WertEUR")
-            tableMapping.ColumnMappings.Add("OutPlattformID", "OutPlattformID")
-            tableMapping.ColumnMappings.Add("OutBetrag", "OutBetrag")
-            tableMapping.ColumnMappings.Add("OutKontoID", "OutKontoID")
-            tableMapping.ColumnMappings.Add("OutZeitpunkt", "OutZeitpunkt")
-            tableMapping.ColumnMappings.Add("PlattformID", "PlattformID")
-            tableMapping.ColumnMappings.Add("InZeitpunkt", "InZeitpunkt")
-            tableMapping.ColumnMappings.Add("KursEUR", "KursEUR")
-            Me._adapter.TableMappings.Add(tableMapping)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SQLite.SQLiteConnection()
-            Me._connection.ConnectionString = Global.CoinTracer.My.MySettings.Default.CoinTracerCS
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT TradeID, Betrag, KontoID FROM VW_InCoins"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.VW_InCoinsDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As CoinTracerDataSet.VW_InCoinsDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As CoinTracerDataSet.VW_InCoinsDataTable = New CoinTracerDataSet.VW_InCoinsDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class Out2InTableAdapter
-        Inherits Global.System.ComponentModel.Component
-        
-        Private WithEvents _adapter As Global.System.Data.SQLite.SQLiteDataAdapter
-        
-        Private _connection As Global.System.Data.SQLite.SQLiteConnection
-        
-        Private _transaction As Global.System.Data.SQLite.SQLiteTransaction
-        
-        Private _commandCollection() As Global.System.Data.SQLite.SQLiteCommand
-        
-        Private _clearBeforeFill As Boolean
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Sub New()
-            MyBase.New
-            Me.ClearBeforeFill = true
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SQLite.SQLiteDataAdapter
-            Get
-                If (Me._adapter Is Nothing) Then
-                    Me.InitAdapter
-                End If
-                Return Me._adapter
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
-            Get
-                If (Me._connection Is Nothing) Then
-                    Me.InitConnection
-                End If
-                Return Me._connection
-            End Get
-            Set
-                Me._connection = value
-                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
-                    Me.Adapter.InsertCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
-                    Me.Adapter.DeleteCommand.Connection = value
-                End If
-                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
-                    Me.Adapter.UpdateCommand.Connection = value
-                End If
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
-                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
-                    End If
-                    i = (i + 1)
-                Loop
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Friend Property Transaction() As Global.System.Data.SQLite.SQLiteTransaction
-            Get
-                Return Me._transaction
-            End Get
-            Set
-                Me._transaction = value
-                Dim i As Integer = 0
-                Do While (i < Me.CommandCollection.Length)
-                    Me.CommandCollection(i).Transaction = Me._transaction
-                    i = (i + 1)
-                Loop
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
-                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
-                    Me.Adapter.InsertCommand.Transaction = Me._transaction
-                End If
-                If ((Not (Me.Adapter) Is Nothing)  _
-                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
-                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
-                End If
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Protected ReadOnly Property CommandCollection() As Global.System.Data.SQLite.SQLiteCommand()
-            Get
-                If (Me._commandCollection Is Nothing) Then
-                    Me.InitCommandCollection
-                End If
-                Return Me._commandCollection
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Public Property ClearBeforeFill() As Boolean
-            Get
-                Return Me._clearBeforeFill
-            End Get
-            Set
-                Me._clearBeforeFill = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitAdapter()
-            Me._adapter = New Global.System.Data.SQLite.SQLiteDataAdapter()
-            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
-            tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "Out2In"
-            tableMapping.ColumnMappings.Add("ID", "ID")
-            tableMapping.ColumnMappings.Add("SzenarioID", "SzenarioID")
-            tableMapping.ColumnMappings.Add("KalkulationID", "KalkulationID")
-            tableMapping.ColumnMappings.Add("MainOutTradeID", "MainOutTradeID")
-            tableMapping.ColumnMappings.Add("OutTradeID", "OutTradeID")
-            tableMapping.ColumnMappings.Add("InTradeID", "InTradeID")
-            tableMapping.ColumnMappings.Add("InZeitpunkt", "InZeitpunkt")
-            tableMapping.ColumnMappings.Add("MainBetrag", "MainBetrag")
-            tableMapping.ColumnMappings.Add("Betrag", "Betrag")
-            tableMapping.ColumnMappings.Add("WertEUR", "WertEUR")
-            tableMapping.ColumnMappings.Add("Level", "Level")
-            tableMapping.ColumnMappings.Add("IstFiat", "IstFiat")
-            tableMapping.ColumnMappings.Add("IstTransfer", "IstTransfer")
-            tableMapping.ColumnMappings.Add("IstLangzeit", "IstLangzeit")
-            Me._adapter.TableMappings.Add(tableMapping)
-            Me._adapter.DeleteCommand = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._adapter.DeleteCommand.Connection = Me.Connection
-            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [main].[sqlite_default_schema].[Out2In] WHERE (([ID] = @Original_ID) "& _ 
-                "AND ([SzenarioID] = @Original_SzenarioID) AND ([KalkulationID] = @Original_Kalku"& _ 
-                "lationID) AND ([MainOutTradeID] = @Original_MainOutTradeID) AND ([OutTradeID] = "& _ 
-                "@Original_OutTradeID) AND ([InTradeID] = @Original_InTradeID) AND ((@IsNull_InZe"& _ 
-                "itpunkt = 1 AND [InZeitpunkt] IS NULL) OR ([InZeitpunkt] = @Original_InZeitpunkt"& _ 
-                ")) AND ((@IsNull_MainBetrag = 1 AND [MainBetrag] IS NULL) OR ([MainBetrag] = @Or"& _ 
-                "iginal_MainBetrag)) AND ((@IsNull_Betrag = 1 AND [Betrag] IS NULL) OR ([Betrag] "& _ 
-                "= @Original_Betrag)) AND ((@IsNull_WertEUR = 1 AND [WertEUR] IS NULL) OR ([WertE"& _ 
-                "UR] = @Original_WertEUR)) AND ([Level] = @Original_Level) AND ((@IsNull_IstFiat "& _ 
-                "= 1 AND [IstFiat] IS NULL) OR ([IstFiat] = @Original_IstFiat)) AND ((@IsNull_Ist"& _ 
-                "Anschaffung = 1 AND [IstTransfer] IS NULL) OR ([IstTransfer] = @Original_IstAnsc"& _ 
-                "haffung)) AND ((@IsNull_IstLangzeit = 1 AND [IstLangzeit] IS NULL) OR ([IstLangz"& _ 
-                "eit] = @Original_IstLangzeit)))"
-            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
-            Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_ID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "ID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "SzenarioID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_KalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "KalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_MainOutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "MainOutTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "OutTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_InTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "InTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_InZeitpunkt"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "InZeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_InZeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "InZeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_MainBetrag"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "MainBetrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_MainBetrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "MainBetrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Betrag"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Betrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Betrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "Betrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_WertEUR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "WertEUR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_WertEUR"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "WertEUR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Level"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "Level"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_IstFiat"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "IstFiat"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_IstFiat"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstFiat"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_IstAnschaffung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "IstTransfer"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_IstAnschaffung"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstTransfer"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_IstLangzeit"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "IstLangzeit"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_IstLangzeit"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstLangzeit"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.DeleteCommand.Parameters.Add(param)
-            Me._adapter.InsertCommand = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._adapter.InsertCommand.Connection = Me.Connection
-            Me._adapter.InsertCommand.CommandText = "INSERT INTO [main].[sqlite_default_schema].[Out2In] ([SzenarioID], [KalkulationID"& _ 
-                "], [MainOutTradeID], [OutTradeID], [InTradeID], [InZeitpunkt], [MainBetrag], [Be"& _ 
-                "trag], [WertEUR], [Level], [IstFiat], [IstTransfer], [IstLangzeit]) VALUES (@Sze"& _ 
-                "narioID, @KalkulationID, @MainOutTradeID, @OutTradeID, @InTradeID, @InZeitpunkt,"& _ 
-                " @MainBetrag, @Betrag, @WertEUR, @Level, @IstFiat, @IstTransfer, @IstLangzeit)"
-            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "SzenarioID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@KalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "KalkulationID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@MainOutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "MainOutTradeID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "OutTradeID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@InTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "InTradeID"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@InZeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "InZeitpunkt"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@MainBetrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "MainBetrag"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Betrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "Betrag"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@WertEUR"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "WertEUR"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Level"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "Level"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IstFiat"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstFiat"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IstTransfer"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstTransfer"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IstLangzeit"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstLangzeit"
-            Me._adapter.InsertCommand.Parameters.Add(param)
-            Me._adapter.UpdateCommand = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._adapter.UpdateCommand.Connection = Me.Connection
-            Me._adapter.UpdateCommand.CommandText = "UPDATE [main].[sqlite_default_schema].[Out2In] SET [SzenarioID] = @SzenarioID, [K"& _ 
-                "alkulationID] = @KalkulationID, [MainOutTradeID] = @MainOutTradeID, [OutTradeID]"& _ 
-                " = @OutTradeID, [InTradeID] = @InTradeID, [InZeitpunkt] = @InZeitpunkt, [MainBet"& _ 
-                "rag] = @MainBetrag, [Betrag] = @Betrag, [WertEUR] = @WertEUR, [Level] = @Level, "& _ 
-                "[IstFiat] = @IstFiat, [IstTransfer] = @IstTransfer, [IstLangzeit] = @IstLangzeit"& _ 
-                " WHERE (([ID] = @Original_ID) AND ([SzenarioID] = @Original_SzenarioID) AND ([Ka"& _ 
-                "lkulationID] = @Original_KalkulationID) AND ([MainOutTradeID] = @Original_MainOu"& _ 
-                "tTradeID) AND ([OutTradeID] = @Original_OutTradeID) AND ([InTradeID] = @Original"& _ 
-                "_InTradeID) AND ((@IsNull_InZeitpunkt = 1 AND [InZeitpunkt] IS NULL) OR ([InZeit"& _ 
-                "punkt] = @Original_InZeitpunkt)) AND ((@IsNull_MainBetrag = 1 AND [MainBetrag] I"& _ 
-                "S NULL) OR ([MainBetrag] = @Original_MainBetrag)) AND ((@IsNull_Betrag = 1 AND ["& _ 
-                "Betrag] IS NULL) OR ([Betrag] = @Original_Betrag)) AND ((@IsNull_WertEUR = 1 AND"& _ 
-                " [WertEUR] IS NULL) OR ([WertEUR] = @Original_WertEUR)) AND ([Level] = @Original"& _ 
-                "_Level) AND ((@IsNull_IstFiat = 1 AND [IstFiat] IS NULL) OR ([IstFiat] = @Origin"& _ 
-                "al_IstFiat)) AND ((@IsNull_IstAnschaffung = 1 AND [IstTransfer] IS NULL) OR ([Is"& _ 
-                "tTransfer] = @Original_IstAnschaffung)) AND ((@IsNull_IstLangzeit = 1 AND [IstLa"& _ 
-                "ngzeit] IS NULL) OR ([IstLangzeit] = @Original_IstLangzeit)))"
-            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "SzenarioID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@KalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "KalkulationID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@MainOutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "MainOutTradeID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "OutTradeID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@InTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "InTradeID"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@InZeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "InZeitpunkt"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@MainBetrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "MainBetrag"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Betrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "Betrag"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@WertEUR"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "WertEUR"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Level"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "Level"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IstFiat"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstFiat"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IstTransfer"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstTransfer"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IstLangzeit"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstLangzeit"
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_ID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "ID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "SzenarioID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_KalkulationID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "KalkulationID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_MainOutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "MainOutTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_OutTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "OutTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_InTradeID"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "InTradeID"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_InZeitpunkt"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "InZeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_InZeitpunkt"
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.DbType = Global.System.Data.DbType.DateTime
-            param.SourceColumn = "InZeitpunkt"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_MainBetrag"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "MainBetrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_MainBetrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "MainBetrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_Betrag"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "Betrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Betrag"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "Betrag"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_WertEUR"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "WertEUR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_WertEUR"
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.DbType = Global.System.Data.DbType.[Decimal]
-            param.SourceColumn = "WertEUR"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_Level"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.SourceColumn = "Level"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_IstFiat"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "IstFiat"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_IstFiat"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstFiat"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_IstAnschaffung"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "IstTransfer"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_IstAnschaffung"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstTransfer"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@IsNull_IstLangzeit"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.SourceColumn = "IstLangzeit"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            param.SourceColumnNullMapping = true
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Original_IstLangzeit"
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.DbType = Global.System.Data.DbType.[Boolean]
-            param.SourceColumn = "IstLangzeit"
-            param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._adapter.UpdateCommand.Parameters.Add(param)
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitConnection()
-            Me._connection = New Global.System.Data.SQLite.SQLiteConnection()
-            Me._connection.ConnectionString = Global.CoinTracer.My.MySettings.Default.CoinTracerCS
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
-        Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(0) {}
-            Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        Out2In.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Out2In"
-            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.Out2InDataTable) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As CoinTracerDataSet.Out2InDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As CoinTracerDataSet.Out2InDataTable = New CoinTracerDataSet.Out2InDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataTable As CoinTracerDataSet.Out2InDataTable) As Integer
-            Return Me.Adapter.Update(dataTable)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataSet As CoinTracerDataSet) As Integer
-            Return Me.Adapter.Update(dataSet, "Out2In")
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
-            Return Me.Adapter.Update(dataRows)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
-        Public Overloads Overridable Function Delete(ByVal Original_ID As Long, ByVal Original_SzenarioID As Long, ByVal Original_KalkulationID As Long, ByVal Original_MainOutTradeID As Long, ByVal Original_OutTradeID As Long, ByVal Original_InTradeID As Long, ByVal Original_InZeitpunkt As Global.System.Nullable(Of Date), ByVal Original_MainBetrag As Global.System.Nullable(Of Decimal), ByVal Original_Betrag As Global.System.Nullable(Of Decimal), ByVal Original_WertEUR As Global.System.Nullable(Of Decimal), ByVal Original_Level As Long, ByVal Original_IstFiat As Global.System.Nullable(Of Boolean), ByVal Original_IstAnschaffung As Global.System.Nullable(Of Boolean), ByVal Original_IstLangzeit As Global.System.Nullable(Of Boolean)) As Integer
-            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_ID,Long)
-            Me.Adapter.DeleteCommand.Parameters(1).Value = CType(Original_SzenarioID,Long)
-            Me.Adapter.DeleteCommand.Parameters(2).Value = CType(Original_KalkulationID,Long)
-            Me.Adapter.DeleteCommand.Parameters(3).Value = CType(Original_MainOutTradeID,Long)
-            Me.Adapter.DeleteCommand.Parameters(4).Value = CType(Original_OutTradeID,Long)
-            Me.Adapter.DeleteCommand.Parameters(5).Value = CType(Original_InTradeID,Long)
-            If (Original_InZeitpunkt.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = CType(Original_InZeitpunkt.Value,Date)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(6).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MainBetrag.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = CType(Original_MainBetrag.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(8).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(9).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Betrag.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = CType(Original_Betrag.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(10).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (Original_WertEUR.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = CType(Original_WertEUR.Value,Decimal)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(12).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(13).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.DeleteCommand.Parameters(14).Value = CType(Original_Level,Long)
-            If (Original_IstFiat.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = CType(Original_IstFiat.Value,Boolean)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(15).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(16).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IstAnschaffung.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = CType(Original_IstAnschaffung.Value,Boolean)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(17).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(18).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IstLangzeit.HasValue = true) Then
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = CType(Original_IstLangzeit.Value,Boolean)
-            Else
-                Me.Adapter.DeleteCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.DeleteCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
-            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.DeleteCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.DeleteCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
-        Public Overloads Overridable Function Insert(ByVal SzenarioID As Long, ByVal KalkulationID As Long, ByVal MainOutTradeID As Long, ByVal OutTradeID As Long, ByVal InTradeID As Long, ByVal InZeitpunkt As Global.System.Nullable(Of Date), ByVal MainBetrag As Global.System.Nullable(Of Decimal), ByVal Betrag As Global.System.Nullable(Of Decimal), ByVal WertEUR As Global.System.Nullable(Of Decimal), ByVal Level As Long, ByVal IstFiat As Global.System.Nullable(Of Boolean), ByVal IstTransfer As Global.System.Nullable(Of Boolean), ByVal IstLangzeit As Global.System.Nullable(Of Boolean)) As Integer
-            Me.Adapter.InsertCommand.Parameters(0).Value = CType(SzenarioID,Long)
-            Me.Adapter.InsertCommand.Parameters(1).Value = CType(KalkulationID,Long)
-            Me.Adapter.InsertCommand.Parameters(2).Value = CType(MainOutTradeID,Long)
-            Me.Adapter.InsertCommand.Parameters(3).Value = CType(OutTradeID,Long)
-            Me.Adapter.InsertCommand.Parameters(4).Value = CType(InTradeID,Long)
-            If (InZeitpunkt.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(5).Value = CType(InZeitpunkt.Value,Date)
-            Else
-                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (MainBetrag.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(6).Value = CType(MainBetrag.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (Betrag.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(7).Value = CType(Betrag.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (WertEUR.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(8).Value = CType(WertEUR.Value,Decimal)
-            Else
-                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.InsertCommand.Parameters(9).Value = CType(Level,Long)
-            If (IstFiat.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(10).Value = CType(IstFiat.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (IstTransfer.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(11).Value = CType(IstTransfer.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (IstLangzeit.HasValue = true) Then
-                Me.Adapter.InsertCommand.Parameters(12).Value = CType(IstLangzeit.Value,Boolean)
-            Else
-                Me.Adapter.InsertCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
-            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.InsertCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.InsertCommand.Connection.Close
-                End If
-            End Try
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
-        Public Overloads Overridable Function Update( _
-                    ByVal SzenarioID As Long,  _
-                    ByVal KalkulationID As Long,  _
-                    ByVal MainOutTradeID As Long,  _
-                    ByVal OutTradeID As Long,  _
-                    ByVal InTradeID As Long,  _
-                    ByVal InZeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal MainBetrag As Global.System.Nullable(Of Decimal),  _
-                    ByVal Betrag As Global.System.Nullable(Of Decimal),  _
-                    ByVal WertEUR As Global.System.Nullable(Of Decimal),  _
-                    ByVal Level As Long,  _
-                    ByVal IstFiat As Global.System.Nullable(Of Boolean),  _
-                    ByVal IstTransfer As Global.System.Nullable(Of Boolean),  _
-                    ByVal IstLangzeit As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_ID As Long,  _
-                    ByVal Original_SzenarioID As Long,  _
-                    ByVal Original_KalkulationID As Long,  _
-                    ByVal Original_MainOutTradeID As Long,  _
-                    ByVal Original_OutTradeID As Long,  _
-                    ByVal Original_InTradeID As Long,  _
-                    ByVal Original_InZeitpunkt As Global.System.Nullable(Of Date),  _
-                    ByVal Original_MainBetrag As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Betrag As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_WertEUR As Global.System.Nullable(Of Decimal),  _
-                    ByVal Original_Level As Long,  _
-                    ByVal Original_IstFiat As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_IstAnschaffung As Global.System.Nullable(Of Boolean),  _
-                    ByVal Original_IstLangzeit As Global.System.Nullable(Of Boolean)) As Integer
-            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(SzenarioID,Long)
-            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(KalkulationID,Long)
-            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(MainOutTradeID,Long)
-            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(OutTradeID,Long)
-            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(InTradeID,Long)
-            If (InZeitpunkt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(InZeitpunkt.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
-            End If
-            If (MainBetrag.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(6).Value = CType(MainBetrag.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(6).Value = Global.System.DBNull.Value
-            End If
-            If (Betrag.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(7).Value = CType(Betrag.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(7).Value = Global.System.DBNull.Value
-            End If
-            If (WertEUR.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(WertEUR.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(9).Value = CType(Level,Long)
-            If (IstFiat.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(IstFiat.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
-            End If
-            If (IstTransfer.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(IstTransfer.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
-            End If
-            If (IstLangzeit.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(12).Value = CType(IstLangzeit.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(12).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(13).Value = CType(Original_ID,Long)
-            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(Original_SzenarioID,Long)
-            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(Original_KalkulationID,Long)
-            Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Original_MainOutTradeID,Long)
-            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_OutTradeID,Long)
-            Me.Adapter.UpdateCommand.Parameters(18).Value = CType(Original_InTradeID,Long)
-            If (Original_InZeitpunkt.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = CType(Original_InZeitpunkt.Value,Date)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(19).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(20).Value = Global.System.DBNull.Value
-            End If
-            If (Original_MainBetrag.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = CType(Original_MainBetrag.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(21).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(22).Value = Global.System.DBNull.Value
-            End If
-            If (Original_Betrag.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = CType(Original_Betrag.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(23).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(24).Value = Global.System.DBNull.Value
-            End If
-            If (Original_WertEUR.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = CType(Original_WertEUR.Value,Decimal)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(25).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(26).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.UpdateCommand.Parameters(27).Value = CType(Original_Level,Long)
-            If (Original_IstFiat.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = CType(Original_IstFiat.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(28).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(29).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IstAnschaffung.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = CType(Original_IstAnschaffung.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(30).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(31).Value = Global.System.DBNull.Value
-            End If
-            If (Original_IstLangzeit.HasValue = true) Then
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(0,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = CType(Original_IstLangzeit.Value,Boolean)
-            Else
-                Me.Adapter.UpdateCommand.Parameters(32).Value = CType(1,Object)
-                Me.Adapter.UpdateCommand.Parameters(33).Value = Global.System.DBNull.Value
-            End If
-            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
-            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
-                        <> Global.System.Data.ConnectionState.Open) Then
-                Me.Adapter.UpdateCommand.Connection.Open
-            End If
-            Try 
-                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
-                Return returnValue
-            Finally
-                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
-                    Me.Adapter.UpdateCommand.Connection.Close
-                End If
-            End Try
-        End Function
-    End Class
-    
-    '''<summary>
-    '''Represents the connection and commands used to retrieve and save data.
-    '''</summary>
-    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
-     Global.System.ComponentModel.ToolboxItem(true),  _
-     Global.System.ComponentModel.DataObjectAttribute(true),  _
-     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
-     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
     Partial Public Class VW_GainingsTableAdapter
         Inherits Global.System.ComponentModel.Component
         
@@ -34554,9 +28980,8 @@ Namespace CoinTracerDataSetTableAdapters
             Me._commandCollection(0).Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@SzenarioID"
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.DbType = Global.System.Data.DbType.[Object]
-            param.Size = 1024
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
             param.SourceColumn = ""
             Me._commandCollection(0).Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
@@ -34569,7 +28994,7 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.VW_GainingsDataTable, ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Object, ByVal PlattformIDs As String) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.VW_GainingsDataTable, ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Long, ByVal PlattformIDs As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (TimeFrom.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(TimeFrom.Value,Date)
@@ -34581,11 +29006,7 @@ Namespace CoinTracerDataSetTableAdapters
             Else
                 Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (SzenarioID Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("SzenarioID")
-            Else
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Object)
-            End If
+            Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Long)
             If (PlattformIDs Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("PlattformIDs")
             Else
@@ -34602,7 +29023,7 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Object, ByVal PlattformIDs As String) As CoinTracerDataSet.VW_GainingsDataTable
+        Public Overloads Overridable Function GetData(ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Long, ByVal PlattformIDs As String) As CoinTracerDataSet.VW_GainingsDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (TimeFrom.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(TimeFrom.Value,Date)
@@ -34614,11 +29035,7 @@ Namespace CoinTracerDataSetTableAdapters
             Else
                 Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            If (SzenarioID Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("SzenarioID")
-            Else
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Object)
-            End If
+            Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Long)
             If (PlattformIDs Is Nothing) Then
                 Throw New Global.System.ArgumentNullException("PlattformIDs")
             Else
@@ -34760,26 +29177,27 @@ Namespace CoinTracerDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Vorgang", "Vorgang")
             tableMapping.ColumnMappings.Add("Zeitpunkt", "Zeitpunkt")
             tableMapping.ColumnMappings.Add("Art", "Art")
-            tableMapping.ColumnMappings.Add("Plattform", "Plattform")
-            tableMapping.ColumnMappings.Add("Coin-Art", "Coin-Art")
             tableMapping.ColumnMappings.Add("Coin-Menge", "Coin-Menge")
-            tableMapping.ColumnMappings.Add("Zahlmittel", "Zahlmittel")
             tableMapping.ColumnMappings.Add("Gesamtpreis", "Gesamtpreis")
             tableMapping.ColumnMappings.Add("Gesamtwert EUR", "Gesamtwert EUR")
             tableMapping.ColumnMappings.Add("Kurs EUR", "Kurs EUR")
-            tableMapping.ColumnMappings.Add("Vorgang Anschaffung", "Vorgang Anschaffung")
-            tableMapping.ColumnMappings.Add("Anschaffungsdatum", "Anschaffungsdatum")
             tableMapping.ColumnMappings.Add("Coin-Anteil", "Coin-Anteil")
             tableMapping.ColumnMappings.Add("Kaufpreis EUR", "Kaufpreis EUR")
             tableMapping.ColumnMappings.Add("Kaufkurs EUR", "Kaufkurs EUR")
             tableMapping.ColumnMappings.Add("Verkaufspreis EUR", "Verkaufspreis EUR")
             tableMapping.ColumnMappings.Add("Gewinn EUR", "Gewinn EUR")
-            tableMapping.ColumnMappings.Add("Steuerfrei", "Steuerfrei")
-            tableMapping.ColumnMappings.Add("Kommentar", "Kommentar")
             tableMapping.ColumnMappings.Add("_SzenarioID", "_SzenarioID")
             tableMapping.ColumnMappings.Add("_QuellPlattformID", "_QuellPlattformID")
             tableMapping.ColumnMappings.Add("_ZielPlattformID", "_ZielPlattformID")
+            tableMapping.ColumnMappings.Add("Plattform", "Plattform")
             tableMapping.ColumnMappings.Add("_Steuerfrei", "_Steuerfrei")
+            tableMapping.ColumnMappings.Add("_TradeTyp", "_TradeTyp")
+            tableMapping.ColumnMappings.Add("Coin-Art", "Coin-Art")
+            tableMapping.ColumnMappings.Add("Zahlmittel", "Zahlmittel")
+            tableMapping.ColumnMappings.Add("Vorgang Anschaffung", "Vorgang Anschaffung")
+            tableMapping.ColumnMappings.Add("Anschaffungsdatum", "Anschaffungsdatum")
+            tableMapping.ColumnMappings.Add("Steuerfrei", "Steuerfrei")
+            tableMapping.ColumnMappings.Add("Kommentar", "Kommentar")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -34793,11 +29211,11 @@ Namespace CoinTracerDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(1) {}
+            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT * FROM VW_GainingsReport2 WHERE (Zeitpunkt BETWEEN @TimeFrom AND @TimeTo) "& _ 
-                "AND (_SzenarioID = @SzenarioID)"
+            Me._commandCollection(0).CommandText = "SELECT Vorgang, Zeitpunkt, Art FROM VW_GainingsReport2 WHERE (Zeitpunkt BETWEEN @"& _ 
+                "TimeFrom AND @TimeTo) AND (_SzenarioID = @SzenarioID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@TimeFrom"
@@ -34815,16 +29233,15 @@ Namespace CoinTracerDataSetTableAdapters
             Me._commandCollection(0).Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@SzenarioID"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.Size = 4
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.Size = 1024
             param.SourceColumn = ""
             Me._commandCollection(0).Parameters.Add(param)
             Me._commandCollection(1) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT * "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM VW_GainingsReport2 "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (Zeitpunkt BETWEEN @TimeFrom AND @Time"& _ 
-                "To) AND (_SzenarioID = @SzenarioID) AND (@TaxablesOnly = 0) OR (Zeitpunkt BETWEE"& _ 
-                "N @TimeFrom AND @TimeTo) AND (_SzenarioID = @SzenarioID) AND (_Steuerfrei < 1)"
+            Me._commandCollection(1).CommandText = "SELECT * FROM VW_GainingsReport2 WHERE (Zeitpunkt BETWEEN @TimeFrom AND @TimeTo) "& _ 
+                "AND (_SzenarioID = @SzenarioID) AND (@TaxablesOnly = 0 OR _Steuerfrei < 1) AND ("& _ 
+                "_TradeTyp <= @TradesClass) AND (@PlatformIDs=1)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@TimeFrom"
@@ -34848,18 +29265,53 @@ Namespace CoinTracerDataSetTableAdapters
             Me._commandCollection(1).Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@TaxablesOnly"
-            param.DbType = Global.System.Data.DbType.Int32
-            param.DbType = Global.System.Data.DbType.Int32
-            param.Size = 4
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.Size = 1024
             param.SourceColumn = ""
             Me._commandCollection(1).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@TradesClass"
+            param.DbType = Global.System.Data.DbType.[Object]
+            param.Size = 1024
+            param.SourceColumn = ""
+            Me._commandCollection(1).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@PlatformIDs"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.Size = 1024
+            param.SourceColumn = ""
+            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT * FROM VW_GainingsReport2 WHERE (Vorgang = @TradeIDs) AND (_SzenarioID = @"& _ 
+                "SzenarioID) AND (_TradeTyp <= @TradesClass) ORDER BY Zeitpunkt, Vorgang"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@TradeIDs"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "Vorgang"
+            Me._commandCollection(2).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@SzenarioID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = ""
+            Me._commandCollection(2).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@TradesClass"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = ""
+            Me._commandCollection(2).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.VW_GainingsReport2DataTable, ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Integer) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.VW_GainingsReport2DataTable, ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Object) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (TimeFrom.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(TimeFrom.Value,Date)
@@ -34871,7 +29323,11 @@ Namespace CoinTracerDataSetTableAdapters
             Else
                 Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Integer)
+            If (SzenarioID Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("SzenarioID")
+            Else
+                Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Object)
+            End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -34882,30 +29338,8 @@ Namespace CoinTracerDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Integer) As CoinTracerDataSet.VW_GainingsReport2DataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (TimeFrom.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(TimeFrom.Value,Date)
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (TimeTo.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(TimeTo.Value,Date)
-            Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Integer)
-            Dim dataTable As CoinTracerDataSet.VW_GainingsReport2DataTable = New CoinTracerDataSet.VW_GainingsReport2DataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBy(ByVal dataTable As CoinTracerDataSet.VW_GainingsReport2DataTable, ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Object, ByVal TaxablesOnly As Integer) As Integer
+        Public Overloads Overridable Function FillByTimeScenarioTradeTypePlatforms(ByVal dataTable As CoinTracerDataSet.VW_GainingsReport2DataTable, ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Object, ByVal TaxablesOnly As String, ByVal TradesClass As Object, ByVal PlatformIDs As String) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (TimeFrom.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(0).Value = CType(TimeFrom.Value,Date)
@@ -34922,7 +29356,575 @@ Namespace CoinTracerDataSetTableAdapters
             Else
                 Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Object)
             End If
-            Me.Adapter.SelectCommand.Parameters(3).Value = CType(TaxablesOnly,Integer)
+            If (TaxablesOnly Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("TaxablesOnly")
+            Else
+                Me.Adapter.SelectCommand.Parameters(3).Value = CType(TaxablesOnly,String)
+            End If
+            If (TradesClass Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("TradesClass")
+            Else
+                Me.Adapter.SelectCommand.Parameters(4).Value = CType(TradesClass,Object)
+            End If
+            If (PlatformIDs Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("PlatformIDs")
+            Else
+                Me.Adapter.SelectCommand.Parameters(5).Value = CType(PlatformIDs,String)
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByTradeIDs(ByVal dataTable As CoinTracerDataSet.VW_GainingsReport2DataTable, ByVal TradeIDs As Long, ByVal SzenarioID As Long, ByVal TradesClass As Long) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(TradeIDs,Long)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(SzenarioID,Long)
+            Me.Adapter.SelectCommand.Parameters(2).Value = CType(TradesClass,Long)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class TradeTxTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SQLite.SQLiteDataAdapter
+        
+        Private _connection As Global.System.Data.SQLite.SQLiteConnection
+        
+        Private _transaction As Global.System.Data.SQLite.SQLiteTransaction
+        
+        Private _commandCollection() As Global.System.Data.SQLite.SQLiteCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SQLite.SQLiteDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SQLite.SQLiteTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SQLite.SQLiteCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SQLite.SQLiteDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "TradeTx"
+            tableMapping.ColumnMappings.Add("TxID", "TxID")
+            tableMapping.ColumnMappings.Add("SzenarioID", "SzenarioID")
+            tableMapping.ColumnMappings.Add("InKalkulationID", "InKalkulationID")
+            tableMapping.ColumnMappings.Add("InTradeID", "InTradeID")
+            tableMapping.ColumnMappings.Add("InTransferID", "InTransferID")
+            tableMapping.ColumnMappings.Add("TransferIDHistory", "TransferIDHistory")
+            tableMapping.ColumnMappings.Add("PlattformID", "PlattformID")
+            tableMapping.ColumnMappings.Add("KontoID", "KontoID")
+            tableMapping.ColumnMappings.Add("Zeitpunkt", "Zeitpunkt")
+            tableMapping.ColumnMappings.Add("KaufZeitpunkt", "KaufZeitpunkt")
+            tableMapping.ColumnMappings.Add("Betrag", "Betrag")
+            tableMapping.ColumnMappings.Add("WertEUR", "WertEUR")
+            tableMapping.ColumnMappings.Add("ParentTxID", "ParentTxID")
+            tableMapping.ColumnMappings.Add("IstRest", "IstRest")
+            tableMapping.ColumnMappings.Add("OutKalkulationID", "OutKalkulationID")
+            tableMapping.ColumnMappings.Add("OutTradeID", "OutTradeID")
+            tableMapping.ColumnMappings.Add("Entwertet", "Entwertet")
+            tableMapping.ColumnMappings.Add("IstLangzeit", "IstLangzeit")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [main].[sqlite_default_schema].[TradeTx] WHERE (([TxID] = @Original_T"& _ 
+                "xID))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_TxID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "TxID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            Me._adapter.InsertCommand = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [main].[sqlite_default_schema].[TradeTx] ([TxID], [SzenarioID], [InKa"& _ 
+                "lkulationID], [InTradeID], [InTransferID], [TransferIDHistory], [PlattformID], ["& _ 
+                "KontoID], [Zeitpunkt], [KaufZeitpunkt], [Betrag], [WertEUR], [ParentTxID], [IstR"& _ 
+                "est], [OutKalkulationID], [OutTradeID], [Entwertet]) VALUES (@TxID, @SzenarioID,"& _ 
+                " @InKalkulationID, @InTradeID, @InTransferID, @TransferIDHistory, @PlattformID, "& _ 
+                "@KontoID, @Zeitpunkt, @KaufZeitpunkt, @Betrag, @WertEUR, @ParentTxID, @IstRest, "& _ 
+                "@OutKalkulationID, @OutTradeID, @Entwertet)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@TxID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "TxID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@SzenarioID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "SzenarioID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@InKalkulationID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "InKalkulationID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@InTradeID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "InTradeID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@InTransferID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "InTransferID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@TransferIDHistory"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "TransferIDHistory"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@PlattformID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "PlattformID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@KontoID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "KontoID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Zeitpunkt"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.SourceColumn = "Zeitpunkt"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@KaufZeitpunkt"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.SourceColumn = "KaufZeitpunkt"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Betrag"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.SourceColumn = "Betrag"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@WertEUR"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.SourceColumn = "WertEUR"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ParentTxID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "ParentTxID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IstRest"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "IstRest"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@OutKalkulationID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "OutKalkulationID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@OutTradeID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "OutTradeID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Entwertet"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Entwertet"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            Me._adapter.UpdateCommand = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [main].[sqlite_default_schema].[TradeTx] SET [TxID] = @TxID, [SzenarioID] "& _ 
+                "= @SzenarioID, [InKalkulationID] = @InKalkulationID, [InTradeID] = @InTradeID, ["& _ 
+                "InTransferID] = @InTransferID, [TransferIDHistory] = @TransferIDHistory, [Plattf"& _ 
+                "ormID] = @PlattformID, [KontoID] = @KontoID, [Zeitpunkt] = @Zeitpunkt, [KaufZeit"& _ 
+                "punkt] = @KaufZeitpunkt, [Betrag] = @Betrag, [WertEUR] = @WertEUR, [ParentTxID] "& _ 
+                "= @ParentTxID, [IstRest] = @IstRest, [OutKalkulationID] = @OutKalkulationID, [Ou"& _ 
+                "tTradeID] = @OutTradeID, [Entwertet] = @Entwertet WHERE (([TxID] = @Original_TxI"& _ 
+                "D))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@TxID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "TxID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@SzenarioID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "SzenarioID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@InKalkulationID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "InKalkulationID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@InTradeID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "InTradeID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@InTransferID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "InTransferID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@TransferIDHistory"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "TransferIDHistory"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@PlattformID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "PlattformID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@KontoID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "KontoID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Zeitpunkt"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.SourceColumn = "Zeitpunkt"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@KaufZeitpunkt"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.SourceColumn = "KaufZeitpunkt"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Betrag"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.SourceColumn = "Betrag"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@WertEUR"
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.DbType = Global.System.Data.DbType.[Decimal]
+            param.SourceColumn = "WertEUR"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ParentTxID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "ParentTxID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IstRest"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "IstRest"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@OutKalkulationID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "OutKalkulationID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@OutTradeID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "OutTradeID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Entwertet"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Entwertet"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_TxID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "TxID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SQLite.SQLiteConnection()
+            Me._connection.ConnectionString = Global.CoinTracer.My.MySettings.Default.CoinTracerCS
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(5) {}
+            Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT TxID, SzenarioID, InKalkulationID, InTradeID, InTransferID, TransferIDHist"& _ 
+                "ory, PlattformID, KontoID, Zeitpunkt, KaufZeitpunkt, Betrag, WertEUR, ParentTxID"& _ 
+                ", IstRest, OutKalkulationID, OutTradeID, Entwertet FROM TradeTx"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "DELETE FROM [main].[sqlite_default_schema].[TradeTx] WHERE InKalkulationID = @Kal"& _ 
+                "kulationID"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@KalkulationID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "InKalkulationID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT Betrag, Entwertet, InKalkulationID, InTradeID, InTransferID, IstRest, Kauf"& _ 
+                "Zeitpunkt, KontoID, OutKalkulationID, OutTradeID, ParentTxID, PlattformID, Szena"& _ 
+                "rioID, TransferIDHistory, TxID, WertEUR, Zeitpunkt FROM TradeTx WHERE (Plattform"& _ 
+                "ID = @PlattformID OR @PlattformID = - 1) AND (SzenarioID = @SzenarioID) AND (Kon"& _ 
+                "toID = @KontoID) AND (Zeitpunkt <= @Zeitpunkt) AND (Entwertet = 0) ORDER BY @Con"& _ 
+                "sumptionStrategy, TxID"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@PlattformID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "PlattformID"
+            Me._commandCollection(2).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@SzenarioID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "SzenarioID"
+            Me._commandCollection(2).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@KontoID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "KontoID"
+            Me._commandCollection(2).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Zeitpunkt"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.Size = 8
+            param.SourceColumn = "Zeitpunkt"
+            Me._commandCollection(2).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ConsumptionStrategy"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.Size = 1024
+            param.SourceColumn = ""
+            Me._commandCollection(2).Parameters.Add(param)
+            Me._commandCollection(3) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT Betrag, Entwertet, InKalkulationID, InTradeID, InTransferID, IstRest, Kauf"& _ 
+                "Zeitpunkt, KontoID, OutKalkulationID, OutTradeID, ParentTxID, PlattformID, Szena"& _ 
+                "rioID, TransferIDHistory, TxID, WertEUR, Zeitpunkt FROM TradeTx WHERE (SzenarioI"& _ 
+                "D = @SzenarioID) AND (Entwertet = 0)"
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@SzenarioID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "SzenarioID"
+            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "SELECT COALESCE(MAX(TxID), 0) FROM TradeTx"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(5).Connection = Me.Connection
+            Me._commandCollection(5).CommandText = "UPDATE [main].[sqlite_default_schema].[TradeTx] SET Entwertet = 0, OutKalkulation"& _ 
+                "ID = 0, OutTradeID = 0, IstLangzeit = 0 WHERE OutKalkulationID = @KalkulationID"
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@KalkulationID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "OutKalkulationID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(5).Parameters.Add(param)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.TradeTxDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillOpenValues(ByVal dataTable As CoinTracerDataSet.TradeTxDataTable, ByVal PlattformID As Long, ByVal SzenarioID As Long, ByVal KontoID As Long, ByVal Zeitpunkt As Global.System.Nullable(Of Date), ByVal ConsumptionStrategy As String) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(PlattformID,Long)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(SzenarioID,Long)
+            Me.Adapter.SelectCommand.Parameters(2).Value = CType(KontoID,Long)
+            If (Zeitpunkt.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(3).Value = CType(Zeitpunkt.Value,Date)
+            Else
+                Me.Adapter.SelectCommand.Parameters(3).Value = Global.System.DBNull.Value
+            End If
+            If (ConsumptionStrategy Is Nothing) Then
+                Throw New Global.System.ArgumentNullException("ConsumptionStrategy")
+            Else
+                Me.Adapter.SelectCommand.Parameters(4).Value = CType(ConsumptionStrategy,String)
+            End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -34934,27 +29936,324 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataBy(ByVal TimeFrom As Global.System.Nullable(Of Date), ByVal TimeTo As Global.System.Nullable(Of Date), ByVal SzenarioID As Object, ByVal TaxablesOnly As Integer) As CoinTracerDataSet.VW_GainingsReport2DataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            If (TimeFrom.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(TimeFrom.Value,Date)
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (TimeTo.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(TimeTo.Value,Date)
-            Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
-            End If
-            If (SzenarioID Is Nothing) Then
-                Throw New Global.System.ArgumentNullException("SzenarioID")
-            Else
-                Me.Adapter.SelectCommand.Parameters(2).Value = CType(SzenarioID,Object)
-            End If
-            Me.Adapter.SelectCommand.Parameters(3).Value = CType(TaxablesOnly,Integer)
-            Dim dataTable As CoinTracerDataSet.VW_GainingsReport2DataTable = New CoinTracerDataSet.VW_GainingsReport2DataTable()
+        Public Overloads Overridable Function GetBySzenarioID(ByVal SzenarioID As Long) As CoinTracerDataSet.TradeTxDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(SzenarioID,Long)
+            Dim dataTable As CoinTracerDataSet.TradeTxDataTable = New CoinTracerDataSet.TradeTxDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As CoinTracerDataSet.TradeTxDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As CoinTracerDataSet) As Integer
+            Return Me.Adapter.Update(dataSet, "TradeTx")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, true)>  _
+        Public Overloads Overridable Function Delete(ByVal Original_TxID As Long) As Integer
+            Me.Adapter.DeleteCommand.Parameters(0).Value = CType(Original_TxID,Long)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.DeleteCommand.Connection.State
+            If ((Me.Adapter.DeleteCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.DeleteCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.DeleteCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.DeleteCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Insert, true)>  _
+        Public Overloads Overridable Function Insert( _
+                    ByVal TxID As Long,  _
+                    ByVal SzenarioID As Long,  _
+                    ByVal InKalkulationID As Long,  _
+                    ByVal InTradeID As Long,  _
+                    ByVal InTransferID As Long,  _
+                    ByVal TransferIDHistory As String,  _
+                    ByVal PlattformID As Long,  _
+                    ByVal KontoID As Long,  _
+                    ByVal Zeitpunkt As Global.System.Nullable(Of Date),  _
+                    ByVal KaufZeitpunkt As Global.System.Nullable(Of Date),  _
+                    ByVal Betrag As Global.System.Nullable(Of Decimal),  _
+                    ByVal WertEUR As Global.System.Nullable(Of Decimal),  _
+                    ByVal ParentTxID As Long,  _
+                    ByVal IstRest As Global.System.Nullable(Of Boolean),  _
+                    ByVal OutKalkulationID As Long,  _
+                    ByVal OutTradeID As Long,  _
+                    ByVal Entwertet As Global.System.Nullable(Of Boolean)) As Integer
+            Me.Adapter.InsertCommand.Parameters(0).Value = CType(TxID,Long)
+            Me.Adapter.InsertCommand.Parameters(1).Value = CType(SzenarioID,Long)
+            Me.Adapter.InsertCommand.Parameters(2).Value = CType(InKalkulationID,Long)
+            Me.Adapter.InsertCommand.Parameters(3).Value = CType(InTradeID,Long)
+            Me.Adapter.InsertCommand.Parameters(4).Value = CType(InTransferID,Long)
+            If (TransferIDHistory Is Nothing) Then
+                Me.Adapter.InsertCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.InsertCommand.Parameters(5).Value = CType(TransferIDHistory,String)
+            End If
+            Me.Adapter.InsertCommand.Parameters(6).Value = CType(PlattformID,Long)
+            Me.Adapter.InsertCommand.Parameters(7).Value = CType(KontoID,Long)
+            If (Zeitpunkt.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(8).Value = CType(Zeitpunkt.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            If (KaufZeitpunkt.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(9).Value = CType(KaufZeitpunkt.Value,Date)
+            Else
+                Me.Adapter.InsertCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
+            If (Betrag.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(10).Value = CType(Betrag.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (WertEUR.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(11).Value = CType(WertEUR.Value,Decimal)
+            Else
+                Me.Adapter.InsertCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.InsertCommand.Parameters(12).Value = CType(ParentTxID,Long)
+            If (IstRest.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(13).Value = CType(IstRest.Value,Boolean)
+            Else
+                Me.Adapter.InsertCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.InsertCommand.Parameters(14).Value = CType(OutKalkulationID,Long)
+            Me.Adapter.InsertCommand.Parameters(15).Value = CType(OutTradeID,Long)
+            If (Entwertet.HasValue = true) Then
+                Me.Adapter.InsertCommand.Parameters(16).Value = CType(Entwertet.Value,Boolean)
+            Else
+                Me.Adapter.InsertCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.InsertCommand.Connection.State
+            If ((Me.Adapter.InsertCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.InsertCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.InsertCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.InsertCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal TxID As Long,  _
+                    ByVal SzenarioID As Long,  _
+                    ByVal InKalkulationID As Long,  _
+                    ByVal InTradeID As Long,  _
+                    ByVal InTransferID As Long,  _
+                    ByVal TransferIDHistory As String,  _
+                    ByVal PlattformID As Long,  _
+                    ByVal KontoID As Long,  _
+                    ByVal Zeitpunkt As Global.System.Nullable(Of Date),  _
+                    ByVal KaufZeitpunkt As Global.System.Nullable(Of Date),  _
+                    ByVal Betrag As Global.System.Nullable(Of Decimal),  _
+                    ByVal WertEUR As Global.System.Nullable(Of Decimal),  _
+                    ByVal ParentTxID As Long,  _
+                    ByVal IstRest As Global.System.Nullable(Of Boolean),  _
+                    ByVal OutKalkulationID As Long,  _
+                    ByVal OutTradeID As Long,  _
+                    ByVal Entwertet As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_TxID As Long) As Integer
+            Me.Adapter.UpdateCommand.Parameters(0).Value = CType(TxID,Long)
+            Me.Adapter.UpdateCommand.Parameters(1).Value = CType(SzenarioID,Long)
+            Me.Adapter.UpdateCommand.Parameters(2).Value = CType(InKalkulationID,Long)
+            Me.Adapter.UpdateCommand.Parameters(3).Value = CType(InTradeID,Long)
+            Me.Adapter.UpdateCommand.Parameters(4).Value = CType(InTransferID,Long)
+            If (TransferIDHistory Is Nothing) Then
+                Me.Adapter.UpdateCommand.Parameters(5).Value = Global.System.DBNull.Value
+            Else
+                Me.Adapter.UpdateCommand.Parameters(5).Value = CType(TransferIDHistory,String)
+            End If
+            Me.Adapter.UpdateCommand.Parameters(6).Value = CType(PlattformID,Long)
+            Me.Adapter.UpdateCommand.Parameters(7).Value = CType(KontoID,Long)
+            If (Zeitpunkt.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(8).Value = CType(Zeitpunkt.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(8).Value = Global.System.DBNull.Value
+            End If
+            If (KaufZeitpunkt.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(9).Value = CType(KaufZeitpunkt.Value,Date)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(9).Value = Global.System.DBNull.Value
+            End If
+            If (Betrag.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(10).Value = CType(Betrag.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(10).Value = Global.System.DBNull.Value
+            End If
+            If (WertEUR.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(11).Value = CType(WertEUR.Value,Decimal)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(11).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(12).Value = CType(ParentTxID,Long)
+            If (IstRest.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(13).Value = CType(IstRest.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(13).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(14).Value = CType(OutKalkulationID,Long)
+            Me.Adapter.UpdateCommand.Parameters(15).Value = CType(OutTradeID,Long)
+            If (Entwertet.HasValue = true) Then
+                Me.Adapter.UpdateCommand.Parameters(16).Value = CType(Entwertet.Value,Boolean)
+            Else
+                Me.Adapter.UpdateCommand.Parameters(16).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.UpdateCommand.Parameters(17).Value = CType(Original_TxID,Long)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = Me.Adapter.UpdateCommand.Connection.State
+            If ((Me.Adapter.UpdateCommand.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                Me.Adapter.UpdateCommand.Connection.Open
+            End If
+            Try 
+                Dim returnValue As Integer = Me.Adapter.UpdateCommand.ExecuteNonQuery
+                Return returnValue
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    Me.Adapter.UpdateCommand.Connection.Close
+                End If
+            End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, true)>  _
+        Public Overloads Overridable Function Update( _
+                    ByVal SzenarioID As Long,  _
+                    ByVal InKalkulationID As Long,  _
+                    ByVal InTradeID As Long,  _
+                    ByVal InTransferID As Long,  _
+                    ByVal TransferIDHistory As String,  _
+                    ByVal PlattformID As Long,  _
+                    ByVal KontoID As Long,  _
+                    ByVal Zeitpunkt As Global.System.Nullable(Of Date),  _
+                    ByVal KaufZeitpunkt As Global.System.Nullable(Of Date),  _
+                    ByVal Betrag As Global.System.Nullable(Of Decimal),  _
+                    ByVal WertEUR As Global.System.Nullable(Of Decimal),  _
+                    ByVal ParentTxID As Long,  _
+                    ByVal IstRest As Global.System.Nullable(Of Boolean),  _
+                    ByVal OutKalkulationID As Long,  _
+                    ByVal OutTradeID As Long,  _
+                    ByVal Entwertet As Global.System.Nullable(Of Boolean),  _
+                    ByVal Original_TxID As Long) As Integer
+            Return Me.Update(Original_TxID, SzenarioID, InKalkulationID, InTradeID, InTransferID, TransferIDHistory, PlattformID, KontoID, Zeitpunkt, KaufZeitpunkt, Betrag, WertEUR, ParentTxID, IstRest, OutKalkulationID, OutTradeID, Entwertet, Original_TxID)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
+        Public Overloads Overridable Function DeleteByKalkulationID(ByVal KalkulationID As Long) As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(1)
+            command.Parameters(0).Value = CType(KalkulationID,Long)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function GetMaxID() As Object
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(4)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Object
+            Try 
+                returnValue = command.ExecuteScalar
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            If ((returnValue Is Nothing)  _
+                        OrElse (returnValue.GetType Is GetType(Global.System.DBNull))) Then
+                Return Nothing
+            Else
+                Return CType(returnValue,Object)
+            End If
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function RevertByKalkulationID(ByVal KalkulationID As Long) As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(5)
+            command.Parameters(0).Value = CType(KalkulationID,Long)
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
         End Function
     End Class
     
@@ -34987,8 +30286,6 @@ Namespace CoinTracerDataSetTableAdapters
         
         Private _tradeTypenTableAdapter As TradeTypenTableAdapter
         
-        Private _zeitstempelWerteTableAdapter As ZeitstempelWerteTableAdapter
-        
         Private _kurseTableAdapter As KurseTableAdapter
         
         Private _tradesWerteTableAdapter As TradesWerteTableAdapter
@@ -34999,7 +30296,7 @@ Namespace CoinTracerDataSetTableAdapters
         
         Private _bestaendeTableAdapter As BestaendeTableAdapter
         
-        Private _out2InTableAdapter As Out2InTableAdapter
+        Private _tradeTxTableAdapter As TradeTxTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -35133,20 +30430,6 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property ZeitstempelWerteTableAdapter() As ZeitstempelWerteTableAdapter
-            Get
-                Return Me._zeitstempelWerteTableAdapter
-            End Get
-            Set
-                Me._zeitstempelWerteTableAdapter = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
-            "a", "System.Drawing.Design.UITypeEditor")>  _
         Public Property KurseTableAdapter() As KurseTableAdapter
             Get
                 Return Me._kurseTableAdapter
@@ -35217,12 +30500,12 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
             "a", "System.Drawing.Design.UITypeEditor")>  _
-        Public Property Out2InTableAdapter() As Out2InTableAdapter
+        Public Property TradeTxTableAdapter() As TradeTxTableAdapter
             Get
-                Return Me._out2InTableAdapter
+                Return Me._tradeTxTableAdapter
             End Get
             Set
-                Me._out2InTableAdapter = value
+                Me._tradeTxTableAdapter = value
             End Set
         End Property
         
@@ -35277,10 +30560,6 @@ Namespace CoinTracerDataSetTableAdapters
                             AndAlso (Not (Me._tradeTypenTableAdapter.Connection) Is Nothing)) Then
                     Return Me._tradeTypenTableAdapter.Connection
                 End If
-                If ((Not (Me._zeitstempelWerteTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._zeitstempelWerteTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._zeitstempelWerteTableAdapter.Connection
-                End If
                 If ((Not (Me._kurseTableAdapter) Is Nothing)  _
                             AndAlso (Not (Me._kurseTableAdapter.Connection) Is Nothing)) Then
                     Return Me._kurseTableAdapter.Connection
@@ -35301,9 +30580,9 @@ Namespace CoinTracerDataSetTableAdapters
                             AndAlso (Not (Me._bestaendeTableAdapter.Connection) Is Nothing)) Then
                     Return Me._bestaendeTableAdapter.Connection
                 End If
-                If ((Not (Me._out2InTableAdapter) Is Nothing)  _
-                            AndAlso (Not (Me._out2InTableAdapter.Connection) Is Nothing)) Then
-                    Return Me._out2InTableAdapter.Connection
+                If ((Not (Me._tradeTxTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._tradeTxTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._tradeTxTableAdapter.Connection
                 End If
                 Return Nothing
             End Get
@@ -35342,9 +30621,6 @@ Namespace CoinTracerDataSetTableAdapters
                 If (Not (Me._tradeTypenTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._zeitstempelWerteTableAdapter) Is Nothing) Then
-                    count = (count + 1)
-                End If
                 If (Not (Me._kurseTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
@@ -35360,7 +30636,7 @@ Namespace CoinTracerDataSetTableAdapters
                 If (Not (Me._bestaendeTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
-                If (Not (Me._out2InTableAdapter) Is Nothing) Then
+                If (Not (Me._tradeTxTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -35401,15 +30677,6 @@ Namespace CoinTracerDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._tradesTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Trades.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._tradesTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
             If (Not (Me._bestaendeTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet.Bestaende.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
@@ -35419,21 +30686,12 @@ Namespace CoinTracerDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
-            If (Not (Me._zeitstempelWerteTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.ZeitstempelWerte.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+            If (Not (Me._tradesTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Trades.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._zeitstempelWerteTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._kurseTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Kurse.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._kurseTableAdapter.Update(updatedRows))
+                    result = (result + Me._tradesTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -35446,21 +30704,21 @@ Namespace CoinTracerDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
+            If (Not (Me._kurseTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Kurse.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._kurseTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
             If (Not (Me.__VersionsTableAdapter) Is Nothing) Then
                 Dim updatedRows() As Global.System.Data.DataRow = dataSet._Versions.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
                 updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
                 If ((Not (updatedRows) Is Nothing)  _
                             AndAlso (0 < updatedRows.Length)) Then
                     result = (result + Me.__VersionsTableAdapter.Update(updatedRows))
-                    allChangedRows.AddRange(updatedRows)
-                End If
-            End If
-            If (Not (Me._out2InTableAdapter) Is Nothing) Then
-                Dim updatedRows() As Global.System.Data.DataRow = dataSet.Out2In.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
-                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
-                If ((Not (updatedRows) Is Nothing)  _
-                            AndAlso (0 < updatedRows.Length)) Then
-                    result = (result + Me._out2InTableAdapter.Update(updatedRows))
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
@@ -35509,6 +30767,15 @@ Namespace CoinTracerDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
+            If (Not (Me._tradeTxTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.TradeTx.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._tradeTxTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -35543,14 +30810,6 @@ Namespace CoinTracerDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._tradesTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Trades.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._tradesTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
             If (Not (Me._bestaendeTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet.Bestaende.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
@@ -35559,19 +30818,11 @@ Namespace CoinTracerDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
-            If (Not (Me._zeitstempelWerteTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.ZeitstempelWerte.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+            If (Not (Me._tradesTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.Trades.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._zeitstempelWerteTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._kurseTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Kurse.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._kurseTableAdapter.Update(addedRows))
+                    result = (result + Me._tradesTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -35583,19 +30834,19 @@ Namespace CoinTracerDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
+            If (Not (Me._kurseTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.Kurse.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._kurseTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
             If (Not (Me.__VersionsTableAdapter) Is Nothing) Then
                 Dim addedRows() As Global.System.Data.DataRow = dataSet._Versions.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
                 If ((Not (addedRows) Is Nothing)  _
                             AndAlso (0 < addedRows.Length)) Then
                     result = (result + Me.__VersionsTableAdapter.Update(addedRows))
-                    allAddedRows.AddRange(addedRows)
-                End If
-            End If
-            If (Not (Me._out2InTableAdapter) Is Nothing) Then
-                Dim addedRows() As Global.System.Data.DataRow = dataSet.Out2In.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
-                If ((Not (addedRows) Is Nothing)  _
-                            AndAlso (0 < addedRows.Length)) Then
-                    result = (result + Me._out2InTableAdapter.Update(addedRows))
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
@@ -35639,6 +30890,14 @@ Namespace CoinTracerDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
+            If (Not (Me._tradeTxTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.TradeTx.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._tradeTxTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -35649,6 +30908,14 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As CoinTracerDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._tradeTxTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.TradeTx.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._tradeTxTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
             If (Not (Me._kontenTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.Konten.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -35689,27 +30956,11 @@ Namespace CoinTracerDataSetTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._out2InTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Out2In.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._out2InTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
             If (Not (Me.__VersionsTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet._Versions.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me.__VersionsTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._apiDatenTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.ApiDaten.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._apiDatenTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -35721,19 +30972,11 @@ Namespace CoinTracerDataSetTableAdapters
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
-            If (Not (Me._zeitstempelWerteTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.ZeitstempelWerte.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+            If (Not (Me._apiDatenTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.ApiDaten.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._zeitstempelWerteTableAdapter.Update(deletedRows))
-                    allChangedRows.AddRange(deletedRows)
-                End If
-            End If
-            If (Not (Me._bestaendeTableAdapter) Is Nothing) Then
-                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Bestaende.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
-                If ((Not (deletedRows) Is Nothing)  _
-                            AndAlso (0 < deletedRows.Length)) Then
-                    result = (result + Me._bestaendeTableAdapter.Update(deletedRows))
+                    result = (result + Me._apiDatenTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -35742,6 +30985,14 @@ Namespace CoinTracerDataSetTableAdapters
                 If ((Not (deletedRows) Is Nothing)  _
                             AndAlso (0 < deletedRows.Length)) Then
                     result = (result + Me._tradesTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
+            If (Not (Me._bestaendeTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.Bestaende.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._bestaendeTableAdapter.Update(deletedRows))
                     allChangedRows.AddRange(deletedRows)
                 End If
             End If
@@ -35850,11 +31101,6 @@ Namespace CoinTracerDataSetTableAdapters
                 Throw New Global.System.ArgumentException("Für alle von einem TableAdapterManager verwalteten Instanzen von TableAdapter mus"& _ 
                         "s die gleiche Verbindungszeichenfolge verwendet werden.")
             End If
-            If ((Not (Me._zeitstempelWerteTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._zeitstempelWerteTableAdapter.Connection) = false)) Then
-                Throw New Global.System.ArgumentException("Für alle von einem TableAdapterManager verwalteten Instanzen von TableAdapter mus"& _ 
-                        "s die gleiche Verbindungszeichenfolge verwendet werden.")
-            End If
             If ((Not (Me._kurseTableAdapter) Is Nothing)  _
                         AndAlso (Me.MatchTableAdapterConnection(Me._kurseTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("Für alle von einem TableAdapterManager verwalteten Instanzen von TableAdapter mus"& _ 
@@ -35880,8 +31126,8 @@ Namespace CoinTracerDataSetTableAdapters
                 Throw New Global.System.ArgumentException("Für alle von einem TableAdapterManager verwalteten Instanzen von TableAdapter mus"& _ 
                         "s die gleiche Verbindungszeichenfolge verwendet werden.")
             End If
-            If ((Not (Me._out2InTableAdapter) Is Nothing)  _
-                        AndAlso (Me.MatchTableAdapterConnection(Me._out2InTableAdapter.Connection) = false)) Then
+            If ((Not (Me._tradeTxTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._tradeTxTableAdapter.Connection) = false)) Then
                 Throw New Global.System.ArgumentException("Für alle von einem TableAdapterManager verwalteten Instanzen von TableAdapter mus"& _ 
                         "s die gleiche Verbindungszeichenfolge verwendet werden.")
             End If
@@ -35991,15 +31237,6 @@ Namespace CoinTracerDataSetTableAdapters
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._tradeTypenTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._zeitstempelWerteTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._zeitstempelWerteTableAdapter, Me._zeitstempelWerteTableAdapter.Connection)
-                    Me._zeitstempelWerteTableAdapter.Connection = CType(workConnection,Global.System.Data.SQLite.SQLiteConnection)
-                    Me._zeitstempelWerteTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SQLite.SQLiteTransaction)
-                    If Me._zeitstempelWerteTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._zeitstempelWerteTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._zeitstempelWerteTableAdapter.Adapter)
-                    End If
-                End If
                 If (Not (Me._kurseTableAdapter) Is Nothing) Then
                     revertConnections.Add(Me._kurseTableAdapter, Me._kurseTableAdapter.Connection)
                     Me._kurseTableAdapter.Connection = CType(workConnection,Global.System.Data.SQLite.SQLiteConnection)
@@ -36045,13 +31282,13 @@ Namespace CoinTracerDataSetTableAdapters
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._bestaendeTableAdapter.Adapter)
                     End If
                 End If
-                If (Not (Me._out2InTableAdapter) Is Nothing) Then
-                    revertConnections.Add(Me._out2InTableAdapter, Me._out2InTableAdapter.Connection)
-                    Me._out2InTableAdapter.Connection = CType(workConnection,Global.System.Data.SQLite.SQLiteConnection)
-                    Me._out2InTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SQLite.SQLiteTransaction)
-                    If Me._out2InTableAdapter.Adapter.AcceptChangesDuringUpdate Then
-                        Me._out2InTableAdapter.Adapter.AcceptChangesDuringUpdate = false
-                        adaptersWithAcceptChangesDuringUpdate.Add(Me._out2InTableAdapter.Adapter)
+                If (Not (Me._tradeTxTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._tradeTxTableAdapter, Me._tradeTxTableAdapter.Connection)
+                    Me._tradeTxTableAdapter.Connection = CType(workConnection,Global.System.Data.SQLite.SQLiteConnection)
+                    Me._tradeTxTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SQLite.SQLiteTransaction)
+                    If Me._tradeTxTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._tradeTxTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._tradeTxTableAdapter.Adapter)
                     End If
                 End If
                 '
@@ -36146,10 +31383,6 @@ Namespace CoinTracerDataSetTableAdapters
                     Me._tradeTypenTableAdapter.Connection = CType(revertConnections(Me._tradeTypenTableAdapter),Global.System.Data.SQLite.SQLiteConnection)
                     Me._tradeTypenTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._zeitstempelWerteTableAdapter) Is Nothing) Then
-                    Me._zeitstempelWerteTableAdapter.Connection = CType(revertConnections(Me._zeitstempelWerteTableAdapter),Global.System.Data.SQLite.SQLiteConnection)
-                    Me._zeitstempelWerteTableAdapter.Transaction = Nothing
-                End If
                 If (Not (Me._kurseTableAdapter) Is Nothing) Then
                     Me._kurseTableAdapter.Connection = CType(revertConnections(Me._kurseTableAdapter),Global.System.Data.SQLite.SQLiteConnection)
                     Me._kurseTableAdapter.Transaction = Nothing
@@ -36170,9 +31403,9 @@ Namespace CoinTracerDataSetTableAdapters
                     Me._bestaendeTableAdapter.Connection = CType(revertConnections(Me._bestaendeTableAdapter),Global.System.Data.SQLite.SQLiteConnection)
                     Me._bestaendeTableAdapter.Transaction = Nothing
                 End If
-                If (Not (Me._out2InTableAdapter) Is Nothing) Then
-                    Me._out2InTableAdapter.Connection = CType(revertConnections(Me._out2InTableAdapter),Global.System.Data.SQLite.SQLiteConnection)
-                    Me._out2InTableAdapter.Transaction = Nothing
+                If (Not (Me._tradeTxTableAdapter) Is Nothing) Then
+                    Me._tradeTxTableAdapter.Connection = CType(revertConnections(Me._tradeTxTableAdapter),Global.System.Data.SQLite.SQLiteConnection)
+                    Me._tradeTxTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

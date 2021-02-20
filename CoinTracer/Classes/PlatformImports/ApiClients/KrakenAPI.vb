@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -43,7 +43,7 @@ Namespace KrakenClient
         ''' <summary>
         ''' Default pause between two calls in milliseconds
         ''' </summary>
-        Friend Const KRAKEN_API_DEFAULTINTERVAL As Integer = 11000
+        Friend Const KRAKEN_API_DEFAULTINTERVAL As Integer = 5000
 
         Private _url As String
         Private _version As Integer

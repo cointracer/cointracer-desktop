@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -71,6 +71,7 @@ Public NotInheritable Class PlatformManager
         Invalid = -1
         Unknown = 0
         Bank = 1
+        WalletPrivate = 100
         WalletBTC = 101
         WalletLTC = 102
         MultiBit = 103
@@ -91,6 +92,7 @@ Public NotInheritable Class PlatformManager
     ' All valid platforms - keep database ids in sync with enum above!!!
     Private Shared Function GetAllPlatforms() As PlatformDetails()
         Return New PlatformDetails() {
+            New PlatformDetails(100, "Privates Wallet", "WalletOwn", "Privates Wallet", 100, True, False),
             New PlatformDetails(101, "Wallet BTC", "WalletBTC", "Eigenes Wallet für Bitcoin", 101, True, False),
             New PlatformDetails(102, "Wallet LTC", "WalletLTC", "Eigenes Wallet für Litecoin", 102, True, False),
             New PlatformDetails(103, "MultiBit", "MultiBit", "MultiBit-Wallet-Client", 103, True, False),
@@ -221,26 +223,24 @@ Public NotInheritable Class PlatformManager
     ''' </summary>
     Public Shared Sub PlatformsSyncDB(Connection As SQLite.SQLiteConnection)
         Dim PlatformTA As New PlattformenTableAdapter
-        Dim PlatformTB As New PlattformenDataTable
-        PlatformTA.ClearBeforeFill = True
+        Dim PlatformTB As PlattformenDataTable = PlatformTA.GetData
         Try
             For Each Platform As PlatformDetails In GetAllPlatforms()
-                PlatformTA.FillBySQL(PlatformTB, "select * from Plattformen where ID = " & Platform.DbId)
-                If PlatformTB.Rows.Count > 0 Then
-                    If Not PlatformTB.Rows(0)("Code").ToString.ToUpper.Contains(Platform.Code.ToUpper) Then
+                Dim PlatformRow As PlattformenRow = PlatformTB.FindByID(Platform.DbId)
+                If PlatformRow IsNot Nothing Then
+                    If PlatformRow.Code.ToUpper <> Platform.Code.ToUpper Then
                         ' Codes do not match - move old data and insert platform with correct id
                         Dim SQLs(10) As String
                         SQLs(0) = "PRAGMA temp_store = 2"
                         SQLs(1) = "CREATE TEMP TABLE _Variables(OldID INTEGER, NewID INTEGER)"
-                        SQLs(2) = String.Format("INSERT INTO _Variables([OldID]) SELECT ID FROM Plattformen WHERE ID = {0} AND NOT [Code] LIKE '%{1}%'",
-                                                Platform.DbId, Platform.Code)
+                        SQLs(2) = String.Format("INSERT INTO _Variables([OldID]) VALUES({0})", Platform.DbId, Platform.Code)
                         SQLs(3) = "UPDATE _Variables SET NewID = (SELECT MAX([ID]) + 1 FROM Plattformen WHERE ID < 500 AND ID > 201 ORDER BY ID DESC LIMIT 1)"
                         SQLs(4) = "INSERT OR REPLACE INTO Plattformen SELECT [NewID], [Bezeichnung], [Code], [Beschreibung], [SortID], [Fix], [Boerse], [Eigen], [ApiBaseUrl], [IstDown], [DownSeit] FROM Plattformen AS p INNER JOIN _Variables AS v ON p.[ID] = v.[OldID]"
                         SQLs(5) = "UPDATE Importe SET [PlattformID] = (SELECT [NewID] FROM _Variables) WHERE [PlattformID] = (SELECT [OldID] FROM _Variables)"
                         SQLs(6) = "UPDATE Trades SET [QuellPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [QuellPlattformID] = (SELECT [OldID] FROM _Variables)"
                         SQLs(7) = "UPDATE Trades SET [ZielPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [ZielPlattformID] = (SELECT [OldID] FROM _Variables)"
                         SQLs(8) = "UPDATE Trades SET [ImportPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [ImportPlattformID] = (SELECT [OldID] FROM _Variables)"
-                        SQLs(9) = "UPDATE ZeitstempelWerte SET [PlattformID] = (SELECT [NewID] FROM _Variables) WHERE [PlattformID] = (SELECT [OldID] FROM _Variables)"
+                        SQLs(9) = "UPDATE TradeTx SET [PlattformID] = (SELECT [NewID] FROM _Variables) WHERE [PlattformID] = (SELECT [OldID] FROM _Variables)"
                         SQLs(10) = "DROP TABLE _Variables"
                         Dim SqlCmd As New SQLite.SQLiteCommand(Connection)
                         For Each Statement As String In SQLs
@@ -249,7 +249,6 @@ Public NotInheritable Class PlatformManager
                         Next
                         SqlCmd.Dispose()
                         ' Overwrite current entry with correct values
-                        Dim PlatformRow As PlattformenRow = PlatformTB.Rows(0)
                         With PlatformRow
                             .Code = Platform.Code
                             .Bezeichnung = Platform.Name

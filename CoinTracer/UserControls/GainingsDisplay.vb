@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -44,11 +44,11 @@ Public Class GainingsDisplay
     Private _DontRaiseChangedEvent As Boolean = False
 
     Private _ShowPlatformGainings As Boolean
-    <Browsable(True)> _
-    <Description("Legt fest, ob unter dem realisierten Gewinn auch der Gewinn selektierter Börsen dargestellt werden soll.")> _
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
-    <Category("Appearance")> _
-    <DefaultValue(False)> _
+    <Browsable(True)>
+    <Description("Legt fest, ob unter dem realisierten Gewinn auch der Gewinn selektierter Börsen dargestellt werden soll.")>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
+    <Category("Appearance")>
+    <DefaultValue(False)>
     Public Property ShowPlatformGainings() As Boolean
         Get
             Return _ShowPlatformGainings
@@ -172,8 +172,8 @@ Public Class GainingsDisplay
     ''' Liste der Plattform-IDs, nach denen bei der Darstellung des Plattform-Gewinns gefiltert werden soll. 
     ''' Wenn leer, gibt es keine Filterung nach Plattform.
     ''' </summary>
-    ''' <value>Kommaseparierte Liste aller Plattform-IDs, nach denen gefiltert werden soll.</value>
-    Public Property PlatformIDs() As String
+    ''' <value>Kommaseparierte Liste aller Plattform-IDs, nach denen gefiltert werden soll.</value>    Public Property PlatformIDs() As String
+    Public Property PlatformIDs As String
         Get
             Return _PlatformIDs
         End Get
@@ -189,6 +189,18 @@ Public Class GainingsDisplay
             Else
                 _PlatformIDs = ""
             End If
+        End Set
+    End Property
+
+    ''' <summary>
+    ''' Determines if the Changed event is risen in case of changed properties 
+    ''' </summary>
+    Public Property DisableChangedEvent() As Boolean
+        Get
+            Return _DontRaiseChangedEvent
+        End Get
+        Set(ByVal value As Boolean)
+            _DontRaiseChangedEvent = value
         End Set
     End Property
 
@@ -222,7 +234,7 @@ Public Class GainingsDisplay
     ''' </summary>
     ''' <param name="DontRaiseChangedEvent">Gibt an, ob das Changed-Event ausgelöst werden soll. Default: False</param>
     Public Sub Reload(Optional ByRef DontRaiseChangedEvent As Boolean = False)
-        If _TVM IsNot Nothing And _TPCrtl IsNot Nothing Then
+        If _TVM IsNot Nothing AndAlso _TPCrtl IsNot Nothing Then
             Dim TaxableGainings As Decimal
             Dim PlatformGainings As Decimal
             If _ShowPlatformGainings Then

@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -79,10 +79,6 @@ Public Class frmDonate
                             "0x485de87e2f5a27369d86efb722940c9924dcd10d",
                             "0x123973a41ed57fe56cae20beeaf10f9d0355f05b",
                             "0x1de5fc8f7cba126dcb2784893750f6119f0f2e57"}
-            Case "IOT"
-                pcbCointype.Image = My.Resources.coin_logo_iota_28px
-                lblDonate.Text = My.Resources.MyStrings.donateLabelIOT
-                Adressen = {"UWALTFOCKQSHHHOHDZVBGRZFDCVKLHVYUKTSDTVBTWRQXRFICI9HJNEKYPVZGQXQQDAQVPQAYTYRHJFAWTMKOVDFTC"}
             Case Else
                 pcbCointype.Image = My.Resources.coin_logo_btc_28px
                 lblDonate.Text = My.Resources.MyStrings.donateLabelBTC

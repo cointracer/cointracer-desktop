@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -61,7 +61,7 @@ Public Class DBHelper
         Konten
         Plattformen
         Importe
-        ZeitstempelWerte
+        TradeTx
         TradesWerte
         Kalkulationen
         Szenarien
@@ -80,9 +80,7 @@ Public Class DBHelper
         Verlust = 7
         Gebühr = 9
         KaufCoin4Coin = 19
-        TransferBörseBörse = 37
-        TransferWalletBörse = 69
-        TransferBörseWallet = 101
+        TransferIntern = 69
     End Enum
 
     Public Enum Konten  ' this is not meant to be synchronous with the database!
@@ -378,13 +376,13 @@ Public Class DBHelper
         Dim item As Long
         For Each item In items
             If WithoutStaticContent Then
-                If item = TableNames.Importe Or _
-                item = TableNames.Kalkulationen Or _
-                item = TableNames.Trades Or _
-                item = TableNames.ZeitstempelWerte Or _
-                item = TableNames.TradesWerte Or _
-                item = TableNames.Kurse Or _
-                item = TableNames.ApiDaten Or _
+                If item = TableNames.Importe Or
+                item = TableNames.Kalkulationen Or
+                item = TableNames.Trades Or
+                item = TableNames.TradeTx Or
+                item = TableNames.TradesWerte Or
+                item = TableNames.Kurse Or
+                item = TableNames.ApiDaten Or
                 item = TableNames._AnyTable Then
                     Reset_DataAdapter(item)
                 End If

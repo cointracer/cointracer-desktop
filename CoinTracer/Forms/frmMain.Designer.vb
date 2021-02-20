@@ -138,7 +138,7 @@ Partial Class frmMain
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents cbxReportTradeSelection As System.Windows.Forms.ComboBox
-    Friend WithEvents cbxReportGrouping As System.Windows.Forms.ComboBox
+    Friend WithEvents cbxReportTransfers As System.Windows.Forms.ComboBox
 
     'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
     'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
@@ -267,7 +267,7 @@ Partial Class frmMain
         Me.cmdReportExport = New System.Windows.Forms.Button()
         Me.cbxReportTradeSelection = New System.Windows.Forms.ComboBox()
         Me.cmdReloadReport = New System.Windows.Forms.Button()
-        Me.cbxReportGrouping = New System.Windows.Forms.ComboBox()
+        Me.cbxReportTransfers = New System.Windows.Forms.ComboBox()
         Me.grdReport = New System.Windows.Forms.DataGridView()
         Me.Vorgang = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Timestamp = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -323,7 +323,6 @@ Partial Class frmMain
         Me.imlTabs = New System.Windows.Forms.ImageList(Me.components)
         Me.pnlDonate = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.cmdDonateIota = New System.Windows.Forms.Button()
         Me.cmdDonateETH = New System.Windows.Forms.Button()
         Me.cmdDonateBCH = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -448,6 +447,7 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.gnd1stTab, "gnd1stTab")
         Me.gnd1stTab.CutOffDay = New Date(CType(0, Long))
+        Me.gnd1stTab.DisableChangedEvent = False
         Me.gnd1stTab.Gainings = New Decimal(New Integer() {0, 0, 0, 0})
         Me.gnd1stTab.Name = "gnd1stTab"
         Me.gnd1stTab.PlatformGainings = New Decimal(New Integer() {0, 0, 0, 0})
@@ -832,6 +832,7 @@ Partial Class frmMain
         Me.cbxSzenario.DisplayColumnName = Nothing
         Me.cbxSzenario.FormattingEnabled = True
         Me.cbxSzenario.IDColumnName = Nothing
+        Me.cbxSzenario.Initializing = True
         resources.ApplyResources(Me.cbxSzenario, "cbxSzenario")
         Me.cbxSzenario.Name = "cbxSzenario"
         Me.cbxSzenario.SelectSQL = Nothing
@@ -930,6 +931,7 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.gnd2ndTab, "gnd2ndTab")
         Me.gnd2ndTab.CutOffDay = New Date(CType(0, Long))
+        Me.gnd2ndTab.DisableChangedEvent = False
         Me.gnd2ndTab.Gainings = New Decimal(New Integer() {0, 0, 0, 0})
         Me.gnd2ndTab.Name = "gnd2ndTab"
         Me.gnd2ndTab.PlatformGainings = New Decimal(New Integer() {0, 0, 0, 0})
@@ -1037,7 +1039,7 @@ Partial Class frmMain
         Me.tabReports.Controls.Add(Me.cmdReportExport)
         Me.tabReports.Controls.Add(Me.cbxReportTradeSelection)
         Me.tabReports.Controls.Add(Me.cmdReloadReport)
-        Me.tabReports.Controls.Add(Me.cbxReportGrouping)
+        Me.tabReports.Controls.Add(Me.cbxReportTransfers)
         Me.tabReports.Controls.Add(Me.grdReport)
         Me.tabReports.Controls.Add(Me.ccbReportPlatforms)
         Me.tabReports.Controls.Add(Me.gnd3rdTab)
@@ -1129,13 +1131,13 @@ Partial Class frmMain
         Me.cmdReloadReport.Name = "cmdReloadReport"
         Me.cmdReloadReport.UseVisualStyleBackColor = True
         '
-        'cbxReportGrouping
+        'cbxReportTransfers
         '
-        Me.cbxReportGrouping.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        resources.ApplyResources(Me.cbxReportGrouping, "cbxReportGrouping")
-        Me.cbxReportGrouping.FormattingEnabled = True
-        Me.cbxReportGrouping.Items.AddRange(New Object() {resources.GetString("cbxReportGrouping.Items"), resources.GetString("cbxReportGrouping.Items1")})
-        Me.cbxReportGrouping.Name = "cbxReportGrouping"
+        Me.cbxReportTransfers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxReportTransfers.FormattingEnabled = True
+        Me.cbxReportTransfers.Items.AddRange(New Object() {resources.GetString("cbxReportTransfers.Items"), resources.GetString("cbxReportTransfers.Items1"), resources.GetString("cbxReportTransfers.Items2")})
+        resources.ApplyResources(Me.cbxReportTransfers, "cbxReportTransfers")
+        Me.cbxReportTransfers.Name = "cbxReportTransfers"
         '
         'grdReport
         '
@@ -1143,11 +1145,12 @@ Partial Class frmMain
         Me.grdReport.AllowUserToDeleteRows = False
         Me.grdReport.AllowUserToOrderColumns = True
         resources.ApplyResources(Me.grdReport, "grdReport")
-        Me.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.grdReport.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Vorgang, Me.Timestamp, Me.Art, Me.Plattform, Me.TypeCoins, Me.AmountCoins, Me.PriceUSD, Me.Total, Me.Gesamt_EUR, Me.Kurs_EUR, Me.Kaufvorgang, Me.Kaufdatum, Me.CoinAnteil, Me.OrgPriceEUR, Me.KaufkursEUR, Me.VerkaufspreisEUR, Me.Gaining, Me.TaxFree})
         Me.grdReport.Name = "grdReport"
         Me.grdReport.ReadOnly = True
         Me.grdReport.RowHeadersVisible = False
+        Me.grdReport.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.grdReport.ShowCellErrors = False
         '
         'Vorgang
@@ -1343,6 +1346,7 @@ Partial Class frmMain
         Me.ccbReportPlatforms.FormattingEnabled = True
         Me.ccbReportPlatforms.IDColumnName = Nothing
         Me.ccbReportPlatforms.Name = "ccbReportPlatforms"
+        Me.ccbReportPlatforms.ReturnEmptyOnAllSelected = True
         Me.ccbReportPlatforms.SelectSQL = Nothing
         Me.ccbReportPlatforms.ValueSeparator = ", "
         '
@@ -1350,6 +1354,7 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.gnd3rdTab, "gnd3rdTab")
         Me.gnd3rdTab.CutOffDay = New Date(CType(0, Long))
+        Me.gnd3rdTab.DisableChangedEvent = False
         Me.gnd3rdTab.Gainings = New Decimal(New Integer() {0, 0, 0, 0})
         Me.gnd3rdTab.Name = "gnd3rdTab"
         Me.gnd3rdTab.PlatformGainings = New Decimal(New Integer() {0, 0, 0, 0})
@@ -1656,7 +1661,6 @@ Partial Class frmMain
         'GroupBox2
         '
         resources.ApplyResources(Me.GroupBox2, "GroupBox2")
-        Me.GroupBox2.Controls.Add(Me.cmdDonateIota)
         Me.GroupBox2.Controls.Add(Me.cmdDonateETH)
         Me.GroupBox2.Controls.Add(Me.cmdDonateBCH)
         Me.GroupBox2.Controls.Add(Me.Label10)
@@ -1665,15 +1669,6 @@ Partial Class frmMain
         Me.GroupBox2.Controls.Add(Me.lblDonate)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.TabStop = False
-        '
-        'cmdDonateIota
-        '
-        resources.ApplyResources(Me.cmdDonateIota, "cmdDonateIota")
-        Me.cmdDonateIota.Image = Global.CoinTracer.My.Resources.Resources.coin_logo_iota_28px
-        Me.cmdDonateIota.Name = "cmdDonateIota"
-        Me.cmdDonateIota.Tag = "IOT"
-        Me.EnhancedToolTip1.SetToolTip(Me.cmdDonateIota, resources.GetString("cmdDonateIota.ToolTip"))
-        Me.cmdDonateIota.UseVisualStyleBackColor = True
         '
         'cmdDonateETH
         '
@@ -1963,7 +1958,6 @@ Partial Class frmMain
     Friend WithEvents tsmiEraseCalculation As ToolStripMenuItem
     Friend WithEvents tsmiViewCalculations As ToolStripMenuItem
     Friend WithEvents NewDBToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents cmdDonateIota As Button
     Friend WithEvents Vorgang As DataGridViewTextBoxColumn
     Friend WithEvents Timestamp As DataGridViewTextBoxColumn
     Friend WithEvents Art As DataGridViewAutoFilterTextBoxColumn

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
  **************************************
  *
- * Copyright 2013-2019 Andreas Nebinger
+ * Copyright 2013-2021 Andreas Nebinger
  *
  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
    Folgeversionen der EUPL ("Lizenz");
@@ -1110,12 +1110,14 @@ Wenn das passiert, dann warten Sie bitte einfach eine Zeit lang (mindestens eine
     <value>Bitte beachten Sie auch, dass sich diese Software noch im Entwicklungsstadium befindet. Sie wurde zwar nach bestem Wissen und Gewissen entwickelt, aber dennoch: Fehler können nicht ausgeschlossen werden - sie sind im Gegenteil sogar wahrscheinlich. Sie verwenden diese Software auf eigenes Risiko, für finanzielle und sonstige Schäden, die sich aus dem Gebrauch ergeben, kann der Autor keine Haftung übernehmen. Darüber hinaus wird der {0} so wie er ist kostenfrei zur Verfügung gestellt. Ein Anspruch auf Fehlerkorrekturen, Gewährleistung oder Weiterentwicklung ist nicht gegeben.</value>
   </data>
   <data name="disclaimerTaxingUnclear" xml:space="preserve">
-    <value>Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (April 2019) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungsmöglichkeiten und Berechnungsverfahren - zunächst einmal unabhängig davon, ob diese zu einem zukünftigen Zeitpunkt als zulässig oder unzulässig erklärt werden!
+    <value>Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (Februar 2021) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungsmöglichkeiten und Berechnungsverfahren - zunächst einmal unabhängig davon, ob diese zu einem zukünftigen Zeitpunkt als zulässig oder unzulässig erklärt werden!
 
 Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ihren Steuerberater! {0} ist als private Initiative des Autors mit dem Zweck entstanden, tabellarische Zusammenstellungen von Handelsaktivitäten einfach und  automatisiert erzeugen zu können. Die Applikation ist keine geprüfte Steuersoftware!</value>
   </data>
   <data name="disclaimerNoWarranty" xml:space="preserve">
     <value>Achtung: Keine Gewähr!</value>
   </data>
-
+  <data name="dbUpdateMsgReportReset" xml:space="preserve">
+    <value>Achtung: Aufgrund einer notwendigen Änderung an der Datenstruktur wurden alle Gewinnberechnungen zurückgesetzt. Sie können diese im Reiter 'Berechnungen' aber problemlos erneut durchführen.</value>
+  </data>
 </root>

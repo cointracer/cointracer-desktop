@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -116,8 +116,6 @@ Public Class DBInit
 
     ' *** Differenzielle SQL-Schema-Update-Anweisungen für diese Anwendungsversion ***
     Private SqlUpdateCommands() As SqlUpdateSequenceStruct = {
-        New SqlUpdateSequenceStruct(2, "alter table Zeitstempelwerte add column [Kaufdatum] DATE  NULL"),
-        New SqlUpdateSequenceStruct(2, "update Zeitstempelwerte set Kaufdatum = date(Zeitpunkt)"),
         New SqlUpdateSequenceStruct(3, "drop table if exists [Kurse]"),
         New SqlUpdateSequenceStruct(3, "drop INDEX if exists [IDX_Kurse_ZeitpunktKonten]"),
         New SqlUpdateSequenceStruct(3, "CREATE TABLE [Kurse] ( " & NewLine &
@@ -167,36 +165,6 @@ Public Class DBInit
                                        "[Zeitpunkt]  ASC, " & NewLine &
                                        "[Entwertet]  ASC, " & NewLine &
                                        "[Steuerirrelevant]  ASC)"),
-        New SqlUpdateSequenceStruct(6, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(6, "CREATE VIEW [VW_GainingsReport] AS " & NewLine &
-                                       "select " & NewLine &
-                                       "t.Zeitpunkt Zeitpunkt, " & NewLine &
-                                       "tt.Bezeichnung Art, " & NewLine &
-                                       "case t.TradeTypID when 5 then qp.Bezeichnung || '->' || zp.Bezeichnung else qp.Bezeichnung end Plattform, " & NewLine &
-                                       "case when t.TradeTypID = 3 then round(t.BetragNachGebuehr, 8) when t.TradeTypID in (4, 5) then round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) end [Menge Coins], " & NewLine &
-                                       "case t.TradeTypID when 3 then zk.Bezeichnung when 4 then qk.Bezeichnung when 5 then qk.Bezeichnung end [Art Coins], " & NewLine &
-                                       "case when t.TradeTypID = 3 then round(sum(t.WertEUR), 2) when t.TradeTypID in (4, 5) then round(coalesce(sum(v.Betrag)/t.QuellBetrag * t.WertEUR, 0), 2) end [Preis EUR], " & NewLine &
-                                       "case when t.TradeTypID = 3 then date(t.Zeitpunkt) when t.TradeTypID in (4, 5) then coalesce(date(v.Kaufdatum), date(t.Zeitpunkt)) end [Kaufdatum Coins], " & NewLine &
-                                       "case t.TradeTypID when 4 then cast(round(sum(v.Betrag)/t.QuellBetrag * t.WertEUR - sum(v.WertEUR), 2) as NUMERIC) else '-' end [Gewinn EUR], " & NewLine &
-                                       "case when t.TradeTypID = 4 and date(v.Kaufdatum, '+1 year') <= date(t.Zeitpunkt) then 0 else 1 end Steuer " & NewLine &
-                                       "from Trades t " & NewLine &
-                                       "inner join TradeTypen tt on t.TradeTypID = tt.ID " & NewLine &
-                                       "inner join Plattformen qp on t.QuellPlattformID = qp.ID " & NewLine &
-                                       "inner join Plattformen zp on t.ZielPlattformID = zp.ID " & NewLine &
-                                       "inner join Konten qk on t.QuellKontoID = qk.ID " & NewLine &
-                                       "inner join Konten zk on t.ZielKontoID = zk.ID " & NewLine &
-                                       "left join ZeitstempelWerte v on v.OutTradeID = t.ID " & NewLine &
-                                       "where (t.TradeTypID in (3, 4) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 " & NewLine &
-                                       "group by t.ID, date(v.Kaufdatum) " & NewLine &
-                                       "order by t.Zeitpunkt, t.TradeTypID"),
-        New SqlUpdateSequenceStruct(6, "drop view if exists VW_GainingsReportDaily"),
-        New SqlUpdateSequenceStruct(6, "CREATE VIEW [VW_GainingsReportDaily] AS " & NewLine &
-                                       "select date(t.Zeitpunkt) Zeitpunkt, Art, Plattform, sum([Menge Coins]) [Menge Coins], " & NewLine &
-                                       "[Art Coins], sum([Preis EUR]) [Preis EUR], [Kaufdatum Coins], " & NewLine &
-                                       "case Art when 'Verkauf' then sum(t.[Gewinn EUR]) else '-' end [Gewinn EUR], Steuer " & NewLine &
-                                       "from VW_GainingsReport t where 1 " & NewLine &
-                                       "group by date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins] " & NewLine &
-                                       "order by date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]"),
         New SqlUpdateSequenceStruct(6, "drop view if exists VW_Trades"),
         New SqlUpdateSequenceStruct(6, "CREATE VIEW [VW_Trades] AS " & NewLine &
                                        "select " & NewLine &
@@ -268,60 +236,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(6, "delete from [Szenarien] where ID=0"),
         New SqlUpdateSequenceStruct(6, "INSERT INTO [Szenarien] VALUES (0,'Standard','2,2,2,1|2,2,2,1|2,2,2,1|2,2,2,1|2,2,2,1|2,2,2,1')"),
         New SqlUpdateSequenceStruct(6, "UPDATE Plattformen SET Fix=1 WHERE ID IN (0,900)"),
-        New SqlUpdateSequenceStruct(7, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(7, "CREATE VIEW [VW_GainingsReport] AS " & NewLine &
-                                       "select " & NewLine &
-                                       "v.SzenarioID SzenarioID," & NewLine &
-                                       "t.Zeitpunkt Zeitpunkt," & NewLine &
-                                       "tt.Bezeichnung Art, " & NewLine &
-                                       "case t.TradeTypID when 5 then qp.Bezeichnung || '->' || zp.Bezeichnung else qp.Bezeichnung end Plattform, " & NewLine &
-                                       "round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) [Menge Coins], " & NewLine &
-                                       "case t.TradeTypID when 3 then zk.Bezeichnung when 4 then qk.Bezeichnung when 5 then qk.Bezeichnung end [Art Coins], " & NewLine &
-                                       "case when t.TradeTypID = 3 then round(sum(t.WertEUR), 2) when t.TradeTypID in (4, 5) then round(coalesce(sum(v.Betrag)/t.QuellBetrag * t.WertEUR, 0), 2) end [Preis EUR], " & NewLine &
-                                       "coalesce(date(v.Kaufdatum), date(t.Zeitpunkt)) [Kaufdatum Coins]," & NewLine &
-                                       "case t.TradeTypID when 4 then cast(round(sum(v.Betrag)/t.QuellBetrag * t.WertEUR - sum(v.WertEUR), 2) as NUMERIC) else '-' end [Gewinn EUR], " & NewLine &
-                                       "case when t.TradeTypID = 4 and date(v.Kaufdatum, '+1 year') <= date(t.Zeitpunkt) then 0 else 1 end Steuer " & NewLine &
-                                       "from Trades t " & NewLine &
-                                       "inner join TradeTypen tt on t.TradeTypID = tt.ID " & NewLine &
-                                       "inner join Plattformen qp on t.QuellPlattformID = qp.ID " & NewLine &
-                                       "inner join Plattformen zp on t.ZielPlattformID = zp.ID " & NewLine &
-                                       "inner join Konten qk on t.QuellKontoID = qk.ID " & NewLine &
-                                       "inner join Konten zk on t.ZielKontoID = zk.ID " & NewLine &
-                                       "inner join ZeitstempelWerte v on (v.OutTradeID = t.ID or (v.InTradeID = t.ID and t.TradeTypID = 3))" & NewLine &
-                                       "where (t.TradeTypID in (3, 4) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 and (qp.Eigen=1 or zp.Eigen=1)" & NewLine &
-                                       "group by v.SzenarioID, t.ID, date(v.Kaufdatum) " & NewLine &
-                                       "order by v.SzenarioID, t.Zeitpunkt, t.TradeTypID"),
-        New SqlUpdateSequenceStruct(7, "drop view if exists VW_GainingsReportDaily"),
-        New SqlUpdateSequenceStruct(7, "CREATE VIEW [VW_GainingsReportDaily] AS" & NewLine &
-                                       "select SzenarioID, date(t.Zeitpunkt) Zeitpunkt, Art, Plattform, sum([Menge Coins]) [Menge Coins]," & NewLine &
-                                       "[Art Coins], sum([Preis EUR]) [Preis EUR], [Kaufdatum Coins], " & NewLine &
-                                       "case Art when 'Verkauf' then sum(t.[Gewinn EUR]) else '-' end [Gewinn EUR], Steuer " & NewLine &
-                                       "from VW_GainingsReport t where 1" & NewLine &
-                                       "group by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]" & NewLine &
-                                       "order by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]"),
-        New SqlUpdateSequenceStruct(8, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(8, "CREATE VIEW [VW_GainingsReport] AS " & NewLine &
-                                       "select " & NewLine &
-                                       "v.SzenarioID SzenarioID," & NewLine &
-                                       "t.Zeitpunkt Zeitpunkt," & NewLine &
-                                       "tt.Bezeichnung Art, " & NewLine &
-                                       "case t.TradeTypID when 5 then qp.Bezeichnung || '->' || zp.Bezeichnung else qp.Bezeichnung end Plattform, " & NewLine &
-                                       "round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) [Menge Coins], " & NewLine &
-                                       "case t.TradeTypID when 3 then zk.Bezeichnung when 4 then qk.Bezeichnung when 5 then qk.Bezeichnung end [Art Coins], " & NewLine &
-                                       "case when t.TradeTypID = 3 then round(sum(t.WertEUR), 2) when t.TradeTypID in (4, 5) then round(coalesce(sum(v.Betrag)/t.QuellBetrag * t.WertEUR, 0), 2) end [Preis EUR], " & NewLine &
-                                       "coalesce(date(v.Kaufdatum), date(t.Zeitpunkt)) [Kaufdatum Coins]," & NewLine &
-                                       "case t.TradeTypID when 4 then cast(round(sum(v.Betrag)/t.QuellBetrag * t.WertEUR - sum(v.WertEUR), 2) as NUMERIC) else '-' end [Gewinn EUR], " & NewLine &
-                                       "case when t.TradeTypID = 4 and date(v.Kaufdatum, '+1 year') <= date(t.Zeitpunkt) then 0 else 1 end Steuer " & NewLine &
-                                       "from Trades t " & NewLine &
-                                       "inner join TradeTypen tt on t.TradeTypID = tt.ID " & NewLine &
-                                       "inner join Plattformen qp on t.QuellPlattformID = qp.ID " & NewLine &
-                                       "inner join Plattformen zp on t.ZielPlattformID = zp.ID " & NewLine &
-                                       "inner join Konten qk on t.QuellKontoID = qk.ID " & NewLine &
-                                       "inner join Konten zk on t.ZielKontoID = zk.ID " & NewLine &
-                                       "inner join ZeitstempelWerte v on (v.OutTradeID = t.ID or (v.InTradeID = t.ID and t.TradeTypID in (3, 5)))" & NewLine &
-                                       "where (t.TradeTypID in (3, 4) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 and (qp.Eigen=1 or zp.Eigen=1)" & NewLine &
-                                       "group by v.SzenarioID, t.ID, date(v.Kaufdatum) " & NewLine &
-                                       "order by v.SzenarioID, t.Zeitpunkt, t.TradeTypID"),
         New SqlUpdateSequenceStruct(9, "DELETE FROM [Plattformen] WHERE ID = 206"),
         New SqlUpdateSequenceStruct(9, "INSERT INTO [Plattformen] VALUES(206,'Kraken.com','Kraken','Kraken.com',206,1,1,1);"),
         New SqlUpdateSequenceStruct(9, "ALTER TABLE [Trades] ADD COLUMN [QuellBetragNachGebuehr] NUMERIC  NULL"),
@@ -389,110 +303,16 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(10, "CREATE INDEX [IDX_TradesWerte_TradeSzenario] ON [TradesWerte] ( " & NewLine &
                                         "[TradeID]  ASC," & NewLine &
                                         "[SzenarioID]  ASC)"),
-        New SqlUpdateSequenceStruct(10, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(10, "CREATE VIEW [VW_GainingsReport] AS " & NewLine &
-                                        "select " & NewLine &
-                                        "v.SzenarioID SzenarioID," & NewLine &
-                                        "t.Zeitpunkt Zeitpunkt," & NewLine &
-                                        "tt.Bezeichnung Art," & NewLine &
-                                        "case t.TradeTypID when 5 then qp.Bezeichnung || '->' || zp.Bezeichnung else qp.Bezeichnung end Plattform, " & NewLine &
-                                        "round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) [Menge Coins]," & NewLine &
-                                        "case t.TradeTypID when 3 then zk.Bezeichnung when 4 then qk.Bezeichnung when 5 then qk.Bezeichnung end [Art Coins]," & NewLine &
-                                        "case t.TradeTypID when 3 then round(sum(vt.WertEUR), 2) when 4 then round(sum(v.Betrag)/t.QuellBetrag * sum(vt.WertEUR)/count(distinct v.ID), 2) when 5 then '-' end [Preis EUR]," & NewLine &
-                                        "coalesce(date(v.Kaufdatum), date(t.Zeitpunkt)) [Kaufdatum Coins]," & NewLine &
-                                        "round(sum(v.WertEUR), 2) [Kaufpreis EUR]," & NewLine &
-                                        "case t.TradeTypID when 4 then cast(round(sum(v.Betrag)/t.QuellBetrag * sum(vt.WertEUR)/count(distinct v.ID) - sum(v.WertEUR), 2) as NUMERIC) else '-' end [Gewinn EUR]," & NewLine &
-                                        "case when t.TradeTypID = 4 and date(v.Kaufdatum, '+1 year') <= date(t.Zeitpunkt) then 0 else 1 end Steuer" & NewLine &
-                                        "from Trades t " & NewLine &
-                                        "inner join TradeTypen tt on t.TradeTypID = tt.ID " & NewLine &
-                                        "inner join Plattformen qp on t.QuellPlattformID = qp.ID " & NewLine &
-                                        "inner join Plattformen zp on t.ZielPlattformID = zp.ID " & NewLine &
-                                        "inner join Konten qk on t.QuellKontoID = qk.ID " & NewLine &
-                                        "inner join Konten zk on t.ZielKontoID = zk.ID " & NewLine &
-                                        "inner join ZeitstempelWerte v on ((v.OutTradeID = t.ID and t.TradeTypID in (4,5)) or (v.InTradeID = t.ID and t.TradeTypID in (3)))" & NewLine &
-                                        "left join TradesWerte vt on (vt.TradeID = t.ID and v.SzenarioID = vt.SzenarioID)" & NewLine &
-                                        "where (t.TradeTypID in (3, 4) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 and (qp.Eigen=1 or zp.Eigen=1)" & NewLine &
-                                        "group by v.SzenarioID, t.ID, date(v.Kaufdatum)" & NewLine &
-                                        "order by v.SzenarioID, t.Zeitpunkt, t.TradeTypID, date(v.Kaufdatum)"),
-        New SqlUpdateSequenceStruct(10, "drop view if exists VW_GainingsReportDaily"),
-        New SqlUpdateSequenceStruct(10, "CREATE VIEW [VW_GainingsReportDaily] AS" & NewLine &
-                                        "select SzenarioID, date(t.Zeitpunkt) Zeitpunkt, Art, Plattform, sum([Menge Coins]) [Menge Coins]," & NewLine &
-                                        "[Art Coins], sum([Preis EUR]) [Preis EUR], [Kaufdatum Coins], sum([Kaufpreis EUR]) [Kaufpreis EUR]," & NewLine &
-                                        "case Art when 'Verkauf' then sum(t.[Gewinn EUR]) else '-' end [Gewinn EUR], Steuer" & NewLine &
-                                        "from VW_GainingsReport t where 1" & NewLine &
-                                        "group by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]" & NewLine &
-                                        "order by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]"),
         New SqlUpdateSequenceStruct(10, "update Trades set WertEUR = 0 where ID in (" &
                                         "select t.ID from Trades t " &
                                         "inner join Konten qk on t.QuellKontoID = qk.ID " &
                                         "where t.TradeTypID in (3,5) " &
                                         "and qk.IstFiat = 0)"),
-        New SqlUpdateSequenceStruct(10, "delete from Kalkulationen"),
-        New SqlUpdateSequenceStruct(10, "delete from ZeitstempelWerte",
+        New SqlUpdateSequenceStruct(10, "delete from Kalkulationen",
                                     "Bitte beachten Sie, dass aufgrund einer notwendigen Datenstruktur-Änderung alle Gewinnberechnungen zurückgesetzt wurden. " &
                                     "Sie können diese im Reiter 'Berechnungen' aber problemlos erneut durchführen."),
         New SqlUpdateSequenceStruct(11, , , , True),
         New SqlUpdateSequenceStruct(12, , , , True),
-        New SqlUpdateSequenceStruct(13, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(13, "CREATE VIEW [VW_GainingsReport] AS " & NewLine &
-                                        "select " & NewLine &
-                                        "v.SzenarioID SzenarioID," & NewLine &
-                                        "t.Zeitpunkt Zeitpunkt," & NewLine &
-                                        "tt.Bezeichnung Art," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 5 then qp.Bezeichnung || '->' || zp.Bezeichnung" & NewLine &
-                                        "   else qp.Bezeichnung end Plattform," & NewLine &
-                                        "round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) [Menge Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then zk.Bezeichnung" & NewLine &
-                                        "   when 4 then qk.Bezeichnung" & NewLine &
-                                        "   else qk.Bezeichnung end [Art Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then case t.QuellKontoID when 102 then round(sum(t.QuellBetrag), 2) else '-' end" & NewLine &
-                                        "   when 4 then case t.ZielKontoID when 102 then round(sum(v.Betrag)/t.QuellBetrag * sum(t.ZielBetrag)/count(distinct v.ID), 2) else '-' end" & NewLine &
-                                        "   else '-' end [Preis USD]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then round(sum(vt.WertEUR), 2)" & NewLine &
-                                        "   when 4 then round(sum(v.Betrag)/t.QuellBetrag * sum(vt.WertEUR)/count(distinct v.ID), 2)" & NewLine &
-                                        "   else '-' end [Preis EUR]," & NewLine &
-                                        "coalesce(date(v.Kaufdatum), date(t.Zeitpunkt)) [Kaufdatum Coins]," & NewLine &
-                                        "round(sum(v.WertEUR), 2) [Kaufpreis EUR]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 4 then cast(round(sum(v.Betrag)/t.QuellBetrag * sum(vt.WertEUR)/count(distinct v.ID) - sum(v.WertEUR), 2) as NUMERIC)" & NewLine &
-                                        "   else '-' end [Gewinn EUR]," & NewLine &
-                                        "case when t.TradeTypID = 4 and date(v.Kaufdatum, '+1 year') <= date(t.Zeitpunkt) then 0 else 1 end Steuer" & NewLine &
-                                        "from Trades t" & NewLine &
-                                        "inner join TradeTypen tt on t.TradeTypID = tt.ID" & NewLine &
-                                        "inner join Plattformen qp on t.QuellPlattformID = qp.ID" & NewLine &
-                                        "inner join Plattformen zp on t.ZielPlattformID = zp.ID" & NewLine &
-                                        "inner join Konten qk on t.QuellKontoID = qk.ID" & NewLine &
-                                        "inner join Konten zk on t.ZielKontoID = zk.ID" & NewLine &
-                                        "inner join ZeitstempelWerte v on ((v.OutTradeID = t.ID and t.TradeTypID in (4,5)) or (v.InTradeID = t.ID and t.TradeTypID in (3)))" & NewLine &
-                                        "left join TradesWerte vt on (vt.TradeID = t.ID and v.SzenarioID = vt.SzenarioID)" & NewLine &
-                                        "where (t.TradeTypID in (3, 4) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 and (qp.Eigen=1 or zp.Eigen=1)" & NewLine &
-                                        "group by v.SzenarioID, t.ID, date(v.Kaufdatum)" & NewLine &
-                                        "order by v.SzenarioID, t.Zeitpunkt, t.TradeTypID, date(v.Kaufdatum)"),
-        New SqlUpdateSequenceStruct(13, "drop view if exists VW_GainingsReportDaily"),
-        New SqlUpdateSequenceStruct(13, "CREATE VIEW [VW_GainingsReportDaily] AS" & NewLine &
-                                        "select SzenarioID," & NewLine &
-                                        "date(t.Zeitpunkt) Zeitpunkt," & NewLine &
-                                        "Art," & NewLine &
-                                        "Plattform," & NewLine &
-                                        "sum([Menge Coins]) [Menge Coins]," & NewLine &
-                                        "[Art Coins]," & NewLine &
-                                        "case max([Preis USD])" & NewLine &
-                                        "   when '-' then '-'" & NewLine &
-                                        "   else sum([Preis USD]) end [Preis USD]," & NewLine &
-                                        "sum([Preis EUR]) [Preis EUR]," & NewLine &
-                                        "[Kaufdatum Coins]," & NewLine &
-                                        "sum([Kaufpreis EUR]) [Kaufpreis EUR]," & NewLine &
-                                        "case Art" & NewLine &
-                                        "   when 'Verkauf' then sum(t.[Gewinn EUR])" & NewLine &
-                                        "   else '-' end [Gewinn EUR]," & NewLine &
-                                        "Steuer" & NewLine &
-                                        "from VW_GainingsReport t where 1" & NewLine &
-                                        "group by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]" & NewLine &
-                                        "order by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]"),
         New SqlUpdateSequenceStruct(14, "drop view if exists VW_Kurse"),
         New SqlUpdateSequenceStruct(14, "CREATE VIEW [VW_Kurse] AS" & NewLine &
                                         "select k.ID ID," & NewLine &
@@ -525,84 +345,6 @@ Public Class DBInit
                                     "importiert haben, so sollten Sie diese Importe sicherheitshalber wieder zurücksetzen. Andernfalls kann es zu " &
                                     "doppelt importierten Trades kommen."),
         New SqlUpdateSequenceStruct(16, "INSERT INTO [Plattformen] VALUES(103,'MultiBit','MultiBit','MultiBit-Wallet-Client',103,1,0,1,NULL);"),
-        New SqlUpdateSequenceStruct(17, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(17, "CREATE VIEW [VW_GainingsReport] AS " & NewLine &
-                                        "select " & NewLine &
-                                        "v.SzenarioID SzenarioID," & NewLine &
-                                        "t.Zeitpunkt Zeitpunkt," & NewLine &
-                                        "tt.Bezeichnung Art," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 5 then qp.Bezeichnung || '->' || zp.Bezeichnung" & NewLine &
-                                        "   else qp.Bezeichnung end Plattform," & NewLine &
-                                        "round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) [Menge Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then zk.Bezeichnung" & NewLine &
-                                        "   when 4 then qk.Bezeichnung" & NewLine &
-                                        "   else qk.Bezeichnung end [Art Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then case t.QuellKontoID when 102 then round(sum(t.QuellBetrag), 2) else '-' end" & NewLine &
-                                        "   when 4 then case t.ZielKontoID when 102 then round(sum(v.Betrag)/t.QuellBetrag * sum(t.ZielBetrag)/count(distinct v.ID), 2) else '-' end" & NewLine &
-                                        "   else '-' end [Preis USD]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then round(sum(vt.WertEUR), 2)" & NewLine &
-                                        "   when 4 then round(sum(v.Betrag)/t.QuellBetrag * sum(vt.WertEUR)/count(distinct v.ID), 2)" & NewLine &
-                                        "   else '-' end [Preis EUR]," & NewLine &
-                                        "coalesce(date(v.Kaufdatum), date(t.Zeitpunkt)) [Kaufdatum Coins]," & NewLine &
-                                        "round(sum(v.WertEUR), 2) [Kaufpreis EUR]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 4 then cast(round(sum(v.Betrag)/t.QuellBetrag * sum(vt.WertEUR)/count(distinct v.ID) - sum(v.WertEUR), 2) as NUMERIC)" & NewLine &
-                                        "   else '-' end [Gewinn EUR]," & NewLine &
-                                        "case when t.TradeTypID = 4 and date(v.Kaufdatum, '+1 year') <= date(t.Zeitpunkt) then 0 else 1 end Steuer" & NewLine &
-                                        "from Trades t" & NewLine &
-                                        "inner join TradeTypen tt on t.TradeTypID = tt.ID" & NewLine &
-                                        "inner join Plattformen qp on t.QuellPlattformID = qp.ID" & NewLine &
-                                        "inner join Plattformen zp on t.ZielPlattformID = zp.ID" & NewLine &
-                                        "inner join Konten qk on t.QuellKontoID = qk.ID" & NewLine &
-                                        "inner join Konten zk on t.ZielKontoID = zk.ID" & NewLine &
-                                        "inner join ZeitstempelWerte v on ((v.OutTradeID = t.ID and t.TradeTypID in (4,5)) or (v.InTradeID = t.ID and t.TradeTypID in (3,5)))" & NewLine &
-                                        "left join TradesWerte vt on (vt.TradeID = t.ID and v.SzenarioID = vt.SzenarioID)" & NewLine &
-                                        "where (t.TradeTypID in (3, 4) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 and (qp.Eigen=1 or zp.Eigen=1)" & NewLine &
-                                        "group by v.SzenarioID, t.ID, date(v.Kaufdatum)" & NewLine &
-                                        "order by v.SzenarioID, t.Zeitpunkt, t.TradeTypID, date(v.Kaufdatum)"),
-        New SqlUpdateSequenceStruct(18, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(18, "CREATE VIEW [VW_GainingsReport] AS " & NewLine &
-                                        "select " & NewLine &
-                                        "v.SzenarioID SzenarioID," & NewLine &
-                                        "t.Zeitpunkt Zeitpunkt," & NewLine &
-                                        "tt.Bezeichnung Art," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 5 then qp.Bezeichnung || '->' || zp.Bezeichnung" & NewLine &
-                                        "   else qp.Bezeichnung end Plattform," & NewLine &
-                                        "round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) [Menge Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then zk.Bezeichnung" & NewLine &
-                                        "   when 4 then qk.Bezeichnung" & NewLine &
-                                        "   else qk.Bezeichnung end [Art Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then case t.QuellKontoID when 102 then round(sum(t.QuellBetrag), 2) else '-' end" & NewLine &
-                                        "   when 4 then case t.ZielKontoID when 102 then round(sum(v.Betrag)/t.QuellBetrag * sum(t.ZielBetrag)/count(distinct v.ID), 2) else '-' end" & NewLine &
-                                        "   else '-' end [Preis USD]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then round(sum(vt.WertEUR), 2)" & NewLine &
-                                        "   when 4 then round(sum(v.Betrag)/t.QuellBetrag * sum(vt.WertEUR)/count(distinct v.ID), 2)" & NewLine &
-                                        "   else '-' end [Preis EUR]," & NewLine &
-                                        "coalesce(date(v.Kaufdatum), date(t.Zeitpunkt)) [Kaufdatum Coins]," & NewLine &
-                                        "round(sum(v.WertEUR), 2) [Kaufpreis EUR]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 4 then cast(round(sum(v.Betrag)/t.QuellBetrag * sum(vt.WertEUR)/count(distinct v.ID) - sum(v.WertEUR), 2) as NUMERIC)" & NewLine &
-                                        "   else '-' end [Gewinn EUR]," & NewLine &
-                                        "case when t.TradeTypID = 4 and date(v.Kaufdatum, '+1 year') <= date(t.Zeitpunkt) then 0 else 1 end Steuer" & NewLine &
-                                        "from Trades t" & NewLine &
-                                        "inner join TradeTypen tt on t.TradeTypID = tt.ID" & NewLine &
-                                        "inner join Plattformen qp on t.QuellPlattformID = qp.ID" & NewLine &
-                                        "inner join Plattformen zp on t.ZielPlattformID = zp.ID" & NewLine &
-                                        "inner join Konten qk on t.QuellKontoID = qk.ID" & NewLine &
-                                        "inner join Konten zk on t.ZielKontoID = zk.ID" & NewLine &
-                                        "inner join ZeitstempelWerte v on ((v.OutTradeID = t.ID and t.TradeTypID in (4,5)) or (v.InTradeID = t.ID and (t.TradeTypID = 3 or (t.TradeTypID = 5 and not qp.Eigen))))" & NewLine &
-                                        "left join TradesWerte vt on (vt.TradeID = t.ID and v.SzenarioID = vt.SzenarioID)" & NewLine &
-                                        "where (t.TradeTypID in (3, 4) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 and (qp.Eigen=1 or zp.Eigen=1)" & NewLine &
-                                        "group by v.SzenarioID, t.ID, date(v.Kaufdatum)" & NewLine &
-                                        "order by v.SzenarioID, t.Zeitpunkt, t.TradeTypID, date(v.Kaufdatum)"),
         New SqlUpdateSequenceStruct(19, "DELETE FROM [Plattformen] WHERE ID = 207"),
         New SqlUpdateSequenceStruct(19, "INSERT INTO [Plattformen] VALUES(207,'Bitfinex.com','Bitfinex','Bitfinex.com',207,1,1,1,'https://api.bitfinex.com/');"),
         New SqlUpdateSequenceStruct(20, "drop table if exists Konfiguration"),
@@ -640,84 +382,6 @@ Public Class DBInit
                                         "left join TradeTypen tt on t.TradeTypID=tt.ID " & NewLine &
                                         "where t.Entwertet = 0 " & NewLine &
                                         "order by t.Zeitpunkt, t.ID"),
-        New SqlUpdateSequenceStruct(20, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(20, "drop view if exists VW_GainingsReportDaily"),
-        New SqlUpdateSequenceStruct(20, "CREATE VIEW [VW_GainingsReport] AS" & NewLine &
-                                        "select" & NewLine &
-                                        "v.SzenarioID SzenarioID," & NewLine &
-                                        "t.Zeitpunkt Zeitpunkt," & NewLine &
-                                        "tt.Bezeichnung Art," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 5 then qp.Bezeichnung || ' → ' || zp.Bezeichnung" & NewLine &
-                                        "   else qp.Bezeichnung end Plattform," & NewLine &
-                                        "round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) [Menge Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then zk.Bezeichnung" & NewLine &
-                                        "   when 4 then qk.Bezeichnung" & NewLine &
-                                        "   when 7 then case zk.IstFiat when 0 then qk.Bezeichnung else '-' end" & NewLine &
-                                        "   else qk.Bezeichnung end [Art Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then case t.QuellKontoID when 102 then round(sum(t.QuellBetrag), 2) else '-' end" & NewLine &
-                                        "   when 4 then case t.ZielKontoID when 102 then round(cast(sum(v.Betrag) as real)/t.QuellBetrag * cast(sum(t.ZielBetrag) as real)/count(distinct v.ID), 2) else '-' end" & NewLine &
-                                        "   when 7 then 0" & NewLine &
-                                        "   else '-' end [Preis USD]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then round(sum(vt.WertEUR), 2)" & NewLine &
-                                        "   when 4 then round(cast(sum(v.Betrag) as real)/t.QuellBetrag * cast(sum(vt.WertEUR) as real)/count(distinct v.ID), 2)" & NewLine &
-                                        "   when 7 then 0" & NewLine &
-                                        "   else '-' end [Preis EUR]," & NewLine &
-                                        "case" & NewLine &
-                                        "   when t.TradeTypID = 7 and zk.IstFiat = 1 then '-'" & NewLine &
-                                        "   else strftime('%d.%m.%Y', coalesce(date(v.Kaufdatum), date(t.Zeitpunkt))) end [Kaufdatum Coins]," & NewLine &
-                                        "round(sum(v.WertEUR), 2) [Kaufpreis EUR]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 4 then cast(round(cast(sum(v.Betrag) as real)/t.QuellBetrag * cast(sum(vt.WertEUR) as real)/count(distinct v.ID) - sum(v.WertEUR), 2) as NUMERIC)" & NewLine &
-                                        "   when 7 then cast(-round(sum(v.WertEUR), 2) as NUMERIC)" & NewLine &
-                                        "   else '-' end [Gewinn EUR]," & NewLine &
-                                        "case when t.TradeTypID = 4 and date(v.Kaufdatum, kf.Wert) <= date(t.Zeitpunkt) then 'ja' else 'nein' end Steuerfrei," & NewLine &
-                                        "t.Kommentar Kommentar, " & NewLine &
-                                        "t.QuellPlattformID _QuellPlattformID," & NewLine &
-                                        "t.ZielPlattformID _ZielPlattformID," & NewLine &
-                                        "case" & NewLine &
-                                        "   when t.QuellKontoID = 102 or t.ZielKontoID = 102 then 1" & NewLine &
-                                        "   else 0 end _IstUsdTrade" & NewLine &
-                                        "from Trades t" & NewLine &
-                                        "inner join TradeTypen tt on t.TradeTypID = tt.ID" & NewLine &
-                                        "inner join Plattformen qp on t.QuellPlattformID = qp.ID" & NewLine &
-                                        "inner join Plattformen zp on t.ZielPlattformID = zp.ID" & NewLine &
-                                        "inner join Konten qk on t.QuellKontoID = qk.ID" & NewLine &
-                                        "inner join Konten zk on t.ZielKontoID = zk.ID" & NewLine &
-                                        "inner join ZeitstempelWerte v on ((v.OutTradeID = t.ID and t.TradeTypID in (4,5,7)) or (v.InTradeID = t.ID and (t.TradeTypID = 3 or (t.TradeTypID = 5 and not qp.Eigen))))" & NewLine &
-                                        "inner join Konfiguration kf on kf.ID = 1" & NewLine &
-                                        "left join TradesWerte vt on (vt.TradeID = t.ID and v.SzenarioID = vt.SzenarioID)" & NewLine &
-                                        "where (t.TradeTypID in (3, 4, 7) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 and (qp.Eigen=1 or zp.Eigen=1)" & NewLine &
-                                        "group by v.SzenarioID, t.ID, date(v.Kaufdatum)" & NewLine &
-                                        "order by v.SzenarioID, t.Zeitpunkt, t.TradeTypID, date(v.Kaufdatum)"),
-        New SqlUpdateSequenceStruct(20, "CREATE VIEW [VW_GainingsReportDaily] AS" & NewLine &
-                                        "select SzenarioID," & NewLine &
-                                        "date(t.Zeitpunkt) Zeitpunkt," & NewLine &
-                                        "Art," & NewLine &
-                                        "Plattform," & NewLine &
-                                        "sum([Menge Coins]) [Menge Coins]," & NewLine &
-                                        "[Art Coins]," & NewLine &
-                                        "case max([Preis USD])" & NewLine &
-                                        "   when '-' then '-'" & NewLine &
-                                        "   else sum([Preis USD]) end [Preis USD]," & NewLine &
-                                        "sum([Preis EUR]) [Preis EUR]," & NewLine &
-                                        "[Kaufdatum Coins]," & NewLine &
-                                        "sum([Kaufpreis EUR]) [Kaufpreis EUR]," & NewLine &
-                                        "case Art" & NewLine &
-                                        "   when 'Verkauf' then sum(t.[Gewinn EUR])" & NewLine &
-                                        "   when 'Verlust' then sum(t.[Gewinn EUR])" & NewLine &
-                                        "   else '-' end [Gewinn EUR]," & NewLine &
-                                        "Steuerfrei," & NewLine &
-                                        "group_concat(Kommentar) Kommentar, " & NewLine &
-                                        "_QuellPlattformID," & NewLine &
-                                        "_ZielPlattformID," & NewLine &
-                                        "max(_IstUsdTrade) _IstUsdTrade" & NewLine &
-                                        "from VW_GainingsReport t where 1" & NewLine &
-                                        "group by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]" & NewLine &
-                                        "order by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]"),
         New SqlUpdateSequenceStruct(20, "ALTER TABLE [Plattformen] ADD COLUMN [IstDown] BOOLEAN DEFAULT '0' NULL;"),
         New SqlUpdateSequenceStruct(20, "ALTER TABLE [Plattformen] ADD COLUMN [DownSeit] TIMESTAMP NULL;"),
         New SqlUpdateSequenceStruct(20, "drop view if exists VW_Plattformen"),
@@ -787,84 +451,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(23, String.Format("UPDATE [Plattformen] SET [ApiBaseUrl] = 'https://api.bitcoin.de/v1/' WHERE ID ={0}", CInt(PlatformManager.Platforms.BitcoinDe))),
         New SqlUpdateSequenceStruct(23, "UPDATE [Konten] SET [Bezeichnung] = 'Kraken Fee Credit', [Beschreibung] = 'Kraken Fee Credit' WHERE [Code] = 'FEE' AND [Bezeichnung] <> 'Kraken Fee Credit' AND [ID] BETWEEN 209 AND 299"),
         New SqlUpdateSequenceStruct(23, "UPDATE [Konten] SET [Bezeichnung] = 'Gebühr Kraken Fee Credit', [Beschreibung] = 'Gebühren/Kraken Fee Credit' WHERE [Code] = 'feeFEE' AND [Bezeichnung] <> 'Gebühr Kraken Fee Credit' AND [ID] BETWEEN 329 AND 399"),
-        New SqlUpdateSequenceStruct(23, "drop view if exists VW_GainingsReport"),
-        New SqlUpdateSequenceStruct(23, "CREATE VIEW [VW_GainingsReport] AS" & NewLine &
-                                        "select" & NewLine &
-                                        "v.SzenarioID SzenarioID," & NewLine &
-                                        "t.Zeitpunkt Zeitpunkt," & NewLine &
-                                        "tt.Bezeichnung Art," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 5 then qp.Bezeichnung || ' → ' || zp.Bezeichnung" & NewLine &
-                                        "   else qp.Bezeichnung end Plattform," & NewLine &
-                                        "round(coalesce(sum(v.Betrag), t.BetragNachGebuehr), 8) [Menge Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then zk.Bezeichnung" & NewLine &
-                                        "   when 4 then qk.Bezeichnung" & NewLine &
-                                        "   when 7 then case zk.IstFiat when 0 then qk.Bezeichnung else '-' end" & NewLine &
-                                        "   else qk.Bezeichnung end [Art Coins]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then case t.QuellKontoID when 102 then round(sum(t.QuellBetrag), 2) else '-' end" & NewLine &
-                                        "   when 4 then case t.ZielKontoID when 102 then round(cast(sum(v.Betrag) as real)/t.QuellBetrag * cast(sum(t.ZielBetrag) as real)/count(distinct v.ID), 2) else '-' end" & NewLine &
-                                        "   when 7 then 0" & NewLine &
-                                        "   else '-' end [Preis USD]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 3 then round(sum(vt.WertEUR), 2)" & NewLine &
-                                        "   when 4 then round(cast(sum(v.Betrag) as real)/t.QuellBetrag * cast(sum(vt.WertEUR) as real)/count(distinct v.ID), 2)" & NewLine &
-                                        "   when 7 then 0" & NewLine &
-                                        "   else '-' end [Preis EUR]," & NewLine &
-                                        "case" & NewLine &
-                                        "   when t.TradeTypID = 7 and zk.IstFiat = 1 then '-'" & NewLine &
-                                        "   else strftime('%d.%m.%Y', coalesce(date(v.Kaufdatum), date(t.Zeitpunkt))) end [Kaufdatum Coins]," & NewLine &
-                                        "round(sum(v.WertEUR), 2) [Kaufpreis EUR]," & NewLine &
-                                        "case t.TradeTypID" & NewLine &
-                                        "   when 4 then cast(round(cast(sum(v.Betrag) as real)/t.QuellBetrag * cast(sum(vt.WertEUR) as real)/count(distinct v.ID) - sum(v.WertEUR), 2) as NUMERIC)" & NewLine &
-                                        "   when 7 then cast(-round(sum(v.WertEUR), 2) as NUMERIC)" & NewLine &
-                                        "   else '-' end [Gewinn EUR]," & NewLine &
-                                        "case when t.TradeTypID = 4 and date(v.Kaufdatum, kf.Wert) <= date(t.Zeitpunkt) or t.TradeTypID = 7 then 'ja' else 'nein' end Steuerfrei," & NewLine &
-                                        "t.Kommentar Kommentar, " & NewLine &
-                                        "t.QuellPlattformID _QuellPlattformID," & NewLine &
-                                        "t.ZielPlattformID _ZielPlattformID," & NewLine &
-                                        "case" & NewLine &
-                                        "   when t.QuellKontoID = 102 or t.ZielKontoID = 102 then 1" & NewLine &
-                                        "   else 0 end _IstUsdTrade" & NewLine &
-                                        "from Trades t" & NewLine &
-                                        "inner join TradeTypen tt on t.TradeTypID = tt.ID" & NewLine &
-                                        "inner join Plattformen qp on t.QuellPlattformID = qp.ID" & NewLine &
-                                        "inner join Plattformen zp on t.ZielPlattformID = zp.ID" & NewLine &
-                                        "inner join Konten qk on t.QuellKontoID = qk.ID" & NewLine &
-                                        "inner join Konten zk on t.ZielKontoID = zk.ID" & NewLine &
-                                        "inner join ZeitstempelWerte v on ((v.OutTradeID = t.ID and t.TradeTypID in (4,5,7)) or (v.InTradeID = t.ID and (t.TradeTypID = 3 or (t.TradeTypID = 5 and not qp.Eigen))))" & NewLine &
-                                        "inner join Konfiguration kf on kf.ID = 1" & NewLine &
-                                        "left join TradesWerte vt on (vt.TradeID = t.ID and v.SzenarioID = vt.SzenarioID)" & NewLine &
-                                        "where (t.TradeTypID in (3, 4, 7) or (t.TradeTypID = 5 and zk.IstFiat = 0)) and t.Steuerirrelevant=0 and (qp.Eigen=1 or zp.Eigen=1)" & NewLine &
-                                        "group by v.SzenarioID, t.ID, date(v.Kaufdatum)" & NewLine &
-                                        "order by v.SzenarioID, t.Zeitpunkt, t.TradeTypID, date(v.Kaufdatum)"),
-        New SqlUpdateSequenceStruct(23, "drop view if exists VW_GainingsReportDaily"),
-        New SqlUpdateSequenceStruct(23, "CREATE VIEW [VW_GainingsReportDaily] AS" & NewLine &
-                                        "select SzenarioID," & NewLine &
-                                        "date(t.Zeitpunkt) Zeitpunkt," & NewLine &
-                                        "Art," & NewLine &
-                                        "Plattform," & NewLine &
-                                        "sum([Menge Coins]) [Menge Coins]," & NewLine &
-                                        "[Art Coins]," & NewLine &
-                                        "case max([Preis USD])" & NewLine &
-                                        "   when '-' then '-'" & NewLine &
-                                        "   else round(sum([Preis USD]), 2) end [Preis USD]," & NewLine &
-                                        "round(sum([Preis EUR]), 2) [Preis EUR]," & NewLine &
-                                        "[Kaufdatum Coins]," & NewLine &
-                                        "round(sum([Kaufpreis EUR]), 2) [Kaufpreis EUR]," & NewLine &
-                                        "case Art" & NewLine &
-                                        "   when 'Verkauf' then sum(t.[Gewinn EUR])" & NewLine &
-                                        "   when 'Verlust' then sum(t.[Gewinn EUR])" & NewLine &
-                                        "   else '-' end [Gewinn EUR]," & NewLine &
-                                        "Steuerfrei," & NewLine &
-                                        "group_concat(Kommentar) Kommentar, " & NewLine &
-                                        "_QuellPlattformID," & NewLine &
-                                        "_ZielPlattformID," & NewLine &
-                                        "max(_IstUsdTrade) _IstUsdTrade" & NewLine &
-                                        "from VW_GainingsReport t where 1" & NewLine &
-                                        "group by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]" & NewLine &
-                                        "order by SzenarioID, date(t.Zeitpunkt), Art, Plattform, [Art Coins], [Kaufdatum Coins]"),
         New SqlUpdateSequenceStruct(24, "DELETE FROM [Konten] WHERE ID IN (256, 376)"),
         New SqlUpdateSequenceStruct(24, "INSERT INTO [Konten](ID, Bezeichnung, Code, Beschreibung, IstFiat, IstGebuehr, GebuehrKontoID, Eigen, SortID, Fix) VALUES " & NewLine &
                                         "(256, 'Kraken Fee Credit','FEE','Kraken Fee Credit',0,0,376,1,256,0) " & NewLine &
@@ -873,7 +459,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(25, "INSERT INTO [Plattformen] VALUES(208,'Zyado.com','Zyado','Zyado.com',208,1,1,1,NULL,0,NULL);"),
         New SqlUpdateSequenceStruct(26, "alter table [Importe] add column [LastImportTimestamp] INTEGER DEFAULT '0' NULL"),
         New SqlUpdateSequenceStruct(26, "alter table [Importe] add column [ApiDatenID] INTEGER DEFAULT '0' NULL"),
-        New SqlUpdateSequenceStruct(26, String.Format("CREATE INDEX [IDX_ZeitstempelWerte_SzenarioID] ON [ZeitstempelWerte]({0}[SzenarioID]  ASC{0});", NewLine)),
         New SqlUpdateSequenceStruct(26, "drop view if exists VW_Importe"),
         New SqlUpdateSequenceStruct(26, "CREATE VIEW [VW_Importe] AS " & NewLine &
                                        "select " & NewLine &
@@ -904,8 +489,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(27, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ETH') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ETH')"),
         New SqlUpdateSequenceStruct(27, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETH') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETH')"),
         New SqlUpdateSequenceStruct(27, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETH') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETH')"),
-        New SqlUpdateSequenceStruct(27, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ETH') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ETH')"),
-        New SqlUpdateSequenceStruct(27, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETH') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETH')"),
         New SqlUpdateSequenceStruct(27, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(27, "ALTER TABLE [ApiDaten] ADD COLUMN [ExtendedInfo] VARCHAR(100) DEFAULT '' NULL"),
         New SqlUpdateSequenceStruct(27, String.Format("UPDATE [Plattformen] SET [ApiBaseUrl] ='https://api.bitfinex.com/' WHERE ID = {0}", CInt(PlatformManager.Platforms.Bitfinex))),
@@ -918,7 +501,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(28, "UPDATE Trades SET [QuellPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [QuellPlattformID] = (SELECT [OldID] FROM _Variables)"),
         New SqlUpdateSequenceStruct(28, "UPDATE Trades SET [ZielPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [ZielPlattformID] = (SELECT [OldID] FROM _Variables)"),
         New SqlUpdateSequenceStruct(28, "UPDATE Trades SET [ImportPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [ImportPlattformID] = (SELECT [OldID] FROM _Variables)"),
-        New SqlUpdateSequenceStruct(28, "UPDATE ZeitstempelWerte SET [PlattformID] = (SELECT [NewID] FROM _Variables) WHERE [PlattformID] = (SELECT [OldID] FROM _Variables)"),
         New SqlUpdateSequenceStruct(28, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(28, "DELETE FROM [Plattformen] WHERE ID = 209"),
         New SqlUpdateSequenceStruct(28, "INSERT INTO [Plattformen] VALUES(209,'Poloniex.com','Poloniex','Poloniex.com',209,1,1,1,NULL,0,NULL);"),
@@ -938,8 +520,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(29, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'LSK') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'LSK')"),
         New SqlUpdateSequenceStruct(29, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeLSK') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeLSK')"),
         New SqlUpdateSequenceStruct(29, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeLSK') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeLSK')"),
-        New SqlUpdateSequenceStruct(29, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'LSK') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'LSK')"),
-        New SqlUpdateSequenceStruct(29, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeLSK') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeLSK')"),
         New SqlUpdateSequenceStruct(29, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(30, "PRAGMA temp_store = 2"),
         New SqlUpdateSequenceStruct(30, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
@@ -957,8 +537,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(30, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XLM') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XLM')"),
         New SqlUpdateSequenceStruct(30, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXLM') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXLM')"),
         New SqlUpdateSequenceStruct(30, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXLM') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXLM')"),
-        New SqlUpdateSequenceStruct(30, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XLM') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XLM')"),
-        New SqlUpdateSequenceStruct(30, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXLM') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXLM')"),
         New SqlUpdateSequenceStruct(30, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(31, "PRAGMA temp_store = 2"),
         New SqlUpdateSequenceStruct(31, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
@@ -976,8 +554,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(31, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'REP') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'REP')"),
         New SqlUpdateSequenceStruct(31, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeREP') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeREP')"),
         New SqlUpdateSequenceStruct(31, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeREP') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeREP')"),
-        New SqlUpdateSequenceStruct(31, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'REP') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'REP')"),
-        New SqlUpdateSequenceStruct(31, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeREP') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeREP')"),
         New SqlUpdateSequenceStruct(31, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(32, "PRAGMA temp_store = 2"),
         New SqlUpdateSequenceStruct(32, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
@@ -995,8 +571,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BFX') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BFX')"),
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBFX') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBFX')"),
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBFX') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBFX')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BFX') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BFX')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBFX') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBFX')"),
         New SqlUpdateSequenceStruct(32, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(32, "PRAGMA temp_store = 2"),
         New SqlUpdateSequenceStruct(32, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
@@ -1014,8 +588,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ETC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ETC')"),
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETC')"),
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ETC') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ETC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETC') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETC')"),
         New SqlUpdateSequenceStruct(32, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(32, "PRAGMA temp_store = 2"),
         New SqlUpdateSequenceStruct(32, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
@@ -1033,8 +605,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'RRT') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'RRT')"),
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeRRT') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeRRT')"),
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeRRT') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeRRT')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'RRT') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'RRT')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeRRT') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeRRT')"),
         New SqlUpdateSequenceStruct(32, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(32, "PRAGMA temp_store = 2"),
         New SqlUpdateSequenceStruct(32, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
@@ -1052,8 +622,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ZEC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ZEC')"),
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeZEC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeZEC')"),
         New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeZEC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeZEC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ZEC') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ZEC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeZEC') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeZEC')"),
         New SqlUpdateSequenceStruct(32, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(VersionID:=32, CustomAction:=1),
         New SqlUpdateSequenceStruct(33, "PRAGMA temp_store = 2"),
@@ -1072,8 +640,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(33, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XMR') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XMR')"),
         New SqlUpdateSequenceStruct(33, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXMR') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXMR')"),
         New SqlUpdateSequenceStruct(33, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXMR') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXMR')"),
-        New SqlUpdateSequenceStruct(33, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XMR') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XMR')"),
-        New SqlUpdateSequenceStruct(33, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXMR') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXMR')"),
         New SqlUpdateSequenceStruct(33, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(33, "drop view if exists VW_Transfers"),
         New SqlUpdateSequenceStruct(33, "CREATE VIEW [VW_Transfers] AS " & NewLine &
@@ -1113,8 +679,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(34, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XRP') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XRP')"),
         New SqlUpdateSequenceStruct(34, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXRP') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXRP')"),
         New SqlUpdateSequenceStruct(34, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXRP') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXRP')"),
-        New SqlUpdateSequenceStruct(34, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XRP') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XRP')"),
-        New SqlUpdateSequenceStruct(34, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXRP') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXRP')"),
         New SqlUpdateSequenceStruct(34, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(35, "PRAGMA temp_store = 2"),
         New SqlUpdateSequenceStruct(35, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
@@ -1132,8 +696,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(35, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BCC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BCC')"),
         New SqlUpdateSequenceStruct(35, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBCC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBCC')"),
         New SqlUpdateSequenceStruct(35, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBCC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBCC')"),
-        New SqlUpdateSequenceStruct(35, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BCC') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BCC')"),
-        New SqlUpdateSequenceStruct(35, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBCC') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBCC')"),
         New SqlUpdateSequenceStruct(35, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(VersionID:=35, CustomAction:=2),
         New SqlUpdateSequenceStruct(36, "UPDATE Konten SET Code = 'BCH' WHERE Code = 'BCC'"),
@@ -1160,10 +722,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(36, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE QuellKontoID = (SELECT [OldValue2] FROM _Variables WHERE [Name] = 'feeIOT')"),
         New SqlUpdateSequenceStruct(36, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeIOT')"),
         New SqlUpdateSequenceStruct(36, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE ZielKontoID = (SELECT [OldValue2] FROM _Variables WHERE [Name] = 'feeIOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'IOT') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'IOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'IOT') WHERE KontoID = (SELECT [OldValue2] FROM _Variables WHERE [Name] = 'IOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeIOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE KontoID = (SELECT [OldValue2] FROM _Variables WHERE [Name] = 'feeIOT')"),
         New SqlUpdateSequenceStruct(36, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(37, "PRAGMA temp_store = 2"),
         New SqlUpdateSequenceStruct(37, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
@@ -1181,8 +739,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(37, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BTG') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BTG')"),
         New SqlUpdateSequenceStruct(37, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBTG') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBTG')"),
         New SqlUpdateSequenceStruct(37, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBTG') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBTG')"),
-        New SqlUpdateSequenceStruct(37, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BTG') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BTG')"),
-        New SqlUpdateSequenceStruct(37, "UPDATE ZeitstempelWerte SET KontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBTG') WHERE KontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBTG')"),
         New SqlUpdateSequenceStruct(37, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(37, "drop view if exists VW_Berechnungen"),
         New SqlUpdateSequenceStruct(37, "CREATE VIEW [VW_Berechnungen] AS " & NewLine &
@@ -1210,9 +766,8 @@ Public Class DBInit
                                         "set GebuehrKontoID = (select ID from Konten k2 where k2.Code = 'fee' || Konten.Code) " & NewLine &
                                         "where not Konten.IstFiat and not Konten.Fix and Konten.ID < 311 and Konten.GebuehrKontoID is NULL"),
         New SqlUpdateSequenceStruct(VersionID:=37, CustomAction:=3),
-        New SqlUpdateSequenceStruct(VersionID:=38, CustomAction:=-1),
-        New SqlUpdateSequenceStruct(VersionID:=39, CustomAction:=-1),
-        New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=-1)
+        New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=4, Message:=My.Resources.MyStrings.dbUpdateMsgReportReset),
+        New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=-1)    ' <-- just insert the latest wanted db version number here
     }
 
 
@@ -1443,6 +998,7 @@ Public Class DBInit
     Public Sub New()
         _DBName = DBDEFAULTNAME
         _cnn = Nothing
+        _Interactive = True
 #If CONFIG = "Debug" Then
         _ApplicationName = "CoinTracer"
 #Else
@@ -1454,6 +1010,19 @@ Public Class DBInit
         Me.New()
         _cnn = Connection
     End Sub
+
+    Private _Interactive As Boolean
+    ''' <summary>
+    ''' Determines if we are running in user-interactive mode or not
+    ''' </summary>
+    Public Property Interactive() As Boolean
+        Get
+            Return _Interactive
+        End Get
+        Set(ByVal value As Boolean)
+            _Interactive = value
+        End Set
+    End Property
 
     ''' <summary>
     ''' Liest die höchste Datenbank-Versions-ID aus der lokalen Datenbank
@@ -1510,7 +1079,7 @@ Public Class DBInit
                                 File.Delete(XltFile)
                             Next
                         End If
-                        If SQLUp.Message <> "" Then
+                        If _Interactive AndAlso SQLUp.Message <> "" Then
                             MessageBox.Show(SQLUp.Message, "Datenbank-Update", MessageBoxButtons.OK, SQLUp.MessageBoxIcon)
                         End If
                         If SQLUp.CustomAction > 0 Then
@@ -1542,7 +1111,7 @@ Public Class DBInit
         ElseIf _LocalDBVersionID > RequiredVersionID Then
             ' Warnung bei zu hoher Datenbankversion (offenbar gab es ein Downgrade der Applikation)
             MsgBoxEx.PatchMsgBox(New String() {"Fortfahren", "Beenden"})
-            If MessageBox.Show(String.Format("Achtung: Der {0}-Datenbestand gehört zu einer neueren Version als " &
+            If _Interactive AndAlso MessageBox.Show(String.Format("Achtung: Der {0}-Datenbestand gehört zu einer neueren Version als " &
                                "{1}. Es könnte sein, dass der {0} mit diesen Daten nicht korrekt arbeitet oder inkonsistente " &
                                "Daten erzeugt.", _ApplicationName, Application.ProductVersion) & Environment.NewLine & Environment.NewLine &
                                "Möchten Sie fortfahren oder das Programm jetzt beenden?", "Veraltete Version gestartet",
@@ -1600,7 +1169,7 @@ Public Class DBInit
         Select Case CustomAction
             Case 1
                 ' transaction index Bitfinex has changed: advice user to re-import in case there is existing Bitfinex data
-                If QueryDBInteger("select count(*) as No from Importe where PlattformID = " & CInt(PlatformManager.Platforms.Bitfinex).ToString, "No") > 0 Then
+                If _Interactive AndAlso QueryDBInteger("select count(*) as No from Importe where PlattformID = " & CInt(PlatformManager.Platforms.Bitfinex).ToString, "No") > 0 Then
                     MessageBox.Show("Achtung! Mit dieser Version des " & _ApplicationName & " hat sich das Import-Schema für Bitfinex.com geändert. " &
                                     "Um zu vermeiden, dass Trades doppelt importiert werden, sollten Sie alle bisherigen Importe von Bitfinex.com wieder " &
                                     "rückgängig machen und die Daten erneut importieren." & Environment.NewLine & Environment.NewLine &
@@ -1610,7 +1179,7 @@ Public Class DBInit
                 End If
             Case 2
                 ' transaction index Poloniex has changed: advice user to re-import in case there is existing Poloniex data
-                If QueryDBInteger("select count(*) as No from Importe where PlattformID = " & CInt(PlatformManager.Platforms.Poloniex).ToString, "No") > 0 Then
+                If _Interactive AndAlso QueryDBInteger("select count(*) as No from Importe where PlattformID = " & CInt(PlatformManager.Platforms.Poloniex).ToString, "No") > 0 Then
                     MessageBox.Show("Achtung! Mit dieser Version des " & _ApplicationName & " hat sich das Import-Schema für Poloniex.com geändert. " &
                                     "Um zu vermeiden, dass Trades doppelt importiert werden, sollten Sie alle bisherigen Importe von Poloniex.com wieder " &
                                     "rückgängig machen und die Daten erneut importieren." & Environment.NewLine & Environment.NewLine &
@@ -1695,6 +1264,11 @@ Public Class DBInit
                 Catch ex As Exception
                     Throw New Exception(String.Format("Die lokale Datenbank '{0}' konnte nicht geöffnet werden!", DatabaseFile))
                 End Try
+            Case 4
+                ' Gainings calculation has changed: clear the table [Kalkulationen]
+                With New CoinTracerDataSetTableAdapters.KalkulationenTableAdapter
+                    .DeleteAllRows()
+                End With
         End Select
     End Sub
 

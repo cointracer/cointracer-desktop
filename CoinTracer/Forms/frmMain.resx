@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -160,7 +160,7 @@
     <value>tpDashboard</value>
   </data>
   <data name="&gt;&gt;tpDashboard.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpDashboard.Parent" xml:space="preserve">
     <value>TableLayoutPanel3</value>
@@ -190,7 +190,7 @@
     <value>gnd1stTab</value>
   </data>
   <data name="&gt;&gt;gnd1stTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd1stTab.Parent" xml:space="preserve">
     <value>TableLayoutPanel4</value>
@@ -349,7 +349,7 @@
     <value>dshgrdBestaende</value>
   </data>
   <data name="&gt;&gt;dshgrdBestaende.Type" xml:space="preserve">
-    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dshgrdBestaende.Parent" xml:space="preserve">
     <value>spltCntGainings.Panel1</value>
@@ -388,7 +388,7 @@
     <value>dshgrdAbgaenge</value>
   </data>
   <data name="&gt;&gt;dshgrdAbgaenge.Type" xml:space="preserve">
-    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dshgrdAbgaenge.Parent" xml:space="preserve">
     <value>spltCntGainings.Panel2</value>
@@ -877,7 +877,7 @@
     <value>cmdCourses</value>
   </data>
   <data name="&gt;&gt;cmdCourses.Type" xml:space="preserve">
-    <value>CoinTracer.PaddingButton, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.PaddingButton, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cmdCourses.Parent" xml:space="preserve">
     <value>grpCourses</value>
@@ -1282,8 +1282,8 @@
   <data name="TableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="spltCntDashboard" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,20" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
-  <data name="tabDashboard.ImageKey" xml:space="preserve">
-    <value>tab_dash.png</value>
+  <data name="tabDashboard.ImageIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="tabDashboard.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 39</value>
@@ -1328,7 +1328,7 @@
     <value>cbxSzenario</value>
   </data>
   <data name="&gt;&gt;cbxSzenario.Type" xml:space="preserve">
-    <value>CoinTracer.DataBoundComboBox, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataBoundComboBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbxSzenario.Parent" xml:space="preserve">
     <value>grpSzenarien</value>
@@ -1709,7 +1709,7 @@
     <value>tpGainings</value>
   </data>
   <data name="&gt;&gt;tpGainings.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpGainings.Parent" xml:space="preserve">
     <value>grpGainings</value>
@@ -1736,7 +1736,7 @@
     <value>gnd2ndTab</value>
   </data>
   <data name="&gt;&gt;gnd2ndTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd2ndTab.Parent" xml:space="preserve">
     <value>grpGainings</value>
@@ -1817,7 +1817,7 @@
     <value>vssGlobalStrategy</value>
   </data>
   <data name="&gt;&gt;vssGlobalStrategy.Type" xml:space="preserve">
-    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;vssGlobalStrategy.Parent" xml:space="preserve">
     <value>grpSettings</value>
@@ -2028,7 +2028,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>dpctlHaltefrist</value>
   </data>
   <data name="&gt;&gt;dpctlHaltefrist.Type" xml:space="preserve">
-    <value>CoinTracer.DataPeriodControl, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataPeriodControl, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dpctlHaltefrist.Parent" xml:space="preserve">
     <value>grpSettings</value>
@@ -2159,8 +2159,8 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;grpSettings.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="tabSettings.ImageKey" xml:space="preserve">
-    <value>tab_settings.png</value>
+  <data name="tabSettings.ImageIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="tabSettings.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 39</value>
@@ -2192,23 +2192,20 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="Label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="Label13.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="Label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="Label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>280, 82</value>
+    <value>299, 138</value>
   </data>
   <data name="Label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 15</value>
+    <value>56, 15</value>
   </data>
   <data name="Label13.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
   <data name="Label13.Text" xml:space="preserve">
-    <value>Gruppierung:</value>
+    <value>Transfers:</value>
   </data>
   <data name="&gt;&gt;Label13.Name" xml:space="preserve">
     <value>Label13</value>
@@ -2402,9 +2399,6 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="Label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="Label8.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="Label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -2472,7 +2466,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>NoControl</value>
   </data>
   <data name="Label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 138</value>
+    <value>267, 81</value>
   </data>
   <data name="Label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 15</value>
@@ -2508,7 +2502,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>169, 31</value>
   </data>
   <data name="cmdReportExport.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>7</value>
   </data>
   <data name="cmdReportExport.Text" xml:space="preserve">
     <value>Bericht in Zwischenablage</value>
@@ -2538,7 +2532,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>201, 23</value>
   </data>
   <data name="cbxReportTradeSelection.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;cbxReportTradeSelection.Name" xml:space="preserve">
     <value>cbxReportTradeSelection</value>
@@ -2568,7 +2562,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>169, 31</value>
   </data>
   <data name="cmdReloadReport.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>5</value>
   </data>
   <data name="cmdReloadReport.Text" xml:space="preserve">
     <value>Bericht laden</value>
@@ -2585,34 +2579,34 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;cmdReloadReport.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="cbxReportGrouping.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="cbxReportTransfers.Items" xml:space="preserve">
+    <value>Alle Transfers auflisten</value>
   </data>
-  <data name="cbxReportGrouping.Items" xml:space="preserve">
-    <value>Trades einzeln auflisten</value>
+  <data name="cbxReportTransfers.Items1" xml:space="preserve">
+    <value>Interne Transfers ausblenden</value>
   </data>
-  <data name="cbxReportGrouping.Items1" xml:space="preserve">
-    <value>Tage zusammenfassen</value>
+  <data name="cbxReportTransfers.Items2" xml:space="preserve">
+    <value>Keine Transfers auflisten</value>
   </data>
-  <data name="cbxReportGrouping.Location" type="System.Drawing.Point, System.Drawing">
-    <value>363, 79</value>
+  <data name="cbxReportTransfers.Location" type="System.Drawing.Point, System.Drawing">
+    <value>363, 135</value>
   </data>
-  <data name="cbxReportGrouping.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="cbxReportTransfers.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 23</value>
   </data>
-  <data name="cbxReportGrouping.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="cbxReportTransfers.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;cbxReportGrouping.Name" xml:space="preserve">
-    <value>cbxReportGrouping</value>
+  <data name="&gt;&gt;cbxReportTransfers.Name" xml:space="preserve">
+    <value>cbxReportTransfers</value>
   </data>
-  <data name="&gt;&gt;cbxReportGrouping.Type" xml:space="preserve">
+  <data name="&gt;&gt;cbxReportTransfers.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;cbxReportGrouping.Parent" xml:space="preserve">
+  <data name="&gt;&gt;cbxReportTransfers.Parent" xml:space="preserve">
     <value>tabReports</value>
   </data>
-  <data name="&gt;&gt;cbxReportGrouping.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;cbxReportTransfers.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="grdReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -2778,19 +2772,19 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>False</value>
   </data>
   <data name="ccbReportPlatforms.Location" type="System.Drawing.Point, System.Drawing">
-    <value>363, 135</value>
+    <value>363, 78</value>
   </data>
   <data name="ccbReportPlatforms.Size" type="System.Drawing.Size, System.Drawing">
     <value>201, 24</value>
   </data>
   <data name="ccbReportPlatforms.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;ccbReportPlatforms.Name" xml:space="preserve">
     <value>ccbReportPlatforms</value>
   </data>
   <data name="&gt;&gt;ccbReportPlatforms.Type" xml:space="preserve">
-    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ccbReportPlatforms.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -2808,7 +2802,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>266, 5</value>
   </data>
   <data name="gnd3rdTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 311</value>
+    <value>297, 163</value>
   </data>
   <data name="gnd3rdTab.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -2817,7 +2811,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>gnd3rdTab</value>
   </data>
   <data name="&gt;&gt;gnd3rdTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd3rdTab.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -2844,13 +2838,13 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>240, 95</value>
   </data>
   <data name="tpReport.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;tpReport.Name" xml:space="preserve">
     <value>tpReport</value>
   </data>
   <data name="&gt;&gt;tpReport.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpReport.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -2886,7 +2880,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>169, 31</value>
   </data>
   <data name="cmdReportPreview.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>6</value>
   </data>
   <data name="cmdReportPreview.Text" xml:space="preserve">
     <value>Bericht anzeigen...</value>
@@ -2906,8 +2900,8 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;cmdReportPreview.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="tabReports.ImageKey" xml:space="preserve">
-    <value>tab_report.png</value>
+  <data name="tabReports.ImageIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="tabReports.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 39</value>
@@ -2982,13 +2976,13 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>748, 17</value>
   </metadata>
   <data name="tsmiEditTrades.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
+    <value>217, 22</value>
   </data>
   <data name="tsmiEditTrades.Text" xml:space="preserve">
     <value>Trades bearbeiten...</value>
   </data>
   <data name="cmnTrades.Size" type="System.Drawing.Size, System.Drawing">
-    <value>176, 26</value>
+    <value>218, 120</value>
   </data>
   <data name="&gt;&gt;cmnTrades.Name" xml:space="preserve">
     <value>cmnTrades</value>
@@ -3012,7 +3006,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdTrades</value>
   </data>
   <data name="&gt;&gt;grdTrades.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdTrades.Parent" xml:space="preserve">
     <value>tabTrades</value>
@@ -3084,7 +3078,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdImporte</value>
   </data>
   <data name="&gt;&gt;grdImporte.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdImporte.Parent" xml:space="preserve">
     <value>tabImporte</value>
@@ -3156,7 +3150,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdPlattformen</value>
   </data>
   <data name="&gt;&gt;grdPlattformen.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdPlattformen.Parent" xml:space="preserve">
     <value>tabPlattformen</value>
@@ -3228,7 +3222,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdKonten</value>
   </data>
   <data name="&gt;&gt;grdKonten.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdKonten.Parent" xml:space="preserve">
     <value>tabKonten</value>
@@ -3300,7 +3294,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdKurse</value>
   </data>
   <data name="&gt;&gt;grdKurse.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdKurse.Parent" xml:space="preserve">
     <value>tabKurse</value>
@@ -3378,7 +3372,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdBerechnungen</value>
   </data>
   <data name="&gt;&gt;grdBerechnungen.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdBerechnungen.Parent" xml:space="preserve">
     <value>tabBerechnungen</value>
@@ -3424,7 +3418,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADo
-        CQAAAk1TRnQBSQFMAwEBAAHAAQkBwAEJARgBAAEYAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
+        CQAAAk1TRnQBSQFMAwEBAAHgAQkB4AEJARgBAAEYAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
         AWADAAEYAwABAQEAAQgGAAEJGAABgAIAAYADAAKAAQABgAMAAYABAAGAAQACgAIAA8ABAAHAAdwBwAEA
         AfABygGmAQABMwUAATMBAAEzAQABMwEAAjMCAAMWAQADHAEAAyIBAAMpAQADVQEAA00BAANCAQADOQEA
         AYABfAH/AQACUAH/AQABkwEAAdYBAAH/AewBzAEAAcYB1gHvAQAB1gLnAQABkAGpAa0CAAH/ATMDAAFm
@@ -3490,8 +3484,8 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;tctlTables.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="tabTable.ImageKey" xml:space="preserve">
-    <value>tab_tables.png</value>
+  <data name="tabTable.ImageIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="tabTable.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 39</value>
@@ -3531,7 +3525,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADI
-        FAAAAk1TRnQBSQFMAgEBBAEAAcABCQHAAQkBIAEAASABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        FAAAAk1TRnQBSQFMAgEBBAEAAeABCQHgAQkBIAEAASABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABgAMAAUADAAEBAQABCAYAASAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -3652,36 +3646,6 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="GroupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="cmdDonateIota.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="cmdDonateIota.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cmdDonateIota.Location" type="System.Drawing.Point, System.Drawing">
-    <value>892, 13</value>
-  </data>
-  <data name="cmdDonateIota.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 36</value>
-  </data>
-  <data name="cmdDonateIota.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="cmdDonateIota.ToolTip" xml:space="preserve">
-    <value>Iota spenden</value>
-  </data>
-  <data name="&gt;&gt;cmdDonateIota.Name" xml:space="preserve">
-    <value>cmdDonateIota</value>
-  </data>
-  <data name="&gt;&gt;cmdDonateIota.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cmdDonateIota.Parent" xml:space="preserve">
-    <value>GroupBox2</value>
-  </data>
-  <data name="&gt;&gt;cmdDonateIota.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <data name="cmdDonateETH.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -3711,7 +3675,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>NoControl</value>
   </data>
   <data name="cmdDonateETH.Location" type="System.Drawing.Point, System.Drawing">
-    <value>770, 13</value>
+    <value>831, 13</value>
   </data>
   <data name="cmdDonateETH.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 36</value>
@@ -3732,7 +3696,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;cmdDonateETH.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="cmdDonateBCH.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3741,7 +3705,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>NoControl</value>
   </data>
   <data name="cmdDonateBCH.Location" type="System.Drawing.Point, System.Drawing">
-    <value>648, 13</value>
+    <value>709, 13</value>
   </data>
   <data name="cmdDonateBCH.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 36</value>
@@ -3762,7 +3726,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;cmdDonateBCH.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="Label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3774,7 +3738,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>NoControl</value>
   </data>
   <data name="Label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>533, 20</value>
+    <value>594, 20</value>
   </data>
   <data name="Label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 19</value>
@@ -3795,7 +3759,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;Label10.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="cmdDonateLTC.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3804,7 +3768,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>NoControl</value>
   </data>
   <data name="cmdDonateLTC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>831, 13</value>
+    <value>892, 13</value>
   </data>
   <data name="cmdDonateLTC.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 36</value>
@@ -3825,7 +3789,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;cmdDonateLTC.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="cmdDonateBTC.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3834,7 +3798,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>NoControl</value>
   </data>
   <data name="cmdDonateBTC.Location" type="System.Drawing.Point, System.Drawing">
-    <value>709, 13</value>
+    <value>770, 13</value>
   </data>
   <data name="cmdDonateBTC.Size" type="System.Drawing.Size, System.Drawing">
     <value>55, 36</value>
@@ -3855,7 +3819,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;cmdDonateBTC.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="lblDonate.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3867,7 +3831,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>NoControl</value>
   </data>
   <data name="lblDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 23</value>
+    <value>413, 23</value>
   </data>
   <data name="lblDonate.Size" type="System.Drawing.Size, System.Drawing">
     <value>183, 15</value>
@@ -3888,7 +3852,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>GroupBox2</value>
   </data>
   <data name="&gt;&gt;lblDonate.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="GroupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, -3</value>
@@ -4059,7 +4023,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>ThreadsafeStatusStrip1</value>
   </data>
   <data name="&gt;&gt;ThreadsafeStatusStrip1.Type" xml:space="preserve">
-    <value>CoinTracer.ThreadsafeStatusStrip, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ThreadsafeStatusStrip, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ThreadsafeStatusStrip1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -5243,19 +5207,19 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>Art</value>
   </data>
   <data name="&gt;&gt;Art.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;Plattform.Name" xml:space="preserve">
     <value>Plattform</value>
   </data>
   <data name="&gt;&gt;Plattform.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;TypeCoins.Name" xml:space="preserve">
     <value>TypeCoins</value>
   </data>
   <data name="&gt;&gt;TypeCoins.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;AmountCoins.Name" xml:space="preserve">
     <value>AmountCoins</value>
@@ -5267,7 +5231,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>PriceUSD</value>
   </data>
   <data name="&gt;&gt;PriceUSD.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;Total.Name" xml:space="preserve">
     <value>Total</value>
@@ -5291,13 +5255,13 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>Kaufvorgang</value>
   </data>
   <data name="&gt;&gt;Kaufvorgang.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;Kaufdatum.Name" xml:space="preserve">
     <value>Kaufdatum</value>
   </data>
   <data name="&gt;&gt;Kaufdatum.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;CoinAnteil.Name" xml:space="preserve">
     <value>CoinAnteil</value>
@@ -5333,7 +5297,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>TaxFree</value>
   </data>
   <data name="&gt;&gt;TaxFree.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tsmiEditTrades.Name" xml:space="preserve">
     <value>tsmiEditTrades</value>
@@ -5417,13 +5381,13 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>DataGridViewAutoFilterTextBoxColumn4</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn4.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn5.Name" xml:space="preserve">
     <value>DataGridViewAutoFilterTextBoxColumn5</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn5.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewTextBoxColumn5.Name" xml:space="preserve">
     <value>DataGridViewTextBoxColumn5</value>
@@ -5435,7 +5399,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>DataGridViewAutoFilterTextBoxColumn6</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn6.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewTextBoxColumn6.Name" xml:space="preserve">
     <value>DataGridViewTextBoxColumn6</value>
@@ -5471,13 +5435,13 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>DataGridViewAutoFilterTextBoxColumn7</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn7.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Name" xml:space="preserve">
     <value>EnhancedToolTip1</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Type" xml:space="preserve">
-    <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.5.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmMain</value>

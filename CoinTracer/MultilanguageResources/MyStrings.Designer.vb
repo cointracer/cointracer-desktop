@@ -587,6 +587,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Achtung: Aufgrund einer notwendigen Änderung an der Datenstruktur wurden alle Gewinnberechnungen zurückgesetzt. Sie können diese im Reiter &apos;Berechnungen&apos; aber problemlos erneut durchführen. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property dbUpdateMsgReportReset() As String
+            Get
+                Return ResourceManager.GetString("dbUpdateMsgReportReset", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Bitte beachten Sie auch, dass sich diese Software noch im Entwicklungsstadium befindet. Sie wurde zwar nach bestem Wissen und Gewissen entwickelt, aber dennoch: Fehler können nicht ausgeschlossen werden - sie sind im Gegenteil sogar wahrscheinlich. Sie verwenden diese Software auf eigenes Risiko, für finanzielle und sonstige Schäden, die sich aus dem Gebrauch ergeben, kann der Autor keine Haftung übernehmen. Darüber hinaus wird der {0} so wie er ist kostenfrei zur Verfügung gestellt. Ein Anspruch auf Fehler [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property disclaimerNotErrorFreeNoWarranty() As String
@@ -605,7 +614,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (April 2019) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungsmö [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (Februar 2021) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungs [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property disclaimerTaxingUnclear() As String
             Get

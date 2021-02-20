@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -503,7 +503,7 @@ Public Class ImportFileHelper
             .SubType = 2
         End With
         Cnt += 1
-        ' Kraken.com
+        ' Kraken.com (until about 2020)
         ReDim Preserve _AllPlatforms(Cnt)
         With _AllPlatforms(Cnt)
             .PlatformID = CInt(PlatformManager.Platforms.Kraken)
@@ -511,6 +511,16 @@ Public Class ImportFileHelper
             .FilesFirstLine = """txid"",""refid"",""time"",""type"",""aclass"",""asset"",""amount"",""fee"",""balance"""
             .MatchingType = ImportFileMatchingTypes.StartsWithMatch
             .SubType = 0
+        End With
+        Cnt += 1
+        ' Kraken.com (2021 and later)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Kraken)
+            .PlatformName = "Kraken.com"
+            .FilesFirstLine = """txid"",""refid"",""time"",""type"",""subtype"",""aclass"",""asset"",""amount"",""fee"",""balance"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 1
         End With
         Cnt += 1
         ' Bitfinex.com

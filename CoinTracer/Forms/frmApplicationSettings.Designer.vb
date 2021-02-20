@@ -26,10 +26,10 @@ Partial Class frmApplicationSettings
         Dim TolerancePercentLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmApplicationSettings))
         Dim ToleranceMinutesLabel As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.lblMinutesToHours = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.lblCategory = New System.Windows.Forms.Label()
@@ -73,9 +73,6 @@ Partial Class frmApplicationSettings
         Me.Label9 = New System.Windows.Forms.Label()
         Me.grpMeldungen = New System.Windows.Forms.GroupBox()
         Me.grdDataMessages = New System.Windows.Forms.DataGridView()
-        Me.MessageQualifier = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MessageDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Action = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.pnlDisplaySettings = New System.Windows.Forms.Panel()
         Me.grpDisplaySettings = New System.Windows.Forms.GroupBox()
@@ -99,6 +96,9 @@ Partial Class frmApplicationSettings
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.EnhancedToolTip1 = New CoinTracer.EnhancedToolTip()
+        Me.MessageQualifier = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MessageDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Action = New System.Windows.Forms.DataGridViewButtonColumn()
         TolerancePercentLabel = New System.Windows.Forms.Label()
         ToleranceMinutesLabel = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,12 +154,12 @@ Partial Class frmApplicationSettings
         '
         'SplitContainer1.Panel2
         '
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlTransferDetection)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlSecurity)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlOnlineSettings)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlDisplaySettings)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlDirectories)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlTransferDetection)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlSecurity)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlOnlineSettings)
         '
         'lblCategory
         '
@@ -453,37 +453,6 @@ Partial Class frmApplicationSettings
         Me.grdDataMessages.ReadOnly = True
         Me.grdDataMessages.RowHeadersVisible = False
         '
-        'MessageQualifier
-        '
-        Me.MessageQualifier.DataPropertyName = "MessageQualifier"
-        Me.MessageQualifier.Frozen = True
-        resources.ApplyResources(Me.MessageQualifier, "MessageQualifier")
-        Me.MessageQualifier.Name = "MessageQualifier"
-        Me.MessageQualifier.ReadOnly = True
-        '
-        'MessageDescription
-        '
-        Me.MessageDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.MessageDescription.DataPropertyName = "MessageDescription"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.MessageDescription.DefaultCellStyle = DataGridViewCellStyle1
-        resources.ApplyResources(Me.MessageDescription, "MessageDescription")
-        Me.MessageDescription.Name = "MessageDescription"
-        Me.MessageDescription.ReadOnly = True
-        '
-        'Action
-        '
-        Me.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
-        Me.Action.DataPropertyName = "Action"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Action.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Action.FillWeight = 75.0!
-        resources.ApplyResources(Me.Action, "Action")
-        Me.Action.Name = "Action"
-        Me.Action.ReadOnly = True
-        Me.Action.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        '
         'Label7
         '
         resources.ApplyResources(Me.Label7, "Label7")
@@ -639,6 +608,39 @@ Partial Class frmApplicationSettings
         Me.DataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
+        'MessageQualifier
+        '
+        Me.MessageQualifier.DataPropertyName = "MessageQualifier"
+        Me.MessageQualifier.FillWeight = 10.0!
+        Me.MessageQualifier.Frozen = True
+        resources.ApplyResources(Me.MessageQualifier, "MessageQualifier")
+        Me.MessageQualifier.Name = "MessageQualifier"
+        Me.MessageQualifier.ReadOnly = True
+        '
+        'MessageDescription
+        '
+        Me.MessageDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.MessageDescription.DataPropertyName = "MessageDescription"
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.MessageDescription.DefaultCellStyle = DataGridViewCellStyle1
+        Me.MessageDescription.FillWeight = 90.0!
+        resources.ApplyResources(Me.MessageDescription, "MessageDescription")
+        Me.MessageDescription.Name = "MessageDescription"
+        Me.MessageDescription.ReadOnly = True
+        '
+        'Action
+        '
+        Me.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Action.DataPropertyName = "Action"
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Action.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Action.FillWeight = 40.0!
+        resources.ApplyResources(Me.Action, "Action")
+        Me.Action.Name = "Action"
+        Me.Action.ReadOnly = True
+        Me.Action.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
         'frmApplicationSettings
         '
         Me.AcceptButton = Me.cmdOK
@@ -756,8 +758,8 @@ Partial Class frmApplicationSettings
     Friend WithEvents cmdTransferDetection As System.Windows.Forms.Button
     Friend WithEvents lblMinutesToHours As System.Windows.Forms.Label
     Friend WithEvents cmdOpenLogLocation As System.Windows.Forms.Button
-    Friend WithEvents MessageQualifier As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MessageDescription As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Action As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents ToleranceMinutesTextBox As MinutesTextbox
+    Friend WithEvents MessageQualifier As DataGridViewTextBoxColumn
+    Friend WithEvents MessageDescription As DataGridViewTextBoxColumn
+    Friend WithEvents Action As DataGridViewButtonColumn
 End Class
