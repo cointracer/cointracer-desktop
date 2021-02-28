@@ -967,7 +967,7 @@ Public Class frmMain
                 gnd3rdTab.PlatformIDs = _RP.PlatformIDs
                 ' Report laden
                 _RP.Reload()
-                If _RP.Parameters.FromDate > CDate("2009-01-01") Then
+                If _RP.Parameters.FromDate > "2009-01-01" Then
                     _RP.LoadReferencedTrades()
                 End If
                 ' DataGridView neu binden und konfigurieren
@@ -1238,6 +1238,7 @@ Public Class frmMain
             DBInit.InitDatabase()
             frmMain_Load(Me, New EventArgs)
             ReloadTablesTab()
+            ClearReportsGrid()
             Cursor.Current = Cursors.Default
             If Verbose Then
                 MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgLoadDBSuccess, NewLine),

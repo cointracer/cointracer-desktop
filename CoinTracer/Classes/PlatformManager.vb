@@ -92,7 +92,7 @@ Public NotInheritable Class PlatformManager
     ' All valid platforms - keep database ids in sync with enum above!!!
     Private Shared Function GetAllPlatforms() As PlatformDetails()
         Return New PlatformDetails() {
-            New PlatformDetails(100, "Privates Wallet", "WalletOwn", "Privates Wallet", 100, True, False),
+            New PlatformDetails(100, "Privates Wallet für Cryptocoins", "WalletOwn", "Privates Wallet", 100, True, False),
             New PlatformDetails(101, "Wallet BTC", "WalletBTC", "Eigenes Wallet für Bitcoin", 101, True, False),
             New PlatformDetails(102, "Wallet LTC", "WalletLTC", "Eigenes Wallet für Litecoin", 102, True, False),
             New PlatformDetails(103, "MultiBit", "MultiBit", "MultiBit-Wallet-Client", 103, True, False),
@@ -144,7 +144,6 @@ Public NotInheritable Class PlatformManager
             .Add(My.Resources.MyStrings.importLabelKraken)
             .Add(My.Resources.MyStrings.importLabelLitecoinCore)
             .Add(My.Resources.MyStrings.importLabelPoloniex)
-            .Add(My.Resources.MyStrings.importLabelZyado)
             .Add(My.Resources.MyStrings.importLabelCoursesUsd)
             If ShowHistoricImports Then
                 .Add(My.Resources.MyStrings.importLabelSeparator)
@@ -152,6 +151,7 @@ Public NotInheritable Class PlatformManager
                 .Add(My.Resources.MyStrings.importLabelMultibit)
                 .Add(My.Resources.MyStrings.importLabelMtGox)
                 .Add(My.Resources.MyStrings.importLabelVircurex)
+                .Add(My.Resources.MyStrings.importLabelZyado)
             End If
             If OldSelecetd < .Count AndAlso OldSelecetd >= 0 Then
                 ImportComboBox.SelectedIndex = OldSelecetd
@@ -197,23 +197,24 @@ Public NotInheritable Class PlatformManager
                 ' Poloniex
                 Result = Platforms.Poloniex
             Case 9
-                ' Zyado
-                Result = Platforms.Zyado
-            Case 10
                 ' Course data EUR/USD
                 Fiat = True
-            Case 12
+            Case 11
                 ' BTC-E
                 Result = Platforms.BtcE
-            Case 13
+            Case 12
                 ' MultiBit
                 Result = Platforms.MultiBit
-            Case 14
+            Case 13
                 ' Mt. Gox
                 Result = Platforms.MtGox
-            Case 15
+            Case 14
                 ' Vircurex
                 Result = Platforms.Vircurex
+            Case 15
+                ' Zyado
+                Result = Platforms.Zyado
+
         End Select
         Return Result
     End Function

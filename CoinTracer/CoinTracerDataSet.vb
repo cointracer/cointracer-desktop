@@ -514,11 +514,14 @@ Namespace CoinTracerDataSetTableAdapters
                 Case Else
                     SortSQL = "KaufZeitpunkt ASC"
             End Select
+            Dim CommandTextBackup As String = Adapter.SelectCommand.CommandText
             Adapter.SelectCommand.CommandText = Strings.Replace(Adapter.SelectCommand.CommandText, "@ConsumptionStrategy", SortSQL)
             If ClearBeforeFill Then
                 dataTable.Clear()
             End If
-            Return Adapter.Fill(dataTable)
+            Dim ReturnValue As Integer = Adapter.Fill(dataTable)
+            Adapter.SelectCommand.CommandText = CommandTextBackup
+            Return ReturnValue
         End Function
     End Class
 
@@ -541,11 +544,14 @@ Namespace CoinTracerDataSetTableAdapters
             If Not String.IsNullOrEmpty(PlatformIDs) Then
                 PlatformIDs = String.Format("AND (_QuellPlattformID in ({0}) or _ZielPlattformID in ({0})) ", PlatformIDs)
             End If
-            Adapter.SelectCommand.CommandText = Strings.Replace(Adapter.SelectCommand.CommandText, "AND (@PlatformIDs=1)", PlatformIDs)
+            Dim CommandTextBackup As String = Adapter.SelectCommand.CommandText
+            Adapter.SelectCommand.CommandText = Strings.Replace(Adapter.SelectCommand.CommandText, "AND (@PlatformIDs = 1)", PlatformIDs)
             If ClearBeforeFill Then
                 dataTable.Clear()
             End If
-            Return Adapter.Fill(dataTable)
+            Dim ReturnValue As Integer = Adapter.Fill(dataTable)
+            Adapter.SelectCommand.CommandText = CommandTextBackup
+            Return ReturnValue
         End Function
 
         Public Overloads Function FillByTradeIDs(ByVal dataTable As VW_GainingsReport2DataTable,
@@ -555,11 +561,14 @@ Namespace CoinTracerDataSetTableAdapters
             Adapter.SelectCommand = CommandCollection(2)
             Adapter.SelectCommand.Parameters(1).Value = SzenarioID
             Adapter.SelectCommand.Parameters(2).Value = TradesClass
+            Dim CommandTextBackup As String = Adapter.SelectCommand.CommandText
             Adapter.SelectCommand.CommandText = Replace(Adapter.SelectCommand.CommandText, "= @TradeIDs", $"in ({String.Join(",", TradeIdList)})")
             If ClearBeforeFill Then
                 dataTable.Clear()
             End If
-            Return Adapter.Fill(dataTable)
+            Dim ReturnValue As Integer = Adapter.Fill(dataTable)
+            Adapter.SelectCommand.CommandText = CommandTextBackup
+            Return ReturnValue
         End Function
 
 

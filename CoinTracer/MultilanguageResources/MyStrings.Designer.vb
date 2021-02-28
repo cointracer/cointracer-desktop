@@ -803,6 +803,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Crypto-Report_{0} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property exportReportFileName() As String
+            Get
+                Return ResourceManager.GetString("exportReportFileName", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Gebühren ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property feePlural() As String
@@ -1951,7 +1960,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Ihre {0}-Version {1} ist noch aktuell! ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Ihre {0}-Version {1} ist aktuell! ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property mainCheckUpdatesStillLatest() As String
             Get
@@ -2086,7 +2095,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Achtung! Bei der Gewinnberechnung gab es {1} Coin-Veräußerung(en), bei denen die Herkunft der Coins nicht ermittelt werden konnte. In solchen Fällen wird immer ein Erwerb der Coins am gleichen Tag zum Preis von 0,00€ angenommen.{0}{0}Sie können die betreffenden Trades im Reiter &apos;Bericht&apos; ansehen, indem Sie in der Spalte &apos;Kaufvorgang&apos; nach &apos;n/a&apos; suchen oder danach filtern. ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Achtung! Bei der Gewinnberechnung gab es Coin-Veräußerung(en), bei denen die Herkunft der Coins nicht ermittelt werden konnte. In solchen Fällen wird immer ein Erwerb der Coins am gleichen Tag zum Preis von 0,00 € angenommen.{0}{0}Sie können die betreffenden Trades im Reiter &apos;Bericht&apos; ansehen, indem Sie in der Spalte &apos;Kaufvorgang&apos; nach &apos;n/a&apos; suchen oder danach filtern. ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property mainMsgCalculationUnclearSpendings() As String
             Get

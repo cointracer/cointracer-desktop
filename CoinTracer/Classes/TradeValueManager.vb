@@ -465,7 +465,7 @@ Public Class TradeValueManager
     ''' <summary>
     ''' Used for assigning OutTrades to InTrades: if an amount lesser or equal this constant is unassigned, the OutTrade is regarded fully cleared
     ''' </summary>
-    Private Const AMOUNT_TOLERANCE = 0.00000009D
+    Friend Const AMOUNT_TOLERANCE = 0.00000005D
 
     Private _Parentform As frmMain
     Private _TCS As frmMain.TaxCalculationSettings
@@ -877,11 +877,11 @@ Public Class TradeValueManager
                     _CVS = _TCS.CoinValueStrategy
                     If _CVS.WalletAware Then
                         _CalcParams.FilterTxFunction = Function(r As TradeTxRow)
-                                                           Return (Not r.Entwertet AndAlso ((Decimal.Compare(r.Betrag, 0) > 0) AndAlso ((r.PlattformID = _CalcParams.FilterPlattformID) AndAlso (r.KontoID = _CalcParams.FilterKontoID)))) AndAlso (DateTime.Compare(r.Zeitpunkt, _CalcParams.FilterZeitpunkt) <= 0)
+                                                           Return (Not r.Entwertet AndAlso ((Decimal.Compare(r.Betrag, 0) > AMOUNT_TOLERANCE) AndAlso ((r.PlattformID = _CalcParams.FilterPlattformID) AndAlso (r.KontoID = _CalcParams.FilterKontoID)))) AndAlso (DateTime.Compare(r.Zeitpunkt, _CalcParams.FilterZeitpunkt) <= 0)
                                                        End Function
                     Else
                         _CalcParams.FilterTxFunction = Function(r As TradeTxRow)
-                                                           Return ((Not r.Entwertet AndAlso ((Decimal.Compare(r.Betrag, 0) > 0) AndAlso (r.KontoID = _CalcParams.FilterKontoID))) AndAlso (DateTime.Compare(r.Zeitpunkt, _CalcParams.FilterZeitpunkt) <= 0))
+                                                           Return ((Not r.Entwertet AndAlso ((Decimal.Compare(r.Betrag, 0) > AMOUNT_TOLERANCE) AndAlso (r.KontoID = _CalcParams.FilterKontoID))) AndAlso (DateTime.Compare(r.Zeitpunkt, _CalcParams.FilterZeitpunkt) <= 0))
                                                        End Function
                     End If
 
@@ -1041,23 +1041,27 @@ Public Class TradeValueManager
     Private Function ChargeTx(ByVal Trade As TradesRow,
                               ByVal Optional WertEUR As Decimal? = Nothing) As Decimal
         Dim TxRow As TradeTxRow = _CalcParams.TxTb.NewTradeTxRow
-        With TxRow
-            .TxID = _CalcParams.TxTb.MaxID
-            .SzenarioID = _SzenarioID
-            .InKalkulationID = _CalcParams.CalculationID
-            .InTradeID = Trade.ID
-            .TransferIDHistory = ""
-            .PlattformID = Trade.ZielPlattformID
-            .KontoID = Trade.ZielKontoID
-            .Zeitpunkt = Trade.ZeitpunktZiel
-            .KaufZeitpunkt = Trade.InZeitpunkt
-            .Betrag = Trade.BetragNachGebuehr
-            .WertEUR = IIf(WertEUR Is Nothing, Trade.WertEUR, WertEUR)
-            .Entwertet = False
-            .IstLangzeit = False
-            .IstRest = False
-        End With
-        _CalcParams.TxTb.Rows.Add(TxRow)
+        If Trade.BetragNachGebuehr > AMOUNT_TOLERANCE Then
+            With TxRow
+                .TxID = _CalcParams.TxTb.MaxID
+                .SzenarioID = _SzenarioID
+                .InKalkulationID = _CalcParams.CalculationID
+                .InTradeID = Trade.ID
+                .TransferIDHistory = ""
+                .PlattformID = Trade.ZielPlattformID
+                .KontoID = Trade.ZielKontoID
+                .Zeitpunkt = Trade.ZeitpunktZiel
+                .KaufZeitpunkt = Trade.InZeitpunkt
+                .Betrag = Trade.BetragNachGebuehr
+                .WertEUR = IIf(WertEUR Is Nothing, Trade.WertEUR, WertEUR)
+                .Entwertet = False
+                .IstLangzeit = False
+                .IstRest = False
+            End With
+            _CalcParams.TxTb.Rows.Add(TxRow)
+        Else
+            Debug.Print("Skipped!")
+        End If
         Return 0
     End Function
 
@@ -1077,6 +1081,12 @@ Public Class TradeValueManager
         Dim AmountToAssign As Decimal = Trade.QuellBetrag
         Dim InitialTxRows As Long = _CalcParams.TxTb.Rows.Count
         Dim TransferFee As Decimal = IIf(TransferMode, Trade.QuellBetrag - Trade.BetragNachGebuehr, 0)
+
+        If AmountToAssign <= AMOUNT_TOLERANCE Then
+            ' Not really anything to do here...
+            Return AmountToAssign
+        End If
+
         SumWertEUR = 0
 
         ' Select appropriate tx rows
@@ -1091,7 +1101,7 @@ Public Class TradeValueManager
         End If
         Dim SelectedTx = _CalcParams.TxTb.Where(_CalcParams.FilterTxFunction).OrderBy(_CalcParams.SortTxFunction)
         For Each TxRow In SelectedTx
-            If (TxRow.Betrag > AmountToAssign) Or TransferMode Then
+            If (AmountToAssign - TxRow.Betrag <= AMOUNT_TOLERANCE) Or TransferMode Then
                 ' TxRow has more value than needed or we are transferring value: derive rows
                 Dim RowAmountToAssign As Decimal = Math.Min(TxRow.Betrag, AmountToAssign)
                 Dim DerivedTxRow As TradeTxRow = TxRow.Derive
@@ -1124,8 +1134,8 @@ Public Class TradeValueManager
                     End If
                 End With
                 _CalcParams.TxTb.AddTradeTxRow(DerivedTxRow)
-                If TxRow.Betrag > AmountToAssign Then
-                    ' We have some remaining value
+                If (AmountToAssign - TxRow.Betrag <= AMOUNT_TOLERANCE) Then
+                    ' We have some (relevant) remaining value
                     Dim RemainTxRow As TradeTxRow = TxRow.Derive
                     With RemainTxRow
                         .InKalkulationID = _CalcParams.CalculationID

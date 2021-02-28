@@ -271,7 +271,7 @@ Namespace CheckComboBox
                     If ccbParent.ReturnEmptyOnAllSelected AndAlso cclb.GetItemChecked(0) Then
                         Return String.Empty
                     End If
-                    StartIndex = 1
+                    StartIndex = IIf(cclb.GetItemChecked(0), 1, 0)
                 Else
                     StartIndex = 0
                 End If

@@ -537,5 +537,67 @@ Namespace My.Resources
                 Return ResourceManager.GetString("db_v40_26", resourceCulture)
             End Get
         End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_Gainings&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v41_01() As String
+            Get
+                Return ResourceManager.GetString("db_v41_01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_GainingsReport2&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v41_02() As String
+            Get
+                Return ResourceManager.GetString("db_v41_02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Gainings&quot; AS 
+        '''select
+        '''t.Zeitpunkt Zeitpunkt,
+        '''case t.TradeTypID
+        '''	when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+        '''	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetr [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v41_03() As String
+            Get
+                Return ResourceManager.GetString("db_v41_03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_GainingsReport2&quot; AS 
+        '''select 
+        '''t.ID Vorgang,
+        '''t.Zeitpunkt Zeitpunkt,
+        '''tt.Bezeichnung Art,
+        '''case t.TradeTypID
+        '''	when 5 then qp.Bezeichnung || &apos; → &apos; || zp.Bezeichnung
+        '''	else qp.Bezeichnung 
+        '''end Plattform,
+        '''case t.TradeTypID
+        '''	when 3 then zk.Bezeichnung
+        '''	else qk.Bezeichnung 
+        '''end [Coin-Art],
+        '''case t.TradeTypID
+        '''	when 3 then round(t.BetragNachGebuehr, 8)
+        '''	else round(t.QuellBetrag, 8) 
+        '''end [Coin-Menge],
+        '''case t.TradeTypID
+        '''	when 3 then qk.Bezeichnung
+        '''	when 5 then &apos;-&apos;
+        '''	else zk.Bezeichnung 
+        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v41_04() As String
+            Get
+                Return ResourceManager.GetString("db_v41_04", resourceCulture)
+            End Get
+        End Property
     End Class
 End Namespace

@@ -345,27 +345,52 @@ Public Class CTReport
     ''' </summary>
     ''' <returns>Number of trades added to the report.</returns>
     Public Function LoadReferencedTrades() As Long
+        Dim TableReference As VW_GainingsReport2DataTable = _DT
+        Dim AddedTable As New VW_GainingsReport2DataTable
         Dim TradeIdList As New List(Of Long)
+        Dim TradeIdListHistory As New List(Of Long)
         Dim CurrentID As Long
-        ' Collect all referenced InTrade IDs not being part of the current report table
-        For Each ReportRow As VW_GainingsReport2Row In _DT.Rows
-            CurrentID = IIf(IsNumeric(ReportRow.Vorgang_Anschaffung), ReportRow.Vorgang_Anschaffung, 0)
-            If CurrentID > 0 AndAlso Not TradeIdList.Contains(CurrentID) Then
-                If _DT.Where(Function(r) r.Vorgang = CurrentID).Count = 0 Then
-                    TradeIdList.Add(CurrentID)
-                End If
+        Dim TotalRowsAdded As Long = 0
+        Dim RowsToCheck As Long = _DT.Rows.Count
+        While RowsToCheck > 0
+            ' Collect all referenced InTrade IDs not being part of the current report table
+            For i As Long = 0 To RowsToCheck - 1
+                For Each IDString In DirectCast(TableReference.Rows(i), VW_GainingsReport2Row).Vorgang_Anschaffung.Split("(")
+                    CurrentID = Val(IDString)
+                    If CurrentID > 0 AndAlso Not TradeIdListHistory.Contains(CurrentID) Then
+                        If Not AddedTable.Where(Function(r) r.Vorgang = CurrentID).Any AndAlso Not _DT.Where(Function(r) r.Vorgang = CurrentID).Any Then
+                            TradeIdList.Add(CurrentID)
+                            TradeIdListHistory.Add(CurrentID)
+                        End If
+                    End If
+                Next
+            Next
+            ' Add these rows to the temporary table
+            If TradeIdList.Count > 0 Then
+                Dim ReportTableNew As New VW_GainingsReport2DataTable
+                With New VW_GainingsReport2TableAdapter With {.ClearBeforeFill = True}
+                    .FillByTradeIDs(ReportTableNew, TradeIdList, SzenarioID, Parameters.ShowTransfers)
+                End With
+                RowsToCheck = ReportTableNew.Rows.Count
+                TotalRowsAdded += RowsToCheck
+                ReportTableNew.Merge(AddedTable)
+                AddedTable = ReportTableNew
+                TradeIdList.Clear()
+                TableReference = AddedTable
+            Else
+                RowsToCheck = 0
             End If
-        Next
-        ' Add these rows to the report
-        If TradeIdList.Count > 0 Then
-            Dim ReportTableNew As New VW_GainingsReport2DataTable
-            With New VW_GainingsReport2TableAdapter With {.ClearBeforeFill = True}
-                .FillByTradeIDs(ReportTableNew, TradeIdList, SzenarioID, Parameters.ShowTransfers)
-            End With
-            ReportTableNew.Merge(_DT)
-            _DT = ReportTableNew
+        End While
+        If TotalRowsAdded > 1 Then
+            ' Re-sort the referenced rows
+            Dim InsertRowsTable As New VW_GainingsReport2DataTable
+            For Each ReportRow As VW_GainingsReport2Row In AddedTable.OrderBy(Function(r As VW_GainingsReport2Row) r.Zeitpunkt).ThenBy(Function(r As VW_GainingsReport2Row) r.Vorgang)
+                InsertRowsTable.ImportRow(ReportRow)
+            Next
+            InsertRowsTable.Merge(_DT)
+            _DT = InsertRowsTable
         End If
-        Return TradeIdList.Count
+        Return TotalRowsAdded
     End Function
 
 #End Region

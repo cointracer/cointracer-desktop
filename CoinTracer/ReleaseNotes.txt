@@ -1,4 +1,17 @@
 ﻿******************************************************
+Version 0.9.5.1 / 28.02.2021
+----------------------------
+
+Verbesserungen:
+- Fehlerkorrektur in Gewinnberechnung: Steuerfreie
+  Veräußerungen werden jetzt wieder als solche ge-
+  kennzeichnet.
+- Zyado-Import in historische Imports verschoben.
+- Diverse kleinere GUI-Fehlerkorrekturen und 
+  Verbesserungen.
+
+
+******************************************************
 Version 0.9.5 / 20.02.2021
 ----------------------------
 

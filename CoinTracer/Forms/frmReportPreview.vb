@@ -159,9 +159,17 @@ Public Class frmReportPreview
     Private Sub cmdExport_Click(sender As Object, e As EventArgs) Handles cmdExport.Click
         DoNotClose = True
         My.Settings.ReportLastRenderingExtension = cbxExportTypes.SelectedIndex
-        If ReportViewer1.ExportDialog(DirectCast(cbxExportTypes.SelectedItem, RenderingExtensionListboxItem).RenderingExtension) <> Windows.Forms.DialogResult.Cancel Then
-            frmMain.ShowDisclaimer()
-        End If
+        Try
+            With ReportViewer1
+                .LocalReport.DisplayName = String.Format(My.Resources.MyStrings.exportReportFileName, Now.ToString("yyyy-MM-dd_HH.mm"))
+                Dim Result As DialogResult = .ExportDialog(DirectCast(cbxExportTypes.SelectedItem, RenderingExtensionListboxItem).RenderingExtension)
+                If Result <> DialogResult.Cancel Then
+                    frmMain.ShowDisclaimer()
+                End If
+            End With
+        Catch ex As Exception
+            DefaultErrorHandler(ex)
+        End Try
     End Sub
 
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click
