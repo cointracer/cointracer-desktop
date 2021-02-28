@@ -147,7 +147,7 @@ Module modHelper
                 Dim iCol As Integer
                 Dim iCols As Integer = DataGridView.Columns.Count
                 Dim CurRow As DataGridViewRow
-                Dim s As String = ""
+                Dim sb As New StringBuilder()
                 If iCols > 0 Then
                     ' put column text qualifiers into array
                     Dim TextQualifiers(iCols - 1) As String
@@ -165,16 +165,16 @@ Module modHelper
                         ' and also add column headers if wanted by user
                         If frmCopyTableData.CopyHeaders Then
                             If frmCopyTableData.TextQualifier.Length > 0 Then
-                                s &= frmCopyTableData.TextQualifier & DataGridView.Columns(iCol).HeaderText.Replace(frmCopyTableData.TextQualifier, "_") & frmCopyTableData.TextQualifier & Separator
+                                sb.Append(frmCopyTableData.TextQualifier & DataGridView.Columns(iCol).HeaderText.Replace(frmCopyTableData.TextQualifier, "_") & frmCopyTableData.TextQualifier & Separator)
                             Else
-                                s &= DataGridView.Columns(iCol).HeaderText & Separator
+                                sb.Append(DataGridView.Columns(iCol).HeaderText & Separator)
                             End If
                         End If
                     Next iCol
                     If frmCopyTableData.CopyHeaders Then
                         ' truncate first line with column names
-                        s = s.Substring(0, s.Length - Separator.Length)
-                        s &= Environment.NewLine
+                        sb.Length -= Separator.Length
+                        sb.Append(Environment.NewLine)
                     End If
                     frmCopyTableData.Close()
                     ' Datenzeile(n) holen
@@ -190,19 +190,19 @@ Module modHelper
                         For iCol = 0 To iCols - 1
                             If CurRow.Cells(iCol).Value IsNot Nothing Then
                                 If TextQualifiers(iCol) = "" Then
-                                    s &= CurRow.Cells(iCol).Value.ToString.Replace(Separator, "_")
+                                    sb.Append(CurRow.Cells(iCol).Value.ToString.Replace(Separator, "_"))
                                 Else
-                                    s &= TextQualifiers(iCol) & CurRow.Cells(iCol).Value.ToString.Replace(Separator, "_").Replace(TextQualifiers(iCol), "_") & TextQualifiers(iCol)
+                                    sb.Append(TextQualifiers(iCol) & CurRow.Cells(iCol).Value.ToString.Replace(Separator, "_").Replace(TextQualifiers(iCol), "_") & TextQualifiers(iCol))
                                 End If
                             End If
-                            s &= Separator
+                            sb.Append(Separator)
                         Next iCol
-                        s = s.Substring(0, s.Length - Separator.Length)
-                        s &= Environment.NewLine
+                        sb.Length -= Separator.Length
+                        sb.Append(Environment.NewLine)
                     Next iRow
                     ' In Zwischenablage kopieren
                     Dim o As New DataObject
-                    o.SetText(s)
+                    o.SetText(sb.ToString)
                     Clipboard.SetDataObject(o, True)
                     If RowCount > PROGRESSBARLIMIT Then
                         ProgressWaitManager.CloseProgress()
