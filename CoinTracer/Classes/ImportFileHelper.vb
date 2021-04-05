@@ -224,6 +224,35 @@ Public Class ImportFileHelper
             .SubType = 1
         End With
         Cnt += 1
+        ' Bitcoin Cash Node (DE)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.WalletBCH)
+            .PlatformName = "Bitcoin Cash Node"
+            .FilesFirstLine = """Bestätigt"",""Datum"",""Typ"",""Etikett"",""Adresse"",""Betrag (BCH)"",""ID"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 0
+        End With
+        Cnt += 1
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.WalletBCH)
+            .PlatformName = "Bitcoin Cash Node"
+            .FilesFirstLine = """Best�tigt"",""Datum"",""Typ"",""Etikett"",""Adresse"",""Betrag (BCH)"",""ID"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 0
+        End With
+        Cnt += 1
+        ' Bitcoin Cash Node (EN)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.WalletBCH)
+            .PlatformName = "Bitcoin Cash Node"
+            .FilesFirstLine = """Confirmed"",""Date"",""Type"",""Label"",""Address"",""Amount (BCH)"",""ID"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 0
+        End With
+        Cnt += 1
         ' Litecoin Core Client (ab 2017-12 - DE)
         ReDim Preserve _AllPlatforms(Cnt)
         With _AllPlatforms(Cnt)
@@ -541,6 +570,16 @@ Public Class ImportFileHelper
             .FilesFirstLine = "DESCRIPTION,CURRENCY,AMOUNT,BALANCE,DATE,WALLET"
             .MatchingType = ImportFileMatchingTypes.StartsWithMatch
             .SubType = 1
+        End With
+        Cnt += 1
+        ' Bitfinex.com (since 2021-01)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Bitfinex)
+            .PlatformName = "Bitfinex.com"
+            .FilesFirstLine = "#,DESCRIPTION,CURRENCY,AMOUNT,BALANCE,DATE,WALLET"
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 2
         End With
         Cnt += 1
         ' Zyado.com

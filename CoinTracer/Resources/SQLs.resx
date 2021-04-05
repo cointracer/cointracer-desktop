@@ -613,4 +613,60 @@ where (t.TradeTypID in (3, 4, 7) or (t.TradeTypID = 5 and not zk.IstFiat)) and n
 group by sz.ID, t.ID, a.InTradeID, a.InTransferID, a.TransferIdHistory, a.OutTradeID
 order by sz.ID, t.Zeitpunkt, tt.ID, t.ID, a.TxID</value>
   </data>
+  <data name="db_v42_01" xml:space="preserve">
+    <value>update Plattformen set Boerse = 1 where ID = 210</value>
+  </data>
+  <data name="db_v42_02" xml:space="preserve">
+    <value>ALTER TABLE [Plattformen] ADD COLUMN [ImportZiel] BOOLEAN DEFAULT 1</value>
+  </data>
+  <data name="db_v42_03" xml:space="preserve">
+    <value>UPDATE [Plattformen] SET ImportZiel = 0 WHERE ID &gt;= 900 OR ID &lt;= 1 OR (Eigen = 0 AND Boerse = 0)</value>
+  </data>
+  <data name="db_v42_04" xml:space="preserve">
+    <value>ALTER TABLE [Plattformen] ADD COLUMN [ImportEindeutig] BOOLEAN DEFAULT 0</value>
+  </data>
+  <data name="db_v42_05" xml:space="preserve">
+    <value>UPDATE [Plattformen] SET ImportEindeutig = 1 WHERE (ID &gt; 200 AND ID &lt;= 210) OR ID = 901</value>
+  </data>
+  <data name="db_v42_06" xml:space="preserve">
+    <value>DROP VIEW IF EXISTS "VW_Plattformen"</value>
+  </data>
+  <data name="db_v42_07" xml:space="preserve">
+    <value>CREATE VIEW "VW_Plattformen" AS 
+select 
+ID, 
+Bezeichnung, 
+Code, 
+Beschreibung, 
+Boerse [IstBörse], 
+Eigen Eigenbesitz,
+ImportZiel [Importziel],
+ImportEindeutig [ImportEindeutig],
+SortID SortierNr, 
+case IstDown when 0 then null else DownSeit end [IstDownSeit], 
+Fix [IstFix] 
+from Plattformen 
+order by SortID, ID</value>
+  </data>
+  <data name="db_v42_08" xml:space="preserve">
+    <value>update Plattformen set Bezeichnung = 'Privates Wallet', Beschreibung = 'Privates Wallet für Cryptocoins' where ID = 100</value>
+  </data>
+  <data name="db_v42_09" xml:space="preserve">
+    <value>DROP VIEW IF EXISTS "VW_Importe"</value>
+  </data>
+  <data name="db_v42_10" xml:space="preserve">
+    <value>CREATE VIEW "VW_Importe" AS 
+select 
+i.ID ID, 
+p.Bezeichnung Plattform, 
+i.Zeitpunkt Zeitpunkt, 
+i.Dateiname Dateiname, 
+i.PfadDateiname Pfad, 
+i.Eingelesen Eingelesen, 
+i.NichtEingelesen [Übersprungen], 
+i.ApiDatenID 
+from Importe i 
+left join Plattformen p on i.PlattformID=p.ID 
+order by i.Zeitpunkt, i.ID</value>
+  </data>
 </root>

@@ -33,6 +33,8 @@ Partial Class frmEditPlattformen
         Dim BoerseLabel As System.Windows.Forms.Label
         Dim EigenLabel As System.Windows.Forms.Label
         Dim IstDownLabel As System.Windows.Forms.Label
+        Dim ImportZielLabel As System.Windows.Forms.Label
+        Dim ImportEindeutigLabel As System.Windows.Forms.Label
         Me.cmdOK = New System.Windows.Forms.Button()
         Me.cmdCancel = New System.Windows.Forms.Button()
         Me.pnlEditTrades = New System.Windows.Forms.Panel()
@@ -63,9 +65,12 @@ Partial Class frmEditPlattformen
         Me.IstDownCheckBox = New System.Windows.Forms.CheckBox()
         Me.DownSeitDateTimePicker = New System.Windows.Forms.DateTimePicker()
         Me.DownSeitLabel = New System.Windows.Forms.Label()
+        Me.pnlDownSeit = New System.Windows.Forms.Panel()
+        Me.ImportZielCheckBox = New System.Windows.Forms.CheckBox()
         Me.PlattformenTableAdapter = New CoinTracer.CoinTracerDataSetTableAdapters.PlattformenTableAdapter()
         Me.TableAdapterManager = New CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager()
-        Me.pnlDownSeit = New System.Windows.Forms.Panel()
+        Me.EnhancedToolTip1 = New CoinTracer.EnhancedToolTip()
+        Me.ImportEindeutigCheckBox = New System.Windows.Forms.CheckBox()
         IDLabel = New System.Windows.Forms.Label()
         BezeichnungLabel = New System.Windows.Forms.Label()
         CodeLabel = New System.Windows.Forms.Label()
@@ -75,6 +80,8 @@ Partial Class frmEditPlattformen
         BoerseLabel = New System.Windows.Forms.Label()
         EigenLabel = New System.Windows.Forms.Label()
         IstDownLabel = New System.Windows.Forms.Label()
+        ImportZielLabel = New System.Windows.Forms.Label()
+        ImportEindeutigLabel = New System.Windows.Forms.Label()
         Me.pnlEditTrades.SuspendLayout()
         CType(Me.PlattformenBindingNavigator, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PlattformenBindingNavigator.SuspendLayout()
@@ -107,26 +114,43 @@ Partial Class frmEditPlattformen
         '
         resources.ApplyResources(SortIDLabel, "SortIDLabel")
         SortIDLabel.Name = "SortIDLabel"
+        Me.EnhancedToolTip1.SetToolTip(SortIDLabel, resources.GetString("SortIDLabel.ToolTip"))
         '
         'FixLabel
         '
         resources.ApplyResources(FixLabel, "FixLabel")
         FixLabel.Name = "FixLabel"
+        Me.EnhancedToolTip1.SetToolTip(FixLabel, resources.GetString("FixLabel.ToolTip"))
         '
         'BoerseLabel
         '
         resources.ApplyResources(BoerseLabel, "BoerseLabel")
         BoerseLabel.Name = "BoerseLabel"
+        Me.EnhancedToolTip1.SetToolTip(BoerseLabel, resources.GetString("BoerseLabel.ToolTip"))
         '
         'EigenLabel
         '
         resources.ApplyResources(EigenLabel, "EigenLabel")
         EigenLabel.Name = "EigenLabel"
+        Me.EnhancedToolTip1.SetToolTip(EigenLabel, resources.GetString("EigenLabel.ToolTip"))
         '
         'IstDownLabel
         '
         resources.ApplyResources(IstDownLabel, "IstDownLabel")
         IstDownLabel.Name = "IstDownLabel"
+        Me.EnhancedToolTip1.SetToolTip(IstDownLabel, resources.GetString("IstDownLabel.ToolTip"))
+        '
+        'ImportZielLabel
+        '
+        resources.ApplyResources(ImportZielLabel, "ImportZielLabel")
+        ImportZielLabel.Name = "ImportZielLabel"
+        Me.EnhancedToolTip1.SetToolTip(ImportZielLabel, resources.GetString("ImportZielLabel.ToolTip"))
+        '
+        'ImportEindeutigLabel
+        '
+        resources.ApplyResources(ImportEindeutigLabel, "ImportEindeutigLabel")
+        ImportEindeutigLabel.Name = "ImportEindeutigLabel"
+        Me.EnhancedToolTip1.SetToolTip(ImportEindeutigLabel, resources.GetString("ImportEindeutigLabel.ToolTip"))
         '
         'cmdOK
         '
@@ -144,9 +168,9 @@ Partial Class frmEditPlattformen
         '
         'pnlEditTrades
         '
-        resources.ApplyResources(Me.pnlEditTrades, "pnlEditTrades")
         Me.pnlEditTrades.Controls.Add(Me.Label3)
         Me.pnlEditTrades.Controls.Add(Me.Label4)
+        resources.ApplyResources(Me.pnlEditTrades, "pnlEditTrades")
         Me.pnlEditTrades.Name = "pnlEditTrades"
         '
         'Label3
@@ -161,13 +185,13 @@ Partial Class frmEditPlattformen
         '
         'PlattformenBindingNavigator
         '
-        resources.ApplyResources(Me.PlattformenBindingNavigator, "PlattformenBindingNavigator")
         Me.PlattformenBindingNavigator.AddNewItem = Nothing
         Me.PlattformenBindingNavigator.BindingSource = Me.PlattformenBindingSource
         Me.PlattformenBindingNavigator.CountItem = Me.BindingNavigatorCountItem
         Me.PlattformenBindingNavigator.CountItemFormat = "of {0}"
         Me.PlattformenBindingNavigator.DeleteItem = Nothing
         Me.PlattformenBindingNavigator.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.BindingNavigatorMoveFirstItem, Me.BindingNavigatorMovePreviousItem, Me.BindingNavigatorSeparator, Me.BindingNavigatorPositionItem, Me.BindingNavigatorCountItem, Me.BindingNavigatorSeparator1, Me.BindingNavigatorMoveNextItem, Me.BindingNavigatorMoveLastItem, Me.BindingNavigatorSeparator2, Me.BindingNavigatorAddNewItem, Me.BindingNavigatorDeleteItem})
+        resources.ApplyResources(Me.PlattformenBindingNavigator, "PlattformenBindingNavigator")
         Me.PlattformenBindingNavigator.MoveFirstItem = Me.BindingNavigatorMoveFirstItem
         Me.PlattformenBindingNavigator.MoveLastItem = Me.BindingNavigatorMoveLastItem
         Me.PlattformenBindingNavigator.MoveNextItem = Me.BindingNavigatorMoveNextItem
@@ -187,25 +211,25 @@ Partial Class frmEditPlattformen
         '
         'BindingNavigatorCountItem
         '
-        resources.ApplyResources(Me.BindingNavigatorCountItem, "BindingNavigatorCountItem")
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        resources.ApplyResources(Me.BindingNavigatorCountItem, "BindingNavigatorCountItem")
         '
         'BindingNavigatorMoveFirstItem
         '
-        resources.ApplyResources(Me.BindingNavigatorMoveFirstItem, "BindingNavigatorMoveFirstItem")
         Me.BindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.BindingNavigatorMoveFirstItem, "BindingNavigatorMoveFirstItem")
         Me.BindingNavigatorMoveFirstItem.Name = "BindingNavigatorMoveFirstItem"
         '
         'BindingNavigatorMovePreviousItem
         '
-        resources.ApplyResources(Me.BindingNavigatorMovePreviousItem, "BindingNavigatorMovePreviousItem")
         Me.BindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.BindingNavigatorMovePreviousItem, "BindingNavigatorMovePreviousItem")
         Me.BindingNavigatorMovePreviousItem.Name = "BindingNavigatorMovePreviousItem"
         '
         'BindingNavigatorSeparator
         '
-        resources.ApplyResources(Me.BindingNavigatorSeparator, "BindingNavigatorSeparator")
         Me.BindingNavigatorSeparator.Name = "BindingNavigatorSeparator"
+        resources.ApplyResources(Me.BindingNavigatorSeparator, "BindingNavigatorSeparator")
         '
         'BindingNavigatorPositionItem
         '
@@ -214,43 +238,44 @@ Partial Class frmEditPlattformen
         '
         'BindingNavigatorSeparator1
         '
-        resources.ApplyResources(Me.BindingNavigatorSeparator1, "BindingNavigatorSeparator1")
         Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
+        resources.ApplyResources(Me.BindingNavigatorSeparator1, "BindingNavigatorSeparator1")
         '
         'BindingNavigatorMoveNextItem
         '
-        resources.ApplyResources(Me.BindingNavigatorMoveNextItem, "BindingNavigatorMoveNextItem")
         Me.BindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.BindingNavigatorMoveNextItem, "BindingNavigatorMoveNextItem")
         Me.BindingNavigatorMoveNextItem.Name = "BindingNavigatorMoveNextItem"
         '
         'BindingNavigatorMoveLastItem
         '
-        resources.ApplyResources(Me.BindingNavigatorMoveLastItem, "BindingNavigatorMoveLastItem")
         Me.BindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.BindingNavigatorMoveLastItem, "BindingNavigatorMoveLastItem")
         Me.BindingNavigatorMoveLastItem.Name = "BindingNavigatorMoveLastItem"
         '
         'BindingNavigatorSeparator2
         '
-        resources.ApplyResources(Me.BindingNavigatorSeparator2, "BindingNavigatorSeparator2")
         Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
+        resources.ApplyResources(Me.BindingNavigatorSeparator2, "BindingNavigatorSeparator2")
         '
         'BindingNavigatorAddNewItem
         '
-        resources.ApplyResources(Me.BindingNavigatorAddNewItem, "BindingNavigatorAddNewItem")
         Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.BindingNavigatorAddNewItem, "BindingNavigatorAddNewItem")
         Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
         '
         'BindingNavigatorDeleteItem
         '
-        resources.ApplyResources(Me.BindingNavigatorDeleteItem, "BindingNavigatorDeleteItem")
         Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        resources.ApplyResources(Me.BindingNavigatorDeleteItem, "BindingNavigatorDeleteItem")
         Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
         '
         'IDTextBox
         '
-        resources.ApplyResources(Me.IDTextBox, "IDTextBox")
         Me.IDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PlattformenBindingSource, "ID", True))
+        resources.ApplyResources(Me.IDTextBox, "IDTextBox")
         Me.IDTextBox.Name = "IDTextBox"
+        Me.EnhancedToolTip1.SetToolTip(Me.IDTextBox, resources.GetString("IDTextBox.ToolTip"))
         '
         'BezeichnungTextBox
         '
@@ -272,36 +297,41 @@ Partial Class frmEditPlattformen
         '
         'SortIDTextBox
         '
-        resources.ApplyResources(Me.SortIDTextBox, "SortIDTextBox")
         Me.SortIDTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.PlattformenBindingSource, "SortID", True))
+        resources.ApplyResources(Me.SortIDTextBox, "SortIDTextBox")
         Me.SortIDTextBox.Name = "SortIDTextBox"
+        Me.EnhancedToolTip1.SetToolTip(Me.SortIDTextBox, resources.GetString("SortIDTextBox.ToolTip"))
         '
         'FixCheckBox
         '
-        resources.ApplyResources(Me.FixCheckBox, "FixCheckBox")
         Me.FixCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.PlattformenBindingSource, "Fix", True))
+        resources.ApplyResources(Me.FixCheckBox, "FixCheckBox")
         Me.FixCheckBox.Name = "FixCheckBox"
+        Me.EnhancedToolTip1.SetToolTip(Me.FixCheckBox, resources.GetString("FixCheckBox.ToolTip"))
         Me.FixCheckBox.UseVisualStyleBackColor = True
         '
         'BoerseCheckBox
         '
-        resources.ApplyResources(Me.BoerseCheckBox, "BoerseCheckBox")
         Me.BoerseCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.PlattformenBindingSource, "Boerse", True))
+        resources.ApplyResources(Me.BoerseCheckBox, "BoerseCheckBox")
         Me.BoerseCheckBox.Name = "BoerseCheckBox"
+        Me.EnhancedToolTip1.SetToolTip(Me.BoerseCheckBox, resources.GetString("BoerseCheckBox.ToolTip"))
         Me.BoerseCheckBox.UseVisualStyleBackColor = True
         '
         'EigenCheckBox
         '
-        resources.ApplyResources(Me.EigenCheckBox, "EigenCheckBox")
         Me.EigenCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.PlattformenBindingSource, "Eigen", True))
+        resources.ApplyResources(Me.EigenCheckBox, "EigenCheckBox")
         Me.EigenCheckBox.Name = "EigenCheckBox"
+        Me.EnhancedToolTip1.SetToolTip(Me.EigenCheckBox, resources.GetString("EigenCheckBox.ToolTip"))
         Me.EigenCheckBox.UseVisualStyleBackColor = True
         '
         'IstDownCheckBox
         '
-        resources.ApplyResources(Me.IstDownCheckBox, "IstDownCheckBox")
         Me.IstDownCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.PlattformenBindingSource, "IstDown", True))
+        resources.ApplyResources(Me.IstDownCheckBox, "IstDownCheckBox")
         Me.IstDownCheckBox.Name = "IstDownCheckBox"
+        Me.EnhancedToolTip1.SetToolTip(Me.IstDownCheckBox, resources.GetString("IstDownCheckBox.ToolTip"))
         Me.IstDownCheckBox.UseVisualStyleBackColor = True
         '
         'DownSeitDateTimePicker
@@ -316,6 +346,22 @@ Partial Class frmEditPlattformen
         resources.ApplyResources(Me.DownSeitLabel, "DownSeitLabel")
         Me.DownSeitLabel.Name = "DownSeitLabel"
         '
+        'pnlDownSeit
+        '
+        Me.pnlDownSeit.Controls.Add(Me.DownSeitLabel)
+        Me.pnlDownSeit.Controls.Add(Me.DownSeitDateTimePicker)
+        Me.pnlDownSeit.Controls.Add(Me.IstDownCheckBox)
+        resources.ApplyResources(Me.pnlDownSeit, "pnlDownSeit")
+        Me.pnlDownSeit.Name = "pnlDownSeit"
+        '
+        'ImportZielCheckBox
+        '
+        Me.ImportZielCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.PlattformenBindingSource, "ImportZiel", True))
+        resources.ApplyResources(Me.ImportZielCheckBox, "ImportZielCheckBox")
+        Me.ImportZielCheckBox.Name = "ImportZielCheckBox"
+        Me.EnhancedToolTip1.SetToolTip(Me.ImportZielCheckBox, resources.GetString("ImportZielCheckBox.ToolTip"))
+        Me.ImportZielCheckBox.UseVisualStyleBackColor = True
+        '
         'PlattformenTableAdapter
         '
         Me.PlattformenTableAdapter.ClearBeforeFill = True
@@ -325,6 +371,7 @@ Partial Class frmEditPlattformen
         Me.TableAdapterManager._VersionsTableAdapter = Nothing
         Me.TableAdapterManager.ApiDatenTableAdapter = Nothing
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.BestaendeTableAdapter = Nothing
         Me.TableAdapterManager.ImporteTableAdapter = Nothing
         Me.TableAdapterManager.KalkulationenTableAdapter = Nothing
         Me.TableAdapterManager.KonfigurationTableAdapter = Nothing
@@ -334,22 +381,27 @@ Partial Class frmEditPlattformen
         Me.TableAdapterManager.SzenarienTableAdapter = Nothing
         Me.TableAdapterManager.TradesTableAdapter = Nothing
         Me.TableAdapterManager.TradesWerteTableAdapter = Nothing
+        Me.TableAdapterManager.TradeTxTableAdapter = Nothing
         Me.TableAdapterManager.TradeTypenTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
-        'pnlDownSeit
+        'ImportEindeutigCheckBox
         '
-        resources.ApplyResources(Me.pnlDownSeit, "pnlDownSeit")
-        Me.pnlDownSeit.Controls.Add(Me.DownSeitLabel)
-        Me.pnlDownSeit.Controls.Add(Me.DownSeitDateTimePicker)
-        Me.pnlDownSeit.Controls.Add(Me.IstDownCheckBox)
-        Me.pnlDownSeit.Name = "pnlDownSeit"
+        Me.ImportEindeutigCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("CheckState", Me.PlattformenBindingSource, "ImportEindeutig", True))
+        resources.ApplyResources(Me.ImportEindeutigCheckBox, "ImportEindeutigCheckBox")
+        Me.ImportEindeutigCheckBox.Name = "ImportEindeutigCheckBox"
+        Me.EnhancedToolTip1.SetToolTip(Me.ImportEindeutigCheckBox, resources.GetString("ImportEindeutigCheckBox.ToolTip"))
+        Me.ImportEindeutigCheckBox.UseVisualStyleBackColor = True
         '
         'frmEditPlattformen
         '
         resources.ApplyResources(Me, "$this")
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.cmdCancel
+        Me.Controls.Add(ImportEindeutigLabel)
+        Me.Controls.Add(Me.ImportEindeutigCheckBox)
+        Me.Controls.Add(Me.ImportZielCheckBox)
+        Me.Controls.Add(ImportZielLabel)
         Me.Controls.Add(Me.pnlDownSeit)
         Me.Controls.Add(IstDownLabel)
         Me.Controls.Add(IDLabel)
@@ -423,4 +475,7 @@ Partial Class frmEditPlattformen
     Friend WithEvents DownSeitDateTimePicker As System.Windows.Forms.DateTimePicker
     Friend WithEvents DownSeitLabel As System.Windows.Forms.Label
     Friend WithEvents pnlDownSeit As System.Windows.Forms.Panel
+    Friend WithEvents ImportZielCheckBox As CheckBox
+    Friend WithEvents EnhancedToolTip1 As EnhancedToolTip
+    Friend WithEvents ImportEindeutigCheckBox As CheckBox
 End Class

@@ -956,6 +956,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die {0} / Adresse {1} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importCoreClientTxInfo() As String
+            Get
+                Return ResourceManager.GetString("importCoreClientTxInfo", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Partnerprogramm / User &apos;{0}&apos; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importInfoBitcoinDeAffiliateEarnings() As String
@@ -1069,6 +1078,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importLabelAutomatic() As String
             Get
                 Return ResourceManager.GetString("importLabelAutomatic", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Bitcoin Cash Node / Bitcoin ABC (*.csv) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importLabelBitcoinCash() As String
+            Get
+                Return ResourceManager.GetString("importLabelBitcoinCash", resourceCulture)
             End Get
         End Property
         
@@ -1511,10 +1529,10 @@ Namespace My.Resources
         '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Bitfinex.com:
         '''
-        '''1. Nachdem Sie sich auf Bitfinex.com angemeldet haben, klicken Sie auf das Symbol oben rechts (&quot;Manage Account&quot;), dann auf &quot;Reports&quot;.
-        '''2. Klicken Sie unter &quot;Balances&quot; auf &quot;Ledgers&quot;, um zur Reporting-Oberfläche von Bitfinex weitergeleitet zu werden.
-        '''3. Stellen Sie oben links (direkt unter dem Bitfinex-Symbol) den gewünschten Export-Zeitraum ein. Im rechten Bereich werden unmittelbar die entsprechenden Ledger-Einträge angezeigt.
-        '''4. Klicken Sie auf &quot;Export&quot;, um die Dat [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''1. Nachdem Sie sich auf Bitfinex.com angemeldet haben, klicken Sie auf das Symbol oben rechts (&quot;Account&quot;), dann auf &quot;Reports&quot;, um zur Reporting-Oberfläche von Bitfinex weitergeleitet zu werden.
+        '''2. Klicken Sie oben links (direkt unter dem Bitfinex-Symbol) auf &quot;Ledgers&quot;.
+        '''3. Stellen Sie oben links (neben dem Bitfinex-Symbol) den gewünschten Export-Zeitraum ein. Im unteren Bereich werden unmittelbar die entsprechenden Ledger-Einträge angezeigt.
+        '''4. Klicken Sie auf &quot;Expo [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgBitfinexCSV() As String
             Get
@@ -1528,6 +1546,42 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importMsgBitfinexCSVTitle() As String
             Get
                 Return ResourceManager.GetString("importMsgBitfinexCSVTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Die Datei enthält unbestätigte Transaktionen. Sollen diese ebenfalls importiert werden oder möchten Sie nur vollständig bestätigte Transaktionen einlesen? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgCoinCoreAskUnconfirmed() As String
+            Get
+                Return ResourceManager.GetString("importMsgCoinCoreAskUnconfirmed", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Unbestätigte Transaktionen entdeckt ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgCoinCoreAskUnconfirmedTitle() As String
+            Get
+                Return ResourceManager.GetString("importMsgCoinCoreAskUnconfirmedTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Nein, nur Bestätigte einlesen ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgCoinCoreConfirmedOnly() As String
+            Get
+                Return ResourceManager.GetString("importMsgCoinCoreConfirmedOnly", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Ja, Unbestätigte einlesen ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgCoinCoreUnconfirmedAlso() As String
+            Get
+                Return ResourceManager.GetString("importMsgCoinCoreUnconfirmedAlso", resourceCulture)
             End Get
         End Property
         
@@ -1820,6 +1874,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wählen Sie die Export-Datei des Bitcoin Cash Clients aus... (*.csv) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importOpenFileTitleBitcoinCashNode() As String
+            Get
+                Return ResourceManager.GetString("importOpenFileTitleBitcoinCashNode", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wählen Sie die Export-Datei des Bitcoin Core Clients aus... (*.csv) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importOpenFileTitleBitcoinCore() As String
+            Get
+                Return ResourceManager.GetString("importOpenFileTitleBitcoinCore", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Kontoauszug von Bitcoin.de auswählen... (account_statement[Zeitraum].csv) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importOpenFileTitleBitcoinDe() As String
@@ -1834,6 +1906,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importOpenFileTitleCoinTracer() As String
             Get
                 Return ResourceManager.GetString("importOpenFileTitleCoinTracer", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wählen Sie die Export-Datei des Litecoin Core Clients aus... (*.csv) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importOpenFileTitleLitecoinCore() As String
+            Get
+                Return ResourceManager.GetString("importOpenFileTitleLitecoinCore", resourceCulture)
             End Get
         End Property
         
@@ -2055,6 +2136,24 @@ Namespace My.Resources
         Friend Shared ReadOnly Property mainHidePlatforms() As String
             Get
                 Return ResourceManager.GetString("mainHidePlatforms", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Sie haben einen API-Import erfolgreich gelöscht. Bitte achten Sie darauf, in den zugehörigen API-Zugangsdaten (ID {1}) die Einstellung &apos;Daten holen ab:&apos; anzupassen, um Lücken in der Trade-History zu vermeiden.{0}{0}Möchten Sie die API-Daten jetzt bearbeiten? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property mainMsgApiDataDeletion() As String
+            Get
+                Return ResourceManager.GetString("mainMsgApiDataDeletion", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Import löschen ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property mainMsgApiDataDeletionTitle() As String
+            Get
+                Return ResourceManager.GetString("mainMsgApiDataDeletionTitle", resourceCulture)
             End Get
         End Property
         
@@ -2707,6 +2806,51 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Aktion abgebrochen. Es wurden keine Trade-Daten verändert. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property moveTradesMsgAbort() As String
+            Get
+                Return ResourceManager.GetString("moveTradesMsgAbort", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Für das Wallet / die Plattform &apos;{0}&apos; (ID {1}) sind keine Trades-Daten vorhanden. Es kann daher nichts übertragen werden. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property moveTradesMsgNoNeed() As String
+            Get
+                Return ResourceManager.GetString("moveTradesMsgNoNeed", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Aktion erfolgreich durchgeführt. {0} Trade-Daten wurden auf das Wallet / die Plattform {1} (ID {2}) übertragen. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property moveTradesMsgSuccess() As String
+            Get
+                Return ResourceManager.GetString("moveTradesMsgSuccess", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Trades auf anderes Wallet / andere Plattform übertragen ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property moveTradesMsgTitle() As String
+            Get
+                Return ResourceManager.GetString("moveTradesMsgTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Möchten Sie wirklich alle Trades, die aktuell der Wallet bzw. Plattform &apos;{1}&apos; (ID {2}) zugewiesen sind, auf ein anderes Wallet / eine andere Plattform übertragen?{0}{0}Achtung: Diese Aktion kann NICHT rückgängig gemacht werden! ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property moveTradesQuestion() As String
+            Get
+                Return ResourceManager.GetString("moveTradesQuestion", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Kopiere Tabelle in die Zwischenablage. Bitte warten Sie... ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property msgCopyingTable() As String
@@ -2730,6 +2874,42 @@ Namespace My.Resources
         Friend Shared ReadOnly Property OK() As String
             Get
                 Return ResourceManager.GetString("OK", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Das Passwort ist zu kurz. Bitte geben Sie ein längeres Passwort ein. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property passwordMsgTooShort() As String
+            Get
+                Return ResourceManager.GetString("passwordMsgTooShort", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Passwortprüfung ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property passwordMsgTooShortTitle() As String
+            Get
+                Return ResourceManager.GetString("passwordMsgTooShortTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Für welches Wallet / welche Plattform wird dieser Import durchgeführt? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property platformSelectImport() As String
+            Get
+                Return ResourceManager.GetString("platformSelectImport", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Auf welches Wallet / welche Plattform sollen alle Trades übertragen werden? ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property platformSelectMoveTrades() As String
+            Get
+                Return ResourceManager.GetString("platformSelectMoveTrades", resourceCulture)
             End Get
         End Property
         

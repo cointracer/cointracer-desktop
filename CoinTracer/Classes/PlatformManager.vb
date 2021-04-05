@@ -47,6 +47,8 @@ Public NotInheritable Class PlatformManager
         Dim IsTradingPlatform As Boolean
         Dim IsProperty As Boolean
         Dim ApiBaseUrl As String
+        Dim ImportTarget As Boolean
+        Dim ImportDistinct As Boolean
         Public Sub New(DbId As Integer,
                        Name As String,
                        Code As String,
@@ -55,7 +57,9 @@ Public NotInheritable Class PlatformManager
                        Optional IsFix As Boolean = True,
                        Optional IsTradingPlatform As Boolean = True,
                        Optional IsProperty As Boolean = True,
-                       Optional ApiBaseUrl As String = "")
+                       Optional ApiBaseUrl As String = "",
+                       Optional ImportTarget As Boolean = True,
+                       Optional ImportDistinct As Boolean = True)
             Me.DbId = DbId
             Me.Name = Name
             Me.Code = Code
@@ -64,6 +68,8 @@ Public NotInheritable Class PlatformManager
             Me.IsFix = IsFix
             Me.IsProperty = IsProperty
             Me.ApiBaseUrl = ApiBaseUrl
+            Me.ImportTarget = ImportTarget
+            Me.ImportDistinct = ImportDistinct
         End Sub
     End Structure
 
@@ -75,6 +81,7 @@ Public NotInheritable Class PlatformManager
         WalletBTC = 101
         WalletLTC = 102
         MultiBit = 103
+        WalletBCH = 104
         MtGox = 201
         BitcoinDe = 202
         Vircurex = 203
@@ -92,10 +99,11 @@ Public NotInheritable Class PlatformManager
     ' All valid platforms - keep database ids in sync with enum above!!!
     Private Shared Function GetAllPlatforms() As PlatformDetails()
         Return New PlatformDetails() {
-            New PlatformDetails(100, "Privates Wallet für Cryptocoins", "WalletOwn", "Privates Wallet", 100, True, False),
-            New PlatformDetails(101, "Wallet BTC", "WalletBTC", "Eigenes Wallet für Bitcoin", 101, True, False),
-            New PlatformDetails(102, "Wallet LTC", "WalletLTC", "Eigenes Wallet für Litecoin", 102, True, False),
-            New PlatformDetails(103, "MultiBit", "MultiBit", "MultiBit-Wallet-Client", 103, True, False),
+            New PlatformDetails(100, "Privates Wallet", "WalletOwn", "Privates Wallet für Cryptocoins", 100, True, False),
+            New PlatformDetails(101, "Wallet BTC", "WalletBTC", "Eigenes Wallet für Bitcoin", 101, True, False, ImportDistinct:=False),
+            New PlatformDetails(102, "Wallet LTC", "WalletLTC", "Eigenes Wallet für Litecoin", 102, True, False, ImportDistinct:=False),
+            New PlatformDetails(103, "MultiBit", "MultiBit", "MultiBit-Wallet-Client", 104, True, False, ImportDistinct:=False),
+            New PlatformDetails(104, "Wallet BCH", "WalletBCH", "Eigenes Wallet für Bitcoin Cash", 103, True, False, ImportDistinct:=False),
             New PlatformDetails(201, "Mt. Gox", "MtGox", "MtGox.com", 201),
             New PlatformDetails(202, "Bitcoin.de", "BitcoinDe", "Bitcoin.de", 202, True, True, True, "https://api.bitcoin.de/v1/"),
             New PlatformDetails(203, "Vircurex", "Vircurex", "Vircurex.com", 203),
@@ -106,7 +114,7 @@ Public NotInheritable Class PlatformManager
             New PlatformDetails(208, "Zyado.com", "Zyado", "Zyado.com", 208),
             New PlatformDetails(209, "Poloniex.com", "Poloniex", "Poloniex.com", 209),
             New PlatformDetails(210, "Binance.com", "Binance", "Binance.com", 210, True, True, True, "https://api.binance.com/"),
-            New PlatformDetails(901, "CoinTracer.de", "CoinTracer", "CoinTracer.de", 901)
+            New PlatformDetails(901, "CoinTracer.de", "CoinTracer", "CoinTracer.de", 901, ImportTarget:=False)
         }
     End Function
 
@@ -138,6 +146,7 @@ Public NotInheritable Class PlatformManager
             .Add(My.Resources.MyStrings.importLabelAutomatic)
             .Add(My.Resources.MyStrings.importLabelBitcoinDe)
             .Add(My.Resources.MyStrings.importLabelBitcoinCore)
+            .Add(My.Resources.MyStrings.importLabelBitcoinCash)
             .Add(My.Resources.MyStrings.importLabelBitfinex)
             .Add(My.Resources.MyStrings.importLabelBitstamp)
             .Add(My.Resources.MyStrings.importLabelGeneric)
@@ -179,39 +188,42 @@ Public NotInheritable Class PlatformManager
                 ' Bitcoin Core
                 Result = Platforms.WalletBTC
             Case 3
+                ' Bitcoin Core
+                Result = Platforms.WalletBCH
+            Case 4
                 ' Bitfinex.com
                 Result = Platforms.Bitfinex
-            Case 4
+            Case 5
                 ' Bitstamp.net
                 Result = Platforms.BitstampNet
-            Case 5
+            Case 6
                 ' Generic CSV import
                 Result = Platforms.CoinTracer
-            Case 6
+            Case 7
                 ' Kraken CSV
                 Result = Platforms.Kraken
-            Case 7
+            Case 8
                 ' Litecoin-Core
                 Result = Platforms.WalletLTC
-            Case 8
+            Case 9
                 ' Poloniex
                 Result = Platforms.Poloniex
-            Case 9
+            Case 10
                 ' Course data EUR/USD
                 Fiat = True
-            Case 11
+            Case 12
                 ' BTC-E
                 Result = Platforms.BtcE
-            Case 12
+            Case 13
                 ' MultiBit
                 Result = Platforms.MultiBit
-            Case 13
+            Case 14
                 ' Mt. Gox
                 Result = Platforms.MtGox
-            Case 14
+            Case 15
                 ' Vircurex
                 Result = Platforms.Vircurex
-            Case 15
+            Case 16
                 ' Zyado
                 Result = Platforms.Zyado
 
@@ -265,7 +277,8 @@ Public NotInheritable Class PlatformManager
                     ' Platform not present - insert it!
                     Dim Result As Integer = PlatformTA.Insert(Platform.DbId, Platform.Name, Platform.Code, Platform.Description,
                                                               Platform.DbId, Platform.IsFix, Platform.IsTradingPlatform,
-                                                              Platform.IsProperty, Platform.ApiBaseUrl, False, Nothing)
+                                                              Platform.IsProperty, Platform.ApiBaseUrl, False, Nothing,
+                                                              Platform.ImportTarget, Platform.ImportDistinct)
                 End If
             Next
         Catch ex As Exception

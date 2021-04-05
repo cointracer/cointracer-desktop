@@ -68,7 +68,7 @@ Public Class frmGetPassword
     Private Sub txtPassword_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtPassword.Validating
         If Me.CheckPasswordCriteria Then
             If txtPassword.Text.Trim.Length < 4 Then
-                MessageBox.Show("Das Passwort ist zu kurz. Bitte geben Sie ein längeres Passwort ein.", "Passwortprüfung", _
+                MessageBox.Show(My.Resources.MyStrings.passwordMsgTooShort, My.Resources.MyStrings.passwordMsgTooShortTitle,
                                 MessageBoxButtons.OK, MessageBoxIcon.Hand)
                 e.Cancel = True
             End If

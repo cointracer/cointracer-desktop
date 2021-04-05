@@ -648,7 +648,7 @@ Public Class Import
             Case PlatformManager.Platforms.BitstampNet
                 If Content1.Length = 0 Then
                     With OFD
-                        .Filter = "CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*"
+                        .Filter = My.Resources.MyStrings.importOpenFileFilterCSV
                         .FilterIndex = 1
                         .Title = "Datenexport von Bitstamp.net auswählen... (Transactions*.csv)"
                         .RestoreDirectory = True
@@ -694,40 +694,10 @@ Public Class Import
                         Import_BtcE(Content1)
                     End If
                 End If
-            Case PlatformManager.Platforms.WalletBTC
-                If Content1.Length = 0 Then
-                    With OFD
-                        .Filter = "CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*"
-                        .FilterIndex = 1
-                        .Title = "Datenexport aus dem persönlichen Bitcoin-Qt-Wallet auswählen... (*.csv)"
-                        .RestoreDirectory = True
-                        If .ShowDialog() = DialogResult.OK Then
-                            Content1 = .FileName
-                            Import_WalletQT(Content1)
-                        End If
-                    End With
-                Else
-                    Import_WalletQT(Content1, False)
-                End If
-            Case PlatformManager.Platforms.WalletLTC
-                If Content1.Length = 0 Then
-                    With OFD
-                        .Filter = "CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*"
-                        .FilterIndex = 1
-                        .Title = "Datenexport aus dem persönlichen Litecoin-Qt-Wallet auswählen... (*.csv)"
-                        .RestoreDirectory = True
-                        If .ShowDialog() = DialogResult.OK Then
-                            Content1 = .FileName
-                            Import_WalletQT(Content1)
-                        End If
-                    End With
-                Else
-                    Import_WalletQT(Content1, False)
-                End If
             Case PlatformManager.Platforms.MultiBit
                 If Content1.Length = 0 Then
                     With OFD
-                        .Filter = "CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*"
+                        .Filter = My.Resources.MyStrings.importOpenFileFilterCSV
                         .FilterIndex = 1
                         .Title = "Datenexport aus dem MultiBit-Client auswählen... (multibit.csv)"
                         .RestoreDirectory = True
@@ -751,7 +721,7 @@ Public Class Import
                                                    "Anschließend klicken Sie auf ""Export Complete Deposit (oder Withdrawal) History""." & Environment.NewLine,
                                                    "Datenimport von Poloniex.com", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
                         With OFD
-                            .Filter = "CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*"
+                            .Filter = My.Resources.MyStrings.importOpenFileFilterCSV
                             .FilterIndex = 1
                             .Title = "Datenexport-Dateien von Poloniex.com auswählen... ([???]History.csv)"
                             .RestoreDirectory = True
@@ -768,7 +738,7 @@ Public Class Import
             Case PlatformManager.Platforms.Zyado
                 If Content1.Length = 0 Then
                     With OFD
-                        .Filter = "CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*"
+                        .Filter = My.Resources.MyStrings.importOpenFileFilterCSV
                         .FilterIndex = 1
                         .Title = "Datenexport von Zyado.com auswählen... (*.csv)"
                         .RestoreDirectory = True
@@ -787,7 +757,6 @@ Public Class Import
 
         If NewImport Then
             ' New kind of file import - refactored for better modularization
-
             Select Case _Plattform
                 Case PlatformManager.Platforms.BitcoinDe
                     ' Bitcoin.de file import
@@ -801,6 +770,15 @@ Public Class Import
                 Case PlatformManager.Platforms.CoinTracer
                     ' Cointracer generic file import
                     ThisImport = New Import_CoinTracer(Me)
+                Case PlatformManager.Platforms.WalletBCH
+                    ' Bitcoin Cash Node
+                    ThisImport = New Import_BitcoinCashNode(Me)
+                Case PlatformManager.Platforms.WalletBTC
+                    ' Bitcoin Core
+                    ThisImport = New Import_BitcoinCore(Me)
+                Case PlatformManager.Platforms.WalletLTC
+                    ' Litecoin Core
+                    ThisImport = New Import_LitecoinCore(Me)
                 Case Else
                     ThisImport = Nothing
             End Select
@@ -827,125 +805,6 @@ Public Class Import
                                           IIf(_LastTransfersUpdated > 0 OrElse _LastTransfersInserted > 0, Environment.NewLine & GetProcessedTransfersString(), "")),
                             My.Resources.MyStrings.importMsgSummaryTitle,
                             MessageBoxButtons.OK, MessageBoxIcon.Information)
-        End If
-
-    End Sub
-
-    ''' <summary>
-    ''' Importiert die Transaktionsdaten eines lokalen Wallets und schreibt diese in Trades. _Plattform muss entweder WalletBTC oder WalletLTC sein.
-    ''' </summary>
-    ''' <param name="Filename"></param>
-    Private Sub Import_WalletQT(Filename As String,
-                                Optional ByVal CheckFirstLine As Boolean = True)
-
-        Dim Row() As String
-        Dim LineCount As Integer
-        Dim ErrCounter As Integer = _MaxErrors
-        Dim IgnoreTransactionConfirmStatus As Boolean = False
-        Dim AskedForIgnoreTransactionConfirmStatus As Boolean = False
-        Dim Record As dtoTradesRecord
-        Dim ImportRecords As List(Of dtoTradesRecord)
-        Dim CSV As New CSVHelper(Filename, System.Text.Encoding.Default)
-
-        If CSV.FileExists Then
-            Cursor.Current = Cursors.WaitCursor
-            If CheckFirstLine AndAlso _ImportFileHelper.FindMachtingPlatforms(CSV.FirstLine, _Plattform) = 0 Then
-                ' Datei hat offenbar falsches Format!
-                Dim CoinName As String
-                Select Case _Plattform
-                    Case PlatformManager.Platforms.WalletLTC
-                        CoinName = "Litecoin Core Client"
-                    Case Else
-                        CoinName = "Bitcoin Core Client"
-                End Select
-                MsgBoxEx.BringToFront()
-                MessageBox.Show("Die Datei hat anscheinend nicht das richtige Format (" & CoinName & " muss in deutscher Sprache laufen!) und kann daher nicht eingelesen werden!",
-                                "Ungültige Datei", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-                Exit Sub
-            End If
-            InitProgressForm("Starte Import der Wallet-Transaktionen. Bitte warten Sie...")
-            If CSV.ReadAllRows(True, ",", """", ".", ",") > 0 Then
-                ImportRecords = New List(Of dtoTradesRecord)
-                Dim AllLines As Long = CSV.Rows.Count
-                LineCount = 1
-                For Each Row In CSV.Rows
-                    ProgressWaitManager.UpdateProgress(LineCount / AllLines * _ReadImportdataPercentage, String.Format("Lese Datei ein... ({0}/{1})", LineCount, AllLines))
-                    LineCount += 1
-                    Record = New dtoTradesRecord
-                    With Record
-                        Try
-                            If Row(0) = "false" AndAlso Not AskedForIgnoreTransactionConfirmStatus Then
-                                ' Erstes Vorkommen einer Zeile, die mit "false" beginnt
-                                MsgBoxEx.PatchMsgBox(New String() {"Ja, Unbestätigte einlesen", "Nein, nur Bestätigte einlesen"})
-                                IgnoreTransactionConfirmStatus = MessageBox.Show("Die Datei enthält unbestätigte Transaktionen. Sollen diese ebenfalls importiert werden " &
-                                    "oder möchten Sie nur vollständig bestätigte Transaktionen einlesen?",
-                                    "Unbestätigten Transaktionen entdeckt",
-                                    MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question,
-                                    MessageBoxDefaultButton.Button1) = DialogResult.Yes
-                                AskedForIgnoreTransactionConfirmStatus = True
-                            End If
-                            If Row(0) = "true" OrElse (Row(0) = "false" And IgnoreTransactionConfirmStatus) Then
-                                .SourceID = MD5FromString(Row(6))
-                                .Zeitpunkt = Row(1)
-                                .ZeitpunktZiel = .Zeitpunkt
-                                .ImportPlattformID = _Plattform
-                                If _Plattform = PlatformManager.Platforms.WalletBTC Then
-                                    .QuellKontoID = DBHelper.Konten.BTC
-                                Else
-                                    .QuellKontoID = DBHelper.Konten.LTC
-                                End If
-                                .ZielKontoID = .QuellKontoID
-                                If Row(2).StartsWith("Empfangen") OrElse Row(2).StartsWith("Received") Then
-                                    ' Einzahlung
-                                    .TradetypID = DBHelper.TradeTypen.Einzahlung
-                                    .ZielPlattformID = _Plattform
-                                    .QuellPlattformID = PlatformManager.Platforms.Unknown
-                                    .ZielBetrag = CSV.StringToDecimal(Row(5))
-                                ElseIf Row(2).StartsWith("Überwiesen") OrElse Row(2).StartsWith("Sent to") Then
-                                    ' Auszahlung
-                                    .TradetypID = DBHelper.TradeTypen.Auszahlung
-                                    .QuellPlattformID = _Plattform
-                                    .ZielPlattformID = PlatformManager.Platforms.Unknown
-                                    .ZielBetrag = -CSV.StringToDecimal(Row(5))
-                                Else
-                                    .DoNotImport = True
-                                End If
-                                .QuellBetrag = .ZielBetrag
-                                .QuellBetragNachGebuehr = .QuellBetrag
-                                .BetragNachGebuehr = .ZielBetrag
-                                .WertEUR = 0
-                                .Info = Row(3) & " / Adresse " & Row(4)
-
-                                If Not .DoNotImport Then
-                                    ' Record der Liste hinzufügen
-                                    ImportRecords.Add(Record)
-                                End If
-                            End If
-
-                        Catch ex As Exception
-                            Cursor.Current = Cursors.Default
-                            ErrCounter -= 1
-                            DefaultErrorHandler(ex, "Fehler beim Einlesen der Wallet-Datei in Zeile " & LineCount & ":" & Environment.NewLine & ex.Message &
-                                                IIf(ErrCounter = 0, Environment.NewLine & Environment.NewLine & "Es sind zu viele Fehler aufgetreten. " &
-                                                    "Einlesen wird abgebrochen.", ""))
-                            If ErrCounter = 0 Then
-                                DestroyProgressForm()
-                                Exit Sub
-                            End If
-                        End Try
-
-                    End With
-
-                Next Row
-
-                Import_Records(ImportRecords, Filename, _ReadImportdataPercentage)
-            Else
-                DestroyProgressForm()
-            End If
-
-            Cursor.Current = Cursors.Default
-
         End If
 
     End Sub
@@ -3227,6 +3086,9 @@ Public Class Import
                     .Fix = False
                     .Boerse = True
                     .Eigen = True
+                    .IstDown = False
+                    .ImportEindeutig = False
+                    .ImportZiel = True
                 End With
                 _PlattformenTb.Rows.Add(NewRow)
                 _PlattformenTa.Update(_PlattformenTb)
@@ -3254,6 +3116,9 @@ Public Class Import
                     .Fix = False
                     .Boerse = True
                     .Eigen = True
+                    .IstDown = False
+                    .ImportEindeutig = False
+                    .ImportZiel = True
                 End With
                 _PlattformenTb.Rows.Add(NewRow)
                 _PlattformenTa.Update(_PlattformenTb)

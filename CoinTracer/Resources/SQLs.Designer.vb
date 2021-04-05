@@ -599,5 +599,121 @@ Namespace My.Resources
                 Return ResourceManager.GetString("db_v41_04", resourceCulture)
             End Get
         End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Plattformen set Boerse = 1 where ID = 210 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_01() As String
+            Get
+                Return ResourceManager.GetString("db_v42_01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die ALTER TABLE [Plattformen] ADD COLUMN [ImportZiel] BOOLEAN DEFAULT 1 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_02() As String
+            Get
+                Return ResourceManager.GetString("db_v42_02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE [Plattformen] SET ImportZiel = 0 WHERE ID &gt;= 900 OR ID &lt;= 1 OR (Eigen = 0 AND Boerse = 0) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_03() As String
+            Get
+                Return ResourceManager.GetString("db_v42_03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die ALTER TABLE [Plattformen] ADD COLUMN [ImportEindeutig] BOOLEAN DEFAULT 0 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_04() As String
+            Get
+                Return ResourceManager.GetString("db_v42_04", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE [Plattformen] SET ImportEindeutig = 1 WHERE (ID &gt; 200 AND ID &lt;= 210) OR ID = 901 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_05() As String
+            Get
+                Return ResourceManager.GetString("db_v42_05", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_Plattformen&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_06() As String
+            Get
+                Return ResourceManager.GetString("db_v42_06", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Plattformen&quot; AS 
+        '''select 
+        '''ID, 
+        '''Bezeichnung, 
+        '''Code, 
+        '''Beschreibung, 
+        '''Boerse [IstBörse], 
+        '''Eigen Eigenbesitz,
+        '''ImportZiel [Importziel],
+        '''ImportEindeutig [ImportEindeutig],
+        '''SortID SortierNr, 
+        '''case IstDown when 0 then null else DownSeit end [IstDownSeit], 
+        '''Fix [IstFix] 
+        '''from Plattformen 
+        '''order by SortID, ID ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_07() As String
+            Get
+                Return ResourceManager.GetString("db_v42_07", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Plattformen set Bezeichnung = &apos;Privates Wallet&apos;, Beschreibung = &apos;Privates Wallet für Cryptocoins&apos; where ID = 100 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_08() As String
+            Get
+                Return ResourceManager.GetString("db_v42_08", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_Importe&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_09() As String
+            Get
+                Return ResourceManager.GetString("db_v42_09", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Importe&quot; AS 
+        '''select 
+        '''i.ID ID, 
+        '''p.Bezeichnung Plattform, 
+        '''i.Zeitpunkt Zeitpunkt, 
+        '''i.Dateiname Dateiname, 
+        '''i.PfadDateiname Pfad, 
+        '''i.Eingelesen Eingelesen, 
+        '''i.NichtEingelesen [Übersprungen], 
+        '''i.ApiDatenID 
+        '''from Importe i 
+        '''left join Plattformen p on i.PlattformID=p.ID 
+        '''order by i.Zeitpunkt, i.ID ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_10() As String
+            Get
+                Return ResourceManager.GetString("db_v42_10", resourceCulture)
+            End Get
+        End Property
     End Class
 End Namespace

@@ -1,5 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" />
+  <Import Project="..\packages\NUnit.3.13.1\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.13.1\build\NUnit.props')" />
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -125,8 +127,12 @@
       <HintPath>..\packages\Microsoft.ReportViewer.Runtime.WinForms.12.0.2402.15\lib\Microsoft.ReportViewer.WinForms.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.13.1.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.13.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -183,6 +189,10 @@
     <Compile Include="Classes\PlatformImports\FileImportBase.vb" />
     <Compile Include="Classes\PlatformImports\IApiImport.vb" />
     <Compile Include="Classes\PlatformImports\IFileImport.vb" />
+    <Compile Include="Classes\PlatformImports\Import_LitecoinCore.vb" />
+    <Compile Include="Classes\PlatformImports\Import_BitcoinCore.vb" />
+    <Compile Include="Classes\PlatformImports\Import_SomecoinCoreCSV.vb" />
+    <Compile Include="Classes\PlatformImports\Import_BitcoinCashNode.vb" />
     <Compile Include="Classes\PlatformImports\Import_Cointracer.vb" />
     <Compile Include="Classes\PlatformImports\Import_BitcoinDe.vb" />
     <Compile Include="Classes\PlatformImports\Import_Kraken_Api.vb" />
@@ -225,6 +235,12 @@
     </Compile>
     <Compile Include="Forms\frmEditTransfers.vb">
       <LastGenOutput>frmEditTransfers.resx</LastGenOutput>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSelectPlatform.Designer.vb">
+      <DependentUpon>frmSelectPlatform.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmSelectPlatform.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmGetImportData_CnP_Vircurex.Designer.vb">
@@ -590,6 +606,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>frmEditTrades.vb</DependentUpon>
       <culture>en</culture>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSelectPlatform.resx">
+      <DependentUpon>frmSelectPlatform.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmGetCourseData.de.resx">
       <AutoGen>True</AutoGen>
@@ -1103,6 +1122,8 @@
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
     <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.13.1\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.13.1\build\NUnit.props'))" />
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.17.0\build\net35\NUnit3TestAdapter.props'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.113.3\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />

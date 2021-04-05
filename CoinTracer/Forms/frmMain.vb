@@ -33,6 +33,9 @@ Imports CoinTracer.DBHelper
 Imports System.IO
 Imports System.Environment
 Imports System.Net
+Imports System.ComponentModel
+Imports CoinTracer.CoinTracerDataSetTableAdapters
+Imports CoinTracer.My.Resources
 
 Public Class frmMain
 
@@ -350,7 +353,7 @@ Public Class frmMain
         My.Application.Log.DefaultFileLogWriter.CustomLocation = GetFolderPath(SpecialFolder.ApplicationData) & "\" & Application.ProductName
 
         ' Labels & Co.
-        lblDonate.Text = String.Format(My.Resources.MyStrings.mainDonateAdvice)
+        lblDonate.Text = String.Format(MyStrings.mainDonateAdvice)
         Me.Text = Application.ProductName & " " & Application.ProductVersion & " (public beta)"
         PlatformManager.LoadImportComboBox(cbxImports, False)
 
@@ -556,19 +559,19 @@ Public Class frmMain
         Dim Msg As String
         LastDate = _CM.GetCoursesCutOffDay(Konten.EUR, Konten.USD)
         If LastDate = DATENULLVALUE Then
-            _TML.SetControlText(lblCourseUSD, My.Resources.MyStrings.mainNoDataAvailable)
+            _TML.SetControlText(lblCourseUSD, MyStrings.mainNoDataAvailable)
         Else
-            _TML.SetControlText(lblCourseUSD, String.Format(My.Resources.MyStrings.mainDataAvailableTo, CDate(LastDate).ToString("dd.MM.yyyy")))
+            _TML.SetControlText(lblCourseUSD, String.Format(MyStrings.mainDataAvailableTo, CDate(LastDate).ToString("dd.MM.yyyy")))
         End If
         If NumberOfAddedDays >= 0 Then
             If NumberOfAddedDays > 1 Then
-                Msg = String.Format(My.Resources.MyStrings.mainCoursesAddedMany, NumberOfAddedDays)
+                Msg = String.Format(MyStrings.mainCoursesAddedMany, NumberOfAddedDays)
             ElseIf NumberOfAddedDays = 1 Then
-                Msg = My.Resources.MyStrings.mainCoursesAddedOne
+                Msg = MyStrings.mainCoursesAddedOne
             Else
-                Msg = My.Resources.MyStrings.mainCoursesAddedNothing
+                Msg = MyStrings.mainCoursesAddedNothing
             End If
-            MessageBox.Show(Msg, My.Resources.MyStrings.mainUpdateCoursesLabel, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show(Msg, MyStrings.mainUpdateCoursesLabel, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
@@ -680,15 +683,15 @@ Public Class frmMain
                         PerformFileImport(SelectedPlatform, Nothing)
                     Else
                         ' No valid platform selected
-                        MessageBox.Show(My.Resources.MyStrings.mainMsgSelectImportMethod,
-                            My.Resources.MyStrings.mainMsgSelectImportMethodTitle, MessageBoxButtons.OK,
+                        MessageBox.Show(MyStrings.mainMsgSelectImportMethod,
+                            MyStrings.mainMsgSelectImportMethodTitle, MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation)
                     End If
                 End If
             End If
         Else
-            MessageBox.Show(My.Resources.MyStrings.mainMsgSelectImportMethod,
-                            My.Resources.MyStrings.mainMsgSelectImportMethodTitle, MessageBoxButtons.OK,
+            MessageBox.Show(MyStrings.mainMsgSelectImportMethod,
+                            MyStrings.mainMsgSelectImportMethodTitle, MessageBoxButtons.OK,
                             MessageBoxIcon.Exclamation)
             Exit Sub
         End If
@@ -717,8 +720,8 @@ Public Class frmMain
         dshgrdAbgaenge.Reload()
         If TradeImport.LastTransfersInserted > 0 Then
             If MsgBoxEx.ShowWithNotAgainOption("GoToTransfersAfterImport", Windows.Forms.DialogResult.No,
-                                               My.Resources.MyStrings.mainMsgNewTransfers,
-                                               My.Resources.MyStrings.mainMsgNewTransfersTitle,
+                                               MyStrings.mainMsgNewTransfers,
+                                               MyStrings.mainMsgNewTransfersTitle,
                                                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                                                MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.Yes Then
                 _LastImportID = 1
@@ -731,11 +734,11 @@ Public Class frmMain
     ''' Alle Bewegungsdaten aus der Datenbank löschen!
     ''' </summary>
     Private Sub mnuEraseDB_Click(sender As Object, e As EventArgs) Handles EraseDBToolStripMenuItem.Click
-        Dim DlgTitle As String = My.Resources.MyStrings.mainMsgDeleteDBTitle
-        If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgDeleteDB1, Environment.NewLine),
+        Dim DlgTitle As String = MyStrings.mainMsgDeleteDBTitle
+        If MessageBox.Show(String.Format(MyStrings.mainMsgDeleteDB1, Environment.NewLine),
                         DlgTitle, MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
-            If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgDeleteDB2, Environment.NewLine),
+            If MessageBox.Show(String.Format(MyStrings.mainMsgDeleteDB2, Environment.NewLine),
                         DlgTitle, MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
                 Try
@@ -760,7 +763,7 @@ Public Class frmMain
                 ClearReportsGrid()
                 ReloadTablesTab()
                 _TVM_GainingsCutOffDayChanged(_TVM, New GainingsCutOffDayEventArgs(_TVM.GetGainingsCutOffDay))
-                MessageBox.Show(My.Resources.MyStrings.mainMsgDeleteDB3, DlgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(MyStrings.mainMsgDeleteDB3, DlgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End If
     End Sub
@@ -769,11 +772,11 @@ Public Class frmMain
     ''' Completely restore the database!
     ''' </summary>
     Private Sub mnuNewDB_Click(sender As Object, e As EventArgs) Handles NewDBToolStripMenuItem.Click
-        Dim DlgTitle As String = My.Resources.MyStrings.mainMsgNewDBTitle
-        If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgNewDB1, Environment.NewLine),
+        Dim DlgTitle As String = MyStrings.mainMsgNewDBTitle
+        If MessageBox.Show(String.Format(MyStrings.mainMsgNewDB1, Environment.NewLine),
                         DlgTitle, MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
-            If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgNewDB2, Environment.NewLine),
+            If MessageBox.Show(String.Format(MyStrings.mainMsgNewDB2, Environment.NewLine),
                         DlgTitle, MessageBoxButtons.OKCancel,
                         MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
                 Try
@@ -789,12 +792,12 @@ Public Class frmMain
                     frmMain_Load(Me, New EventArgs)
                     ReloadTablesTab()
                     Cursor.Current = Cursors.Default
-                    MessageBox.Show(My.Resources.MyStrings.mainMsgNewDBSuccess,
-                                    My.Resources.MyStrings.mainMsgNewDBSuccessTitle,
+                    MessageBox.Show(MyStrings.mainMsgNewDBSuccess,
+                                    MyStrings.mainMsgNewDBSuccessTitle,
                                     MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Catch ex As Exception
                     Cursor.Current = Cursors.Default
-                    DefaultErrorHandler(ex, String.Format(My.Resources.MyStrings.mainMsgNewDBError, NewLine, ex.Message))
+                    DefaultErrorHandler(ex, String.Format(MyStrings.mainMsgNewDBError, NewLine, ex.Message))
                 End Try
             End If
         End If
@@ -809,7 +812,7 @@ Public Class frmMain
         gnd2ndTab.CloneFrom(gnd1stTab)
         gnd3rdTab.CloneFrom(gnd1stTab)
         OldDate = e.GainingsCutOffDay
-        Label15.Text = String.Format(My.Resources.MyStrings.mainGainingsLastCalculatedTo, IIf(OldDate = DATENULLVALUE, "n.n.", OldDate.ToString("dd.MM.yyyy")))
+        Label15.Text = String.Format(MyStrings.mainGainingsLastCalculatedTo, IIf(OldDate = DATENULLVALUE, "n.n.", OldDate.ToString("dd.MM.yyyy")))
         OldDate = tpReport.DateTo
         If OldDate > e.GainingsCutOffDay Then
             ClearReportsGrid()
@@ -866,7 +869,7 @@ Public Class frmMain
         ' Prüfen, ob es noch ungeklärte Transfers gibt
         If _TVM.GetOpenTransfers > 0 Then
             If MsgBoxEx.ShowWithNotAgainOption("CalculateGainingsDespiteUnclearTrades", Windows.Forms.DialogResult.Yes,
-                                               String.Format(My.Resources.MyStrings.mainMsgWarnUnclearTransfers, Environment.NewLine), My.Resources.MyStrings.mainMsgWarnUnclearTransfersTitle, MessageBoxButtons.YesNo,
+                                               String.Format(MyStrings.mainMsgWarnUnclearTransfers, Environment.NewLine), MyStrings.mainMsgWarnUnclearTransfersTitle, MessageBoxButtons.YesNo,
                                                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.No Then
                 Exit Sub
             End If
@@ -886,9 +889,9 @@ Public Class frmMain
                 Dim LastUsdDate As Date = _CM.GetCoursesCutOffDay(Konten.EUR, Konten.USD)
                 If LastUsdDate = DATENULLVALUE Then
                     ' es wurden noch gar keine Wechselkursdaten abgerufen
-                    MsgBoxEx.PatchMsgBox(New String() {My.Resources.MyStrings.mainMsgGetCoursesBt1, My.Resources.MyStrings.Cancel})
-                    If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgGetCourses1, Environment.NewLine, grpCourses.Text),
-                                My.Resources.MyStrings.mainMsgGetCoursesTitle, MessageBoxButtons.RetryCancel, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Retry Then
+                    MsgBoxEx.PatchMsgBox(New String() {MyStrings.mainMsgGetCoursesBt1, MyStrings.Cancel})
+                    If MessageBox.Show(String.Format(MyStrings.mainMsgGetCourses1, Environment.NewLine, grpCourses.Text),
+                                MyStrings.mainMsgGetCoursesTitle, MessageBoxButtons.RetryCancel, MessageBoxIcon.Question) = Windows.Forms.DialogResult.Retry Then
                         If cmdCourses.Enabled Then
                             cmdCourses_Click(Nothing, Nothing)
                         End If
@@ -896,14 +899,14 @@ Public Class frmMain
                     Exit Sub
                 End If
                 If LastUsdDate < dtpCutOffDay.Value.Date Then
-                    MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgGetCourses2, LastUsdDate.ToString("dd.MM.yyyy")),
-                                    My.Resources.MyStrings.mainMsgGetCoursesTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show(String.Format(MyStrings.mainMsgGetCourses2, LastUsdDate.ToString("dd.MM.yyyy")),
+                                    MyStrings.mainMsgGetCoursesTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ToDate = DateAdd(DateInterval.Day, 1, LastUsdDate)
                 End If
             End If
             If _CM.HasUnweightedTrades(Konten.USD, ToDate, UnweightedDate) Then
-                MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgGetCourses3, UnweightedDate),
-                                My.Resources.MyStrings.mainMsgGetCoursesTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                MessageBox.Show(String.Format(MyStrings.mainMsgGetCourses3, UnweightedDate),
+                                MyStrings.mainMsgGetCoursesTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Exit Sub
             End If
             ' Berechnung durchführen
@@ -911,12 +914,12 @@ Public Class frmMain
             gnd2ndTab.Reload()
             ' Issue a warning when we had some spendings of unclear origin
             If _TVM.LastUnclearSpendings > 0 Then
-                MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgCalculationUnclearSpendings,
+                MessageBox.Show(String.Format(MyStrings.mainMsgCalculationUnclearSpendings,
                                               NewLine,
                                               _TVM.LastUnclearSpendings),
-                                My.Resources.MyStrings.mainMsgCalculationUnclearSpendingsTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                MyStrings.mainMsgCalculationUnclearSpendingsTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             End If
-            MessageBox.Show(My.Resources.MyStrings.mainMsgGotCourses, My.Resources.MyStrings.mainMsgGotCoursesTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show(MyStrings.mainMsgGotCourses, MyStrings.mainMsgGotCoursesTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As TradeValueException
             ' Nichts mehr tun - Messagebox gab es schon...
         Catch ex As Exception
@@ -943,10 +946,10 @@ Public Class frmMain
         If _TVM.GetGainingsCutOffDay = DATENULLVALUE Then
             ' Nothing to load yet
             ClearReportsGrid()
-            MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgReportReloadNoCalc,
+            MessageBox.Show(String.Format(MyStrings.mainMsgReportReloadNoCalc,
                                           NewLine,
-                                          If(cbxSzenario.SelectedIndex > 0, cbxSzenario.SelectedItem(cbxSzenario.DisplayColumnName).ToString, My.Resources.MyStrings.ScenarioDefault), tabSettings.Text, cmdCalculateGainings.Text),
-                                      My.Resources.MyStrings.mainMsgReportReloadNoCalcTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                          If(cbxSzenario.SelectedIndex > 0, cbxSzenario.SelectedItem(cbxSzenario.DisplayColumnName).ToString, MyStrings.ScenarioDefault), tabSettings.Text, cmdCalculateGainings.Text),
+                                      MyStrings.mainMsgReportReloadNoCalcTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             tctlMain.SelectedTab = tabSettings
         Else
             Try
@@ -1002,7 +1005,7 @@ Public Class frmMain
     Private Sub cmdReportExport_Click(sender As Object, e As EventArgs) Handles cmdReportExport.Click
         If grdReport.RowCount > 0 Then
             If DataGridViewToClipboard(grdReport) Then
-                MessageBox.Show(My.Resources.MyStrings.mainMsgReportToClipboard, My.Resources.MyStrings.mainMsgReportToClipboardTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(MyStrings.mainMsgReportToClipboard, MyStrings.mainMsgReportToClipboardTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 ShowDisclaimer()
             End If
         End If
@@ -1014,7 +1017,7 @@ Public Class frmMain
 
     Public Sub ShowDisclaimer(Optional DoShow As Boolean = False)
         If ShownWarnings < 3 Or DoShow Then
-            MessageBox.Show(DisclaimerContent.CompleteDisclaimer, My.Resources.MyStrings.mainMsgDisclaimerTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            MessageBox.Show(DisclaimerContent.CompleteDisclaimer, MyStrings.mainMsgDisclaimerTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             ShownWarnings += 1
         End If
     End Sub
@@ -1049,15 +1052,15 @@ Public Class frmMain
             Dim KursTb As New CoinTracerDataSet.KurseDataTable
             KursTa.FillBySQL(KursTb, "where QuellKontoID=" & Konten.EUR & " and ZielKontoID=" & Konten.USD)
             If KursTb.Count = 0 Then
-                If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgGetCoursesUSD, Environment.NewLine),
-                                   My.Resources.MyStrings.mainMsgGetCoursesUSDTitle, MessageBoxButtons.OKCancel,
+                If MessageBox.Show(String.Format(MyStrings.mainMsgGetCoursesUSD, Environment.NewLine),
+                                   MyStrings.mainMsgGetCoursesUSDTitle, MessageBoxButtons.OKCancel,
                                    MessageBoxIcon.Information) = DialogResult.Cancel Then
                     KursTa.Dispose()
                     Exit Sub
                 End If
             End If
             KursTa.Dispose()
-            _TML.SetWorkRoutine(AddressOf DoFetchCourses, TML_JOB_FETCHCOURSES, My.Resources.MyStrings.mainMsgGettingCoursesUSD)
+            _TML.SetWorkRoutine(AddressOf DoFetchCourses, TML_JOB_FETCHCOURSES, MyStrings.mainMsgGettingCoursesUSD)
             _TML.StartThread()
         End If
     End Sub
@@ -1097,11 +1100,11 @@ Public Class frmMain
             Exit Sub
         End Try
         Cursor.Current = Cursors.Default
-        Dim Message As String = My.Resources.MyStrings.mainMsgOptimizeDB1
+        Dim Message As String = MyStrings.mainMsgOptimizeDB1
         If BytesSaved > 500 Then
-            Message &= String.Format(My.Resources.MyStrings.mainMsgOptimizeDB2, NewLine, Math.Round(CSng(BytesSaved / 1000), 1))
+            Message &= String.Format(MyStrings.mainMsgOptimizeDB2, NewLine, Math.Round(CSng(BytesSaved / 1000), 1))
         End If
-        MessageBox.Show(Message, My.Resources.MyStrings.mainMsgOptimizeDBTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        MessageBox.Show(Message, MyStrings.mainMsgOptimizeDBTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     ''' <summary>
@@ -1177,17 +1180,17 @@ Public Class frmMain
     Private Sub DatabaseSaveMenuItem_Click(sender As Object, e As EventArgs) Handles DatabaseSaveMenuItem.Click
         Dim SFD As New SaveFileDialog
         With SFD
-            .Filter = My.Resources.MyStrings.mainMsgSaveDBFilter
-            .Title = My.Resources.MyStrings.mainMsgSaveDBTitle
+            .Filter = MyStrings.mainMsgSaveDBFilter
+            .Title = MyStrings.mainMsgSaveDBTitle
             .FileName = String.Format("cointracer_backup_{0}.data", Now.ToString("yyyy-MM-dd_HH.mm"))
             If .ShowDialog(Me) = DialogResult.OK Then
                 Try
                     Dim DBInit As New DBInit
                     My.Computer.FileSystem.CopyFile(DBInit.DatabaseFile, .FileName, True)
-                    MessageBox.Show(My.Resources.MyStrings.mainMsgSaveDB2, My.Resources.MyStrings.mainMsgSaveDB2Title,
+                    MessageBox.Show(MyStrings.mainMsgSaveDB2, MyStrings.mainMsgSaveDB2Title,
                                     MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Catch ex As Exception
-                    DefaultErrorHandler(ex, String.Format(My.Resources.MyStrings.mainMsgSaveDBError, NewLine))
+                    DefaultErrorHandler(ex, String.Format(MyStrings.mainMsgSaveDBError, NewLine))
                 End Try
             End If
         End With
@@ -1200,13 +1203,13 @@ Public Class frmMain
     ''' </summary>
     Private Sub DatabaseLoadMenuItem_Click(sender As Object, e As EventArgs) Handles DatabaseLoadMenuItem.Click
         Dim OFD As New OpenFileDialog()
-        If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgLoadDBWarning, Environment.NewLine),
-                           My.Resources.MyStrings.mainMsgLoadDBWarningTitle, MessageBoxButtons.OKCancel,
+        If MessageBox.Show(String.Format(MyStrings.mainMsgLoadDBWarning, Environment.NewLine),
+                           MyStrings.mainMsgLoadDBWarningTitle, MessageBoxButtons.OKCancel,
                            MessageBoxIcon.Exclamation) = Windows.Forms.DialogResult.OK Then
             With OFD
-                .Filter = My.Resources.MyStrings.mainMsgLoadDBFilter
+                .Filter = MyStrings.mainMsgLoadDBFilter
                 .FilterIndex = 1
-                .Title = My.Resources.MyStrings.mainMsgLoadDBTitle
+                .Title = MyStrings.mainMsgLoadDBTitle
                 .RestoreDirectory = True
                 If .ShowDialog() = DialogResult.OK Then
                     LoadDatabase(.FileName, True)
@@ -1241,13 +1244,13 @@ Public Class frmMain
             ClearReportsGrid()
             Cursor.Current = Cursors.Default
             If Verbose Then
-                MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgLoadDBSuccess, NewLine),
-                            My.Resources.MyStrings.mainMsgLoadDBSuccessTitle,
+                MessageBox.Show(String.Format(MyStrings.mainMsgLoadDBSuccess, NewLine),
+                            MyStrings.mainMsgLoadDBSuccessTitle,
                             MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
             Cursor.Current = Cursors.Default
-            DefaultErrorHandler(ex, String.Format(My.Resources.MyStrings.mainMsgLoadDBError, NewLine, ex.Message))
+            DefaultErrorHandler(ex, String.Format(MyStrings.mainMsgLoadDBError, NewLine, ex.Message))
         End Try
     End Sub
 
@@ -1296,7 +1299,7 @@ Public Class frmMain
     Friend Sub RefreshAfterTradesEdit()
         _DB.Reset_DataAdapter(TableNames.Kalkulationen)
         If _DB.DataTable(TableNames.Kalkulationen).Rows.Count > 0 Then
-            If MessageBox.Show(String.Format(My.Resources.MyStrings.mainEditTradesAdvice, Environment.NewLine), My.Resources.MyStrings.mainEditTradesAdviceTitle,
+            If MessageBox.Show(String.Format(MyStrings.mainEditTradesAdvice, Environment.NewLine), MyStrings.mainEditTradesAdviceTitle,
                                 MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = Windows.Forms.DialogResult.OK Then
                 _TVM.RollbackCalculation(DATENULLVALUE, , True)
             End If
@@ -1328,7 +1331,7 @@ Public Class frmMain
     End Sub
 
     Private Sub cmdTogglePlatforms_Click(sender As Object, e As EventArgs) Handles cmdTogglePlatforms.Click
-        cmdTogglePlatforms.Text = IIf(dshgrdAbgaenge.Columns("Art").Visible, My.Resources.MyStrings.mainHidePlatforms, My.Resources.MyStrings.mainShowPlatforms)
+        cmdTogglePlatforms.Text = IIf(dshgrdAbgaenge.Columns("Art").Visible, MyStrings.mainHidePlatforms, MyStrings.mainShowPlatforms)
         ReloadDashGrids(True, dshgrdAbgaenge.Columns("Art").Visible)
     End Sub
 
@@ -1360,7 +1363,7 @@ Public Class frmMain
         Catch ex As ThreadAbortException
             Exit Sub
         Catch ex As Exception
-            DefaultErrorHandler(ex, String.Format(My.Resources.MyStrings.mainCheckUpdatesError, ex.Message))
+            DefaultErrorHandler(ex, String.Format(MyStrings.mainCheckUpdatesError, ex.Message))
             Exit Sub
         End Try
 
@@ -1380,14 +1383,14 @@ Public Class frmMain
             End If
             If LatestVersion >
             CurrentVersionParts(0).PadLeft(3, "0") & CurrentVersionParts(1).PadLeft(3, "0") & CurrentVersionParts(2).PadLeft(3, "0") & CurrentVersionParts(3).PadLeft(2, "0") Then
-                If MessageBox.Show(String.Format(My.Resources.MyStrings.mainCheckUpdates, Environment.NewLine,
+                If MessageBox.Show(String.Format(MyStrings.mainCheckUpdates, Environment.NewLine,
                                                 CInt(LatestVersion.Substring(0, 3)).ToString,
                                                 CInt(LatestVersion.Substring(3, 3)).ToString,
                                                 CInt(LatestVersion.Substring(6, 3)).ToString &
                                                 If(LatestVersion.EndsWith("00"), "", "." & CInt(LatestVersion.Substring(9, 2)).ToString),
                                                 URIDownload,
                                                 Application.ProductName),
-                                                My.Resources.MyStrings.mainCheckUpdatesTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
+                                                MyStrings.mainCheckUpdatesTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Information) = DialogResult.Yes Then
                     Try
                         Process.Start(URIDownload)
                         Application.Exit()
@@ -1398,13 +1401,13 @@ Public Class frmMain
                     End Try
                 End If
             Else
-                LatestVersion = String.Format(My.Resources.MyStrings.mainCheckUpdatesStillLatest,
+                LatestVersion = String.Format(MyStrings.mainCheckUpdatesStillLatest,
                                               Application.ProductName,
                                               If(Application.ProductVersion.EndsWith(".0"), Application.ProductVersion.Substring(0, Application.ProductVersion.Length - 2), Application.ProductVersion.ToString))
                 If Silent = False Then
-                    MessageBox.Show(LatestVersion & KnownIssues, My.Resources.MyStrings.mainCheckUpdatesTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    MessageBox.Show(LatestVersion & KnownIssues, MyStrings.mainCheckUpdatesTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Else
-                    _TML.MessageText = LatestVersion & IIf(KnownIssues.Length > 0, My.Resources.MyStrings.mainCheckUpdatesMessagesPending, "")
+                    _TML.MessageText = LatestVersion & IIf(KnownIssues.Length > 0, MyStrings.mainCheckUpdatesMessagesPending, "")
                     Thread.Sleep(4000)
                     _TML.MessageText = ""
                 End If
@@ -1453,17 +1456,17 @@ Public Class frmMain
                             ReloadTablesTab()
                             ' Bei gelöschtem API-Import auf ggf. notwendige Zeitanpassung hinweisen
                             If ApiDatenID > 0 Then
-                                If MessageBox.Show(String.Format("Sie haben einen API-Import erfolgreich gelöscht. Bitte achten Sie darauf, " &
-                                                "ggf. in den API-Zugangsdaten (ID {0}) die Einstellung 'Daten holen ab:' anzupassen, " &
-                                                "um Lücken in der Trade-History zu vermeiden.{1}{1}Möchten Sie die API-Daten jetzt bearbeiten?",
-                                                ApiDatenID, Environment.NewLine),
-                                                "Import löschen", MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.OK Then
-                                    Dim ApiFrm As New frmEditApiData
-                                    If ApiFrm.ProcessPasswordProtection Then
-                                        ApiFrm.StartID = ApiDatenID
-                                        ApiFrm.TargetTime = ImportTime
-                                        ApiFrm.ShowDialog(Me)
-                                    End If
+                                If MessageBox.Show(String.Format(MyStrings.mainMsgApiDataDeletion,
+                                                   Environment.NewLine, ApiDatenID),
+                                                   MyStrings.mainMsgApiDataDeletionTitle,
+                                                   MessageBoxButtons.YesNo, MessageBoxIcon.Information) = Windows.Forms.DialogResult.Yes Then
+                                    With New frmEditApiData
+                                        If .ProcessPasswordProtection Then
+                                            .StartID = ApiDatenID
+                                            .TargetTime = ImportTime
+                                            .ShowDialog(Me)
+                                        End If
+                                    End With
                                 End If
                             End If
                         End If
@@ -1483,8 +1486,8 @@ Public Class frmMain
         Dim NewLabel As String = cbxSzenario.Text.Trim
         If Present AndAlso cbxSzenario.SelectedIndex < 0 Then
             ' This scenario label already exists - overwrite scenario?
-            Cancel = MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgScenarioOverwrite, NewLabel),
-                                     My.Resources.MyStrings.mainMsgScenarioSaveTitle,
+            Cancel = MessageBox.Show(String.Format(MyStrings.mainMsgScenarioOverwrite, NewLabel),
+                                     MyStrings.mainMsgScenarioSaveTitle,
                                      MessageBoxButtons.YesNo,
                                      MessageBoxIcon.Exclamation,
                                      MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.No
@@ -1518,8 +1521,8 @@ Public Class frmMain
             Else
                 TA.Insert(ScenarioToSaveLabel, _TCS.ToString, _TCS.Coins4CoinsAccounting)
             End If
-            MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgScenarioSaved, ScenarioToSaveLabel),
-                        My.Resources.MyStrings.mainMsgScenarioSaveTitle,
+            MessageBox.Show(String.Format(MyStrings.mainMsgScenarioSaved, ScenarioToSaveLabel),
+                        MyStrings.mainMsgScenarioSaveTitle,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information)
             cbxSzenario.Reload(ScenarioToLoadLabel)
@@ -1531,15 +1534,15 @@ Public Class frmMain
     Private Sub cmdSzenarioDelete_Click(sender As Object, e As EventArgs) Handles cmdSzenarioDelete.Click
         If cbxSzenario.SelectedValue > 0 Then
             Dim SzenarioName As String = cbxSzenario.Text.Trim
-            If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgScenarioDelete, SzenarioName),
-                               My.Resources.MyStrings.mainMsgScenarioDeleteTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation,
+            If MessageBox.Show(String.Format(MyStrings.mainMsgScenarioDelete, SzenarioName),
+                               MyStrings.mainMsgScenarioDeleteTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation,
                                MessageBoxDefaultButton.Button2) = Windows.Forms.DialogResult.OK Then
                 Dim TA As New CoinTracerDataSetTableAdapters.SzenarienTableAdapter
                 TA.DeleteByID(cbxSzenario.SelectedValue)
                 _TVM.RollbackCalculation(DATENULLVALUE, True)
                 cbxSzenario.Reload()
-                MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgScenarioDeleted, SzenarioName),
-                                My.Resources.MyStrings.mainMsgScenarioDeleteTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                MessageBox.Show(String.Format(MyStrings.mainMsgScenarioDeleted, SzenarioName),
+                                MyStrings.mainMsgScenarioDeleteTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         End If
     End Sub
@@ -1591,8 +1594,8 @@ Public Class frmMain
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
     Private Sub cbxSzenario_UnsavedChanges(sender As Object, e As DataBoundComboBoxUnsavedChangesEventArgs) Handles cbxSzenario.UnsavedChanges
-        If MessageBox.Show(String.Format(My.Resources.MyStrings.mainMsgScenarioUnsavedChanges, e.OriginalValue),
-                           My.Resources.MyStrings.mainMsgScenarioSaveTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question,
+        If MessageBox.Show(String.Format(MyStrings.mainMsgScenarioUnsavedChanges, e.OriginalValue),
+                           MyStrings.mainMsgScenarioSaveTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                            MessageBoxDefaultButton.Button1) = Windows.Forms.DialogResult.Yes Then
             SaveScenario(e.OriginalValue, True, e.ActualValue)
         End If
@@ -1936,18 +1939,18 @@ Public Class frmMain
                             ' There is at least one predecessor
                             CalcRow = CalcTB.Rows(0)
                             ToDate = DateAdd(DateInterval.Day, -1, CalcRow.Zeitpunkt)
-                            Message = String.Format(My.Resources.MyStrings.mainMsgCalculationRollbackSingle, Scenario, ToDate)
+                            Message = String.Format(MyStrings.mainMsgCalculationRollbackSingle, Scenario, ToDate)
                         Else
                             ' There is no predecessor
-                            Message = String.Format(My.Resources.MyStrings.mainMsgCalculationRollbackAll, Scenario)
+                            Message = String.Format(MyStrings.mainMsgCalculationRollbackAll, Scenario)
                             ToDate = DATENULLVALUE
                         End If
-                        If MessageBox.Show(Message, My.Resources.MyStrings.mainMsgCalculationRollbackTitle, MessageBoxButtons.YesNo) = DialogResult.Yes Then
+                        If MessageBox.Show(Message, MyStrings.mainMsgCalculationRollbackTitle, MessageBoxButtons.YesNo) = DialogResult.Yes Then
                             Dim OrgScenarioID As Long = _TVM.SzenarioID
                             Try
                                 _TVM.SzenarioID = ScenarioID
                                 _TVM.RollbackCalculation(DateAdd(DateInterval.Day, 2, ToDate), (ToDate = DATENULLVALUE))
-                                MessageBox.Show(My.Resources.MyStrings.mainMsgCalculationRollbackConfirmed, My.Resources.MyStrings.mainMsgCalculationRollbackTitle, MessageBoxButtons.OK)
+                                MessageBox.Show(MyStrings.mainMsgCalculationRollbackConfirmed, MyStrings.mainMsgCalculationRollbackTitle, MessageBoxButtons.OK)
                                 ReloadTablesTab()
                             Catch ex As Exception
                                 _TVM.SzenarioID = OrgScenarioID
@@ -2031,6 +2034,82 @@ Public Class frmMain
         frmLicense.ShowDialog(Me)
     End Sub
 
+    Private Sub cmnPlattformen_Opening(sender As Object, e As CancelEventArgs) Handles cmnPlattformen.Opening
+        ' check if a usable row is selected and en- or disable this command alike
+
+        With grdPlattformen
+            If .SelectedCells.Count > 0 Then
+                tsmiMergePlatformTrades.Enabled = .Rows(.CurrentCell.RowIndex).Cells(7).Value
+            Else
+                tsmiMergePlatformTrades.Enabled = False
+            End If
+        End With
+    End Sub
+
+    ''' <summary>
+    ''' Merges the trades from one platform to another platform
+    ''' </summary>
+    Private Sub tsmiMergePlatformTrades_Click(sender As Object, e As EventArgs) Handles tsmiMergePlatformTrades.Click
+        If grdPlattformen.SelectedCells.Count > 0 Then
+            Dim OldPlatformID As Long
+            Dim OldPlatformName As String
+            OldPlatformID = grdPlattformen.Rows(grdPlattformen.CurrentCell.RowIndex).Cells(0).Value
+            OldPlatformName = grdPlattformen.Rows(grdPlattformen.CurrentCell.RowIndex).Cells(1).Value
+            Dim TradesTA = New TradesTableAdapter
+            Dim TradesMoving As Long = TradesTA.CountTradesByPlatformID(OldPlatformID)
+            If TradesMoving = 0 Then
+                MessageBox.Show(String.Format(MyStrings.moveTradesMsgNoNeed, OldPlatformName, OldPlatformID),
+                                MyStrings.moveTradesMsgTitle,
+                                MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Return
+            End If
+            If MessageBox.Show(String.Format(MyStrings.moveTradesQuestion, Environment.NewLine, OldPlatformName, OldPlatformID),
+                               MyStrings.moveTradesMsgTitle,
+                               MessageBoxButtons.OKCancel,
+                               MessageBoxIcon.Question, MessageBoxDefaultButton.Button2) = DialogResult.Cancel Then
+                Return
+            End If
+            Dim NewPlatformID As Long = -1
+            Dim NewPlatformName As String = ""
+            With New frmSelectPlatform
+                .Declaration = MyStrings.platformSelectMoveTrades
+                .ShowDialog()
+                If .Platform >= 0 AndAlso .Platform <> OldPlatformID Then
+                    NewPlatformID = .Platform
+                    NewPlatformName = .PlatformName
+                End If
+            End With
+            If NewPlatformID < 0 Then
+                MessageBox.Show(MyStrings.moveTradesMsgAbort,
+                                MyStrings.moveTradesMsgTitle,
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                Return
+            End If
+            ' Perform the actual transfer from one platform to another
+            With TradesTA
+                .UpdateQuellPlattformID(OldPlatformID, NewPlatformID)
+                .UpdateZielPlattformID(OldPlatformID, NewPlatformID)
+                .UpdateImportPlattformID(OldPlatformID, NewPlatformID)
+            End With
+            ' Check if we have the old platform in the gainings data
+            With New TradeTxTableAdapter
+                If .CountBySzenarioIDPlattformID(OldPlatformID, _TVM.SzenarioID) > 0 Then
+                    If MessageBox.Show(String.Format(My.Resources.MyStrings.mainEditTradesAdvice, Environment.NewLine), My.Resources.MyStrings.mainEditTradesAdviceTitle,
+                                MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = Windows.Forms.DialogResult.OK Then
+                        _TVM.RollbackCalculation(DATENULLVALUE, , True)
+                    End If
+                End If
+            End With
+            ' Final response
+            MessageBox.Show(String.Format(MyStrings.moveTradesMsgSuccess, TradesMoving, NewPlatformName, NewPlatformID),
+                               MyStrings.moveTradesMsgTitle,
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Information)
+            FillDataTimesGrid()
+            Return
+        End If
+    End Sub
+
 #If CONFIG = "Debug" Then
 
     ''' <summary>
@@ -2045,14 +2124,6 @@ Public Class frmMain
             .UpdateDatabase()
             frmMain_Load(Me, New EventArgs)
         End With
-    End Sub
-
-    Private Sub grdTrades_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdTrades.CellDoubleClick
-
-    End Sub
-
-    Private Sub grdTables_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdPlattformen.CellDoubleClick, grdKurse.CellDoubleClick, grdKonten.CellDoubleClick, grdBerechnungen.CellDoubleClick
-
     End Sub
 
 #End If

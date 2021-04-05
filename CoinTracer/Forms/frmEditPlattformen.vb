@@ -210,5 +210,7 @@ Public Class frmEditPlattformen
         End If
     End Sub
 
+    Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
 
+    End Sub
 End Class

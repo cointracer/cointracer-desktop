@@ -1,4 +1,21 @@
 ﻿******************************************************
+Version 0.9.6 / 05.04.2021
+----------------------------
+
+Verbesserungen:
+- Import von Bitcoin Cash Node bzw. Bitcoin ABC
+  implementiert.
+- Import von Bitfinex aktualisiert.
+- Beim Import von Transaktions-Dateien kann jetzt
+  die Zielplattform bzw. das Zielwallet ausgewählt
+  werden. (Insb. sinnvoll für Importe von Trade-Daten,
+  die einem Wallet zugeordnet werden sollen.)
+- Es ist jetzt möglich, Trades von einer Plattform auf
+  eine andere zu übertragen. (Hilfreich, wenn man seine
+  privaten Wallets neu organisieren möchte.)
+
+
+******************************************************
 Version 0.9.5.1 / 28.02.2021
 ----------------------------
 

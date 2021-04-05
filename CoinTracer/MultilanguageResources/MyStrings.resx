@@ -709,9 +709,9 @@
   <data name="importMsgBitfinexCSV" xml:space="preserve">
     <value>Hinweis zum Import von Bitfinex.com:
 
-1. Nachdem Sie sich auf Bitfinex.com angemeldet haben, klicken Sie auf das Symbol oben rechts ("Manage Account"), dann auf "Reports".
-2. Klicken Sie unter "Balances" auf "Ledgers", um zur Reporting-Oberfläche von Bitfinex weitergeleitet zu werden.
-3. Stellen Sie oben links (direkt unter dem Bitfinex-Symbol) den gewünschten Export-Zeitraum ein. Im rechten Bereich werden unmittelbar die entsprechenden Ledger-Einträge angezeigt.
+1. Nachdem Sie sich auf Bitfinex.com angemeldet haben, klicken Sie auf das Symbol oben rechts ("Account"), dann auf "Reports", um zur Reporting-Oberfläche von Bitfinex weitergeleitet zu werden.
+2. Klicken Sie oben links (direkt unter dem Bitfinex-Symbol) auf "Ledgers".
+3. Stellen Sie oben links (neben dem Bitfinex-Symbol) den gewünschten Export-Zeitraum ein. Im unteren Bereich werden unmittelbar die entsprechenden Ledger-Einträge angezeigt.
 4. Klicken Sie auf "Export", um die Daten als CSV-Datei zu erhalten. WICHTIG: Datumsformat muss "DD-MM-YY" sein und "Display Milliseconds" darf NICHT angehakt sein.
 5. Sie erhalten nun einen Download-Link per E-Mail, sobald die Daten zusammengestellt wurden. Mit diesem Link laden sie ein Zip-Archiv herunter.
 6. Entpacken Sie die CSV-Datei aus dem Archiv und lesen Sie diese im nachfolgenden Schritt ein.</value>
@@ -1089,5 +1089,65 @@ Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ih
   </data>
   <data name="exportReportFileName" xml:space="preserve">
     <value>Crypto-Report_{0}</value>
+  </data>
+  <data name="importCoreClientTxInfo" xml:space="preserve">
+    <value>{0} / Adresse {1}</value>
+  </data>
+  <data name="importLabelBitcoinCash" xml:space="preserve">
+    <value>Bitcoin Cash Node / Bitcoin ABC (*.csv)</value>
+  </data>
+  <data name="importMsgCoinCoreAskUnconfirmed" xml:space="preserve">
+    <value>Die Datei enthält unbestätigte Transaktionen. Sollen diese ebenfalls importiert werden oder möchten Sie nur vollständig bestätigte Transaktionen einlesen?</value>
+  </data>
+  <data name="importMsgCoinCoreAskUnconfirmedTitle" xml:space="preserve">
+    <value>Unbestätigte Transaktionen entdeckt</value>
+  </data>
+  <data name="importMsgCoinCoreConfirmedOnly" xml:space="preserve">
+    <value>Nein, nur Bestätigte einlesen</value>
+  </data>
+  <data name="importMsgCoinCoreUnconfirmedAlso" xml:space="preserve">
+    <value>Ja, Unbestätigte einlesen</value>
+  </data>
+  <data name="importOpenFileTitleBitcoinCashNode" xml:space="preserve">
+    <value>Wählen Sie die Export-Datei des Bitcoin Cash Clients aus... (*.csv)</value>
+  </data>
+  <data name="importOpenFileTitleBitcoinCore" xml:space="preserve">
+    <value>Wählen Sie die Export-Datei des Bitcoin Core Clients aus... (*.csv)</value>
+  </data>
+  <data name="importOpenFileTitleLitecoinCore" xml:space="preserve">
+    <value>Wählen Sie die Export-Datei des Litecoin Core Clients aus... (*.csv)</value>
+  </data>
+  <data name="passwordMsgTooShort" xml:space="preserve">
+    <value>Das Passwort ist zu kurz. Bitte geben Sie ein längeres Passwort ein.</value>
+  </data>
+  <data name="passwordMsgTooShortTitle" xml:space="preserve">
+    <value>Passwortprüfung</value>
+  </data>
+  <data name="mainMsgApiDataDeletion" xml:space="preserve">
+    <value>Sie haben einen API-Import erfolgreich gelöscht. Bitte achten Sie darauf, in den zugehörigen API-Zugangsdaten (ID {1}) die Einstellung 'Daten holen ab:' anzupassen, um Lücken in der Trade-History zu vermeiden.{0}{0}Möchten Sie die API-Daten jetzt bearbeiten?</value>
+  </data>
+  <data name="mainMsgApiDataDeletionTitle" xml:space="preserve">
+    <value>Import löschen</value>
+  </data>
+  <data name="moveTradesMsgAbort" xml:space="preserve">
+    <value>Aktion abgebrochen. Es wurden keine Trade-Daten verändert.</value>
+  </data>
+  <data name="moveTradesMsgNoNeed" xml:space="preserve">
+    <value>Für das Wallet / die Plattform '{0}' (ID {1}) sind keine Trades-Daten vorhanden. Es kann daher nichts übertragen werden.</value>
+  </data>
+  <data name="moveTradesMsgSuccess" xml:space="preserve">
+    <value>Aktion erfolgreich durchgeführt. {0} Trade-Daten wurden auf das Wallet / die Plattform {1} (ID {2}) übertragen.</value>
+  </data>
+  <data name="moveTradesMsgTitle" xml:space="preserve">
+    <value>Trades auf anderes Wallet / andere Plattform übertragen</value>
+  </data>
+  <data name="moveTradesQuestion" xml:space="preserve">
+    <value>Möchten Sie wirklich alle Trades, die aktuell der Wallet bzw. Plattform '{1}' (ID {2}) zugewiesen sind, auf ein anderes Wallet / eine andere Plattform übertragen?{0}{0}Achtung: Diese Aktion kann NICHT rückgängig gemacht werden!</value>
+  </data>
+  <data name="platformSelectImport" xml:space="preserve">
+    <value>Für welches Wallet / welche Plattform wird dieser Import durchgeführt?</value>
+  </data>
+  <data name="platformSelectMoveTrades" xml:space="preserve">
+    <value>Auf welches Wallet / welche Plattform sollen alle Trades übertragen werden?</value>
   </data>
 </root>
