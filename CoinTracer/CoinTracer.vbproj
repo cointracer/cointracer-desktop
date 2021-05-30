@@ -189,6 +189,11 @@
     <Compile Include="Classes\PlatformImports\FileImportBase.vb" />
     <Compile Include="Classes\PlatformImports\IApiImport.vb" />
     <Compile Include="Classes\PlatformImports\IFileImport.vb" />
+    <Compile Include="Classes\PlatformImports\Import_KrakenDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Import_KrakenDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Classes\PlatformImports\Import_LitecoinCore.vb" />
     <Compile Include="Classes\PlatformImports\Import_BitcoinCore.vb" />
     <Compile Include="Classes\PlatformImports\Import_SomecoinCoreCSV.vb" />
@@ -981,6 +986,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Classes\PlatformImports\Import_KrakenDataSet.xsc">
+      <DependentUpon>Import_KrakenDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Classes\PlatformImports\Import_KrakenDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Import_KrakenDataSet.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="Classes\PlatformImports\Import_KrakenDataSet.xss">
+      <DependentUpon>Import_KrakenDataSet.xsd</DependentUpon>
+    </None>
     <None Include="CoinTracerDataSet.xsc">
       <DependentUpon>CoinTracerDataSet.xsd</DependentUpon>
     </None>

@@ -532,7 +532,7 @@ Public Class ImportFileHelper
             .SubType = 2
         End With
         Cnt += 1
-        ' Kraken.com (until about 2020)
+        ' Kraken.com Leger (until about 2020)
         ReDim Preserve _AllPlatforms(Cnt)
         With _AllPlatforms(Cnt)
             .PlatformID = CInt(PlatformManager.Platforms.Kraken)
@@ -542,7 +542,7 @@ Public Class ImportFileHelper
             .SubType = 0
         End With
         Cnt += 1
-        ' Kraken.com (2021 and later)
+        ' Kraken.com Ledger (2021 and later)
         ReDim Preserve _AllPlatforms(Cnt)
         With _AllPlatforms(Cnt)
             .PlatformID = CInt(PlatformManager.Platforms.Kraken)
@@ -550,6 +550,16 @@ Public Class ImportFileHelper
             .FilesFirstLine = """txid"",""refid"",""time"",""type"",""subtype"",""aclass"",""asset"",""amount"",""fee"",""balance"""
             .MatchingType = ImportFileMatchingTypes.StartsWithMatch
             .SubType = 1
+        End With
+        Cnt += 1
+        ' Kraken.com Trades (2021 and later)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Kraken)
+            .PlatformName = "Kraken.com"
+            .FilesFirstLine = """txid"",""ordertxid"",""pair"",""time"",""type"",""ordertype"",""price"",""cost"",""fee"",""vol"",""margin"",""misc"",""ledgers"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 2
         End With
         Cnt += 1
         ' Bitfinex.com

@@ -92,6 +92,7 @@ Friend Class Import_Kraken_Api
             Dim NextTLO As Import_Kraken.KrakenLineObject
             Dim SourceTLO As Import_Kraken.KrakenLineObject
             Dim TargetTLO As Import_Kraken.KrakenLineObject
+            Dim PreviousID As String = ""
 
             ' Schleife über alle Ledger-Items
             Do Until LedgerItem Is Nothing
@@ -120,6 +121,12 @@ Friend Class Import_Kraken_Api
                                                    LedgerEntry("asset").ToString,
                                                    LedgerEntry("amount").ToString,
                                                    LedgerEntry("fee").ToString)
+                        If TLO.ID = PreviousID Then
+                            ' It seems like sometimes the kraken api delivers duplicates - if so, skip these here
+                            LedgerItem = KrakenLedger.GetNextLedgerItem
+                            Continue Do
+                        End If
+                        PreviousID = TLO.ID
                         .SourceID = TLO.TxId
                         .Zeitpunkt = TLO.DateTime
                         .ZeitpunktZiel = .Zeitpunkt

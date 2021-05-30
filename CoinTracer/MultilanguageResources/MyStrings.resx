@@ -374,7 +374,7 @@
     <value>Ja</value>
   </data>
   <data name="importMsgKrakenCSV" xml:space="preserve">
-    <value>Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie unter Ihrem Account-Symbol (oben rechts) "History".{0}3. Klicken Sie auf "Export" und stellen Sie unter "Export Data" "Ledgers" ein (nicht Trades!).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf "Select All" und anschließend auf "Submit". Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie unter "Requests" auf "download".{0}7. Extrahieren Sie das Archiv "ledgers.zip".{0}8. Lesen Sie die Datei "ledgers.csv" im nächsten Fenster ein.</value>
+    <value>Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie in der Leiste oben "History".{0}3. Klicken Sie in der Leiste darunter auf "Export" und stellen Sie unter "Export Data" "Ledgers" ein (nicht Trades!).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf "Select All" und anschließend auf "Submit". Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie rechts neben dem Export-Eintrag auf die drei Punkte und wählen "Download".{0}7. Extrahieren Sie das Archiv "ledgers.zip".{0}8. Lesen Sie die Datei "ledgers.csv" im nächsten Fenster ein.</value>
   </data>
   <data name="importMsgKrakenCSVCaption" xml:space="preserve">
     <value>Datenimport von Kraken.com</value>
@@ -1149,5 +1149,11 @@ Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ih
   </data>
   <data name="platformSelectMoveTrades" xml:space="preserve">
     <value>Auf welches Wallet / welche Plattform sollen alle Trades übertragen werden?</value>
+  </data>
+  <data name="importMsgKrakenTradesCSV" xml:space="preserve">
+    <value>Sie sind dabei, eine Trades-CSV-Datei von Kraken zu importieren. Bitte beachten Sie, dass in den Trades-Daten keine Ein- oder Auszahlungen (von Crypto-Coins oder Fiat-Währungen) enthalten sind. Um Ein- und Auszahlungen zu erfassen, müssen Sie die Ledgers-Daten importieren.</value>
+  </data>
+  <data name="importMsgKrakenTradesCSVCaption" xml:space="preserve">
+    <value>Import von Kraken-Trades</value>
   </data>
 </root>

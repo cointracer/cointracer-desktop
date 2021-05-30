@@ -1667,7 +1667,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie unter Ihrem Account-Symbol (oben rechts) &quot;History&quot;.{0}3. Klicken Sie auf &quot;Export&quot; und stellen Sie unter &quot;Export Data&quot; &quot;Ledgers&quot; ein (nicht Trades!).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf &quot;Select All&quot; und anschließend auf &quot;Submit&quot;. Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie unter &quot;Requests&quot; auf &quot;download&quot;.{0}7. Extrahieren Sie das Archiv &quot;ledge [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie in der Leiste oben &quot;History&quot;.{0}3. Klicken Sie in der Leiste darunter auf &quot;Export&quot; und stellen Sie unter &quot;Export Data&quot; &quot;Ledgers&quot; ein (nicht Trades!).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf &quot;Select All&quot; und anschließend auf &quot;Submit&quot;. Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie rechts neben dem Export-Eintrag auf die drei Punkte und wählen &quot;Downlo [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgKrakenCSV() As String
             Get
@@ -1699,6 +1699,24 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importMsgKrakenErrorNoSecondEntry() As String
             Get
                 Return ResourceManager.GetString("importMsgKrakenErrorNoSecondEntry", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Sie sind dabei, eine Trades-CSV-Datei von Kraken zu importieren. Bitte beachten Sie, dass in den Trades-Daten keine Ein- oder Auszahlungen (von Crypto-Coins oder Fiat-Währungen) enthalten sind. Um Ein- und Auszahlungen zu erfassen, müssen Sie die Ledgers-Daten importieren. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenTradesCSV() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenTradesCSV", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Import von Kraken-Trades ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenTradesCSVCaption() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenTradesCSVCaption", resourceCulture)
             End Get
         End Property
         

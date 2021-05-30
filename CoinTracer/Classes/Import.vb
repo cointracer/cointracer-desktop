@@ -3157,6 +3157,8 @@ Public Class Import
                 Account = "BTC"
             ElseIf Account = "BCC" Then
                 Account = "BCH"
+            ElseIf Account = "XDG" Then
+                Account = "DODGE"
             End If
             FoundRows = _KontenTb.Select(String.Format("Bezeichnung='{0}' or Code='{0}'", Account.Replace("'", "_")))
             If DirectCast(FoundRows, ICollection).Count >= 1 Then

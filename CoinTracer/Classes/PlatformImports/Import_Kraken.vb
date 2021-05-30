@@ -94,6 +94,13 @@ Public Class Import_Kraken
             End Set
         End Property
 
+        Private _ID As String
+        Public ReadOnly Property ID() As String
+            Get
+                Return _ID
+            End Get
+        End Property
+
         Public Sub New(ByRef Import As Import)
             _Import = Import
         End Sub
@@ -127,6 +134,7 @@ Public Class Import_Kraken
             Else
                 _Fee = 0
             End If
+            _ID = DateTime & TxId & RefId & Type & Asset & Amount & Fee
 
         End Sub
 
@@ -169,6 +177,20 @@ Public Class Import_Kraken
     End Function
 
     ''' <summary>
+    ''' Show some information about importing trades instead of ledgers
+    ''' </summary>
+    Protected Overrides Sub PreImportUserAdvice()
+        If SubType = 2 Then
+            ' we are about to import a trades csv
+            MsgBoxEx.ShowWithNotAgainOption("ImportKrakenTrades",
+                                            DialogResult.OK,
+                                            My.Resources.MyStrings.importMsgKrakenTradesCSV,
+                                            My.Resources.MyStrings.importMsgKrakenTradesCSVCaption,
+                                            MessageBoxButtons.OK,
+                                            MessageBoxIcon.Information)
+        End If
+    End Sub
+    ''' <summary>
     ''' Perform the actual import for Kraken.com files
     ''' </summary>
     ''' <returns>True on success, false otherwise</returns>
@@ -203,6 +225,7 @@ Public Class Import_Kraken
                 Dim SourceTLO As KrakenLineObject
                 Dim TargetTLO As KrakenLineObject
                 Dim ColumnMap(6) As Long
+                Dim PreviousID As String = ""
                 ' Differntiate between the subtypes
                 If SubType = 0 Then
                     ColumnMap = {2, 0, 1, 3, 5, 6, 7}
@@ -217,6 +240,10 @@ Public Class Import_Kraken
                     If Row.Length >= 9 Then
                         Try
                             TLO = New KrakenLineObject(MainImportObject, Row(ColumnMap(0)), Row(ColumnMap(1)), Row(ColumnMap(2)), Row(ColumnMap(3)), Row(ColumnMap(4)), Row(ColumnMap(5)), Row(ColumnMap(6)))
+                            If TLO.ID = PreviousID Then
+                                Continue For
+                            End If
+                            PreviousID = TLO.ID
                             Record = New dtoTradesRecord
                             RecordFee = Nothing
                             With Record
@@ -271,27 +298,30 @@ Public Class Import_Kraken
                                         End If
                                     Case "trade"
                                         ' Nächste passende Zeile dazuholen
-                                        l += 1
-                                        If l <= AllLines - 1 Then
-                                            NextRow = CSV.Rows(l)
-                                        Else
-                                            ' No further lines available
-                                            NextRow = Nothing
-                                        End If
-                                        If Row(1) <> NextRow(1) Then
-                                            ' next line does not match
-                                            NextRow = Nothing
-                                        End If
-                                        If NextRow Is Nothing Then
-                                            If TLO.Amount <= KRAKEN_ZEROVALUETRADELIMIT Then
-                                                ' The value of this trade is very low: assume the corresponding second entry would be zero
-                                                NextRow = {Row(0), Row(1), Row(2), Row(3), Row(4), Row(5), "0.0", "0.0", Row(8)}
+                                        Do
+                                            l += 1
+                                            If l <= AllLines - 1 Then
+                                                NextRow = CSV.Rows(l)
                                             Else
-                                                Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
+                                                ' No further lines available
+                                                NextRow = Nothing
                                             End If
-                                            l -= 1
-                                        End If
-                                        NextTLO = New KrakenLineObject(MainImportObject, NextRow(ColumnMap(0)), NextRow(ColumnMap(1)), NextRow(ColumnMap(2)), NextRow(ColumnMap(3)), NextRow(ColumnMap(4)), NextRow(ColumnMap(5)), NextRow(ColumnMap(6)))
+                                            If Row(1) <> NextRow(1) Then
+                                                ' next line does not match
+                                                NextRow = Nothing
+                                            End If
+                                            If NextRow Is Nothing Then
+                                                If TLO.Amount <= KRAKEN_ZEROVALUETRADELIMIT Then
+                                                    ' The value of this trade is very low: assume the corresponding second entry would be zero
+                                                    NextRow = {Row(0), Row(1), Row(2), Row(3), Row(4), Row(5), "0.0", "0.0", Row(8)}
+                                                Else
+                                                    Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
+                                                End If
+                                                l -= 1
+                                            End If
+                                            NextTLO = New KrakenLineObject(MainImportObject, NextRow(ColumnMap(0)), NextRow(ColumnMap(1)), NextRow(ColumnMap(2)), NextRow(ColumnMap(3)), NextRow(ColumnMap(4)), NextRow(ColumnMap(5)), NextRow(ColumnMap(6)))
+                                        Loop Until NextTLO.ID <> PreviousID
+                                        PreviousID = NextTLO.ID
                                         Dim QuellKontoRow As KontenRow
                                         If TLO.Amount < 0 OrElse (TLO.Amount = 0 And NextTLO.Amount > 0) Then
                                             SourceTLO = TLO

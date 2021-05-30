@@ -358,6 +358,7 @@ Public MustInherit Class FileImportBase
                         End If
                     End With
                 End If
+                PreImportUserAdvice()
                 Return ImportContent()
             Else
                 Return False
@@ -455,6 +456,13 @@ Public MustInherit Class FileImportBase
         End If
         Return Result
     End Function
+
+    ''' <summary>
+    ''' Show a platform specific user advice before performing the actual import
+    ''' </summary>
+    Protected Overridable Sub PreImportUserAdvice() Implements IFileImport.PreImportUserAdvice
+        ' nothing to do here in base...
+    End Sub
 
     ''' <summary>
     ''' You could place some code for analysing the CSV file content here. If needed, this must be overwritten in derived class

@@ -46,6 +46,7 @@ Friend Interface IFileImport
     Property ReadImportdataPercentage As Integer
     Function ImportContent() As Boolean
     Function PerformImport() As Boolean
+    Sub PreImportUserAdvice()
     Sub InitProgressForm(Optional Message As String = "")
     Sub DestroyProgressForm()
     Function FileImportError(ByRef ErrorCounter As Long,
