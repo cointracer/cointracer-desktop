@@ -497,7 +497,27 @@ Public Class ImportFileHelper
         With _AllPlatforms(Cnt)
             .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
             .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währung;Referenz;???-Adresse;Kurs;""Einheit (Kurs)"";""??? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""??? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""??? nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
+            .FilesFirstLine = "Datum;Typ;Währung;Referenz;???-Adresse;Kurs;""Einheit (Kurs)"";""??? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""??? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
+            .MatchingType = ImportFileMatchingTypes.RegexMatch
+            .SubType = 5 + 128
+        End With
+        Cnt += 1
+        ' Bitcoin.de #17 (Any 4-letter-coin, since 2019-01, no Fidor.de fees)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
+            .PlatformName = "Bitcoin.de"
+            .FilesFirstLine = "Datum;Typ;Währung;Referenz;????-Adresse;Kurs;""Einheit (Kurs)"";""???? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""???? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""Zu- / Abgang"";Kontostand"
+            .MatchingType = ImportFileMatchingTypes.RegexMatch
+            .SubType = 5
+        End With
+        Cnt += 1
+        ' Bitcoin.de #18 (Any 4-letter-coin, since 2019-01, Fidor.de fees included)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
+            .PlatformName = "Bitcoin.de"
+            .FilesFirstLine = "Datum;Typ;Währung;Referenz;????-Adresse;Kurs;""Einheit (Kurs)"";""???? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""???? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
             .MatchingType = ImportFileMatchingTypes.RegexMatch
             .SubType = 5 + 128
         End With
@@ -559,7 +579,7 @@ Public Class ImportFileHelper
             .PlatformName = "Kraken.com"
             .FilesFirstLine = """txid"",""ordertxid"",""pair"",""time"",""type"",""ordertype"",""price"",""cost"",""fee"",""vol"",""margin"",""misc"",""ledgers"""
             .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 2
+            .SubType = 65
         End With
         Cnt += 1
         ' Bitfinex.com
