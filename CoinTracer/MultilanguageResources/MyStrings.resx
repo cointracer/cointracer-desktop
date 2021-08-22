@@ -1156,4 +1156,10 @@ Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ih
   <data name="importMsgKrakenTradesCSVCaption" xml:space="preserve">
     <value>Import von Kraken-Trades</value>
   </data>
+  <data name="importMsgKrakenCSVCheckLines" xml:space="preserve">
+    <value>Schritte 2: Prüfe eingelesene Datenzeilen... ({0}/{1})</value>
+  </data>
+  <data name="importMsgKrakenCSVReadFile" xml:space="preserve">
+    <value>Schritt 1: Lese Datei ein... ({0}/{1})</value>
+  </data>
 </root>

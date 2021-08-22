@@ -29,7 +29,9 @@
 '  *
 '  **************************************
 
+Imports System.Linq
 Imports CoinTracer.CoinTracerDataSet
+Imports CoinTracer.My.Resources
 
 Public Class Import_Kraken
     Inherits FileImportBase
@@ -141,6 +143,7 @@ Public Class Import_Kraken
     End Class
 
     Friend Const KRAKEN_ZEROVALUETRADELIMIT As Decimal = 0.00002   ' Trades below this value do not need a second line in the trade data (assuming the value of this second line would be zero)
+    Private Const KRAKEN_IMPORT_TRADES = 65
 
     ''' <summary>
     ''' Initializes this import
@@ -180,7 +183,7 @@ Public Class Import_Kraken
     ''' Show some information about importing trades instead of ledgers
     ''' </summary>
     Protected Overrides Sub PreImportUserAdvice()
-        If SubType = 2 Then
+        If SubType = 65 AndAlso Not MainImportObject.SilentMode Then
             ' we are about to import a trades csv
             MsgBoxEx.ShowWithNotAgainOption("ImportKrakenTrades",
                                             DialogResult.OK,
@@ -196,14 +199,14 @@ Public Class Import_Kraken
     ''' <returns>True on success, false otherwise</returns>
     Friend Overrides Function ImportContent() As Boolean
 
-        Dim LineCount As Long
         Dim l As Long
         Dim AllLines As Long
         Dim ErrCounter As Long = MaxErrors
-        Dim Row() As String, NextRow() As String
+        Dim Row() As String
+        Dim ProcessedTx As New List(Of String)
         Dim Record As dtoTradesRecord
         Dim RecordFee As dtoTradesRecord
-        Dim ImportRecords As List(Of dtoTradesRecord)
+        Dim ImportRecords As New List(Of dtoTradesRecord)
         Dim KontoRow As KontenRow
 
         If CSV.FileExists Then
@@ -215,255 +218,476 @@ Public Class Import_Kraken
                 Exit Function
             End If
             InitProgressForm(String.Format(My.Resources.MyStrings.importMsgImportStarting, PlatformName))
-            ' Process all rows
-            If AllRows.Count > 0 Then
-                ImportRecords = New List(Of dtoTradesRecord)
-                LineCount = 1
-                AllLines = CSV.Rows.Count
-                Dim TLO As KrakenLineObject
-                Dim NextTLO As KrakenLineObject
-                Dim SourceTLO As KrakenLineObject
-                Dim TargetTLO As KrakenLineObject
-                Dim ColumnMap(6) As Long
-                Dim PreviousID As String = ""
-                ' Differntiate between the subtypes
-                If SubType = 0 Then
-                    ColumnMap = {2, 0, 1, 3, 5, 6, 7}
-                Else
-                    ColumnMap = {2, 0, 1, 3, 6, 7, 8}
-                End If
+            AllLines = AllRows.Count
+            If SubType < KRAKEN_IMPORT_TRADES And AllLines > 0 Then
+                ' *** Read ledger entries ***
+                Dim ImportLedersTb As New Import_KrakenDataSet.LedgerDataTable
+                ' Fill the ledger import table
                 For l = 0 To AllLines - 1
-                    Row = CSV.Rows(l)
-                    UpdateProgress(AllLines, LineCount)
-                    ' ProgressWaitManager.UpdateProgress(LineCount / AllLines * ReadImportdataPercentage, String.Format(My.Resources.MyStrings.importMsgReadingFile, l, AllLines))
-                    LineCount += 1
-                    If Row.Length >= 9 Then
-                        Try
-                            TLO = New KrakenLineObject(MainImportObject, Row(ColumnMap(0)), Row(ColumnMap(1)), Row(ColumnMap(2)), Row(ColumnMap(3)), Row(ColumnMap(4)), Row(ColumnMap(5)), Row(ColumnMap(6)))
-                            If TLO.ID = PreviousID Then
-                                Continue For
+                    Try
+                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenCSVReadFile, l * 50 / AllLines)
+                        Row = CSV.Rows(l)
+                        If SubType = 0 AndAlso Row.Length >= 9 Then
+                            ImportLedersTb.AddLedgerRow(Row(0),
+                                                        Row(1),
+                                                        Row(2),
+                                                        Row(3),
+                                                        "",
+                                                        Row(4),
+                                                        Row(5).Substring(Row(5).Length - 3),
+                                                        Double.Parse(Row(6), CultureInfo.InvariantCulture),
+                                                        Double.Parse(Row(7), CultureInfo.InvariantCulture),
+                                                        Double.Parse(IIf(Row(8) = String.Empty, "0", Row(8)), CultureInfo.InvariantCulture),
+                                                        False)
+                        ElseIf Row.Length >= 10 Then
+                            ImportLedersTb.AddLedgerRow(Row(0),
+                                                        Row(1),
+                                                        Row(2),
+                                                        Row(3),
+                                                        Row(4),
+                                                        Row(5),
+                                                        Row(6).Substring(Row(6).Length - 3),
+                                                        Double.Parse(Row(7), CultureInfo.InvariantCulture),
+                                                        Double.Parse(Row(8), CultureInfo.InvariantCulture),
+                                                        Double.Parse(IIf(Row(9) = String.Empty, "0", Row(9)), CultureInfo.InvariantCulture),
+                                                        False)
+                        End If
+                    Catch ex As Exception
+                        If FileImportError(ErrCounter, l + 1, ex) = 0 Then
+                            Return False
+                            Exit Function
+                        End If
+                    End Try
+                Next
+                ' Process the ledger import table
+                Try
+                    Dim IR2nd As Import_KrakenDataSet.LedgerRow
+                    Dim SourceIR As Import_KrakenDataSet.LedgerRow
+                    Dim TargetIR As Import_KrakenDataSet.LedgerRow
+                    Dim SourceKontoRow As KontenRow
+                    For Each IR As Import_KrakenDataSet.LedgerRow In ImportLedersTb
+                        l = IR.ID + 1
+                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenCSVCheckLines, 50 + (l * 50 / AllLines))
+                        ' Skip already processed rows
+                        If IR.processed Then Continue For
+                        IR.processed = True
+                        ' Skip strange entries with empty refid
+                        If IR.refid = String.Empty Then Continue For
+                        ' Skip this row, if it has already been processed (to prevent errors resulting from duplicate rows)
+                        If IR.txid <> String.Empty Then
+                            If ProcessedTx.Contains(IR.txid) Then Continue For
+                            ProcessedTx.Add(IR.txid)
+                        End If
+                        ' Build ImportRecord entry
+                        Record = New dtoTradesRecord
+                        RecordFee = Nothing
+                        With Record
+                            .Zeitpunkt = IR.time
+                            .ZeitpunktZiel = .Zeitpunkt
+                            .ImportPlattformID = Platform
+                            .Info = FirstCharToUppercase(IR.type) & " " & IR.asset
+                            KontoRow = MainImportObject.RetrieveAccount(IR.asset)
+                            ' shorten the txid for compatibility
+                            If Len(IR.txid) > 6 Then
+                                IR.txid = IR.txid.Substring(0, 6)
                             End If
-                            PreviousID = TLO.ID
-                            Record = New dtoTradesRecord
-                            RecordFee = Nothing
-                            With Record
-                                .SourceID = TLO.TxId
-                                .Zeitpunkt = TLO.DateTime
-                                .ZeitpunktZiel = .Zeitpunkt
-                                .ImportPlattformID = Platform
-                                .Info = FirstCharToUppercase(TLO.Type) & " " & TLO.Asset
-                                KontoRow = MainImportObject.RetrieveAccount(TLO.Asset)
-                                Select Case TLO.Type.Substring(0, Math.Min(8, TLO.Type.Length)).ToLower
-                                    Case "deposit", "transfer"
-                                        If TLO.TxId = TLO.RefId Then
-                                            ' Ignore all lines that originally had an empty txid, because each deposit appears twice in the csv file
-                                            .DoNotImport = True
+                            ' Take care of the "transfer" type: can be a deposit or a withdrawal
+                            If IR.type.ToLower = "transfer" Then
+                                If IR.amount >= 0 Then
+                                    IR.type = "deposit"
+                                Else
+                                    IR.type = "withdraw"
+                                End If
+                                IR.amount = Math.Abs(IR.amount)
+                            End If
+                            Select Case IR.type.Substring(0, Math.Min(8, IR.type.Length)).ToLower
+                                Case "deposit"
+                                    If IR.txid = "" Then
+                                        ' Most deposits appear twice, filter out the one with the empty txid.
+                                        .DoNotImport = True
+                                    Else
+                                        .SourceID = IR.txid
+                                        .TradetypID = DBHelper.TradeTypen.Einzahlung
+                                        If IR.asset = "FEE" Then
+                                            .QuellPlattformID = PlatformManager.Platforms.Extern
                                         Else
-                                            .TradetypID = DBHelper.TradeTypen.Einzahlung
-                                            If TLO.Asset = "FEE" Then
-                                                .QuellPlattformID = PlatformManager.Platforms.Extern
-                                            Else
-                                                .QuellPlattformID = PlatformManager.Platforms.Unknown
-                                            End If
-                                            .ZielPlattformID = Platform
-                                            .ZielBetrag = TLO.Amount
-                                            .QuellBetrag = .ZielBetrag
-                                            .QuellBetragNachGebuehr = .QuellBetrag
-                                            .BetragNachGebuehr = .ZielBetrag
-                                            If TLO.Fee > 0 Then
-                                                ' Es gibt eine Gebühr, also BetragNachGebühr verringern
-                                                .BetragNachGebuehr -= TLO.Fee
-                                            End If
-                                            .ZielKontoID = KontoRow.ID
-                                            .QuellKontoID = .ZielKontoID
+                                            .QuellPlattformID = PlatformManager.Platforms.Unknown
                                         End If
-                                    Case "withdraw"
-                                        If TLO.TxId = TLO.RefId Then
-                                            ' Ignore all lines that originally had an empty txid, because each withdrawal appears twice in the csv file
-                                            .DoNotImport = True
+                                        .ZielPlattformID = Platform
+                                        .ZielBetrag = IR.amount
+                                        .QuellBetrag = .ZielBetrag
+                                        .QuellBetragNachGebuehr = .QuellBetrag
+                                        .BetragNachGebuehr = .ZielBetrag
+                                        If IR.fee > 0 Then
+                                            ' There is a fee, so BetragNachGebühr needs to be reduced
+                                            .BetragNachGebuehr -= IR.fee
+                                        End If
+                                        .ZielKontoID = KontoRow.ID
+                                        .QuellKontoID = .ZielKontoID
+                                    End If
+                                Case "withdraw"
+                                    If IR.txid = "" Then
+                                        ' Most withdrawals appear twice, filter out the one with the empty txid.
+                                        .DoNotImport = True
+                                    Else
+                                        .SourceID = IR.txid
+                                        .TradetypID = DBHelper.TradeTypen.Auszahlung
+                                        .QuellPlattformID = Platform
+                                        .ZielPlattformID = PlatformManager.Platforms.Unknown
+                                        .QuellBetrag = Math.Abs(IR.amount)
+                                        .QuellBetragNachGebuehr = .QuellBetrag
+                                        .ZielBetrag = .QuellBetrag
+                                        .BetragNachGebuehr = .ZielBetrag
+                                        .QuellKontoID = KontoRow.ID
+                                        .ZielKontoID = .QuellKontoID
+                                        If IR.fee > 0 Then
+                                            '  There is a fee, so BetragNachGebühr needs to be reduced
+                                            .QuellBetrag += IR.fee
+                                        End If
+                                    End If
+                                Case "trade"
+                                    .SourceID = IR.txid
+                                    ' get corresponding ledger row (not kraken fee)
+                                    IR2nd = ImportLedersTb.Where(Function(r)
+                                                                     Return r.refid = IR.refid And r.asset <> "FEE" And Not r.processed And r.ID <> IR.ID
+                                                                 End Function).FirstOrDefault()
+                                    If IR2nd Is Nothing Then
+                                        ' No matching row found. This is only acceptable for very small amounts
+                                        If IR.amount <= KRAKEN_ZEROVALUETRADELIMIT Then
+                                            ' assume the corresponding second entry would be zero
+                                            IR2nd = ImportLedersTb.AddLedgerRow(IR.txid, IR.refid, IR.time, IR.type, IR.subtype, IR.aclass, "EUR", 0, 0, 0, True)
                                         Else
-                                            .TradetypID = DBHelper.TradeTypen.Auszahlung
-                                            .QuellPlattformID = Platform
-                                            .ZielPlattformID = PlatformManager.Platforms.Unknown
-                                            .QuellBetrag = Math.Abs(TLO.Amount)
-                                            .QuellBetragNachGebuehr = .QuellBetrag
-                                            .ZielBetrag = .QuellBetrag
-                                            .BetragNachGebuehr = .ZielBetrag
-                                            .QuellKontoID = KontoRow.ID
-                                            .ZielKontoID = .QuellKontoID
-                                            If TLO.Fee > 0 Then
-                                                ' Es gibt eine Gebühr, also Zielbetrag erhöhen
-                                                .QuellBetrag += TLO.Fee
-                                            End If
+                                            Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
                                         End If
-                                    Case "trade"
-                                        ' Nächste passende Zeile dazuholen
-                                        Do
-                                            l += 1
-                                            If l <= AllLines - 1 Then
-                                                NextRow = CSV.Rows(l)
-                                            Else
-                                                ' No further lines available
-                                                NextRow = Nothing
-                                            End If
-                                            If Row(1) <> NextRow(1) Then
-                                                ' next line does not match
-                                                NextRow = Nothing
-                                            End If
-                                            If NextRow Is Nothing Then
-                                                If TLO.Amount <= KRAKEN_ZEROVALUETRADELIMIT Then
-                                                    ' The value of this trade is very low: assume the corresponding second entry would be zero
-                                                    NextRow = {Row(0), Row(1), Row(2), Row(3), Row(4), Row(5), "0.0", "0.0", Row(8)}
-                                                Else
-                                                    Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
-                                                End If
-                                                l -= 1
-                                            End If
-                                            NextTLO = New KrakenLineObject(MainImportObject, NextRow(ColumnMap(0)), NextRow(ColumnMap(1)), NextRow(ColumnMap(2)), NextRow(ColumnMap(3)), NextRow(ColumnMap(4)), NextRow(ColumnMap(5)), NextRow(ColumnMap(6)))
-                                        Loop Until NextTLO.ID <> PreviousID
-                                        PreviousID = NextTLO.ID
-                                        Dim QuellKontoRow As KontenRow
-                                        If TLO.Amount < 0 OrElse (TLO.Amount = 0 And NextTLO.Amount > 0) Then
-                                            SourceTLO = TLO
-                                            TargetTLO = NextTLO
-                                            QuellKontoRow = KontoRow
-                                            KontoRow = MainImportObject.RetrieveAccount(NextTLO.Asset)
-                                        ElseIf NextTLO.Amount <= 0 Then
-                                            SourceTLO = NextTLO
-                                            TargetTLO = TLO
-                                            QuellKontoRow = MainImportObject.RetrieveAccount(NextTLO.Asset)
-                                        Else
-                                            Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoNegativeValue, .SourceID))
-                                        End If
-                                        .SourceID = SourceTLO.TxId & "-" & TargetTLO.TxId
+                                    Else
+                                        IR2nd.processed = True
+                                        IR2nd.txid = IR2nd.txid.Substring(0, 6)
+                                    End If
+                                    ' Set up the trades entries
+                                    If IR.amount < 0 OrElse (IR.amount = 0 And IR2nd.amount > 0) Then
+                                        SourceIR = IR
+                                        TargetIR = IR2nd
+                                        SourceKontoRow = KontoRow
+                                        KontoRow = MainImportObject.RetrieveAccount(IR2nd.asset)
+                                    ElseIf IR2nd.amount <= 0 Then
+                                        SourceIR = IR2nd
+                                        TargetIR = IR
+                                        SourceKontoRow = MainImportObject.RetrieveAccount(IR2nd.asset)
+                                    Else
+                                        Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoNegativeValue, .SourceID))
+                                    End If
+                                    .SourceID = SourceIR.txid & "-" & TargetIR.txid & "," & TargetIR.txid & "-" & SourceIR.txid
+                                    .QuellPlattformID = Platform
+                                    .ZielPlattformID = .QuellPlattformID
+                                    .ZielKontoID = KontoRow.ID
+                                    .ZielBetrag = TargetIR.amount
+                                    .BetragNachGebuehr = .ZielBetrag
+                                    .QuellBetrag = Math.Abs(SourceIR.amount)
+                                    .QuellBetragNachGebuehr = .QuellBetrag
+                                    .QuellKontoID = SourceKontoRow.ID
+                                    .Info = String.Format("Trade {0} ({1})", KontoRow.Bezeichnung, KontoRow.Code)
+                                    If KontoRow.IstFiat = False Then
+                                        ' Coins bought (via fiat or coins)
+                                        .TradetypID = DBHelper.TradeTypen.Kauf
+                                    Else
+                                        ' Coins sold
+                                        .TradetypID = DBHelper.TradeTypen.Verkauf
+                                    End If
+                                    If TargetIR.fee <> 0 Then
+                                        ' Fee on target side, we have to reduce the target amount
+                                        .BetragNachGebuehr -= Math.Abs(TargetIR.fee)
+                                    End If
+                                    ' watch out: Kraken can have 2 fees! One on the source-side and the other on the target-side.
+                                    If SourceIR.fee <> 0 Then
+                                        ' Fee on source side. Increase the source amount
+                                        .QuellBetrag += Math.Abs(SourceIR.fee)
+                                    End If
+                                    If .QuellKontoID = DBHelper.Konten.EUR Then
+                                        .WertEUR = .QuellBetrag
+                                    ElseIf .ZielKontoID = DBHelper.Konten.EUR Then
+                                        .WertEUR = .BetragNachGebuehr
+                                    End If
+
+                                Case Else
+                                    .DoNotImport = True
+                            End Select
+
+                            ' check for fees on target side
+                            If .BetragNachGebuehr < .ZielBetrag Then
+                                RecordFee = .Clone()
+                                RecordFee.SourceID = .SourceID.Replace(","c, "/"c) & "/fee"
+                                RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
+                                RecordFee.BetragNachGebuehr = 0
+                                RecordFee.QuellKontoID = .ZielKontoID
+                                RecordFee.ZielBetrag = .ZielBetrag - .BetragNachGebuehr
+                                RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
+                                RecordFee.ZielPlattformID = Platform
+                                RecordFee.WertEUR = 0
+                                RecordFee.QuellBetrag = RecordFee.ZielBetrag
+                                RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
+                                RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                                ImportRecords.Add(RecordFee)
+                                RecordFee = Nothing
+                            End If
+                            ' check for fees on source side
+                            If .QuellBetragNachGebuehr < .QuellBetrag Then
+                                RecordFee = .Clone()
+                                RecordFee.SourceID = .SourceID.Replace(","c, "/"c) & "/fee" & IIf(.BetragNachGebuehr < .ZielBetrag, "2", "")
+                                RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
+                                RecordFee.BetragNachGebuehr = 0
+                                RecordFee.QuellKontoID = .QuellKontoID
+                                RecordFee.ZielBetrag = .QuellBetrag - .QuellBetragNachGebuehr
+                                RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
+                                RecordFee.ZielPlattformID = Platform
+                                RecordFee.WertEUR = 0
+                                RecordFee.QuellBetrag = RecordFee.ZielBetrag
+                                RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
+                                RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                            End If
+
+                            If RecordFee Is Nothing AndAlso (.TradetypID = DBHelper.TradeTypen.Kauf OrElse .TradetypID = DBHelper.TradeTypen.Verkauf) Then
+                                ' check for kraken fee credits row
+                                IR2nd = ImportLedersTb.Where(Function(r)
+                                                                 Return r.refid = IR.refid And r.asset = "FEE" And Not r.processed And r.ID <> IR.ID
+                                                             End Function).FirstOrDefault()
+                                If IR2nd IsNot Nothing Then
+                                    IR2nd.processed = True
+                                    ' create kraken fee import entry
+                                    RecordFee = .Clone()
+                                    RecordFee.SourceID = .SourceID.Replace(","c, "/"c) & "/fee"
+                                    RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
+                                    RecordFee.BetragNachGebuehr = 0
+                                    RecordFee.QuellKontoID = MainImportObject.GetAccount(IR2nd.asset).ID
+                                    RecordFee.QuellBetrag = IR2nd.fee
+                                    RecordFee.ZielBetrag = RecordFee.QuellBetrag
+                                    RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
+                                    RecordFee.WertEUR = 0
+                                    RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
+                                    RecordFee.Info = String.Format(My.Resources.MyStrings.ImportInfoKrakenTradeFeeCredits, .SourceID)
+                                End If
+                            End If
+
+                            If Not .DoNotImport Then
+                                ' add import record entry
+                                ImportRecords.Add(Record)
+                                If Not RecordFee Is Nothing Then
+                                    ImportRecords.Add(RecordFee)
+                                End If
+                            End If
+
+                        End With
+                    Next
+
+                Catch ex As Exception
+                    If FileImportError(ErrCounter, l + 1, ex) = 0 Then
+                        Return False
+                        Exit Function
+                    End If
+                End Try
+
+            ElseIf SubType >= KRAKEN_IMPORT_TRADES And AllLines > 0 Then
+                ' *** Read trade entries ***
+                Dim ImportTradesTb As New Import_KrakenDataSet.TradesDataTable
+                ' Fill the trades import table
+                Try
+                    For l = 0 To AllLines - 1
+                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenCSVReadFile, l * 50 / AllLines)
+                        Row = CSV.Rows(l)
+                        If Row.Length >= 13 Then
+                            ImportTradesTb.AddTradesRow(Row(0),
+                                                    Row(1),
+                                                    Row(2),
+                                                    Row(3),
+                                                    Row(4),
+                                                    Row(5),
+                                                    Double.Parse(Row(6), CultureInfo.InvariantCulture),
+                                                    Double.Parse(Row(7), CultureInfo.InvariantCulture),
+                                                    Double.Parse(Row(8), CultureInfo.InvariantCulture),
+                                                    Double.Parse(Row(9), CultureInfo.InvariantCulture),
+                                                    Double.Parse(Row(10), CultureInfo.InvariantCulture),
+                                                    Row(11),
+                                                    Row(12),
+                                                    False)
+                        End If
+                    Next
+                Catch ex As Exception
+                    If FileImportError(ErrCounter, l + 1, ex) = 0 Then
+                        Return False
+                        Exit Function
+                    End If
+                End Try
+
+                ' Process the trades import table
+                Try
+                    Dim LedgerIDs As String()
+                    Dim KFeeIndicator As UInt32
+                    Dim AssetCode1 As String
+                    Dim AssetCode2 As String
+                    Dim KontoRow2 As KontenRow
+                    For Each IR As Import_KrakenDataSet.TradesRow In ImportTradesTb
+                        l = IR.ID + 1
+                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenCSVCheckLines, 50 + (l * 50 / AllLines))
+                        ' Skip already processed rows
+                        If IR.processed Then Continue For
+                        IR.processed = True
+                        ' Skip this row, if it has already been processed (to prevent errors resulting from duplicate rows)
+                        If IR.txid <> String.Empty Then
+                            If ProcessedTx.Contains(IR.txid) Then Continue For
+                            ProcessedTx.Add(IR.txid)
+                        End If
+                        ' Build ImportRecord entry
+                        Record = New dtoTradesRecord
+                        RecordFee = Nothing
+                        With Record
+                            .Zeitpunkt = IR.time
+                            .ZeitpunktZiel = .Zeitpunkt
+                            .ImportPlattformID = Platform
+                            If Len(IR.pair) > 6 Then
+                                AssetCode1 = IR.pair.Substring(1, 3)
+                                AssetCode2 = IR.pair.Substring(5, 3)
+                            Else
+                                AssetCode1 = IR.pair.Substring(0, 3)
+                                AssetCode2 = IR.pair.Substring(3, 3)
+                            End If
+                            '.Info = FirstCharToUppercase(IR.type) & " " & IR.pair.Substring(1, 3)
+                            KontoRow = MainImportObject.RetrieveAccount(AssetCode1)
+                            KontoRow2 = MainImportObject.RetrieveAccount(AssetCode2)
+                            LedgerIDs = IR.ledgers.Split(","c)
+                            ' Shorten ledger ids for backwards compatibility
+                            For a As Integer = 0 To LedgerIDs.Length - 1
+                                LedgerIDs(a) = LedgerIDs(a).Substring(0, 6)
+                            Next
+                            ' Check if we have three legers ids involved, which means the fee is paid via KFEE
+                            If LedgerIDs.Length > 2 Then
+                                KFeeIndicator = 1
+                            Else
+                                KFeeIndicator = 0
+                            End If
+                            .SourceID = LedgerIDs(KFeeIndicator) & "-" & LedgerIDs(1 + KFeeIndicator) & "," & LedgerIDs(1 + KFeeIndicator) & "-" & LedgerIDs(KFeeIndicator)
+                            Select Case IR.type.ToLower
+                                Case "buy"
+                                    .QuellPlattformID = Platform
+                                    .ZielPlattformID = .QuellPlattformID
+                                    .ZielKontoID = KontoRow.ID
+                                    .ZielBetrag = IR.vol
+                                    .BetragNachGebuehr = .ZielBetrag
+                                    .QuellBetrag = IR.cost
+                                    .QuellBetragNachGebuehr = .QuellBetrag
+                                    .QuellKontoID = KontoRow2.ID
+                                    .Info = String.Format("Trade {0} ({1})", KontoRow.Bezeichnung, KontoRow.Code)
+                                    .TradetypID = DBHelper.TradeTypen.Kauf
+                                    If KFeeIndicator = 0 AndAlso IR.fee > 0 Then
+                                        ' we have a countable fee -> add it to the cost
+                                        .QuellBetrag += IR.fee
+                                    End If
+                                    If .QuellKontoID = DBHelper.Konten.EUR Then
+                                        .WertEUR = .QuellBetrag
+                                    ElseIf .ZielKontoID = DBHelper.Konten.EUR Then
+                                        .WertEUR = .BetragNachGebuehr
+                                    End If
+
+                                Case "sell"
+                                    If Not KontoRow2.IstFiat Then
+                                        ' we are selling crypto - convert this into a buy
                                         .QuellPlattformID = Platform
                                         .ZielPlattformID = .QuellPlattformID
-                                        .ZielKontoID = KontoRow.ID
-                                        .ZielBetrag = TargetTLO.Amount
+                                        .ZielKontoID = KontoRow2.ID
+                                        .ZielBetrag = IR.cost
                                         .BetragNachGebuehr = .ZielBetrag
-                                        .QuellBetrag = Math.Abs(SourceTLO.Amount)
+                                        .QuellBetrag = IR.vol
                                         .QuellBetragNachGebuehr = .QuellBetrag
-                                        .QuellKontoID = QuellKontoRow.ID
+                                        .QuellKontoID = KontoRow.ID
+                                        .Info = String.Format("Trade {0} ({1})", KontoRow2.Bezeichnung, KontoRow2.Code)
+                                        .TradetypID = DBHelper.TradeTypen.Verkauf
+                                        If KFeeIndicator = 0 AndAlso IR.fee > 0 Then
+                                            ' we have a countable fee -> substract from target amount
+                                            .BetragNachGebuehr -= IR.fee
+                                        End If
+                                    Else
+                                        ' we are selling crypto for fiat
+                                        .QuellPlattformID = Platform
+                                        .ZielPlattformID = .QuellPlattformID
+                                        .ZielKontoID = KontoRow2.ID
+                                        .ZielBetrag = IR.cost
+                                        .BetragNachGebuehr = .ZielBetrag
+                                        .QuellBetrag = IR.vol
+                                        .QuellBetragNachGebuehr = .QuellBetrag
+                                        .QuellKontoID = KontoRow.ID
                                         .Info = String.Format("Trade {0} ({1})", KontoRow.Bezeichnung, KontoRow.Code)
-                                        If KontoRow.IstFiat = False Then
-                                            ' Kauf von Coins (gegen Fiat oder andere Coins)
-                                            .TradetypID = DBHelper.TradeTypen.Kauf
-                                        Else
-                                            ' Verkauf von - wahrscheinlich - Coins
-                                            .TradetypID = DBHelper.TradeTypen.Verkauf
-                                        End If
-                                        If TargetTLO.Fee <> 0 Then
-                                            ' Es gibt eine Gebühr, also BetragNachGebühr verringern
-                                            .BetragNachGebuehr -= Math.Abs(TargetTLO.Fee)
-                                        End If
-                                        ' watch out: Kraken can have 2 fees! One on the source-side and the other on the target-side.
-                                        If SourceTLO.Fee <> 0 Then
-                                            ' Gebühr beim QuellBetrag! Erhöhen...
-                                            .QuellBetrag += Math.Abs(SourceTLO.Fee)
-                                        End If
-                                        If .QuellKontoID = DBHelper.Konten.EUR Then
-                                            .WertEUR = .QuellBetrag
-                                        ElseIf .ZielKontoID = DBHelper.Konten.EUR Then
-                                            .WertEUR = .BetragNachGebuehr
-                                        End If
-
-                                    Case Else
-                                        .DoNotImport = True
-                                End Select
-                                ' check for fees on target side
-                                If .BetragNachGebuehr < .ZielBetrag Then
-                                    RecordFee = .Clone()
-                                    RecordFee.SourceID = .SourceID & "/fee"
-                                    RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
-                                    RecordFee.BetragNachGebuehr = 0
-                                    RecordFee.QuellKontoID = .ZielKontoID
-                                    RecordFee.ZielBetrag = .ZielBetrag - .BetragNachGebuehr
-                                    RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
-                                    RecordFee.ZielPlattformID = Platform
-                                    RecordFee.WertEUR = 0
-                                    RecordFee.QuellBetrag = RecordFee.ZielBetrag
-                                    RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                    RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
-                                    ImportRecords.Add(RecordFee)
-                                    RecordFee = Nothing
-                                End If
-                                ' check for fees on source side
-                                If .QuellBetragNachGebuehr < .QuellBetrag Then
-                                    RecordFee = .Clone()
-                                    RecordFee.SourceID = .SourceID & "/fee" & IIf(.BetragNachGebuehr < .ZielBetrag, "2", "")
-                                    RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
-                                    RecordFee.BetragNachGebuehr = 0
-                                    RecordFee.QuellKontoID = .QuellKontoID
-                                    RecordFee.ZielBetrag = .QuellBetrag - .QuellBetragNachGebuehr
-                                    RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
-                                    RecordFee.ZielPlattformID = Platform
-                                    RecordFee.WertEUR = 0
-                                    RecordFee.QuellBetrag = RecordFee.ZielBetrag
-                                    RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                    RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
-                                End If
-
-                                If RecordFee Is Nothing Then
-                                    ' Prüfen, ob es ggf. eine Zeile gibt, in der Kraken Fee Credits verringert werden
-                                    If .TradetypID = DBHelper.TradeTypen.Kauf OrElse .TradetypID = DBHelper.TradeTypen.Verkauf Then
-                                        l += 1
-                                        If l <= AllLines - 1 Then
-                                            NextRow = CSV.Rows(l)
-                                            If NextRow.Length >= 8 Then
-                                                NextTLO = New KrakenLineObject(MainImportObject, NextRow(ColumnMap(0)), NextRow(ColumnMap(1)), NextRow(ColumnMap(2)), NextRow(ColumnMap(3)), NextRow(ColumnMap(4)), NextRow(ColumnMap(5)), NextRow(ColumnMap(6)))
-                                                If NextTLO.Asset = "FEE" AndAlso NextTLO.RefId = TLO.RefId Then
-                                                    ' Zeile mit Kraken Fee Credit-Buchung gefunden, entsprechende Gebühren-Buchung anlegen
-                                                    RecordFee = .Clone()
-                                                    RecordFee.SourceID = .SourceID & "/fee"
-                                                    RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
-                                                    RecordFee.BetragNachGebuehr = 0
-                                                    RecordFee.QuellKontoID = MainImportObject.GetAccount(NextTLO.Asset).ID
-                                                    RecordFee.QuellBetrag = NextTLO.Fee
-                                                    RecordFee.ZielBetrag = RecordFee.QuellBetrag
-                                                    RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
-                                                    RecordFee.WertEUR = 0
-                                                    RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                                    RecordFee.Info = String.Format(My.Resources.MyStrings.ImportInfoKrakenTradeFeeCredits, .SourceID)
-                                                Else
-                                                    l -= 1
-                                                End If
-                                            End If
-                                        Else
-                                            l -= 1
+                                        .TradetypID = DBHelper.TradeTypen.Verkauf
+                                        If KFeeIndicator = 0 AndAlso IR.fee > 0 Then
+                                            ' we have a countable fee -> substract from target amount
+                                            .BetragNachGebuehr -= IR.fee
                                         End If
                                     End If
-                                End If
-
-                                If Not .DoNotImport Then
-                                    ' Record der Liste hinzufügen
-                                    ImportRecords.Add(Record)
-                                    If Not RecordFee Is Nothing Then
-                                        ImportRecords.Add(RecordFee)
+                                    If .QuellKontoID = DBHelper.Konten.EUR Then
+                                        .WertEUR = .QuellBetrag
+                                    ElseIf .ZielKontoID = DBHelper.Konten.EUR Then
+                                        .WertEUR = .BetragNachGebuehr
                                     End If
-                                End If
-                            End With
+                                Case Else
+                                    .DoNotImport = True
+                            End Select
 
-                        Catch ex As Exception
-                            If FileImportError(ErrCounter, l + 1, ex) = 0 Then
-                                Return False
-                                Exit Function
+                            ' check for fees on target side
+                            If .BetragNachGebuehr < .ZielBetrag Then
+                                RecordFee = .Clone()
+                                RecordFee.SourceID = .SourceID.Replace(","c, "/"c) & "/fee"
+                                RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
+                                RecordFee.BetragNachGebuehr = 0
+                                RecordFee.QuellKontoID = .ZielKontoID
+                                RecordFee.ZielBetrag = .ZielBetrag - .BetragNachGebuehr
+                                RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
+                                RecordFee.ZielPlattformID = Platform
+                                RecordFee.WertEUR = 0
+                                RecordFee.QuellBetrag = RecordFee.ZielBetrag
+                                RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
+                                RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                                ImportRecords.Add(RecordFee)
+                                RecordFee = Nothing
                             End If
-                        End Try
+                            ' check for fees on source side
+                            If .QuellBetragNachGebuehr < .QuellBetrag Then
+                                RecordFee = .Clone()
+                                RecordFee.SourceID = .SourceID.Replace(","c, "/"c) & "/fee" & IIf(.BetragNachGebuehr < .ZielBetrag, "2", "")
+                                RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
+                                RecordFee.BetragNachGebuehr = 0
+                                RecordFee.QuellKontoID = .QuellKontoID
+                                RecordFee.ZielBetrag = .QuellBetrag - .QuellBetragNachGebuehr
+                                RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
+                                RecordFee.ZielPlattformID = Platform
+                                RecordFee.WertEUR = 0
+                                RecordFee.QuellBetrag = RecordFee.ZielBetrag
+                                RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
+                                RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                            End If
 
+                            If Not .DoNotImport Then
+                                ' add import record entry
+                                ImportRecords.Add(Record)
+                                If Not RecordFee Is Nothing Then
+                                    ImportRecords.Add(RecordFee)
+                                End If
+                            End If
+
+                        End With
+                    Next
+
+                Catch ex As Exception
+                    If FileImportError(ErrCounter, l + 1, ex) = 0 Then
+                        Return False
+                        Exit Function
                     End If
-
-                Next l
-
-                MainImportObject.Import_Records(ImportRecords, FileNames(0), ReadImportdataPercentage, , True)
-                Cursor.Current = Cursors.Default
-
+                End Try
             End If
+
+            MainImportObject.Import_Records(ImportRecords, FileNames(0), ReadImportdataPercentage, , True)
+            Cursor.Current = Cursors.Default
+
         End If
 
         Return ErrCounter = MaxErrors
 
     End Function
-
-
 
 End Class

@@ -494,13 +494,20 @@ Public MustInherit Class FileImportBase
     ''' <param name="AllLines">Total number of all lines in file</param>
     ''' <param name="Line">Current line number</param>
     ''' <param name="Message">Message to display. Defaults to MyStrings.importMsgReadingFile</param>
+    ''' <param name="ProgressPercentage">Percentage value (0 to 100) applied to the progress bar</param>
     Protected Sub UpdateProgress(ByVal AllLines As Long,
                                  ByVal Line As Long,
-                                 Optional Message As String = "")
+                                 Optional Message As String = "",
+                                 Optional ProgressPercentage As Integer = -1)
         If Message = "" Then
             Message = My.Resources.MyStrings.importMsgReadingFile
         End If
-        ProgressWaitManager.UpdateProgress(Line / AllLines * ReadImportdataPercentage, String.Format(Message, Line.ToString(Import.MESSAGENUMBERFORMAT), AllLines.ToString(Import.MESSAGENUMBERFORMAT)))
+        If ProgressPercentage = -1 Then
+            ProgressPercentage = Line / AllLines * ReadImportdataPercentage
+        Else
+            ProgressPercentage *= ReadImportdataPercentage / 100
+        End If
+        ProgressWaitManager.UpdateProgress(ProgressPercentage, String.Format(Message, Line.ToString(Import.MESSAGENUMBERFORMAT), AllLines.ToString(Import.MESSAGENUMBERFORMAT)))
     End Sub
 
     ''' <summary>

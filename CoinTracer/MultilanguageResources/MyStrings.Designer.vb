@@ -1685,6 +1685,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Schritte 2: Prüfe eingelesene Datenzeilen... ({0}/{1}) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenCSVCheckLines() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenCSVCheckLines", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Schritt 1: Lese Datei ein... ({0}/{1}) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenCSVReadFile() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenCSVReadFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Ungültiger Trade {0}: Sowohl Buchung als auch Gegenbuchung haben einen positiven Wert. ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgKrakenErrorNoNegativeValue() As String
