@@ -1415,6 +1415,9 @@ Public Class frmMain
         End If
     End Sub
 
+    ''' <summary>
+    ''' Reverse an import of transaction data
+    ''' </summary>
     Private Sub tsmiEraseImport_Click(sender As Object, e As EventArgs) Handles tsmiEraseImport.Click
         Dim ImportID As Long = -1
         With grdImporte
@@ -1448,6 +1451,17 @@ Public Class frmMain
                             '               "select PlattformID from Importe where ID=" & ImportID & ")")
                             _DB.ExecuteSQL("delete from Importe where ID=" & ImportID)
                             _TVM.ResetAllLossTrades()
+                            ' Check if we should reset ID counters
+                            With New TradesTableAdapter
+                                If .Count() = 0 Then
+                                    .ResetSequence()
+                                End If
+                            End With
+                            With New ImporteTableAdapter
+                                If .Count() = 0 Then
+                                    .ResetSequence()
+                                End If
+                            End With
                             _DB.ReloadDatabase(True)
                             ' Aktualisierungen und Anzeigen
                             ReloadDashGrids()
