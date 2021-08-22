@@ -34,7 +34,6 @@ Imports CoinTracer.CoinTracerDataSet
 Imports CoinTracer.CoinTracerDataSetTableAdapters
 Imports System.IO
 Imports System.Text
-Imports Newtonsoft.Json.Linq
 Imports CoinTracer.PlatformManager
 
 ''' <summary>
@@ -178,6 +177,8 @@ Public Class Import
     Private _DB As DBHelper
 
     Private _ImportFileHelper As ImportFileHelper
+
+    Private _AccountMap As Collection
 
     Private _ApiPwCheck As String
     Public ReadOnly Property ApiPasswordCheckPhrase() As String
@@ -442,6 +443,8 @@ Public Class Import
             Dim ApiMsg As String = ""
             Dim RowName As String = My.Resources.MyStrings.unknownInHyphens
             Dim ThisImport As IApiImport = Nothing
+            ' Refresh the account alias map
+            RefreshAccountMap()
             For Each ApiRow As ApiDatenRow In ApiDatenTb
                 Try
                     RowName = ApiRow.Bezeichnung
@@ -516,6 +519,24 @@ Public Class Import
     End Sub
 
     ''' <summary>
+    ''' Initializes the internal map for account aliases (needed by RetrieveAccount())
+    ''' </summary>
+    Private Sub RefreshAccountMap()
+        Dim KontenAliasesDT As New KontenAliasesDataTable
+        With New KontenAliasesTableAdapter
+            .Fill(KontenAliasesDT)
+        End With
+        If _AccountMap Is Nothing Then
+            _AccountMap = New Collection
+        Else
+            _AccountMap.Clear()
+        End If
+        For Each KontenAliasRow As KontenAliasesRow In KontenAliasesDT.Rows
+            _AccountMap.Add(KontenAliasRow.Code, KontenAliasRow._Alias)
+        Next
+    End Sub
+
+    ''' <summary>
     ''' Performs an interactive file import. Type of import depends on current Plattform property
     ''' </summary>
     Public Sub DoImport(Optional ByRef FilesList() As String = Nothing)
@@ -526,6 +547,9 @@ Public Class Import
         Dim SubType As Integer = 0
         Dim NewImport As Boolean = False
         Dim ThisImport As IFileImport
+
+        ' Refresh the account alias map
+        RefreshAccountMap()
 
         If _Plattform = PlatformManager.Platforms.Unknown Then
             ' Autodetect the import file format
@@ -2700,7 +2724,9 @@ Public Class Import
         For Each FoundRow In Tbl.Rows
             If FoundRow("ImportPlattformID") = CInt(_Plattform) Then
                 Try
-                    CheckDoublesDict.Add(FoundRow("SourceID"), 1)
+                    For Each SourceID In FoundRow("SourceID").ToString.Split(","c)
+                        CheckDoublesDict.Add(SourceID, 1)
+                    Next
                 Catch ex As ArgumentException
                     ' no matter...
                 End Try
@@ -2710,7 +2736,7 @@ Public Class Import
             With IR
                 ProgressWaitManager.UpdateProgress(StartPercentage + (_ZuletztEingelesen + _ZuletztUeberprungen) / ImportRecords.Count * (100 - StartPercentage), String.Format("Verarbeite Datensätze... ({0}/{1})", _ZuletztEingelesen + _ZuletztUeberprungen, ImportRecords.Count))
                 If Not .DoNotImport Then
-                    If CheckDoublesDict.ContainsKey(IR.SourceID) Then
+                    If CheckImportKey(CheckDoublesDict, IR.SourceID) Then
                         ' SourceID schon vorhanden -> nicht imporieren!
                         _ZuletztUeberprungen += 1
                     Else
@@ -2726,7 +2752,9 @@ Public Class Import
                             HasTransfers = True
                         End If
                         If Not IgnoreDuplicates Then
-                            CheckDoublesDict.Add(IR.SourceID, 0)
+                            For Each ID In IR.SourceID.Split(","c)
+                                CheckDoublesDict.Add(ID, 0)
+                            Next
                         End If
                     End If
                 Else
@@ -2786,6 +2814,14 @@ Public Class Import
         End If
 
     End Sub
+
+    Private Function CheckImportKey(ByRef CheckDoublesDict As Dictionary(Of String, Long),
+                                    ByRef SourceID As String)
+        For Each ID In SourceID.Split(","c)
+            If CheckDoublesDict.ContainsKey(ID) Then Return True
+        Next
+        Return False
+    End Function
 
     ''' <summary>
     ''' Wertet Gebühren-Einträge aus: zugehörige Trades werden in BetragNachGebuehr sowie WertEUR ggf. angepasst
@@ -3147,19 +3183,22 @@ Public Class Import
             End If
         Else
             ' Konto als String übergeben
-            If Account = "€" Then
-                Account = "EUR"
-            ElseIf Account = "$" Then
-                Account = "USD"
-            ElseIf Account = "US Dollar" Then
-                Account = "USD"
-            ElseIf Account = "XBT" Then
-                Account = "BTC"
-            ElseIf Account = "BCC" Then
-                Account = "BCH"
-            ElseIf Account = "XDG" Then
-                Account = "DODGE"
+            If _AccountMap.Contains(Account) Then
+                Account = _AccountMap(Account)
             End If
+            'If Account = "€" Then
+            '    Account = "EUR"
+            'ElseIf Account = "$" Then
+            '    Account = "USD"
+            'ElseIf Account = "US Dollar" Then
+            '    Account = "USD"
+            'ElseIf Account = "XBT" Then
+            '    Account = "BTC"
+            'ElseIf Account = "BCC" Then
+            '    Account = "BCH"
+            'ElseIf Account = "XDG" Then
+            '    Account = "DODGE"
+            'End If
             FoundRows = _KontenTb.Select(String.Format("Bezeichnung='{0}' or Code='{0}'", Account.Replace("'", "_")))
             If DirectCast(FoundRows, ICollection).Count >= 1 Then
                 Return FoundRows(0)
