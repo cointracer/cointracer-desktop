@@ -31,6 +31,7 @@
 
 Imports CoinTracer.CoinTracerDataSetTableAdapters
 Imports CoinTracer.CoinTracerDataSet
+Imports System.Linq
 
 ''' <summary>
 ''' Class representing all supported and built-in crypto currencies and their related functionality.
@@ -118,7 +119,7 @@ Public NotInheritable Class AccountManager
         MAID = 239
         NANO = 240
         OMG = 241
-        PAX = 242
+        PAXG = 242
         SC = 243
         SAI = 244
         USDT = 245
@@ -130,34 +131,57 @@ Public NotInheritable Class AccountManager
         REPV2 = 251
         BAL = 252
         XBT = 253
-        ADA = 254
-        COMP = 255
-        CRV = 256
-        DAI = 257
-        DASH = 258
-        MANA = 259
-        XDG = 260
-        EOS = 261
-        FIL = 262
-        FLOW = 263
-        GNO = 264
-        KAVA = 265
-        KEEP = 266
-        KSM = 267
-        KNC = 268
-        MLN = 269
-        OXT = 270
-        PAXG = 271
-        DOT = 272
-        QTUM = 273
-        STORJ = 274
-        SNX = 275
-        TBTC = 276
-        XTZ = 277
-        GRT = 278
-        TRX = 279
-        UNI = 280
-        YFI = 281
+        COMP = 254
+        CRV = 255
+        DAI = 256
+        MANA = 257
+        FIL = 258
+        FLOW = 259
+        KAVA = 260
+        KEEP = 261
+        KSM = 262
+        KNC = 263
+        MLN = 264
+        OXT = 265
+        DOT = 266
+        STORJ = 267
+        SNX = 268
+        TBTC = 269
+        GRT = 270
+        TRX = 271
+        UNI = 272
+        YFI = 273
+        ONEINCH = 274
+        ANKR = 275
+        AXS = 276
+        BADGER = 277
+        BAND = 278
+        BNT = 279
+        CHZ = 280
+        CQT = 281
+        CTSI = 282
+        ENJ = 283
+        EWT = 284
+        GHST = 285
+        INJ = 286
+        KAR = 287
+        LPT = 288
+        LRC = 289
+        MATIC = 290
+        MINA = 291
+        MIR = 292
+        MKR = 293
+        OCEAN = 294
+        OGN = 295
+        PERP = 296
+        RARI = 297
+        REN = 298
+        SAND = 299
+        SOL = 300
+        SRM = 301
+        SUSHI = 302
+        WBTC = 303
+        ZRX = 304
         feeEUR = 10101
         feeUSD = 10102
         feeBTC = 10201
@@ -193,7 +217,7 @@ Public NotInheritable Class AccountManager
         feeMAID = 10239
         feeNANO = 10240
         feeOMG = 10241
-        feePAX = 10242
+        feePAXG = 10242
         feeSC = 10243
         feeSAI = 10244
         feeUSDT = 10245
@@ -205,34 +229,58 @@ Public NotInheritable Class AccountManager
         feeREPV2 = 10251
         feeBAL = 10252
         feeXBT = 10253
-        feeADA = 10254
-        feeCOMP = 10255
-        feeCRV = 10256
-        feeDAI = 10257
-        feeDASH = 10258
-        feeMANA = 10259
-        feeXDG = 10260
-        feeEOS = 10261
-        feeFIL = 10262
-        feeFLOW = 10263
-        feeGNO = 10264
-        feeKAVA = 10265
-        feeKEEP = 10266
-        feeKSM = 10267
-        feeKNC = 10268
-        feeMLN = 10269
-        feeOXT = 10270
-        feePAXG = 10271
-        feeDOT = 10272
-        feeQTUM = 10273
-        feeSTORJ = 10274
-        feeSNX = 10275
-        feeTBTC = 10276
-        feeXTZ = 10277
-        feeGRT = 10278
-        feeTRX = 10279
-        feeUNI = 10280
-        feeYFI = 10281
+        feeCOMP = 10254
+        feeCRV = 10255
+        feeDAI = 10256
+        feeMANA = 10257
+        feeFIL = 10258
+        feeFLOW = 10259
+        feeKAVA = 10260
+        feeKEEP = 10261
+        feeKSM = 10262
+        feeKNC = 10263
+        feeMLN = 10264
+        feeOXT = 10265
+        feeDOT = 10266
+        feeSTORJ = 10267
+        feeSNX = 10268
+        feeTBTC = 10269
+        feeGRT = 10270
+        feeTRX = 10271
+        feeUNI = 10272
+        feeYFI = 10273
+        feeONEINCH = 10274
+        feeANKR = 10275
+        feeAXS = 10276
+        feeBADGER = 10277
+        feeBAND = 10278
+        feeBNT = 10279
+        feeCHZ = 10280
+        feeCQT = 10281
+        feeCTSI = 10282
+        feeENJ = 10283
+        feeEWT = 10284
+        feeGHST = 10285
+        feeINJ = 10286
+        feeKAR = 10287
+        feeLPT = 10288
+        feeLRC = 10289
+        feeMATIC = 10290
+        feeMINA = 10291
+        feeMIR = 10292
+        feeMKR = 10293
+        feeOCEAN = 10294
+        feeOGN = 10295
+        feePERP = 10296
+        feeRARI = 10297
+        feeREN = 10298
+        feeSAND = 10299
+        feeSOL = 10300
+        feeSRM = 10301
+        feeSUSHI = 10302
+        feeWBTC = 10303
+        feeZRX = 10304
+
     End Enum
 
     ' All valid platforms - keep database ids in sync with enum above!!!
@@ -283,7 +331,7 @@ Public NotInheritable Class AccountManager
             New AccountDetails(239, "MaidSafeCoin", "MAID", "MaidSafeCoin", False, False, True, False, 10239),
             New AccountDetails(240, "Nano", "NANO", "Nano", False, False, True, False, 10240),
             New AccountDetails(241, "OmiseGo", "OMG", "OmiseGo", False, False, True, False, 10241),
-            New AccountDetails(242, "PAX Gold", "PAX", "PAX Gold", False, False, True, False, 10242),
+            New AccountDetails(242, "PAX Gold", "PAXG", "PAX Gold", False, False, True, False, 10242),
             New AccountDetails(243, "SiaCoin", "SC", "SiaCoin", False, False, True, False, 10243),
             New AccountDetails(244, "Single Collateral DAI", "SAI", "Single Collateral DAI", False, False, True, False, 10244),
             New AccountDetails(245, "Tether", "USDT", "Tether", False, False, True, False, 10245),
@@ -295,34 +343,57 @@ Public NotInheritable Class AccountManager
             New AccountDetails(251, "Augur v2", "REPV2", "Augur v2", False, False, True, False, 10251),
             New AccountDetails(252, "Balancer", "BAL", "Balancer", False, False, True, False, 10252),
             New AccountDetails(253, "Bitcoin", "XBT", "Bitcoin", False, False, True, False, 10253),
-            New AccountDetails(254, "Cardano", "ADA", "Cardano", False, False, True, False, 10254),
-            New AccountDetails(255, "Compound", "COMP", "Compound", False, False, True, False, 10255),
-            New AccountDetails(256, "Curve DAO Token", "CRV", "Curve DAO Token", False, False, True, False, 10256),
-            New AccountDetails(257, "Dai", "DAI", "Dai", False, False, True, False, 10257),
-            New AccountDetails(258, "Dash", "DASH", "Dash", False, False, True, False, 10258),
-            New AccountDetails(259, "Decentra​land", "MANA", "Decentra​land", False, False, True, False, 10259),
-            New AccountDetails(260, "Dogecoin", "XDG", "Dogecoin", False, False, True, False, 10260),
-            New AccountDetails(261, "EOS", "EOS", "EOS", False, False, True, False, 10261),
-            New AccountDetails(262, "Filecoin", "FIL", "Filecoin", False, False, True, False, 10262),
-            New AccountDetails(263, "Flow", "FLOW", "Flow", False, False, True, False, 10263),
-            New AccountDetails(264, "Gnosis", "GNO", "Gnosis", False, False, True, False, 10264),
-            New AccountDetails(265, "Kava", "KAVA", "Kava", False, False, True, False, 10265),
-            New AccountDetails(266, "Keep Network", "KEEP", "Keep Network", False, False, True, False, 10266),
-            New AccountDetails(267, "Kusama", "KSM", "Kusama", False, False, True, False, 10267),
-            New AccountDetails(268, "Kyber Network", "KNC", "Kyber Network", False, False, True, False, 10268),
-            New AccountDetails(269, "Melon", "MLN", "Melon", False, False, True, False, 10269),
-            New AccountDetails(270, "Orchid", "OXT", "Orchid", False, False, True, False, 10270),
-            New AccountDetails(271, "PAX Gold", "PAXG", "PAX Gold", False, False, True, False, 10271),
-            New AccountDetails(272, "Polkadot", "DOT", "Polkadot", False, False, True, False, 10272),
-            New AccountDetails(273, "Qtum", "QTUM", "Qtum", False, False, True, False, 10273),
-            New AccountDetails(274, "Storj", "STORJ", "Storj", False, False, True, False, 10274),
-            New AccountDetails(275, "Synthetix", "SNX", "Synthetix", False, False, True, False, 10275),
-            New AccountDetails(276, "tBTC", "TBTC", "tBTC", False, False, True, False, 10276),
-            New AccountDetails(277, "Tezos", "XTZ", "Tezos", False, False, True, False, 10277),
-            New AccountDetails(278, "The Graph", "GRT", "The Graph", False, False, True, False, 10278),
-            New AccountDetails(279, "TRON", "TRX", "TRON", False, False, True, False, 10279),
-            New AccountDetails(280, "Uniswap", "UNI", "Uniswap", False, False, True, False, 10280),
-            New AccountDetails(281, "Yearn Finance", "YFI", "Yearn Finance", False, False, True, False, 10281)
+            New AccountDetails(254, "Compound", "COMP", "Compound", False, False, True, False, 10254),
+            New AccountDetails(255, "Curve DAO Token", "CRV", "Curve DAO Token", False, False, True, False, 10255),
+            New AccountDetails(256, "Dai", "DAI", "Dai", False, False, True, False, 10256),
+            New AccountDetails(257, "Decentra​land", "MANA", "Decentra​land", False, False, True, False, 10257),
+            New AccountDetails(258, "Filecoin", "FIL", "Filecoin", False, False, True, False, 10258),
+            New AccountDetails(259, "Flow", "FLOW", "Flow", False, False, True, False, 10259),
+            New AccountDetails(260, "Kava", "KAVA", "Kava", False, False, True, False, 10260),
+            New AccountDetails(261, "Keep Network", "KEEP", "Keep Network", False, False, True, False, 10261),
+            New AccountDetails(262, "Kusama", "KSM", "Kusama", False, False, True, False, 10262),
+            New AccountDetails(263, "Kyber Network", "KNC", "Kyber Network", False, False, True, False, 10263),
+            New AccountDetails(264, "Melon", "MLN", "Melon", False, False, True, False, 10264),
+            New AccountDetails(265, "Orchid", "OXT", "Orchid", False, False, True, False, 10265),
+            New AccountDetails(266, "Polkadot", "DOT", "Polkadot", False, False, True, False, 10266),
+            New AccountDetails(267, "Storj", "STORJ", "Storj", False, False, True, False, 10267),
+            New AccountDetails(268, "Synthetix", "SNX", "Synthetix", False, False, True, False, 10268),
+            New AccountDetails(269, "tBTC", "TBTC", "tBTC", False, False, True, False, 10269),
+            New AccountDetails(270, "The Graph", "GRT", "The Graph", False, False, True, False, 10270),
+            New AccountDetails(271, "TRON", "TRX", "TRON", False, False, True, False, 10271),
+            New AccountDetails(272, "Uniswap", "UNI", "Uniswap", False, False, True, False, 10272),
+            New AccountDetails(273, "Yearn Finance", "YFI", "Yearn Finance", False, False, True, False, 10273),
+            New AccountDetails(274, "1inch", "1INCH", "1inch", False, False, True, False, 10274),
+            New AccountDetails(275, "Ankr", "ANKR", "Ankr", False, False, True, False, 10275),
+            New AccountDetails(276, "Axie Infinity Shards", "AXS", "Axie Infinity Shards", False, False, True, False, 10276),
+            New AccountDetails(277, "Badger DAO", "BADGER", "Badger DAO", False, False, True, False, 10277),
+            New AccountDetails(278, "Band Protocol", "BAND", "Band Protocol", False, False, True, False, 10278),
+            New AccountDetails(279, "Bancor", "BNT", "Bancor", False, False, True, False, 10279),
+            New AccountDetails(280, "Chiliz", "CHZ", "Chiliz", False, False, True, False, 10280),
+            New AccountDetails(281, "Covalent", "CQT", "Covalent", False, False, True, False, 10281),
+            New AccountDetails(282, "Cartesi", "CTSI", "Cartesi", False, False, True, False, 10282),
+            New AccountDetails(283, "Enjin", "ENJ", "Enjin", False, False, True, False, 10283),
+            New AccountDetails(284, "Energy Web Token", "EWT", "Energy Web Token", False, False, True, False, 10284),
+            New AccountDetails(285, "Aavegotchi", "GHST", "Aavegotchi", False, False, True, False, 10285),
+            New AccountDetails(286, "Injective Protocol", "INJ", "Injective Protocol", False, False, True, False, 10286),
+            New AccountDetails(287, "Karura", "KAR", "Karura", False, False, True, False, 10287),
+            New AccountDetails(288, "LivePeer", "LPT", "LivePeer", False, False, True, False, 10288),
+            New AccountDetails(289, "Loopring", "LRC", "Loopring", False, False, True, False, 10289),
+            New AccountDetails(290, "Polygon", "MATIC", "Polygon", False, False, True, False, 10290),
+            New AccountDetails(291, "Mina", "MINA", "Mina", False, False, True, False, 10291),
+            New AccountDetails(292, "Mirror Protocol", "MIR", "Mirror Protocol", False, False, True, False, 10292),
+            New AccountDetails(293, "MakerDAO", "MKR", "MakerDAO", False, False, True, False, 10293),
+            New AccountDetails(294, "OCEAN Token", "OCEAN", "OCEAN Token", False, False, True, False, 10294),
+            New AccountDetails(295, "Origin Protocol", "OGN", "Origin Protocol", False, False, True, False, 10295),
+            New AccountDetails(296, "Perpetual Protocol", "PERP", "Perpetual Protocol", False, False, True, False, 10296),
+            New AccountDetails(297, "Rarible", "RARI", "Rarible", False, False, True, False, 10297),
+            New AccountDetails(298, "Ren", "REN", "Ren", False, False, True, False, 10298),
+            New AccountDetails(299, "Sand", "SAND", "Sand", False, False, True, False, 10299),
+            New AccountDetails(300, "Solana", "SOL", "Solana", False, False, True, False, 10300),
+            New AccountDetails(301, "Serum", "SRM", "Serum", False, False, True, False, 10301),
+            New AccountDetails(302, "Sushi", "SUSHI", "Sushi", False, False, True, False, 10302),
+            New AccountDetails(303, "Wrapped Bitcoin", "WBTC", "Wrapped Bitcoin", False, False, True, False, 10303),
+            New AccountDetails(304, "0x", "ZRX", "0x", False, False, True, False, 10304)
         }
     End Function
 
@@ -331,142 +402,207 @@ Public NotInheritable Class AccountManager
     ''' Make sure the databases platform table is in sync with all supported platforms
     ''' </summary>
     Public Shared Sub AccountsSyncDB(Connection As SQLite.SQLiteConnection)
-        Dim AccountTA As New KontenTableAdapter
+        Dim AccountTA As New KontenTableAdapter With {.ClearBeforeFill = True}
         Dim AccountTB As New KontenDataTable
-        AccountTA.ClearBeforeFill = True
+        AccountTA.Fill(AccountTB)
+        Dim Accounts2Move As New List(Of AccountDetails)
+        Dim AccRow As KontenRow
+        Dim AccFeeRow As KontenRow
+        Dim AccountMap As Collection
+
         Try
-            Dim SQLs As New List(Of String)
-            SQLs.Add("PRAGMA temp_store = 2")
-            SQLs.Add("CREATE TEMP TABLE _Variables(OldValue INTEGER, NewValue INTEGER)")
+            ' Build account alias map, in case we have to re-organise accounts
+            Dim KontenAliasesDT As New KontenAliasesDataTable
+            With New KontenAliasesTableAdapter
+                .Fill(KontenAliasesDT)
+            End With
+            AccountMap = New Collection
+            For Each KontenAliasRow As KontenAliasesRow In KontenAliasesDT.Rows
+                AccountMap.Add(KontenAliasRow.Code, KontenAliasRow._Alias)
+            Next
+
+            ' Loop over all fixed accounts an write these if needed
             For Each Account As AccountDetails In GetAllAccounts()
-                PrepareSQLs(SQLs,
-                            Account,
-                            False,
-                            AccountTA,
-                            AccountTB)
+                AccRow = AccountTB.FindByID(Account.DbId)
+                If AccRow Is Nothing Then
+                    ' Insert new account row
+                    AccRow = AccountTB.NewKontenRow
+                    With AccRow
+                        .ID = Account.DbId
+                        .Bezeichnung = Account.Name
+                        .Code = Account.Code
+                        .Beschreibung = Account.Description
+                        .IstFiat = Account.IsFiat
+                        .Eigen = True
+                        .SortID = Account.SortNr
+                        .Fix = Account.IsFix
+                        .IstGebuehr = Account.IsFee
+                        .GebuehrKontoID = Account.FeeAccountId
+                    End With
+                    AccountTB.AddKontenRow(AccRow)
+                Else
+                    If AccRow.Code <> Account.Code Then
+                        ' Row already present, codes do not match: save current row for later and overwrite it
+                        Accounts2Move.Add(New AccountDetails(AccRow.ID,
+                                                             AccRow.Bezeichnung,
+                                                             AccRow.Code,
+                                                             AccRow.Beschreibung,
+                                                             AccRow.Fix,
+                                                             AccRow.IstFiat,
+                                                             AccRow.Eigen,
+                                                             AccRow.IstGebuehr,
+                                                             AccRow.GebuehrKontoID))
+                        With AccRow
+                            .Bezeichnung = Account.Name
+                            .Code = Account.Code
+                            .Beschreibung = Account.Description
+                            .IstFiat = Account.IsFiat
+                            .Eigen = True
+                            .SortID = Account.SortNr
+                            .Fix = Account.IsFix
+                            .IstGebuehr = Account.IsFee
+                            .GebuehrKontoID = Account.FeeAccountId
+                        End With
+                    End If
+                End If
                 If Account.FeeAccountId > 0 Then
-                    PrepareSQLs(SQLs,
-                                Account,
-                                True,
-                                AccountTA,
-                                AccountTB)
+                    ' Handle the fee row
+                    AccFeeRow = AccountTB.FindByID(Account.FeeAccountId)
+                    If AccFeeRow Is Nothing Then
+                        ' insert fee row
+                        AccFeeRow = AccountTB.NewKontenRow
+                        With AccFeeRow
+                            .ID = Account.FeeAccountId
+                            .Bezeichnung = "Gebühr " & Account.Name
+                            .Code = FEEPREFIX & Account.Code
+                            .Beschreibung = "Gebühr/" & Account.Description
+                            .IstFiat = Account.IsFiat
+                            .Eigen = False
+                            .SortID = Account.FeeAccountId
+                            .Fix = Account.IsFix
+                            .IstGebuehr = True
+                            .GebuehrKontoID = 0
+                        End With
+                        AccountTB.AddKontenRow(AccFeeRow)
+                    Else
+                        If AccFeeRow.Code <> FEEPREFIX & Account.Code Then
+                            ' just overwrite current row
+                            With AccFeeRow
+                                .Bezeichnung = "Gebühr " & Account.Name
+                                .Code = FEEPREFIX & Account.Code
+                                .Beschreibung = "Gebühr/" & Account.Description
+                                .IstFiat = Account.IsFiat
+                                .Eigen = False
+                                .SortID = Account.FeeAccountId
+                                .Fix = Account.IsFix
+                                .IstGebuehr = True
+                                .GebuehrKontoID = 0
+                            End With
+                        End If
+                    End If
                 End If
             Next
-            ' Execute the statements
-            If SQLs.Count > 2 Then
-                Dim SqlCmd As New SQLite.SQLiteCommand(Connection)
-                For Each Statement As String In SQLs
-                    Debug.Print(Statement)
-                    SqlCmd.CommandText = Statement
-                    SqlCmd.ExecuteNonQuery()
-                Next
-                SqlCmd.Dispose()
-            End If
+            ' Save current entries
+            AccountTA.Update(AccountTB)
+            Dim CurrentID As Long = AccountTA.GetMaxIdBelow(FEEMINACCOUNT)
+            CurrentID += 1
+            ' Append all previously overwritten rows, including fee rows
+            For Each Account In Accounts2Move
+                ' check if code now has another ID
+                AccRow = AccountTB.Where(Function(r)
+                                             If r.Code = Account.Code Then
+                                                 Return True
+                                             Else
+                                                 If AccountMap.Contains(Account.Code) Then
+                                                     Return AccountMap(Account.Code) = r.Code
+                                                 Else
+                                                     Return False
+                                                 End If
+                                             End If
+                                         End Function).FirstOrDefault()
+                If AccRow Is Nothing Then
+                    ' Code not present in current table: insert new row(s)
+                    AccRow = AccountTB.NewKontenRow
+                    With AccRow
+                        ' Rewrite all references to the new id
+                        RewriteAccountReferences(Account.DbId, CurrentID, Connection)
+                        ' now append the accounts row
+                        .ID = CurrentID
+                        .Bezeichnung = Account.Name
+                        .Code = Account.Code
+                        .Beschreibung = Account.Description
+                        .IstFiat = Account.IsFiat
+                        .Eigen = True
+                        .SortID = CurrentID
+                        .Fix = Account.IsFix
+                        .IstGebuehr = Account.IsFee
+                        .GebuehrKontoID = IIf(Account.FeeAccountId > 0, CurrentID + FEEMINACCOUNT, Account.FeeAccountId)
+                    End With
+                    AccountTB.AddKontenRow(AccRow)
+                    If Account.FeeAccountId > 0 Then
+                        AccFeeRow = AccountTB.FindByID(CurrentID + FEEMINACCOUNT)
+                        If AccFeeRow Is Nothing Then
+                            ' Insert new correponding fee row
+                            AccFeeRow = AccountTB.NewKontenRow
+                            With AccFeeRow
+                                .ID = CurrentID + FEEMINACCOUNT
+                                .Bezeichnung = "Gebühr " & Account.Name
+                                .Code = FEEPREFIX & Account.Code
+                                .Beschreibung = "Gebühr/" & Account.Description
+                                .IstFiat = Account.IsFiat
+                                .Eigen = False
+                                .SortID = .ID
+                                .Fix = Account.IsFix
+                                .IstGebuehr = True
+                                .GebuehrKontoID = 0
+                            End With
+                            AccountTB.AddKontenRow(AccFeeRow)
+                        ElseIf AccFeeRow.Code <> FEEPREFIX & Account.Code Then
+                            ' just overwrite it...
+                            With AccFeeRow
+                                .Bezeichnung = "Gebühr " & Account.Name
+                                .Code = FEEPREFIX & Account.Code
+                                .Beschreibung = "Gebühr/" & Account.Description
+                                .IstFiat = Account.IsFiat
+                                .Eigen = False
+                                .Fix = Account.IsFix
+                                .IstGebuehr = True
+                                .GebuehrKontoID = 0
+                            End With
+                        End If
+                        ' rewrite references to fee account id
+                        RewriteAccountReferences(Account.FeeAccountId, CurrentID + FEEMINACCOUNT, Connection)
+                    End If
+                    CurrentID += 1
+                Else
+                    ' Account is already present: just rewrite references
+                    RewriteAccountReferences(Account.DbId, AccRow.ID, Connection)
+                    If Account.FeeAccountId > 0 Then
+                        ' also rewrite fee account references
+                        RewriteAccountReferences(Account.FeeAccountId, AccRow.GebuehrKontoID, Connection)
+                    End If
+                End If
+            Next
+            ' Update table one last time
+            AccountTA.Update(AccountTB)
         Catch ex As Exception
             Throw New Exception(My.Resources.MyStrings.initDbCheckAccountsError)
         End Try
     End Sub
 
-    ''' <summary>
-    ''' Prepares the neccessary SQL statements for inserting/updating an account
-    ''' </summary>
-    ''' <param name="SQLs">List of SQL statements, new statements will be appended</param>
-    ''' <param name="Account">Account details to add</param>
-    ''' <param name="PrepareFee">True, if the fee account is to be inserted, false otherwise</param>
-    Private Shared Sub PrepareSQLs(ByRef SQLs As List(Of String),
-                            ByRef Account As AccountDetails,
-                            ByVal PrepareFee As Boolean,
-                            ByRef AccountTA As KontenTableAdapter,
-                            ByRef AccountTB As KontenDataTable)
-        Dim AlreadyPresent As Boolean = False
-        Dim AllDone As Boolean = False
-        Dim ThisCode As String
-        Dim ThisDbId As Long
-        If PrepareFee Then
-            ThisCode = FEEPREFIX & Account.Code
-            ThisDbId = Account.FeeAccountId
-        Else
-            ThisCode = Account.Code
-            ThisDbId = Account.DbId
-        End If
-        ' Check if the requested ID is already taken by another account
-        AccountTA.FillByID(AccountTB, ThisDbId)
-        If AccountTB.Rows.Count > 0 Then
-            If Not AccountTB.Rows(0)("Code").ToString.ToUpper = ThisCode.ToUpper Then
-                ' It is! So move the existing account entries...
-                AddSql_OldValue(SQLs, ThisDbId)
-                SQLs.Add(String.Format("UPDATE _Variables SET NewValue = (SELECT COALESCE(MAX([ID]), {0}) + 1 FROM Konten WHERE ID > {0} AND ID < {1} ORDER BY ID DESC LIMIT 1)",
-                                       IIf(PrepareFee, FEEMINACCOUNT, "200"),
-                                       IIf(PrepareFee, FEEMINACCOUNT * 10, FEEMINACCOUNT)))
-                SQLs.Add("INSERT INTO Konten([ID], [Bezeichnung], [Code], [Beschreibung], [IstFiat], [Eigen], [SortID], [Fix], [IstGebuehr], [GebuehrKontoID])
-                         SELECT [NewValue], [Bezeichnung], [Code], [Beschreibung], [IstFiat], [Eigen], [SortID], [Fix], [IstGebuehr], [GebuehrKontoID]
-                         FROM Konten INNER JOIN _Variables ON _Variables.OldValue = Konten.ID")
-                ' Now update all references
-                AddSql_UpdateReferences(SQLs)
-            Else
-                AlreadyPresent = True
-                ' Check if the existing entry is good enough...
-                AllDone = PrepareFee OrElse AccountTB.Rows(0)("GebuehrKontoID").ToString = Account.FeeAccountId.ToString
-            End If
-        End If
-        ' Check if the requested code already resides under a different ID
-        If Not AlreadyPresent Then
-            AccountTA.FillByCode(AccountTB, ThisCode)
-            If AccountTB.Rows.Count > 0 Then
-                ' There is! So just make all references point to the new ID
-                AddSql_OldValue(SQLs, AccountTB.Rows(0)("ID").ToString)
-                SQLs.Add(String.Format("UPDATE _Variables SET NewValue = {0}", ThisDbId))
-                AddSql_UpdateReferences(SQLs)
-                ' Delete this account entry
-                SQLs.Add("DELETE FROM Konten WHERE ID = (SELECT OldValue FROM _Variables)")
-            End If
-        End If
-        If Account.AlternativeOldCode IsNot Nothing Then
-            ' Check if there is an account carrying the alternative code
-            AccountTA.FillByCode(AccountTB, IIf(PrepareFee, "fee", "") & Account.AlternativeOldCode)
-            If AccountTB.Rows.Count > 0 Then
-                ' There is! So just make all references point to the new ID
-                AddSql_OldValue(SQLs, AccountTB.Rows(0)("ID").ToString)
-                SQLs.Add(String.Format("UPDATE _Variables SET NewValue = {0}", ThisDbId))
-                AddSql_UpdateReferences(SQLs)
-                ' Delete this account entry
-                SQLs.Add("DELETE FROM Konten WHERE ID = (SELECT OldValue FROM _Variables)")
-            End If
-        End If
-        If Not AllDone Then
-            ' Now insert (or update) the account entry
-            If PrepareFee Then
-                SQLs.Add(String.Format("INSERT OR REPLACE INTO Konten([ID], [Bezeichnung], [Code], [Beschreibung], [IstFiat], [Eigen], [SortID], [Fix], [IstGebuehr], [GebuehrKontoID])
-                                        VALUES ({0}, '{1}', '{2}', '{3}', {4}, 0, {0}, {5}, 1, 0)",
-                                       ThisDbId, My.Resources.MyStrings.feeSingular & " " & Account.Name, ThisCode,
-                                       My.Resources.MyStrings.feePlural & "/" & Account.Name,
-                                       IIf(Account.IsFiat, 1, 0),
-                                       IIf(Account.IsFix, 1, 0)))
-            Else
-                SQLs.Add(String.Format("INSERT OR REPLACE INTO Konten([ID], [Bezeichnung], [Code], [Beschreibung], [IstFiat], [Eigen], [SortID], [Fix], [IstGebuehr], [GebuehrKontoID])
-                                        VALUES ({0}, '{1}', '{2}', '{3}', {4}, {5}, {0}, {6}, 0, {7})",
-                                       ThisDbId, Account.Name, ThisCode, Account.Description,
-                                       IIf(Account.IsFiat, 1, 0),
-                                       IIf(Account.IsProperty, 1, 0),
-                                       IIf(Account.IsFix, 1, 0),
-                                       Account.FeeAccountId))
-            End If
-        End If
+    Private Shared Sub RewriteAccountReferences(ByVal OldID As Long, NewID As Long, ByRef Connection As SQLite.SQLiteConnection)
+        Dim SQLs As New List(Of String) From {
+            "UPDATE Trades SET QuellKontoID = {1} WHERE [QuellKontoID] = {0}",
+            "UPDATE Trades SET ZielKontoID = {1} WHERE [ZielKontoID] = {0}",
+            "UPDATE Bestaende SET KontoID = {1} WHERE [KontoID] = {0}",
+            "UPDATE Kurse SET QuellKontoID = {1} WHERE [QuellKontoID] = {0}",
+            "UPDATE Kurse SET ZielKontoID = {1} WHERE [ZielKontoID] = {0}"
+        }
+        Dim SqlCmd As New SQLite.SQLiteCommand(Connection)
+        For Each Statement As String In SQLs
+            SqlCmd.CommandText = String.Format(Statement, OldID, NewID)
+            SqlCmd.ExecuteNonQuery()
+        Next
+        SqlCmd.Dispose()
     End Sub
-
-    Private Shared Sub AddSql_OldValue(ByRef SQLs As List(Of String),
-                                ByVal Value As String,
-                                Optional ByVal ValueColumn As String = "OldValue")
-        SQLs.Add("DELETE FROM _Variables")
-        SQLs.Add(String.Format("INSERT INTO _Variables([{1}]) VALUES('{0}')", Value, ValueColumn))
-    End Sub
-
-    Private Shared Sub AddSql_UpdateReferences(ByRef SQLs As List(Of String))
-        SQLs.Add("UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables) WHERE [QuellKontoID] = (SELECT [OldValue] FROM _Variables)")
-        SQLs.Add("UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables) WHERE [ZielKontoID] = (SELECT [OldValue] FROM _Variables)")
-        SQLs.Add("UPDATE Bestaende SET KontoID = (SELECT [NewValue] FROM _Variables) WHERE [KontoID] = (SELECT [OldValue] FROM _Variables)")
-        SQLs.Add("UPDATE Kurse SET QuellKontoID = (SELECT [NewValue] FROM _Variables) WHERE [QuellKontoID] = (SELECT [OldValue] FROM _Variables)")
-        SQLs.Add("UPDATE Kurse SET ZielKontoID = (SELECT [NewValue] FROM _Variables) WHERE [ZielKontoID] = (SELECT [OldValue] FROM _Variables)")
-    End Sub
-
 End Class
