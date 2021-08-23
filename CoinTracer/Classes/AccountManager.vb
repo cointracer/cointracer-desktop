@@ -591,18 +591,25 @@ Public NotInheritable Class AccountManager
     End Sub
 
     Private Shared Sub RewriteAccountReferences(ByVal OldID As Long, NewID As Long, ByRef Connection As SQLite.SQLiteConnection)
-        Dim SQLs As New List(Of String) From {
-            "UPDATE Trades SET QuellKontoID = {1} WHERE [QuellKontoID] = {0}",
-            "UPDATE Trades SET ZielKontoID = {1} WHERE [ZielKontoID] = {0}",
-            "UPDATE Bestaende SET KontoID = {1} WHERE [KontoID] = {0}",
-            "UPDATE Kurse SET QuellKontoID = {1} WHERE [QuellKontoID] = {0}",
-            "UPDATE Kurse SET ZielKontoID = {1} WHERE [ZielKontoID] = {0}"
-        }
-        Dim SqlCmd As New SQLite.SQLiteCommand(Connection)
-        For Each Statement As String In SQLs
-            SqlCmd.CommandText = String.Format(Statement, OldID, NewID)
-            SqlCmd.ExecuteNonQuery()
-        Next
-        SqlCmd.Dispose()
+        With New TradesTableAdapter
+            Dim TradesTb As New TradesDataTable
+            .FillByAccount(TradesTb, OldID)
+            For Each Row As TradesRow In TradesTb.Rows
+                If Row.QuellKontoID = OldID Then Row.QuellKontoID = NewID
+                If Row.ZielKontoID = OldID Then Row.ZielKontoID = NewID
+            Next
+            .Update(TradesTb)
+            TradesTb.Dispose()
+        End With
+        With New KurseTableAdapter
+            Dim KurseTb As New KurseDataTable
+            .FillByAccount(KurseTb, OldID)
+            For Each Row As KurseRow In KurseTb.Rows
+                If Row.QuellKontoID = OldID Then Row.QuellKontoID = NewID
+                If Row.ZielKontoID = OldID Then Row.ZielKontoID = NewID
+            Next
+            .Update(KurseTb)
+            KurseTb.Dispose()
+        End With
     End Sub
 End Class

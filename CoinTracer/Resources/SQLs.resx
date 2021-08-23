@@ -117,6 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="db_43_01" xml:space="preserve">
+    <value>CREATE TABLE [KontenAliases] (
+[Code] VARCHAR(20) NOT NULL,
+[Alias] VARCHAR(20) NOT NULL,
+PRIMARY KEY(Code, Alias));</value>
+  </data>
+  <data name="db_43_02" xml:space="preserve">
+    <value>INSERT INTO [KontenAliases](Code, Alias) VALUES 
+('USD', '$'), 
+('USD', 'US Dollar'), 
+('EUR', '€'), 
+('EUR', 'Euro'), 
+('BTC', 'XBT'),
+('BCH', 'BCC'),
+('XDG', 'DOGE'),
+('PAXG', 'PAX');</value>
+  </data>
+  <data name="db_43_03" xml:space="preserve">
+    <value>UPDATE Konten SET Bezeichnung = 'Tether USD' where Bezeichnung = 'Tether';</value>
+  </data>
+  <data name="db_43_04" xml:space="preserve">
+    <value>UPDATE Konten SET Beschreibung = 'Tether USD' where Beschreibung = 'Tether';</value>
+  </data>
+  <data name="db_43_05" xml:space="preserve">
+    <value>UPDATE Konten SET Bezeichnung = 'Gebühr Tether USD' where Bezeichnung = 'Gebühr Tether';</value>
+  </data>
+  <data name="db_43_06" xml:space="preserve">
+    <value>UPDATE Konten SET Beschreibung = 'Gebühren/Tether USD' where Beschreibung = 'Gebühren/Tether';</value>
+  </data>
   <data name="db_v39_01" xml:space="preserve">
     <value>alter table [Szenarien] add column [Coins4Coins] BOOLEAN DEFAULT '0'</value>
   </data>
