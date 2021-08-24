@@ -24011,7 +24011,7 @@ Namespace CoinTracerDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(8) {}
+            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(9) {}
             Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT * FROM Trades"
@@ -24034,18 +24034,7 @@ Namespace CoinTracerDataSetTableAdapters
             Me._commandCollection(2).Parameters.Add(param)
             Me._commandCollection(3) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT * FROM Trades WHERE QuellKontoID = @Account OR ZielKontoID = @Account"
-            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
-            param = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Account"
-            param.DbType = Global.System.Data.DbType.Int64
-            param.DbType = Global.System.Data.DbType.Int64
-            param.Size = 8
-            param.SourceColumn = "QuellKontoID"
-            Me._commandCollection(3).Parameters.Add(param)
-            Me._commandCollection(4) = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "select t.ID, t.SourceID, t.Zeitpunkt,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"case "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    when t.TradeTypID = 5 and ps.Ei"& _ 
+            Me._commandCollection(3).CommandText = "select t.ID, t.SourceID, t.Zeitpunkt,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"case "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    when t.TradeTypID = 5 and ps.Ei"& _ 
                 "gen = 1 then 69"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    when (t.TradeTypID = 3 or t.TradeTypID = 4) and ks.IstFiat "& _ 
                 "= 0 and kt.IstFiat = 0 then 19"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"    else t.TradeTypID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"end as TradeTypID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"t.Que"& _ 
                 "llPlattformID, t.QuellBetrag, t.QuellKontoID,"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"t.ZielPlattformID, t.ZielBetrag, "& _ 
@@ -24059,30 +24048,30 @@ Namespace CoinTracerDataSetTableAdapters
                 "D = t.ID) "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(9)&"and tx.SzenarioID = @SzenarioID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where t.Entwertet = 0 and t.Steue"& _ 
                 "rirrelevant = 0 and t.Zeitpunkt < @UntilDate and t.TradeTypID in (3, 4, 5, 7)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"g"& _ 
                 "roup by t.ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"having count(tx.TxID) = 0"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"order by t.Zeitpunkt, t.ID desc"
-            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@SzenarioID"
             param.DbType = Global.System.Data.DbType.Int64
             param.DbType = Global.System.Data.DbType.Int64
             param.Size = 8
             param.SourceColumn = "SzenarioID"
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(3).Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@UntilDate"
             param.DbType = Global.System.Data.DbType.DateTime
             param.DbType = Global.System.Data.DbType.DateTime
             param.Size = 8
             param.SourceColumn = "Zeitpunkt"
-            Me._commandCollection(4).Parameters.Add(param)
+            Me._commandCollection(3).Parameters.Add(param)
+            Me._commandCollection(4) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "DELETE FROM [sqlite_sequence] where name = 'Trades'"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "DELETE FROM [sqlite_sequence] where name = 'Trades'"
-            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(6) = New Global.System.Data.SQLite.SQLiteCommand()
-            Me._commandCollection(6).Connection = Me.Connection
-            Me._commandCollection(6).CommandText = "UPDATE Trades SET ImportPlattformID = @NewPlatformID WHERE ImportPlattformID = @O"& _ 
+            Me._commandCollection(5).CommandText = "UPDATE Trades SET ImportPlattformID = @NewPlatformID WHERE ImportPlattformID = @O"& _ 
                 "ldPlatformID"
-            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@OldPlatformID"
             param.DbType = Global.System.Data.DbType.Int64
@@ -24090,13 +24079,32 @@ Namespace CoinTracerDataSetTableAdapters
             param.Size = 8
             param.SourceColumn = "ImportPlattformID"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(6).Parameters.Add(param)
+            Me._commandCollection(5).Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@NewPlatformID"
             param.DbType = Global.System.Data.DbType.Int64
             param.DbType = Global.System.Data.DbType.Int64
             param.Size = 8
             param.SourceColumn = "ImportPlattformID"
+            Me._commandCollection(5).Parameters.Add(param)
+            Me._commandCollection(6) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(6).Connection = Me.Connection
+            Me._commandCollection(6).CommandText = "UPDATE [Trades] SET QuellKontoID = @NewID WHERE QuellKontoID = @OldID"
+            Me._commandCollection(6).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@NewID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "QuellKontoID"
+            Me._commandCollection(6).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@OldID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "QuellKontoID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
             Me._commandCollection(6).Parameters.Add(param)
             Me._commandCollection(7) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(7).Connection = Me.Connection
@@ -24120,9 +24128,28 @@ Namespace CoinTracerDataSetTableAdapters
             Me._commandCollection(7).Parameters.Add(param)
             Me._commandCollection(8) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(8).Connection = Me.Connection
-            Me._commandCollection(8).CommandText = "UPDATE Trades SET ZielPlattformID = @NewPlatformID WHERE ZielPlattformID = @OldPl"& _ 
-                "atformID"
+            Me._commandCollection(8).CommandText = "UPDATE [Trades] SET ZielKontoID = @NewID WHERE ZielKontoID = @OldID"
             Me._commandCollection(8).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@NewID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "ZielKontoID"
+            Me._commandCollection(8).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@OldID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "ZielKontoID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(8).Parameters.Add(param)
+            Me._commandCollection(9) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(9).Connection = Me.Connection
+            Me._commandCollection(9).CommandText = "UPDATE Trades SET ZielPlattformID = @NewPlatformID WHERE ZielPlattformID = @OldPl"& _ 
+                "atformID"
+            Me._commandCollection(9).CommandType = Global.System.Data.CommandType.Text
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@OldPlatformID"
             param.DbType = Global.System.Data.DbType.Int64
@@ -24130,14 +24157,14 @@ Namespace CoinTracerDataSetTableAdapters
             param.Size = 8
             param.SourceColumn = "ZielPlattformID"
             param.SourceVersion = Global.System.Data.DataRowVersion.Original
-            Me._commandCollection(8).Parameters.Add(param)
+            Me._commandCollection(9).Parameters.Add(param)
             param = New Global.System.Data.SQLite.SQLiteParameter()
             param.ParameterName = "@NewPlatformID"
             param.DbType = Global.System.Data.DbType.Int64
             param.DbType = Global.System.Data.DbType.Int64
             param.Size = 8
             param.SourceColumn = "ZielPlattformID"
-            Me._commandCollection(8).Parameters.Add(param)
+            Me._commandCollection(9).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -24156,27 +24183,9 @@ Namespace CoinTracerDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByAccount(ByVal dataTable As CoinTracerDataSet.TradesDataTable, ByVal Account As Global.System.Nullable(Of Long)) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
-            If (Account.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(Account.Value,Long)
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetOpenTradesBySzenarioID(ByVal SzenarioID As Long, ByVal UntilDate As Global.System.Nullable(Of Date)) As CoinTracerDataSet.TradesDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(SzenarioID,Long)
             If (UntilDate.HasValue = true) Then
                 Me.Adapter.SelectCommand.Parameters(1).Value = CType(UntilDate.Value,Date)
@@ -24617,7 +24626,7 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Delete, false)>  _
         Public Overloads Overridable Function ResetSequence() As Integer
-            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(5)
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(4)
             Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
             If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
                         <> Global.System.Data.ConnectionState.Open) Then
@@ -24639,7 +24648,7 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
         Public Overloads Overridable Function UpdateImportPlattformID(ByVal OldPlatformID As Global.System.Nullable(Of Long), ByVal NewPlatformID As Global.System.Nullable(Of Long)) As Integer
-            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(6)
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(5)
             If (OldPlatformID.HasValue = true) Then
                 command.Parameters(0).Value = CType(OldPlatformID.Value,Long)
             Else
@@ -24647,6 +24656,38 @@ Namespace CoinTracerDataSetTableAdapters
             End If
             If (NewPlatformID.HasValue = true) Then
                 command.Parameters(1).Value = CType(NewPlatformID.Value,Long)
+            Else
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateQuellKontoID(ByVal NewID As Global.System.Nullable(Of Long), ByVal OldID As Global.System.Nullable(Of Long)) As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(6)
+            If (NewID.HasValue = true) Then
+                command.Parameters(0).Value = CType(NewID.Value,Long)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (OldID.HasValue = true) Then
+                command.Parameters(1).Value = CType(OldID.Value,Long)
             Else
                 command.Parameters(1).Value = Global.System.DBNull.Value
             End If
@@ -24702,8 +24743,40 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
-        Public Overloads Overridable Function UpdateZielPlattformID(ByVal OldPlatformID As Global.System.Nullable(Of Long), ByVal NewPlatformID As Global.System.Nullable(Of Long)) As Integer
+        Public Overloads Overridable Function UpdateZielKontoID(ByVal NewID As Global.System.Nullable(Of Long), ByVal OldID As Global.System.Nullable(Of Long)) As Integer
             Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(8)
+            If (NewID.HasValue = true) Then
+                command.Parameters(0).Value = CType(NewID.Value,Long)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (OldID.HasValue = true) Then
+                command.Parameters(1).Value = CType(OldID.Value,Long)
+            Else
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateZielPlattformID(ByVal OldPlatformID As Global.System.Nullable(Of Long), ByVal NewPlatformID As Global.System.Nullable(Of Long)) As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(9)
             If (OldPlatformID.HasValue = true) Then
                 command.Parameters(0).Value = CType(OldPlatformID.Value,Long)
             Else
@@ -26105,23 +26178,49 @@ Namespace CoinTracerDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(1) {}
+            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        Kurse.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Kurse"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SQLite.SQLiteCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT        Kurse.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            Kurse"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE QuellKontoID = @Account or Zi"& _ 
-                "elKontoID = @Account"
+            Me._commandCollection(1).CommandText = "Update [Kurse] SET QuellKontoID = @NewID WHERE QuellKontoID = @OldID"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
-            param.ParameterName = "@Account"
+            param.ParameterName = "@NewID"
             param.DbType = Global.System.Data.DbType.Int64
             param.DbType = Global.System.Data.DbType.Int64
             param.Size = 8
             param.SourceColumn = "QuellKontoID"
             Me._commandCollection(1).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@OldID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "QuellKontoID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(1).Parameters.Add(param)
+            Me._commandCollection(2) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "UPDATE [Kurse] SET ZielKontoID = @NewID WHERE ZielKontoID = @OldID"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@NewID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "ZielKontoID"
+            Me._commandCollection(2).Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@OldID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.Size = 8
+            param.SourceColumn = "ZielKontoID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._commandCollection(2).Parameters.Add(param)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26146,24 +26245,6 @@ Namespace CoinTracerDataSetTableAdapters
             Dim dataTable As CoinTracerDataSet.KurseDataTable = New CoinTracerDataSet.KurseDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByAccount(ByVal dataTable As CoinTracerDataSet.KurseDataTable, ByVal Account As Global.System.Nullable(Of Long)) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            If (Account.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(Account.Value,Long)
-            Else
-                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -26384,6 +26465,70 @@ Namespace CoinTracerDataSetTableAdapters
                     Me.Adapter.UpdateCommand.Connection.Close
                 End If
             End Try
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateQuellKontoID(ByVal NewID As Global.System.Nullable(Of Long), ByVal OldID As Global.System.Nullable(Of Long)) As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(1)
+            If (NewID.HasValue = true) Then
+                command.Parameters(0).Value = CType(NewID.Value,Long)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (OldID.HasValue = true) Then
+                command.Parameters(1).Value = CType(OldID.Value,Long)
+            Else
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Update, false)>  _
+        Public Overloads Overridable Function UpdateZielKontoID(ByVal NewID As Global.System.Nullable(Of Long), ByVal OldID As Global.System.Nullable(Of Long)) As Integer
+            Dim command As Global.System.Data.SQLite.SQLiteCommand = Me.CommandCollection(2)
+            If (NewID.HasValue = true) Then
+                command.Parameters(0).Value = CType(NewID.Value,Long)
+            Else
+                command.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (OldID.HasValue = true) Then
+                command.Parameters(1).Value = CType(OldID.Value,Long)
+            Else
+                command.Parameters(1).Value = Global.System.DBNull.Value
+            End If
+            Dim previousConnectionState As Global.System.Data.ConnectionState = command.Connection.State
+            If ((command.Connection.State And Global.System.Data.ConnectionState.Open)  _
+                        <> Global.System.Data.ConnectionState.Open) Then
+                command.Connection.Open
+            End If
+            Dim returnValue As Integer
+            Try 
+                returnValue = command.ExecuteNonQuery
+            Finally
+                If (previousConnectionState = Global.System.Data.ConnectionState.Closed) Then
+                    command.Connection.Close
+                End If
+            End Try
+            Return returnValue
         End Function
     End Class
     

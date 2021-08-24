@@ -592,24 +592,12 @@ Public NotInheritable Class AccountManager
 
     Private Shared Sub RewriteAccountReferences(ByVal OldID As Long, NewID As Long, ByRef Connection As SQLite.SQLiteConnection)
         With New TradesTableAdapter
-            Dim TradesTb As New TradesDataTable
-            .FillByAccount(TradesTb, OldID)
-            For Each Row As TradesRow In TradesTb.Rows
-                If Row.QuellKontoID = OldID Then Row.QuellKontoID = NewID
-                If Row.ZielKontoID = OldID Then Row.ZielKontoID = NewID
-            Next
-            .Update(TradesTb)
-            TradesTb.Dispose()
+            .UpdateQuellKontoID(NewID, OldID)
+            .UpdateZielKontoID(NewID, OldID)
         End With
         With New KurseTableAdapter
-            Dim KurseTb As New KurseDataTable
-            .FillByAccount(KurseTb, OldID)
-            For Each Row As KurseRow In KurseTb.Rows
-                If Row.QuellKontoID = OldID Then Row.QuellKontoID = NewID
-                If Row.ZielKontoID = OldID Then Row.ZielKontoID = NewID
-            Next
-            .Update(KurseTb)
-            KurseTb.Dispose()
+            .UpdateQuellKontoID(NewID, OldID)
+            .UpdateZielKontoID(NewID, OldID)
         End With
     End Sub
 End Class
