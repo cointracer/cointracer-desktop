@@ -124,8 +124,7 @@ Public Class Import_Kraken
                 _TxId = TxId.Trim.Substring(0, 6)
             End If
             _Type = Type.Trim
-            _Asset = Asset.Trim
-            _Asset = _Asset.Substring(_Asset.Length - 3)
+            _Asset = ExtractAssetCode(Asset.Trim)
             If Amount IsNot Nothing AndAlso Amount.Length > 0 Then
                 _Amount = Decimal.Parse(Amount, CultureInfo.InvariantCulture)
             Else
@@ -144,6 +143,14 @@ Public Class Import_Kraken
 
     Friend Const KRAKEN_ZEROVALUETRADELIMIT As Decimal = 0.00002   ' Trades below this value do not need a second line in the trade data (assuming the value of this second line would be zero)
     Private Const KRAKEN_IMPORT_TRADES = 65
+
+    Private Shared Function ExtractAssetCode(ByRef AssetRaw As String) As String
+        If AssetRaw.StartsWith("X"c) Or AssetRaw.StartsWith("Z"c) Then
+            Return AssetRaw.Substring(1, AssetRaw.Length - 1)
+        Else
+            Return AssetRaw
+        End If
+    End Function
 
     ''' <summary>
     ''' Initializes this import
@@ -234,7 +241,7 @@ Public Class Import_Kraken
                                                         Row(3),
                                                         "",
                                                         Row(4),
-                                                        Row(5).Substring(Row(5).Length - 3),
+                                                        ExtractAssetCode(Row(5).Trim),
                                                         Double.Parse(Row(6), CultureInfo.InvariantCulture),
                                                         Double.Parse(Row(7), CultureInfo.InvariantCulture),
                                                         Double.Parse(IIf(Row(8) = String.Empty, "0", Row(8)), CultureInfo.InvariantCulture),
@@ -246,7 +253,7 @@ Public Class Import_Kraken
                                                         Row(3),
                                                         Row(4),
                                                         Row(5),
-                                                        Row(6).Substring(Row(6).Length - 3),
+                                                        ExtractAssetCode(Row(6).Trim),
                                                         Double.Parse(Row(7), CultureInfo.InvariantCulture),
                                                         Double.Parse(Row(8), CultureInfo.InvariantCulture),
                                                         Double.Parse(IIf(Row(9) = String.Empty, "0", Row(9)), CultureInfo.InvariantCulture),
@@ -543,8 +550,8 @@ Public Class Import_Kraken
                             .ZeitpunktZiel = .Zeitpunkt
                             .ImportPlattformID = Platform
                             If Len(IR.pair) > 6 Then
-                                AssetCode1 = IR.pair.Substring(1, 3)
-                                AssetCode2 = IR.pair.Substring(5, 3)
+                                AssetCode1 = ExtractAssetCode(IR.pair.Substring(0, 4))
+                                AssetCode2 = ExtractAssetCode(IR.pair.Substring(4, 4))
                             Else
                                 AssetCode1 = IR.pair.Substring(0, 3)
                                 AssetCode2 = IR.pair.Substring(3, 3)
