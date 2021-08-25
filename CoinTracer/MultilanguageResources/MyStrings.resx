@@ -1047,7 +1047,7 @@ Wenn das passiert, dann warten Sie bitte einfach eine Zeit lang (mindestens eine
     <value>Trading-Datei auswählen... (*.csv)</value>
   </data>
   <data name="initDbUpdateError" xml:space="preserve">
-    <value>Die Datenbank konnte nicht aktualisiert werden!{0}{0}({1})</value>
+    <value>Bei der Aktualisierung der Datenbank ist ein Fehler aufgetreten! Die aktuelle Datenbank kann nicht verwendet werden.{0}{0}({1})</value>
   </data>
   <data name="cvsCoin4CoinAwareness" xml:space="preserve">
     <value>Käufe Coins für Coins:</value>

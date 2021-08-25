@@ -136,27 +136,6 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(3, "ALTER TABLE [Kalkulationen] ADD COLUMN [CVS] VARCHAR(150)  NULL;"),
         New SqlUpdateSequenceStruct(3, "UPDATE Konten SET GebuehrKontoID=-1 WHERE ID=-1"),
         New SqlUpdateSequenceStruct(3, "UPDATE Plattformen set Bezeichnung='Extern', Code='Extern', Beschreibung='Externes Ziel, nicht mehr im eigenen Zugriff' where ID=900"),
-        New SqlUpdateSequenceStruct(3, "UPDATE Konten SET IstGebuehr=1 WHERE ID IN (311,312,321,322)"),
-        New SqlUpdateSequenceStruct(3, "UPDATE Konten SET GebuehrKontoID=311 WHERE ID=101"),
-        New SqlUpdateSequenceStruct(3, "UPDATE Konten SET GebuehrKontoID=312 WHERE ID=102"),
-        New SqlUpdateSequenceStruct(3, "UPDATE Konten SET GebuehrKontoID=321 WHERE ID=201"),
-        New SqlUpdateSequenceStruct(3, "UPDATE Konten SET GebuehrKontoID=322 WHERE ID=202"),
-        New SqlUpdateSequenceStruct(3, "UPDATE Konten SET SortID=ID"),
-        New SqlUpdateSequenceStruct(3, "INSERT INTO [Konten](ID, Bezeichnung, Code, Beschreibung, IstFiat, IstGebuehr, GebuehrKontoID, Eigen, SortID, Fix) VALUES " & NewLine &
-                                       "(203, 'Peercoin','PPC','Peercoin',0,0,323,1,203,0) " & NewLine &
-                                       ",(323, 'Gebühr Peercoin','feePPC','Gebühren/Peercoin',0,1,0,0,323,0) " & NewLine &
-                                       ",(204, 'Namecoin','NMC','Namecoin',0,0,324,1,204,0) " & NewLine &
-                                       ",(324, 'Gebühr Namecoin','feeNMC','Gebühren/Namecoin',0,1,0,0,324,0) " & NewLine &
-                                       ",(205, 'Novacoin','NVC','Novacoin',0,0,325,1,205,0) " & NewLine &
-                                       ",(325, 'Gebühr Novacoin','feeNVC','Gebühren/Novacoin',0,1,0,0,325,0) " & NewLine &
-                                       ",(206, 'Primecoin','XPM','Primecoin',0,0,326,1,206,0) " & NewLine &
-                                       ",(326, 'Gebühr Primecoin','feeXPM','Gebühren/Primecoin',0,1,0,0,326,0) " & NewLine &
-                                       ",(207, 'Mastercoin','MSC','Mastercoin',0,0,327,1,207,0) " & NewLine &
-                                       ",(327, 'Gebühr Mastercoin','feeMSC','Gebühren/Mastercoin',0,1,0,0,327,0) " & NewLine &
-                                       ",(208, 'Feathercoin','FTC','Feathercoin',0,0,328,1,208,0) " & NewLine &
-                                       ",(328, 'Gebühr Feathercoin','feeFTC','Gebühren/Feathercoin',0,1,0,0,328,0) " & NewLine &
-                                       ",(209, 'Terracoin','TRC','Terracoin',0,0,329,1,209,0) " & NewLine &
-                                       ",(329, 'Gebühr Terracoin','feeTRC','Gebühren/Terracoin',0,1,0,0,329,0)"),
         New SqlUpdateSequenceStruct(4, "INSERT INTO [Plattformen] VALUES(205,'Bitstamp.net','Bitstamp','Bitstamp.net',205,1,1,1);"),
         New SqlUpdateSequenceStruct(6, "ALTER TABLE [Trades] ADD COLUMN [Steuerirrelevant] BOOLEAN DEFAULT '0' NULL"),
         New SqlUpdateSequenceStruct(6, "drop INDEX if exists [IDX_Trades_ZeitpunktEntwertet]"),
@@ -165,45 +144,6 @@ Public Class DBInit
                                        "[Zeitpunkt]  ASC, " & NewLine &
                                        "[Entwertet]  ASC, " & NewLine &
                                        "[Steuerirrelevant]  ASC)"),
-        New SqlUpdateSequenceStruct(6, "drop view if exists VW_Trades"),
-        New SqlUpdateSequenceStruct(6, "CREATE VIEW [VW_Trades] AS " & NewLine &
-                                       "select " & NewLine &
-                                       "t.ID ID, " & NewLine &
-                                       "t.Zeitpunkt Zeitpunkt, " & NewLine &
-                                       "tt.Bezeichnung Transaktion, " & NewLine &
-                                       "qp.Bezeichnung QuellPlattform, " & NewLine &
-                                       "qk.Bezeichnung QuellKonto, " & NewLine &
-                                       "t.QuellBetrag QuellBetrag, " & NewLine &
-                                       "zp.Bezeichnung ZielPlattform, " & NewLine &
-                                       "zk.Bezeichnung ZielKonto, " & NewLine &
-                                       "t.ZielBetrag ZielBetrag, " & NewLine &
-                                       "t.BetragNachGebuehr ZielBetragNetto, " & NewLine &
-                                       "t.WertEUR WertEUR, " & NewLine &
-                                       "t.SourceID Referenz, " & NewLine &
-                                       "t.Info Info, " & NewLine &
-                                       "t.Steuerirrelevant SteuerIgnorieren " & NewLine &
-                                       "from Trades t " & NewLine &
-                                       "left join Konten qk on t.QuellKontoID=qk.ID " & NewLine &
-                                       "left join Konten zk on t.ZielKontoID=zk.ID " & NewLine &
-                                       "left join Plattformen qp on t.QuellPlattformID=qp.ID " & NewLine &
-                                       "left join Plattformen zp on t.ZielPlattformID=zp.ID " & NewLine &
-                                       "left join Plattformen ip on t.ImportPlattformID=ip.ID " & NewLine &
-                                       "left join TradeTypen tt on t.TradeTypID=tt.ID " & NewLine &
-                                       "where t.Entwertet = 0 " & NewLine &
-                                       "order by t.Zeitpunkt, t.ID"),
-        New SqlUpdateSequenceStruct(6, "drop view if exists VW_Importe"),
-        New SqlUpdateSequenceStruct(6, "CREATE VIEW [VW_Importe] AS " & NewLine &
-                                       "select " & NewLine &
-                                       "i.ID ID, " & NewLine &
-                                       "p.Bezeichnung Plattform, " & NewLine &
-                                       "i.Zeitpunkt Zeitpunkt, " & NewLine &
-                                       "i.Dateiname Dateiname, " & NewLine &
-                                       "i.PfadDateiname Pfad, " & NewLine &
-                                       "i.Eingelesen Eingelesen, " & NewLine &
-                                       "i.NichtEingelesen [Übersprungen] " & NewLine &
-                                       "from Importe i " & NewLine &
-                                       "inner join Plattformen p on i.PlattformID=p.ID " & NewLine &
-                                       "order by i.Zeitpunkt, i.ID"),
         New SqlUpdateSequenceStruct(6, "drop view if exists VW_Konten"),
         New SqlUpdateSequenceStruct(6, "CREATE VIEW [VW_Konten] AS " & NewLine &
                                        "select " & NewLine &
@@ -218,19 +158,6 @@ Public Class DBInit
                                        "IstGebuehr [IstGebühr], " & NewLine &
                                        "GebuehrKontoID [GebührKontoID] " & NewLine &
                                        "from Konten " & NewLine &
-                                       "order by SortID, ID"),
-        New SqlUpdateSequenceStruct(6, "drop view if exists VW_Plattformen"),
-        New SqlUpdateSequenceStruct(6, "CREATE VIEW [VW_Plattformen] AS " & NewLine &
-                                       "select " & NewLine &
-                                       "ID, " & NewLine &
-                                       "Bezeichnung, " & NewLine &
-                                       "Code, " & NewLine &
-                                       "Beschreibung, " & NewLine &
-                                       "Boerse [IstBörse], " & NewLine &
-                                       "Eigen Eigenbesitz, " & NewLine &
-                                       "SortID SortierNr, " & NewLine &
-                                       "Fix IstFix " & NewLine &
-                                       "from Plattformen " & NewLine &
                                        "order by SortID, ID"),
         New SqlUpdateSequenceStruct(6, "ALTER TABLE [Szenarien] ADD COLUMN [CVS] VARCHAR(150) NULL"),
         New SqlUpdateSequenceStruct(6, "delete from [Szenarien] where ID=0"),
@@ -247,51 +174,10 @@ Public Class DBInit
                                        "where ID IN (select t.ID from Trades t" & NewLine &
                                        "inner join Trades tg on (t.SourceID || '/fee' = tg.SourceID)" & NewLine &
                                        "where t.QuellKontoID = tg.QuellKontoID and t.ZielKontoID <> tg.QuellKontoID)"),
-        New SqlUpdateSequenceStruct(9, "drop view if exists VW_Trades"),
-        New SqlUpdateSequenceStruct(9, "CREATE VIEW [VW_Trades] AS " & NewLine &
-                                       "select " & NewLine &
-                                       "t.ID ID, " & NewLine &
-                                       "t.Zeitpunkt Zeitpunkt, " & NewLine &
-                                       "tt.Bezeichnung Transaktion, " & NewLine &
-                                       "qp.Bezeichnung QuellPlattform, " & NewLine &
-                                       "qk.Bezeichnung QuellKonto, " & NewLine &
-                                       "t.QuellBetrag QuellBetrag, " & NewLine &
-                                       "t.QuellBetragNachGebuehr QuellBetragNetto, " & NewLine &
-                                       "zp.Bezeichnung ZielPlattform, " & NewLine &
-                                       "zk.Bezeichnung ZielKonto, " & NewLine &
-                                       "t.ZielBetrag ZielBetrag, " & NewLine &
-                                       "t.BetragNachGebuehr ZielBetragNetto, " & NewLine &
-                                       "t.WertEUR WertEUR, " & NewLine &
-                                       "t.SourceID Referenz, " & NewLine &
-                                       "t.Info Info, " & NewLine &
-                                       "t.Steuerirrelevant SteuerIgnorieren " & NewLine &
-                                       "from Trades t " & NewLine &
-                                       "left join Konten qk on t.QuellKontoID=qk.ID " & NewLine &
-                                       "left join Konten zk on t.ZielKontoID=zk.ID " & NewLine &
-                                       "left join Plattformen qp on t.QuellPlattformID=qp.ID " & NewLine &
-                                       "left join Plattformen zp on t.ZielPlattformID=zp.ID " & NewLine &
-                                       "left join Plattformen ip on t.ImportPlattformID=ip.ID " & NewLine &
-                                       "left join TradeTypen tt on t.TradeTypID=tt.ID " & NewLine &
-                                       "where t.Entwertet = 0 " & NewLine &
-                                       "order by t.Zeitpunkt, t.ID"),
         New SqlUpdateSequenceStruct(9, "drop table if exists Szenarien2Cvs"),
         New SqlUpdateSequenceStruct(9, "PRAGMA writable_schema = 1"),
         New SqlUpdateSequenceStruct(9, "UPDATE SQLITE_MASTER SET SQL = replace(SQL, '[ZielKontoID] NUMERIC', '[ZielKontoID] INTEGER') WHERE NAME = 'Trades'"),
         New SqlUpdateSequenceStruct(9, "PRAGMA writable_schema = 0"),
-        New SqlUpdateSequenceStruct(9, "drop view if exists VW_ZugangAbgang"),
-        New SqlUpdateSequenceStruct(9, "CREATE VIEW [VW_ZugangAbgang] AS " & NewLine &
-                                       "select ZielBetrag Betrag, ZielKontoID KontoID, ZielPlattformID Plattform, Zeitpunkt, 1 SollHaben" & NewLine &
-                                       "from Trades where Entwertet=0" & NewLine &
-                                       "union select -QuellBetrag, QuellKontoID, QuellPlattformID, Zeitpunkt, 0" & NewLine &
-                                       "from Trades where Entwertet=0" & NewLine &
-                                       "order by Zeitpunkt"),
-        New SqlUpdateSequenceStruct(10, "drop view if exists VW_ZugangAbgang"),
-        New SqlUpdateSequenceStruct(10, "CREATE VIEW [VW_ZugangAbgang] AS " & NewLine &
-                                        "select ZielBetrag Betrag, ZielKontoID KontoID, ZielPlattformID Plattform, Zeitpunkt, 1 SollHaben" & NewLine &
-                                        "from Trades where Entwertet=0" & NewLine &
-                                        "union select -QuellBetragNachGebuehr, QuellKontoID, QuellPlattformID, Zeitpunkt, 0" & NewLine &
-                                        "from Trades where Entwertet=0" & NewLine &
-                                        "order by Zeitpunkt"),
         New SqlUpdateSequenceStruct(10, "drop table if exists [TradesWerte]"),
         New SqlUpdateSequenceStruct(10, "drop INDEX if exists [IDX_TradesWerte_TradeSzenario]"),
         New SqlUpdateSequenceStruct(10, "CREATE TABLE [TradesWerte] ( " & NewLine &
@@ -400,29 +286,6 @@ Public Class DBInit
                                         "order by SortID, ID"),
         New SqlUpdateSequenceStruct(20, "delete from [TradeTypen] where ID=7"),
         New SqlUpdateSequenceStruct(20, "INSERT INTO [TradeTypen] VALUES (7,'Verlust','LOSS','Verlust von Coins oder Fiat',7)"),
-        New SqlUpdateSequenceStruct(20, "drop view if exists VW_ZugangAbgang"),
-        New SqlUpdateSequenceStruct(20, "CREATE VIEW [VW_ZugangAbgang] AS " & NewLine &
-                                        "select" & NewLine &
-                                        "	ZielBetrag Betrag," & NewLine &
-                                        "	ZielKontoID KontoID," & NewLine &
-                                        "	ZielPlattformID Plattform," & NewLine &
-                                        "	Zeitpunkt, 1 SollHaben," & NewLine &
-                                        "	case when TradeTypID = 3 and QuellKontoID = 101 then QuellBetrag else NULL end BetragEUR," & NewLine &
-                                        "	case when TradeTypID = 3 and QuellKontoID = 102 then QuellBetrag else NULL end BetragUSD," & NewLine &
-                                        "	BetragNachGebuehr _BetragNetto " & NewLine &
-                                        "from Trades where Entwertet=0" & NewLine &
-                                        "union select" & NewLine &
-                                        "	-QuellBetragNachGebuehr," & NewLine &
-                                        "	QuellKontoID," & NewLine &
-                                        "	QuellPlattformID," & NewLine &
-                                        "	Zeitpunkt," & NewLine &
-                                        "	0," & NewLine &
-                                        "	case when TradeTypID = 4 and ZielKontoID = 101 then -BetragNachGebuehr when TradeTypID = 7 then 0 else NULL end," & NewLine &
-                                        "	case when TradeTypID = 4 and ZielKontoID = 102 then -BetragNachGebuehr when TradeTypID = 7 then 0 else NULL end," & NewLine &
-                                        "	-QuellBetragNachGebuehr " & NewLine &
-                                        "from Trades" & NewLine &
-                                        "where Entwertet = 0" & NewLine &
-                                        "order by Zeitpunkt"),
         New SqlUpdateSequenceStruct(21, "drop view if exists VW_ZugangAbgang"),
         New SqlUpdateSequenceStruct(21, "CREATE VIEW [VW_ZugangAbgang] AS " & NewLine &
                                         "select" & NewLine &
@@ -446,15 +309,8 @@ Public Class DBInit
                                         "from Trades" & NewLine &
                                         "where Entwertet = 0" & NewLine &
                                         "order by Zeitpunkt"),
-        New SqlUpdateSequenceStruct(22, String.Format("UPDATE [Plattformen] SET [ApiBaseUrl] = NULL WHERE ID IN ({0},{1})", CInt(PlatformManager.Platforms.Bitfinex), CInt(PlatformManager.Platforms.BitcoinDe))),
         New SqlUpdateSequenceStruct(22, "UPDATE [Plattformen] SET [IstDown] = 0 WHERE [IstDown] ISNULL"),
         New SqlUpdateSequenceStruct(23, String.Format("UPDATE [Plattformen] SET [ApiBaseUrl] = 'https://api.bitcoin.de/v1/' WHERE ID ={0}", CInt(PlatformManager.Platforms.BitcoinDe))),
-        New SqlUpdateSequenceStruct(23, "UPDATE [Konten] SET [Bezeichnung] = 'Kraken Fee Credit', [Beschreibung] = 'Kraken Fee Credit' WHERE [Code] = 'FEE' AND [Bezeichnung] <> 'Kraken Fee Credit' AND [ID] BETWEEN 209 AND 299"),
-        New SqlUpdateSequenceStruct(23, "UPDATE [Konten] SET [Bezeichnung] = 'Gebühr Kraken Fee Credit', [Beschreibung] = 'Gebühren/Kraken Fee Credit' WHERE [Code] = 'feeFEE' AND [Bezeichnung] <> 'Gebühr Kraken Fee Credit' AND [ID] BETWEEN 329 AND 399"),
-        New SqlUpdateSequenceStruct(24, "DELETE FROM [Konten] WHERE ID IN (256, 376)"),
-        New SqlUpdateSequenceStruct(24, "INSERT INTO [Konten](ID, Bezeichnung, Code, Beschreibung, IstFiat, IstGebuehr, GebuehrKontoID, Eigen, SortID, Fix) VALUES " & NewLine &
-                                        "(256, 'Kraken Fee Credit','FEE','Kraken Fee Credit',0,0,376,1,256,0) " & NewLine &
-                                       ",(376, 'Gebühr Kraken Fee Credit','feeFEE','Gebühren/Kraken Fee Credit',0,1,0,0,376,0)"),
         New SqlUpdateSequenceStruct(25, "DELETE FROM [Plattformen] WHERE ID = 208"),
         New SqlUpdateSequenceStruct(25, "INSERT INTO [Plattformen] VALUES(208,'Zyado.com','Zyado','Zyado.com',208,1,1,1,NULL,0,NULL);"),
         New SqlUpdateSequenceStruct(26, "alter table [Importe] add column [LastImportTimestamp] INTEGER DEFAULT '0' NULL"),
@@ -473,174 +329,9 @@ Public Class DBInit
                                        "from Importe i " & NewLine &
                                        "inner join Plattformen p on i.PlattformID=p.ID " & NewLine &
                                        "order by i.Zeitpunkt, i.ID"),
-        New SqlUpdateSequenceStruct(27, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(27, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(27, "INSERT INTO _Variables([Name]) VALUES('ETH')"),
-        New SqlUpdateSequenceStruct(27, "INSERT INTO _Variables([Name]) VALUES('feeETH')"),
-        New SqlUpdateSequenceStruct(27, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'ETH' ORDER BY ID LIMIT 1) WHERE [Name] = 'ETH'"),
-        New SqlUpdateSequenceStruct(27, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeETH' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeETH'"),
-        New SqlUpdateSequenceStruct(27, "DELETE FROM Konten WHERE [Code] = 'ETH'"),
-        New SqlUpdateSequenceStruct(27, "DELETE FROM Konten WHERE [Code] = 'feeETH'"),
-        New SqlUpdateSequenceStruct(27, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'ETH'"),
-        New SqlUpdateSequenceStruct(27, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeETH'"),
-        New SqlUpdateSequenceStruct(27, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Ether', 'ETH', 'Ether', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETH') FROM _Variables WHERE [Name] = 'ETH'"),
-        New SqlUpdateSequenceStruct(27, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Ether', 'feeETH', 'Gebühren/Ether', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeETH'"),
-        New SqlUpdateSequenceStruct(27, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ETH') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ETH')"),
-        New SqlUpdateSequenceStruct(27, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ETH') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ETH')"),
-        New SqlUpdateSequenceStruct(27, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETH') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETH')"),
-        New SqlUpdateSequenceStruct(27, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETH') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETH')"),
-        New SqlUpdateSequenceStruct(27, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(27, "ALTER TABLE [ApiDaten] ADD COLUMN [ExtendedInfo] VARCHAR(100) DEFAULT '' NULL"),
         New SqlUpdateSequenceStruct(27, String.Format("UPDATE [Plattformen] SET [ApiBaseUrl] ='https://api.bitfinex.com/' WHERE ID = {0}", CInt(PlatformManager.Platforms.Bitfinex))),
-        New SqlUpdateSequenceStruct(28, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(28, "CREATE TEMP TABLE _Variables(OldID INTEGER, NewID INTEGER)"),
-        New SqlUpdateSequenceStruct(28, "INSERT INTO _Variables([OldID]) SELECT ID FROM Plattformen WHERE ID = 209 AND NOT [Code] LIKE '%Poloniex%'"),
-        New SqlUpdateSequenceStruct(28, "UPDATE _Variables SET NewID = (SELECT MAX([ID]) + 1 FROM Plattformen WHERE ID < 300 AND ID > 201 ORDER BY ID DESC LIMIT 1)"),
-        New SqlUpdateSequenceStruct(28, "INSERT OR REPLACE INTO Plattformen SELECT [NewID], [Bezeichnung], [Code], [Beschreibung], [SortID], [Fix], [Boerse], [Eigen], [ApiBaseUrl], [IstDown], [DownSeit] FROM Plattformen AS p INNER JOIN _Variables AS v ON p.[ID] = v.[OldID]"),
-        New SqlUpdateSequenceStruct(28, "UPDATE Importe SET [PlattformID] = (SELECT [NewID] FROM _Variables) WHERE [PlattformID] = (SELECT [OldID] FROM _Variables)"),
-        New SqlUpdateSequenceStruct(28, "UPDATE Trades SET [QuellPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [QuellPlattformID] = (SELECT [OldID] FROM _Variables)"),
-        New SqlUpdateSequenceStruct(28, "UPDATE Trades SET [ZielPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [ZielPlattformID] = (SELECT [OldID] FROM _Variables)"),
-        New SqlUpdateSequenceStruct(28, "UPDATE Trades SET [ImportPlattformID] = (SELECT [NewID] FROM _Variables) WHERE [ImportPlattformID] = (SELECT [OldID] FROM _Variables)"),
-        New SqlUpdateSequenceStruct(28, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(28, "DELETE FROM [Plattformen] WHERE ID = 209"),
-        New SqlUpdateSequenceStruct(28, "INSERT INTO [Plattformen] VALUES(209,'Poloniex.com','Poloniex','Poloniex.com',209,1,1,1,NULL,0,NULL);"),
-        New SqlUpdateSequenceStruct(29, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(29, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(29, "INSERT INTO _Variables([Name]) VALUES('LSK')"),
-        New SqlUpdateSequenceStruct(29, "INSERT INTO _Variables([Name]) VALUES('feeLSK')"),
-        New SqlUpdateSequenceStruct(29, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'LSK' ORDER BY ID LIMIT 1) WHERE [Name] = 'LSK'"),
-        New SqlUpdateSequenceStruct(29, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeLSK' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeLSK'"),
-        New SqlUpdateSequenceStruct(29, "DELETE FROM Konten WHERE [Code] = 'LSK'"),
-        New SqlUpdateSequenceStruct(29, "DELETE FROM Konten WHERE [Code] = 'feeLSK'"),
-        New SqlUpdateSequenceStruct(29, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'LSK'"),
-        New SqlUpdateSequenceStruct(29, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeLSK'"),
-        New SqlUpdateSequenceStruct(29, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Lisk', 'LSK', 'Lisk', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeLSK') FROM _Variables WHERE [Name] = 'LSK'"),
-        New SqlUpdateSequenceStruct(29, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Lisk', 'feeLSK', 'Gebühren/Lisk', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeLSK'"),
-        New SqlUpdateSequenceStruct(29, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'LSK') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'LSK')"),
-        New SqlUpdateSequenceStruct(29, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'LSK') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'LSK')"),
-        New SqlUpdateSequenceStruct(29, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeLSK') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeLSK')"),
-        New SqlUpdateSequenceStruct(29, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeLSK') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeLSK')"),
-        New SqlUpdateSequenceStruct(29, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(30, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(30, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(30, "INSERT INTO _Variables([Name]) VALUES('XLM')"),
-        New SqlUpdateSequenceStruct(30, "INSERT INTO _Variables([Name]) VALUES('feeXLM')"),
-        New SqlUpdateSequenceStruct(30, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'XLM' ORDER BY ID LIMIT 1) WHERE [Name] = 'XLM'"),
-        New SqlUpdateSequenceStruct(30, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeXLM' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeXLM'"),
-        New SqlUpdateSequenceStruct(30, "DELETE FROM Konten WHERE [Code] = 'XLM'"),
-        New SqlUpdateSequenceStruct(30, "DELETE FROM Konten WHERE [Code] = 'feeXLM'"),
-        New SqlUpdateSequenceStruct(30, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'XLM'"),
-        New SqlUpdateSequenceStruct(30, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeXLM'"),
-        New SqlUpdateSequenceStruct(30, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Lumen', 'XLM', 'Lumen', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXLM') FROM _Variables WHERE [Name] = 'XLM'"),
-        New SqlUpdateSequenceStruct(30, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Lumen', 'feeXLM', 'Gebühren/Lumen', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeXLM'"),
-        New SqlUpdateSequenceStruct(30, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XLM') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XLM')"),
-        New SqlUpdateSequenceStruct(30, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XLM') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XLM')"),
-        New SqlUpdateSequenceStruct(30, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXLM') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXLM')"),
-        New SqlUpdateSequenceStruct(30, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXLM') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXLM')"),
-        New SqlUpdateSequenceStruct(30, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(31, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(31, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(31, "INSERT INTO _Variables([Name]) VALUES('REP')"),
-        New SqlUpdateSequenceStruct(31, "INSERT INTO _Variables([Name]) VALUES('feeREP')"),
-        New SqlUpdateSequenceStruct(31, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'REP' ORDER BY ID LIMIT 1) WHERE [Name] = 'REP'"),
-        New SqlUpdateSequenceStruct(31, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeREP' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeREP'"),
-        New SqlUpdateSequenceStruct(31, "DELETE FROM Konten WHERE [Code] = 'REP'"),
-        New SqlUpdateSequenceStruct(31, "DELETE FROM Konten WHERE [Code] = 'feeREP'"),
-        New SqlUpdateSequenceStruct(31, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'REP'"),
-        New SqlUpdateSequenceStruct(31, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeREP'"),
-        New SqlUpdateSequenceStruct(31, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Augur Token', 'REP', 'Augur Token', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeREP') FROM _Variables WHERE [Name] = 'REP'"),
-        New SqlUpdateSequenceStruct(31, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Augur Token', 'feeREP', 'Gebühren/Augur Token', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeREP'"),
-        New SqlUpdateSequenceStruct(31, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'REP') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'REP')"),
-        New SqlUpdateSequenceStruct(31, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'REP') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'REP')"),
-        New SqlUpdateSequenceStruct(31, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeREP') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeREP')"),
-        New SqlUpdateSequenceStruct(31, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeREP') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeREP')"),
-        New SqlUpdateSequenceStruct(31, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(32, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(32, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(32, "INSERT INTO _Variables([Name]) VALUES('BFX')"),
-        New SqlUpdateSequenceStruct(32, "INSERT INTO _Variables([Name]) VALUES('feeBFX')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'BFX' ORDER BY ID LIMIT 1) WHERE [Name] = 'BFX'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeBFX' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeBFX'"),
-        New SqlUpdateSequenceStruct(32, "DELETE FROM Konten WHERE [Code] = 'BFX'"),
-        New SqlUpdateSequenceStruct(32, "DELETE FROM Konten WHERE [Code] = 'feeBFX'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'BFX'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeBFX'"),
-        New SqlUpdateSequenceStruct(32, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'BFX Token', 'BFX', 'Bitfinex Token', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBFX') FROM _Variables WHERE [Name] = 'BFX'"),
-        New SqlUpdateSequenceStruct(32, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr BFX Token', 'feeBFX', 'Gebühren/Bitfinex Token', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeBFX'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BFX') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BFX')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BFX') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BFX')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBFX') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBFX')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBFX') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBFX')"),
-        New SqlUpdateSequenceStruct(32, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(32, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(32, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(32, "INSERT INTO _Variables([Name]) VALUES('ETC')"),
-        New SqlUpdateSequenceStruct(32, "INSERT INTO _Variables([Name]) VALUES('feeETC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'ETC' ORDER BY ID LIMIT 1) WHERE [Name] = 'ETC'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeETC' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeETC'"),
-        New SqlUpdateSequenceStruct(32, "DELETE FROM Konten WHERE [Code] = 'ETC'"),
-        New SqlUpdateSequenceStruct(32, "DELETE FROM Konten WHERE [Code] = 'feeETC'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'ETC'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeETC'"),
-        New SqlUpdateSequenceStruct(32, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Ether Classic', 'ETC', 'Ether Classic', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETC') FROM _Variables WHERE [Name] = 'ETC'"),
-        New SqlUpdateSequenceStruct(32, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Ether Classic', 'feeETC', 'Gebühren/Ether Classic', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeETC'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ETC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ETC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ETC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ETC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeETC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeETC')"),
-        New SqlUpdateSequenceStruct(32, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(32, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(32, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(32, "INSERT INTO _Variables([Name]) VALUES('RRT')"),
-        New SqlUpdateSequenceStruct(32, "INSERT INTO _Variables([Name]) VALUES('feeRRT')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'RRT' ORDER BY ID LIMIT 1) WHERE [Name] = 'RRT'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeRRT' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeRRT'"),
-        New SqlUpdateSequenceStruct(32, "DELETE FROM Konten WHERE [Code] = 'RRT'"),
-        New SqlUpdateSequenceStruct(32, "DELETE FROM Konten WHERE [Code] = 'feeRRT'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'RRT'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeRRT'"),
-        New SqlUpdateSequenceStruct(32, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Recovery Right Token', 'RRT', 'Bitfinex Recovery Right Token', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeRRT') FROM _Variables WHERE [Name] = 'RRT'"),
-        New SqlUpdateSequenceStruct(32, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Recovery Right Token', 'feeRRT', 'Gebühren/Bitfinex Recovery Right Token', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeRRT'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'RRT') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'RRT')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'RRT') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'RRT')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeRRT') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeRRT')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeRRT') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeRRT')"),
-        New SqlUpdateSequenceStruct(32, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(32, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(32, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(32, "INSERT INTO _Variables([Name]) VALUES('ZEC')"),
-        New SqlUpdateSequenceStruct(32, "INSERT INTO _Variables([Name]) VALUES('feeZEC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'ZEC' ORDER BY ID LIMIT 1) WHERE [Name] = 'ZEC'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeZEC' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeZEC'"),
-        New SqlUpdateSequenceStruct(32, "DELETE FROM Konten WHERE [Code] = 'ZEC'"),
-        New SqlUpdateSequenceStruct(32, "DELETE FROM Konten WHERE [Code] = 'feeZEC'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'ZEC'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeZEC'"),
-        New SqlUpdateSequenceStruct(32, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'ZCash', 'ZEC', 'ZCash', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeZEC') FROM _Variables WHERE [Name] = 'ZEC'"),
-        New SqlUpdateSequenceStruct(32, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr ZCash', 'feeZEC', 'Gebühren/ZCash', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeZEC'"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ZEC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ZEC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'ZEC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'ZEC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeZEC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeZEC')"),
-        New SqlUpdateSequenceStruct(32, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeZEC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeZEC')"),
-        New SqlUpdateSequenceStruct(32, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(VersionID:=32, CustomAction:=1),
-        New SqlUpdateSequenceStruct(33, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(33, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(33, "INSERT INTO _Variables([Name]) VALUES('XMR')"),
-        New SqlUpdateSequenceStruct(33, "INSERT INTO _Variables([Name]) VALUES('feeXMR')"),
-        New SqlUpdateSequenceStruct(33, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'XMR' ORDER BY ID LIMIT 1) WHERE [Name] = 'XMR'"),
-        New SqlUpdateSequenceStruct(33, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeXMR' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeXMR'"),
-        New SqlUpdateSequenceStruct(33, "DELETE FROM Konten WHERE [Code] = 'XMR'"),
-        New SqlUpdateSequenceStruct(33, "DELETE FROM Konten WHERE [Code] = 'feeXMR'"),
-        New SqlUpdateSequenceStruct(33, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'XMR'"),
-        New SqlUpdateSequenceStruct(33, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeXMR'"),
-        New SqlUpdateSequenceStruct(33, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Monero', 'XMR', 'Monero', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXMR') FROM _Variables WHERE [Name] = 'XMR'"),
-        New SqlUpdateSequenceStruct(33, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Monero', 'feeXMR', 'Gebühren/Monero', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeXMR'"),
-        New SqlUpdateSequenceStruct(33, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XMR') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XMR')"),
-        New SqlUpdateSequenceStruct(33, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XMR') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XMR')"),
-        New SqlUpdateSequenceStruct(33, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXMR') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXMR')"),
-        New SqlUpdateSequenceStruct(33, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXMR') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXMR')"),
-        New SqlUpdateSequenceStruct(33, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(33, "drop view if exists VW_Transfers"),
         New SqlUpdateSequenceStruct(33, "CREATE VIEW [VW_Transfers] AS " & NewLine &
                                         "select " & NewLine &
@@ -664,82 +355,9 @@ Public Class DBInit
                                         "where t.Entwertet = 0  and t.TradeTypID = 5" & NewLine &
                                         "order by t.Zeitpunkt, t.ID"),
         New SqlUpdateSequenceStruct(34, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(34, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(34, "INSERT INTO _Variables([Name]) VALUES('XRP')"),
-        New SqlUpdateSequenceStruct(34, "INSERT INTO _Variables([Name]) VALUES('feeXRP')"),
-        New SqlUpdateSequenceStruct(34, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'XRP' ORDER BY ID LIMIT 1) WHERE [Name] = 'XRP'"),
-        New SqlUpdateSequenceStruct(34, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeXRP' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeXRP'"),
-        New SqlUpdateSequenceStruct(34, "DELETE FROM Konten WHERE [Code] = 'XRP'"),
-        New SqlUpdateSequenceStruct(34, "DELETE FROM Konten WHERE [Code] = 'feeXRP'"),
-        New SqlUpdateSequenceStruct(34, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'XRP'"),
-        New SqlUpdateSequenceStruct(34, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeXRP'"),
-        New SqlUpdateSequenceStruct(34, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Ripple', 'XRP', 'Ripple Token', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXRP') FROM _Variables WHERE [Name] = 'XRP'"),
-        New SqlUpdateSequenceStruct(34, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Ripple', 'feeXRP', 'Gebühren/Ripple Token', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeXRP'"),
-        New SqlUpdateSequenceStruct(34, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XRP') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XRP')"),
-        New SqlUpdateSequenceStruct(34, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'XRP') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'XRP')"),
-        New SqlUpdateSequenceStruct(34, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXRP') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXRP')"),
-        New SqlUpdateSequenceStruct(34, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeXRP') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeXRP')"),
-        New SqlUpdateSequenceStruct(34, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(35, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(35, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(35, "INSERT INTO _Variables([Name]) VALUES('BCC')"),
-        New SqlUpdateSequenceStruct(35, "INSERT INTO _Variables([Name]) VALUES('feeBCC')"),
-        New SqlUpdateSequenceStruct(35, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'BCC' ORDER BY ID LIMIT 1) WHERE [Name] = 'BCC'"),
-        New SqlUpdateSequenceStruct(35, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeBCC' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeBCC'"),
-        New SqlUpdateSequenceStruct(35, "DELETE FROM Konten WHERE [Code] = 'BCC'"),
-        New SqlUpdateSequenceStruct(35, "DELETE FROM Konten WHERE [Code] = 'feeBCC'"),
-        New SqlUpdateSequenceStruct(35, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'BCC'"),
-        New SqlUpdateSequenceStruct(35, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeBCC'"),
-        New SqlUpdateSequenceStruct(35, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Bitcoin Cash', 'BCC', 'Bitcoin Cash', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBCC') FROM _Variables WHERE [Name] = 'BCC'"),
-        New SqlUpdateSequenceStruct(35, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Bitcoin Cash', 'feeBCC', 'Gebühren/Bitcoin Cash', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeBCC'"),
-        New SqlUpdateSequenceStruct(35, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BCC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BCC')"),
-        New SqlUpdateSequenceStruct(35, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BCC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BCC')"),
-        New SqlUpdateSequenceStruct(35, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBCC') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBCC')"),
-        New SqlUpdateSequenceStruct(35, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBCC') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBCC')"),
-        New SqlUpdateSequenceStruct(35, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(VersionID:=35, CustomAction:=2),
         New SqlUpdateSequenceStruct(36, "UPDATE Konten SET Code = 'BCH' WHERE Code = 'BCC'"),
         New SqlUpdateSequenceStruct(36, "UPDATE Konten SET Code = 'feeBCH' WHERE Code = 'feeBCC'"),
-        New SqlUpdateSequenceStruct(36, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(36, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, OldValue2 INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(36, "INSERT INTO _Variables([Name]) VALUES('IOT')"),
-        New SqlUpdateSequenceStruct(36, "INSERT INTO _Variables([Name]) VALUES('feeIOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'IOT' ORDER BY ID LIMIT 1) WHERE [Name] = 'IOT'"),
-        New SqlUpdateSequenceStruct(36, "UPDATE _Variables SET OldValue2 = (SELECT ID FROM Konten WHERE [Code] = 'IOTA' ORDER BY ID LIMIT 1) WHERE [Name] = 'IOT'"),
-        New SqlUpdateSequenceStruct(36, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeIOT' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeIOT'"),
-        New SqlUpdateSequenceStruct(36, "UPDATE _Variables SET OldValue2 = (SELECT ID FROM Konten WHERE [Code] = 'feeIOTA' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeIOT'"),
-        New SqlUpdateSequenceStruct(36, "DELETE FROM Konten WHERE [Code] IN ('IOT', 'IOTA')"),
-        New SqlUpdateSequenceStruct(36, "DELETE FROM Konten WHERE [Code] IN ('feeIOT', 'feeIOTA')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'IOT'"),
-        New SqlUpdateSequenceStruct(36, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeIOT'"),
-        New SqlUpdateSequenceStruct(36, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'MegaIOTA', 'IOT', 'MegaIOTA', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') FROM _Variables WHERE [Name] = 'IOT'"),
-        New SqlUpdateSequenceStruct(36, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr MegaIOTA', 'feeIOT', 'Gebühren/MegaIOTA', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeIOT'"),
-        New SqlUpdateSequenceStruct(36, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'IOT') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'IOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'IOT') WHERE QuellKontoID = (SELECT [OldValue2] FROM _Variables WHERE [Name] = 'IOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'IOT') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'IOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'IOT') WHERE ZielKontoID = (SELECT [OldValue2] FROM _Variables WHERE [Name] = 'IOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeIOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE QuellKontoID = (SELECT [OldValue2] FROM _Variables WHERE [Name] = 'feeIOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeIOT')"),
-        New SqlUpdateSequenceStruct(36, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeIOT') WHERE ZielKontoID = (SELECT [OldValue2] FROM _Variables WHERE [Name] = 'feeIOT')"),
-        New SqlUpdateSequenceStruct(36, "DROP TABLE _Variables"),
-        New SqlUpdateSequenceStruct(37, "PRAGMA temp_store = 2"),
-        New SqlUpdateSequenceStruct(37, "CREATE TEMP TABLE _Variables(Name TEXT PRIMARY KEY, OldValue INTEGER, NewValue INTEGER)"),
-        New SqlUpdateSequenceStruct(37, "INSERT INTO _Variables([Name]) VALUES('BTG')"),
-        New SqlUpdateSequenceStruct(37, "INSERT INTO _Variables([Name]) VALUES('feeBTG')"),
-        New SqlUpdateSequenceStruct(37, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'BTG' ORDER BY ID LIMIT 1) WHERE [Name] = 'BTG'"),
-        New SqlUpdateSequenceStruct(37, "UPDATE _Variables SET OldValue = (SELECT ID FROM Konten WHERE [Code] = 'feeBTG' ORDER BY ID LIMIT 1) WHERE [Name] = 'feeBTG'"),
-        New SqlUpdateSequenceStruct(37, "DELETE FROM Konten WHERE [Code] = 'BTG'"),
-        New SqlUpdateSequenceStruct(37, "DELETE FROM Konten WHERE [Code] = 'feeBTG'"),
-        New SqlUpdateSequenceStruct(37, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 256 AND ID > 201 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'BTG'"),
-        New SqlUpdateSequenceStruct(37, "UPDATE _Variables SET NewValue = (SELECT MAX([ID]) + 1 FROM Konten WHERE ID < 599 AND ID > 311 ORDER BY ID DESC LIMIT 1) WHERE [Name] = 'feeBTG'"),
-        New SqlUpdateSequenceStruct(37, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Bitcoin Gold', 'BTG', 'Bitcoin Gold', 0, 1, [NewValue], 0, 0, (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBTG') FROM _Variables WHERE [Name] = 'BTG'"),
-        New SqlUpdateSequenceStruct(37, "INSERT OR REPLACE INTO Konten SELECT [NewValue], 'Gebühr Bitcoin Gold', 'feeBTG', 'Gebühren/Bitcoin Gold', 0, 0, [NewValue], 0, 1, 0 FROM _Variables WHERE [Name] = 'feeBTG'"),
-        New SqlUpdateSequenceStruct(37, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BTG') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BTG')"),
-        New SqlUpdateSequenceStruct(37, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'BTG') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'BTG')"),
-        New SqlUpdateSequenceStruct(37, "UPDATE Trades SET QuellKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBTG') WHERE QuellKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBTG')"),
-        New SqlUpdateSequenceStruct(37, "UPDATE Trades SET ZielKontoID = (SELECT [NewValue] FROM _Variables WHERE [Name] = 'feeBTG') WHERE ZielKontoID = (SELECT [OldValue] FROM _Variables WHERE [Name] = 'feeBTG')"),
-        New SqlUpdateSequenceStruct(37, "DROP TABLE _Variables"),
         New SqlUpdateSequenceStruct(37, "drop view if exists VW_Berechnungen"),
         New SqlUpdateSequenceStruct(37, "CREATE VIEW [VW_Berechnungen] AS " & NewLine &
                                         "select " & NewLine &
@@ -751,23 +369,9 @@ Public Class DBInit
                                         "inner join Szenarien s on k.SzenarioID = s.ID " & NewLine &
                                         "order by k.Zeitpunkt, s.ID"),
         New SqlUpdateSequenceStruct(37, "update Konten set Fix = 1 where Fix = 'Y'"),
-        New SqlUpdateSequenceStruct(37, "update Konten " & NewLine &
-                                        "set GebuehrKontoID = (select ID from Konten k2 where k2.Code = 'fee' || Konten.Code) " & NewLine &
-                                        "where not Konten.IstFiat and not Konten.Fix and Konten.ID < 311 and Konten.GebuehrKontoID = 399"),
-        New SqlUpdateSequenceStruct(37, "insert into Konten(Bezeichnung, Code, Beschreibung, IstFiat, Eigen, Fix, IstGebuehr, GebuehrKontoID) " & NewLine &
-                                        "select " & NewLine &
-                                        "'Gebühr ' || k.Bezeichnung, " & NewLine &
-                                        "'fee' || k.Code, " & NewLine &
-                                        "'Gebühr ' || k.Beschreibung, " & NewLine &
-                                        "0, 0, 0, 1, 0 " & NewLine &
-                                        "from Konten k where k.GebuehrKontoID is NULL and not k.IstFiat and not k.Fix"),
-        New SqlUpdateSequenceStruct(37, "update Konten set SortID = ID where IstGebuehr and SortID <> ID"),
-        New SqlUpdateSequenceStruct(37, "update Konten " & NewLine &
-                                        "set GebuehrKontoID = (select ID from Konten k2 where k2.Code = 'fee' || Konten.Code) " & NewLine &
-                                        "where not Konten.IstFiat and not Konten.Fix and Konten.ID < 311 and Konten.GebuehrKontoID is NULL"),
         New SqlUpdateSequenceStruct(VersionID:=37, CustomAction:=3),
         New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=4, Message:=My.Resources.MyStrings.dbUpdateMsgReportReset),
-        New SqlUpdateSequenceStruct(VersionID:=42, CustomAction:=-1)    ' <-- just insert the latest wanted db version number here
+        New SqlUpdateSequenceStruct(VersionID:=43, CustomAction:=-1)    ' <-- just insert the latest wanted db version number here
     }
 
 
@@ -1105,7 +709,7 @@ Public Class DBInit
                     myBuildInfo.FileBuildPart & ")"
                 DBHelp.ExecuteSQL(SQL)
             Catch ex As Exception
-                Throw New DatabaseUpdateException(String.Format(My.Resources.MyStrings.initDbUpdateError, Environment.NewLine, ex.Message), ex)
+                Throw New DatabaseUpdateException(String.Format(My.Resources.MyStrings.initDbUpdateError, NewLine, ex.Message), ex)
             End Try
             Return True
         ElseIf _LocalDBVersionID > RequiredVersionID Then
