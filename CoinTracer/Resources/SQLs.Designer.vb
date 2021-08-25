@@ -65,71 +65,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE TABLE [KontenAliases] (
-        '''[Code] VARCHAR(20) NOT NULL,
-        '''[Alias] VARCHAR(20) NOT NULL,
-        '''PRIMARY KEY(Code, Alias)); ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_43_01() As String
-            Get
-                Return ResourceManager.GetString("db_43_01", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die INSERT INTO [KontenAliases](Code, Alias) VALUES 
-        '''(&apos;USD&apos;, &apos;$&apos;), 
-        '''(&apos;USD&apos;, &apos;US Dollar&apos;), 
-        '''(&apos;EUR&apos;, &apos;€&apos;), 
-        '''(&apos;EUR&apos;, &apos;Euro&apos;), 
-        '''(&apos;BTC&apos;, &apos;XBT&apos;),
-        '''(&apos;BCH&apos;, &apos;BCC&apos;),
-        '''(&apos;XDG&apos;, &apos;DOGE&apos;),
-        '''(&apos;PAXG&apos;, &apos;PAX&apos;); ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_43_02() As String
-            Get
-                Return ResourceManager.GetString("db_43_02", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Konten SET Bezeichnung = &apos;Tether USD&apos; where Bezeichnung = &apos;Tether&apos;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_43_03() As String
-            Get
-                Return ResourceManager.GetString("db_43_03", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Konten SET Beschreibung = &apos;Tether USD&apos; where Beschreibung = &apos;Tether&apos;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_43_04() As String
-            Get
-                Return ResourceManager.GetString("db_43_04", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Konten SET Bezeichnung = &apos;Gebühr Tether USD&apos; where Bezeichnung = &apos;Gebühr Tether&apos;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_43_05() As String
-            Get
-                Return ResourceManager.GetString("db_43_05", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Konten SET Beschreibung = &apos;Gebühren/Tether USD&apos; where Beschreibung = &apos;Gebühren/Tether&apos;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_43_06() As String
-            Get
-                Return ResourceManager.GetString("db_43_06", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die alter table [Szenarien] add column [Coins4Coins] BOOLEAN DEFAULT &apos;0&apos; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property db_v39_01() As String
@@ -778,6 +713,71 @@ Namespace My.Resources
         Friend Shared ReadOnly Property db_v42_10() As String
             Get
                 Return ResourceManager.GetString("db_v42_10", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE TABLE [KontenAliases] (
+        '''[Code] VARCHAR(20) NOT NULL,
+        '''[Alias] VARCHAR(20) NOT NULL,
+        '''PRIMARY KEY(Code, Alias)); ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v43_01() As String
+            Get
+                Return ResourceManager.GetString("db_v43_01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die INSERT INTO [KontenAliases](Code, Alias) VALUES 
+        '''(&apos;USD&apos;, &apos;$&apos;), 
+        '''(&apos;USD&apos;, &apos;US Dollar&apos;), 
+        '''(&apos;EUR&apos;, &apos;€&apos;), 
+        '''(&apos;EUR&apos;, &apos;Euro&apos;), 
+        '''(&apos;BTC&apos;, &apos;XBT&apos;),
+        '''(&apos;BCH&apos;, &apos;BCC&apos;),
+        '''(&apos;XDG&apos;, &apos;DOGE&apos;),
+        '''(&apos;PAXG&apos;, &apos;PAX&apos;); ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v43_02() As String
+            Get
+                Return ResourceManager.GetString("db_v43_02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Konten SET Bezeichnung = &apos;Tether USD&apos; where Bezeichnung = &apos;Tether&apos;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v43_03() As String
+            Get
+                Return ResourceManager.GetString("db_v43_03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Konten SET Beschreibung = &apos;Tether USD&apos; where Beschreibung = &apos;Tether&apos;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v43_04() As String
+            Get
+                Return ResourceManager.GetString("db_v43_04", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Konten SET Bezeichnung = &apos;Gebühr Tether USD&apos; where Bezeichnung = &apos;Gebühr Tether&apos;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v43_05() As String
+            Get
+                Return ResourceManager.GetString("db_v43_05", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE Konten SET Beschreibung = &apos;Gebühren/Tether USD&apos; where Beschreibung = &apos;Gebühren/Tether&apos;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v43_06() As String
+            Get
+                Return ResourceManager.GetString("db_v43_06", resourceCulture)
             End Get
         End Property
     End Class
