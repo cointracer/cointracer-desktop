@@ -136,7 +136,7 @@ Friend Class Import_Kraken_Api
                         Select Case TLO.Type.Substring(0, Math.Min(8, TLO.Type.Length)).ToLower
                             Case "deposit", "transfer"
                                 .TradetypID = DBHelper.TradeTypen.Einzahlung
-                                If TLO.Asset = "KFEE" Then
+                                If TLO.Asset = "FEE" Then
                                     .QuellPlattformID = PlatformManager.Platforms.Extern
                                 Else
                                     .QuellPlattformID = PlatformManager.Platforms.Unknown
@@ -271,7 +271,10 @@ Friend Class Import_Kraken_Api
                                 .QuellBetragNachGebuehr = .QuellBetrag
                                 .QuellKontoID = QuellKontoRow.ID
                                 .Info = String.Format("Trade {0} ({1})", KontoRow.Bezeichnung, KontoRow.Code)
-                                If KontoRow.IstFiat = False Then
+                                If KontoRow.IstFiat AndAlso QuellKontoRow.IstFiat Then
+                                    ' Special case: always consider fiat vs. fiat as buying
+                                    .TradetypID = DBHelper.TradeTypen.Kauf
+                                ElseIf KontoRow.IstFiat = False Then
                                     ' Kauf von Coins (gegen Fiat oder andere Coins)
                                     .TradetypID = DBHelper.TradeTypen.Kauf
                                 Else

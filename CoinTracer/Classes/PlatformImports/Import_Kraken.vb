@@ -147,6 +147,8 @@ Public Class Import_Kraken
     Private Shared Function ExtractAssetCode(ByRef AssetRaw As String) As String
         If AssetRaw.StartsWith("X"c) Or AssetRaw.StartsWith("Z"c) Then
             Return AssetRaw.Substring(1, AssetRaw.Length - 1)
+        ElseIf AssetRaw = "KFEE" Then
+            Return "FEE"
         Else
             Return AssetRaw
         End If
@@ -167,7 +169,7 @@ Public Class Import_Kraken
         CSVSeparator = ","c
         CSVTextqualifier = """"c
         MultiSelectFiles = False
-        FileDialogTitle = My.Resources.MyStrings.importOpenFileFilterTitleKraken
+        FileDialogTitle = MyStrings.importOpenFileFilterTitleKraken
     End Sub
 
     ''' <summary>
@@ -194,8 +196,8 @@ Public Class Import_Kraken
             ' we are about to import a trades csv
             MsgBoxEx.ShowWithNotAgainOption("ImportKrakenTrades",
                                             DialogResult.OK,
-                                            My.Resources.MyStrings.importMsgKrakenTradesCSV,
-                                            My.Resources.MyStrings.importMsgKrakenTradesCSVCaption,
+                                            MyStrings.importMsgKrakenTradesCSV,
+                                            MyStrings.importMsgKrakenTradesCSVCaption,
                                             MessageBoxButtons.OK,
                                             MessageBoxIcon.Information)
         End If
@@ -224,11 +226,12 @@ Public Class Import_Kraken
                 Return False
                 Exit Function
             End If
-            InitProgressForm(String.Format(My.Resources.MyStrings.importMsgImportStarting, PlatformName))
+            InitProgressForm(String.Format(MyStrings.importMsgImportStarting, PlatformName))
             AllLines = AllRows.Count
             If SubType < KRAKEN_IMPORT_TRADES And AllLines > 0 Then
                 ' *** Read ledger entries ***
                 Dim ImportLedersTb As New Import_KrakenDataSet.LedgerDataTable
+                Dim ImportLedersTempTb As New Import_KrakenDataSet.LedgerDataTable
                 ' Fill the ledger import table
                 For l = 0 To AllLines - 1
                     Try
@@ -362,9 +365,9 @@ Public Class Import_Kraken
                                         ' No matching row found. This is only acceptable for very small amounts
                                         If IR.amount <= KRAKEN_ZEROVALUETRADELIMIT Then
                                             ' assume the corresponding second entry would be zero
-                                            IR2nd = ImportLedersTb.AddLedgerRow(IR.txid, IR.refid, IR.time, IR.type, IR.subtype, IR.aclass, "EUR", 0, 0, 0, True)
+                                            IR2nd = ImportLedersTempTb.AddLedgerRow(IR.txid, IR.refid, IR.time, IR.type, IR.subtype, IR.aclass, "EUR", 0, 0, 0, True)
                                         Else
-                                            Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
+                                            Throw New Exception(String.Format(MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
                                         End If
                                     Else
                                         IR2nd.processed = True
@@ -381,7 +384,7 @@ Public Class Import_Kraken
                                         TargetIR = IR
                                         SourceKontoRow = MainImportObject.RetrieveAccount(IR2nd.asset)
                                     Else
-                                        Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoNegativeValue, .SourceID))
+                                        Throw New Exception(String.Format(MyStrings.importMsgKrakenErrorNoNegativeValue, .SourceID))
                                     End If
                                     .SourceID = SourceIR.txid & "-" & TargetIR.txid & "," & TargetIR.txid & "-" & SourceIR.txid
                                     .QuellPlattformID = Platform
@@ -393,7 +396,10 @@ Public Class Import_Kraken
                                     .QuellBetragNachGebuehr = .QuellBetrag
                                     .QuellKontoID = SourceKontoRow.ID
                                     .Info = String.Format("Trade {0} ({1})", KontoRow.Bezeichnung, KontoRow.Code)
-                                    If KontoRow.IstFiat = False Then
+                                    If KontoRow.IstFiat AndAlso SourceKontoRow.IstFiat Then
+                                        ' fiat vs. fiat always treated as a buy transaction
+                                        .TradetypID = DBHelper.TradeTypen.Kauf
+                                    ElseIf KontoRow.IstFiat = False Then
                                         ' Coins bought (via fiat or coins)
                                         .TradetypID = DBHelper.TradeTypen.Kauf
                                     Else
@@ -432,7 +438,7 @@ Public Class Import_Kraken
                                 RecordFee.WertEUR = 0
                                 RecordFee.QuellBetrag = RecordFee.ZielBetrag
                                 RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                                RecordFee.Info = String.Format(MyStrings.importInfoTradeFee, .SourceID)
                                 ImportRecords.Add(RecordFee)
                                 RecordFee = Nothing
                             End If
@@ -449,7 +455,7 @@ Public Class Import_Kraken
                                 RecordFee.WertEUR = 0
                                 RecordFee.QuellBetrag = RecordFee.ZielBetrag
                                 RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                                RecordFee.Info = String.Format(MyStrings.importInfoTradeFee, .SourceID)
                             End If
 
                             If RecordFee Is Nothing AndAlso (.TradetypID = DBHelper.TradeTypen.Kauf OrElse .TradetypID = DBHelper.TradeTypen.Verkauf) Then
@@ -470,7 +476,7 @@ Public Class Import_Kraken
                                     RecordFee.ZielKontoID = MainImportObject.GetAccount(RecordFee.QuellKontoID).GebuehrKontoID
                                     RecordFee.WertEUR = 0
                                     RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                    RecordFee.Info = String.Format(My.Resources.MyStrings.ImportInfoKrakenTradeFeeCredits, .SourceID)
+                                    RecordFee.Info = String.Format(MyStrings.ImportInfoKrakenTradeFeeCredits, .SourceID)
                                 End If
                             End If
 
@@ -605,7 +611,7 @@ Public Class Import_Kraken
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         .QuellKontoID = KontoRow.ID
                                         .Info = String.Format("Trade {0} ({1})", KontoRow2.Bezeichnung, KontoRow2.Code)
-                                        .TradetypID = DBHelper.TradeTypen.Verkauf
+                                        .TradetypID = DBHelper.TradeTypen.Kauf  ' TODO: Check, because this has been Verkauf before?!?
                                         If KFeeIndicator = 0 AndAlso IR.fee > 0 Then
                                             ' we have a countable fee -> substract from target amount
                                             .BetragNachGebuehr -= IR.fee
@@ -621,7 +627,12 @@ Public Class Import_Kraken
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         .QuellKontoID = KontoRow.ID
                                         .Info = String.Format("Trade {0} ({1})", KontoRow.Bezeichnung, KontoRow.Code)
-                                        .TradetypID = DBHelper.TradeTypen.Verkauf
+                                        If KontoRow.IstFiat AndAlso KontoRow2.IstFiat Then
+                                            ' Special case: always consider fiat vs. fiat buying
+                                            .TradetypID = DBHelper.TradeTypen.Kauf
+                                        Else
+                                            .TradetypID = DBHelper.TradeTypen.Verkauf
+                                        End If
                                         If KFeeIndicator = 0 AndAlso IR.fee > 0 Then
                                             ' we have a countable fee -> substract from target amount
                                             .BetragNachGebuehr -= IR.fee
@@ -649,7 +660,7 @@ Public Class Import_Kraken
                                 RecordFee.WertEUR = 0
                                 RecordFee.QuellBetrag = RecordFee.ZielBetrag
                                 RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                                RecordFee.Info = String.Format(MyStrings.importInfoTradeFee, .SourceID)
                                 ImportRecords.Add(RecordFee)
                                 RecordFee = Nothing
                             End If
@@ -666,7 +677,7 @@ Public Class Import_Kraken
                                 RecordFee.WertEUR = 0
                                 RecordFee.QuellBetrag = RecordFee.ZielBetrag
                                 RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                                RecordFee.Info = String.Format(MyStrings.importInfoTradeFee, .SourceID)
                             End If
 
                             If Not .DoNotImport Then

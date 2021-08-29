@@ -3272,6 +3272,7 @@ Public Class Import
         End Select
 
         If ThisImport IsNot Nothing Then
+            RefreshAccountMap()
             FileNames(0) = Filename
             ThisImport.FileNames = FileNames
             ThisImport.PerformImport()
