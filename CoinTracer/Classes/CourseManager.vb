@@ -248,7 +248,7 @@ Public Class CourseManager
     ''' <returns>Anzahl der Tage, für die Kursinformationen eingelesen wurden</returns>
     Public Function FetchCoursesEurUsd(Optional UntilDate As Nullable(Of Date) = Nothing) As Long
 
-        Dim URI As String = "https://www.bundesbank.de/cae/servlet/StatisticDownload?tsId=BBEX3.D.USD.EUR.BB.AC.000&its_csvFormat=de&its_fileFormat=csv&mode=its"
+        Dim URI As String = "https://api.statistiken.bundesbank.de/rest/download/BBEX3/D.USD.EUR.BB.AC.000?format=csv&lang=de"
 
         Dim LastCOD As Date = GetCoursesCutOffDay(DBHelper.Konten.EUR, DBHelper.Konten.USD)
         Dim HttpRequest As New UriRequest(URI)
