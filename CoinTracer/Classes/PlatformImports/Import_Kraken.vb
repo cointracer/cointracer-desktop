@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -202,14 +202,21 @@ Public Class Import_Kraken
                 Dim NextTLO As KrakenLineObject
                 Dim SourceTLO As KrakenLineObject
                 Dim TargetTLO As KrakenLineObject
+                Dim ColumnMap(6) As Long
+                ' Differntiate between the subtypes
+                If SubType = 0 Then
+                    ColumnMap = {2, 0, 1, 3, 5, 6, 7}
+                Else
+                    ColumnMap = {2, 0, 1, 3, 6, 7, 8}
+                End If
                 For l = 0 To AllLines - 1
                     Row = CSV.Rows(l)
                     UpdateProgress(AllLines, LineCount)
                     ' ProgressWaitManager.UpdateProgress(LineCount / AllLines * ReadImportdataPercentage, String.Format(My.Resources.MyStrings.importMsgReadingFile, l, AllLines))
                     LineCount += 1
-                    If Row.Length = 9 Then
+                    If Row.Length >= 9 Then
                         Try
-                            TLO = New KrakenLineObject(MainImportObject, Row(2), Row(0), Row(1), Row(3), Row(5), Row(6), Row(7))
+                            TLO = New KrakenLineObject(MainImportObject, Row(ColumnMap(0)), Row(ColumnMap(1)), Row(ColumnMap(2)), Row(ColumnMap(3)), Row(ColumnMap(4)), Row(ColumnMap(5)), Row(ColumnMap(6)))
                             Record = New dtoTradesRecord
                             RecordFee = Nothing
                             With Record
@@ -284,7 +291,7 @@ Public Class Import_Kraken
                                             End If
                                             l -= 1
                                         End If
-                                        NextTLO = New KrakenLineObject(MainImportObject, NextRow(2), NextRow(0), NextRow(1), NextRow(3), NextRow(5), NextRow(6), NextRow(7))
+                                        NextTLO = New KrakenLineObject(MainImportObject, NextRow(ColumnMap(0)), NextRow(ColumnMap(1)), NextRow(ColumnMap(2)), NextRow(ColumnMap(3)), NextRow(ColumnMap(4)), NextRow(ColumnMap(5)), NextRow(ColumnMap(6)))
                                         Dim QuellKontoRow As KontenRow
                                         If TLO.Amount < 0 OrElse (TLO.Amount = 0 And NextTLO.Amount > 0) Then
                                             SourceTLO = TLO
@@ -373,7 +380,7 @@ Public Class Import_Kraken
                                         If l <= AllLines - 1 Then
                                             NextRow = CSV.Rows(l)
                                             If NextRow.Length >= 8 Then
-                                                NextTLO = New KrakenLineObject(MainImportObject, NextRow(2), NextRow(0), NextRow(1), NextRow(3), NextRow(5), NextRow(6), NextRow(7))
+                                                NextTLO = New KrakenLineObject(MainImportObject, NextRow(ColumnMap(0)), NextRow(ColumnMap(1)), NextRow(ColumnMap(2)), NextRow(ColumnMap(3)), NextRow(ColumnMap(4)), NextRow(ColumnMap(5)), NextRow(ColumnMap(6)))
                                                 If NextTLO.Asset = "FEE" AndAlso NextTLO.RefId = TLO.RefId Then
                                                     ' Zeile mit Kraken Fee Credit-Buchung gefunden, entsprechende Gebühren-Buchung anlegen
                                                     RecordFee = .Clone()

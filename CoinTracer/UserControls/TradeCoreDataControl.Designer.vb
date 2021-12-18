@@ -155,11 +155,6 @@ Partial Class TradeCoreDataControl
         resources.ApplyResources(TradeTypIDLabel, "TradeTypIDLabel")
         TradeTypIDLabel.Name = "TradeTypIDLabel"
         '
-        'QuellPlattformIDLabel
-        '
-        resources.ApplyResources(Me.QuellPlattformIDLabel, "QuellPlattformIDLabel")
-        Me.QuellPlattformIDLabel.Name = "QuellPlattformIDLabel"
-        '
         'QuellBetragLabel
         '
         resources.ApplyResources(QuellBetragLabel, "QuellBetragLabel")
@@ -169,11 +164,6 @@ Partial Class TradeCoreDataControl
         '
         resources.ApplyResources(QuellKontoIDLabel, "QuellKontoIDLabel")
         QuellKontoIDLabel.Name = "QuellKontoIDLabel"
-        '
-        'ZielPlattformIDLabel
-        '
-        resources.ApplyResources(Me.ZielPlattformIDLabel, "ZielPlattformIDLabel")
-        Me.ZielPlattformIDLabel.Name = "ZielPlattformIDLabel"
         '
         'ZielBetragLabel
         '
@@ -224,6 +214,16 @@ Partial Class TradeCoreDataControl
         '
         resources.ApplyResources(InZeitpunktLabel, "InZeitpunktLabel")
         InZeitpunktLabel.Name = "InZeitpunktLabel"
+        '
+        'QuellPlattformIDLabel
+        '
+        resources.ApplyResources(Me.QuellPlattformIDLabel, "QuellPlattformIDLabel")
+        Me.QuellPlattformIDLabel.Name = "QuellPlattformIDLabel"
+        '
+        'ZielPlattformIDLabel
+        '
+        resources.ApplyResources(Me.ZielPlattformIDLabel, "ZielPlattformIDLabel")
+        Me.ZielPlattformIDLabel.Name = "ZielPlattformIDLabel"
         '
         'TradesBindingNavigator
         '
@@ -610,14 +610,13 @@ Partial Class TradeCoreDataControl
         Me.TableAdapterManager.KonfigurationTableAdapter = Nothing
         Me.TableAdapterManager.KontenTableAdapter = Nothing
         Me.TableAdapterManager.KurseTableAdapter = Nothing
-        Me.TableAdapterManager.Out2InTableAdapter = Nothing
         Me.TableAdapterManager.PlattformenTableAdapter = Nothing
         Me.TableAdapterManager.SzenarienTableAdapter = Nothing
         Me.TableAdapterManager.TradesTableAdapter = Me.TradesTableAdapter
         Me.TableAdapterManager.TradesWerteTableAdapter = Nothing
+        Me.TableAdapterManager.TradeTxTableAdapter = Nothing
         Me.TableAdapterManager.TradeTypenTableAdapter = Me.TradeTypenTableAdapter
         Me.TableAdapterManager.UpdateOrder = CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        Me.TableAdapterManager.ZeitstempelWerteTableAdapter = Nothing
         '
         'TradeCoreDataControl
         '

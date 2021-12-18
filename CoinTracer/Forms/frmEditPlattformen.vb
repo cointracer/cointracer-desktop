@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -126,22 +126,24 @@ Public Class frmEditPlattformen
 
     Private Sub PlattformenBindingSource_CurrentChanged(sender As Object, e As EventArgs) Handles PlattformenBindingSource.CurrentChanged
         Dim SomeSelected As Boolean = Me.PlattformenBindingSource.Position >= 0
+        Dim IsFix As Boolean
         If SomeSelected Then
             Dim CurRow As PlattformenRow = Me.PlattformenBindingSource.Current.Row
             Try
-                BezeichnungTextBox.ReadOnly = SomeSelected AndAlso CurRow.Fix AndAlso Not CurRow.IsFixNull
+                IsFix = SomeSelected AndAlso CurRow.Fix AndAlso Not CurRow.IsFixNull
             Catch ex As Exception
-                BezeichnungTextBox.ReadOnly = False
+                IsFix = False
             End Try
         Else
-            BezeichnungTextBox.ReadOnly = True
+            IsFix = True
         End If
-        IDTextBox.ReadOnly = BezeichnungTextBox.ReadOnly
-        CodeTextBox.ReadOnly = BezeichnungTextBox.ReadOnly
+        BezeichnungTextBox.ReadOnly = False
+        IDTextBox.ReadOnly = IsFix
+        CodeTextBox.ReadOnly = IsFix
         BeschreibungTextBox.ReadOnly = Not SomeSelected
         SortIDTextBox.ReadOnly = Not SomeSelected
-        BoerseCheckBox.Enabled = Not BezeichnungTextBox.ReadOnly
-        IstDownCheckBox.Enabled = BoerseCheckBox.Checked
+        BoerseCheckBox.Enabled = Not IsFix
+        ' IstDownCheckBox.Enabled = BoerseCheckBox.Checked
         EigenCheckBox.Enabled = True
         FixCheckBox.Enabled = False
         BindingNavigatorDeleteItem.Enabled = Not BezeichnungTextBox.ReadOnly
@@ -208,5 +210,7 @@ Public Class frmEditPlattformen
         End If
     End Sub
 
+    Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
 
+    End Sub
 End Class

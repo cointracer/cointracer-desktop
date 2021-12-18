@@ -1,4 +1,52 @@
 ﻿******************************************************
+Version 0.9.6 / 05.04.2021
+----------------------------
+
+Verbesserungen:
+- Import von Bitcoin Cash Node bzw. Bitcoin ABC
+  implementiert.
+- Import von Bitfinex aktualisiert.
+- Beim Import von Transaktions-Dateien kann jetzt
+  die Zielplattform bzw. das Zielwallet ausgewählt
+  werden. (Insb. sinnvoll für Importe von Trade-Daten,
+  die einem Wallet zugeordnet werden sollen.)
+- Es ist jetzt möglich, Trades von einer Plattform auf
+  eine andere zu übertragen. (Hilfreich, wenn man seine
+  privaten Wallets neu organisieren möchte.)
+
+
+******************************************************
+Version 0.9.5.1 / 28.02.2021
+----------------------------
+
+Verbesserungen:
+- Fehlerkorrektur in Gewinnberechnung: Steuerfreie
+  Veräußerungen werden jetzt wieder als solche ge-
+  kennzeichnet.
+- Zyado-Import in historische Imports verschoben.
+- Diverse kleinere GUI-Fehlerkorrekturen und 
+  Verbesserungen.
+
+
+******************************************************
+Version 0.9.5 / 20.02.2021
+----------------------------
+
+Verbesserungen:
+- Gewinnberechnung überarbeitet, so dass interne Transfers 
+  von Coins zwischen Wallets und Börsen korrekt
+  berücksichtigt werden.
+- Gewinnberechungs-Einstellungen vereinfacht: das
+  Verbrauchsfolgeverfahren wird jetzt pauschal gewählt
+  (statt es für verschiedene Geschäftsvorfälle jeweils
+  separat auswählen zu müssen).
+- Kraken-Import aktualisiert, so dass aktuell Ledger-
+  Exportdateien wieder eingelesen werden können.
+- 34 Coins hinzugefügt.
+- Bugfixing und diverse Verbesserungen.
+
+
+******************************************************
 Version 0.9.4.3 / 28.11.2019
 ----------------------------
 
@@ -7,7 +55,7 @@ Verbesserungen:
   toleranz erhöht.
 - Aufwendungen werden in der Übersicht klarer dargestellt.
 - 15 Coins hinzugefügt.
-- Bugfixing
+- Bugfixing.
 
 
 ******************************************************

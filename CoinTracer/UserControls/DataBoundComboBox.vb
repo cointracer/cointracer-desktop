@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -51,6 +51,8 @@ Public Class DataBoundComboBox
 
     Public Event UnsavedChanges As EventHandler(Of DataBoundComboBoxUnsavedChangesEventArgs)
 
+    Private _KeyPressed As Boolean
+
 #Region "Properties"
 
     Private _IDColumn As String
@@ -59,7 +61,7 @@ Public Class DataBoundComboBox
             Return _IDColumn
         End Get
         Set(ByVal value As String)
-            Me.ValueMember = value
+            ValueMember = value
             _IDColumn = value
         End Set
     End Property
@@ -70,27 +72,30 @@ Public Class DataBoundComboBox
             Return _DisplayColumn
         End Get
         Set(ByVal value As String)
-            Me.DisplayMember = value
+            DisplayMember = value
             _DisplayColumn = value
         End Set
     End Property
 
     Private _OriginalLabel As String
+    Private _TypedLabel As String
 
     Public ReadOnly Property LabelSticky() As Boolean
         Get
-            Return Me.Text <> "" And Me.Text <> _OriginalLabel
+            Return Text <> "" AndAlso _OriginalLabel <> _TypedLabel AndAlso _OriginalLabel <> ""
         End Get
     End Property
 
     Private _CustomSticky As Boolean
     Public Property Sticky() As Boolean
         Get
-            Return Me.LabelSticky Or _CustomSticky
+            Return (Not Initializing AndAlso (LabelSticky OrElse _CustomSticky))
         End Get
         Set(value As Boolean)
-            _CustomSticky = value
-            DisEnableButtons()
+            If Not Initializing Then
+                _CustomSticky = value
+                DisEnableButtons()
+            End If
         End Set
     End Property
 
@@ -125,23 +130,21 @@ Public Class DataBoundComboBox
         End Get
     End Property
 
-
-
     ''' <summary>
     ''' Prüft, ob der aktuell eingegebene Text in der Datenquelle bereits vorhanden ist.
     ''' </summary>
     ''' <returns>True, wenn der aktuell angezeigte Text vorhanden ist, sonst False</returns>
-    Public ReadOnly Property LabelPresent() As Boolean
+    Public ReadOnly Property LabelInDataSource() As Boolean
         Get
             ' Prüfen, ob es den aktuellen Eintrag bereits gibt
-            Dim Present As Boolean = (Me.Text.Trim <> "")
-            If TryCast(Me.DataSource, DataTable) IsNot Nothing Then
-                Dim DV As New DataView(DirectCast(Me.DataSource, DataTable), _
-                                       String.Format("{0} = '{1}'", _DisplayColumn, Me.MaskedText), _
+            Dim Present As Boolean = (Text.Trim <> "")
+            If TryCast(DataSource, DataTable) IsNot Nothing Then
+                Dim DV As New DataView(DirectCast(DataSource, DataTable),
+                                       String.Format("{0} = '{1}'", _DisplayColumn, MaskedText),
                                        "", DataViewRowState.OriginalRows)
                 Present = Present And DV.Count > 0
             Else
-                Present = Present And Me.Items.Contains(Me.Text.Trim)
+                Present = Present And Items.Contains(Text.Trim)
             End If
             Return Present
         End Get
@@ -152,8 +155,22 @@ Public Class DataBoundComboBox
     ''' </summary>
     Public ReadOnly Property MaskedText() As String
         Get
-            Return Me.Text.Trim.Replace("'", "\'").Replace("""", "\'")
+            Return Text.Trim.Replace("'", "\'").Replace("""", "\'")
         End Get
+    End Property
+
+    Private _Initializing As Boolean
+    ''' <summary>
+    ''' Determines if the control is in the process of initialization. This flag is needed to prevent recursive event calls.
+    ''' </summary>
+    ''' <returns>True in case of initialisation. False otherwise.</returns>
+    Public Property Initializing() As Boolean
+        Get
+            Return _Initializing
+        End Get
+        Set(ByVal value As Boolean)
+            _Initializing = value
+        End Set
     End Property
 
 #End Region
@@ -168,36 +185,42 @@ Public Class DataBoundComboBox
         _CustomSticky = False
         _DeleteButton = Nothing
         _SaveButton = Nothing
+        _Initializing = True
+        _KeyPressed = False
 
     End Sub
 
-    Public Sub Initialize(Connection As Data.SQLite.SQLiteConnection, _
-                          SelectSQL As String, _
-                          Optional IDColumnName As String = "ID", _
-                          Optional DisplayColumnName As String = "Bezeichnung", _
-                          Optional SaveButton As Button = Nothing, _
+    ''' <summary>
+    ''' Initializes the control
+    ''' </summary>
+    Public Sub Initialize(Connection As Data.SQLite.SQLiteConnection,
+                          SelectSQL As String,
+                          Optional IDColumnName As String = "ID",
+                          Optional DisplayColumnName As String = "Bezeichnung",
+                          Optional SaveButton As Button = Nothing,
                           Optional DeleteButton As Button = Nothing)
         _cnn = Connection
         _SelectSQL = SelectSQL
-        Try
-            Dim DBO As DBObjects = New DBObjects(SelectSQL, Connection)
-            Me.DataSource = DBO.DataTable
-            DBO.Dispose()
-        Catch ex As Exception
-            Throw
-            Exit Sub
-        End Try
+        Initializing = True
+        _KeyPressed = False
         Me.IDColumnName = IDColumnName
         Me.DisplayColumnName = DisplayColumnName
+        Reload("")
+        Initializing = True
         If SaveButton IsNot Nothing Then
             _SaveButton = SaveButton
         End If
         If DeleteButton IsNot Nothing Then
             _DeleteButton = DeleteButton
         End If
-        _OriginalLabel = ""
-        _CustomSticky = False
-        DisEnableButtons()
+        If Items?.Count > 0 AndAlso SelectedIndex >= 0 Then
+            _OriginalLabel = Items(SelectedIndex)(DisplayColumnName).ToString
+        Else
+            _OriginalLabel = ""
+        End If
+        _TypedLabel = _OriginalLabel
+        Sticky = False
+        Initializing = False
     End Sub
 
 #Region "Methods"
@@ -206,18 +229,20 @@ Public Class DataBoundComboBox
     ''' Lädt die Datenquelle des Controls neu
     ''' </summary>
     Public Sub Reload(Optional SelectValue As String = "")
-        If Me.Connection IsNot Nothing AndAlso Me.SelectSQL <> "" Then
+        If Connection IsNot Nothing AndAlso SelectSQL <> "" Then
+            Initializing = True
+            _KeyPressed = False
             Dim DBO As DBObjects = New DBObjects(SelectSQL, Connection)
-            Me.DataSource = DBO.DataTable
+            DataSource = DBO.DataTable
             DBO.Dispose()
-            Me.DisplayMember = _DisplayColumn
-            Me.ValueMember = _IDColumn
+            DisplayMember = _DisplayColumn
+            ValueMember = _IDColumn
             _CustomSticky = False
             If SelectValue <> "" Then
                 Try
-                    For i As Integer = 0 To Me.Items.Count
-                        If Me.Items(i)(_DisplayColumn).ToString = SelectValue Then
-                            Me.SelectedItem = Me.Items(i)
+                    For i As Integer = 0 To Items.Count
+                        If Items(i)(_DisplayColumn).ToString = SelectValue Then
+                            SelectedItem = Items(i)
                             Exit For
                         End If
                     Next
@@ -225,22 +250,13 @@ Public Class DataBoundComboBox
                     Debug.Print("DataBoundComboBox_Reload")
                 End Try
             End If
+            Initializing = False
         End If
     End Sub
 
 #End Region
 
 #Region "Internal routines"
-
-    ''' <summary>
-    ''' Prüft, ob es Änderungen gibt und löst ggf. das Event "UnsavedChanges" aus
-    ''' </summary>
-    Private Sub CheckForChanges()
-        If LabelSticky OrElse _CustomSticky Then
-            ' Event auslösen (Label geändert)
-            RaiseEvent UnsavedChanges(Me, New DataBoundComboBoxUnsavedChangesEventArgs(_OriginalLabel, Me.Text, Me.LabelPresent))
-        End If
-    End Sub
 
     ''' <summary>
     ''' Setzt Enabled-Status der verbundenen Buttons
@@ -259,15 +275,31 @@ Public Class DataBoundComboBox
 #Region "Control events"
 
     Private Sub DataBoundComboBox_TextChanged(sender As Object, e As EventArgs) Handles Me.TextChanged
-        DisEnableButtons()
+        If _KeyPressed Then
+            _KeyPressed = False
+            _TypedLabel = Text.Trim
+            DisEnableButtons()
+        End If
     End Sub
 
     Private Sub DataBoundComboBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Me.SelectedIndexChanged
-        CheckForChanges()
-        _OriginalLabel = Me.Text
-        _CustomSticky = False
-        DisEnableButtons()
-        'MyBase.OnSelectedIndexChanged(e)
+        If Not Initializing Then
+            If Sticky Then
+                RaiseEvent UnsavedChanges(Me, New DataBoundComboBoxUnsavedChangesEventArgs(_TypedLabel, Text, LabelInDataSource))
+            End If
+            _OriginalLabel = Text
+            _TypedLabel = _OriginalLabel
+            Sticky = False
+        End If
+    End Sub
+
+    Private Sub DataBoundComboBox_Click(sender As Object, e As EventArgs) Handles Me.Click
+        _TypedLabel = Text
+    End Sub
+
+    Private Sub DataBoundComboBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Me.KeyPress
+        ' Keep track of manually entered key strokes
+        _KeyPressed = True
     End Sub
 
 #End Region

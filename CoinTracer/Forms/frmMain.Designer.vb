@@ -46,29 +46,10 @@ Partial Class frmMain
     Friend WithEvents imlTabs As System.Windows.Forms.ImageList
     Friend WithEvents grpBestand As System.Windows.Forms.GroupBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents tctlCoinValueStrats As System.Windows.Forms.TabControl
-    Friend WithEvents tbpXChange2Wallet As System.Windows.Forms.TabPage
-    Friend WithEvents tbpWallet2XChange As System.Windows.Forms.TabPage
-    Friend WithEvents LabelXChange2Wallet As System.Windows.Forms.Label
-    Friend WithEvents LabelWallet2XChange As System.Windows.Forms.Label
-    Friend WithEvents tbpXChange2XChange As System.Windows.Forms.TabPage
-    Friend WithEvents LabelXChange2XChange As System.Windows.Forms.Label
-    Friend WithEvents vssXChange2Wallet As CoinTracer.ValueStrategySelector
-    Friend WithEvents vssWallet2XChange As CoinTracer.ValueStrategySelector
-    Friend WithEvents vssXChange2XChange As CoinTracer.ValueStrategySelector
-    Friend WithEvents tbpCoins4Fiat As System.Windows.Forms.TabPage
-    Friend WithEvents vssCoins4Fiat As CoinTracer.ValueStrategySelector
-    Friend WithEvents LabelCoins4Fiat As System.Windows.Forms.Label
-    Friend WithEvents tbpCoins4Coins As System.Windows.Forms.TabPage
-    Friend WithEvents vssCoins4Coins As CoinTracer.ValueStrategySelector
-    Friend WithEvents LabelCoins4Coins As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents cmdReloadDash As System.Windows.Forms.Button
     Friend WithEvents dshgrdAbgaenge As CoinTracer.DashboardDataGridView
     Friend WithEvents dshgrdBestaende As CoinTracer.DashboardDataGridView
-    Friend WithEvents tbpWithdrawal As System.Windows.Forms.TabPage
-    Friend WithEvents vssWithdrawal As CoinTracer.ValueStrategySelector
-    Friend WithEvents LabelWithdrawal As System.Windows.Forms.Label
     Friend WithEvents pnlDonate As System.Windows.Forms.Panel
     Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
     Friend WithEvents cmdDonateBTC As System.Windows.Forms.Button
@@ -135,12 +116,6 @@ Partial Class frmMain
     Friend WithEvents tsmiEditPlattformen As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents cmnKonten As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents tsmiEditKonten As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents LabelWithdrawalNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelXChange2XChangeNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelWallet2XChangeNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelXChange2WalletNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelCoins4CoinsNotThere As System.Windows.Forms.Label
-    Friend WithEvents LabelCoins4FiatNotThere As System.Windows.Forms.Label
     Friend WithEvents lblRightMouse As System.Windows.Forms.Label
     Friend WithEvents lblSzenarioRpt As System.Windows.Forms.Label
     Friend WithEvents grpReportAdditionalData As System.Windows.Forms.GroupBox
@@ -158,16 +133,12 @@ Partial Class frmMain
     Friend WithEvents DataGridViewAutoFilterTextBoxColumn3 As CoinTracer.DataGridViewAutoFilterTextBoxColumn
     Friend WithEvents tbxReportAdvice As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents tbpGeneral As System.Windows.Forms.TabPage
-    Friend WithEvents lblHaltefrist As System.Windows.Forms.Label
-    Friend WithEvents dpctlHaltefrist As CoinTracer.DataPeriodControl
-    Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents ccbReportPlatforms As CoinTracer.CheckComboBox.CheckedComboBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label6 As System.Windows.Forms.Label
     Friend WithEvents cbxReportTradeSelection As System.Windows.Forms.ComboBox
-    Friend WithEvents cbxReportGrouping As System.Windows.Forms.ComboBox
+    Friend WithEvents cbxReportTransfers As System.Windows.Forms.ComboBox
 
     'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
     'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
@@ -176,25 +147,25 @@ Partial Class frmMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.spltCntDashboard = New System.Windows.Forms.SplitContainer()
         Me.grpBestand = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
@@ -270,12 +241,8 @@ Partial Class frmMain
         Me.gnd2ndTab = New CoinTracer.GainingsDisplay()
         Me.cmdReloadGainings = New System.Windows.Forms.Button()
         Me.grpSettings = New System.Windows.Forms.GroupBox()
-        Me.tctlCoinValueStrats = New System.Windows.Forms.TabControl()
-        Me.tbpGeneral = New System.Windows.Forms.TabPage()
+        Me.vssGlobalStrategy = New CoinTracer.ValueStrategySelector()
         Me.cmdTCSExtended = New System.Windows.Forms.Button()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Separator1 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.cbxCoins4CoinsAccounting = New System.Windows.Forms.ComboBox()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -285,30 +252,6 @@ Partial Class frmMain
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
-        Me.tbpCoins4Fiat = New System.Windows.Forms.TabPage()
-        Me.LabelCoins4FiatNotThere = New System.Windows.Forms.Label()
-        Me.vssCoins4Fiat = New CoinTracer.ValueStrategySelector()
-        Me.LabelCoins4Fiat = New System.Windows.Forms.Label()
-        Me.tbpCoins4Coins = New System.Windows.Forms.TabPage()
-        Me.LabelCoins4CoinsNotThere = New System.Windows.Forms.Label()
-        Me.LabelCoins4Coins = New System.Windows.Forms.Label()
-        Me.vssCoins4Coins = New CoinTracer.ValueStrategySelector()
-        Me.tbpXChange2Wallet = New System.Windows.Forms.TabPage()
-        Me.LabelXChange2WalletNotThere = New System.Windows.Forms.Label()
-        Me.LabelXChange2Wallet = New System.Windows.Forms.Label()
-        Me.vssXChange2Wallet = New CoinTracer.ValueStrategySelector()
-        Me.tbpWallet2XChange = New System.Windows.Forms.TabPage()
-        Me.LabelWallet2XChangeNotThere = New System.Windows.Forms.Label()
-        Me.LabelWallet2XChange = New System.Windows.Forms.Label()
-        Me.vssWallet2XChange = New CoinTracer.ValueStrategySelector()
-        Me.tbpXChange2XChange = New System.Windows.Forms.TabPage()
-        Me.LabelXChange2XChangeNotThere = New System.Windows.Forms.Label()
-        Me.LabelXChange2XChange = New System.Windows.Forms.Label()
-        Me.vssXChange2XChange = New CoinTracer.ValueStrategySelector()
-        Me.tbpWithdrawal = New System.Windows.Forms.TabPage()
-        Me.LabelWithdrawalNotThere = New System.Windows.Forms.Label()
-        Me.LabelWithdrawal = New System.Windows.Forms.Label()
-        Me.vssWithdrawal = New CoinTracer.ValueStrategySelector()
         Me.tabReports = New System.Windows.Forms.TabPage()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.grpReportAdditionalData = New System.Windows.Forms.GroupBox()
@@ -324,7 +267,7 @@ Partial Class frmMain
         Me.cmdReportExport = New System.Windows.Forms.Button()
         Me.cbxReportTradeSelection = New System.Windows.Forms.ComboBox()
         Me.cmdReloadReport = New System.Windows.Forms.Button()
-        Me.cbxReportGrouping = New System.Windows.Forms.ComboBox()
+        Me.cbxReportTransfers = New System.Windows.Forms.ComboBox()
         Me.grdReport = New System.Windows.Forms.DataGridView()
         Me.Vorgang = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Timestamp = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -363,6 +306,7 @@ Partial Class frmMain
         Me.grdPlattformen = New CoinTracer.BoundDataGridView()
         Me.cmnPlattformen = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.tsmiEditPlattformen = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmiMergePlatformTrades = New System.Windows.Forms.ToolStripMenuItem()
         Me.tabKonten = New System.Windows.Forms.TabPage()
         Me.grdKonten = New CoinTracer.BoundDataGridView()
         Me.cmnKonten = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -380,7 +324,6 @@ Partial Class frmMain
         Me.imlTabs = New System.Windows.Forms.ImageList(Me.components)
         Me.pnlDonate = New System.Windows.Forms.Panel()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.cmdDonateIota = New System.Windows.Forms.Button()
         Me.cmdDonateETH = New System.Windows.Forms.Button()
         Me.cmdDonateBCH = New System.Windows.Forms.Button()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -432,14 +375,6 @@ Partial Class frmMain
         Me.grpCalculate.SuspendLayout()
         Me.grpGainings.SuspendLayout()
         Me.grpSettings.SuspendLayout()
-        Me.tctlCoinValueStrats.SuspendLayout()
-        Me.tbpGeneral.SuspendLayout()
-        Me.tbpCoins4Fiat.SuspendLayout()
-        Me.tbpCoins4Coins.SuspendLayout()
-        Me.tbpXChange2Wallet.SuspendLayout()
-        Me.tbpWallet2XChange.SuspendLayout()
-        Me.tbpXChange2XChange.SuspendLayout()
-        Me.tbpWithdrawal.SuspendLayout()
         Me.tabReports.SuspendLayout()
         Me.grpReportAdditionalData.SuspendLayout()
         CType(Me.grdReport, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -513,6 +448,7 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.gnd1stTab, "gnd1stTab")
         Me.gnd1stTab.CutOffDay = New Date(CType(0, Long))
+        Me.gnd1stTab.DisableChangedEvent = False
         Me.gnd1stTab.Gainings = New Decimal(New Integer() {0, 0, 0, 0})
         Me.gnd1stTab.Name = "gnd1stTab"
         Me.gnd1stTab.PlatformGainings = New Decimal(New Integer() {0, 0, 0, 0})
@@ -631,8 +567,8 @@ Partial Class frmMain
         '
         'Wallet
         '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Wallet.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Wallet.DefaultCellStyle = DataGridViewCellStyle20
         Me.Wallet.Frozen = True
         resources.ApplyResources(Me.Wallet, "Wallet")
         Me.Wallet.Name = "Wallet"
@@ -640,8 +576,8 @@ Partial Class frmMain
         '
         'Zeitpunkt
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Zeitpunkt.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Zeitpunkt.DefaultCellStyle = DataGridViewCellStyle21
         Me.Zeitpunkt.Frozen = True
         resources.ApplyResources(Me.Zeitpunkt, "Zeitpunkt")
         Me.Zeitpunkt.Name = "Zeitpunkt"
@@ -897,6 +833,7 @@ Partial Class frmMain
         Me.cbxSzenario.DisplayColumnName = Nothing
         Me.cbxSzenario.FormattingEnabled = True
         Me.cbxSzenario.IDColumnName = Nothing
+        Me.cbxSzenario.Initializing = True
         resources.ApplyResources(Me.cbxSzenario, "cbxSzenario")
         Me.cbxSzenario.Name = "cbxSzenario"
         Me.cbxSzenario.SelectSQL = Nothing
@@ -995,6 +932,7 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.gnd2ndTab, "gnd2ndTab")
         Me.gnd2ndTab.CutOffDay = New Date(CType(0, Long))
+        Me.gnd2ndTab.DisableChangedEvent = False
         Me.gnd2ndTab.Gainings = New Decimal(New Integer() {0, 0, 0, 0})
         Me.gnd2ndTab.Name = "gnd2ndTab"
         Me.gnd2ndTab.PlatformGainings = New Decimal(New Integer() {0, 0, 0, 0})
@@ -1012,65 +950,31 @@ Partial Class frmMain
         'grpSettings
         '
         resources.ApplyResources(Me.grpSettings, "grpSettings")
-        Me.grpSettings.Controls.Add(Me.tctlCoinValueStrats)
+        Me.grpSettings.Controls.Add(Me.vssGlobalStrategy)
+        Me.grpSettings.Controls.Add(Me.cmdTCSExtended)
+        Me.grpSettings.Controls.Add(Me.Label17)
+        Me.grpSettings.Controls.Add(Me.cbxCoins4CoinsAccounting)
+        Me.grpSettings.Controls.Add(Me.Label16)
+        Me.grpSettings.Controls.Add(Me.cbxWalletAware)
+        Me.grpSettings.Controls.Add(Me.lblHaltefrist)
+        Me.grpSettings.Controls.Add(Me.dpctlHaltefrist)
+        Me.grpSettings.Controls.Add(Me.Label5)
+        Me.grpSettings.Controls.Add(Me.Label18)
+        Me.grpSettings.Controls.Add(Me.Label14)
         Me.grpSettings.Name = "grpSettings"
         Me.grpSettings.TabStop = False
         '
-        'tctlCoinValueStrats
+        'vssGlobalStrategy
         '
-        resources.ApplyResources(Me.tctlCoinValueStrats, "tctlCoinValueStrats")
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpGeneral)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpCoins4Fiat)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpCoins4Coins)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpXChange2Wallet)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpWallet2XChange)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpXChange2XChange)
-        Me.tctlCoinValueStrats.Controls.Add(Me.tbpWithdrawal)
-        Me.tctlCoinValueStrats.Name = "tctlCoinValueStrats"
-        Me.tctlCoinValueStrats.SelectedIndex = 0
-        '
-        'tbpGeneral
-        '
-        Me.tbpGeneral.Controls.Add(Me.cmdTCSExtended)
-        Me.tbpGeneral.Controls.Add(Me.Label20)
-        Me.tbpGeneral.Controls.Add(Me.Label19)
-        Me.tbpGeneral.Controls.Add(Me.Separator1)
-        Me.tbpGeneral.Controls.Add(Me.Label17)
-        Me.tbpGeneral.Controls.Add(Me.cbxCoins4CoinsAccounting)
-        Me.tbpGeneral.Controls.Add(Me.Label16)
-        Me.tbpGeneral.Controls.Add(Me.cbxWalletAware)
-        Me.tbpGeneral.Controls.Add(Me.lblHaltefrist)
-        Me.tbpGeneral.Controls.Add(Me.dpctlHaltefrist)
-        Me.tbpGeneral.Controls.Add(Me.Label5)
-        Me.tbpGeneral.Controls.Add(Me.Label18)
-        Me.tbpGeneral.Controls.Add(Me.Label14)
-        resources.ApplyResources(Me.tbpGeneral, "tbpGeneral")
-        Me.tbpGeneral.Name = "tbpGeneral"
-        Me.tbpGeneral.UseVisualStyleBackColor = True
+        resources.ApplyResources(Me.vssGlobalStrategy, "vssGlobalStrategy")
+        Me.vssGlobalStrategy.FineTuningEnabled = True
+        Me.vssGlobalStrategy.Name = "vssGlobalStrategy"
         '
         'cmdTCSExtended
         '
         resources.ApplyResources(Me.cmdTCSExtended, "cmdTCSExtended")
         Me.cmdTCSExtended.Name = "cmdTCSExtended"
         Me.cmdTCSExtended.UseVisualStyleBackColor = True
-        '
-        'Label20
-        '
-        resources.ApplyResources(Me.Label20, "Label20")
-        Me.Label20.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label20.Name = "Label20"
-        '
-        'Label19
-        '
-        resources.ApplyResources(Me.Label19, "Label19")
-        Me.Label19.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label19.Name = "Label19"
-        '
-        'Separator1
-        '
-        resources.ApplyResources(Me.Separator1, "Separator1")
-        Me.Separator1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Separator1.Name = "Separator1"
         '
         'Label17
         '
@@ -1126,168 +1030,6 @@ Partial Class frmMain
         resources.ApplyResources(Me.Label14, "Label14")
         Me.Label14.Name = "Label14"
         '
-        'tbpCoins4Fiat
-        '
-        Me.tbpCoins4Fiat.Controls.Add(Me.LabelCoins4FiatNotThere)
-        Me.tbpCoins4Fiat.Controls.Add(Me.vssCoins4Fiat)
-        Me.tbpCoins4Fiat.Controls.Add(Me.LabelCoins4Fiat)
-        resources.ApplyResources(Me.tbpCoins4Fiat, "tbpCoins4Fiat")
-        Me.tbpCoins4Fiat.Name = "tbpCoins4Fiat"
-        Me.tbpCoins4Fiat.UseVisualStyleBackColor = True
-        '
-        'LabelCoins4FiatNotThere
-        '
-        resources.ApplyResources(Me.LabelCoins4FiatNotThere, "LabelCoins4FiatNotThere")
-        Me.LabelCoins4FiatNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelCoins4FiatNotThere.Name = "LabelCoins4FiatNotThere"
-        '
-        'vssCoins4Fiat
-        '
-        resources.ApplyResources(Me.vssCoins4Fiat, "vssCoins4Fiat")
-        Me.vssCoins4Fiat.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssCoins4Fiat.FineTuningEnabled = False
-        Me.vssCoins4Fiat.Name = "vssCoins4Fiat"
-        '
-        'LabelCoins4Fiat
-        '
-        resources.ApplyResources(Me.LabelCoins4Fiat, "LabelCoins4Fiat")
-        Me.LabelCoins4Fiat.Name = "LabelCoins4Fiat"
-        '
-        'tbpCoins4Coins
-        '
-        Me.tbpCoins4Coins.Controls.Add(Me.LabelCoins4CoinsNotThere)
-        Me.tbpCoins4Coins.Controls.Add(Me.LabelCoins4Coins)
-        Me.tbpCoins4Coins.Controls.Add(Me.vssCoins4Coins)
-        resources.ApplyResources(Me.tbpCoins4Coins, "tbpCoins4Coins")
-        Me.tbpCoins4Coins.Name = "tbpCoins4Coins"
-        Me.tbpCoins4Coins.UseVisualStyleBackColor = True
-        '
-        'LabelCoins4CoinsNotThere
-        '
-        resources.ApplyResources(Me.LabelCoins4CoinsNotThere, "LabelCoins4CoinsNotThere")
-        Me.LabelCoins4CoinsNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelCoins4CoinsNotThere.Name = "LabelCoins4CoinsNotThere"
-        '
-        'LabelCoins4Coins
-        '
-        resources.ApplyResources(Me.LabelCoins4Coins, "LabelCoins4Coins")
-        Me.LabelCoins4Coins.Name = "LabelCoins4Coins"
-        '
-        'vssCoins4Coins
-        '
-        resources.ApplyResources(Me.vssCoins4Coins, "vssCoins4Coins")
-        Me.vssCoins4Coins.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssCoins4Coins.FineTuningEnabled = True
-        Me.vssCoins4Coins.Name = "vssCoins4Coins"
-        '
-        'tbpXChange2Wallet
-        '
-        Me.tbpXChange2Wallet.Controls.Add(Me.LabelXChange2WalletNotThere)
-        Me.tbpXChange2Wallet.Controls.Add(Me.LabelXChange2Wallet)
-        Me.tbpXChange2Wallet.Controls.Add(Me.vssXChange2Wallet)
-        resources.ApplyResources(Me.tbpXChange2Wallet, "tbpXChange2Wallet")
-        Me.tbpXChange2Wallet.Name = "tbpXChange2Wallet"
-        Me.tbpXChange2Wallet.UseVisualStyleBackColor = True
-        '
-        'LabelXChange2WalletNotThere
-        '
-        resources.ApplyResources(Me.LabelXChange2WalletNotThere, "LabelXChange2WalletNotThere")
-        Me.LabelXChange2WalletNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelXChange2WalletNotThere.Name = "LabelXChange2WalletNotThere"
-        '
-        'LabelXChange2Wallet
-        '
-        resources.ApplyResources(Me.LabelXChange2Wallet, "LabelXChange2Wallet")
-        Me.LabelXChange2Wallet.Name = "LabelXChange2Wallet"
-        '
-        'vssXChange2Wallet
-        '
-        resources.ApplyResources(Me.vssXChange2Wallet, "vssXChange2Wallet")
-        Me.vssXChange2Wallet.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssXChange2Wallet.FineTuningEnabled = True
-        Me.vssXChange2Wallet.Name = "vssXChange2Wallet"
-        '
-        'tbpWallet2XChange
-        '
-        Me.tbpWallet2XChange.Controls.Add(Me.LabelWallet2XChangeNotThere)
-        Me.tbpWallet2XChange.Controls.Add(Me.LabelWallet2XChange)
-        Me.tbpWallet2XChange.Controls.Add(Me.vssWallet2XChange)
-        resources.ApplyResources(Me.tbpWallet2XChange, "tbpWallet2XChange")
-        Me.tbpWallet2XChange.Name = "tbpWallet2XChange"
-        Me.tbpWallet2XChange.UseVisualStyleBackColor = True
-        '
-        'LabelWallet2XChangeNotThere
-        '
-        resources.ApplyResources(Me.LabelWallet2XChangeNotThere, "LabelWallet2XChangeNotThere")
-        Me.LabelWallet2XChangeNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelWallet2XChangeNotThere.Name = "LabelWallet2XChangeNotThere"
-        '
-        'LabelWallet2XChange
-        '
-        resources.ApplyResources(Me.LabelWallet2XChange, "LabelWallet2XChange")
-        Me.LabelWallet2XChange.Name = "LabelWallet2XChange"
-        '
-        'vssWallet2XChange
-        '
-        resources.ApplyResources(Me.vssWallet2XChange, "vssWallet2XChange")
-        Me.vssWallet2XChange.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssWallet2XChange.FineTuningEnabled = True
-        Me.vssWallet2XChange.Name = "vssWallet2XChange"
-        '
-        'tbpXChange2XChange
-        '
-        Me.tbpXChange2XChange.Controls.Add(Me.LabelXChange2XChangeNotThere)
-        Me.tbpXChange2XChange.Controls.Add(Me.LabelXChange2XChange)
-        Me.tbpXChange2XChange.Controls.Add(Me.vssXChange2XChange)
-        resources.ApplyResources(Me.tbpXChange2XChange, "tbpXChange2XChange")
-        Me.tbpXChange2XChange.Name = "tbpXChange2XChange"
-        Me.tbpXChange2XChange.UseVisualStyleBackColor = True
-        '
-        'LabelXChange2XChangeNotThere
-        '
-        resources.ApplyResources(Me.LabelXChange2XChangeNotThere, "LabelXChange2XChangeNotThere")
-        Me.LabelXChange2XChangeNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelXChange2XChangeNotThere.Name = "LabelXChange2XChangeNotThere"
-        '
-        'LabelXChange2XChange
-        '
-        resources.ApplyResources(Me.LabelXChange2XChange, "LabelXChange2XChange")
-        Me.LabelXChange2XChange.Name = "LabelXChange2XChange"
-        '
-        'vssXChange2XChange
-        '
-        resources.ApplyResources(Me.vssXChange2XChange, "vssXChange2XChange")
-        Me.vssXChange2XChange.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssXChange2XChange.FineTuningEnabled = True
-        Me.vssXChange2XChange.Name = "vssXChange2XChange"
-        '
-        'tbpWithdrawal
-        '
-        Me.tbpWithdrawal.Controls.Add(Me.LabelWithdrawalNotThere)
-        Me.tbpWithdrawal.Controls.Add(Me.LabelWithdrawal)
-        Me.tbpWithdrawal.Controls.Add(Me.vssWithdrawal)
-        resources.ApplyResources(Me.tbpWithdrawal, "tbpWithdrawal")
-        Me.tbpWithdrawal.Name = "tbpWithdrawal"
-        Me.tbpWithdrawal.UseVisualStyleBackColor = True
-        '
-        'LabelWithdrawalNotThere
-        '
-        resources.ApplyResources(Me.LabelWithdrawalNotThere, "LabelWithdrawalNotThere")
-        Me.LabelWithdrawalNotThere.ForeColor = System.Drawing.Color.MidnightBlue
-        Me.LabelWithdrawalNotThere.Name = "LabelWithdrawalNotThere"
-        '
-        'LabelWithdrawal
-        '
-        resources.ApplyResources(Me.LabelWithdrawal, "LabelWithdrawal")
-        Me.LabelWithdrawal.Name = "LabelWithdrawal"
-        '
-        'vssWithdrawal
-        '
-        resources.ApplyResources(Me.vssWithdrawal, "vssWithdrawal")
-        Me.vssWithdrawal.CoinPreferration = CoinTracer.CoinValueStrategy.CoinValuePreferrations.NothingPreferred
-        Me.vssWithdrawal.FineTuningEnabled = True
-        Me.vssWithdrawal.Name = "vssWithdrawal"
-        '
         'tabReports
         '
         Me.tabReports.Controls.Add(Me.Label13)
@@ -1298,7 +1040,7 @@ Partial Class frmMain
         Me.tabReports.Controls.Add(Me.cmdReportExport)
         Me.tabReports.Controls.Add(Me.cbxReportTradeSelection)
         Me.tabReports.Controls.Add(Me.cmdReloadReport)
-        Me.tabReports.Controls.Add(Me.cbxReportGrouping)
+        Me.tabReports.Controls.Add(Me.cbxReportTransfers)
         Me.tabReports.Controls.Add(Me.grdReport)
         Me.tabReports.Controls.Add(Me.ccbReportPlatforms)
         Me.tabReports.Controls.Add(Me.gnd3rdTab)
@@ -1390,13 +1132,13 @@ Partial Class frmMain
         Me.cmdReloadReport.Name = "cmdReloadReport"
         Me.cmdReloadReport.UseVisualStyleBackColor = True
         '
-        'cbxReportGrouping
+        'cbxReportTransfers
         '
-        Me.cbxReportGrouping.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        resources.ApplyResources(Me.cbxReportGrouping, "cbxReportGrouping")
-        Me.cbxReportGrouping.FormattingEnabled = True
-        Me.cbxReportGrouping.Items.AddRange(New Object() {resources.GetString("cbxReportGrouping.Items"), resources.GetString("cbxReportGrouping.Items1")})
-        Me.cbxReportGrouping.Name = "cbxReportGrouping"
+        Me.cbxReportTransfers.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxReportTransfers.FormattingEnabled = True
+        Me.cbxReportTransfers.Items.AddRange(New Object() {resources.GetString("cbxReportTransfers.Items"), resources.GetString("cbxReportTransfers.Items1"), resources.GetString("cbxReportTransfers.Items2")})
+        resources.ApplyResources(Me.cbxReportTransfers, "cbxReportTransfers")
+        Me.cbxReportTransfers.Name = "cbxReportTransfers"
         '
         'grdReport
         '
@@ -1404,11 +1146,12 @@ Partial Class frmMain
         Me.grdReport.AllowUserToDeleteRows = False
         Me.grdReport.AllowUserToOrderColumns = True
         resources.ApplyResources(Me.grdReport, "grdReport")
-        Me.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.grdReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.grdReport.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Vorgang, Me.Timestamp, Me.Art, Me.Plattform, Me.TypeCoins, Me.AmountCoins, Me.PriceUSD, Me.Total, Me.Gesamt_EUR, Me.Kurs_EUR, Me.Kaufvorgang, Me.Kaufdatum, Me.CoinAnteil, Me.OrgPriceEUR, Me.KaufkursEUR, Me.VerkaufspreisEUR, Me.Gaining, Me.TaxFree})
         Me.grdReport.Name = "grdReport"
         Me.grdReport.ReadOnly = True
         Me.grdReport.RowHeadersVisible = False
+        Me.grdReport.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.grdReport.ShowCellErrors = False
         '
         'Vorgang
@@ -1456,10 +1199,10 @@ Partial Class frmMain
         'AmountCoins
         '
         Me.AmountCoins.DataPropertyName = "Coin-Menge"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "N6"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.AmountCoins.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle22.Format = "N8"
+        DataGridViewCellStyle22.NullValue = Nothing
+        Me.AmountCoins.DefaultCellStyle = DataGridViewCellStyle22
         Me.AmountCoins.FillWeight = 102.0!
         resources.ApplyResources(Me.AmountCoins, "AmountCoins")
         Me.AmountCoins.Name = "AmountCoins"
@@ -1477,10 +1220,10 @@ Partial Class frmMain
         'Total
         '
         Me.Total.DataPropertyName = "Gesamtpreis"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "N6"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.Total.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle23.Format = "N6"
+        DataGridViewCellStyle23.NullValue = Nothing
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle23
         resources.ApplyResources(Me.Total, "Total")
         Me.Total.Name = "Total"
         Me.Total.ReadOnly = True
@@ -1488,10 +1231,10 @@ Partial Class frmMain
         'Gesamt_EUR
         '
         Me.Gesamt_EUR.DataPropertyName = "Gesamtwert EUR"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "N2"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.Gesamt_EUR.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle24.Format = "N2"
+        DataGridViewCellStyle24.NullValue = Nothing
+        Me.Gesamt_EUR.DefaultCellStyle = DataGridViewCellStyle24
         resources.ApplyResources(Me.Gesamt_EUR, "Gesamt_EUR")
         Me.Gesamt_EUR.Name = "Gesamt_EUR"
         Me.Gesamt_EUR.ReadOnly = True
@@ -1499,10 +1242,10 @@ Partial Class frmMain
         'Kurs_EUR
         '
         Me.Kurs_EUR.DataPropertyName = "Kurs EUR"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "N2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.Kurs_EUR.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle25.Format = "N2"
+        DataGridViewCellStyle25.NullValue = Nothing
+        Me.Kurs_EUR.DefaultCellStyle = DataGridViewCellStyle25
         resources.ApplyResources(Me.Kurs_EUR, "Kurs_EUR")
         Me.Kurs_EUR.Name = "Kurs_EUR"
         Me.Kurs_EUR.ReadOnly = True
@@ -1520,9 +1263,9 @@ Partial Class frmMain
         '
         Me.Kaufdatum.CaptionAllValues = "(Alles auswählen)"
         Me.Kaufdatum.DataPropertyName = "Anschaffungsdatum"
-        DataGridViewCellStyle7.Format = "d"
-        DataGridViewCellStyle7.NullValue = "-"
-        Me.Kaufdatum.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle26.Format = "d"
+        DataGridViewCellStyle26.NullValue = "-"
+        Me.Kaufdatum.DefaultCellStyle = DataGridViewCellStyle26
         resources.ApplyResources(Me.Kaufdatum, "Kaufdatum")
         Me.Kaufdatum.Name = "Kaufdatum"
         Me.Kaufdatum.ReadOnly = True
@@ -1530,10 +1273,10 @@ Partial Class frmMain
         'CoinAnteil
         '
         Me.CoinAnteil.DataPropertyName = "Coin-Anteil"
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle8.Format = "N6"
-        DataGridViewCellStyle8.NullValue = Nothing
-        Me.CoinAnteil.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle27.Format = "N8"
+        DataGridViewCellStyle27.NullValue = Nothing
+        Me.CoinAnteil.DefaultCellStyle = DataGridViewCellStyle27
         resources.ApplyResources(Me.CoinAnteil, "CoinAnteil")
         Me.CoinAnteil.Name = "CoinAnteil"
         Me.CoinAnteil.ReadOnly = True
@@ -1541,9 +1284,9 @@ Partial Class frmMain
         'OrgPriceEUR
         '
         Me.OrgPriceEUR.DataPropertyName = "Kaufpreis EUR"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle9.Format = "N2"
-        Me.OrgPriceEUR.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle28.Format = "N2"
+        Me.OrgPriceEUR.DefaultCellStyle = DataGridViewCellStyle28
         resources.ApplyResources(Me.OrgPriceEUR, "OrgPriceEUR")
         Me.OrgPriceEUR.Name = "OrgPriceEUR"
         Me.OrgPriceEUR.ReadOnly = True
@@ -1551,10 +1294,10 @@ Partial Class frmMain
         'KaufkursEUR
         '
         Me.KaufkursEUR.DataPropertyName = "Kaufkurs EUR"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle10.Format = "N2"
-        DataGridViewCellStyle10.NullValue = Nothing
-        Me.KaufkursEUR.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle29.Format = "N2"
+        DataGridViewCellStyle29.NullValue = Nothing
+        Me.KaufkursEUR.DefaultCellStyle = DataGridViewCellStyle29
         resources.ApplyResources(Me.KaufkursEUR, "KaufkursEUR")
         Me.KaufkursEUR.Name = "KaufkursEUR"
         Me.KaufkursEUR.ReadOnly = True
@@ -1562,10 +1305,10 @@ Partial Class frmMain
         'VerkaufspreisEUR
         '
         Me.VerkaufspreisEUR.DataPropertyName = "Verkaufspreis EUR"
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle11.Format = "N2"
-        DataGridViewCellStyle11.NullValue = Nothing
-        Me.VerkaufspreisEUR.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle30.Format = "N2"
+        DataGridViewCellStyle30.NullValue = Nothing
+        Me.VerkaufspreisEUR.DefaultCellStyle = DataGridViewCellStyle30
         Me.VerkaufspreisEUR.FillWeight = 120.0!
         resources.ApplyResources(Me.VerkaufspreisEUR, "VerkaufspreisEUR")
         Me.VerkaufspreisEUR.Name = "VerkaufspreisEUR"
@@ -1574,10 +1317,10 @@ Partial Class frmMain
         'Gaining
         '
         Me.Gaining.DataPropertyName = "Gewinn EUR"
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle12.Format = "N2"
-        DataGridViewCellStyle12.NullValue = Nothing
-        Me.Gaining.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle31.Format = "N2"
+        DataGridViewCellStyle31.NullValue = Nothing
+        Me.Gaining.DefaultCellStyle = DataGridViewCellStyle31
         resources.ApplyResources(Me.Gaining, "Gaining")
         Me.Gaining.Name = "Gaining"
         Me.Gaining.ReadOnly = True
@@ -1586,8 +1329,8 @@ Partial Class frmMain
         '
         Me.TaxFree.CaptionAllValues = "(Alles auswählen)"
         Me.TaxFree.DataPropertyName = "Steuerfrei"
-        DataGridViewCellStyle13.NullValue = "-"
-        Me.TaxFree.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle32.NullValue = "-"
+        Me.TaxFree.DefaultCellStyle = DataGridViewCellStyle32
         resources.ApplyResources(Me.TaxFree, "TaxFree")
         Me.TaxFree.Name = "TaxFree"
         Me.TaxFree.ReadOnly = True
@@ -1604,6 +1347,7 @@ Partial Class frmMain
         Me.ccbReportPlatforms.FormattingEnabled = True
         Me.ccbReportPlatforms.IDColumnName = Nothing
         Me.ccbReportPlatforms.Name = "ccbReportPlatforms"
+        Me.ccbReportPlatforms.ReturnEmptyOnAllSelected = True
         Me.ccbReportPlatforms.SelectSQL = Nothing
         Me.ccbReportPlatforms.ValueSeparator = ", "
         '
@@ -1611,6 +1355,7 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.gnd3rdTab, "gnd3rdTab")
         Me.gnd3rdTab.CutOffDay = New Date(CType(0, Long))
+        Me.gnd3rdTab.DisableChangedEvent = False
         Me.gnd3rdTab.Gainings = New Decimal(New Integer() {0, 0, 0, 0})
         Me.gnd3rdTab.Name = "gnd3rdTab"
         Me.gnd3rdTab.PlatformGainings = New Decimal(New Integer() {0, 0, 0, 0})
@@ -1764,7 +1509,7 @@ Partial Class frmMain
         '
         'cmnPlattformen
         '
-        Me.cmnPlattformen.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiEditPlattformen})
+        Me.cmnPlattformen.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiEditPlattformen, Me.tsmiMergePlatformTrades})
         Me.cmnPlattformen.Name = "cmnTrades"
         resources.ApplyResources(Me.cmnPlattformen, "cmnPlattformen")
         '
@@ -1772,6 +1517,11 @@ Partial Class frmMain
         '
         Me.tsmiEditPlattformen.Name = "tsmiEditPlattformen"
         resources.ApplyResources(Me.tsmiEditPlattformen, "tsmiEditPlattformen")
+        '
+        'tsmiMergePlatformTrades
+        '
+        Me.tsmiMergePlatformTrades.Name = "tsmiMergePlatformTrades"
+        resources.ApplyResources(Me.tsmiMergePlatformTrades, "tsmiMergePlatformTrades")
         '
         'tabKonten
         '
@@ -1917,7 +1667,6 @@ Partial Class frmMain
         'GroupBox2
         '
         resources.ApplyResources(Me.GroupBox2, "GroupBox2")
-        Me.GroupBox2.Controls.Add(Me.cmdDonateIota)
         Me.GroupBox2.Controls.Add(Me.cmdDonateETH)
         Me.GroupBox2.Controls.Add(Me.cmdDonateBCH)
         Me.GroupBox2.Controls.Add(Me.Label10)
@@ -1926,15 +1675,6 @@ Partial Class frmMain
         Me.GroupBox2.Controls.Add(Me.lblDonate)
         Me.GroupBox2.Name = "GroupBox2"
         Me.GroupBox2.TabStop = False
-        '
-        'cmdDonateIota
-        '
-        resources.ApplyResources(Me.cmdDonateIota, "cmdDonateIota")
-        Me.cmdDonateIota.Image = Global.CoinTracer.My.Resources.Resources.coin_logo_iota_28px
-        Me.cmdDonateIota.Name = "cmdDonateIota"
-        Me.cmdDonateIota.Tag = "IOT"
-        Me.EnhancedToolTip1.SetToolTip(Me.cmdDonateIota, resources.GetString("cmdDonateIota.ToolTip"))
-        Me.cmdDonateIota.UseVisualStyleBackColor = True
         '
         'cmdDonateETH
         '
@@ -1988,16 +1728,16 @@ Partial Class frmMain
         '
         'DataGridViewTextBoxColumn1
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle33
         Me.DataGridViewTextBoxColumn1.Frozen = True
         resources.ApplyResources(Me.DataGridViewTextBoxColumn1, "DataGridViewTextBoxColumn1")
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         '
         'DataGridViewTextBoxColumn2
         '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle34
         Me.DataGridViewTextBoxColumn2.Frozen = True
         resources.ApplyResources(Me.DataGridViewTextBoxColumn2, "DataGridViewTextBoxColumn2")
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
@@ -2032,10 +1772,10 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn5
         '
         Me.DataGridViewTextBoxColumn5.DataPropertyName = "Menge Coins"
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle16.Format = "N6"
-        DataGridViewCellStyle16.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle35.Format = "N6"
+        DataGridViewCellStyle35.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle35
         resources.ApplyResources(Me.DataGridViewTextBoxColumn5, "DataGridViewTextBoxColumn5")
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         '
@@ -2056,10 +1796,10 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn7
         '
         Me.DataGridViewTextBoxColumn7.DataPropertyName = "Preis EUR"
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle17.Format = "N2"
-        DataGridViewCellStyle17.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle36.Format = "N2"
+        DataGridViewCellStyle36.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle36
         resources.ApplyResources(Me.DataGridViewTextBoxColumn7, "DataGridViewTextBoxColumn7")
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         '
@@ -2072,19 +1812,19 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn9
         '
         Me.DataGridViewTextBoxColumn9.DataPropertyName = "Kaufpreis EUR"
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle18.Format = "N2"
-        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle37.Format = "N2"
+        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle37
         resources.ApplyResources(Me.DataGridViewTextBoxColumn9, "DataGridViewTextBoxColumn9")
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
         '
         'DataGridViewTextBoxColumn10
         '
         Me.DataGridViewTextBoxColumn10.DataPropertyName = "Gewinn EUR"
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle19.Format = "N2"
-        DataGridViewCellStyle19.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle38.Format = "N2"
+        DataGridViewCellStyle38.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle38
         resources.ApplyResources(Me.DataGridViewTextBoxColumn10, "DataGridViewTextBoxColumn10")
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
         '
@@ -2148,21 +1888,7 @@ Partial Class frmMain
         Me.grpGainings.ResumeLayout(False)
         Me.grpGainings.PerformLayout()
         Me.grpSettings.ResumeLayout(False)
-        Me.tctlCoinValueStrats.ResumeLayout(False)
-        Me.tbpGeneral.ResumeLayout(False)
-        Me.tbpGeneral.PerformLayout()
-        Me.tbpCoins4Fiat.ResumeLayout(False)
-        Me.tbpCoins4Fiat.PerformLayout()
-        Me.tbpCoins4Coins.ResumeLayout(False)
-        Me.tbpCoins4Coins.PerformLayout()
-        Me.tbpXChange2Wallet.ResumeLayout(False)
-        Me.tbpXChange2Wallet.PerformLayout()
-        Me.tbpWallet2XChange.ResumeLayout(False)
-        Me.tbpWallet2XChange.PerformLayout()
-        Me.tbpXChange2XChange.ResumeLayout(False)
-        Me.tbpXChange2XChange.PerformLayout()
-        Me.tbpWithdrawal.ResumeLayout(False)
-        Me.tbpWithdrawal.PerformLayout()
+        Me.grpSettings.PerformLayout()
         Me.tabReports.ResumeLayout(False)
         Me.tabReports.PerformLayout()
         Me.grpReportAdditionalData.ResumeLayout(False)
@@ -2238,17 +1964,18 @@ Partial Class frmMain
     Friend WithEvents tsmiEraseCalculation As ToolStripMenuItem
     Friend WithEvents tsmiViewCalculations As ToolStripMenuItem
     Friend WithEvents NewDBToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents cmdDonateIota As Button
-    Friend WithEvents Label14 As Label
-    Friend WithEvents Label16 As Label
-    Friend WithEvents cbxWalletAware As ComboBox
-    Friend WithEvents Label18 As Label
+    Friend WithEvents LizenzinformationenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents cmdTCSExtended As Button
     Friend WithEvents Label17 As Label
     Friend WithEvents cbxCoins4CoinsAccounting As ComboBox
-    Friend WithEvents cmdTCSExtended As Button
-    Friend WithEvents Label20 As Label
-    Friend WithEvents Label19 As Label
-    Friend WithEvents Separator1 As Label
+    Friend WithEvents Label16 As Label
+    Friend WithEvents cbxWalletAware As ComboBox
+    Friend WithEvents lblHaltefrist As Label
+    Friend WithEvents dpctlHaltefrist As DataPeriodControl
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label18 As Label
+    Friend WithEvents Label14 As Label
+    Friend WithEvents vssGlobalStrategy As ValueStrategySelector
     Friend WithEvents Vorgang As DataGridViewTextBoxColumn
     Friend WithEvents Timestamp As DataGridViewTextBoxColumn
     Friend WithEvents Art As DataGridViewAutoFilterTextBoxColumn
@@ -2267,5 +1994,5 @@ Partial Class frmMain
     Friend WithEvents VerkaufspreisEUR As DataGridViewTextBoxColumn
     Friend WithEvents Gaining As DataGridViewTextBoxColumn
     Friend WithEvents TaxFree As DataGridViewAutoFilterTextBoxColumn
-    Friend WithEvents LizenzinformationenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents tsmiMergePlatformTrades As ToolStripMenuItem
 End Class

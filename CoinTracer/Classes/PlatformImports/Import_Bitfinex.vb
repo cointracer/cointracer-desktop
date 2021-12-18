@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -108,21 +108,29 @@ Public Class Import_Bitfinex
             Dim DateFormat As String
             Dim RowDate As Date
             Dim RowAmount As Decimal
-            If SubType = 1 Then
-                ' column mapping since 2019-01
-                ColCurrency = 1
-                ColDescription = 0
-                ColAmount = 2
-                ColDate = 4
-                DateFormat = "dd-MM-yy HH:mm:ss"
-            Else
-                ' old column mapping before 2019
-                ColCurrency = 0
-                ColDescription = 1
-                ColAmount = 2
-                ColDate = 4
-                DateFormat = "yyyy-MM-dd HH:mm:ss"
-            End If
+            Select Case SubType
+                Case 2
+                    ' column mapping since 2021-01
+                    ColCurrency = 2
+                    ColDescription = 1
+                    ColAmount = 3
+                    ColDate = 5
+                    DateFormat = "dd-MM-yy HH:mm:ss"
+                Case 1
+                    ' column mapping since 2019-01
+                    ColCurrency = 1
+                    ColDescription = 0
+                    ColAmount = 2
+                    ColDate = 4
+                    DateFormat = "dd-MM-yy HH:mm:ss"
+                Case Else
+                    ' old column mapping before 2019
+                    ColCurrency = 0
+                    ColDescription = 1
+                    ColAmount = 2
+                    ColDate = 4
+                    DateFormat = "yyyy-MM-dd HH:mm:ss"
+            End Select
             For l = 0 To AllLines - 1
                 Items = AllRows(l)
                 If Items.Length >= 5 Then

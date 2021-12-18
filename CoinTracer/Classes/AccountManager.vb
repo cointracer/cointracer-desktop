@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -124,6 +124,40 @@ Public NotInheritable Class AccountManager
         USDT = 245
         USDC = 246
         WAVES = 247
+        AAVE = 248
+        ALGO = 249
+        ANT = 250
+        REPV2 = 251
+        BAL = 252
+        XBT = 253
+        ADA = 254
+        COMP = 255
+        CRV = 256
+        DAI = 257
+        DASH = 258
+        MANA = 259
+        XDG = 260
+        EOS = 261
+        FIL = 262
+        FLOW = 263
+        GNO = 264
+        KAVA = 265
+        KEEP = 266
+        KSM = 267
+        KNC = 268
+        MLN = 269
+        OXT = 270
+        PAXG = 271
+        DOT = 272
+        QTUM = 273
+        STORJ = 274
+        SNX = 275
+        TBTC = 276
+        XTZ = 277
+        GRT = 278
+        TRX = 279
+        UNI = 280
+        YFI = 281
         feeEUR = 10101
         feeUSD = 10102
         feeBTC = 10201
@@ -165,6 +199,40 @@ Public NotInheritable Class AccountManager
         feeUSDT = 10245
         feeUSDC = 10246
         feeWAVES = 10247
+        feeAAVE = 10248
+        feeALGO = 10249
+        feeANT = 10250
+        feeREPV2 = 10251
+        feeBAL = 10252
+        feeXBT = 10253
+        feeADA = 10254
+        feeCOMP = 10255
+        feeCRV = 10256
+        feeDAI = 10257
+        feeDASH = 10258
+        feeMANA = 10259
+        feeXDG = 10260
+        feeEOS = 10261
+        feeFIL = 10262
+        feeFLOW = 10263
+        feeGNO = 10264
+        feeKAVA = 10265
+        feeKEEP = 10266
+        feeKSM = 10267
+        feeKNC = 10268
+        feeMLN = 10269
+        feeOXT = 10270
+        feePAXG = 10271
+        feeDOT = 10272
+        feeQTUM = 10273
+        feeSTORJ = 10274
+        feeSNX = 10275
+        feeTBTC = 10276
+        feeXTZ = 10277
+        feeGRT = 10278
+        feeTRX = 10279
+        feeUNI = 10280
+        feeYFI = 10281
     End Enum
 
     ' All valid platforms - keep database ids in sync with enum above!!!
@@ -185,7 +253,7 @@ Public NotInheritable Class AccountManager
             New AccountDetails(209, "Terracoin", "TRC", "Terracoin", False, False, True, False, 10209),
             New AccountDetails(210, "Ether", "ETH", "Ether", False, False, True, False, 10210),
             New AccountDetails(211, "Lisk", "LSK", "Lisk", False, False, True, False, 10211),
-            New AccountDetails(212, "Lumen", "XLM", "Lumen", False, False, True, False, 10212),
+            New AccountDetails(212, "Stellar", "XLM", "Stellar Lumens", False, False, True, False, 10212),
             New AccountDetails(213, "Augur Token", "REP", "Augur Token", False, False, True, False, 10213),
             New AccountDetails(214, "BFX Token", "BFX", "Bitfinex Token", False, False, True, False, 10214),
             New AccountDetails(215, "Ether Classic", "ETC", "Ether Classic", False, False, True, False, 10215),
@@ -220,7 +288,41 @@ Public NotInheritable Class AccountManager
             New AccountDetails(244, "Single Collateral DAI", "SAI", "Single Collateral DAI", False, False, True, False, 10244),
             New AccountDetails(245, "Tether", "USDT", "Tether", False, False, True, False, 10245),
             New AccountDetails(246, "USD Coin", "USDC", "USD Coin", False, False, True, False, 10246),
-            New AccountDetails(247, "Waves", "WAVES", "Waves", False, False, True, False, 10247)
+            New AccountDetails(247, "Waves", "WAVES", "Waves", False, False, True, False, 10247),
+            New AccountDetails(248, "Aave", "AAVE", "Aave", False, False, True, False, 10248),
+            New AccountDetails(249, "Algorand", "ALGO", "Algorand", False, False, True, False, 10249),
+            New AccountDetails(250, "Aragon", "ANT", "Aragon", False, False, True, False, 10250),
+            New AccountDetails(251, "Augur v2", "REPV2", "Augur v2", False, False, True, False, 10251),
+            New AccountDetails(252, "Balancer", "BAL", "Balancer", False, False, True, False, 10252),
+            New AccountDetails(253, "Bitcoin", "XBT", "Bitcoin", False, False, True, False, 10253),
+            New AccountDetails(254, "Cardano", "ADA", "Cardano", False, False, True, False, 10254),
+            New AccountDetails(255, "Compound", "COMP", "Compound", False, False, True, False, 10255),
+            New AccountDetails(256, "Curve DAO Token", "CRV", "Curve DAO Token", False, False, True, False, 10256),
+            New AccountDetails(257, "Dai", "DAI", "Dai", False, False, True, False, 10257),
+            New AccountDetails(258, "Dash", "DASH", "Dash", False, False, True, False, 10258),
+            New AccountDetails(259, "Decentra​land", "MANA", "Decentra​land", False, False, True, False, 10259),
+            New AccountDetails(260, "Dogecoin", "XDG", "Dogecoin", False, False, True, False, 10260),
+            New AccountDetails(261, "EOS", "EOS", "EOS", False, False, True, False, 10261),
+            New AccountDetails(262, "Filecoin", "FIL", "Filecoin", False, False, True, False, 10262),
+            New AccountDetails(263, "Flow", "FLOW", "Flow", False, False, True, False, 10263),
+            New AccountDetails(264, "Gnosis", "GNO", "Gnosis", False, False, True, False, 10264),
+            New AccountDetails(265, "Kava", "KAVA", "Kava", False, False, True, False, 10265),
+            New AccountDetails(266, "Keep Network", "KEEP", "Keep Network", False, False, True, False, 10266),
+            New AccountDetails(267, "Kusama", "KSM", "Kusama", False, False, True, False, 10267),
+            New AccountDetails(268, "Kyber Network", "KNC", "Kyber Network", False, False, True, False, 10268),
+            New AccountDetails(269, "Melon", "MLN", "Melon", False, False, True, False, 10269),
+            New AccountDetails(270, "Orchid", "OXT", "Orchid", False, False, True, False, 10270),
+            New AccountDetails(271, "PAX Gold", "PAXG", "PAX Gold", False, False, True, False, 10271),
+            New AccountDetails(272, "Polkadot", "DOT", "Polkadot", False, False, True, False, 10272),
+            New AccountDetails(273, "Qtum", "QTUM", "Qtum", False, False, True, False, 10273),
+            New AccountDetails(274, "Storj", "STORJ", "Storj", False, False, True, False, 10274),
+            New AccountDetails(275, "Synthetix", "SNX", "Synthetix", False, False, True, False, 10275),
+            New AccountDetails(276, "tBTC", "TBTC", "tBTC", False, False, True, False, 10276),
+            New AccountDetails(277, "Tezos", "XTZ", "Tezos", False, False, True, False, 10277),
+            New AccountDetails(278, "The Graph", "GRT", "The Graph", False, False, True, False, 10278),
+            New AccountDetails(279, "TRON", "TRX", "TRON", False, False, True, False, 10279),
+            New AccountDetails(280, "Uniswap", "UNI", "Uniswap", False, False, True, False, 10280),
+            New AccountDetails(281, "Yearn Finance", "YFI", "Yearn Finance", False, False, True, False, 10281)
         }
     End Function
 

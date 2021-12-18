@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -68,7 +68,7 @@ Public Class frmGetPassword
     Private Sub txtPassword_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles txtPassword.Validating
         If Me.CheckPasswordCriteria Then
             If txtPassword.Text.Trim.Length < 4 Then
-                MessageBox.Show("Das Passwort ist zu kurz. Bitte geben Sie ein längeres Passwort ein.", "Passwortprüfung", _
+                MessageBox.Show(My.Resources.MyStrings.passwordMsgTooShort, My.Resources.MyStrings.passwordMsgTooShortTitle,
                                 MessageBoxButtons.OK, MessageBoxIcon.Hand)
                 e.Cancel = True
             End If

@@ -1,37 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
- **************************************
- *
- * Copyright 2013-2019 Andreas Nebinger
- *
- * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
-   Folgeversionen der EUPL ("Lizenz");
- * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
-
- * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
- 
- * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
-   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
-   ausdrücklich oder stillschweigend - verbreitet.
- * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
-
- =======
- English
- =======
- 
- * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
-   subsequent versions of the EUPL (the "Licence");
- * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
- 
- * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
- 
- * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
-   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the Licence for the specific language governing permissions and limitations under the Licence.
- *
- **************************************
--->
-
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -160,7 +127,7 @@
     <value>Beim Abrufen der Versionsinformationen ist ein Fehler aufgetreten: {0}</value>
   </data>
   <data name="mainCheckUpdatesStillLatest" xml:space="preserve">
-    <value>Ihre {0}-Version {1} ist noch aktuell!</value>
+    <value>Ihre {0}-Version {1} ist aktuell!</value>
   </data>
   <data name="mainCheckUpdatesTitle" xml:space="preserve">
     <value>Programmversion prüfen</value>
@@ -742,9 +709,9 @@
   <data name="importMsgBitfinexCSV" xml:space="preserve">
     <value>Hinweis zum Import von Bitfinex.com:
 
-1. Nachdem Sie sich auf Bitfinex.com angemeldet haben, klicken Sie auf das Symbol oben rechts ("Manage Account"), dann auf "Reports".
-2. Klicken Sie unter "Balances" auf "Ledgers", um zur Reporting-Oberfläche von Bitfinex weitergeleitet zu werden.
-3. Stellen Sie oben links (direkt unter dem Bitfinex-Symbol) den gewünschten Export-Zeitraum ein. Im rechten Bereich werden unmittelbar die entsprechenden Ledger-Einträge angezeigt.
+1. Nachdem Sie sich auf Bitfinex.com angemeldet haben, klicken Sie auf das Symbol oben rechts ("Account"), dann auf "Reports", um zur Reporting-Oberfläche von Bitfinex weitergeleitet zu werden.
+2. Klicken Sie oben links (direkt unter dem Bitfinex-Symbol) auf "Ledgers".
+3. Stellen Sie oben links (neben dem Bitfinex-Symbol) den gewünschten Export-Zeitraum ein. Im unteren Bereich werden unmittelbar die entsprechenden Ledger-Einträge angezeigt.
 4. Klicken Sie auf "Export", um die Daten als CSV-Datei zu erhalten. WICHTIG: Datumsformat muss "DD-MM-YY" sein und "Display Milliseconds" darf NICHT angehakt sein.
 5. Sie erhalten nun einen Download-Link per E-Mail, sobald die Daten zusammengestellt wurden. Mit diesem Link laden sie ein Zip-Archiv herunter.
 6. Entpacken Sie die CSV-Datei aus dem Archiv und lesen Sie diese im nachfolgenden Schritt ein.</value>
@@ -863,6 +830,9 @@
   <data name="mainMsgScenarioSaveTitle" xml:space="preserve">
     <value>Szenario speichern</value>
   </data>
+  <data name="mainMsgScenarioUnsavedChanges" xml:space="preserve">
+    <value>Das Szenario '{0}' wurde verändert. Soll die Änderungen gespeichert werden?</value>
+  </data>
   <data name="errorNoCsvImport" xml:space="preserve">
     <value>Die CSV-Datei konnte nicht geöffnet werden, ein Import ist nicht möglich.</value>
   </data>
@@ -914,7 +884,7 @@ Wählen Sie 'Separate Daten je Benutzer' oder 'Zentrale Datenablage'.</value>
     <value>Gesamte Tabelle als CSV-Datei speichern...</value>
   </data>
   <data name="mainMsgCalculationUnclearSpendings" xml:space="preserve">
-    <value>Achtung! Bei der Gewinnberechnung gab es {1} Coin-Veräußerung(en), bei denen die Herkunft der Coins nicht ermittelt werden konnte. In solchen Fällen wird immer ein Erwerb der Coins am gleichen Tag zum Preis von 0,00€ angenommen.{0}{0}Sie können die betreffenden Trades im Reiter 'Bericht' ansehen, indem Sie in der Spalte 'Kaufvorgang' nach 'n/a' suchen oder danach filtern.</value>
+    <value>Achtung! Bei der Gewinnberechnung gab es Coin-Veräußerung(en), bei denen die Herkunft der Coins nicht ermittelt werden konnte. In solchen Fällen wird immer ein Erwerb der Coins am gleichen Tag zum Preis von 0,00 € angenommen.{0}{0}Sie können die betreffenden Trades im Reiter 'Bericht' ansehen, indem Sie in der Spalte 'Kaufvorgang' nach 'n/a' suchen oder danach filtern.</value>
   </data>
   <data name="mainMsgCalculationUnclearSpendingsTitle" xml:space="preserve">
     <value>Ungeklärte Veräußerungsvorgänge</value>
@@ -1107,12 +1077,77 @@ Wenn das passiert, dann warten Sie bitte einfach eine Zeit lang (mindestens eine
     <value>Bitte beachten Sie auch, dass sich diese Software noch im Entwicklungsstadium befindet. Sie wurde zwar nach bestem Wissen und Gewissen entwickelt, aber dennoch: Fehler können nicht ausgeschlossen werden - sie sind im Gegenteil sogar wahrscheinlich. Sie verwenden diese Software auf eigenes Risiko, für finanzielle und sonstige Schäden, die sich aus dem Gebrauch ergeben, kann der Autor keine Haftung übernehmen. Darüber hinaus wird der {0} so wie er ist kostenfrei zur Verfügung gestellt. Ein Anspruch auf Fehlerkorrekturen, Gewährleistung oder Weiterentwicklung ist nicht gegeben.</value>
   </data>
   <data name="disclaimerTaxingUnclear" xml:space="preserve">
-    <value>Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (April 2019) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungsmöglichkeiten und Berechnungsverfahren - zunächst einmal unabhängig davon, ob diese zu einem zukünftigen Zeitpunkt als zulässig oder unzulässig erklärt werden!
+    <value>Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (Februar 2021) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungsmöglichkeiten und Berechnungsverfahren - zunächst einmal unabhängig davon, ob diese zu einem zukünftigen Zeitpunkt als zulässig oder unzulässig erklärt werden!
 
 Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ihren Steuerberater! {0} ist als private Initiative des Autors mit dem Zweck entstanden, tabellarische Zusammenstellungen von Handelsaktivitäten einfach und  automatisiert erzeugen zu können. Die Applikation ist keine geprüfte Steuersoftware!</value>
   </data>
   <data name="disclaimerNoWarranty" xml:space="preserve">
     <value>Achtung: Keine Gewähr!</value>
   </data>
-
+  <data name="dbUpdateMsgReportReset" xml:space="preserve">
+    <value>Achtung: Aufgrund einer notwendigen Änderung an der Datenstruktur wurden alle Gewinnberechnungen zurückgesetzt. Sie können diese im Reiter 'Berechnungen' aber problemlos erneut durchführen.</value>
+  </data>
+  <data name="exportReportFileName" xml:space="preserve">
+    <value>Crypto-Report_{0}</value>
+  </data>
+  <data name="importCoreClientTxInfo" xml:space="preserve">
+    <value>{0} / Adresse {1}</value>
+  </data>
+  <data name="importLabelBitcoinCash" xml:space="preserve">
+    <value>Bitcoin Cash Node / Bitcoin ABC (*.csv)</value>
+  </data>
+  <data name="importMsgCoinCoreAskUnconfirmed" xml:space="preserve">
+    <value>Die Datei enthält unbestätigte Transaktionen. Sollen diese ebenfalls importiert werden oder möchten Sie nur vollständig bestätigte Transaktionen einlesen?</value>
+  </data>
+  <data name="importMsgCoinCoreAskUnconfirmedTitle" xml:space="preserve">
+    <value>Unbestätigte Transaktionen entdeckt</value>
+  </data>
+  <data name="importMsgCoinCoreConfirmedOnly" xml:space="preserve">
+    <value>Nein, nur Bestätigte einlesen</value>
+  </data>
+  <data name="importMsgCoinCoreUnconfirmedAlso" xml:space="preserve">
+    <value>Ja, Unbestätigte einlesen</value>
+  </data>
+  <data name="importOpenFileTitleBitcoinCashNode" xml:space="preserve">
+    <value>Wählen Sie die Export-Datei des Bitcoin Cash Clients aus... (*.csv)</value>
+  </data>
+  <data name="importOpenFileTitleBitcoinCore" xml:space="preserve">
+    <value>Wählen Sie die Export-Datei des Bitcoin Core Clients aus... (*.csv)</value>
+  </data>
+  <data name="importOpenFileTitleLitecoinCore" xml:space="preserve">
+    <value>Wählen Sie die Export-Datei des Litecoin Core Clients aus... (*.csv)</value>
+  </data>
+  <data name="passwordMsgTooShort" xml:space="preserve">
+    <value>Das Passwort ist zu kurz. Bitte geben Sie ein längeres Passwort ein.</value>
+  </data>
+  <data name="passwordMsgTooShortTitle" xml:space="preserve">
+    <value>Passwortprüfung</value>
+  </data>
+  <data name="mainMsgApiDataDeletion" xml:space="preserve">
+    <value>Sie haben einen API-Import erfolgreich gelöscht. Bitte achten Sie darauf, in den zugehörigen API-Zugangsdaten (ID {1}) die Einstellung 'Daten holen ab:' anzupassen, um Lücken in der Trade-History zu vermeiden.{0}{0}Möchten Sie die API-Daten jetzt bearbeiten?</value>
+  </data>
+  <data name="mainMsgApiDataDeletionTitle" xml:space="preserve">
+    <value>Import löschen</value>
+  </data>
+  <data name="moveTradesMsgAbort" xml:space="preserve">
+    <value>Aktion abgebrochen. Es wurden keine Trade-Daten verändert.</value>
+  </data>
+  <data name="moveTradesMsgNoNeed" xml:space="preserve">
+    <value>Für das Wallet / die Plattform '{0}' (ID {1}) sind keine Trades-Daten vorhanden. Es kann daher nichts übertragen werden.</value>
+  </data>
+  <data name="moveTradesMsgSuccess" xml:space="preserve">
+    <value>Aktion erfolgreich durchgeführt. {0} Trade-Daten wurden auf das Wallet / die Plattform {1} (ID {2}) übertragen.</value>
+  </data>
+  <data name="moveTradesMsgTitle" xml:space="preserve">
+    <value>Trades auf anderes Wallet / andere Plattform übertragen</value>
+  </data>
+  <data name="moveTradesQuestion" xml:space="preserve">
+    <value>Möchten Sie wirklich alle Trades, die aktuell der Wallet bzw. Plattform '{1}' (ID {2}) zugewiesen sind, auf ein anderes Wallet / eine andere Plattform übertragen?{0}{0}Achtung: Diese Aktion kann NICHT rückgängig gemacht werden!</value>
+  </data>
+  <data name="platformSelectImport" xml:space="preserve">
+    <value>Für welches Wallet / welche Plattform wird dieser Import durchgeführt?</value>
+  </data>
+  <data name="platformSelectMoveTrades" xml:space="preserve">
+    <value>Auf welches Wallet / welche Plattform sollen alle Trades übertragen werden?</value>
+  </data>
 </root>

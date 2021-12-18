@@ -2,7 +2,7 @@
 
 **CoinTracer** is a windows desktop application facilitating keeping track of gainings and losses of crypto tradings. Initially made for tax rules of Germany. Still beta!
 
-![Screenshot CoinTracer 0.9.4.2](https://www.cointracer.de/sites/default/files/ct_9.4.2.png)
+![Screenshot CoinTracer 0.9.5](https://www.cointracer.de/sites/default/files/ct_095_01.gif)
 
 Additional information can be found here: https://www.cointracer.de
 

@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -31,10 +31,12 @@
 
 Imports System.Text
 Imports System.Security.Cryptography
+Imports System.Reflection
 
 Module modHelper
 
     Public Const DATENULLVALUE As Date = #12:00:00 AM#
+    Public Const DATEMAXVALUE As Date = #2099-12-31 12:00:00 AM#
 
     Public Sub DefaultErrorHandler(ex As Exception, Optional Message As String = "", Optional EndApplication As Boolean = False, Optional DialogBoxTitle As String = "")
         Cursor.Current = Cursors.Default
@@ -79,7 +81,6 @@ Module modHelper
         End If
     End Sub
 
-
     ''' <summary>
     ''' Wandelt einen Zahlen-String englischer Notation in einen Decimal-Wert um
     ''' </summary>
@@ -95,7 +96,6 @@ Module modHelper
         End If
         Return CDec(NumberAsString)
     End Function
-
 
     ''' <summary>
     ''' Gibt den MD5-Hash eines Strings als String zurück
@@ -147,7 +147,7 @@ Module modHelper
                 Dim iCol As Integer
                 Dim iCols As Integer = DataGridView.Columns.Count
                 Dim CurRow As DataGridViewRow
-                Dim s As String = ""
+                Dim sb As New StringBuilder()
                 If iCols > 0 Then
                     ' put column text qualifiers into array
                     Dim TextQualifiers(iCols - 1) As String
@@ -165,16 +165,16 @@ Module modHelper
                         ' and also add column headers if wanted by user
                         If frmCopyTableData.CopyHeaders Then
                             If frmCopyTableData.TextQualifier.Length > 0 Then
-                                s &= frmCopyTableData.TextQualifier & DataGridView.Columns(iCol).HeaderText.Replace(frmCopyTableData.TextQualifier, "_") & frmCopyTableData.TextQualifier & Separator
+                                sb.Append(frmCopyTableData.TextQualifier & DataGridView.Columns(iCol).HeaderText.Replace(frmCopyTableData.TextQualifier, "_") & frmCopyTableData.TextQualifier & Separator)
                             Else
-                                s &= DataGridView.Columns(iCol).HeaderText & Separator
+                                sb.Append(DataGridView.Columns(iCol).HeaderText & Separator)
                             End If
                         End If
                     Next iCol
                     If frmCopyTableData.CopyHeaders Then
                         ' truncate first line with column names
-                        s = s.Substring(0, s.Length - Separator.Length)
-                        s &= Environment.NewLine
+                        sb.Length -= Separator.Length
+                        sb.Append(Environment.NewLine)
                     End If
                     frmCopyTableData.Close()
                     ' Datenzeile(n) holen
@@ -190,19 +190,19 @@ Module modHelper
                         For iCol = 0 To iCols - 1
                             If CurRow.Cells(iCol).Value IsNot Nothing Then
                                 If TextQualifiers(iCol) = "" Then
-                                    s &= CurRow.Cells(iCol).Value.ToString.Replace(Separator, "_")
+                                    sb.Append(CurRow.Cells(iCol).Value.ToString.Replace(Separator, "_"))
                                 Else
-                                    s &= TextQualifiers(iCol) & CurRow.Cells(iCol).Value.ToString.Replace(Separator, "_").Replace(TextQualifiers(iCol), "_") & TextQualifiers(iCol)
+                                    sb.Append(TextQualifiers(iCol) & CurRow.Cells(iCol).Value.ToString.Replace(Separator, "_").Replace(TextQualifiers(iCol), "_") & TextQualifiers(iCol))
                                 End If
                             End If
-                            s &= Separator
+                            sb.Append(Separator)
                         Next iCol
-                        s = s.Substring(0, s.Length - Separator.Length)
-                        s &= Environment.NewLine
+                        sb.Length -= Separator.Length
+                        sb.Append(Environment.NewLine)
                     Next iRow
                     ' In Zwischenablage kopieren
                     Dim o As New DataObject
-                    o.SetText(s)
+                    o.SetText(sb.ToString)
                     Clipboard.SetDataObject(o, True)
                     If RowCount > PROGRESSBARLIMIT Then
                         ProgressWaitManager.CloseProgress()
@@ -219,13 +219,20 @@ Module modHelper
     End Function
 
     ''' <summary>
+    ''' Enables double buffering for DataGridViews to speed up it's rendering.
+    ''' </summary>
+    ''' <param name="dgv">DataGridView whose DoubeBuffered property will be set to True.</param>
+    Friend Sub DataGridViewDoubleBuffer(ByVal dgv As DataGridView)
+        dgv.GetType.GetProperty("DoubleBuffered", (BindingFlags.NonPublic Or BindingFlags.Instance)).SetValue(dgv, True, Nothing)
+    End Sub
+
+    ''' <summary>
     ''' Konvertiert einen Unix-Timestamp in einen DateTime-Wert
     ''' </summary>
     Friend Function DateFromUnixTimestamp(timestamp As Double) As DateTime
         Dim origin As New DateTime(1970, 1, 1, 0, 0, 0, 0)
         Return origin.AddSeconds(timestamp)
     End Function
-
 
     ''' <summary>
     ''' Konvertiert einen DateTime-Wert in einen Unix-Timestamp

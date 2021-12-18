@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -222,6 +222,35 @@ Public Class ImportFileHelper
             .FilesFirstLine = """Best�tigt"",""Datum"",""Typ"",""Bezeichnung"",""Adresse"",""Betrag"",""ID"""
             .MatchingType = ImportFileMatchingTypes.StartsWithMatch
             .SubType = 1
+        End With
+        Cnt += 1
+        ' Bitcoin Cash Node (DE)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.WalletBCH)
+            .PlatformName = "Bitcoin Cash Node"
+            .FilesFirstLine = """Bestätigt"",""Datum"",""Typ"",""Etikett"",""Adresse"",""Betrag (BCH)"",""ID"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 0
+        End With
+        Cnt += 1
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.WalletBCH)
+            .PlatformName = "Bitcoin Cash Node"
+            .FilesFirstLine = """Best�tigt"",""Datum"",""Typ"",""Etikett"",""Adresse"",""Betrag (BCH)"",""ID"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 0
+        End With
+        Cnt += 1
+        ' Bitcoin Cash Node (EN)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.WalletBCH)
+            .PlatformName = "Bitcoin Cash Node"
+            .FilesFirstLine = """Confirmed"",""Date"",""Type"",""Label"",""Address"",""Amount (BCH)"",""ID"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 0
         End With
         Cnt += 1
         ' Litecoin Core Client (ab 2017-12 - DE)
@@ -503,7 +532,7 @@ Public Class ImportFileHelper
             .SubType = 2
         End With
         Cnt += 1
-        ' Kraken.com
+        ' Kraken.com (until about 2020)
         ReDim Preserve _AllPlatforms(Cnt)
         With _AllPlatforms(Cnt)
             .PlatformID = CInt(PlatformManager.Platforms.Kraken)
@@ -511,6 +540,16 @@ Public Class ImportFileHelper
             .FilesFirstLine = """txid"",""refid"",""time"",""type"",""aclass"",""asset"",""amount"",""fee"",""balance"""
             .MatchingType = ImportFileMatchingTypes.StartsWithMatch
             .SubType = 0
+        End With
+        Cnt += 1
+        ' Kraken.com (2021 and later)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Kraken)
+            .PlatformName = "Kraken.com"
+            .FilesFirstLine = """txid"",""refid"",""time"",""type"",""subtype"",""aclass"",""asset"",""amount"",""fee"",""balance"""
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 1
         End With
         Cnt += 1
         ' Bitfinex.com
@@ -531,6 +570,16 @@ Public Class ImportFileHelper
             .FilesFirstLine = "DESCRIPTION,CURRENCY,AMOUNT,BALANCE,DATE,WALLET"
             .MatchingType = ImportFileMatchingTypes.StartsWithMatch
             .SubType = 1
+        End With
+        Cnt += 1
+        ' Bitfinex.com (since 2021-01)
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Bitfinex)
+            .PlatformName = "Bitfinex.com"
+            .FilesFirstLine = "#,DESCRIPTION,CURRENCY,AMOUNT,BALANCE,DATE,WALLET"
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 2
         End With
         Cnt += 1
         ' Zyado.com

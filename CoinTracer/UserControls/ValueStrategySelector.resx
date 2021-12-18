@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
  **************************************
  *
- * Copyright 2013-2019 Andreas Nebinger
+ * Copyright 2013-2021 Andreas Nebinger
  *
  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
    Folgeversionen der EUPL ("Lizenz");
@@ -150,332 +150,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="TableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Panel6.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="Panel6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 201</value>
-  </data>
-  <data name="Panel6.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="Panel6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>651, 35</value>
-  </data>
-  <data name="Panel6.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;Panel6.Name" xml:space="preserve">
-    <value>Panel6</value>
-  </data>
-  <data name="&gt;&gt;Panel6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel6.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;Panel6.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rbLofo2.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="rbLofo2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbLofo2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 126</value>
-  </data>
-  <data name="rbLofo2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 28</value>
-  </data>
-  <data name="rbLofo2.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
-  </data>
-  <data name="rbLofo2.Text" xml:space="preserve">
-    <value>Lofo: Billigste zuerst</value>
-  </data>
-  <data name="rbLofo2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
   <metadata name="EnhancedToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="rbLofo2.ToolTip" xml:space="preserve">
-    <value>LOwest in - First Out: Die billigsten Coins werden zuerst verbraucht.</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="rbFifo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
-  <data name="&gt;&gt;rbLofo2.Name" xml:space="preserve">
-    <value>rbLofo2</value>
-  </data>
-  <data name="&gt;&gt;rbLofo2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbLofo2.Parent" xml:space="preserve">
-    <value>grpCVS2</value>
-  </data>
-  <data name="&gt;&gt;rbLofo2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rbHifo2.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+  <data name="rbFifo.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
   </data>
-  <data name="rbHifo2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="rbFifo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="rbHifo2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 92</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="rbFifo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 20</value>
   </data>
-  <data name="rbHifo2.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="rbFifo.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 28</value>
   </data>
-  <data name="rbHifo2.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="rbFifo.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
   </data>
-  <data name="rbHifo2.Text" xml:space="preserve">
-    <value>Hifo: Teuerste zuerst</value>
-  </data>
-  <data name="rbHifo2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="rbHifo2.ToolTip" xml:space="preserve">
-    <value>Highest In - First Out: Die teuersten Coins werden zuerst verbraucht.</value>
-  </data>
-  <data name="&gt;&gt;rbHifo2.Name" xml:space="preserve">
-    <value>rbHifo2</value>
-  </data>
-  <data name="&gt;&gt;rbHifo2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbHifo2.Parent" xml:space="preserve">
-    <value>grpCVS2</value>
-  </data>
-  <data name="&gt;&gt;rbHifo2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rbLifo2.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="rbLifo2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbLifo2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 53</value>
-  </data>
-  <data name="rbLifo2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 28</value>
-  </data>
-  <data name="rbLifo2.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
-  </data>
-  <data name="rbLifo2.Text" xml:space="preserve">
-    <value>Lifo: Jüngste zuerst</value>
-  </data>
-  <data name="rbLifo2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="rbLifo2.ToolTip" xml:space="preserve">
-    <value>Last In - First Out: Zuletzt erworbene Coins werden zuerst verbraucht.</value>
-  </data>
-  <data name="&gt;&gt;rbLifo2.Name" xml:space="preserve">
-    <value>rbLifo2</value>
-  </data>
-  <data name="&gt;&gt;rbLifo2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbLifo2.Parent" xml:space="preserve">
-    <value>grpCVS2</value>
-  </data>
-  <data name="&gt;&gt;rbLifo2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="rbFifo2.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="rbFifo2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbFifo2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 19</value>
-  </data>
-  <data name="rbFifo2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 28</value>
-  </data>
-  <data name="rbFifo2.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="rbFifo2.Text" xml:space="preserve">
+  <data name="rbFifo.Text" xml:space="preserve">
     <value>Fifo: Älteste zuerst</value>
   </data>
-  <data name="rbFifo2.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="rbFifo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="rbFifo2.ToolTip" xml:space="preserve">
+  <data name="rbFifo.ToolTip" xml:space="preserve">
     <value>First In - First Out: Zuerst erworbene Coins werden zuerst verbraucht.</value>
   </data>
-  <data name="&gt;&gt;rbFifo2.Name" xml:space="preserve">
-    <value>rbFifo2</value>
+  <data name="&gt;&gt;rbFifo.Name" xml:space="preserve">
+    <value>rbFifo</value>
   </data>
-  <data name="&gt;&gt;rbFifo2.Type" xml:space="preserve">
+  <data name="&gt;&gt;rbFifo.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;rbFifo2.Parent" xml:space="preserve">
-    <value>grpCVS2</value>
+  <data name="&gt;&gt;rbFifo.Parent" xml:space="preserve">
+    <value>grpCVS1</value>
   </data>
-  <data name="&gt;&gt;rbFifo2.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;rbFifo.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="Panel7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 86</value>
-  </data>
-  <data name="Panel7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 1</value>
-  </data>
-  <data name="Panel7.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;Panel7.Name" xml:space="preserve">
-    <value>Panel7</value>
-  </data>
-  <data name="&gt;&gt;Panel7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel7.Parent" xml:space="preserve">
-    <value>grpCVS2</value>
-  </data>
-  <data name="&gt;&gt;Panel7.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="grpCVS2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 5</value>
-  </data>
-  <data name="grpCVS2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
-  </data>
-  <data name="grpCVS2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 3, 3</value>
-  </data>
-  <data name="grpCVS2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 166</value>
-  </data>
-  <data name="grpCVS2.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;grpCVS2.Name" xml:space="preserve">
-    <value>grpCVS2</value>
-  </data>
-  <data name="&gt;&gt;grpCVS2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpCVS2.Parent" xml:space="preserve">
-    <value>pnlOlderCoins</value>
-  </data>
-  <data name="&gt;&gt;grpCVS2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="pnlOlderCoins.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="pnlOlderCoins.Location" type="System.Drawing.Point, System.Drawing">
-    <value>299, 31</value>
-  </data>
-  <data name="pnlOlderCoins.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="pnlOlderCoins.Size" type="System.Drawing.Size, System.Drawing">
-    <value>352, 170</value>
-  </data>
-  <data name="pnlOlderCoins.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;pnlOlderCoins.Name" xml:space="preserve">
-    <value>pnlOlderCoins</value>
-  </data>
-  <data name="&gt;&gt;pnlOlderCoins.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlOlderCoins.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;pnlOlderCoins.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="rbLofo.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="rbLofo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbLofo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 126</value>
-  </data>
-  <data name="rbLofo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 28</value>
-  </data>
-  <data name="rbLofo.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="rbLofo.Text" xml:space="preserve">
-    <value>Lofo: Billigste zuerst</value>
-  </data>
-  <data name="rbLofo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="rbLofo.ToolTip" xml:space="preserve">
-    <value>LOwest in - First Out: Die billigsten Coins werden zuerst verbraucht.</value>
-  </data>
-  <data name="&gt;&gt;rbLofo.Name" xml:space="preserve">
-    <value>rbLofo</value>
-  </data>
-  <data name="&gt;&gt;rbLofo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbLofo.Parent" xml:space="preserve">
-    <value>grpCVS1</value>
-  </data>
-  <data name="&gt;&gt;rbLofo.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rbHifo.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
-    <value>Button</value>
-  </data>
-  <data name="rbHifo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbHifo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 92</value>
-  </data>
-  <data name="rbHifo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>181, 28</value>
-  </data>
-  <data name="rbHifo.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="rbHifo.Text" xml:space="preserve">
-    <value>Hifo: Teuerste zuerst</value>
-  </data>
-  <data name="rbHifo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
-  </data>
-  <data name="rbHifo.ToolTip" xml:space="preserve">
-    <value>Highest In - First Out: Die teuersten Coins werden zuerst verbraucht.</value>
-  </data>
-  <data name="&gt;&gt;rbHifo.Name" xml:space="preserve">
-    <value>rbHifo</value>
-  </data>
-  <data name="&gt;&gt;rbHifo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rbHifo.Parent" xml:space="preserve">
-    <value>grpCVS1</value>
-  </data>
-  <data name="&gt;&gt;rbHifo.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="rbLifo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="rbLifo.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
@@ -484,7 +205,7 @@
     <value>NoControl</value>
   </data>
   <data name="rbLifo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 53</value>
+    <value>13, 54</value>
   </data>
   <data name="rbLifo.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 28</value>
@@ -513,44 +234,92 @@
   <data name="&gt;&gt;rbLifo.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="rbFifo.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+  <data name="rbHifo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="rbHifo.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
     <value>Button</value>
   </data>
-  <data name="rbFifo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="rbHifo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="rbFifo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 19</value>
+  <data name="rbHifo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 93</value>
   </data>
-  <data name="rbFifo.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="rbHifo.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 28</value>
   </data>
-  <data name="rbFifo.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="rbHifo.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
-  <data name="rbFifo.Text" xml:space="preserve">
-    <value>Fifo: Älteste zuerst</value>
+  <data name="rbHifo.Text" xml:space="preserve">
+    <value>Hifo: Teuerste zuerst</value>
   </data>
-  <data name="rbFifo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+  <data name="rbHifo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
-  <data name="rbFifo.ToolTip" xml:space="preserve">
-    <value>First In - First Out: Zuerst erworbene Coins werden zuerst verbraucht.</value>
+  <data name="rbHifo.ToolTip" xml:space="preserve">
+    <value>Highest In - First Out: Die teuersten Coins werden zuerst verbraucht.</value>
   </data>
-  <data name="&gt;&gt;rbFifo.Name" xml:space="preserve">
-    <value>rbFifo</value>
+  <data name="&gt;&gt;rbHifo.Name" xml:space="preserve">
+    <value>rbHifo</value>
   </data>
-  <data name="&gt;&gt;rbFifo.Type" xml:space="preserve">
+  <data name="&gt;&gt;rbHifo.Type" xml:space="preserve">
     <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;rbFifo.Parent" xml:space="preserve">
+  <data name="&gt;&gt;rbHifo.Parent" xml:space="preserve">
     <value>grpCVS1</value>
   </data>
-  <data name="&gt;&gt;rbFifo.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;rbHifo.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="rbLofo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="rbLofo.Appearance" type="System.Windows.Forms.Appearance, System.Windows.Forms">
+    <value>Button</value>
+  </data>
+  <data name="rbLofo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="rbLofo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 127</value>
+  </data>
+  <data name="rbLofo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>181, 28</value>
+  </data>
+  <data name="rbLofo.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="rbLofo.Text" xml:space="preserve">
+    <value>Lofo: Billigste zuerst</value>
+  </data>
+  <data name="rbLofo.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
+  </data>
+  <data name="rbLofo.ToolTip" xml:space="preserve">
+    <value>LOwest in - First Out: Die billigsten Coins werden zuerst verbraucht.</value>
+  </data>
+  <data name="&gt;&gt;rbLofo.Name" xml:space="preserve">
+    <value>rbLofo</value>
+  </data>
+  <data name="&gt;&gt;rbLofo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rbLofo.Parent" xml:space="preserve">
+    <value>grpCVS1</value>
+  </data>
+  <data name="&gt;&gt;rbLofo.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grpCVS1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="Panel5.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
   </data>
   <data name="Panel5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 86</value>
+    <value>13, 87</value>
   </data>
   <data name="Panel5.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 1</value>
@@ -571,7 +340,7 @@
     <value>4</value>
   </data>
   <data name="grpCVS1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 5</value>
+    <value>14, 8</value>
   </data>
   <data name="grpCVS1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>3, 0, 0, 0</value>
@@ -583,10 +352,10 @@
     <value>207, 166</value>
   </data>
   <data name="grpCVS1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="grpCVS1.Text" xml:space="preserve">
-    <value>Verfahren</value>
+    <value>Verbrauchsfolgeverfahren</value>
   </data>
   <data name="&gt;&gt;grpCVS1.Name" xml:space="preserve">
     <value>grpCVS1</value>
@@ -595,167 +364,10 @@
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;grpCVS1.Parent" xml:space="preserve">
-    <value>Panel4</value>
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;grpCVS1.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="Panel4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="Panel4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 31</value>
-  </data>
-  <data name="Panel4.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="Panel4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 170</value>
-  </data>
-  <data name="Panel4.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;Panel4.Name" xml:space="preserve">
-    <value>Panel4</value>
-  </data>
-  <data name="&gt;&gt;Panel4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel4.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;Panel4.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="TableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="TableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="TableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="TableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>651, 236</value>
-  </data>
-  <data name="TableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel1.Name" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="TableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="Panel6" Row="2" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;Control Name="pnlOlderCoins" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="Panel4" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="Panel3" Row="0" RowSpan="1" Column="0" ColumnSpan="2" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,45,92934,Percent,54,07066" /&gt;&lt;Rows Styles="Absolute,31,Percent,100,Absolute,35" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="Label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="Label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="Label2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="Label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 6</value>
-  </data>
-  <data name="Label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 15</value>
-  </data>
-  <data name="Label2.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="Label2.Text" xml:space="preserve">
-    <value>Priorisierung:</value>
-  </data>
-  <data name="Label2.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;Label2.Name" xml:space="preserve">
-    <value>Label2</value>
-  </data>
-  <data name="&gt;&gt;Label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label2.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cbxAgePref.Items" xml:space="preserve">
-    <value>- keine Priorisierung -</value>
-  </data>
-  <data name="cbxAgePref.Items1" xml:space="preserve">
-    <value>Coins älter als 1 Jahr bevorzugen</value>
-  </data>
-  <data name="cbxAgePref.Items2" xml:space="preserve">
-    <value>Coins jünger als 1 Jahr bevorzugen</value>
-  </data>
-  <data name="cbxAgePref.Location" type="System.Drawing.Point, System.Drawing">
-    <value>93, 3</value>
-  </data>
-  <data name="cbxAgePref.Size" type="System.Drawing.Size, System.Drawing">
-    <value>207, 23</value>
-  </data>
-  <data name="cbxAgePref.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="cbxAgePref.ToolTip" xml:space="preserve">
-    <value>Wenn Sie hier einstellen, dass ältere oder jüngere Coins als 1 Jahr bevorzugt eingesetzt werden
-sollen, können Sie die Verfahren für Coins älter/jünger als ein Jahr getrennt festlegen.</value>
-  </data>
-  <data name="cbxAgePref.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;cbxAgePref.Name" xml:space="preserve">
-    <value>cbxAgePref</value>
-  </data>
-  <data name="&gt;&gt;cbxAgePref.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cbxAgePref.Parent" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;cbxAgePref.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="Panel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="Panel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="Panel3.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
-  </data>
-  <data name="Panel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>651, 31</value>
-  </data>
-  <data name="Panel3.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;Panel3.Name" xml:space="preserve">
-    <value>Panel3</value>
-  </data>
-  <data name="&gt;&gt;Panel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Panel3.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;Panel3.ZOrder" xml:space="preserve">
-    <value>3</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
@@ -770,13 +382,13 @@ sollen, können Sie die Verfahren für Coins älter/jünger als ein Jahr getrenn
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="$this.Size" type="System.Drawing.Size, System.Drawing">
-    <value>651, 236</value>
+    <value>234, 182</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Name" xml:space="preserve">
     <value>EnhancedToolTip1</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Type" xml:space="preserve">
-    <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.3.3, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.4.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>ValueStrategySelector</value>

@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -37,6 +37,7 @@ Friend Interface IFileImport
     Property SubType As Integer
     Property FileNames As String()
     Property CheckFirstLine As Boolean
+    Property CSV() As CSVHelper
     Property MultiSelectFiles As Boolean
     Property MixedFileFormatsAllowed As Boolean
     Property Content As String
@@ -45,4 +46,9 @@ Friend Interface IFileImport
     Property ReadImportdataPercentage As Integer
     Function ImportContent() As Boolean
     Function PerformImport() As Boolean
+    Sub InitProgressForm(Optional Message As String = "")
+    Sub DestroyProgressForm()
+    Function FileImportError(ByRef ErrorCounter As Long,
+                             ByVal Line As Long,
+                             ByRef ex As Exception) As Long
 End Interface

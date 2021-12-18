@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -300,7 +300,7 @@ Public MustInherit Class FileImportBase
     End Property
 
     Private _CSV As CSVHelper
-    Public Property CSV() As CSVHelper
+    Public Property CSV() As CSVHelper Implements IFileImport.CSV
         Get
             Return _CSV
         End Get
@@ -344,6 +344,20 @@ Public MustInherit Class FileImportBase
             Return ImportContent()
         Else
             If OpenFile() Then
+                If Not (PlatformManager.PlatformDetailsByID(Platform).ImportDistinct OrElse MainImportObject.SilentMode) Then
+                    ' this could be an import for a different platform, so present the platform choice form
+                    With New frmSelectPlatform
+                        .Platform = Platform
+                        .Declaration = My.Resources.MyStrings.platformSelectImport
+                        .ShowDialog()
+                        If .Platform >= 0 Then
+                            Platform = .Platform
+                            MainImportObject.Plattform = .Platform
+                        Else
+                            Return False
+                        End If
+                    End With
+                End If
                 Return ImportContent()
             Else
                 Return False
@@ -454,7 +468,7 @@ Public MustInherit Class FileImportBase
     ''' Initializes the progress form for this import
     ''' </summary>
     ''' <param name="Message">Initial message to be displayed</param>
-    Protected Sub InitProgressForm(Optional Message As String = "")
+    Protected Sub InitProgressForm(Optional Message As String = "") Implements IFileImport.InitProgressForm
         Try
             DestroyProgressForm()
             ProgressWaitManager.ShowProgress(_MainImportObject.Parentform)
@@ -484,7 +498,7 @@ Public MustInherit Class FileImportBase
     ''' <summary>
     ''' Clear the progress form again
     ''' </summary>
-    Protected Sub DestroyProgressForm()
+    Protected Sub DestroyProgressForm() Implements IFileImport.DestroyProgressForm
         Try
             ProgressWaitManager.CloseProgress()
         Catch ex As Exception
@@ -500,9 +514,9 @@ Public MustInherit Class FileImportBase
     ''' <param name="Line">Line number in which the error occured</param>
     ''' <param name="ex">Exception (message will be displayed)</param>
     ''' <returns></returns>
-    Protected Function FileImportError(ByRef ErrorCounter As Long,
+    Protected Friend Function FileImportError(ByRef ErrorCounter As Long,
                                        ByVal Line As Long,
-                                       ByRef ex As Exception)
+                                       ByRef ex As Exception) As Long Implements IFileImport.FileImportError
         Cursor.Current = Cursors.Default
         ErrorCounter -= 1
         Dim ErrorMessage As String = String.Format(My.Resources.MyStrings.importMsgInvalidDataInLine,

@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -39,28 +39,11 @@ Public Class CoinValueStrategy
         MostExpensiveFirst
     End Enum
 
-    Public Enum CoinValuePreferrations
-        Above1YearPreferred = 0
-        Below1YearPreferred = 1
-        NothingPreferred = 2
-    End Enum
-
     Private _IsEmpty As Boolean
     Public ReadOnly Property IsEmpty() As Boolean
         Get
             Return _IsEmpty
         End Get
-    End Property
-
-    Private _Preferration As CoinValuePreferrations
-    Public Property Preferration() As CoinValuePreferrations
-        Get
-            Return _Preferration
-        End Get
-        Set(ByVal value As CoinValuePreferrations)
-            _Preferration = value
-            _IsEmpty = False
-        End Set
     End Property
 
     Private _WalletAware As Boolean
@@ -84,33 +67,13 @@ Public Class CoinValueStrategy
         End Set
     End Property
 
-    Public Property CoinValueStrategy() As CoinValueStrategies
+    Private _ConsumptionStrategy As CoinValueStrategies
+    Public Property ConsumptionStrategy() As CoinValueStrategies
         Get
-            Return Below1YearStrategy
+            Return _ConsumptionStrategy
         End Get
         Set(ByVal value As CoinValueStrategies)
-            Below1YearStrategy = value
-        End Set
-    End Property
-
-    Private _Below1YearStrategy As CoinValueStrategies
-    Public Property Below1YearStrategy() As CoinValueStrategies
-        Get
-            Return _Below1YearStrategy
-        End Get
-        Set(ByVal value As CoinValueStrategies)
-            _Below1YearStrategy = value
-            _IsEmpty = False
-        End Set
-    End Property
-
-    Private _Above1YearStrategy As CoinValueStrategies
-    Public Property Above1YearStrategy() As CoinValueStrategies
-        Get
-            Return _Above1YearStrategy
-        End Get
-        Set(ByVal value As CoinValueStrategies)
-            _Above1YearStrategy = value
+            _ConsumptionStrategy = value
             _IsEmpty = False
         End Set
     End Property
@@ -119,16 +82,25 @@ Public Class CoinValueStrategy
         If _IsEmpty Then
             Return ""
         Else
-            Return CInt(Preferration) & "," & _Below1YearStrategy & "," & _Above1YearStrategy & "," & IIf(_WalletAware, "1", "0") & "," & IIf(_Coin4CoinAware, "1", "0")
+            ' Return "0," & _ConsumptionStrategy & "," & _Above1YearStrategy & "," & IIf(_WalletAware, "1", "0") & "," & IIf(_Coin4CoinAware, "1", "0")
+            Return _ConsumptionStrategy & "," & IIf(_WalletAware, "1", "0") & "," & IIf(_Coin4CoinAware, "1", "0")
         End If
     End Function
+
+    ''' <summary>
+    ''' Default strategy string
+    ''' </summary>
+    ''' <returns>'2,1,0' = fifo, wallet aware, no taxation of coins vs. coins</returns>
+    Public Shared ReadOnly Property DefaultPropertyString() As String
+        Get
+            Return "2,1,0"
+        End Get
+    End Property
 
     Public Function Clone() As Object Implements ICloneable.Clone
         Dim NewObj As New CoinValueStrategy
         With NewObj
-            .Above1YearStrategy = _Above1YearStrategy
-            .Below1YearStrategy = _Below1YearStrategy
-            .Preferration = _Preferration
+            .ConsumptionStrategy = _ConsumptionStrategy
             .WalletAware = _WalletAware
             .Coin4CoinAware = _Coin4CoinAware
         End With
@@ -136,18 +108,18 @@ Public Class CoinValueStrategy
     End Function
 
     ''' <summary>
-    ''' Initialisiert das Objekt direkt mit dem übergebenen String
+    ''' Initialize object with given strategy values as a string.
     ''' </summary>
-    ''' <param name="InitString">4 Zahlen, kommasepariert. Entsprechend der Ausgabe der CoinValueStrategy.ToString()-Funktion.</param>
+    ''' <param name="InitString">3 int numbers, comma separated. According to the output of CoinValueStrategy.ToString().</param>
     Public Sub New(ByRef InitString As String)
         FromString(InitString)
     End Sub
 
     ''' <summary>
-    ''' Initialisiert das Objekt und setzt die Default-Strategie (FiFo, Wallet-Aware, keine Präferenz ob älter oder jünger als 1 Jahr)
+    ''' Initialize object with the default strategy (FiFo, Wallet-Aware)
     ''' </summary>
     Public Sub New()
-        FromString("2,2,2,1,0")
+        FromString(DefaultPropertyString)
         _IsEmpty = True
     End Sub
 
@@ -161,9 +133,7 @@ Public Class CoinValueStrategy
         Try
             Items = Split(InitString, ",")
             If DirectCast(Items, ICollection).Count >= 4 Then
-                _Preferration = Items(0)
-                _Below1YearStrategy = Items(1)
-                _Above1YearStrategy = Items(2)
+                _ConsumptionStrategy = Items(1)
                 _WalletAware = (Items(3) = "1")
                 _IsEmpty = False
                 If DirectCast(Items, ICollection).Count = 5 Then
@@ -171,6 +141,11 @@ Public Class CoinValueStrategy
                 Else
                     _Coin4CoinAware = False
                 End If
+            ElseIf DirectCast(Items, ICollection).Count = 3 Then
+                _ConsumptionStrategy = Items(0)
+                _WalletAware = (Items(1) = "1")
+                _Coin4CoinAware = (Items(2) = "1")
+                _IsEmpty = False
             End If
         Catch ex As Exception
             ' In Fehlerfall einfach _IsEmpty setzen
@@ -183,36 +158,7 @@ Public Class CoinValueStrategy
     ''' </summary>
     Public Function ExplainCVS() As String
         Dim Result As String
-        Result = String.Format(My.Resources.MyStrings.cvsNoPreferrationCvs, CVStoString(Below1YearStrategy), CVStoString(Below1YearStrategy, True))
-        ' There is no such thing as preferration below/above 1 year any more, so all of this below is disabled:
-        'Select Case Preferration
-        '    Case CoinValuePreferrations.Above1YearPreferred
-        '        If Above1YearStrategy = Below1YearStrategy Then
-        '            Result = String.Format(My.Resources.MyStrings.cvsPrefAbove1Year1Cvs, CVStoString(Above1YearStrategy), CVStoString(Above1YearStrategy, True))
-        '        Else
-        '            Result = String.Format(My.Resources.MyStrings.cvsPrefAbove1Year2Cvs, CVStoString(Above1YearStrategy), CVStoString(Above1YearStrategy, True),
-        '                                   CVStoString(Below1YearStrategy), CVStoString(Below1YearStrategy, True))
-        '        End If
-        '    Case CoinValuePreferrations.Below1YearPreferred
-        '        If Above1YearStrategy = Below1YearStrategy Then
-        '            Result = String.Format(My.Resources.MyStrings.cvsPrefBelow1Year1Cvs, CVStoString(Below1YearStrategy), CVStoString(Below1YearStrategy, True))
-        '        Else
-        '            Result = String.Format(My.Resources.MyStrings.cvsPrefBelow1Year2Cvs, CVStoString(Below1YearStrategy), CVStoString(Below1YearStrategy, True),
-        '                                   CVStoString(Above1YearStrategy), CVStoString(Above1YearStrategy, True))
-        '        End If
-        '    Case Else
-        '        Result = String.Format(My.Resources.MyStrings.cvsNoPreferrationCvs, CVStoString(Below1YearStrategy), CVStoString(Below1YearStrategy, True))
-        'End Select
-        'If WalletAware Then
-        '    Return Result & " " & My.Resources.MyStrings.cvsWalletAware
-        'Else
-        '    Return Result & " " & My.Resources.MyStrings.cvsWalletUnaware
-        'End If
-        'If Coin4CoinAware Then
-        '    Return Result & " " & My.Resources.MyStrings.cvsCoin4CoinAware
-        'Else
-        '    Return Result & " " & My.Resources.MyStrings.cvsCoin4CoinUnaware
-        'End If
+        Result = String.Format(My.Resources.MyStrings.cvsNoPreferrationCvs, CVStoString(ConsumptionStrategy), CVStoString(ConsumptionStrategy, True))
         Return Result
     End Function
 

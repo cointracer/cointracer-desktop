@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
  **************************************
  *
- * Copyright 2013-2019 Andreas Nebinger
+ * Copyright 2013-2021 Andreas Nebinger
  *
  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
    Folgeversionen der EUPL ("Lizenz");
@@ -549,7 +549,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2446,7 +2445,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=IIf(false, "- Nach Buchungstagen zusammengefasst -", "- Alle Trades einzeln dargestellt -")</Value>
+                    <Value>Auflistung Crypto-Trades</Value>
                     <Style>
                       <FontFamily>Segoe UI</FontFamily>
                       <FontSize>11pt</FontSize>
@@ -2539,6 +2538,39 @@
                 <Style>None</Style>
               </Border>
               <VerticalAlign>Bottom</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox23">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Hinweis: Wenn in Spalte "Vorgang Anschaffung" Vorgangsnummern in Klammern erscheinen, beziehen sich diese auf den zugehörigen Transfer-Vorgang.</Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox21</rd:DefaultName>
+            <Top>4.84624cm</Top>
+            <Left>0.84927cm</Left>
+            <Height>0.62646cm</Height>
+            <Width>27.57778cm</Width>
+            <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
               <PaddingTop>2pt</PaddingTop>
@@ -2712,7 +2744,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.3937cm</Top>
-              <Left>13.67639cm</Left>
+              <Left>22.40764cm</Left>
               <Height>0.6cm</Height>
               <Width>6.27399cm</Width>
               <ZIndex>1</ZIndex>
@@ -2756,7 +2788,7 @@
               <Top>0.3937cm</Top>
               <Left>7.5cm</Left>
               <Height>0.6cm</Height>
-              <Width>6cm</Width>
+              <Width>14.73125cm</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>

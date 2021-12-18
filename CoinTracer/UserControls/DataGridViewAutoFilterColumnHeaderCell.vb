@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -73,6 +73,11 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     Private filtered As Boolean
 
     ''' <summary>
+    ''' Maximum number of filtered items shown in pull down list
+    ''' </summary>
+    Private Const MAXFILTERITEMS As Long = &H2000
+
+    ''' <summary>
     ''' Initializes a new instance of the DataGridViewColumnHeaderCell 
     ''' class and sets its property values to the property values of the 
     ''' specified DataGridViewColumnHeaderCell.
@@ -81,28 +86,28 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' copy property values from.</param>
     Public Sub New(ByVal oldHeaderCell As DataGridViewColumnHeaderCell)
 
-        Me.ContextMenuStrip = oldHeaderCell.ContextMenuStrip
-        Me.ErrorText = oldHeaderCell.ErrorText
-        Me.Tag = oldHeaderCell.Tag
-        Me.ToolTipText = oldHeaderCell.ToolTipText
-        Me.Value = oldHeaderCell.Value
-        Me.ValueType = oldHeaderCell.ValueType
+        ContextMenuStrip = oldHeaderCell.ContextMenuStrip
+        ErrorText = oldHeaderCell.ErrorText
+        Tag = oldHeaderCell.Tag
+        ToolTipText = oldHeaderCell.ToolTipText
+        Value = oldHeaderCell.Value
+        ValueType = oldHeaderCell.ValueType
 
         ' Use HasStyle to avoid creating a new style object
         ' when the Style property has not previously been set. 
         If oldHeaderCell.HasStyle Then
-            Me.Style = oldHeaderCell.Style
+            Style = oldHeaderCell.Style
         End If
 
         ' Copy this type's properties if the old cell is an auto-filter cell. 
         ' This enables the Clone method to reuse this constructor. 
-        Dim filterCell As DataGridViewAutoFilterColumnHeaderCell = _
+        Dim filterCell As DataGridViewAutoFilterColumnHeaderCell =
             TryCast(oldHeaderCell, DataGridViewAutoFilterColumnHeaderCell)
         If filterCell IsNot Nothing Then
-            Me.FilteringEnabled = filterCell.FilteringEnabled
-            Me.AutomaticSortingEnabled = filterCell.AutomaticSortingEnabled
-            Me.DropDownListBoxMaxLines = filterCell.DropDownListBoxMaxLines
-            Me.currentDropDownButtonPaddingOffset = _
+            FilteringEnabled = filterCell.FilteringEnabled
+            AutomaticSortingEnabled = filterCell.AutomaticSortingEnabled
+            DropDownListBoxMaxLines = filterCell.DropDownListBoxMaxLines
+            currentDropDownButtonPaddingOffset =
                 filterCell.currentDropDownButtonPaddingOffset
         End If
 
@@ -132,7 +137,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     Protected Overrides Sub OnDataGridViewChanged()
 
         ' Continue only if there is a DataGridView. 
-        If Me.DataGridView Is Nothing Then
+        If DataGridView Is Nothing Then
             Return
         End If
 
@@ -140,10 +145,10 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' effective use of them. 
         If OwningColumn IsNot Nothing Then
 
-            If TypeOf OwningColumn Is DataGridViewImageColumn OrElse _
-                (TypeOf OwningColumn Is DataGridViewButtonColumn AndAlso _
+            If TypeOf OwningColumn Is DataGridViewImageColumn OrElse
+                (TypeOf OwningColumn Is DataGridViewButtonColumn AndAlso
                 CType(OwningColumn, DataGridViewButtonColumn).UseColumnTextForButtonValue) _
-                OrElse (TypeOf OwningColumn Is DataGridViewLinkColumn AndAlso _
+                OrElse (TypeOf OwningColumn Is DataGridViewLinkColumn AndAlso
                 CType(OwningColumn, DataGridViewLinkColumn).UseColumnTextForLinkValue) Then
 
                 AutomaticSortingEnabled = False
@@ -182,17 +187,17 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
 
         ' Continue only if there is a DataGridView and 
         ' its DataSource has been set.
-        If Me.DataGridView Is Nothing OrElse _
-            Me.DataGridView.DataSource Is Nothing Then
+        If DataGridView Is Nothing OrElse
+            DataGridView.DataSource Is Nothing Then
             Return
         End If
 
         ' Throw an exception if the data source is not a BindingSource. 
-        Dim data As BindingSource = _
-            TryCast(Me.DataGridView.DataSource, BindingSource)
+        Dim data As BindingSource =
+            TryCast(DataGridView.DataSource, BindingSource)
         If data Is Nothing Then
-            Throw New NotSupportedException( _
-                "The DataSource property of the containing DataGridView " & _
+            Throw New NotSupportedException(
+                "The DataSource property of the containing DataGridView " &
                 "control must be set to a BindingSource.")
         End If
 
@@ -206,17 +211,17 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' cached filter values when changes in the DataGridView require it.
     ''' </summary>
     Private Sub HandleDataGridViewEvents()
-        AddHandler Me.DataGridView.Scroll, AddressOf DataGridView_Scroll
-        AddHandler Me.DataGridView.ColumnDisplayIndexChanged, AddressOf DataGridView_ColumnDisplayIndexChanged
-        AddHandler Me.DataGridView.ColumnWidthChanged, AddressOf DataGridView_ColumnWidthChanged
-        AddHandler Me.DataGridView.ColumnHeadersHeightChanged, AddressOf DataGridView_ColumnHeadersHeightChanged
-        AddHandler Me.DataGridView.SizeChanged, AddressOf DataGridView_SizeChanged
-        AddHandler Me.DataGridView.DataSourceChanged, AddressOf DataGridView_DataSourceChanged
-        AddHandler Me.DataGridView.DataBindingComplete, AddressOf DataGridView_DataBindingComplete
+        AddHandler DataGridView.Scroll, AddressOf DataGridView_Scroll
+        AddHandler DataGridView.ColumnDisplayIndexChanged, AddressOf DataGridView_ColumnDisplayIndexChanged
+        AddHandler DataGridView.ColumnWidthChanged, AddressOf DataGridView_ColumnWidthChanged
+        AddHandler DataGridView.ColumnHeadersHeightChanged, AddressOf DataGridView_ColumnHeadersHeightChanged
+        AddHandler DataGridView.SizeChanged, AddressOf DataGridView_SizeChanged
+        AddHandler DataGridView.DataSourceChanged, AddressOf DataGridView_DataSourceChanged
+        AddHandler DataGridView.DataBindingComplete, AddressOf DataGridView_DataBindingComplete
 
         ' Add a handler for the ColumnSortModeChanged event to prevent the
         ' column SortMode property from being inadvertently set to Automatic.
-        AddHandler Me.DataGridView.ColumnSortModeChanged, AddressOf DataGridView_ColumnSortModeChanged
+        AddHandler DataGridView.ColumnSortModeChanged, AddressOf DataGridView_ColumnSortModeChanged
     End Sub
 
     ''' <summary>
@@ -225,7 +230,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     ''' <param name="sender">The object that raised the event.</param>
     ''' <param name="e">A ScrollEventArgs that contains the event data.</param>
-    Private Sub DataGridView_Scroll( _
+    Private Sub DataGridView_Scroll(
         ByVal sender As Object, ByVal e As ScrollEventArgs)
         If e.ScrollOrientation = ScrollOrientation.HorizontalScroll Then
             ResetDropDown()
@@ -238,7 +243,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     ''' <param name="sender"></param>
     ''' <param name="e"></param>
-    Private Sub DataGridView_ColumnDisplayIndexChanged( _
+    Private Sub DataGridView_ColumnDisplayIndexChanged(
         ByVal sender As Object, ByVal e As DataGridViewColumnEventArgs)
         ResetDropDown()
     End Sub
@@ -253,7 +258,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     ''' <param name="sender">The object that raised the event.</param>
     ''' <param name="e">A DataGridViewColumnEventArgs that contains the event data.</param>
-    Private Sub DataGridView_ColumnWidthChanged( _
+    Private Sub DataGridView_ColumnWidthChanged(
         ByVal sender As Object, ByVal e As DataGridViewColumnEventArgs)
         ResetDropDown()
     End Sub
@@ -263,7 +268,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     ''' <param name="sender">The object that raised the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub DataGridView_ColumnHeadersHeightChanged( _
+    Private Sub DataGridView_ColumnHeadersHeightChanged(
         ByVal sender As Object, ByVal e As EventArgs)
         ResetDropDown()
     End Sub
@@ -275,7 +280,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     ''' <param name="sender">The object that raised the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub DataGridView_SizeChanged( _
+    Private Sub DataGridView_SizeChanged(
         ByVal sender As Object, ByVal e As EventArgs)
         ResetDropDown()
     End Sub
@@ -287,7 +292,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     ''' <param name="sender">The object that raised the event.</param>
     ''' <param name="e">A DataGridViewBindingCompleteEventArgs that contains the event data.</param>
-    Private Sub DataGridView_DataBindingComplete( _
+    Private Sub DataGridView_DataBindingComplete(
         ByVal sender As Object, ByVal e As DataGridViewBindingCompleteEventArgs)
         If e.ListChangedType = ListChangedType.Reset Then
             ResetDropDown()
@@ -302,7 +307,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     ''' <param name="sender">The object that raised the event.</param>
     ''' <param name="e">An EventArgs that contains the event data.</param>
-    Private Sub DataGridView_DataSourceChanged( _
+    Private Sub DataGridView_DataSourceChanged(
         ByVal sender As Object, ByVal e As EventArgs)
         VerifyDataSource()
         ResetDropDown()
@@ -324,9 +329,9 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' Resets the cached filter values if the filter has been removed.
     ''' </summary>
     Private Sub ResetFilter()
-        If Me.DataGridView Is Nothing Then Return
-        Dim source As BindingSource = _
-            TryCast(Me.DataGridView.DataSource, BindingSource)
+        If DataGridView Is Nothing Then Return
+        Dim source As BindingSource =
+            TryCast(DataGridView.DataSource, BindingSource)
         If source Is Nothing OrElse String.IsNullOrEmpty(source.Filter) Then
             filtered = False
             selectedFilterValue = _CaptionAllValues
@@ -340,14 +345,14 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     ''' <param name="sender">The object that raised the event.</param>
     ''' <param name="e">A DataGridViewColumnEventArgs that contains the event data.</param>
-    Private Sub DataGridView_ColumnSortModeChanged( _
+    Private Sub DataGridView_ColumnSortModeChanged(
         ByVal sender As Object, ByVal e As DataGridViewColumnEventArgs)
 
-        If e.Column Is OwningColumn AndAlso _
+        If e.Column Is OwningColumn AndAlso
             e.Column.SortMode = DataGridViewColumnSortMode.Automatic Then
-            Throw New InvalidOperationException( _
-                "A SortMode value of Automatic is incompatible with " & _
-                "the DataGridViewAutoFilterColumnHeaderCell type. " & _
+            Throw New InvalidOperationException(
+                "A SortMode value of Automatic is incompatible with " &
+                "the DataGridViewAutoFilterColumnHeaderCell type. " &
                 "Use the AutomaticSortingEnabled property instead.")
         End If
 
@@ -369,27 +374,27 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <param name="cellStyle">A DataGridViewCellStyle that contains formatting and style information about the cell.</param>
     ''' <param name="advancedBorderStyle">A DataGridViewAdvancedBorderStyle that contains border styles for the cell that is being painted.</param>
     ''' <param name="paintParts">A bitwise combination of the DataGridViewPaintParts values that specifies which parts of the cell need to be painted.</param>
-    Protected Overrides Sub Paint( _
-        ByVal graphics As Graphics, _
-        ByVal clipBounds As Rectangle, _
-        ByVal cellBounds As Rectangle, _
-        ByVal rowIndex As Integer, _
-        ByVal cellState As DataGridViewElementStates, _
-        ByVal value As Object, _
-        ByVal formattedValue As Object, _
-        ByVal errorText As String, _
-        ByVal cellStyle As DataGridViewCellStyle, _
-        ByVal advancedBorderStyle As DataGridViewAdvancedBorderStyle, _
+    Protected Overrides Sub Paint(
+        ByVal graphics As Graphics,
+        ByVal clipBounds As Rectangle,
+        ByVal cellBounds As Rectangle,
+        ByVal rowIndex As Integer,
+        ByVal cellState As DataGridViewElementStates,
+        ByVal value As Object,
+        ByVal formattedValue As Object,
+        ByVal errorText As String,
+        ByVal cellStyle As DataGridViewCellStyle,
+        ByVal advancedBorderStyle As DataGridViewAdvancedBorderStyle,
         ByVal paintParts As DataGridViewPaintParts)
 
         ' Use the base method to paint the default appearance. 
-        MyBase.Paint(graphics, clipBounds, cellBounds, rowIndex, _
-            cellState, value, formattedValue, errorText, cellStyle, _
+        MyBase.Paint(graphics, clipBounds, cellBounds, rowIndex,
+            cellState, value, formattedValue, errorText, cellStyle,
             advancedBorderStyle, paintParts)
 
         ' Continue only if filtering is enabled and ContentBackground is 
         ' part of the paint request. 
-        If Not FilteringEnabled OrElse (paintParts And _
+        If Not FilteringEnabled OrElse (paintParts And
             DataGridViewPaintParts.ContentBackground) = 0 Then
             Return
         End If
@@ -421,8 +426,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' Determine if the column is sorted in order to draw the arrow 
         ' heading in the right direction
         Dim SortDir As SortOrder = SortOrder.None
-        If Me.DataGridView.SortedColumn Is OwningColumn Then
-            SortDir = Me.DataGridView.SortOrder
+        If DataGridView.SortedColumn Is OwningColumn Then
+            SortDir = DataGridView.SortOrder
         End If
 
         ' If there is a filter in effect for the column, paint the 
@@ -430,49 +435,49 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' in effect, paint the arrow and a small triangle.
         If filtered Then
             ' upper right hand triangle
-            graphics.FillPolygon(Brsh, New Point() { _
-                New Point( _
-                    buttonBounds.Width \ 2 + buttonBounds.Left + 2, _
-                    buttonBounds.Height * 3 \ 4 + buttonBounds.Top - 3), _
-                New Point( _
-                    buttonBounds.Width \ 4 + buttonBounds.Left + 2, _
-                    buttonBounds.Height \ 4 + buttonBounds.Top), _
-                New Point( _
-                    buttonBounds.Width * 3 \ 4 + buttonBounds.Left + 3, _
-                    buttonBounds.Height \ 4 + buttonBounds.Top) _
+            graphics.FillPolygon(Brsh, New Point() {
+                New Point(
+                    buttonBounds.Width \ 2 + buttonBounds.Left + 2,
+                    buttonBounds.Height * 3 \ 4 + buttonBounds.Top - 3),
+                New Point(
+                    buttonBounds.Width \ 4 + buttonBounds.Left + 2,
+                    buttonBounds.Height \ 4 + buttonBounds.Top),
+                New Point(
+                    buttonBounds.Width * 3 \ 4 + buttonBounds.Left + 3,
+                    buttonBounds.Height \ 4 + buttonBounds.Top)
             })
             ' rectangle underneath the upper triangle
-            graphics.FillRectangle(Brsh, New Rectangle( _
-                                    buttonBounds.Width \ 2 + buttonBounds.Left + 1, _
-                                    buttonBounds.Height \ 4 + buttonBounds.Top + 1, _
+            graphics.FillRectangle(Brsh, New Rectangle(
+                                    buttonBounds.Width \ 2 + buttonBounds.Left + 1,
+                                    buttonBounds.Height \ 4 + buttonBounds.Top + 1,
                                     3, buttonBounds.Height * 2 / 4))
             ' sort arrow or small triangle
             If SortDir = SortOrder.Ascending Then
-                graphics.DrawLine(Pn, _
-                                      buttonBounds.Left + 4, buttonBounds.Top + 5, _
+                graphics.DrawLine(Pn,
+                                      buttonBounds.Left + 4, buttonBounds.Top + 5,
                                       buttonBounds.Left + 4, buttonBounds.Bottom - 4)
-                graphics.DrawLine(Pn, _
-                                  buttonBounds.Left + 3, buttonBounds.Top + 6, _
+                graphics.DrawLine(Pn,
+                                  buttonBounds.Left + 3, buttonBounds.Top + 6,
                                   buttonBounds.Left + 5, buttonBounds.Top + 6)
             ElseIf SortDir = SortOrder.Descending Then
-                graphics.DrawLine(Pn, _
-                                      buttonBounds.Left + 4, buttonBounds.Top + 5, _
+                graphics.DrawLine(Pn,
+                                      buttonBounds.Left + 4, buttonBounds.Top + 5,
                                       buttonBounds.Left + 4, buttonBounds.Bottom - 4)
-                graphics.DrawLine(Pn, _
-                                  buttonBounds.Left + 3, buttonBounds.Bottom - 5, _
+                graphics.DrawLine(Pn,
+                                  buttonBounds.Left + 3, buttonBounds.Bottom - 5,
                                   buttonBounds.Left + 5, buttonBounds.Bottom - 5)
             Else
                 ' lower left triangle
-                graphics.FillPolygon(Brsh, New Point() { _
-                    New Point( _
-                        buttonBounds.Left + buttonBounds.Width \ 7, _
-                        buttonBounds.Bottom - 6), _
-                    New Point( _
-                        buttonBounds.Left + buttonBounds.Width \ 7 + 5, _
-                        buttonBounds.Bottom - 6), _
-                    New Point( _
-                        buttonBounds.Left + buttonBounds.Width \ 7 + 2, _
-                        buttonBounds.Bottom - 6 + 3) _
+                graphics.FillPolygon(Brsh, New Point() {
+                    New Point(
+                        buttonBounds.Left + buttonBounds.Width \ 7,
+                        buttonBounds.Bottom - 6),
+                    New Point(
+                        buttonBounds.Left + buttonBounds.Width \ 7 + 5,
+                        buttonBounds.Bottom - 6),
+                    New Point(
+                        buttonBounds.Left + buttonBounds.Width \ 7 + 2,
+                        buttonBounds.Bottom - 6 + 3)
                 })
             End If
         Else
@@ -480,51 +485,51 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             ' Column is not filtered but perhaps sorted
             If SortDir <> SortOrder.None Then
                 ' Triangle in lower left corner
-                graphics.FillPolygon(SystemBrushes.ControlText, New Point() { _
-                    New Point( _
-                        buttonBounds.Left + 3, _
-                        buttonBounds.Bottom - 6), _
-                    New Point( _
-                        buttonBounds.Left + 3 + 5, _
-                        buttonBounds.Bottom - 6), _
-                    New Point( _
-                        buttonBounds.Left + 3 + 2, _
-                        buttonBounds.Bottom - 6 + 3) _
+                graphics.FillPolygon(SystemBrushes.ControlText, New Point() {
+                    New Point(
+                        buttonBounds.Left + 3,
+                        buttonBounds.Bottom - 6),
+                    New Point(
+                        buttonBounds.Left + 3 + 5,
+                        buttonBounds.Bottom - 6),
+                    New Point(
+                        buttonBounds.Left + 3 + 2,
+                        buttonBounds.Bottom - 6 + 3)
                 })
                 If SortDir = SortOrder.Ascending Then
-                    graphics.DrawLine(SystemPens.ControlText, _
-                                      buttonBounds.Right - 5, buttonBounds.Top + 4, _
+                    graphics.DrawLine(SystemPens.ControlText,
+                                      buttonBounds.Right - 5, buttonBounds.Top + 4,
                                       buttonBounds.Right - 5, buttonBounds.Bottom - 4)
-                    graphics.DrawLine(SystemPens.ControlText, _
-                                      buttonBounds.Right - 6, buttonBounds.Top + 5, _
+                    graphics.DrawLine(SystemPens.ControlText,
+                                      buttonBounds.Right - 6, buttonBounds.Top + 5,
                                       buttonBounds.Right - 4, buttonBounds.Top + 5)
 
                 Else
-                    graphics.DrawLine(SystemPens.ControlText, _
-                                      buttonBounds.Right - 5, buttonBounds.Top + 4, _
+                    graphics.DrawLine(SystemPens.ControlText,
+                                      buttonBounds.Right - 5, buttonBounds.Top + 4,
                                       buttonBounds.Right - 5, buttonBounds.Bottom - 4)
-                    graphics.DrawLine(SystemPens.ControlText, _
-                                      buttonBounds.Right - 6, buttonBounds.Bottom - 5, _
+                    graphics.DrawLine(SystemPens.ControlText,
+                                      buttonBounds.Right - 6, buttonBounds.Bottom - 5,
                                       buttonBounds.Right - 4, buttonBounds.Bottom - 5)
                 End If
             Else
                 ' default big triangle
-                graphics.FillPolygon(SystemBrushes.ControlText, New Point() { _
-                    New Point( _
-                        buttonBounds.Width \ 2 + _
-                            buttonBounds.Left, _
-                        buttonBounds.Height * 3 \ 4 + _
-                            buttonBounds.Top), _
-                    New Point( _
-                        buttonBounds.Width \ 4 + _
-                            buttonBounds.Left + 1, _
-                        buttonBounds.Height \ 2 + _
-                            buttonBounds.Top), _
-                    New Point( _
-                        buttonBounds.Width * 3 \ 4 + _
-                            buttonBounds.Left, _
-                        buttonBounds.Height \ 2 + _
-                            buttonBounds.Top) _
+                graphics.FillPolygon(SystemBrushes.ControlText, New Point() {
+                    New Point(
+                        buttonBounds.Width \ 2 +
+                            buttonBounds.Left,
+                        buttonBounds.Height * 3 \ 4 +
+                            buttonBounds.Top),
+                    New Point(
+                        buttonBounds.Width \ 4 +
+                            buttonBounds.Left + 1,
+                        buttonBounds.Height \ 2 +
+                            buttonBounds.Top),
+                    New Point(
+                        buttonBounds.Width * 3 \ 4 +
+                            buttonBounds.Left,
+                        buttonBounds.Height \ 2 +
+                            buttonBounds.Top)
                 })
             End If
         End If
@@ -538,7 +543,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <param name="e">A DataGridViewCellMouseEventArgs that contains the event data.</param>
     Protected Overrides Sub OnMouseDown(ByVal e As DataGridViewCellMouseEventArgs)
 
-        Debug.Assert(Me.DataGridView IsNot Nothing, "DataGridView is null")
+        Debug.Assert(DataGridView IsNot Nothing, "DataGridView is null")
 
         ' Continue only if the user did not click the drop-down button 
         ' while the drop-down list was displayed. This prevents the 
@@ -550,19 +555,19 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         End If
 
         ' Continue only if there are any lines to display
-        If Me.DataGridView.DataSource Is Nothing Then
+        If DataGridView.DataSource Is Nothing Then
             Return
         End If
 
         ' Retrieve the current size and location of the header cell,
         ' excluding any portion that is scrolled off screen. 
-        Dim cellBounds As Rectangle = Me.DataGridView _
+        Dim cellBounds As Rectangle = DataGridView _
             .GetCellDisplayRectangle(e.ColumnIndex, -1, False)
 
         ' Continue only if the column is not manually resizable or the
         ' mouse coordinates are not within the column resize zone. 
-        If Me.OwningColumn.Resizable = DataGridViewTriState.True AndAlso _
-            (Me.DataGridView.RightToLeft = RightToLeft.No AndAlso _
+        If Me.OwningColumn.Resizable = DataGridViewTriState.True AndAlso
+            (Me.DataGridView.RightToLeft = RightToLeft.No AndAlso
             cellBounds.Width - e.X < 6 OrElse e.X < 6) Then
             Return
         End If
@@ -570,9 +575,9 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' Unless RightToLeft is enabled, store the width of the portion
         ' that is scrolled off screen. 
         Dim scrollingOffset As Integer = 0
-        If Me.DataGridView.RightToLeft = RightToLeft.No AndAlso _
-            Me.DataGridView.FirstDisplayedScrollingColumnIndex = Me.ColumnIndex Then
-            scrollingOffset = Me.DataGridView.FirstDisplayedScrollingColumnHiddenWidth
+        If Me.DataGridView.RightToLeft = RightToLeft.No AndAlso
+            DataGridView.FirstDisplayedScrollingColumnIndex = ColumnIndex Then
+            scrollingOffset = DataGridView.FirstDisplayedScrollingColumnHiddenWidth
         End If
 
         ' Show the drop-down list if filtering is enabled and the mouse click occurred
@@ -581,26 +586,26 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' The mouse coordinates are relative to the cell bounds, so the cell location
         ' and the scrolling offset are needed to determine the client coordinates.
         If e.Button = MouseButtons.Left Then
-            If FilteringEnabled AndAlso _
-                DropDownButtonBounds.Contains( _
+            If FilteringEnabled AndAlso
+                DropDownButtonBounds.Contains(
                 e.X + cellBounds.Left - scrollingOffset, e.Y + cellBounds.Top) Then
 
                 ' If the current cell is in edit mode, commit the edit. 
-                If Me.DataGridView.IsCurrentCellInEditMode Then
+                If DataGridView.IsCurrentCellInEditMode Then
                     ' Commit and end the cell edit.  
-                    Me.DataGridView.EndEdit()
+                    DataGridView.EndEdit()
 
                     ' Commit any change to the underlying data source. 
-                    Dim source As BindingSource = _
-                        TryCast(Me.DataGridView.DataSource, BindingSource)
+                    Dim source As BindingSource =
+                        TryCast(DataGridView.DataSource, BindingSource)
                     If source IsNot Nothing Then
                         source.EndEdit()
                     End If
                 End If
                 ShowDropDownList()
 
-            ElseIf AutomaticSortingEnabled AndAlso _
-                Me.DataGridView.SelectionMode <> _
+            ElseIf AutomaticSortingEnabled AndAlso
+                DataGridView.SelectionMode <>
                 DataGridViewSelectionMode.ColumnHeaderSelect Then
 
                 SortByColumn()
@@ -617,25 +622,25 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     Private Sub SortByColumn()
 
-        Debug.Assert(Me.DataGridView IsNot Nothing AndAlso _
+        Debug.Assert(DataGridView IsNot Nothing AndAlso
             OwningColumn IsNot Nothing, "DataGridView or OwningColumn is null")
 
         ' Continue only if the data source supports sorting. 
-        Dim sortList As IBindingList = _
-            TryCast(Me.DataGridView.DataSource, IBindingList)
-        If sortList Is Nothing OrElse _
-            Not sortList.SupportsSorting OrElse _
+        Dim sortList As IBindingList =
+            TryCast(DataGridView.DataSource, IBindingList)
+        If sortList Is Nothing OrElse
+            Not sortList.SupportsSorting OrElse
             Not AutomaticSortingEnabled Then
             Return
         End If
 
         ' Determine the sort direction and sort by the owning column. 
         Dim direction As ListSortDirection = ListSortDirection.Ascending
-        If Me.DataGridView.SortedColumn Is OwningColumn AndAlso _
+        If DataGridView.SortedColumn Is OwningColumn AndAlso
             Me.DataGridView.SortOrder = SortOrder.Ascending Then
             direction = ListSortDirection.Descending
         End If
-        Me.DataGridView.Sort(OwningColumn, direction)
+        DataGridView.Sort(OwningColumn, direction)
 
     End Sub
 
@@ -656,20 +661,27 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     Public Sub ShowDropDownList()
 
-        Debug.Assert(Me.DataGridView IsNot Nothing, "DataGridView is null")
+        Debug.Assert(DataGridView IsNot Nothing, "DataGridView is null")
+
+        Dim CurrentCursor As Cursor = Cursor.Current
+        Cursor.Current = Cursors.WaitCursor
 
         ' Ensure that the current row is not the row for new records.
         ' This prevents the new row from affecting the filter list and also 
         ' prevents the new row from being added when the filter changes.
-        If Me.DataGridView.CurrentRow IsNot Nothing AndAlso _
-            Me.DataGridView.CurrentRow.IsNewRow Then
-            Me.DataGridView.CurrentCell = Nothing
+        If DataGridView.CurrentRow IsNot Nothing AndAlso
+            DataGridView.CurrentRow.IsNewRow Then
+            DataGridView.CurrentCell = Nothing
         End If
 
         ' Populate the filters dictionary, then copy the filter values 
         ' from the filters.Keys collection into the ListBox.Items collection, 
         ' selecting the current filter if there is one in effect. 
-        PopulateFilters()
+        If PopulateFilters() Then
+            dropDownListBox.ResetForeColor()
+        Else
+            dropDownListBox.ForeColor = Color.OrangeRed
+        End If
 
         Dim filterArray As String() = New String(filters.Count - 1) {}
         filters.Keys.CopyTo(filterArray, 0)
@@ -707,33 +719,33 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' Display it
         dropDownListBox.Visible = True
         dropDownListBoxShowing = True
-        Debug.Assert(dropDownListBox.Parent Is Nothing, _
+        Debug.Assert(dropDownListBox.Parent Is Nothing,
             "ShowDropDownListBox has been called multiple times before HideDropDownListBox")
         ' Add dropDownListBox and the buttons to the DataGridView. 
-        Me.DataGridView.Controls.Add(dropDownListBox)
-        Me.DataGridView.Controls.Add(ButtonPanel)
+        DataGridView.Controls.Add(dropDownListBox)
+        DataGridView.Controls.Add(ButtonPanel)
 
         ' Create the OK and Cancel buttons
         Dim graphics As Graphics = dropDownListBox.CreateGraphics()
         With ButtonPanel
-            .SetBounds(dropDownListBox.Location.X, _
-                       dropDownListBox.Bottom - 1, _
-                       dropDownListBox.Width + 1, _
+            .SetBounds(dropDownListBox.Location.X,
+                       dropDownListBox.Bottom - 1,
+                       dropDownListBox.Width + 1,
                        (graphics.MeasureString("OK", .Font).Height + 6) * 2)
         End With
         graphics.Dispose()
         With OKButton
             .Font = New Font(dropDownListBox.Font, FontStyle.Regular)
             .Text = CaptionOKButton
-            .SetBounds(0, 0, _
-                       dropDownListBox.Width, _
+            .SetBounds(0, 0,
+                       dropDownListBox.Width,
                        ButtonPanel.Height / 2)
         End With
         With CancelButton
             .Font = OKButton.Font
             .Text = CaptionCancelButton
-            .SetBounds(0, OKButton.Height - 1, _
-                       OKButton.Width, _
+            .SetBounds(0, OKButton.Height - 1,
+                       OKButton.Width,
                        OKButton.Height)
         End With
         ButtonPanel.Controls.Add(OKButton)
@@ -749,7 +761,9 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
 
         ' Invalidate the cell so that the drop-down button will repaint
         ' in the pressed state. 
-        Me.DataGridView.InvalidateCell(Me)
+        DataGridView.InvalidateCell(Me)
+
+        Cursor.Current = CurrentCursor
 
     End Sub
 
@@ -758,7 +772,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     Public Sub HideDropDownList()
 
-        Debug.Assert(Me.DataGridView IsNot Nothing, "DataGridView is null")
+        Debug.Assert(DataGridView IsNot Nothing, "DataGridView is null")
 
         ' Hide dropDownListBox, remove handlers from its events, and remove 
         ' it from the DataGridView control. 
@@ -767,15 +781,15 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         OKButton.Visible = False
         CancelButton.Visible = False
         UnhandleDropDownListBoxEvents()
-        Me.DataGridView.Controls.Remove(dropDownListBox)
+        DataGridView.Controls.Remove(dropDownListBox)
         ButtonPanel.Controls.Remove(OKButton)
         ButtonPanel.Controls.Remove(CancelButton)
-        Me.DataGridView.Controls.Remove(ButtonPanel)
+        DataGridView.Controls.Remove(ButtonPanel)
         _LastItemClicked = 0
 
         ' Invalidate the cell so that the drop-down button will repaint
         ' in the unpressed state. 
-        Me.DataGridView.InvalidateCell(Me)
+        DataGridView.InvalidateCell(Me)
 
     End Sub
 
@@ -805,7 +819,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         Try
             Dim filter As String
             For Each filter In filters.Keys
-                Dim stringSizeF As SizeF = _
+                Dim stringSizeF As SizeF =
                     graphics.MeasureString(filter, dropDownListBox.Font)
                 currentWidth = CType(stringSizeF.Width + 16, Integer)         ' 16 more for the checkbox...
                 If dropDownListBoxWidth < currentWidth Then
@@ -820,9 +834,9 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' Increase the width to allow for horizontal margins and borders. 
         dropDownListBoxWidth += 6
 
-        If Me.DataGridViewAsObject.GetType().GetProperty("CurrentScaleFactor") IsNot Nothing Then
-            dropDownListBoxHeight *= Me.DataGridViewAsObject.CurrentScaleFactor.Width
-            dropDownListBoxWidth *= (1 + ((Me.DataGridViewAsObject.CurrentScaleFactor.Width - 1) / 2))
+        If DataGridViewAsObject.GetType().GetProperty("CurrentScaleFactor") IsNot Nothing Then
+            dropDownListBoxHeight *= DataGridViewAsObject.CurrentScaleFactor.Width
+            dropDownListBoxWidth *= (1 + ((DataGridViewAsObject.CurrentScaleFactor.Width - 1) / 2))
         End If
 
         ' Constrain the dropDownListBox height to the 
@@ -848,8 +862,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' Determine the left and right edges of the available horizontal
         ' width of the DataGridView control. 
         Dim clientLeft As Integer = 1
-        Dim clientRight As Integer = Me.DataGridView.ClientRectangle.Right
-        If Me.DataGridView.DisplayedRowCount(False) < Me.DataGridView.RowCount Then
+        Dim clientRight As Integer = DataGridView.ClientRectangle.Right
+        If DataGridView.DisplayedRowCount(False) < DataGridView.RowCount Then
             If Me.DataGridView.RightToLeft = RightToLeft.Yes Then
                 clientLeft += SystemInformation.VerticalScrollBarWidth
             Else
@@ -862,7 +876,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         If dropDownListBoxLeft < clientLeft Then
             dropDownListBoxLeft = clientLeft
         End If
-        Dim dropDownListBoxRight As Integer = _
+        Dim dropDownListBoxRight As Integer =
             dropDownListBoxLeft + dropDownListBoxWidth + 1
         If dropDownListBoxRight > clientRight Then
             If dropDownListBoxLeft = clientLeft Then
@@ -877,8 +891,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         End If
 
         ' Set the ListBox.Bounds property using the calculated values. 
-        dropDownListBox.Bounds = New Rectangle(dropDownListBoxLeft, _
-                    DropDownButtonBounds.Bottom, dropDownListBoxWidth, _
+        dropDownListBox.Bounds = New Rectangle(dropDownListBoxLeft,
+                    DropDownButtonBounds.Bottom, dropDownListBoxWidth,
                     dropDownListBoxHeight)
 
 
@@ -898,25 +912,25 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             ' for the ListBox bottom border and the two buttons 
             ' beneath the list. 
             Dim graphics As Graphics = dropDownListBox.CreateGraphics()
-            Dim dataGridViewMaxHeight As Integer = _
-                Me.DataGridView.Height - Me.DataGridView.ColumnHeadersHeight - 1 - _
+            Dim dataGridViewMaxHeight As Integer =
+                DataGridView.Height - DataGridView.ColumnHeadersHeight - 1 -
                 (graphics.MeasureString("OK", dropDownListBox.Font).Height + 6) * 2
             graphics.Dispose()
             ' check wether client width of DataGridView control is smaller than total of
             ' all column widths
             Dim ColWidthTotal As Integer = 0
-            For Each Col As Object In Me.DataGridView.Columns
+            For Each Col As Object In DataGridView.Columns
                 If Col.Visible = True Then
                     ColWidthTotal += Col.Width
                 End If
             Next
-            If Me.DataGridView.Width < ColWidthTotal Then
+            If DataGridView.Width < ColWidthTotal Then
                 dataGridViewMaxHeight -= SystemInformation.HorizontalScrollBarHeight
             End If
 
             ' Calculate the height of the list box, using the combined 
             ' height of all items plus 2 for the top and bottom border. 
-            Dim listMaxHeight As Integer = _
+            Dim listMaxHeight As Integer =
                 dropDownListBoxMaxLinesValue * dropDownListBox.ItemHeight + 2
 
             ' Return the smaller of the two values. 
@@ -974,7 +988,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
 
         If Not _NoInteraction Then
 
-            Debug.Assert(Me.DataGridView IsNot Nothing, "DataGridView is null")
+            Debug.Assert(DataGridView IsNot Nothing, "DataGridView is null")
 
             With dropDownListBox
                 ' avoid recursion
@@ -1030,13 +1044,13 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         ' If the focus was lost because the user clicked the drop-down
         ' button, store a value that prevents the subsequent OnMouseDown
         ' call from displaying the drop-down list again. 
-        If DropDownButtonBounds.Contains( _
-            Me.DataGridView.PointToClient( _
+        If DropDownButtonBounds.Contains(
+            DataGridView.PointToClient(
             New Point(Control.MousePosition.X, Control.MousePosition.Y))) Then
             lostFocusOnDropDownButtonClick = True
         End If
         ' prevent hiding the drop down when one of the OK or Cancel buttons has been clicked
-        If Not ButtonPanel.ClientRectangle.Contains(ButtonPanel.PointToClient( _
+        If Not ButtonPanel.ClientRectangle.Contains(ButtonPanel.PointToClient(
             New Point(Control.MousePosition.X, Control.MousePosition.Y))) Then
             HideDropDownList()
         End If
@@ -1091,19 +1105,22 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' representations of each unique value in the column, accounting for all 
     ''' filters except the current column's. Also adds special filter options. 
     ''' </summary>
-    Private Sub PopulateFilters()
+    ''' <returns>True if the filter list contains all element, False if it has been cut off (due to being too long)</returns>
+    Private Function PopulateFilters() As Boolean
+
+        Dim AllItemsProcessed As Boolean = True
 
         ' Continue only if there is a DataGridView.
-        If Me.DataGridView Is Nothing OrElse Me.DataGridView.DataSource Is Nothing Then
-            Return
+        If DataGridView Is Nothing OrElse DataGridView.DataSource Is Nothing Then
+            Return AllItemsProcessed
         End If
 
         ' Cast the data source to a BindingSource. 
-        Dim data As BindingSource = _
-            TryCast(Me.DataGridView.DataSource, BindingSource)
+        Dim data As BindingSource =
+            TryCast(DataGridView.DataSource, BindingSource)
 
-        Debug.Assert(data IsNot Nothing AndAlso _
-            data.SupportsFiltering AndAlso OwningColumn IsNot Nothing, _
+        Debug.Assert(data IsNot Nothing AndAlso
+            data.SupportsFiltering AndAlso OwningColumn IsNot Nothing,
             "DataSource is not a BindingSource, or does not support filtering, or OwningColumn is null")
 
         ' Prevent the data source from notifying the DataGridView of changes. 
@@ -1149,8 +1166,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
                 Dim properties As PropertyDescriptorCollection = ictd.GetProperties()
                 For Each prop As PropertyDescriptor In properties
 
-                    If (String.Compare(Me.OwningColumn.DataPropertyName, _
-                        prop.Name, True, _
+                    If (String.Compare(OwningColumn.DataPropertyName,
+                        prop.Name, True,
                         System.Globalization.CultureInfo.InvariantCulture) = 0) Then
 
                         If prop.PropertyType.FullName = "System.Boolean" Then
@@ -1170,12 +1187,12 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
 
             Else
 
-                Dim properties As PropertyInfo() = item.GetType().GetProperties( _
+                Dim properties As PropertyInfo() = item.GetType().GetProperties(
                     BindingFlags.Public Or BindingFlags.Instance)
                 For Each prop As PropertyInfo In properties
 
-                    If (String.Compare(Me.OwningColumn.DataPropertyName, _
-                        prop.Name, True, _
+                    If (String.Compare(OwningColumn.DataPropertyName,
+                        prop.Name, True,
                         System.Globalization.CultureInfo.InvariantCulture) = 0) Then
 
                         If prop.PropertyType.FullName = "System.Boolean" Then
@@ -1203,6 +1220,10 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             ' Add values to the ArrayList if they are not already there.
             If Not list.Contains(value) Then
                 list.Add(value)
+                If list.Count >= MAXFILTERITEMS Then
+                    AllItemsProcessed = False
+                    Exit For
+                End If
             End If
         Next item
 
@@ -1226,7 +1247,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             ' will match the display format used for the column's cells. 
             Dim formattedValue As String = Nothing
             Dim style As DataGridViewCellStyle = OwningColumn.InheritedStyle
-            formattedValue = CStr(GetFormattedValue(value, -1, style, _
+            formattedValue = CStr(GetFormattedValue(value, -1, style,
                 Nothing, Nothing, DataGridViewDataErrorContexts.Formatting))
 
             If String.IsNullOrEmpty(formattedValue) Then
@@ -1256,7 +1277,9 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             filters.Add(_CaptionBlankValues, Nothing)
         End If
 
-    End Sub 'PopulateFilters
+        Return AllItemsProcessed
+
+    End Function 'PopulateFilters
 
     ''' <summary>
     ''' Returns a copy of the specified filter string after removing the 
@@ -1304,10 +1327,10 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     Private Sub UpdateFilter()
 
         ' Cast the data source to an IBindingListView.
-        Dim data As IBindingListView = _
-            TryCast(Me.DataGridView.DataSource, IBindingListView)
+        Dim data As IBindingListView =
+            TryCast(DataGridView.DataSource, IBindingListView)
 
-        Debug.Assert(data IsNot Nothing AndAlso data.SupportsFiltering, _
+        Debug.Assert(data IsNot Nothing AndAlso data.SupportsFiltering,
             "DataSource is not an IBindingListView or does not support filtering")
 
         ' If the user selection is (Alles auswählen), remove any filter currently 
@@ -1333,7 +1356,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         Dim Itm As New Object
         Dim ItmString As String
         Dim ItmDate As Date
-        Dim DateFormats() As String = {"dd.MM.yyyy HH:mm:ss", "dd.MM.yyyy HH:mm", "dd.MM.yyyy", _
+        Dim DateFormats() As String = {"dd.MM.yyyy HH:mm:ss", "dd.MM.yyyy HH:mm", "dd.MM.yyyy",
                                        "yyyy-MM-dd HH:mm:ss", "yyyy-MM-dd HH:mm", "yyyy-MM-dd"}
         For Each Itm In dropDownListBox.CheckedItems
             If Itm.ToString = _CaptionBlankValues Then
@@ -1354,8 +1377,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
                     newColumnFilter &= " OR "
                 End If
                 If DateTime.TryParseExact(ItmString, DateFormats, Globalization.CultureInfo.InvariantCulture, Globalization.DateTimeStyles.None, ItmDate) Then
-                    newColumnFilter &= String.Format("([{0}] >= '{1}:00' AND [{0}] <= '{1}:59')", _
-                                                     columnDataProperty, _
+                    newColumnFilter &= String.Format("([{0}] >= '{1}:00' AND [{0}] <= '{1}:59')",
+                                                     columnDataProperty,
                                                      ItmDate.ToString("yyyy-MM-dd HH:mm"))
                 Else
                     newColumnFilter &= String.Format("[{0}]='{1}'", columnDataProperty, ItmString.Replace("'", "''"))
@@ -1419,22 +1442,22 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         End If
 
         ' Cast the data source to a BindingSource.
-        Dim data As BindingSource = _
+        Dim data As BindingSource =
             TryCast(dataGridView.DataSource, BindingSource)
 
         ' Confirm that the data source is a BindingSource that 
         ' supports filtering.
-        If data Is Nothing OrElse _
-            data.DataSource Is Nothing OrElse _
+        If data Is Nothing OrElse
+            data.DataSource Is Nothing OrElse
             Not data.SupportsFiltering Then
-            Throw New ArgumentException("The DataSource property of the " & _
-            "specified DataGridView is not set to a BindingSource " & _
+            Throw New ArgumentException("The DataSource property of the " &
+            "specified DataGridView is not set to a BindingSource " &
             "with a SupportsFiltering property value of true.")
         End If
 
         ' Ensure that the current row is not the row for new records.
         ' This prevents the new row from being added when the filter changes.
-        If dataGridView.CurrentRow IsNot Nothing AndAlso _
+        If dataGridView.CurrentRow IsNot Nothing AndAlso
             dataGridView.CurrentRow.IsNewRow Then
             dataGridView.CurrentCell = Nothing
         End If
@@ -1454,7 +1477,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <returns>A string in the format "x of y records found" where x is 
     ''' the number of rows currently displayed and y is the number of rows 
     ''' available, or String.Empty if all rows are currently displayed.</returns>
-    Public Shared Function GetFilterStatus( _
+    Public Shared Function GetFilterStatus(
         ByVal dataGridView As DataGridView) As String
 
         ' Continue only if the specified value is valid. 
@@ -1463,14 +1486,14 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         End If
 
         ' Cast the data source to a BindingSource.
-        Dim data As BindingSource = _
+        Dim data As BindingSource =
             TryCast(dataGridView.DataSource, BindingSource)
 
         ' Return String.Empty if there is no appropriate data source or
         ' there is no filter in effect. 
-        If String.IsNullOrEmpty(data.Filter) OrElse _
-            data Is Nothing OrElse _
-            data.DataSource Is Nothing OrElse _
+        If String.IsNullOrEmpty(data.Filter) OrElse
+            data Is Nothing OrElse
+            data.DataSource Is Nothing OrElse
             Not data.SupportsFiltering Then
             Return String.Empty
         End If
@@ -1487,7 +1510,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         data.Filter = oldFilter
         data.RaiseListChangedEvents = True
 
-        Debug.Assert(currentRowCount <= unfilteredRowCount, _
+        Debug.Assert(currentRowCount <= unfilteredRowCount,
             "current count is greater than unfiltered count")
 
         ' Return String.Empty if the filtered and unfiltered counts
@@ -1495,7 +1518,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         If currentRowCount = unfilteredRowCount Then
             Return String.Empty
         End If
-        Return String.Format("{0} of {1} records found", _
+        Return String.Format("{0} of {1} records found",
             currentRowCount, unfilteredRowCount)
 
     End Function 'GetFilterStatus
@@ -1545,35 +1568,35 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
 
         ' Retrieve the cell display rectangle, which is used to 
         ' set the position of the drop-down button. 
-        Dim cellBounds As Rectangle = _
-            Me.DataGridView.GetCellDisplayRectangle(Me.ColumnIndex, -1, False)
+        Dim cellBounds As Rectangle =
+            DataGridView.GetCellDisplayRectangle(ColumnIndex, -1, False)
 
         ' Initialize a variable to store the button edge length,
         ' setting its initial value based on the font height. 
-        Dim buttonEdgeLength As Integer = Me.InheritedStyle.Font.Height + 5
+        Dim buttonEdgeLength As Integer = InheritedStyle.Font.Height + 5
 
         ' Calculate the height of the cell borders and padding.
-        Dim borderRect As Rectangle = BorderWidths( _
-            Me.DataGridView.AdjustColumnHeaderBorderStyle( _
-            Me.DataGridView.AdvancedColumnHeadersBorderStyle, _
+        Dim borderRect As Rectangle = BorderWidths(
+            DataGridView.AdjustColumnHeaderBorderStyle(
+            DataGridView.AdvancedColumnHeadersBorderStyle,
             New DataGridViewAdvancedBorderStyle(), False, False))
-        Dim borderAndPaddingHeight As Integer = 2 + _
-            borderRect.Top + borderRect.Height + _
-            Me.InheritedStyle.Padding.Vertical
-        Dim visualStylesEnabled As Boolean = _
-            Application.RenderWithVisualStyles AndAlso _
-            Me.DataGridView.EnableHeadersVisualStyles
+        Dim borderAndPaddingHeight As Integer = 2 +
+            borderRect.Top + borderRect.Height +
+            InheritedStyle.Padding.Vertical
+        Dim visualStylesEnabled As Boolean =
+            Application.RenderWithVisualStyles AndAlso
+            DataGridView.EnableHeadersVisualStyles
         If visualStylesEnabled Then
             borderAndPaddingHeight += 3
         End If
 
         ' Constrain the button edge length to the height of the 
         ' column headers minus the border and padding height. 
-        If buttonEdgeLength > _
-            Me.DataGridView.ColumnHeadersHeight - _
+        If buttonEdgeLength >
+            DataGridView.ColumnHeadersHeight -
             borderAndPaddingHeight Then
-            buttonEdgeLength = _
-                Me.DataGridView.ColumnHeadersHeight - borderAndPaddingHeight
+            buttonEdgeLength =
+                DataGridView.ColumnHeadersHeight - borderAndPaddingHeight
         End If
 
         ' Constrain the button edge length to the
@@ -1623,7 +1646,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
 
         ' Determine the difference between the new and current 
         ' padding adjustment.
-        Dim widthChange As Integer = newDropDownButtonPaddingOffset - _
+        Dim widthChange As Integer = newDropDownButtonPaddingOffset -
             currentDropDownButtonPaddingOffset
 
         ' If the padding needs to change, store the new value and 
@@ -1636,8 +1659,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             ' Create a new Padding using the adjustment amount, then add it
             ' to the cell's existing Style.Padding property value. 
             Dim dropDownPadding As Padding = New Padding(0, 0, widthChange, 0)
-            Me.Style.Padding = _
-                Padding.Add(Me.InheritedStyle.Padding, dropDownPadding)
+            Style.Padding =
+                Padding.Add(InheritedStyle.Padding, dropDownPadding)
         End If
 
     End Sub
@@ -1659,20 +1682,20 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <summary>
     ''' Gets or sets a value indicating whether filtering is enabled.
     ''' </summary>
-    <DefaultValue(True)> _
+    <DefaultValue(True)>
     Public Property FilteringEnabled() As Boolean
         Get
             ' Return filteringEnabledValue if there is no DataGridView
             ' or if its DataSource property has not been set. 
-            If Me.DataGridView Is Nothing OrElse _
-                Me.DataGridView.DataSource Is Nothing Then
+            If DataGridView Is Nothing OrElse
+                DataGridView.DataSource Is Nothing Then
                 Return filteringEnabledValue
             End If
 
             ' If the DataSource property has been set, return a value that combines 
             ' the filteringEnabledValue and BindingSource.SupportsFiltering values.
-            Dim data As BindingSource = _
-                TryCast(Me.DataGridView.DataSource, BindingSource)
+            Dim data As BindingSource =
+                TryCast(DataGridView.DataSource, BindingSource)
             ' Debug.Assert(data IsNot Nothing)
             If data IsNot Nothing Then
                 Return filteringEnabledValue AndAlso data.SupportsFiltering
@@ -1703,7 +1726,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' Gets or sets a value indicating whether automatic sorting is 
     ''' enabled for the owning column. 
     ''' </summary>
-    <DefaultValue(True)> _
+    <DefaultValue(True)>
     Public Property AutomaticSortingEnabled() As Boolean
         Get
             Return automaticSortingEnabledValue
@@ -1712,10 +1735,10 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             automaticSortingEnabledValue = value
             If OwningColumn IsNot Nothing Then
                 If value Then
-                    OwningColumn.SortMode = _
+                    OwningColumn.SortMode =
                         DataGridViewColumnSortMode.Programmatic
                 Else
-                    OwningColumn.SortMode = _
+                    OwningColumn.SortMode =
                         DataGridViewColumnSortMode.NotSortable
                 End If
             End If
@@ -1731,8 +1754,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' Gets or sets the maximum number of lines to display in the drop-down filter list. 
     ''' The actual height of the drop-down list is constrained by the DataGridView height. 
     ''' </summary>
-    <Browsable(True)> _
-    <DefaultValue(30)> _
+    <Browsable(True)>
+    <DefaultValue(30)>
     Public Property DropDownListBoxMaxLines() As Integer
         Get
             Return dropDownListBoxMaxLinesValue
@@ -1746,9 +1769,9 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <summary>
     ''' Caption of the OK button at the bottom of the filter list
     ''' </summary>
-    <Browsable(True)> _
-    <DefaultValue("OK")> _
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
+    <Browsable(True)>
+    <DefaultValue("OK")>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
     Public Property CaptionOKButton() As String
         Get
             If String.IsNullOrEmpty(_CaptionOKButton) Then
@@ -1766,9 +1789,9 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <summary>
     ''' Caption of the cancel button at the bottom of the filter list
     ''' </summary>
-    <Browsable(True)> _
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
-    <DefaultValue("Abbrechen")> _
+    <Browsable(True)>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
+    <DefaultValue("Abbrechen")>
     Public Property CaptionCancelButton() As String
         Get
             If String.IsNullOrEmpty(_CaptionCancelButton) Then
@@ -1788,8 +1811,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     <Browsable(True)>
     <DefaultValue("(Alles auswählen)")>
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
-    <Description("Caption for the first entry in filter list, representing all values of the filter")> _
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
+    <Description("Caption for the first entry in filter list, representing all values of the filter")>
     Public Property CaptionAllValues() As String
         Get
             Return _CaptionAllValues
@@ -1803,10 +1826,10 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <summary>
     ''' Caption for the 2nd last entry in filter list: default "(Leere)"
     ''' </summary>
-    <Browsable(True)> _
-    <DefaultValue("(Leere)")> _
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
-    <Description("Caption for the 2nd last entry in filter list, representing all blank values")> _
+    <Browsable(True)>
+    <DefaultValue("(Leere)")>
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
+    <Description("Caption for the 2nd last entry in filter list, representing all blank values")>
     Public Property CaptionBlankValues() As String
         Get
             Return _CaptionBlankValues
@@ -1820,7 +1843,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <summary>
     ''' Caption for checkbox columns: all checked values"
     ''' </summary>
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
     Public Property CaptionCheckedValues() As String
         Get
             Return _CaptionCheckedValues
@@ -1834,7 +1857,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' <summary>
     ''' Caption for checkbox columns: all unchecked values"
     ''' </summary>
-    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)> _
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)>
     Public Property CaptionUncheckedValues() As String
         Get
             Return _CaptionUncheckedValues
@@ -1849,7 +1872,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' </summary>
     Public ReadOnly Property DataGridViewAsObject() As Object
         Get
-            Return Me.DataGridView
+            Return DataGridView
         End Get
     End Property
 
@@ -1872,8 +1895,8 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             IntegralHeight = True
             BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
             TabStop = False
-            Me.CheckOnClick = True
-            Me.SetAutoSizeMode(AutoSizeMode.GrowAndShrink)
+            CheckOnClick = True
+            SetAutoSizeMode(AutoSizeMode.GrowAndShrink)
         End Sub
 
         ''' <summary>

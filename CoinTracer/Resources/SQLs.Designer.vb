@@ -175,90 +175,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE TABLE IF NOT EXISTS [Out2In] (
-        '''[ID] INTEGER  PRIMARY KEY AUTOINCREMENT NOT NULL,
-        '''[SzenarioID] INTEGER NOT NULL,
-        '''[KalkulationID] INTEGER NOT NULL,
-        '''[MainOutTradeID] INTEGER NOT NULL,
-        '''[OutTradeID] INTEGER NOT NULL,
-        '''[InTradeID] INTEGER NOT NULL,
-        '''[InZeitpunkt] TIMESTAMP NULL,
-        '''[MainBetrag] NUMERIC DEFAULT &apos;0&apos; NULL,
-        '''[Betrag] NUMERIC DEFAULT &apos;0&apos; NULL,
-        '''[WertEUR] NUMERIC NULL,
-        '''[Level] INTEGER NOT NULL DEFAULT &apos;0&apos;,
-        '''[IstFiat] BOOLEAN DEFAULT &apos;0&apos;, 
-        '''[IstTransfer] BOOLEAN DEFAULT &apos;0&apos;, 
-        '''[IstLangzeit] B [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_11() As String
-            Get
-                Return ResourceManager.GetString("db_v39_11", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_Out2In_Kalkulation] ON [Out2In]([KalkulationID]  ASC) ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_12() As String
-            Get
-                Return ResourceManager.GetString("db_v39_12", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_MainOutTrade] ON [Out2In]([SzenarioID] ASC, [MainOutTradeID] ASC, [Level] ASC) ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_13() As String
-            Get
-                Return ResourceManager.GetString("db_v39_13", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_Out2In_Szenario_InTrade] ON [Out2In]([SzenarioID] ASC, [InTradeID] ASC, [Level] ASC) ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_14() As String
-            Get
-                Return ResourceManager.GetString("db_v39_14", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS [VW_InCoins] ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_15() As String
-            Get
-                Return ResourceManager.GetString("db_v39_15", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW IF NOT EXISTS [VW_InCoins] AS 
-        '''select
-        '''  t.ID TradeID,
-        '''  t.BetragNachGebuehr Betrag,
-        '''  t.ZielKontoID KontoID,
-        '''  case 
-        '''    when t.TradeTypID = 5 and (pt.Eigen and ps.Eigen) then
-        '''      case
-        '''        when ps.Boerse and pt.Boerse then 37
-        '''        when ps.Boerse and not pt.Boerse then 101
-        '''        else 69
-        '''      end
-        '''    when t.TradeTypID in (3, 4) and not ks.IstFiat and not kt.IstFiat then 19
-        '''    else t.TradeTypID
-        '''  end InTypID,
-        '''  t.ZielPlattformID PlattformID,
-        '''  t.ZeitpunktZiel Zeitpunkt, [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_16() As String
-            Get
-                Return ResourceManager.GetString("db_v39_16", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS [VW_OutCoins] ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property db_v39_17() As String
@@ -312,67 +228,6 @@ Namespace My.Resources
         Friend Shared ReadOnly Property db_v39_20() As String
             Get
                 Return ResourceManager.GetString("db_v39_20", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS [VW_Gainings] ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_21() As String
-            Get
-                Return ResourceManager.GetString("db_v39_21", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW IF NOT EXISTS [VW_Gainings] AS
-        '''select
-        '''t.Zeitpunkt Zeitpunkt,
-        '''case t.TradeTypID
-        '''  when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.BetragNachGebuehr - coalesce(sum(o2i.WertEUR), 0), 2) else round(0, 2) end end
-        '''  when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(o2i.MainBetrag), 0) / t.QuellBetrag - coalesce(sum(o2i.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce( [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_22() As String
-            Get
-                Return ResourceManager.GetString("db_v39_22", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS [VW_GainingsReport2] ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_23() As String
-            Get
-                Return ResourceManager.GetString("db_v39_23", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW [VW_GainingsReport2] AS 
-        '''select 
-        '''t.ID Vorgang,
-        '''t.Zeitpunkt Zeitpunkt,
-        '''tt.Bezeichnung Art,
-        '''case t.TradeTypID
-        '''  when 5 then qp.Bezeichnung || &apos; → &apos; || zp.Bezeichnung
-        '''  else qp.Bezeichnung 
-        '''end Plattform,
-        '''case t.TradeTypID
-        '''  when 3 then zk.Bezeichnung
-        '''  else qk.Bezeichnung 
-        '''end [Coin-Art],
-        '''case t.TradeTypID
-        '''  when 3 then round(t.BetragNachGebuehr, 8)
-        '''  else round(t.QuellBetrag, 8) 
-        '''end [Coin-Menge],
-        '''case t.TradeTypID
-        '''  when 3 then qk.Bezeichnung
-        '''  when 5 then &apos;-&apos;
-        '''  else zk.Bezei [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v39_24() As String
-            Get
-                Return ResourceManager.GetString("db_v39_24", resourceCulture)
             End Get
         End Property
         
@@ -472,6 +327,392 @@ Namespace My.Resources
         Friend Shared ReadOnly Property db_v40_08() As String
             Get
                 Return ResourceManager.GetString("db_v40_08", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die drop table if exists GewinnReport ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_09() As String
+            Get
+                Return ResourceManager.GetString("db_v40_09", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die drop table if exists [ZeitstempelWerte] ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_10() As String
+            Get
+                Return ResourceManager.GetString("db_v40_10", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die drop view if exists VW_GainingsReport ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_11() As String
+            Get
+                Return ResourceManager.GetString("db_v40_11", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die delete from [TradeTypen] where ID in (37,101) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_12() As String
+            Get
+                Return ResourceManager.GetString("db_v40_12", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update [TradeTypen] set Bezeichnung = &apos;Transfer intern&apos;, Code = &apos;TRNSINT&apos;, Beschreibung = &apos;Interner Transfer von Coins&apos; where ID = 69 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_13() As String
+            Get
+                Return ResourceManager.GetString("db_v40_13", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP TABLE IF EXISTS [TradeTx] ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_14() As String
+            Get
+                Return ResourceManager.GetString("db_v40_14", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE TABLE [TradeTx] (
+        '''[TxID] INTEGER  PRIMARY KEY NOT NULL,
+        '''[SzenarioID] INTEGER NOT NULL,
+        '''[InKalkulationID] INTEGER NOT NULL,
+        '''[InTradeID] INTEGER NOT NULL, -- trade id of initial coin acquiring
+        '''[InTransferID] INTEGER DEFAULT &apos;0&apos; NOT NULL, -- trade id of last internal transfer, if appropriate
+        '''[TransferIDHistory] VARCHAR(500) NULL, -- keeps tracks of former transfer trade ids, in case coins have been moved more than once
+        '''[PlattformID] INTEGER NOT NULL,
+        '''[KontoID] INTEGER NOT NULL,
+        '''[Zeitpunkt] TIME [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_15() As String
+            Get
+                Return ResourceManager.GetString("db_v40_15", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_TradeTx_SzenarioInTrade] ON [TradeTx] ( 
+        '''[SzenarioID]  ASC,
+        '''[InTradeID]  ASC) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_16() As String
+            Get
+                Return ResourceManager.GetString("db_v40_16", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_TradeTx_SzenarioInTransfer] ON [TradeTx] ( 
+        '''[SzenarioID]  ASC,
+        '''[InTransferID]  ASC) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_17() As String
+            Get
+                Return ResourceManager.GetString("db_v40_17", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_TradeTx_SzenarioOutTrade] ON [TradeTx] ( 
+        '''[SzenarioID]  ASC,
+        '''[OutTradeID]  ASC) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_18() As String
+            Get
+                Return ResourceManager.GetString("db_v40_18", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_TradeTx_Kaufzeit] ON [TradeTx] ( 
+        '''[KaufZeitpunkt]  ASC) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_19() As String
+            Get
+                Return ResourceManager.GetString("db_v40_19", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE INDEX IF NOT EXISTS [IDX_TradeTx_SzenarioKontoEntwertetZeit] ON [TradeTx] ( 
+        '''[SzenarioID]  ASC,
+        '''[KontoID]  ASC,
+        '''[Entwertet]  ASC,
+        '''[Zeitpunkt]  ASC) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_20() As String
+            Get
+                Return ResourceManager.GetString("db_v40_20", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_InCoins&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_21() As String
+            Get
+                Return ResourceManager.GetString("db_v40_21", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_Gainings&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_22() As String
+            Get
+                Return ResourceManager.GetString("db_v40_22", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP TABLE IF EXISTS &quot;Out2In&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_23() As String
+            Get
+                Return ResourceManager.GetString("db_v40_23", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_GainingsReport2&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_24() As String
+            Get
+                Return ResourceManager.GetString("db_v40_24", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_GainingsReport2&quot; AS 
+        '''select 
+        '''t.ID Vorgang,
+        '''t.Zeitpunkt Zeitpunkt,
+        '''tt.Bezeichnung Art,
+        '''case t.TradeTypID
+        '''	when 5 then qp.Bezeichnung || &apos; → &apos; || zp.Bezeichnung
+        '''	else qp.Bezeichnung 
+        '''end Plattform,
+        '''case t.TradeTypID
+        '''	when 3 then zk.Bezeichnung
+        '''	else qk.Bezeichnung 
+        '''end [Coin-Art],
+        '''case t.TradeTypID
+        '''	when 3 then round(t.BetragNachGebuehr, 8)
+        '''	else round(t.QuellBetrag, 8) 
+        '''end [Coin-Menge],
+        '''case t.TradeTypID
+        '''	when 3 then qk.Bezeichnung
+        '''	when 5 then &apos;-&apos;
+        '''	else zk.Bezeichnung 
+        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_25() As String
+            Get
+                Return ResourceManager.GetString("db_v40_25", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Gainings&quot; AS 
+        '''select
+        '''t.Zeitpunkt Zeitpunkt,
+        '''case t.TradeTypID
+        '''	when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+        '''	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetr [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v40_26() As String
+            Get
+                Return ResourceManager.GetString("db_v40_26", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_Gainings&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v41_01() As String
+            Get
+                Return ResourceManager.GetString("db_v41_01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_GainingsReport2&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v41_02() As String
+            Get
+                Return ResourceManager.GetString("db_v41_02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Gainings&quot; AS 
+        '''select
+        '''t.Zeitpunkt Zeitpunkt,
+        '''case t.TradeTypID
+        '''	when 3 then case when qk.IstFiat then 0 else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.BetragNachGebuehr - coalesce(sum(a.WertEUR), 0), 2) else round(0, 2) end end
+        '''	when 4 then case when zk.IstFiat then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetrag - coalesce(sum(a.WertEUR), 0), 2) else case when sz.Coins4Coins then round(t.WertEUR * coalesce(sum(a.Betrag), 0) / t.QuellBetr [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v41_03() As String
+            Get
+                Return ResourceManager.GetString("db_v41_03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_GainingsReport2&quot; AS 
+        '''select 
+        '''t.ID Vorgang,
+        '''t.Zeitpunkt Zeitpunkt,
+        '''tt.Bezeichnung Art,
+        '''case t.TradeTypID
+        '''	when 5 then qp.Bezeichnung || &apos; → &apos; || zp.Bezeichnung
+        '''	else qp.Bezeichnung 
+        '''end Plattform,
+        '''case t.TradeTypID
+        '''	when 3 then zk.Bezeichnung
+        '''	else qk.Bezeichnung 
+        '''end [Coin-Art],
+        '''case t.TradeTypID
+        '''	when 3 then round(t.BetragNachGebuehr, 8)
+        '''	else round(t.QuellBetrag, 8) 
+        '''end [Coin-Menge],
+        '''case t.TradeTypID
+        '''	when 3 then qk.Bezeichnung
+        '''	when 5 then &apos;-&apos;
+        '''	else zk.Bezeichnung 
+        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v41_04() As String
+            Get
+                Return ResourceManager.GetString("db_v41_04", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Plattformen set Boerse = 1 where ID = 210 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_01() As String
+            Get
+                Return ResourceManager.GetString("db_v42_01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die ALTER TABLE [Plattformen] ADD COLUMN [ImportZiel] BOOLEAN DEFAULT 1 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_02() As String
+            Get
+                Return ResourceManager.GetString("db_v42_02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE [Plattformen] SET ImportZiel = 0 WHERE ID &gt;= 900 OR ID &lt;= 1 OR (Eigen = 0 AND Boerse = 0) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_03() As String
+            Get
+                Return ResourceManager.GetString("db_v42_03", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die ALTER TABLE [Plattformen] ADD COLUMN [ImportEindeutig] BOOLEAN DEFAULT 0 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_04() As String
+            Get
+                Return ResourceManager.GetString("db_v42_04", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die UPDATE [Plattformen] SET ImportEindeutig = 1 WHERE (ID &gt; 200 AND ID &lt;= 210) OR ID = 901 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_05() As String
+            Get
+                Return ResourceManager.GetString("db_v42_05", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_Plattformen&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_06() As String
+            Get
+                Return ResourceManager.GetString("db_v42_06", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Plattformen&quot; AS 
+        '''select 
+        '''ID, 
+        '''Bezeichnung, 
+        '''Code, 
+        '''Beschreibung, 
+        '''Boerse [IstBörse], 
+        '''Eigen Eigenbesitz,
+        '''ImportZiel [Importziel],
+        '''ImportEindeutig [ImportEindeutig],
+        '''SortID SortierNr, 
+        '''case IstDown when 0 then null else DownSeit end [IstDownSeit], 
+        '''Fix [IstFix] 
+        '''from Plattformen 
+        '''order by SortID, ID ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_07() As String
+            Get
+                Return ResourceManager.GetString("db_v42_07", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die update Plattformen set Bezeichnung = &apos;Privates Wallet&apos;, Beschreibung = &apos;Privates Wallet für Cryptocoins&apos; where ID = 100 ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_08() As String
+            Get
+                Return ResourceManager.GetString("db_v42_08", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_Importe&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_09() As String
+            Get
+                Return ResourceManager.GetString("db_v42_09", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Importe&quot; AS 
+        '''select 
+        '''i.ID ID, 
+        '''p.Bezeichnung Plattform, 
+        '''i.Zeitpunkt Zeitpunkt, 
+        '''i.Dateiname Dateiname, 
+        '''i.PfadDateiname Pfad, 
+        '''i.Eingelesen Eingelesen, 
+        '''i.NichtEingelesen [Übersprungen], 
+        '''i.ApiDatenID 
+        '''from Importe i 
+        '''left join Plattformen p on i.PlattformID=p.ID 
+        '''order by i.Zeitpunkt, i.ID ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v42_10() As String
+            Get
+                Return ResourceManager.GetString("db_v42_10", resourceCulture)
             End Get
         End Property
     End Class

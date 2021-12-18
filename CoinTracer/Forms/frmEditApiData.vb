@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -68,6 +68,8 @@ Public Class frmEditApiData
     Private _Crypt As PushPull
 
     Private _OriginalCurrencies As String
+    Private _ApiLabelTouched As Boolean
+    Private _NewRows As List(Of Long)
 
 
     ''' <summary>
@@ -160,6 +162,8 @@ Public Class frmEditApiData
         PlattformenTA.FillByApiImports(CoinTracerDataSet.Plattformen)   ' TODO: Remove the binance part when it's time
         PlattformenTA.Dispose()
 
+        _NewRows = New List(Of Long)
+
         ' PlattformenComboBox
         PlattformenBindingSource.DataSource = CoinTracerDataSet
         PlattformenBindingSource.DataMember = "Plattformen"
@@ -186,11 +190,6 @@ Public Class frmEditApiData
         UpdateData(ApiDatenTableAdapter)
         ' und schließen
         Close()
-    End Sub
-
-    Private Sub ApiDatenBindingNavigatorSaveItem_Click(sender As Object, e As EventArgs)
-        Validate()
-        UpdateData(ApiDatenTableAdapter)
     End Sub
 
     Private Sub UpdateData(ByRef TbA As ApiDatenTableAdapter)
@@ -232,6 +231,7 @@ Public Class frmEditApiData
         LastImportTimestampDateTimePicker.Enabled = SomeSelected
         BindingNavigatorDeleteItem.Enabled = SomeSelected
         CallDelayNumericUpDown.Touched = False
+        _ApiLabelTouched = False
         ' ExtendedInfo auswerten
         _OriginalCurrencies = ExtendedInfoTextBox.Text
         PlattformIDComboBox_SelectedIndexChanged(Nothing, Nothing)
@@ -285,7 +285,7 @@ Public Class frmEditApiData
             pnlDetails_Validating(Nothing, ValRes)
             If Not ValRes.Cancel Then
                 Dim DB As New DBHelper(frmMain.Connection)
-                ' Nächste ID holen (seeehr, sehr umständlich - aber Eleganteres bekomme ich nicht hin...)
+                ' Nächste ID holen
                 Dim NewID As Long = DB.GetMaxID(DBHelper.TableNames.ApiDaten) + 1
                 Dim TmpDv As DataView = New DataView(ApiDatenBindingSource.DataSource.Tables("ApiDaten"),
                                                      "ID >= " & NewID,
@@ -303,6 +303,9 @@ Public Class frmEditApiData
                     .Salt = _Crypt.EncryptData(.ID & _ApiPwCheck)
                     .CallDelay = 0
                 End With
+                ' add this row to the list of new rows
+                _NewRows.Add(ApiDatenBindingSource.Position)
+                ' save & proceed
                 ApiDatenBindingSource.EndEdit()
                 ApiDatenBindingSource.MoveLast()
                 ApiDatenBindingSource_CurrentChanged(Nothing, Nothing)
@@ -449,6 +452,11 @@ Public Class frmEditApiData
                 CallDelayNumericUpDown.Visible = False
                 CallDelayLabel.Visible = False
         End Select
+        If PlattformIDComboBox.SelectedValue >= 0 AndAlso PlattformIDComboBox.Text.Length > 0 AndAlso
+        _NewRows.Contains(ApiDatenBindingSource.Position) AndAlso (Not _ApiLabelTouched Or BezeichnungTextBox.Text.Length = 0) Then
+            ' set the default label for api import data
+            BezeichnungTextBox.Text = Application.ProductName & "@" & PlattformIDComboBox.Text
+        End If
         ccbBitfinexCurrencies.Visible = CurrenciesVisible
         lblCurrencies.Visible = CurrenciesVisible
         If CurrenciesVisible Then
@@ -467,4 +475,7 @@ Public Class frmEditApiData
         End With
     End Sub
 
+    Private Sub BezeichnungTextBox_KeyPress(sender As Object, e As KeyPressEventArgs) Handles BezeichnungTextBox.KeyPress
+        _ApiLabelTouched = True
+    End Sub
 End Class

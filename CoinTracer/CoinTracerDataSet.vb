@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -28,6 +28,9 @@
 '  * See the Licence for the specific language governing permissions and limitations under the Licence.
 '  *
 '  **************************************
+
+Imports CoinTracer.CoinValueStrategy
+Imports CoinTracer.CoinTracerDataSet
 
 Partial Class CoinTracerDataSet
 
@@ -63,6 +66,53 @@ Partial Class CoinTracerDataSet
         Return TA.Fill(Tables(TableName))
         TA.Dispose()
     End Function
+
+    Partial Public Class TradeTxDataTable
+        Inherits TypedTableBase(Of TradeTxRow)
+
+        Private _MaxID As Long
+        Public Property MaxID() As Long
+            Get
+                _MaxID += 1
+                Return _MaxID
+            End Get
+            Set(ByVal value As Long)
+                _MaxID = value
+            End Set
+        End Property
+    End Class
+
+    Partial Public Class TradeTxRow
+        Inherits DataRow
+        ''' <summary>
+        ''' Creates a new TradeTxRow object based on a given row. IstRest is set to True.
+        ''' </summary>
+        ''' <returns>The derived TradeTxRow object</returns>
+        Public Function Derive() As TradeTxRow
+            Dim NewRow As TradeTxRow = tableTradeTx.NewTradeTxRow
+            With NewRow
+                .TxID = tableTradeTx.MaxID
+                .SzenarioID = CLng(Me(tableTradeTx.SzenarioIDColumn))
+                .InKalkulationID = CLng(Me(tableTradeTx.InKalkulationIDColumn))
+                .InTradeID = CLng(Me(tableTradeTx.InTradeIDColumn))
+                .InTransferID = CLng(Me(tableTradeTx.InTransferIDColumn))
+                .TransferIDHistory = CStr(Me(tableTradeTx.TransferIDHistoryColumn))
+                .PlattformID = CLng(Me(tableTradeTx.PlattformIDColumn))
+                .KontoID = CLng(Me(tableTradeTx.KontoIDColumn))
+                .Zeitpunkt = CDate(Me(tableTradeTx.ZeitpunktColumn))
+                .KaufZeitpunkt = CDate(Me(tableTradeTx.KaufZeitpunktColumn))
+                .Betrag = CDec(Me(tableTradeTx.BetragColumn))
+                .WertEUR = CDec(Me(tableTradeTx.WertEURColumn))
+                .OutTradeID = 0
+                .OutKalkulationID = 0
+                .ParentTxID = 0
+                .IstRest = True
+                .Entwertet = False
+                .IstLangzeit = False
+            End With
+            Return NewRow
+        End Function
+    End Class
 
 End Class
 
@@ -181,32 +231,6 @@ Namespace CoinTracerDataSetTableAdapters
     Partial Public Class TradesTableAdapter
         Inherits System.ComponentModel.Component
         Public Function FillBySQL(ByVal dataTable As CoinTracerDataSet.TradesDataTable,
-                                  Optional ByVal WhereEtcExpression As String = "") As Integer
-            Dim stSelect As String
-            Dim Count As Integer
-            If (_commandCollection Is Nothing) Or ClearBeforeFill Then
-                InitCommandCollection()
-            End If
-            stSelect = _commandCollection(0).CommandText
-            If WhereEtcExpression.ToUpper.StartsWith("SELECT") Then
-                ' Completely replace the select statement
-                _commandCollection(0).CommandText = WhereEtcExpression
-            Else
-                ' Append the given expression
-                If stSelect.ToUpper.Contains("ORDER BY") Then
-                    _commandCollection(0).CommandText = stSelect.Replace("ORDER BY", WhereEtcExpression & " ORDER BY")
-                Else
-                    _commandCollection(0).CommandText &= " " & WhereEtcExpression
-                End If
-            End If
-            Count = Fill(dataTable)
-            Return Count
-        End Function
-    End Class
-
-    Partial Public Class ZeitstempelWerteTableAdapter
-        Inherits System.ComponentModel.Component
-        Public Function FillBySQL(ByVal dataTable As CoinTracerDataSet.ZeitstempelWerteDataTable,
                                   Optional ByVal WhereEtcExpression As String = "") As Integer
             Dim stSelect As String
             Dim Count As Integer
@@ -412,32 +436,6 @@ Namespace CoinTracerDataSetTableAdapters
         End Function
     End Class
 
-    Partial Public Class VW_GainingsReportTableAdapter
-        Inherits System.ComponentModel.Component
-        Public Function FillBySQL(ByVal dataTable As CoinTracerDataSet.VW_GainingsReportDataTable,
-                                  Optional ByVal WhereEtcExpression As String = "") As Integer
-            Dim stSelect As String
-            Dim Count As Integer
-            If (_commandCollection Is Nothing) Or ClearBeforeFill Then
-                InitCommandCollection()
-            End If
-            stSelect = _commandCollection(0).CommandText
-            If WhereEtcExpression.ToUpper.StartsWith("SELECT") Then
-                ' Completely replace the select statement
-                _commandCollection(0).CommandText = WhereEtcExpression
-            Else
-                ' Append the given expression
-                If stSelect.ToUpper.Contains("ORDER BY") Then
-                    _commandCollection(0).CommandText = stSelect.Replace("ORDER BY", WhereEtcExpression & " ORDER BY")
-                Else
-                    _commandCollection(0).CommandText &= " " & WhereEtcExpression
-                End If
-            End If
-            Count = Fill(dataTable)
-            Return Count
-        End Function
-    End Class
-
     Partial Public Class VW_GainingsReportDailyTableAdapter
         Inherits System.ComponentModel.Component
         Public Function FillBySQL(ByVal dataTable As CoinTracerDataSet.VW_GainingsReportDailyDataTable,
@@ -492,84 +490,90 @@ Namespace CoinTracerDataSetTableAdapters
     End Class
 
 
-    Partial Public Class VW_InCoinsTableAdapter
+    Partial Public Class TradeTxTableAdapter
         Inherits System.ComponentModel.Component
-        Public Function FillBySQL(ByVal dataTable As CoinTracerDataSet.VW_InCoinsDataTable,
-                                    Optional ByVal WhereEtcExpression As String = "") As Integer
-            Dim stSelect As String
-            Dim Count As Integer
-            If (_commandCollection Is Nothing) Or ClearBeforeFill Then
-                InitCommandCollection()
+        Public Overloads Function FillOpenValues(ByVal dataTable As TradeTxDataTable,
+                                                 ByVal SzenarioID As Long,
+                                                 ByVal PlattformID As Long,
+                                                 ByVal KontoID As Long,
+                                                 ByVal Zeitpunkt As DateTime,
+                                                 ByVal ConsumptionStrategy As CoinValueStrategies) As Integer
+            Adapter.SelectCommand = CommandCollection(1)
+            Adapter.SelectCommand.Parameters(0).Value = SzenarioID
+            Adapter.SelectCommand.Parameters(1).Value = PlattformID
+            Adapter.SelectCommand.Parameters(2).Value = KontoID
+            Adapter.SelectCommand.Parameters(3).Value = Zeitpunkt
+            Dim SortSQL As String
+            Select Case ConsumptionStrategy
+                Case CoinValueStrategies.YoungestFirst
+                    SortSQL = "KaufZeitpunkt DESC"
+                Case CoinValueStrategies.CheapestFirst
+                    SortSQL = "(WertEUR + 0.0000001)/Betrag"
+                Case CoinValueStrategies.MostExpensiveFirst
+                    SortSQL = "(WertEUR + 0.0000001)/Betrag DESC"
+                Case Else
+                    SortSQL = "KaufZeitpunkt ASC"
+            End Select
+            Dim CommandTextBackup As String = Adapter.SelectCommand.CommandText
+            Adapter.SelectCommand.CommandText = Strings.Replace(Adapter.SelectCommand.CommandText, "@ConsumptionStrategy", SortSQL)
+            If ClearBeforeFill Then
+                dataTable.Clear()
             End If
-            stSelect = _commandCollection(0).CommandText
-            If WhereEtcExpression.ToUpper.StartsWith("SELECT") Then
-                ' Completely replace the select statement
-                _commandCollection(0).CommandText = WhereEtcExpression
-            Else
-                ' Append the given expression
-                If stSelect.ToUpper.Contains("ORDER BY") Then
-                    _commandCollection(0).CommandText = stSelect.Replace("ORDER BY", WhereEtcExpression & " ORDER BY")
-                Else
-                    _commandCollection(0).CommandText &= " " & WhereEtcExpression
-                End If
-            End If
-            Count = Fill(dataTable)
-            Return Count
+            Dim ReturnValue As Integer = Adapter.Fill(dataTable)
+            Adapter.SelectCommand.CommandText = CommandTextBackup
+            Return ReturnValue
         End Function
     End Class
 
-    Partial Public Class VW_OutCoinsTableAdapter
+    Partial Public Class VW_GainingsReport2TableAdapter
         Inherits System.ComponentModel.Component
-        Public Function FillBySQL(ByVal dataTable As CoinTracerDataSet.VW_OutCoinsDataTable,
-                                    Optional ByVal WhereEtcExpression As String = "") As Integer
-            Dim stSelect As String
-            Dim Count As Integer
-            If (_commandCollection Is Nothing) Or ClearBeforeFill Then
-                InitCommandCollection()
-            End If
-            stSelect = _commandCollection(0).CommandText
-            If WhereEtcExpression.ToUpper.StartsWith("SELECT") Then
-                ' Completely replace the select statement
-                _commandCollection(0).CommandText = WhereEtcExpression
-            Else
-                ' Append the given expression
-                If stSelect.ToUpper.Contains("ORDER BY") Then
-                    _commandCollection(0).CommandText = stSelect.Replace("ORDER BY", WhereEtcExpression & " ORDER BY")
-                Else
-                    _commandCollection(0).CommandText &= " " & WhereEtcExpression
-                End If
-            End If
-            Count = Fill(dataTable)
-            Return Count
-        End Function
-    End Class
 
-    Partial Public Class Out2InTableAdapter
-        Inherits System.ComponentModel.Component
-        Public Function FillBySQL(ByVal dataTable As CoinTracerDataSet.Out2InDataTable,
-                                    Optional ByVal WhereEtcExpression As String = "") As Integer
-            Dim stSelect As String
-            Dim Count As Integer
-            If (_commandCollection Is Nothing) Or ClearBeforeFill Then
-                InitCommandCollection()
+        Public Overloads Function FillByTimeScenarioTradeTypePlatforms(ByVal dataTable As VW_GainingsReport2DataTable,
+                                                                       ByVal TimeFrom As DateTime,
+                                                                       ByVal TimeTo As DateTime,
+                                                                       ByVal SzenarioID As Long,
+                                                                       ByVal TaxablesOnly As Long,
+                                                                       ByVal TradesClass As Long,
+                                                                       ByVal PlatformIDs As String) As Integer
+            Adapter.SelectCommand = CommandCollection(1)
+            Adapter.SelectCommand.Parameters(0).Value = TimeFrom
+            Adapter.SelectCommand.Parameters(1).Value = TimeTo
+            Adapter.SelectCommand.Parameters(2).Value = SzenarioID
+            Adapter.SelectCommand.Parameters(3).Value = TaxablesOnly
+            Adapter.SelectCommand.Parameters(4).Value = TradesClass
+            If Not String.IsNullOrEmpty(PlatformIDs) Then
+                PlatformIDs = String.Format("AND (_QuellPlattformID in ({0}) or _ZielPlattformID in ({0})) ", PlatformIDs)
             End If
-            stSelect = _commandCollection(0).CommandText
-            If WhereEtcExpression.ToUpper.StartsWith("SELECT") Then
-                ' Completely replace the select statement
-                _commandCollection(0).CommandText = WhereEtcExpression
-            Else
-                ' Append the given expression
-                If stSelect.ToUpper.Contains("ORDER BY") Then
-                    _commandCollection(0).CommandText = stSelect.Replace("ORDER BY", WhereEtcExpression & " ORDER BY")
-                Else
-                    _commandCollection(0).CommandText &= " " & WhereEtcExpression
-                End If
+            Dim CommandTextBackup As String = Adapter.SelectCommand.CommandText
+            Adapter.SelectCommand.CommandText = Strings.Replace(Adapter.SelectCommand.CommandText, "AND (@PlatformIDs = 1)", PlatformIDs)
+            If ClearBeforeFill Then
+                dataTable.Clear()
             End If
-            Count = Fill(dataTable)
-            Return Count
+            Dim ReturnValue As Integer = Adapter.Fill(dataTable)
+            Adapter.SelectCommand.CommandText = CommandTextBackup
+            Return ReturnValue
         End Function
-    End Class
 
+        Public Overloads Function FillByTradeIDs(ByVal dataTable As VW_GainingsReport2DataTable,
+                                                 ByVal TradeIdList As List(Of Long),
+                                                 ByVal SzenarioID As Long,
+                                                 ByVal TradesClass As Long) As Integer
+            Adapter.SelectCommand = CommandCollection(2)
+            Adapter.SelectCommand.Parameters(1).Value = SzenarioID
+            Adapter.SelectCommand.Parameters(2).Value = TradesClass
+            Dim CommandTextBackup As String = Adapter.SelectCommand.CommandText
+            Adapter.SelectCommand.CommandText = Replace(Adapter.SelectCommand.CommandText, "= @TradeIDs", $"in ({String.Join(",", TradeIdList)})")
+            If ClearBeforeFill Then
+                dataTable.Clear()
+            End If
+            Dim ReturnValue As Integer = Adapter.Fill(dataTable)
+            Adapter.SelectCommand.CommandText = CommandTextBackup
+            Return ReturnValue
+        End Function
+
+
+
+    End Class
 
 
 End Namespace

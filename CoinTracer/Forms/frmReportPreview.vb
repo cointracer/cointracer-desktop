@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -111,7 +111,9 @@ Public Class frmReportPreview
         Dim RendExts() As RenderingExtension
         RendExts = ReportViewer1.LocalReport.ListRenderingExtensions
         For Each RE As RenderingExtension In RendExts
-            cbxExportTypes.Items.Add(New RenderingExtensionListboxItem(RE))
+            If Not RE.LocalizedName.Contains("2003") Then
+                cbxExportTypes.Items.Add(New RenderingExtensionListboxItem(RE))
+            End If
         Next
         cbxExportTypes.SelectedIndex = My.Settings.ReportLastRenderingExtension
 
@@ -157,9 +159,17 @@ Public Class frmReportPreview
     Private Sub cmdExport_Click(sender As Object, e As EventArgs) Handles cmdExport.Click
         DoNotClose = True
         My.Settings.ReportLastRenderingExtension = cbxExportTypes.SelectedIndex
-        If ReportViewer1.ExportDialog(DirectCast(cbxExportTypes.SelectedItem, RenderingExtensionListboxItem).RenderingExtension) <> Windows.Forms.DialogResult.Cancel Then
-            frmMain.ShowDisclaimer()
-        End If
+        Try
+            With ReportViewer1
+                .LocalReport.DisplayName = String.Format(My.Resources.MyStrings.exportReportFileName, Now.ToString("yyyy-MM-dd_HH.mm"))
+                Dim Result As DialogResult = .ExportDialog(DirectCast(cbxExportTypes.SelectedItem, RenderingExtensionListboxItem).RenderingExtension)
+                If Result <> DialogResult.Cancel Then
+                    frmMain.ShowDisclaimer()
+                End If
+            End With
+        Catch ex As Exception
+            DefaultErrorHandler(ex)
+        End Try
     End Sub
 
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click

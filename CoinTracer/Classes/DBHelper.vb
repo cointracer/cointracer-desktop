@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -50,7 +50,6 @@ End Class
 ''' <summary>
 ''' Helfer-Klasse für den Zugriff auf die Cointracer-DB
 ''' </summary>
-''' <remarks></remarks>
 Public Class DBHelper
     Implements IDisposable
 
@@ -61,7 +60,7 @@ Public Class DBHelper
         Konten
         Plattformen
         Importe
-        ZeitstempelWerte
+        TradeTx
         TradesWerte
         Kalkulationen
         Szenarien
@@ -80,12 +79,13 @@ Public Class DBHelper
         Verlust = 7
         Gebühr = 9
         KaufCoin4Coin = 19
-        TransferBörseBörse = 37
-        TransferWalletBörse = 69
-        TransferBörseWallet = 101
+        TransferIntern = 69
     End Enum
 
-    Public Enum Konten  ' this is not meant to be synchronous with the database!
+    ''' <summary>
+    ''' Deprecated! Do not use this any more. If you feel like it, use AccountManager.Accounts instead.
+    ''' </summary>
+    Public Enum Konten
         Fehler = -1
         Unbekannt = 0
         EUR = 101
@@ -94,16 +94,16 @@ Public Class DBHelper
         LTC = 202
         PPC = 203
         NMC = 204
-        FEE = 256
-        BCH = 254
-        ETH = 253
-        feeEUR = 311
-        feeUSD = 312
-        feeBTC = 321
-        feeLTC = 322
-        feePPC = 323
-        feeNMC = 324
-        feeFEE = 376
+        FEE = 224
+        BCH = 220
+        ETH = 210
+        feeEUR = 10101
+        feeUSD = 10102
+        feeBTC = 10201
+        feeLTC = 10202
+        feePPC = 10203
+        feeNMC = 10204
+        feeFEE = 10224
     End Enum
 
 
@@ -155,7 +155,7 @@ Public Class DBHelper
     ''' </summary>
     ''' <remarks></remarks>
     Public Sub WriteXSD(Optional XSDFilename As String = "Cointracer_Schema.xsd")
-        Dim DBO As New DBObjects("select * from sqlite_master where type in ('table','view') and [name] not like 'sqlite%' order by [type],[name]", _
+        Dim DBO As New DBObjects("select * from sqlite_master where type in ('table','view') and [name] not like 'sqlite%' order by [type],[name]",
                                  _cnn)
         If DBO IsNot Nothing Then
             Dim Row As DataRow
@@ -240,7 +240,7 @@ Public Class DBHelper
                             .Fill(_DataSet(Index), System.Enum.GetName(GetType(TableNames), Index))
                         End If
                     Catch ex As Exception
-                        DefaultErrorHandler(ex, "Es ist ein Fehler bei einer Datenbankabfrage aufgetretren! (Tabelle ID " & Index & ")" & _
+                        DefaultErrorHandler(ex, "Es ist ein Fehler bei einer Datenbankabfrage aufgetretren! (Tabelle ID " & Index & ")" &
                                             System.Environment.NewLine & System.Environment.NewLine & ex.Message)
                         Exit Sub
                     End Try
@@ -378,13 +378,13 @@ Public Class DBHelper
         Dim item As Long
         For Each item In items
             If WithoutStaticContent Then
-                If item = TableNames.Importe Or _
-                item = TableNames.Kalkulationen Or _
-                item = TableNames.Trades Or _
-                item = TableNames.ZeitstempelWerte Or _
-                item = TableNames.TradesWerte Or _
-                item = TableNames.Kurse Or _
-                item = TableNames.ApiDaten Or _
+                If item = TableNames.Importe Or
+                item = TableNames.Kalkulationen Or
+                item = TableNames.Trades Or
+                item = TableNames.TradeTx Or
+                item = TableNames.TradesWerte Or
+                item = TableNames.Kurse Or
+                item = TableNames.ApiDaten Or
                 item = TableNames._AnyTable Then
                     Reset_DataAdapter(item)
                 End If

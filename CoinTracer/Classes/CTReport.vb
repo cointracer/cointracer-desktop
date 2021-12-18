@@ -1,6 +1,6 @@
 '  **************************************
 '  *
-'  * Copyright 2013-2019 Andreas Nebinger
+'  * Copyright 2013-2021 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -29,6 +29,7 @@
 '  *
 '  **************************************
 
+Imports System.Linq
 Imports CoinTracer.CoinTracerDataSet
 Imports CoinTracer.CoinTracerDataSetTableAdapters
 
@@ -112,6 +113,15 @@ Public Class CTReport
                 _SelectedPlatforms = value
             End Set
         End Property
+        Private _ShowTransfers As Integer
+        Public Property ShowTransfers() As Integer
+            Get
+                Return _ShowTransfers
+            End Get
+            Set(ByVal value As Integer)
+                _ShowTransfers = value
+            End Set
+        End Property
     End Class
 
 #End Region
@@ -189,12 +199,12 @@ Public Class CTReport
             If DateParts.Length = 4 AndAlso DateParts(0) = "BETWEEN" Then
                 _RP.FromDate = CDate(DateParts(1).Replace("'", ""))
                 _RP.ToDate = DateAdd(DateInterval.Day, -1, CDate(DateParts(3).Replace("'", "")))
-                If Me.GainingsCutOffDay <> DATENULLVALUE AndAlso Me.GainingsCutOffDay < _RP.ToDate Then
-                    _RP.ToDate = Me.GainingsCutOffDay
+                If GainingsCutOffDay <> DATENULLVALUE AndAlso GainingsCutOffDay < _RP.ToDate Then
+                    _RP.ToDate = GainingsCutOffDay
                 End If
             Else
-                If Me.GainingsCutOffDay <> DATENULLVALUE Then
-                    _RP.ToDate = Me.GainingsCutOffDay
+                If GainingsCutOffDay <> DATENULLVALUE Then
+                    _RP.ToDate = GainingsCutOffDay
                 End If
             End If
         End Set
@@ -231,7 +241,7 @@ Public Class CTReport
         Set(ByVal value As Date)
             _GainingsCutOffDay = value
             If _GainingsCutOffDay <> DATENULLVALUE AndAlso _RP.ToDate <> DATENULLVALUE AndAlso _GainingsCutOffDay < _RP.ToDate Then
-                _RP.ToDate = Me.GainingsCutOffDay
+                _RP.ToDate = GainingsCutOffDay
             End If
         End Set
     End Property
@@ -267,9 +277,9 @@ Public Class CTReport
         _RP = New ReportParameters
         _DT = New VW_GainingsReport2DataTable
         Me.Connection = Connection
-        Me.PeriodSQL = ""
-        Me.PlatformIDs = ""
-        Me.GainingsCutOffDay = DATENULLVALUE
+        PeriodSQL = ""
+        PlatformIDs = ""
+        GainingsCutOffDay = DATENULLVALUE
         _RP.FromDate = DATENULLVALUE
         _RP.ToDate = DATENULLVALUE
     End Sub
@@ -291,35 +301,96 @@ Public Class CTReport
     Public Function Reload() As Long
 
         Try
-            ' Not implemented yet!
-            'If Me.ReportType = ReportTypes.GainingsReport Then
-            '    _TableName = "VW_GainingsReportDaily"
-            'Else
-            '    _TableName = "VW_GainingsReport"
-            'End If
-
+            ' Max date of report is limited by GainingsCutOffDay
+            Dim ToDate As Date
+            If _RP.ToDate > GainingsCutOffDay Then
+                ToDate = GainingsCutOffDay
+            Else
+                ToDate = _RP.ToDate
+            End If
             Dim ReportTA As New VW_GainingsReport2TableAdapter
-            ReportTA.FillBy(_DT, _RP.FromDate, _RP.ToDate, SzenarioID, IIf(Me.TradeSelection = ReportTradeSelections.AllTrades, 0, 1))
-            ' TODO: Group by acquisition date?
-
-            With _DT
-                ' remove columns starting with '_'
-                Dim EraseCols As New List(Of String)
-                For Each Col As DataColumn In .Columns
-                    If Col.ColumnName.StartsWith("_") Then
-                        EraseCols.Add(Col.ColumnName)
-                    End If
-                Next
-                For Each ColName In EraseCols
-                    .Columns.Remove(ColName)
-                Next
-            End With
+            ReportTA.FillByTimeScenarioTradeTypePlatforms(_DT,
+                                                          _RP.FromDate,
+                                                          ToDate.AddDays(1),
+                                                          SzenarioID,
+                                                          IIf(Me.TradeSelection = ReportTradeSelections.AllTrades, 0, 1),
+                                                          Parameters.ShowTransfers,
+                                                          PlatformIDs)
+            StripHiddenColumns(_DT)
         Catch ex As Exception
             DefaultErrorHandler(ex, ex.Message)
         End Try
-
         Return _DT.Rows.Count
 
+    End Function
+
+    ''' <summary>
+    ''' Takes the DataTable and removes every column whose name begins with an underscore ('_')
+    ''' </summary>
+    ''' <param name="ReportDataTable">DataTable whose columns need to be erased</param>
+    Private Sub StripHiddenColumns(ByRef ReportDataTable As DataTable)
+        Dim EraseCols As New List(Of String)
+        For Each Col As DataColumn In ReportDataTable.Columns
+            If Col.ColumnName.StartsWith("_") Then
+                EraseCols.Add(Col.ColumnName)
+            End If
+        Next
+        For Each ColName In EraseCols
+            ReportDataTable.Columns.Remove(ColName)
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Adds all referenced buy trades to the report's DataTable. Useful if we are only showing a certain time frame.
+    ''' </summary>
+    ''' <returns>Number of trades added to the report.</returns>
+    Public Function LoadReferencedTrades() As Long
+        Dim TableReference As VW_GainingsReport2DataTable = _DT
+        Dim AddedTable As New VW_GainingsReport2DataTable
+        Dim TradeIdList As New List(Of Long)
+        Dim TradeIdListHistory As New List(Of Long)
+        Dim CurrentID As Long
+        Dim TotalRowsAdded As Long = 0
+        Dim RowsToCheck As Long = _DT.Rows.Count
+        While RowsToCheck > 0
+            ' Collect all referenced InTrade IDs not being part of the current report table
+            For i As Long = 0 To RowsToCheck - 1
+                For Each IDString In DirectCast(TableReference.Rows(i), VW_GainingsReport2Row).Vorgang_Anschaffung.Split("(")
+                    CurrentID = Val(IDString)
+                    If CurrentID > 0 AndAlso Not TradeIdListHistory.Contains(CurrentID) Then
+                        If Not AddedTable.Where(Function(r) r.Vorgang = CurrentID).Any AndAlso Not _DT.Where(Function(r) r.Vorgang = CurrentID).Any Then
+                            TradeIdList.Add(CurrentID)
+                            TradeIdListHistory.Add(CurrentID)
+                        End If
+                    End If
+                Next
+            Next
+            ' Add these rows to the temporary table
+            If TradeIdList.Count > 0 Then
+                Dim ReportTableNew As New VW_GainingsReport2DataTable
+                With New VW_GainingsReport2TableAdapter With {.ClearBeforeFill = True}
+                    .FillByTradeIDs(ReportTableNew, TradeIdList, SzenarioID, Parameters.ShowTransfers)
+                End With
+                RowsToCheck = ReportTableNew.Rows.Count
+                TotalRowsAdded += RowsToCheck
+                ReportTableNew.Merge(AddedTable)
+                AddedTable = ReportTableNew
+                TradeIdList.Clear()
+                TableReference = AddedTable
+            Else
+                RowsToCheck = 0
+            End If
+        End While
+        If TotalRowsAdded > 1 Then
+            ' Re-sort the referenced rows
+            Dim InsertRowsTable As New VW_GainingsReport2DataTable
+            For Each ReportRow As VW_GainingsReport2Row In AddedTable.OrderBy(Function(r As VW_GainingsReport2Row) r.Zeitpunkt).ThenBy(Function(r As VW_GainingsReport2Row) r.Vorgang)
+                InsertRowsTable.ImportRow(ReportRow)
+            Next
+            InsertRowsTable.Merge(_DT)
+            _DT = InsertRowsTable
+        End If
+        Return TotalRowsAdded
     End Function
 
 #End Region
