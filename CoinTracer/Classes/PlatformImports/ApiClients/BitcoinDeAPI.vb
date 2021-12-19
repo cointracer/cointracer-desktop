@@ -40,11 +40,18 @@ Namespace BitcoinDeClient
     Friend Class BitcoinDeAccountInfo : Inherits AccountInfo
 
         Public Sub New(ExtendedInfo As String)
-            MyBase.New(New String(,) {{"BTC", "Bitcoin"}, {"BCH", "Bitcoin Cash"}, {"BTG", "Bitcoin Gold"}, {"ETH", "Ether"}, {"BSV", "Bitcoin SV"}}, ExtendedInfo)
+            MyBase.New(New String(,) {{"BTC", "Bitcoin"},
+                       {"BCH", "Bitcoin Cash"},
+                       {"BTG", "Bitcoin Gold"},
+                       {"ETH", "Ether"},
+                       {"BSV", "Bitcoin SV"},
+                       {"LTC", "Litecoin"},
+                       {"XRP", "Ripple"},
+                       {"DOGE", "Dogecoin"}}, ExtendedInfo)
         End Sub
 
         Public Sub New()
-            Me.New("BTC|BCH|ETH|BSV")
+            Me.New("BTC|BCH|ETH|BSV|LTC|XRP|DOGE")
         End Sub
 
     End Class
@@ -97,7 +104,7 @@ Namespace BitcoinDeClient
         Public Sub New(ApiKey As String, ApiSecret As String)
             ' TODO: Work in progress... Version und URL müssen natürlich noch dynamisiert werden!
             _url = "https://api.bitcoin.de/"
-            _version = "2"
+            _version = "4"
             _key = ApiKey
             _secret = ApiSecret
             _ApiCredits = UNLIMITEDCREDITS   ' optimistische Schätzung... wird nach dem ersten API-Call ohnehin aktualisiert
@@ -260,7 +267,7 @@ Namespace BitcoinDeClient
                                           Optional datetime_start As Date = DATENULLVALUE,
                                           Optional datetime_end As Date = DATENULLVALUE,
                                           Optional ByVal page As Integer = 1) As String
-            Dim parameters As String = "currency=" & currency.ToLower
+            Dim parameters As String = ""
             If [type] <> LedgerTypes.all Then
                 parameters &= String.Format("&type={0}", [type].ToString)
             End If
@@ -273,7 +280,7 @@ Namespace BitcoinDeClient
             If page <> 1 Then
                 parameters &= "&page=" & page
             End If
-            Return QueryAPI("account/ledger", parameters, 3)
+            Return QueryAPI(String.Format("{0}/account/ledger", currency.ToLower), parameters, 3)
         End Function
 
         ''' <summary>

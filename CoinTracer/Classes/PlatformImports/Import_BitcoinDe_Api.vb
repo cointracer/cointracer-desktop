@@ -127,15 +127,15 @@ Friend Class Import_BitcoinDe_Api
                                                     .TradetypID = DBHelper.TradeTypen.Kauf
                                                     .QuellPlattformID = Platform
                                                     .ZielPlattformID = .QuellPlattformID
-                                                    PrimaryAccount = MainImportObject.RetrieveAccount(TradeEntry("primary_currency")("currency").ToString)
+                                                    PrimaryAccount = MainImportObject.RetrieveAccount(TradeEntry("currency_to_trade")("currency").ToString)
                                                     .ZielKontoID = PrimaryAccount.ID
-                                                    .ZielBetrag = Convert.ToDecimal(TradeEntry("primary_currency")("before_fee").ToString, CultureInfo.InvariantCulture)
-                                                    .BetragNachGebuehr = Convert.ToDecimal(TradeEntry("primary_currency")("after_fee").ToString, CultureInfo.InvariantCulture)
+                                                    .ZielBetrag = Convert.ToDecimal(TradeEntry("currency_to_trade")("before_fee").ToString, CultureInfo.InvariantCulture)
+                                                    .BetragNachGebuehr = Convert.ToDecimal(TradeEntry("currency_to_trade")("after_fee").ToString, CultureInfo.InvariantCulture)
                                                     ' adjust real target amount, because buyer only pays half of the fee
                                                     .ZielBetrag = (.ZielBetrag + .BetragNachGebuehr) / 2
-                                                    .QuellBetrag = Convert.ToDecimal(TradeEntry("secondary_currency")("after_fee").ToString, CultureInfo.InvariantCulture)
+                                                    .QuellBetrag = Convert.ToDecimal(TradeEntry("currency_to_pay")("after_fee").ToString, CultureInfo.InvariantCulture)
                                                     .QuellBetragNachGebuehr = .QuellBetrag
-                                                    SecondaryAccount = MainImportObject.RetrieveAccount(TradeEntry("secondary_currency")("currency").ToString)
+                                                    SecondaryAccount = MainImportObject.RetrieveAccount(TradeEntry("currency_to_pay")("currency").ToString)
                                                     .QuellKontoID = SecondaryAccount.ID
                                                     If .QuellKontoID = DBHelper.Konten.EUR Then
                                                         .WertEUR = .QuellBetrag
@@ -161,16 +161,16 @@ Friend Class Import_BitcoinDe_Api
                                                     .TradetypID = DBHelper.TradeTypen.Verkauf
                                                     .QuellPlattformID = Platform
                                                     .ZielPlattformID = .QuellPlattformID
-                                                    SecondaryAccount = MainImportObject.RetrieveAccount(TradeEntry("secondary_currency")("currency").ToString)
+                                                    SecondaryAccount = MainImportObject.RetrieveAccount(TradeEntry("currency_to_pay")("currency").ToString)
                                                     .ZielKontoID = SecondaryAccount.ID
-                                                    .ZielBetrag = Convert.ToDecimal(TradeEntry("secondary_currency")("before_fee").ToString, CultureInfo.InvariantCulture)
-                                                    .BetragNachGebuehr = Convert.ToDecimal(TradeEntry("secondary_currency")("after_fee").ToString, CultureInfo.InvariantCulture)
-                                                    .QuellBetrag = Convert.ToDecimal(TradeEntry("primary_currency")("before_fee").ToString, CultureInfo.InvariantCulture)
+                                                    .ZielBetrag = Convert.ToDecimal(TradeEntry("currency_to_pay")("before_fee").ToString, CultureInfo.InvariantCulture)
+                                                    .BetragNachGebuehr = Convert.ToDecimal(TradeEntry("currency_to_pay")("after_fee").ToString, CultureInfo.InvariantCulture)
+                                                    .QuellBetrag = Convert.ToDecimal(TradeEntry("currency_to_trade")("before_fee").ToString, CultureInfo.InvariantCulture)
                                                     .QuellBetragNachGebuehr = .QuellBetrag
                                                     If .ZielKontoID = DBHelper.Konten.EUR Then
                                                         .WertEUR = .BetragNachGebuehr
                                                     End If
-                                                    PrimaryAccount = MainImportObject.RetrieveAccount(TradeEntry("primary_currency")("currency").ToString)
+                                                    PrimaryAccount = MainImportObject.RetrieveAccount(TradeEntry("currency_to_trade")("currency").ToString)
                                                     .QuellKontoID = PrimaryAccount.ID
                                                     .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeSell,
                                                                           PrimaryAccount.Code, .QuellBetrag, .ZielBetrag, SecondaryAccount.Code)
@@ -206,7 +206,7 @@ Friend Class Import_BitcoinDe_Api
                                                     NextLedgerItem = LedgerItem.Next
                                                     If NextLedgerItem IsNot Nothing Then
                                                         If NextLedgerItem("type").ToString = "outgoing_fee_voluntary" _
-                                                AndAlso LedgerItem("date").ToString = NextLedgerItem("date").ToString Then
+                                                            AndAlso LedgerItem("date").ToString = NextLedgerItem("date").ToString Then
                                                             .QuellBetrag = .QuellBetrag - Convert.ToDecimal(NextLedgerItem("cashflow").ToString, CultureInfo.InvariantCulture)
                                                         End If
                                                     End If
