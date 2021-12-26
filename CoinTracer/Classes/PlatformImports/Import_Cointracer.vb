@@ -275,7 +275,7 @@ Public Class Import_CoinTracer
     End Sub
 
     ''' <summary>
-    ''' Show a customized import hint and passes on to the default OpenFile routine.
+    ''' Show a customized import hint and pass on to the default OpenFile routine.
     ''' </summary>
     ''' <returns>true, if file has been opened, false otherwise</returns>
     Protected Overrides Function OpenFile() As Boolean
@@ -302,7 +302,8 @@ Public Class Import_CoinTracer
         Dim i As Long
         Dim FeeAmount As Decimal = 0
         Dim Currency As String = "BTC"
-        Dim HasFidorFees As Boolean = False
+
+        ' TODO: Dim HasFidorFees As Boolean = False
 
         If CSV.FileExists AndAlso CSV.Rows.Count > 1 Then
             Cursor.Current = Cursors.WaitCursor
@@ -439,10 +440,12 @@ Public Class Import_CoinTracer
                                 RecordFee.WertEUR = 0
                                 RecordFee.BetragNachGebuehr = 0
                                 RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
-                                ' Adjust target or source amounts
-                                If RecordFee.QuellKontoID = .ZielKontoID Then
+                                ' Adjust target or source amounts, find out where fees apply
+                                If RecordFee.QuellKontoID = .ZielKontoID AndAlso RecordFee.QuellPlattformID = .ZielPlattformID Then
+                                    ' Assume fee at target of transaction
                                     .ZielBetrag += RecordFee.QuellBetrag
-                                ElseIf RecordFee.QuellKontoID = .QuellKontoID Then
+                                ElseIf RecordFee.QuellKontoID = .QuellKontoID AndAlso RecordFee.QuellPlattformID = .QuellPlattformID Then
+                                    ' Assume fee at source of transaction
                                     .QuellBetrag += RecordFee.QuellBetrag
                                 End If
                             End If

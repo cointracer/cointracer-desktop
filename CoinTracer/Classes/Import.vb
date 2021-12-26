@@ -3306,6 +3306,7 @@ Public Class Import
                 ThisImport.CallDelay = 6000
         End Select
         If ThisImport IsNot Nothing Then
+            RefreshAccountMap()
             Dim LogLevel As TraceEventType = My.Settings.LogLevel
             My.Settings.LogLevel = TraceEventType.Verbose
             With ThisImport

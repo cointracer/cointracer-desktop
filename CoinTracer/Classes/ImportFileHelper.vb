@@ -750,15 +750,17 @@ Public Class ImportFileHelper
                     OrElse (Platform.MatchingType = ImportFileMatchingTypes.RegexMatch AndAlso Firstline Like Platform.FilesFirstLine)) _
                     OrElse (Platform.MatchingType = ImportFileMatchingTypes.ContainsAllMatch AndAlso Array.TrueForAll(Platform.FilesFirstLine.Split(";"c), Function(s) Firstline.ToLower.Contains(s.ToString.ToLower))) _
                     AndAlso (PlatformToCheck = PlatformManager.Platforms.Unknown OrElse Platform.PlatformID = PlatformToCheck) Then
-                    ' We've got a match -> put it in MatchingPlatforms array
-                    ReDim Preserve _MatchingPlatforms(FoundPlatformCounter)
-                    With _MatchingPlatforms(FoundPlatformCounter)
-                        .FilesFirstLine = Platform.FilesFirstLine
-                        .PlatformID = Platform.PlatformID
-                        .PlatformName = Platform.PlatformName
-                        .SubType = Platform.SubType
-                    End With
-                    FoundPlatformCounter += 1
+                    ' We've got a match -> put it in MatchingPlatforms array (if not already in it)
+                    If IsNothing(_MatchingPlatforms) OrElse IsNothing(Array.Find(_MatchingPlatforms, Function(x) (x.PlatformID = Platform.PlatformID AndAlso x.SubType = Platform.SubType))) Then
+                        ReDim Preserve _MatchingPlatforms(FoundPlatformCounter)
+                        With _MatchingPlatforms(FoundPlatformCounter)
+                            .FilesFirstLine = Platform.FilesFirstLine
+                            .PlatformID = Platform.PlatformID
+                            .PlatformName = Platform.PlatformName
+                            .SubType = Platform.SubType
+                        End With
+                        FoundPlatformCounter += 1
+                    End If
                 End If
             Next
         End If

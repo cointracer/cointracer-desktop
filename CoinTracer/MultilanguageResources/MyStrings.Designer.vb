@@ -614,7 +614,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (Februar 2021) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungs [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Die Besteuerung von Gewinnen aus dem Handel mit Bitcoins und anderen Cryptocoins ist immer noch Neuland, zum aktuellen Zeitpunkt (August 2021) gibt es, abgesehen von der Vorgabe, generell das FiFo-Verfahren anzuwenden, z.T. noch keinen Konsens über allgemein verbindliche Regelungen. Der {0} ist ein Tool zum Erstellen von Gewinn-/Verlust-Auswertungen für den privaten (!) Handel mit Coins und betrachtet diesen aus der Perspektive privater Veräußerungsgeschäfte. Der {0} erlaubt eine Vielzahl von  Einstellungsm [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property disclaimerTaxingUnclear() As String
             Get
@@ -1235,7 +1235,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Die ausgewählte{2} Datei{3} könnte{2} von mehr als einer Plattform/Börse stammen:{0}{0}{1}{0}Bitte starten Sie den Import erneut und wählen vorher explizit die gewünschte Plattform in der Drop-Down-Box. ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Die ausgewählte{1} Datei{2} könnte{1} von mehr als einer Plattform/Börse stammen:{0}{0}{3}{0}Bitte starten Sie den Import erneut und wählen vorher explizit die gewünschte Plattform in der Drop-Down-Box. ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgAmbiguosFileFormat() As String
             Get
