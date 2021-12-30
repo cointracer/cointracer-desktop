@@ -147,25 +147,25 @@ Partial Class frmMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.spltCntDashboard = New System.Windows.Forms.SplitContainer()
         Me.grpBestand = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
@@ -269,24 +269,6 @@ Partial Class frmMain
         Me.cmdReloadReport = New System.Windows.Forms.Button()
         Me.cbxReportTransfers = New System.Windows.Forms.ComboBox()
         Me.grdReport = New System.Windows.Forms.DataGridView()
-        Me.Vorgang = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Timestamp = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Art = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
-        Me.Plattform = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
-        Me.TypeCoins = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
-        Me.AmountCoins = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.PriceUSD = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
-        Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gesamt_EUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Kurs_EUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Kaufvorgang = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
-        Me.Kaufdatum = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
-        Me.CoinAnteil = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OrgPriceEUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.KaufkursEUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.VerkaufspreisEUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Gaining = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TaxFree = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
         Me.ccbReportPlatforms = New CoinTracer.CheckComboBox.CheckedComboBox()
         Me.gnd3rdTab = New CoinTracer.GainingsDisplay()
         Me.tpReport = New CoinTracer.TimePeriodControl()
@@ -347,6 +329,24 @@ Partial Class frmMain
         Me.DataGridViewAutoFilterTextBoxColumn7 = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
         Me.ThreadsafeStatusStrip1 = New CoinTracer.ThreadsafeStatusStrip()
         Me.EnhancedToolTip1 = New CoinTracer.EnhancedToolTip()
+        Me.Vorgang = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Timestamp = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Art = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
+        Me.Plattform = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
+        Me.TypeCoins = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
+        Me.AmountCoins = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PriceUSD = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
+        Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gesamt_EUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Kurs_EUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Kaufvorgang = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
+        Me.Kaufdatum = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
+        Me.CoinAnteil = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OrgPriceEUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.KaufkursEUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.VerkaufspreisEUR = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Gaining = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TaxFree = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
         CType(Me.spltCntDashboard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spltCntDashboard.Panel1.SuspendLayout()
         Me.spltCntDashboard.Panel2.SuspendLayout()
@@ -567,8 +567,8 @@ Partial Class frmMain
         '
         'Wallet
         '
-        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Wallet.DefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Wallet.DefaultCellStyle = DataGridViewCellStyle1
         Me.Wallet.Frozen = True
         resources.ApplyResources(Me.Wallet, "Wallet")
         Me.Wallet.Name = "Wallet"
@@ -576,8 +576,8 @@ Partial Class frmMain
         '
         'Zeitpunkt
         '
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Zeitpunkt.DefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Zeitpunkt.DefaultCellStyle = DataGridViewCellStyle2
         Me.Zeitpunkt.Frozen = True
         resources.ApplyResources(Me.Zeitpunkt, "Zeitpunkt")
         Me.Zeitpunkt.Name = "Zeitpunkt"
@@ -1154,187 +1154,6 @@ Partial Class frmMain
         Me.grdReport.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         Me.grdReport.ShowCellErrors = False
         '
-        'Vorgang
-        '
-        Me.Vorgang.DataPropertyName = "Vorgang"
-        resources.ApplyResources(Me.Vorgang, "Vorgang")
-        Me.Vorgang.Name = "Vorgang"
-        Me.Vorgang.ReadOnly = True
-        '
-        'Timestamp
-        '
-        Me.Timestamp.DataPropertyName = "Zeitpunkt"
-        resources.ApplyResources(Me.Timestamp, "Timestamp")
-        Me.Timestamp.Name = "Timestamp"
-        Me.Timestamp.ReadOnly = True
-        '
-        'Art
-        '
-        Me.Art.CaptionAllValues = "(Alles auswählen)"
-        Me.Art.DataPropertyName = "Art"
-        resources.ApplyResources(Me.Art, "Art")
-        Me.Art.Name = "Art"
-        Me.Art.ReadOnly = True
-        Me.Art.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'Plattform
-        '
-        Me.Plattform.CaptionAllValues = "(Alles auswählen)"
-        Me.Plattform.DataPropertyName = "Plattform"
-        resources.ApplyResources(Me.Plattform, "Plattform")
-        Me.Plattform.Name = "Plattform"
-        Me.Plattform.ReadOnly = True
-        Me.Plattform.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'TypeCoins
-        '
-        Me.TypeCoins.CaptionAllValues = "(Alles auswählen)"
-        Me.TypeCoins.DataPropertyName = "Coin-Art"
-        Me.TypeCoins.FillWeight = 105.0!
-        resources.ApplyResources(Me.TypeCoins, "TypeCoins")
-        Me.TypeCoins.Name = "TypeCoins"
-        Me.TypeCoins.ReadOnly = True
-        Me.TypeCoins.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'AmountCoins
-        '
-        Me.AmountCoins.DataPropertyName = "Coin-Menge"
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle22.Format = "N8"
-        DataGridViewCellStyle22.NullValue = Nothing
-        Me.AmountCoins.DefaultCellStyle = DataGridViewCellStyle22
-        Me.AmountCoins.FillWeight = 102.0!
-        resources.ApplyResources(Me.AmountCoins, "AmountCoins")
-        Me.AmountCoins.Name = "AmountCoins"
-        Me.AmountCoins.ReadOnly = True
-        '
-        'PriceUSD
-        '
-        Me.PriceUSD.CaptionAllValues = "(Alles auswählen)"
-        Me.PriceUSD.DataPropertyName = "Zahlmittel"
-        resources.ApplyResources(Me.PriceUSD, "PriceUSD")
-        Me.PriceUSD.Name = "PriceUSD"
-        Me.PriceUSD.ReadOnly = True
-        Me.PriceUSD.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'Total
-        '
-        Me.Total.DataPropertyName = "Gesamtpreis"
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle23.Format = "N6"
-        DataGridViewCellStyle23.NullValue = Nothing
-        Me.Total.DefaultCellStyle = DataGridViewCellStyle23
-        resources.ApplyResources(Me.Total, "Total")
-        Me.Total.Name = "Total"
-        Me.Total.ReadOnly = True
-        '
-        'Gesamt_EUR
-        '
-        Me.Gesamt_EUR.DataPropertyName = "Gesamtwert EUR"
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle24.Format = "N2"
-        DataGridViewCellStyle24.NullValue = Nothing
-        Me.Gesamt_EUR.DefaultCellStyle = DataGridViewCellStyle24
-        resources.ApplyResources(Me.Gesamt_EUR, "Gesamt_EUR")
-        Me.Gesamt_EUR.Name = "Gesamt_EUR"
-        Me.Gesamt_EUR.ReadOnly = True
-        '
-        'Kurs_EUR
-        '
-        Me.Kurs_EUR.DataPropertyName = "Kurs EUR"
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle25.Format = "N2"
-        DataGridViewCellStyle25.NullValue = Nothing
-        Me.Kurs_EUR.DefaultCellStyle = DataGridViewCellStyle25
-        resources.ApplyResources(Me.Kurs_EUR, "Kurs_EUR")
-        Me.Kurs_EUR.Name = "Kurs_EUR"
-        Me.Kurs_EUR.ReadOnly = True
-        '
-        'Kaufvorgang
-        '
-        Me.Kaufvorgang.CaptionAllValues = "(Alles auswählen)"
-        Me.Kaufvorgang.DataPropertyName = "Vorgang Anschaffung"
-        resources.ApplyResources(Me.Kaufvorgang, "Kaufvorgang")
-        Me.Kaufvorgang.Name = "Kaufvorgang"
-        Me.Kaufvorgang.ReadOnly = True
-        Me.Kaufvorgang.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        '
-        'Kaufdatum
-        '
-        Me.Kaufdatum.CaptionAllValues = "(Alles auswählen)"
-        Me.Kaufdatum.DataPropertyName = "Anschaffungsdatum"
-        DataGridViewCellStyle26.Format = "d"
-        DataGridViewCellStyle26.NullValue = "-"
-        Me.Kaufdatum.DefaultCellStyle = DataGridViewCellStyle26
-        resources.ApplyResources(Me.Kaufdatum, "Kaufdatum")
-        Me.Kaufdatum.Name = "Kaufdatum"
-        Me.Kaufdatum.ReadOnly = True
-        '
-        'CoinAnteil
-        '
-        Me.CoinAnteil.DataPropertyName = "Coin-Anteil"
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle27.Format = "N8"
-        DataGridViewCellStyle27.NullValue = Nothing
-        Me.CoinAnteil.DefaultCellStyle = DataGridViewCellStyle27
-        resources.ApplyResources(Me.CoinAnteil, "CoinAnteil")
-        Me.CoinAnteil.Name = "CoinAnteil"
-        Me.CoinAnteil.ReadOnly = True
-        '
-        'OrgPriceEUR
-        '
-        Me.OrgPriceEUR.DataPropertyName = "Kaufpreis EUR"
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle28.Format = "N2"
-        Me.OrgPriceEUR.DefaultCellStyle = DataGridViewCellStyle28
-        resources.ApplyResources(Me.OrgPriceEUR, "OrgPriceEUR")
-        Me.OrgPriceEUR.Name = "OrgPriceEUR"
-        Me.OrgPriceEUR.ReadOnly = True
-        '
-        'KaufkursEUR
-        '
-        Me.KaufkursEUR.DataPropertyName = "Kaufkurs EUR"
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle29.Format = "N2"
-        DataGridViewCellStyle29.NullValue = Nothing
-        Me.KaufkursEUR.DefaultCellStyle = DataGridViewCellStyle29
-        resources.ApplyResources(Me.KaufkursEUR, "KaufkursEUR")
-        Me.KaufkursEUR.Name = "KaufkursEUR"
-        Me.KaufkursEUR.ReadOnly = True
-        '
-        'VerkaufspreisEUR
-        '
-        Me.VerkaufspreisEUR.DataPropertyName = "Verkaufspreis EUR"
-        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle30.Format = "N2"
-        DataGridViewCellStyle30.NullValue = Nothing
-        Me.VerkaufspreisEUR.DefaultCellStyle = DataGridViewCellStyle30
-        Me.VerkaufspreisEUR.FillWeight = 120.0!
-        resources.ApplyResources(Me.VerkaufspreisEUR, "VerkaufspreisEUR")
-        Me.VerkaufspreisEUR.Name = "VerkaufspreisEUR"
-        Me.VerkaufspreisEUR.ReadOnly = True
-        '
-        'Gaining
-        '
-        Me.Gaining.DataPropertyName = "Gewinn EUR"
-        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle31.Format = "N2"
-        DataGridViewCellStyle31.NullValue = Nothing
-        Me.Gaining.DefaultCellStyle = DataGridViewCellStyle31
-        resources.ApplyResources(Me.Gaining, "Gaining")
-        Me.Gaining.Name = "Gaining"
-        Me.Gaining.ReadOnly = True
-        '
-        'TaxFree
-        '
-        Me.TaxFree.CaptionAllValues = "(Alles auswählen)"
-        Me.TaxFree.DataPropertyName = "Steuerfrei"
-        DataGridViewCellStyle32.NullValue = "-"
-        Me.TaxFree.DefaultCellStyle = DataGridViewCellStyle32
-        resources.ApplyResources(Me.TaxFree, "TaxFree")
-        Me.TaxFree.Name = "TaxFree"
-        Me.TaxFree.ReadOnly = True
-        '
         'ccbReportPlatforms
         '
         Me.ccbReportPlatforms.CheckOnClick = True
@@ -1728,16 +1547,16 @@ Partial Class frmMain
         '
         'DataGridViewTextBoxColumn1
         '
-        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle33
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle14
         Me.DataGridViewTextBoxColumn1.Frozen = True
         resources.ApplyResources(Me.DataGridViewTextBoxColumn1, "DataGridViewTextBoxColumn1")
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         '
         'DataGridViewTextBoxColumn2
         '
-        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle34
+        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle15
         Me.DataGridViewTextBoxColumn2.Frozen = True
         resources.ApplyResources(Me.DataGridViewTextBoxColumn2, "DataGridViewTextBoxColumn2")
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
@@ -1772,10 +1591,10 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn5
         '
         Me.DataGridViewTextBoxColumn5.DataPropertyName = "Menge Coins"
-        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle35.Format = "N6"
-        DataGridViewCellStyle35.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle35
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle16.Format = "N6"
+        DataGridViewCellStyle16.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle16
         resources.ApplyResources(Me.DataGridViewTextBoxColumn5, "DataGridViewTextBoxColumn5")
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         '
@@ -1796,10 +1615,10 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn7
         '
         Me.DataGridViewTextBoxColumn7.DataPropertyName = "Preis EUR"
-        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle36.Format = "N2"
-        DataGridViewCellStyle36.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle36
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle17.Format = "N2"
+        DataGridViewCellStyle17.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle17
         resources.ApplyResources(Me.DataGridViewTextBoxColumn7, "DataGridViewTextBoxColumn7")
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         '
@@ -1812,19 +1631,19 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn9
         '
         Me.DataGridViewTextBoxColumn9.DataPropertyName = "Kaufpreis EUR"
-        DataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle37.Format = "N2"
-        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle37
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle18.Format = "N2"
+        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle18
         resources.ApplyResources(Me.DataGridViewTextBoxColumn9, "DataGridViewTextBoxColumn9")
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
         '
         'DataGridViewTextBoxColumn10
         '
         Me.DataGridViewTextBoxColumn10.DataPropertyName = "Gewinn EUR"
-        DataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle38.Format = "N2"
-        DataGridViewCellStyle38.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle38
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle19.Format = "N2"
+        DataGridViewCellStyle19.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle19
         resources.ApplyResources(Me.DataGridViewTextBoxColumn10, "DataGridViewTextBoxColumn10")
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
         '
@@ -1839,6 +1658,187 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.ThreadsafeStatusStrip1, "ThreadsafeStatusStrip1")
         Me.ThreadsafeStatusStrip1.Name = "ThreadsafeStatusStrip1"
+        '
+        'Vorgang
+        '
+        Me.Vorgang.DataPropertyName = "Vorgang"
+        resources.ApplyResources(Me.Vorgang, "Vorgang")
+        Me.Vorgang.Name = "Vorgang"
+        Me.Vorgang.ReadOnly = True
+        '
+        'Timestamp
+        '
+        Me.Timestamp.DataPropertyName = "Zeitpunkt"
+        resources.ApplyResources(Me.Timestamp, "Timestamp")
+        Me.Timestamp.Name = "Timestamp"
+        Me.Timestamp.ReadOnly = True
+        '
+        'Art
+        '
+        Me.Art.CaptionAllValues = "(Alles auswählen)"
+        Me.Art.DataPropertyName = "Art"
+        resources.ApplyResources(Me.Art, "Art")
+        Me.Art.Name = "Art"
+        Me.Art.ReadOnly = True
+        Me.Art.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'Plattform
+        '
+        Me.Plattform.CaptionAllValues = "(Alles auswählen)"
+        Me.Plattform.DataPropertyName = "Plattform"
+        resources.ApplyResources(Me.Plattform, "Plattform")
+        Me.Plattform.Name = "Plattform"
+        Me.Plattform.ReadOnly = True
+        Me.Plattform.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'TypeCoins
+        '
+        Me.TypeCoins.CaptionAllValues = "(Alles auswählen)"
+        Me.TypeCoins.DataPropertyName = "Coin-Art"
+        Me.TypeCoins.FillWeight = 105.0!
+        resources.ApplyResources(Me.TypeCoins, "TypeCoins")
+        Me.TypeCoins.Name = "TypeCoins"
+        Me.TypeCoins.ReadOnly = True
+        Me.TypeCoins.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'AmountCoins
+        '
+        Me.AmountCoins.DataPropertyName = "Coin-Menge"
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle3.Format = "N8"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.AmountCoins.DefaultCellStyle = DataGridViewCellStyle3
+        Me.AmountCoins.FillWeight = 102.0!
+        resources.ApplyResources(Me.AmountCoins, "AmountCoins")
+        Me.AmountCoins.Name = "AmountCoins"
+        Me.AmountCoins.ReadOnly = True
+        '
+        'PriceUSD
+        '
+        Me.PriceUSD.CaptionAllValues = "(Alles auswählen)"
+        Me.PriceUSD.DataPropertyName = "Zahlmittel"
+        resources.ApplyResources(Me.PriceUSD, "PriceUSD")
+        Me.PriceUSD.Name = "PriceUSD"
+        Me.PriceUSD.ReadOnly = True
+        Me.PriceUSD.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'Total
+        '
+        Me.Total.DataPropertyName = "Gesamtpreis"
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle4.Format = "N6"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle4
+        resources.ApplyResources(Me.Total, "Total")
+        Me.Total.Name = "Total"
+        Me.Total.ReadOnly = True
+        '
+        'Gesamt_EUR
+        '
+        Me.Gesamt_EUR.DataPropertyName = "Gesamtwert EUR"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "N2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.Gesamt_EUR.DefaultCellStyle = DataGridViewCellStyle5
+        resources.ApplyResources(Me.Gesamt_EUR, "Gesamt_EUR")
+        Me.Gesamt_EUR.Name = "Gesamt_EUR"
+        Me.Gesamt_EUR.ReadOnly = True
+        '
+        'Kurs_EUR
+        '
+        Me.Kurs_EUR.DataPropertyName = "Kurs EUR"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Format = "N2"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.Kurs_EUR.DefaultCellStyle = DataGridViewCellStyle6
+        resources.ApplyResources(Me.Kurs_EUR, "Kurs_EUR")
+        Me.Kurs_EUR.Name = "Kurs_EUR"
+        Me.Kurs_EUR.ReadOnly = True
+        '
+        'Kaufvorgang
+        '
+        Me.Kaufvorgang.CaptionAllValues = "(Alles auswählen)"
+        Me.Kaufvorgang.DataPropertyName = "Vorgang Anschaffung"
+        resources.ApplyResources(Me.Kaufvorgang, "Kaufvorgang")
+        Me.Kaufvorgang.Name = "Kaufvorgang"
+        Me.Kaufvorgang.ReadOnly = True
+        Me.Kaufvorgang.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        '
+        'Kaufdatum
+        '
+        Me.Kaufdatum.CaptionAllValues = "(Alles auswählen)"
+        Me.Kaufdatum.DataPropertyName = "Anschaffungsdatum"
+        DataGridViewCellStyle7.Format = "d"
+        DataGridViewCellStyle7.NullValue = "-"
+        Me.Kaufdatum.DefaultCellStyle = DataGridViewCellStyle7
+        resources.ApplyResources(Me.Kaufdatum, "Kaufdatum")
+        Me.Kaufdatum.Name = "Kaufdatum"
+        Me.Kaufdatum.ReadOnly = True
+        '
+        'CoinAnteil
+        '
+        Me.CoinAnteil.DataPropertyName = "Coin-Anteil"
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle8.Format = "N8"
+        DataGridViewCellStyle8.NullValue = Nothing
+        Me.CoinAnteil.DefaultCellStyle = DataGridViewCellStyle8
+        resources.ApplyResources(Me.CoinAnteil, "CoinAnteil")
+        Me.CoinAnteil.Name = "CoinAnteil"
+        Me.CoinAnteil.ReadOnly = True
+        '
+        'OrgPriceEUR
+        '
+        Me.OrgPriceEUR.DataPropertyName = "Kaufpreis EUR"
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle9.Format = "N2"
+        Me.OrgPriceEUR.DefaultCellStyle = DataGridViewCellStyle9
+        resources.ApplyResources(Me.OrgPriceEUR, "OrgPriceEUR")
+        Me.OrgPriceEUR.Name = "OrgPriceEUR"
+        Me.OrgPriceEUR.ReadOnly = True
+        '
+        'KaufkursEUR
+        '
+        Me.KaufkursEUR.DataPropertyName = "Kaufkurs EUR"
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "N2"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.KaufkursEUR.DefaultCellStyle = DataGridViewCellStyle10
+        resources.ApplyResources(Me.KaufkursEUR, "KaufkursEUR")
+        Me.KaufkursEUR.Name = "KaufkursEUR"
+        Me.KaufkursEUR.ReadOnly = True
+        '
+        'VerkaufspreisEUR
+        '
+        Me.VerkaufspreisEUR.DataPropertyName = "Verkaufspreis EUR"
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle11.Format = "N2"
+        DataGridViewCellStyle11.NullValue = Nothing
+        Me.VerkaufspreisEUR.DefaultCellStyle = DataGridViewCellStyle11
+        Me.VerkaufspreisEUR.FillWeight = 120.0!
+        resources.ApplyResources(Me.VerkaufspreisEUR, "VerkaufspreisEUR")
+        Me.VerkaufspreisEUR.Name = "VerkaufspreisEUR"
+        Me.VerkaufspreisEUR.ReadOnly = True
+        '
+        'Gaining
+        '
+        Me.Gaining.DataPropertyName = "Gewinn EUR"
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle12.Format = "N2"
+        DataGridViewCellStyle12.NullValue = Nothing
+        Me.Gaining.DefaultCellStyle = DataGridViewCellStyle12
+        resources.ApplyResources(Me.Gaining, "Gaining")
+        Me.Gaining.Name = "Gaining"
+        Me.Gaining.ReadOnly = True
+        '
+        'TaxFree
+        '
+        Me.TaxFree.CaptionAllValues = "(Alles auswählen)"
+        Me.TaxFree.DataPropertyName = "Steuerfrei"
+        DataGridViewCellStyle13.NullValue = "-"
+        Me.TaxFree.DefaultCellStyle = DataGridViewCellStyle13
+        resources.ApplyResources(Me.TaxFree, "TaxFree")
+        Me.TaxFree.Name = "TaxFree"
+        Me.TaxFree.ReadOnly = True
         '
         'frmMain
         '
@@ -1976,6 +1976,7 @@ Partial Class frmMain
     Friend WithEvents Label18 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents vssGlobalStrategy As ValueStrategySelector
+    Friend WithEvents tsmiMergePlatformTrades As ToolStripMenuItem
     Friend WithEvents Vorgang As DataGridViewTextBoxColumn
     Friend WithEvents Timestamp As DataGridViewTextBoxColumn
     Friend WithEvents Art As DataGridViewAutoFilterTextBoxColumn
@@ -1994,5 +1995,4 @@ Partial Class frmMain
     Friend WithEvents VerkaufspreisEUR As DataGridViewTextBoxColumn
     Friend WithEvents Gaining As DataGridViewTextBoxColumn
     Friend WithEvents TaxFree As DataGridViewAutoFilterTextBoxColumn
-    Friend WithEvents tsmiMergePlatformTrades As ToolStripMenuItem
 End Class

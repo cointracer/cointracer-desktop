@@ -1,6 +1,40 @@
 ﻿******************************************************
-Version 0.9.6 / 05.04.2021
+Version 0.9.6.3 / xx.12.2021
+--------------------------
+
+Verbesserungen:
+- Generischen CoinTracer-Import überarbeitet, sodass
+  Gebühren jetzt korrekt verarbeitet werden.
+
+
+******************************************************
+Version 0.9.6.2 / 31.08.2021
 ----------------------------
+
+Verbesserungen:
+- Fehlerkorrektur: der Gewinnreport wurde nicht mehr
+  angezeigt.
+
+
+******************************************************
+Version 0.9.6.1 / 29.08.2021
+----------------------------
+
+Verbesserungen:
+- Import von Kraken.com überarbeitet: jetzt können auch 
+  Trades-Dateien verarbeitet werden (und nicht nur 
+  Ledgers-Dateien).
+- Datei-Import von Bitcoin.de so überarbeitet, dass jetzt auch
+  Dogecoin-Dateien eingelesen werden können. 
+- API-Import von Bitcoin.de auf neue API-Version v4
+  umgestellt.
+- Coinliste korrigiert (es gab Dubletten) und erweitert
+  (auf Basis der auf Kraken gehandelten Coins).
+
+
+******************************************************
+Version 0.9.6 / 05.04.2021
+--------------------------
 
 Verbesserungen:
 - Import von Bitcoin Cash Node bzw. Bitcoin ABC
@@ -30,7 +64,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.9.5 / 20.02.2021
-----------------------------
+--------------------------
 
 Verbesserungen:
 - Gewinnberechnung überarbeitet, so dass interne Transfers 
@@ -84,7 +118,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.9.4 / 24.03.2019
-----------------------------
+--------------------------
 Verbesserungen:
 - Gewinnreport komplett überarbeitet. Der Fehler "Nicht 
   genügend Coins vorhanden" führt nun nicht mehr zu einem
@@ -160,7 +194,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.9.3 / 11.09.2017
-----------------------------
+--------------------------
 Verbesserungen:
 - Diverse Importe überarbeitet, um Bitcoin Cash korrekt
   einzulesen: Kraken.com, Bitstamp.net, Bitcoin.de.
@@ -200,7 +234,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.9.2 / 25.02.2017
-----------------------------
+--------------------------
 Verbesserungen:
 - Ether Classic (ETC) integriert.
 - ZCash (ZEC) integriert.
@@ -272,7 +306,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.9.1 / 26.05.2016
-----------------------------
+--------------------------
 Verbesserungen:
 - Lisk integriert.
 - Import von Poloniex.com integriert: Es können die
@@ -285,7 +319,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.9.0 / 22.04.2016
-----------------------------
+--------------------------
 Verbesserungen:
 - Ether integriert.
 - Import von Bitfinex.com integriert: Es können die
@@ -340,7 +374,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.8.9 / 12.12.2015
-----------------------------
+--------------------------
 Verbesserungen:
 - Import von Zyado.com hinzugefügt.
 - Import vom Bitcoin Core Client funktioniert wieder.
@@ -357,7 +391,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.8.8 / 07.12.2015
-----------------------------
+--------------------------
 Verbesserungen:
 - Bitcoin.de-API-Import hinzugefügt. 
 - Kraken-Import überarbeitet: jetzt werden auch die neuen
@@ -419,7 +453,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.8.7 / 10.04.2015
-----------------------------
+--------------------------
 Verbesserungen:
 - Erweiterung des Gewinn-Verlust-Berichts: es ist jetzt
   möglich
@@ -509,7 +543,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.8.6 / 02.06.2014
-----------------------------
+--------------------------
 Neue Features:
 - Import von Kraken.com: Es ist jetzt möglich Trade-Daten 
   per API-Datenabruf zu importieren. Diese Variante ist 
@@ -649,7 +683,7 @@ Verbesserungen:
 
 ******************************************************
 Version 0.7.9.1 / 02.04.2014
---------------------------
+----------------------------
 Verbesserungen:
 - Probleme beim Vircurex-Import behoben: die Transfers
   von und zu "Reserved Funds" werden korrekt eingelesen,

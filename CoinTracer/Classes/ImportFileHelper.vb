@@ -764,7 +764,11 @@ Public Class ImportFileHelper
                 End If
             Next
         End If
-        Return FoundPlatformCounter
+        If IsNothing(_MatchingPlatforms) Then
+            Return 0
+        Else
+            Return _MatchingPlatforms.Length
+        End If
     End Function
 
     ''' <summary>
