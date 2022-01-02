@@ -547,6 +547,7 @@ Public Class Import
         Dim SubType As Integer = 0
         Dim NewImport As Boolean = False
         Dim ThisImport As IFileImport
+        Dim XLS As XLSHelper
 
         ' Refresh the account alias map
         RefreshAccountMap()
@@ -566,18 +567,25 @@ Public Class Import
                     If FilesList IsNot Nothing OrElse .ShowDialog() = DialogResult.OK Then
                         Try
                             Dim FirstLines() As String = {}
-                            Dim FirstLine As String
+                            Dim FirstLine As String = String.Empty
                             If FilesList Is Nothing Then
                                 FilesList = .FileNames
                             End If
                             For Each Filename As String In FilesList
-                                Using reader As New StreamReader(Filename, Encoding.UTF8)
-                                    If Not reader.EndOfStream Then
-                                        FirstLine = reader.ReadLine
-                                    Else
-                                        FirstLine = ""
-                                    End If
-                                End Using
+                                If Filename.ToLower.EndsWith(".csv") Then
+                                    Using reader As New StreamReader(Filename, Encoding.UTF8)
+                                        If Not reader.EndOfStream Then
+                                            FirstLine = reader.ReadLine
+                                        Else
+                                            FirstLine = String.Empty
+                                        End If
+                                    End Using
+                                ElseIf Filename.ToLower.EndsWith(".xlsx") Then
+                                    ' TODO: Read first lines from xlsx files
+                                    XLS = New XLSHelper(Filename, True)
+                                    XLS.AutoReadHeaderOnly = True
+                                    FirstLine = XLS.FirstLine
+                                End If
                                 If FirstLine.Length > 0 Then
                                     ReDim Preserve FirstLines(FirstLines.Length)
                                     FirstLines(FirstLines.Length - 1) = FirstLine

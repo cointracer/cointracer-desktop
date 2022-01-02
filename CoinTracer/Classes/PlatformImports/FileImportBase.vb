@@ -29,14 +29,12 @@
 '  *
 '  **************************************
 
-Imports CoinTracer
-
 ''' <summary>
 ''' Exception for invalid trading import files
 ''' </summary>
 <Serializable()>
 Public Class ImportFileException
-    Inherits System.Exception
+    Inherits Exception
     Implements Runtime.Serialization.ISerializable
 
     Public Sub New(ByVal message As String)
@@ -299,12 +297,12 @@ Public MustInherit Class FileImportBase
         End Set
     End Property
 
-    Private _CSV As CSVHelper
-    Public Property CSV() As CSVHelper Implements IFileImport.CSV
+    Private _CSV As IDataFileHelper
+    Public Property CSV() As IDataFileHelper Implements IFileImport.CSV
         Get
             Return _CSV
         End Get
-        Set(ByVal value As CSVHelper)
+        Set(ByVal value As IDataFileHelper)
             _CSV = value
         End Set
     End Property
@@ -386,7 +384,6 @@ Public MustInherit Class FileImportBase
                     FileNames = .FileNames
                 End If
             End With
-
         End If
         If FileNames.Length > 0 AndAlso FileNames(0) IsNot Nothing AndAlso FileNames(0).Length > 0 Then
             AllRows = New List(Of String())
@@ -398,12 +395,19 @@ Public MustInherit Class FileImportBase
                 ImportFileHelper.InteractiveMode = Not MainImportObject.SilentMode
                 ' Read complete content into AllRows
                 For Each ThisFileName In FileNames
-                    If CSVAutoDetectEncoding Then
-                        CSV = New CSVHelper(ThisFileName, True)
+                    ThisFileName = ThisFileName.ToLower
+                    If ThisFileName.EndsWith(".xls") OrElse ThisFileName.EndsWith(".xlsx") Then
+                        ' seems like we have an excel file
+                        CSV = New XLSHelper(ThisFileName, True)
                     Else
-                        CSV = New CSVHelper(ThisFileName, CSVEncoding)
+                        ' assume we have a csv file
+                        If CSVAutoDetectEncoding Then
+                            CSV = New CSVHelper(ThisFileName, True)
+                        Else
+                            CSV = New CSVHelper(ThisFileName, CSVEncoding)
+                        End If
+                        CSV.SetCsvContentAnalyser(AddressOf AnalyseCsvLines)
                     End If
-                    CSV.SetCsvContentAnalyser(AddressOf AnalyseCsvLines)
                     If CheckFirstLine Then
                         ' Check if first line matches to platform
                         If ImportFileHelper.FindMachtingPlatforms(CSV.FirstLine, Platform) = 0 Then
@@ -443,8 +447,8 @@ Public MustInherit Class FileImportBase
             Catch ex As Exception
                 Result = False
                 Dim ErrorMessage As String = String.Format(My.Resources.MyStrings.importOpenFileError,
-                                                      ThisFileName,
-                                                      ex.Message)
+                                                           ThisFileName,
+                                                           ex.Message)
                 If MainImportObject.SilentMode Then
                     Throw New ImportFileException(ErrorMessage, ex)
                 Else

@@ -29,27 +29,26 @@
 '  *
 '  **************************************
 
-Friend Interface IFileImport
-    Property MainImportObject As Import
-    Property ImportFileHelper As ImportFileHelper
-    Property Platform As PlatformManager.Platforms
-    Property PlatformName As String
-    Property SubType As Integer
-    Property FileNames As String()
-    Property CheckFirstLine As Boolean
-    Property CSV() As IDataFileHelper
-    Property MultiSelectFiles As Boolean
-    Property MixedFileFormatsAllowed As Boolean
-    Property Content As String
-    Property AllRows As List(Of String())
-    Property MaxErrors As Integer
-    Property ReadImportdataPercentage As Integer
-    Function ImportContent() As Boolean
-    Function PerformImport() As Boolean
-    Sub PreImportUserAdvice()
-    Sub InitProgressForm(Optional Message As String = "")
-    Sub DestroyProgressForm()
-    Function FileImportError(ByRef ErrorCounter As Long,
-                             ByVal Line As Long,
-                             ByRef ex As Exception) As Long
+Public Interface IDataFileHelper
+    Property Filename() As String
+    Property Filecontent() As String
+    Property AutoDetectEncoding() As Boolean
+    ReadOnly Property Encoding() As System.Text.Encoding
+    Property Separator() As String
+    Property Textqualifier() As String
+    Property DecimalPoint() As String
+    Property DecimalSeparator() As String
+    ReadOnly Property Line(i As Integer) As String
+    ReadOnly Property LineCount() As Integer
+    ReadOnly Property Rows() As List(Of String())
+    ReadOnly Property FileExists() As Boolean
+    Function FirstLine() As String
+    Function ReadAllRows(Optional SkipFirstLine As Boolean = True,
+                         Optional Separator As String = ",",
+                         Optional Textqualifier As String = """",
+                         Optional DecimalPoint As String = ".",
+                         Optional DecimalSeparator As String = ",") As Long
+    Function StringToDecimal(ByVal NumberAsString As String) As Decimal
+    Sub SetCsvLinePreprocessor(ByVal CsvLineProcessRoutine As CSVHelper.CsvLinePreprocessorDelegate)
+    Sub SetCsvContentAnalyser(ByVal CsvContentAnalyseRoutine As CSVHelper.CsvContentAnalyserDelegate)
 End Interface

@@ -32,9 +32,9 @@
 Imports System.IO
 
 ''' <summary>
-''' Hilfsfunktionen für das Einlesen von CSV-Dateien
+''' Helper class for handling of XLS and XLSX files
 ''' </summary>
-Public Class CSVHelper
+Public Class XLSHelper
     Implements IDataFileHelper
 
     Private _Filename As String
@@ -115,18 +115,23 @@ Public Class CSVHelper
         End Set
     End Property
 
-    Public Delegate Sub CsvLinePreprocessorDelegate(ByRef Line As String)
-    Private _CsvLinePreprocessor As CsvLinePreprocessorDelegate
-
-    Public Delegate Sub CsvContentAnalyserDelegate(ByRef Lines As String())
-    Private _CsvContentAnalyser As CsvContentAnalyserDelegate
+    Private _AutoRead1stRowOnly As Boolean
+    Public Property AutoReadHeaderOnly() As Boolean
+        Get
+            Return _AutoRead1stRowOnly
+        End Get
+        Set(ByVal value As Boolean)
+            _AutoRead1stRowOnly = value
+        End Set
+    End Property
 
     Private _AllLines As String()
+    Private _ReRead As Boolean
 
     ''' <summary>
-    ''' Gibt eine Zeile der Datei zurück
+    ''' Return a certain line from file
     ''' </summary>
-    ''' <param name="i">Zeilennummer, beginnend mit 0</param>
+    ''' <param name="i">Line no (0-based)</param>
     Friend ReadOnly Property Line(i As Integer) As String Implements IDataFileHelper.Line
         Get
             Return _AllLines(i)
@@ -134,7 +139,7 @@ Public Class CSVHelper
     End Property
 
     ''' <summary>
-    ''' Gibt die Anzahl Zeilen der Datei zurück
+    ''' Return total number of lines
     ''' </summary>
     Friend ReadOnly Property LineCount() As Integer Implements IDataFileHelper.LineCount
         Get
@@ -149,9 +154,9 @@ Public Class CSVHelper
 
     Private _AllRows As List(Of String())
     ''' <summary>
-    ''' Alle Datenzeilen der Datei
+    ''' Return all rows
     ''' </summary>
-    ''' <returns>Liste aller Datenzeilen, jede Datenzeile ist als String-Array repräsentiert</returns>
+    ''' <returns>List of all data lines, each line as an array of strings</returns>
     Public ReadOnly Property Rows() As List(Of String()) Implements IDataFileHelper.Rows
         Get
             Return _AllRows
@@ -169,42 +174,75 @@ Public Class CSVHelper
     End Property
 
     ''' <summary>
-    ''' Liest den File-Inhalt in AllLines() (nur einmal!)
+    ''' Read file content into AllLines() (just once!)
     ''' </summary>
-    ''' <returns>True, wenn Zeilen gelesen werden konnten oder bereits gelesen waren, sonst False</returns>
-    Friend Function ReadAllLines() As Boolean
-        If _AllLines Is Nothing Then
+    ''' <returns>True, on success or if lines have already been read. False otherwise</returns>
+    Friend Function ReadAllLines(Optional SkipFirstRow As Boolean = True) As Boolean
+        If _AllLines Is Nothing OrElse _ReRead Then
+            _ReRead = False
+            _AllRows = New List(Of String())
             Try
-                If _AutoDetectEncoding Then
-                    If _Filecontent Is vbNullString Then
-                        _Encoding = TextEncodingDetector.DetectTextFileEncoding(_Filename)
+                Using FS As New FileStream(_Filename, FileMode.Open, FileAccess.Read)
+                    Dim WB As NPOI.SS.UserModel.IWorkbook
+                    Dim Filename As String = _Filename.ToLower
+                    If Filename.EndsWith(".xlsx") Then
+                        WB = New NPOI.XSSF.UserModel.XSSFWorkbook(FS)
+                    ElseIf Filename.EndsWith(".xls") Then
+                        WB = New NPOI.HSSF.UserModel.HSSFWorkbook(FS)
+                    Else
+                        ' Cannot determine suitable file type
+                        Throw New IOException(My.Resources.MyStrings.xlsErrorInvalidFilename)
                     End If
-                    If _Encoding Is Nothing Then
-                        _Encoding = Text.Encoding.Default
-                    End If
-                End If
-                If _Filecontent Is vbNullString Then
-                    _Filecontent = File.ReadAllText(_Filename, _Encoding) & ""
-                End If
-                ' Versuch, Zeilenumbrüche möglichst flexibel zu ermitteln
-                Dim LFString As String = Environment.NewLine
-                If _Filecontent.IndexOf(Environment.NewLine) >= 0 Then
-                    LFString = Environment.NewLine
-                ElseIf _Filecontent.IndexOf(vbCrLf) >= 0 Then
-                    LFString = vbCrLf
-                ElseIf _Filecontent.IndexOf(vbCr) >= 0 Then
-                    LFString = vbCr
-                ElseIf _Filecontent.IndexOf(vbLf) >= 0 Then
-                    LFString = vbLf
-                Else
-                    LFString = Environment.NewLine
-                End If
-                _AllLines = _Filecontent.Split(LFString)
-                If _CsvLinePreprocessor IsNot Nothing Then
-                    For i As Integer = 0 To _AllLines.Length - 1
-                        _CsvLinePreprocessor(_AllLines(i))
+                    Dim Sheet As NPOI.SS.UserModel.ISheet = WB.GetSheetAt(0)
+                    If IsNothing(Sheet) Then Return True
+                    Dim LastColNum As Long = -1
+                    If Sheet.LastRowNum = 0 Then Return True
+                    ' Read 1st row and determine number of cols (filled with data)
+                    Dim curRow As NPOI.SS.UserModel.IRow = Sheet.GetRow(0)
+                    If IsNothing(curRow) Then Return True
+                    Dim curCell As NPOI.SS.UserModel.ICell
+                    Dim Lines As New List(Of String)
+                    Dim RowArray() As String = {}
+                    Dim i As Long
+                    For i = 0 To curRow.LastCellNum - 1
+                        curCell = curRow.GetCell(i)
+                        If IsNothing(curCell) Then
+                            Exit For
+                        Else
+                            LastColNum = i
+                            ReDim Preserve RowArray(i)
+                            RowArray(i) = GetCellContentString(curCell)
+                        End If
                     Next
-                End If
+                    If LastColNum >= 0 Then
+                        Lines.Add(Join(RowArray, _Separator))
+                        If Not SkipFirstRow Then
+                            _AllRows.Add(RowArray)
+                        End If
+                    Else
+                        Return True
+                    End If
+                    If Not _AutoRead1stRowOnly Then
+                        ' read rest of sheet
+                        ReDim RowArray(LastColNum)
+                        curCell = Nothing
+                        For j As Long = 1 To Sheet.LastRowNum
+                            curRow = Sheet.GetRow(j)
+                            If IsNothing(curRow) OrElse curRow.LastCellNum - 1 < LastColNum Then Exit For
+                            ' RowArray = {}
+                            For i = 0 To LastColNum
+                                curCell = curRow.GetCell(i)
+                                If IsNothing(curCell) Then Exit For
+                                RowArray(i) = GetCellContentString(curCell)
+                            Next
+                            If IsNothing(curCell) Then Exit For
+                            ' add current row
+                            _AllRows.Add(RowArray.Clone)
+                            Lines.Add(Join(RowArray, _Separator))
+                        Next
+                    End If
+                    _AllLines = Lines.ToArray
+                End Using
                 Return True
             Catch ex As IOException
                 Throw
@@ -217,9 +255,23 @@ Public Class CSVHelper
     End Function
 
     ''' <summary>
-    ''' Liefert die erste Zeile der Datei zurück
+    ''' Quick solution for stripping text qualifying ' at the beginning of an Excel cell 
     ''' </summary>
-    ''' <returns>Inhalt der ersten Zeile als String, Nothing wenn Datei nicht vorhanden ist.</returns>
+    ''' <param name="Cell">Excel-Cell to process</param>
+    ''' <returns>Clean content string</returns>
+    Private Function GetCellContentString(ByRef Cell As NPOI.SS.UserModel.ICell) As String
+        Dim Content As String = Cell.ToString
+        If Content.StartsWith("'") Then
+            Return Content.Substring(1)
+        Else
+            Return Content
+        End If
+    End Function
+
+    ''' <summary>
+    ''' Return first line of file
+    ''' </summary>
+    ''' <returns>First line of file, Nothing if empty</returns>
     Public Function FirstLine() As String Implements IDataFileHelper.FirstLine
         Dim Result As String = Nothing
         If ReadAllLines() Then
@@ -228,86 +280,6 @@ Public Class CSVHelper
             End If
         End If
         Return Result
-    End Function
-
-    ''' <summary>
-    ''' Transformiert das Array _AllLines() in die Liste _AllRows unter Berücksichtigung der eingestellten
-    ''' Parameter und gibt die Anzahl Datenzeilen zurück
-    ''' </summary>
-    ''' <param name="SkipFirstRow">True = erste Zeile soll übersprungen werden, sonst False</param>
-    ''' <returns>Anzahl Datenzeilen</returns>
-    ''' <remarks>Die gesamte Funktion erscheint vielleicht etwas umständlich, stellt aber sicher, dass z.B. Zeilenumbrüche oder 
-    ''' Separatoren innerhalb eines Textfelds korrekt verarbeitet werden</remarks>
-    Private Function ProcessAllLines(Optional ByVal SkipFirstRow As Boolean = True) As Long
-        Dim RowCount As Integer = 0
-        Dim CharCount As Int16
-        Dim TextMode As Boolean = False
-        Dim EscapedChar As Boolean = False
-        Dim LineContent As String
-        Dim FieldContent As String = ""
-        Dim RowItems() As String = {}
-
-        If ReadAllLines() Then
-            ' Call content analyser, if defined
-            If _CsvContentAnalyser IsNot Nothing Then
-                _CsvContentAnalyser(_AllLines)
-            End If
-            ' Schleife über alle Zeilen der Datei
-            For Each LineContent In _AllLines
-                If Not SkipFirstRow Then
-                    For CharCount = 0 To LineContent.Length - 1
-                        If EscapedChar Then
-                            ' wir sind im Escaped-Mode: nächstes Zeichen einfach anfügen
-                            FieldContent &= LineContent.Substring(CharCount, 1)
-                            EscapedChar = False
-                        Else
-                            If TextMode Then
-                                ' wir sind im Text-Modus: hier können Zeichen escaped werden und Separators werden ignoriert
-                                If LineContent.Substring(CharCount, 1) = "\" Then
-                                    EscapedChar = True
-                                ElseIf LineContent.Substring(CharCount, 1) = _Textqualifier AndAlso LineContent.Substring(CharCount, If(CharCount < LineContent.Length - 1, 2, 1)) <> _Textqualifier & _Textqualifier Then
-                                    TextMode = False
-                                ElseIf LineContent.Substring(CharCount, If(CharCount < LineContent.Length - 1, 2, 1)) = _Textqualifier & _Textqualifier Then
-                                    FieldContent &= _Textqualifier
-                                    CharCount += 1
-                                Else
-                                    FieldContent &= LineContent.Substring(CharCount, 1)
-                                End If
-                            Else
-                                ' wir sind nicht im Text-Modus: Auf Text-Qualifier und Separator reagieren
-                                If LineContent.Substring(CharCount, 1) = _Separator Then
-                                    ' Neues Feld beginnt: Altes speichern
-                                    ReDim Preserve RowItems(RowItems.Length)
-                                    RowItems(RowItems.Length - 1) = FieldContent.Trim
-                                    FieldContent = ""
-                                ElseIf LineContent.Substring(CharCount, 1) = _Textqualifier Then
-                                    TextMode = True
-                                Else
-                                    FieldContent &= LineContent.Substring(CharCount, 1)
-                                End If
-                            End If
-                        End If
-                    Next CharCount
-                    If TextMode Then
-                        FieldContent &= " / "
-                    Else
-                        ' Zeilenende: nur speichern, wenn wir nicht im Textmode sind
-                        ReDim Preserve RowItems(RowItems.Length)
-                        RowItems(RowItems.Length - 1) = FieldContent.Trim
-                        FieldContent = ""
-                        _AllRows.Add(RowItems)
-                        RowCount += 1
-                        RowItems = {}
-                    End If
-                Else
-                    SkipFirstRow = False
-                End If
-            Next
-        Else
-            Throw New Exception("Die Datei '" & _Filename & "' konnte nicht geöffnet/gelesen werden!")
-        End If
-        Return RowCount
-
     End Function
 
     ''' <summary>
@@ -320,23 +292,33 @@ Public Class CSVHelper
     ''' <param name="DecimalSeparator">Zeichen für die Tausenderguppierung von Dezimalzahlen (wird nur in Funktion StringToDecimal verwendet)</param>
     ''' <returns>Anzahl Datensätze in Rows</returns>
     ''' <remarks></remarks>
-    Friend Function ReadAllRows(Optional SkipFirstLine As Boolean = True,
+    Public Function ReadAllRows(Optional SkipFirstLine As Boolean = True,
                                 Optional Separator As String = ",",
                                 Optional Textqualifier As String = """",
                                 Optional DecimalPoint As String = ".",
                                 Optional DecimalSeparator As String = ",") As Long Implements IDataFileHelper.ReadAllRows
-        _AllRows = New List(Of String())
+        If IsNothing(_AllRows) Then
+            _AllRows = New List(Of String())
+        End If
         _DecimalPoint = DecimalPoint
         _DecimalSeparator = DecimalSeparator
         _Separator = Separator
         _Textqualifier = Textqualifier
-        Return ProcessAllLines(SkipFirstLine)
+        If _AutoRead1stRowOnly Then
+            _AutoRead1stRowOnly = False
+            _ReRead = True
+        End If
+        If ReadAllLines(SkipFirstLine) Then
+            Return _AllRows.Count
+        Else
+            Return 0
+        End If
     End Function
 
     ''' <summary>
     ''' Wandelt einen Zahlen-String englischer Notation in einen Decimal-Wert um
     ''' </summary>
-    Friend Function StringToDecimal(ByVal NumberAsString As String) As Decimal Implements IDataFileHelper.StringToDecimal
+    Public Function StringToDecimal(ByVal NumberAsString As String) As Decimal Implements IDataFileHelper.StringToDecimal
         If _DecimalPoint = "A" OrElse _DecimalSeparator = "A" Then
             ' Zahlenformat automatisch feststellen
             If NumberAsString.Contains(",") Then
@@ -365,16 +347,16 @@ Public Class CSVHelper
     ''' Definiert eine Callback-Routine für die Vorverarbeitung der einzelnen Datenzeilen 
     ''' </summary>
     ''' <param name="CsvLineProcessRoutine">AddressOf der Rountine</param>
-    Friend Sub SetCsvLinePreprocessor(ByVal CsvLineProcessRoutine As CsvLinePreprocessorDelegate) Implements IDataFileHelper.SetCsvLinePreprocessor
-        _CsvLinePreprocessor = CsvLineProcessRoutine
+    Friend Sub SetCsvLinePreprocessor(ByVal CsvLineProcessRoutine As CSVHelper.CsvLinePreprocessorDelegate) Implements IDataFileHelper.SetCsvLinePreprocessor
+        ' Has no functionality in this class. Only implemented for compatibility with CSVHelper.
     End Sub
 
     ''' <summary>
     ''' Definiert eine Callback-Routine für die Analyse der Datenzeilen
     ''' </summary>
     ''' <param name="CsvContentAnalyseRoutine">AddressOf der Rountine</param>
-    Friend Sub SetCsvContentAnalyser(ByVal CsvContentAnalyseRoutine As CsvContentAnalyserDelegate) Implements IDataFileHelper.SetCsvContentAnalyser
-        _CsvContentAnalyser = CsvContentAnalyseRoutine
+    Friend Sub SetCsvContentAnalyser(ByVal CsvContentAnalyseRoutine As CSVHelper.CsvContentAnalyserDelegate) Implements IDataFileHelper.SetCsvContentAnalyser
+        ' Has no functionality in this class. Only implemented for compatibility with CSVHelper.
     End Sub
 
     Public Sub New()
@@ -384,12 +366,12 @@ Public Class CSVHelper
         _DecimalPoint = "."
         _DecimalSeparator = ","
         _Separator = ","
-        _Textqualifier = """"
+        _Textqualifier = "'"
         _Filename = ""
         _Filecontent = Nothing
         _AutoDetectEncoding = True
-        _CsvLinePreprocessor = Nothing
-        _CsvContentAnalyser = Nothing
+        _AutoRead1stRowOnly = False
+        _ReRead = False
     End Sub
 
     Public Sub New(Filename As String, Encoding As System.Text.Encoding, AutoDetectEncoding As Boolean, Filecontent As String)

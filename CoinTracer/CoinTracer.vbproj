@@ -199,7 +199,9 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Classes\AccountInfos.vb" />
+    <Compile Include="Classes\XLSHelper.vb" />
     <Compile Include="Classes\CSVReaderWriter.vb" />
+    <Compile Include="Classes\IDataFileHelper.vb" />
     <Compile Include="Classes\PlatformImports\ApiClients\ApiClientBase.vb" />
     <Compile Include="Classes\PlatformImports\ApiClients\BitfinexAPI.vb" />
     <Compile Include="Classes\Courses.vb" />
