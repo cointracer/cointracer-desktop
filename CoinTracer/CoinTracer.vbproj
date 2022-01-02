@@ -215,6 +215,7 @@
     <Compile Include="Classes\PlatformImports\FileImportBase.vb" />
     <Compile Include="Classes\PlatformImports\IApiImport.vb" />
     <Compile Include="Classes\PlatformImports\IFileImport.vb" />
+    <Compile Include="Classes\PlatformImports\Import_Binance.vb" />
     <Compile Include="Classes\PlatformImports\Import_KrakenDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

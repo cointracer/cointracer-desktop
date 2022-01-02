@@ -965,20 +965,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Einzahlung, Order-ID {1} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoBinanceDepositFiat() As String
+            Get
+                Return ResourceManager.GetString("importInfoBinanceDepositFiat", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Auszahlung, Order-ID {1} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoBinanceWithdrawFiat() As String
+            Get
+                Return ResourceManager.GetString("importInfoBinanceWithdrawFiat", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Partnerprogramm / User &apos;{0}&apos; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importInfoBitcoinDeAffiliateEarnings() As String
             Get
                 Return ResourceManager.GetString("importInfoBitcoinDeAffiliateEarnings", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Kauf {0} - Volumen {1} {0} für {2} {3} ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property importInfoBitcoinDeBuy() As String
-            Get
-                Return ResourceManager.GetString("importInfoBitcoinDeBuy", resourceCulture)
             End Get
         End Property
         
@@ -1001,24 +1010,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Einzahlung, Transaktions-Hash {1} ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property importInfoBitcoinDeInpayment() As String
-            Get
-                Return ResourceManager.GetString("importInfoBitcoinDeInpayment", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Auszahlung, Transaktions-Hash {1} ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property importInfoBitcoinDePayout() As String
-            Get
-                Return ResourceManager.GetString("importInfoBitcoinDePayout", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Auszahlung Gebührenanteil, Transaktions-Hash {1} ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importInfoBitcoinDePayoutNetworkFee() As String
@@ -1037,20 +1028,56 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Verkauf {0} - Volumen {1} {0} für {2} {3} ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property importInfoBitcoinDeSell() As String
-            Get
-                Return ResourceManager.GetString("importInfoBitcoinDeSell", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Gebühr zu {0}-Verkauf Referenz {1} ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importInfoBitcoinDeSellFee() As String
             Get
                 Return ResourceManager.GetString("importInfoBitcoinDeSellFee", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Kauf {0} - Volumen {1} {0} für {2} {3} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoGenericBuy() As String
+            Get
+                Return ResourceManager.GetString("importInfoGenericBuy", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Gebühr zu Trade Referenz {1} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoGenericFee() As String
+            Get
+                Return ResourceManager.GetString("importInfoGenericFee", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Einzahlung, Transaktions-Hash {1} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoGenericInpayment() As String
+            Get
+                Return ResourceManager.GetString("importInfoGenericInpayment", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Auszahlung, Transaktions-Hash {1} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoGenericPayout() As String
+            Get
+                Return ResourceManager.GetString("importInfoGenericPayout", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Verkauf {0} - Volumen {1} {0} für {2} {3} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoGenericSell() As String
+            Get
+                Return ResourceManager.GetString("importInfoGenericSell", resourceCulture)
             End Get
         End Property
         
@@ -1078,6 +1105,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importLabelAutomatic() As String
             Get
                 Return ResourceManager.GetString("importLabelAutomatic", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Binance.com - Exportdatei (*.xlsx) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importLabelBinance() As String
+            Get
+                Return ResourceManager.GetString("importLabelBinance", resourceCulture)
             End Get
         End Property
         
@@ -1415,7 +1451,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.* ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Import-Dateien (*.csv;*.xlsx)|*.csv;*.xlsx|Alle Dateien (*.*)|*.* ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgAutodetectOpenFilter() As String
             Get
@@ -1429,6 +1465,35 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importMsgAutodetectOpenTitle() As String
             Get
                 Return ResourceManager.GetString("importMsgAutodetectOpenTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Binance.com (Stand 01.01.22):
+        '''
+        '''Sie können vier Arten von Export-Dateien einlesen:
+        '''- Trade-History (für &quot;klassische&quot; Trades)
+        '''- Convert-History (für Trades über das Convert-Portal)
+        '''- Deposit-History (für Einzahlungen)
+        '''- Withdrawal-History (für Auszahlungen)
+        '''
+        '''Erstellen einer Trade-History:
+        '''1. Gehen Sie oben rechts auf &quot;Orders&quot; und klicken dann auf &quot;Spot Order&quot;
+        '''2. Klicken Sie in der Leiste links auf &quot;Trade History&quot;
+        '''3. Stellen Sie den gewünschten Zeitraum ein und klicken dann ob [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgBinanceFile() As String
+            Get
+                Return ResourceManager.GetString("importMsgBinanceFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Datenimport von Binance.com ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgBinanceFileTitle() As String
+            Get
+                Return ResourceManager.GetString("importMsgBinanceFileTitle", resourceCulture)
             End Get
         End Property
         
@@ -1883,6 +1948,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Excel-Dateien (*.xlsx)|*.xlsx|Alle Dateien (*.*)|*.* ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importOpenFileFilterExcel() As String
+            Get
+                Return ResourceManager.GetString("importOpenFileFilterExcel", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Datenexport-Dateien von Bitfinex.com auswählen... (history_[???].csv) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importOpenFileFilterTitleBitfinex() As String
@@ -1906,6 +1980,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importOpenFileTitle() As String
             Get
                 Return ResourceManager.GetString("importOpenFileTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Exportdatei von Binance.com auswählen... (*.csv) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importOpenFileTitleBinance() As String
+            Get
+                Return ResourceManager.GetString("importOpenFileTitleBinance", resourceCulture)
             End Get
         End Property
         
@@ -3135,6 +3218,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property Weeks() As String
             Get
                 Return ResourceManager.GetString("Weeks", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Der angegebene Dateiname passt nicht zum Dateityp Excel-Datei (muss auf XLS oder XLSX enden) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property xlsErrorInvalidFilename() As String
+            Get
+                Return ResourceManager.GetString("xlsErrorInvalidFilename", resourceCulture)
             End Get
         End Property
         

@@ -140,7 +140,7 @@ Friend Class Import_BitcoinDe_Api
                                                     If .QuellKontoID = DBHelper.Konten.EUR Then
                                                         .WertEUR = .QuellBetrag
                                                     End If
-                                                    .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeBuy,
+                                                    .Info = String.Format(My.Resources.MyStrings.importInfoGenericBuy,
                                                                           PrimaryAccount.Code, .ZielBetrag, .QuellBetrag, SecondaryAccount.Code)
                                                     ' Gebühren-Transaktion
                                                     RecordFee = .Clone()
@@ -172,7 +172,7 @@ Friend Class Import_BitcoinDe_Api
                                                     End If
                                                     PrimaryAccount = MainImportObject.RetrieveAccount(TradeEntry("currency_to_trade")("currency").ToString)
                                                     .QuellKontoID = PrimaryAccount.ID
-                                                    .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeSell,
+                                                    .Info = String.Format(My.Resources.MyStrings.importInfoGenericSell,
                                                                           PrimaryAccount.Code, .QuellBetrag, .ZielBetrag, SecondaryAccount.Code)
                                                     ' Gebühren-Transaktion
                                                     RecordFee = .Clone()
@@ -200,7 +200,7 @@ Friend Class Import_BitcoinDe_Api
                                                     .ZielPlattformID = PlatformManager.Platforms.Unknown
                                                     .ZielKontoID = .QuellKontoID
                                                     .ZielBetrag = .QuellBetragNachGebuehr
-                                                    .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDePayout,
+                                                    .Info = String.Format(My.Resources.MyStrings.importInfoGenericPayout,
                                                                           Currency.Shortname, LedgerItem("reference").ToString)
                                                     ' check if next line has network fee
                                                     NextLedgerItem = LedgerItem.Next
@@ -241,7 +241,7 @@ Friend Class Import_BitcoinDe_Api
                                                     .QuellBetrag = .ZielBetrag
                                                     .QuellBetragNachGebuehr = .QuellBetrag
                                                     .QuellKontoID = .ZielKontoID
-                                                    .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeInpayment,
+                                                    .Info = String.Format(My.Resources.MyStrings.importInfoGenericInpayment,
                                                                           Currency.Shortname,
                                                                           LedgerItem("reference").ToString)
                                                     FeeAmount = 0

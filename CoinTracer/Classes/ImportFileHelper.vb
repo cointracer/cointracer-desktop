@@ -62,7 +62,7 @@ Public Class ImportFileHelper
     Public Enum ImportFileMatchingTypes
         ExactMatch = 0
         StartsWithMatch = 1
-        RegexMatch = 2
+        LikeMatch = 2
         ContainsAllMatch = 3
     End Enum
 
@@ -488,7 +488,7 @@ Public Class ImportFileHelper
             .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
             .PlatformName = "Bitcoin.de"
             .FilesFirstLine = "Datum;Typ;Währung;Referenz;???-Adresse;Kurs;""Einheit (Kurs)"";""??? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""??? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.RegexMatch
+            .MatchingType = ImportFileMatchingTypes.LikeMatch
             .SubType = 5
         End With
         Cnt += 1
@@ -498,7 +498,7 @@ Public Class ImportFileHelper
             .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
             .PlatformName = "Bitcoin.de"
             .FilesFirstLine = "Datum;Typ;Währung;Referenz;???-Adresse;Kurs;""Einheit (Kurs)"";""??? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""??? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.RegexMatch
+            .MatchingType = ImportFileMatchingTypes.LikeMatch
             .SubType = 5 + 128
         End With
         Cnt += 1
@@ -508,7 +508,7 @@ Public Class ImportFileHelper
             .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
             .PlatformName = "Bitcoin.de"
             .FilesFirstLine = "Datum;Typ;Währung;Referenz;????-Adresse;Kurs;""Einheit (Kurs)"";""???? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""???? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.RegexMatch
+            .MatchingType = ImportFileMatchingTypes.LikeMatch
             .SubType = 5
         End With
         Cnt += 1
@@ -518,7 +518,7 @@ Public Class ImportFileHelper
             .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
             .PlatformName = "Bitcoin.de"
             .FilesFirstLine = "Datum;Typ;Währung;Referenz;????-Adresse;Kurs;""Einheit (Kurs)"";""???? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""???? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.RegexMatch
+            .MatchingType = ImportFileMatchingTypes.LikeMatch
             .SubType = 5 + 128
         End With
         Cnt += 1
@@ -732,6 +732,36 @@ Public Class ImportFileHelper
             .SubType = 0
         End With
         Cnt += 1
+        ' Binance.com - Trade History
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Binance)
+            .PlatformName = "Binance.com"
+            .FilesFirstLine = "Date(UTC),Market,Type,Price,Amount,Total,Fee,Fee Coin"
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 0
+        End With
+        Cnt += 1
+        ' Binance.com - Crypto Deposit or Withdrawal History
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Binance)
+            .PlatformName = "Binance.com"
+            .FilesFirstLine = "Date(UTC),Coin,Amount,TransactionFee,Address,TXID,SourceAddress,PaymentID,Status"
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 1
+        End With
+        Cnt += 1
+        ' Binance.com - Fiat Deposit or Withdrawal History
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Binance)
+            .PlatformName = "Binance.com"
+            .FilesFirstLine = "Date(UTC*),Coin,Amount,Status,Payment Method,Indicated Amount,Fee,Order ID"
+            .MatchingType = ImportFileMatchingTypes.LikeMatch
+            .SubType = 2
+        End With
+        Cnt += 1
     End Sub
 
     ''' <summary>
@@ -747,7 +777,7 @@ Public Class ImportFileHelper
             For Each Platform In _AllPlatforms
                 If ((Platform.MatchingType = ImportFileMatchingTypes.StartsWithMatch AndAlso Platform.FilesFirstLine.StartsWith(Firstline)) _
                     OrElse (Platform.MatchingType = ImportFileMatchingTypes.ExactMatch AndAlso Platform.FilesFirstLine = Firstline) _
-                    OrElse (Platform.MatchingType = ImportFileMatchingTypes.RegexMatch AndAlso Firstline Like Platform.FilesFirstLine)) _
+                    OrElse (Platform.MatchingType = ImportFileMatchingTypes.LikeMatch AndAlso Firstline Like Platform.FilesFirstLine)) _
                     OrElse (Platform.MatchingType = ImportFileMatchingTypes.ContainsAllMatch AndAlso Array.TrueForAll(Platform.FilesFirstLine.Split(";"c), Function(s) Firstline.ToLower.Contains(s.ToString.ToLower))) _
                     AndAlso (PlatformToCheck = PlatformManager.Platforms.Unknown OrElse Platform.PlatformID = PlatformToCheck) Then
                     ' We've got a match -> put it in MatchingPlatforms array (if not already in it)

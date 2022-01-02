@@ -144,6 +144,7 @@ Public NotInheritable Class PlatformManager
             Dim OldSelecetd = ImportComboBox.SelectedIndex
             .Clear()
             .Add(My.Resources.MyStrings.importLabelAutomatic)
+            .Add(My.Resources.MyStrings.importLabelBinance)
             .Add(My.Resources.MyStrings.importLabelBitcoinDe)
             .Add(My.Resources.MyStrings.importLabelBitcoinCore)
             .Add(My.Resources.MyStrings.importLabelBitcoinCash)
@@ -182,51 +183,53 @@ Public NotInheritable Class PlatformManager
                 ' auto detection
                 Result = Platforms.Unknown
             Case 1
+                ' Binance.com
+                Result = Platforms.Binance
+            Case 2
                 ' Bitcoin.de
                 Result = Platforms.BitcoinDe
-            Case 2
-                ' Bitcoin Core
-                Result = Platforms.WalletBTC
             Case 3
                 ' Bitcoin Core
-                Result = Platforms.WalletBCH
+                Result = Platforms.WalletBTC
             Case 4
+                ' Bitcoin Core
+                Result = Platforms.WalletBCH
+            Case 5
                 ' Bitfinex.com
                 Result = Platforms.Bitfinex
-            Case 5
+            Case 6
                 ' Bitstamp.net
                 Result = Platforms.BitstampNet
-            Case 6
+            Case 7
                 ' Generic CSV import
                 Result = Platforms.CoinTracer
-            Case 7
+            Case 8
                 ' Kraken CSV
                 Result = Platforms.Kraken
-            Case 8
+            Case 9
                 ' Litecoin-Core
                 Result = Platforms.WalletLTC
-            Case 9
+            Case 10
                 ' Poloniex
                 Result = Platforms.Poloniex
-            Case 10
+            Case 11
                 ' Course data EUR/USD
                 Fiat = True
-            Case 12
+            Case 13
                 ' BTC-E
                 Result = Platforms.BtcE
-            Case 13
+            Case 14
                 ' MultiBit
                 Result = Platforms.MultiBit
-            Case 14
+            Case 15
                 ' Mt. Gox
                 Result = Platforms.MtGox
-            Case 15
+            Case 16
                 ' Vircurex
                 Result = Platforms.Vircurex
-            Case 16
+            Case 17
                 ' Zyado
                 Result = Platforms.Zyado
-
         End Select
         Return Result
     End Function

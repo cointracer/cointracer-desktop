@@ -91,12 +91,12 @@ Public Class frmApplicationSettings
 
     Private Sub cmdOK_Click(sender As Object, e As EventArgs) Handles cmdOK.Click
         WriteSettings()
-        Me.DialogResult = Windows.Forms.DialogResult.OK
+        Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
 
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click
-        Me.DialogResult = Windows.Forms.DialogResult.Cancel
+        Me.DialogResult = DialogResult.Cancel
         Me.Close()
     End Sub
 
@@ -149,11 +149,11 @@ Public Class frmApplicationSettings
         ' Meldungen
         If CertainPanel = 3 Or CertainPanel = -1 Then
             Select Case My.Settings.LogLevel
-                Case System.Diagnostics.TraceEventType.Error
+                Case TraceEventType.Error
                     cbxLogLevel.SelectedIndex = 1
-                Case System.Diagnostics.TraceEventType.Information
+                Case TraceEventType.Information
                     cbxLogLevel.SelectedIndex = 2
-                Case System.Diagnostics.TraceEventType.Verbose
+                Case TraceEventType.Verbose
                     cbxLogLevel.SelectedIndex = 3
                 Case Else
                     cbxLogLevel.SelectedIndex = 0
@@ -167,6 +167,7 @@ Public Class frmApplicationSettings
             ' * (nicht schön, aber funktioniert, ohne sich ein Bein auszureissen)
             ' *
             MsgList.Add({"ImportAutoDetect", "Tradedaten-Import: Hinweis zur automatischen Erkennung des Dateiformats"})
+            MsgList.Add({"ImportBinance", "Tradedaten-Import: Hinweis zu Binance.com"})
             MsgList.Add({"ImportBitcoinDe", "Tradedaten-Import: Hinweis zu Bitcoin.de (CSV)"})
             MsgList.Add({"ImportBitcoinDeApi", "Tradedaten-Import: Hinweis zu Bitcoin.de (API-Import)"})
             MsgList.Add({"ImportKrakenCSV", "Tradedaten-Import: Hinweis zu Kraken.com (CSV-Import)"})
@@ -181,7 +182,7 @@ Public Class frmApplicationSettings
             MsgList.Add({"GoToTransfersAfterImport", "Tradedaten-Import: Frage, ob ungeklärte Transfers bearbeitet werden sollen"})
             ' * ^ Ende der Liste
             For Each MsgBoxItem As String() In MsgList
-                If MsgBoxEx.GetDefaultDialogResult(MsgBoxItem(0)) <> Windows.Forms.DialogResult.None Then
+                If MsgBoxEx.GetDefaultDialogResult(MsgBoxItem(0)) <> DialogResult.None Then
                     dr = _MessagesDT.NewRow
                     dr("MessageQualifier") = MsgBoxItem(0)
                     dr("MessageDescription") = MsgBoxItem(1)
@@ -227,11 +228,11 @@ Public Class frmApplicationSettings
         ' Loglevel
         Select Case cbxLogLevel.SelectedIndex
             Case 1
-                My.Settings.LogLevel = System.Diagnostics.TraceEventType.Error
+                My.Settings.LogLevel = TraceEventType.Error
             Case 2
-                My.Settings.LogLevel = System.Diagnostics.TraceEventType.Information
+                My.Settings.LogLevel = TraceEventType.Information
             Case 3
-                My.Settings.LogLevel = System.Diagnostics.TraceEventType.Verbose
+                My.Settings.LogLevel = TraceEventType.Verbose
             Case Else
                 My.Settings.LogLevel = 0
         End Select
@@ -325,7 +326,7 @@ Public Class frmApplicationSettings
         Dim senderGrid As DataGridView = DirectCast(sender, DataGridView)
         If TypeOf senderGrid.Columns(e.ColumnIndex) Is DataGridViewButtonColumn AndAlso e.RowIndex >= 0 Then
             ' Meldung soll wieder angezeigt werden
-            MsgBoxEx.SetDefaultDialogResult(grdDataMessages.Rows(e.RowIndex).Cells(0).Value, Windows.Forms.DialogResult.None)
+            MsgBoxEx.SetDefaultDialogResult(grdDataMessages.Rows(e.RowIndex).Cells(0).Value, DialogResult.None)
             ' Grid neu laden
             LoadSettingsToForm(3)
         End If

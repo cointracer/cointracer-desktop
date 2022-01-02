@@ -316,7 +316,7 @@ Public Class Import_BitcoinDe
                                 If .QuellKontoID = DBHelper.Konten.EUR Then
                                     .WertEUR = .QuellBetrag
                                 End If
-                                .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeBuy,
+                                .Info = String.Format(My.Resources.MyStrings.importInfoGenericBuy,
                                                             TLO.Currency1Account.Code, TLO.Currency1BeforeFee, TLO.Currency2BeforeFee, TLO.Currency2Account.Code)
                                 ' Fee transaction
                                 RecordFee = .Clone()
@@ -346,7 +346,7 @@ Public Class Import_BitcoinDe
                                     .WertEUR = .BetragNachGebuehr
                                 End If
                                 .QuellKontoID = TLO.Currency1Account.ID
-                                .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeSell,
+                                .Info = String.Format(My.Resources.MyStrings.importInfoGenericSell,
                                                           TLO.Currency1Account.Code, TLO.Currency1BeforeFee, TLO.Currency2BeforeFee, TLO.Currency2Account.Code)
                                 ' Fee transaction
                                 RecordFee = .Clone()
@@ -374,7 +374,7 @@ Public Class Import_BitcoinDe
                                 .ZielPlattformID = PlatformManager.Platforms.Unknown
                                 .ZielKontoID = .QuellKontoID
                                 .ZielBetrag = .QuellBetragNachGebuehr
-                                .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDePayout,
+                                .Info = String.Format(My.Resources.MyStrings.importInfoGenericPayout,
                                                           TLO.Currency1Account.Code, TLO.Reference)
                                 ' check if next line has network fee
                                 If i < AllLines - 1 Then
@@ -414,7 +414,7 @@ Public Class Import_BitcoinDe
                                 .QuellBetrag = .ZielBetrag
                                 .QuellBetragNachGebuehr = .QuellBetrag
                                 .QuellKontoID = .ZielKontoID
-                                .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeInpayment,
+                                .Info = String.Format(My.Resources.MyStrings.importInfoGenericInpayment,
                                                           TLO.Currency1Account.Code, TLO.Reference)
                                 FeeAmount = 0
                             Case "kickback"

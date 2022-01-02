@@ -611,7 +611,7 @@ Public Class Import
                                     SubType = _ImportFileHelper.MatchingPlatforms(0).SubType
                                     FileNames = FilesList
 
-                                    ' Content setzen (all of this can be deleted after the corresponding imports have been refactored...)
+                                    ' set content (all of this can be deleted after the corresponding imports have been refactored...)
                                     If _Plattform = PlatformManager.Platforms.Poloniex Then
                                         ' Besonderheit Poloniex: mehrere Dateien möglich
                                         Content1 = Join(FilesList, ",")
@@ -811,6 +811,9 @@ Public Class Import
                 Case PlatformManager.Platforms.WalletLTC
                     ' Litecoin Core
                     ThisImport = New Import_LitecoinCore(Me)
+                Case Platforms.Binance
+                    ' Binance.com
+                    ThisImport = New Import_Binance(Me)
                 Case Else
                     ThisImport = Nothing
             End Select

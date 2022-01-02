@@ -634,7 +634,7 @@
   <data name="importInfoBitcoinDeAffiliateEarnings" xml:space="preserve">
     <value>Partnerprogramm / User '{0}'</value>
   </data>
-  <data name="importInfoBitcoinDeBuy" xml:space="preserve">
+  <data name="importInfoGenericBuy" xml:space="preserve">
     <value>Kauf {0} - Volumen {1} {0} für {2} {3}</value>
   </data>
   <data name="importInfoBitcoinDeBuyFee" xml:space="preserve">
@@ -643,10 +643,10 @@
   <data name="importInfoBitcoinDeInitialization" xml:space="preserve">
     <value>Initialisierung Bestand {0}</value>
   </data>
-  <data name="importInfoBitcoinDeInpayment" xml:space="preserve">
+  <data name="importInfoGenericInpayment" xml:space="preserve">
     <value>{0}-Einzahlung, Transaktions-Hash {1}</value>
   </data>
-  <data name="importInfoBitcoinDePayout" xml:space="preserve">
+  <data name="importInfoGenericPayout" xml:space="preserve">
     <value>{0}-Auszahlung, Transaktions-Hash {1}</value>
   </data>
   <data name="importInfoBitcoinDePayoutNetworkFee" xml:space="preserve">
@@ -655,7 +655,7 @@
   <data name="importInfoBitcoinDeRegistration" xml:space="preserve">
     <value>Registrierung Bitcoin.de</value>
   </data>
-  <data name="importInfoBitcoinDeSell" xml:space="preserve">
+  <data name="importInfoGenericSell" xml:space="preserve">
     <value>Verkauf {0} - Volumen {1} {0} für {2} {3}</value>
   </data>
   <data name="importInfoBitcoinDeSellFee" xml:space="preserve">
@@ -1041,7 +1041,7 @@ Wenn das passiert, dann warten Sie bitte einfach eine Zeit lang (mindestens eine
     <value>Import von Trading-Dateien</value>
   </data>
   <data name="importMsgAutodetectOpenFilter" xml:space="preserve">
-    <value>CSV-Dateien (*.csv)|*.csv|Alle Dateien (*.*)|*.*</value>
+    <value>Import-Dateien (*.csv;*.xlsx)|*.csv;*.xlsx|Alle Dateien (*.*)|*.*</value>
   </data>
   <data name="importMsgAutodetectOpenTitle" xml:space="preserve">
     <value>Trading-Datei auswählen... (*.csv)</value>
@@ -1161,5 +1161,53 @@ Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ih
   </data>
   <data name="importMsgKrakenCSVReadFile" xml:space="preserve">
     <value>Schritt 1: Lese Datei ein... ({0}/{1})</value>
+  </data>
+  <data name="importInfoBinanceDepositFiat" xml:space="preserve">
+    <value>{0}-Einzahlung, Order-ID {1}</value>
+  </data>
+  <data name="importInfoBinanceWithdrawFiat" xml:space="preserve">
+    <value>{0}-Auszahlung, Order-ID {1}</value>
+  </data>
+  <data name="importInfoGenericFee" xml:space="preserve">
+    <value>{0}-Gebühr zu Trade Referenz {1}</value>
+  </data>
+  <data name="importLabelBinance" xml:space="preserve">
+    <value>Binance.com - Exportdatei (*.xlsx)</value>
+  </data>
+  <data name="importMsgBinanceFile" xml:space="preserve">
+    <value>Hinweis zum Import von Binance.com (Stand 01.01.22):
+
+Sie können vier Arten von Export-Dateien einlesen:
+- Trade-History (für "klassische" Trades)
+- Convert-History (für Trades über das Convert-Portal)
+- Deposit-History (für Einzahlungen)
+- Withdrawal-History (für Auszahlungen)
+
+Erstellen einer Trade-History:
+1. Gehen Sie oben rechts auf "Orders" und klicken dann auf "Spot Order"
+2. Klicken Sie in der Leiste links auf "Trade History"
+3. Stellen Sie den gewünschten Zeitraum ein und klicken dann oben rechts auf "Export"
+
+Erstellen einer Convert-History:
+1. Gehen Sie oben rechts auf "Orders" und klicken dann auf "Convert History"
+2. Stellen Sie den gewünschten Zeitraum ein und klicken dann oben rechts auf "Export"
+
+Erstellen einer Deposit- oder Withdrawal-History:
+1. Gehen Sie oben rechts auf "Wallet" und klicken dann unten auf "Transaction History"
+2. Wählen Sie die Art "Crypto" oder "Fiat" aus
+3. Stellen Sie als Typ "Deposit" oder "Withdraw" ein
+4. Klicken Sie auf "Export Deposit (oder Withdrawal) History" oberhalb der Tabelle mit den Transaktionen</value>
+  </data>
+  <data name="importMsgBinanceFileTitle" xml:space="preserve">
+    <value>Datenimport von Binance.com</value>
+  </data>
+  <data name="importOpenFileFilterExcel" xml:space="preserve">
+    <value>Excel-Dateien (*.xlsx)|*.xlsx|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="importOpenFileTitleBinance" xml:space="preserve">
+    <value>Exportdatei von Binance.com auswählen... (*.csv)</value>
+  </data>
+  <data name="xlsErrorInvalidFilename" xml:space="preserve">
+    <value>Der angegebene Dateiname passt nicht zum Dateityp Excel-Datei (muss auf XLS oder XLSX enden)</value>
   </data>
 </root>
