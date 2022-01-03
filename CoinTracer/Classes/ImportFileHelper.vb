@@ -762,6 +762,16 @@ Public Class ImportFileHelper
             .SubType = 2
         End With
         Cnt += 1
+        ' Binance.com - Crypto Convert History
+        ReDim Preserve _AllPlatforms(Cnt)
+        With _AllPlatforms(Cnt)
+            .PlatformID = CInt(PlatformManager.Platforms.Binance)
+            .PlatformName = "Binance.com"
+            .FilesFirstLine = "Date,Pair,Type,Sell,Buy,Price,Inverse Price,Date Updated,Status"
+            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
+            .SubType = 3
+        End With
+        Cnt += 1
     End Sub
 
     ''' <summary>

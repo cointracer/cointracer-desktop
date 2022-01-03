@@ -125,10 +125,10 @@ Public Class Import_Binance
             _Date = CType(DataRow(0), Date).ToLocalTime
             _Market = DataRow(1).Trim
             _Type = DataRow(2).Trim.ToUpper
-            _Price = ParseDecimal(DataRow(3))
-            _Amount = ParseDecimal(DataRow(4))
-            _Total = ParseDecimal(DataRow(5))
-            _Fee = ParseDecimal(DataRow(6))
+            _Price = ParseAbsDecimal(DataRow(3))
+            _Amount = ParseAbsDecimal(DataRow(4))
+            _Total = ParseAbsDecimal(DataRow(5))
+            _Fee = ParseAbsDecimal(DataRow(6))
             _FeeCoin = DataRow(7).Trim
 
             _Market1Account = Import.RetrieveAccount(Market1)
@@ -216,8 +216,8 @@ Public Class Import_Binance
             _Date = CType(DataRow(0), Date).ToLocalTime
             _Coin = DataRow(1).Trim.ToUpper
             _CoinAccount = Import.RetrieveAccount(_Coin)
-            _Amount = ParseDecimal(DataRow(2))
-            _TransactionFee = ParseDecimal(DataRow(3))
+            _Amount = ParseAbsDecimal(DataRow(2))
+            _TransactionFee = ParseAbsDecimal(DataRow(3))
             _Address = DataRow(4)
             _TXID = DataRow(5)
             _SourceAddress = DataRow(6)
@@ -291,11 +291,77 @@ Public Class Import_Binance
             _Date = CType(DataRow(0), Date)
             _Coin = DataRow(1).Trim.ToUpper
             _CoinAccount = Import.RetrieveAccount(_Coin)
-            _Amount = ParseDecimal(DataRow(2))
+            _Amount = ParseAbsDecimal(DataRow(2))
             _Status = DataRow(3).ToLower
-            _IndicatedAmount = ParseDecimal(DataRow(5))
-            _Fee = ParseDecimal(DataRow(6))
+            _IndicatedAmount = ParseAbsDecimal(DataRow(5))
+            _Fee = ParseAbsDecimal(DataRow(6))
             _OrderID = DataRow(7)
+        End Sub
+
+    End Class
+
+    Private Class BinanceConvertHistoryRow
+
+        Private _Date As Date
+        Public ReadOnly Property DateTime() As Date
+            Get
+                Return _Date
+            End Get
+        End Property
+
+        Private _Pair As String
+        Public ReadOnly Property Pair() As String
+            Get
+                Return _Pair
+            End Get
+        End Property
+
+        Private _SellAccount As KontenRow
+        Public ReadOnly Property SellAccount() As KontenRow
+            Get
+                Return _SellAccount
+            End Get
+        End Property
+
+        Private _SellValue As Decimal
+        Public ReadOnly Property SellValue() As Decimal
+            Get
+                Return _SellValue
+            End Get
+        End Property
+
+        Private _BuyAccount As KontenRow
+        Public ReadOnly Property BuyAccount() As KontenRow
+            Get
+                Return _BuyAccount
+            End Get
+        End Property
+
+        Private _BuyValue As Decimal
+        Public ReadOnly Property BuyValue() As Decimal
+            Get
+                Return _BuyValue
+            End Get
+        End Property
+
+        Private _Status As String
+        Public ReadOnly Property Status() As String
+            Get
+                Return _Status
+            End Get
+        End Property
+        Public Sub New(ByRef Import As Import,
+                       ByRef DataRow() As String)
+            _SellAccount = Nothing
+            _BuyAccount = Nothing
+            _Date = CType(DataRow(7), Date).ToLocalTime
+            Dim Values() As String = Split(DataRow(3), " ")
+            _SellValue = ParseAbsDecimal(Values(0))
+            _SellAccount = Import.RetrieveAccount(Values(1))
+            Values = Split(DataRow(4), " ")
+            _BuyValue = ParseAbsDecimal(Values(0))
+            _BuyAccount = Import.RetrieveAccount(Values(1))
+            _Status = DataRow(8).ToLower
         End Sub
 
     End Class
@@ -303,9 +369,9 @@ Public Class Import_Binance
     ''' <summary>
     ''' Helper function for parsing decimal strings
     ''' </summary>
-    Private Shared Function ParseDecimal(ByRef ValueString As String) As Decimal
+    Private Shared Function ParseAbsDecimal(ByRef ValueString As String) As Decimal
         If ValueString IsNot Nothing AndAlso ValueString.Length > 0 Then
-            Return Decimal.Parse(ValueString, CultureInfo.InvariantCulture)
+            Return Math.Abs(Decimal.Parse(ValueString, CultureInfo.InvariantCulture))
         Else
             Return 0
         End If
@@ -405,17 +471,17 @@ Public Class Import_Binance
                 Dim Market2 As String
 
                 For i As Long = 0 To AllLines - 1
-                    UpdateProgress(AllLines, i + 1)
-                    Row = CSV.Rows(i)
-                    Market1 = String.Empty
-                    Market2 = String.Empty
-                    If SplitMarket(Row(1), Market1, Market2) Then
-                        BHO = New BinanceTradeHistoryRow(MainImportObject, Row, Market1, Market2)
-                        If BHO IsNot Nothing Then
-                            Record = New dtoTradesRecord
-                            RecordFee = Nothing
-                            With Record
-                                Try
+                    Try
+                        UpdateProgress(AllLines, i + 1)
+                        Row = CSV.Rows(i)
+                        Market1 = String.Empty
+                        Market2 = String.Empty
+                        If SplitMarket(Row(1), Market1, Market2) Then
+                            BHO = New BinanceTradeHistoryRow(MainImportObject, Row, Market1, Market2)
+                            If BHO IsNot Nothing Then
+                                Record = New dtoTradesRecord
+                                RecordFee = Nothing
+                                With Record
                                     .SourceID = MD5FromString(String.Join(";", Row))
                                     .Zeitpunkt = BHO.DateTime
                                     .ZeitpunktZiel = .Zeitpunkt
@@ -499,32 +565,32 @@ Public Class Import_Binance
                                         End If
                                     End If
 
-                                Catch ex As Exception
-                                    If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
-                                        Return False
-                                        Exit Function
-                                    End If
-                                End Try
-
-                            End With
+                                End With
+                            End If
                         End If
 
-                    End If
+                    Catch ex As Exception
+                        If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            Return False
+                            Exit Function
+                        End If
+                    End Try
                 Next i
+
             Case 1
                 ' *** Crypto deposit or withdrawal ***
                 Dim IsDeposit As Boolean = FileNames(0).ToLower.Contains("deposit")
                 Dim BHO As BinanceCryptoFundingHistoryRow
 
                 For i As Long = 0 To AllLines - 1
-                    UpdateProgress(AllLines, i + 1)
-                    Row = CSV.Rows(i)
-                    BHO = New BinanceCryptoFundingHistoryRow(MainImportObject, Row)
-                    If BHO IsNot Nothing AndAlso BHO.Status = "Completed" Then
-                        Record = New dtoTradesRecord
-                        RecordFee = Nothing
-                        With Record
-                            Try
+                    Try
+                        UpdateProgress(AllLines, i + 1)
+                        Row = CSV.Rows(i)
+                        BHO = New BinanceCryptoFundingHistoryRow(MainImportObject, Row)
+                        If BHO IsNot Nothing AndAlso BHO.Status = "Completed" Then
+                            Record = New dtoTradesRecord
+                            RecordFee = Nothing
+                            With Record
                                 .SourceID = MD5FromString(String.Join(";", Row))
                                 .Zeitpunkt = BHO.DateTime
                                 .ZeitpunktZiel = .Zeitpunkt
@@ -582,31 +648,31 @@ Public Class Import_Binance
                                         ImportRecords.Add(RecordFee)
                                     End If
                                 End If
+                            End With
+                        End If
 
-                            Catch ex As Exception
-                                If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
-                                    Return False
-                                    Exit Function
-                                End If
-                            End Try
-
-                        End With
-                    End If
+                    Catch ex As Exception
+                        If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            Return False
+                            Exit Function
+                        End If
+                    End Try
                 Next i
+
             Case 2
                 ' *** Fiat deposit or withdrawal ***
                 Dim IsDeposit As Boolean = FileNames(0).ToLower.Contains("deposit")
                 Dim BHO As BinanceFiatFundingHistoryRow
 
                 For i As Long = 0 To AllLines - 1
-                    UpdateProgress(AllLines, i + 1)
-                    Row = CSV.Rows(i)
-                    BHO = New BinanceFiatFundingHistoryRow(MainImportObject, Row)
-                    If BHO IsNot Nothing AndAlso BHO.Status.Contains("success") Then
-                        Record = New dtoTradesRecord
-                        RecordFee = Nothing
-                        With Record
-                            Try
+                    Try
+                        UpdateProgress(AllLines, i + 1)
+                        Row = CSV.Rows(i)
+                        BHO = New BinanceFiatFundingHistoryRow(MainImportObject, Row)
+                        If BHO IsNot Nothing AndAlso BHO.Status.Contains("success") Then
+                            Record = New dtoTradesRecord
+                            RecordFee = Nothing
+                            With Record
                                 .SourceID = MD5FromString(String.Join(";", Row))
                                 .Zeitpunkt = BHO.DateTime
                                 .ZeitpunktZiel = .Zeitpunkt
@@ -672,15 +738,56 @@ Public Class Import_Binance
                                     End If
                                 End If
 
-                            Catch ex As Exception
-                                If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
-                                    Return False
-                                    Exit Function
-                                End If
-                            End Try
+                            End With
+                        End If
 
-                        End With
-                    End If
+                    Catch ex As Exception
+                        If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            Return False
+                            Exit Function
+                        End If
+                    End Try
+                Next i
+
+            Case 3
+                ' *** Convert History ***
+                Dim BHO As BinanceConvertHistoryRow
+                For i As Long = 0 To AllLines - 1
+                    Try
+                        UpdateProgress(AllLines, i + 1)
+                        Row = CSV.Rows(i)
+                        BHO = New BinanceConvertHistoryRow(MainImportObject, Row)
+                        If BHO IsNot Nothing AndAlso BHO.Status.StartsWith("success") Then
+                            Record = New dtoTradesRecord
+                            With Record
+                                .SourceID = MD5FromString(String.Join(";", Row))
+                                .Zeitpunkt = BHO.DateTime
+                                .ZeitpunktZiel = .Zeitpunkt
+                                .ImportPlattformID = Platform
+                                .TradetypID = DBHelper.TradeTypen.Kauf
+                                .QuellPlattformID = Platform
+                                .ZielPlattformID = .QuellPlattformID
+                                .ZielKontoID = BHO.BuyAccount.ID
+                                .ZielBetrag = BHO.BuyValue
+                                .BetragNachGebuehr = .ZielBetrag
+                                .QuellKontoID = BHO.SellAccount.ID
+                                .QuellBetrag = BHO.SellValue
+                                .QuellBetragNachGebuehr = .QuellBetrag
+                                .WertEUR = 0
+                                .Info = String.Format(My.Resources.MyStrings.importInfoGenericBuy,
+                                                      BHO.BuyAccount.Code, BHO.BuyValue, BHO.SellValue, BHO.SellAccount.Code)
+                                If Not .DoNotImport Then
+                                    ' Add record to list
+                                    ImportRecords.Add(Record)
+                                End If
+                            End With
+                        End If
+                    Catch ex As Exception
+                        If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            Return False
+                            Exit Function
+                        End If
+                    End Try
                 Next i
         End Select
 
