@@ -211,7 +211,7 @@ Public Class CourseManager
                     KursTa.FillBySQL(KursTb, "where QuellKontoID=" & DBHelper.Konten.EUR & " and ZielKontoID=" & DBHelper.Konten.USD)
                     Try
                         ' Datei einlesen
-                        AllLines = File.ReadAllLines(.FileName, System.Text.Encoding.Default)
+                        AllLines = File.ReadAllLines(.FileName, Text.Encoding.Default)
                         If AllLines.Length > 0 Then
                             Added = InsertCoursesEurUsd(AllLines, KursTa, KursTb)
                         End If
