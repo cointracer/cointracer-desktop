@@ -171,6 +171,8 @@ publish/
 TestData/**/*.sql
 TestData/**/*.json
 TestData/**/*.csv
+TestData/**/*.xls
+TestData/**/*.xlsx
 .vs
 .nuget
 Data/
