@@ -1,37 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
- **************************************
- *
- * Copyright 2013-2021 Andreas Nebinger
- *
- * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
-   Folgeversionen der EUPL ("Lizenz");
- * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
-
- * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
- 
- * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
-   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
-   ausdrücklich oder stillschweigend - verbreitet.
- * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
-
- =======
- English
- =======
- 
- * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
-   subsequent versions of the EUPL (the "Licence");
- * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
- 
- * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
- 
- * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
-   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the Licence for the specific language governing permissions and limitations under the Licence.
- *
- **************************************
--->
-
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -408,6 +375,66 @@ Passen Sie die Assemblyinformationen der Anwendung im Anwendungsbereich des Proj
   <data name="&gt;&gt;Panel1.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="LinkLabel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="LinkLabel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 8</value>
+  </data>
+  <data name="LinkLabel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>336, 15</value>
+  </data>
+  <data name="LinkLabel1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="LinkLabel1.Text" xml:space="preserve">
+    <value>Diese Anwendung nutzt die Komponenten NPOI und Json.NET</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel1.Name" xml:space="preserve">
+    <value>LinkLabel1</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel1.Parent" xml:space="preserve">
+    <value>Panel2</value>
+  </data>
+  <data name="&gt;&gt;LinkLabel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="cmdApacheLicense.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="cmdApacheLicense.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="cmdApacheLicense.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cmdApacheLicense.Location" type="System.Drawing.Point, System.Drawing">
+    <value>370, 3</value>
+  </data>
+  <data name="cmdApacheLicense.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 25</value>
+  </data>
+  <data name="cmdApacheLicense.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="cmdApacheLicense.Text" xml:space="preserve">
+    <value>Lizenz NPOI</value>
+  </data>
+  <data name="&gt;&gt;cmdApacheLicense.Name" xml:space="preserve">
+    <value>cmdApacheLicense</value>
+  </data>
+  <data name="&gt;&gt;cmdApacheLicense.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdApacheLicense.Parent" xml:space="preserve">
+    <value>Panel2</value>
+  </data>
+  <data name="&gt;&gt;cmdApacheLicense.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="cmdJsonNetLicense.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -415,13 +442,13 @@ Passen Sie die Assemblyinformationen der Anwendung im Anwendungsbereich des Proj
     <value>True</value>
   </data>
   <data name="cmdJsonNetLicense.Location" type="System.Drawing.Point, System.Drawing">
-    <value>450, 3</value>
+    <value>456, 3</value>
   </data>
   <data name="cmdJsonNetLicense.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 25</value>
+    <value>103, 25</value>
   </data>
   <data name="cmdJsonNetLicense.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="cmdJsonNetLicense.Text" xml:space="preserve">
     <value>Lizenz Json.NET</value>
@@ -436,40 +463,7 @@ Passen Sie die Assemblyinformationen der Anwendung im Anwendungsbereich des Proj
     <value>Panel2</value>
   </data>
   <data name="&gt;&gt;cmdJsonNetLicense.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="Label1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="Label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 5</value>
-  </data>
-  <data name="Label1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 0, 3, 0</value>
-  </data>
-  <data name="Label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>446, 20</value>
-  </data>
-  <data name="Label1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
-  </data>
-  <data name="Label1.Text" xml:space="preserve">
-    <value>Diese Anwendung nutzt die Komponente Json.NET</value>
-  </data>
-  <data name="Label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;Label1.Name" xml:space="preserve">
-    <value>Label1</value>
-  </data>
-  <data name="&gt;&gt;Label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Label1.Parent" xml:space="preserve">
-    <value>Panel2</value>
-  </data>
-  <data name="&gt;&gt;Label1.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="Panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -541,7 +535,7 @@ Passen Sie die Assemblyinformationen der Anwendung im Anwendungsbereich des Proj
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>632, 345</value>
+    <value>793, 437</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>10, 10, 10, 10</value>

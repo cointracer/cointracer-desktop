@@ -40,8 +40,9 @@ Partial Class frmAboutBox
         Me.LabelCopyright = New System.Windows.Forms.Label()
         Me.LabelVersion = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
+        Me.cmdApacheLicense = New System.Windows.Forms.Button()
         Me.cmdJsonNetLicense = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.TableLayoutPanel.SuspendLayout()
         CType(Me.LogoPictureBox, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
@@ -76,7 +77,7 @@ Partial Class frmAboutBox
         'OKButton
         '
         resources.ApplyResources(Me.OKButton, "OKButton")
-        Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.OKButton.DialogResult = System.Windows.Forms.DialogResult.OK
         Me.OKButton.Name = "OKButton"
         '
         'Panel1
@@ -110,21 +111,27 @@ Partial Class frmAboutBox
         '
         'Panel2
         '
+        Me.Panel2.Controls.Add(Me.LinkLabel1)
+        Me.Panel2.Controls.Add(Me.cmdApacheLicense)
         Me.Panel2.Controls.Add(Me.cmdJsonNetLicense)
-        Me.Panel2.Controls.Add(Me.Label1)
         resources.ApplyResources(Me.Panel2, "Panel2")
         Me.Panel2.Name = "Panel2"
+        '
+        'LinkLabel1
+        '
+        resources.ApplyResources(Me.LinkLabel1, "LinkLabel1")
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.TabStop = True
+        '
+        'cmdApacheLicense
+        '
+        resources.ApplyResources(Me.cmdApacheLicense, "cmdApacheLicense")
+        Me.cmdApacheLicense.Name = "cmdApacheLicense"
         '
         'cmdJsonNetLicense
         '
         resources.ApplyResources(Me.cmdJsonNetLicense, "cmdJsonNetLicense")
-        Me.cmdJsonNetLicense.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdJsonNetLicense.Name = "cmdJsonNetLicense"
-        '
-        'Label1
-        '
-        resources.ApplyResources(Me.Label1, "Label1")
-        Me.Label1.Name = "Label1"
         '
         'frmAboutBox
         '
@@ -152,6 +159,6 @@ Partial Class frmAboutBox
     Friend WithEvents LabelVersion As System.Windows.Forms.Label
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
     Friend WithEvents cmdJsonNetLicense As System.Windows.Forms.Button
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-
+    Friend WithEvents cmdApacheLicense As Button
+    Friend WithEvents LinkLabel1 As LinkLabel
 End Class

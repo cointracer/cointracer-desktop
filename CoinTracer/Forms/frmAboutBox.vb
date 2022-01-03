@@ -31,29 +31,53 @@
 
 Public NotInheritable Class frmAboutBox
 
-    Private Sub frmAboutBox_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        ' Legen Sie den Titel des Formulars fest.
-        Me.Text = String.Format("Info {0}", Application.ProductName)
-        Me.LabelProductName.Text = Application.ProductName
-        Me.LabelVersion.Text = String.Format("Version {0}", Application.ProductVersion)
-        Me.LabelCopyright.Text = "Copyright © " & Now.Year
-        Me.LabelCompanyName.Text = "Andreas Nebinger"
-        Me.TextBoxDescription.Text = My.Application.Info.Description & Environment.NewLine & Environment.NewLine & _
-            DisclaimerContent.CompleteDisclaimer
+    Private Sub frmAboutBox_Load(ByVal sender As Object, ByVal e As EventArgs) Handles MyBase.Load
+        ' General information
+        Text = String.Format("Info {0}", Application.ProductName)
+        LabelProductName.Text = Application.ProductName
+        LabelVersion.Text = String.Format("Version {0}", Application.ProductVersion)
+        LabelCopyright.Text = "Copyright © " & Now.Year
+        LabelCompanyName.Text = "Andreas Nebinger"
+        TextBoxDescription.Text = My.Application.Info.Description & Environment.NewLine & Environment.NewLine & CompleteDisclaimer()
+        ' Set link label
+        Try
+            For Each LinkData As String() In {({"NPOI", "https://github.com/nissl-lab/npoi"}),
+                                                      ({"Json.NET", "https://www.newtonsoft.com/json"})}
+                With LinkLabel1
+                    .Links.Add(.Text.IndexOf(LinkData(0)), Len(LinkData(0)), LinkData(1))
+                End With
+            Next
+        Catch ex As Exception
+            ' doesn't matter...
+        End Try
     End Sub
 
-    Private Sub OKButton_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OKButton.Click
-        Me.Close()
+
+    Private Sub OKButton_Click(ByVal sender As Object, ByVal e As EventArgs) Handles OKButton.Click
+        Close()
     End Sub
 
 
-    Private Sub cmdJsonNetLicense_Click(sender As Object, e As EventArgs) Handles cmdJsonNetLicense.Click
+    Private Sub cmdJsonNetLicense_Click(sender As Object, e As EventArgs) Handles cmdJsonNetLicense.Click, cmdApacheLicense.Click
         Dim Lic As New frmReleaseNotes
         With Lic
-            .FileName = "License_Json.NET.txt"
-            .Title = "Lizenz Json.NET"
+            Select Case sender.Name
+                Case "cmdJsonNetLicense"
+                    .FileName = "License_Json.NET.txt"
+                    .Title = "Lizenz Json.NET"
+                Case Else
+                    .FileName = "License_Apache_v2.txt"
+                    .Title = "Lizenz NPOI"
+            End Select
             .ShowDialog(Me)
         End With
     End Sub
 
+    Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Try
+            Process.Start(e.Link.LinkData)
+        Catch ex As Exception
+            DefaultErrorHandler(ex, ex.Message)
+        End Try
+    End Sub
 End Class

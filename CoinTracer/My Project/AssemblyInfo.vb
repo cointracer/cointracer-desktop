@@ -43,7 +43,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("Tool zur Erfassung und steuerlichen Auswertung von Cryptocoin-Transaktionen (im Beta-Stadium)")>
 <Assembly: AssemblyCompany("IT Nebinger")>
 <Assembly: AssemblyProduct("CoinTracer")>
-<Assembly: AssemblyCopyright("Copyright ©  2021")>
+<Assembly: AssemblyCopyright("Copyright ©  2022")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
@@ -62,7 +62,7 @@ Imports System.Runtime.InteropServices
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.9.6.3")>
-<Assembly: AssemblyFileVersion("0.9.6.3")>
+<Assembly: AssemblyVersion("0.9.7")>
+<Assembly: AssemblyFileVersion("0.9.7")>
 
 <Assembly: NeutralResourcesLanguageAttribute("de-DE")>
