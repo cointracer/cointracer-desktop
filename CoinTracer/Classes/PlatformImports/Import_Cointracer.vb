@@ -193,7 +193,13 @@ Public Class Import_CoinTracer
             If ColumnSet.FeePlatform >= 0 AndAlso ColumnArray(ColumnSet.FeePlatform).Length > 0 Then
                 _FeePlatform = _Import.RetrievePlatform(ColumnArray(ColumnSet.FeePlatform))?.ID
             Else
-                _FeePlatform = Math.Max(_SourcePlatform, _TargetPlatform)   ' (use the platform that is not zero...)
+                If _SourcePlatform > 0 Then
+                    _FeePlatform = _SourcePlatform
+                ElseIf _TargetPlatform > 0 Then
+                    _FeePlatform = _TargetPlatform
+                Else
+                    _FeePlatform = 0
+                End If
             End If
             If ColumnArray(ColumnSet.SourceCurrency).Length > 0 Then
                 _SourceCurrency = _Import.RetrieveAccount(ColumnArray(ColumnSet.SourceCurrency))
