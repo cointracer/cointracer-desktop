@@ -3270,6 +3270,8 @@ Public Class Import
         Dim ThisImport As IFileImport = Nothing
         Dim FileNames(0) As String
         Select Case Platform
+            Case PlatformManager.Platforms.Binance
+                ThisImport = New Import_Binance(Me)
             Case PlatformManager.Platforms.BitcoinDe
                 ThisImport = New Import_BitcoinDe(Me)
                 ' Import_BitcoinDe(Filename, CheckFirstLine, SubType)
