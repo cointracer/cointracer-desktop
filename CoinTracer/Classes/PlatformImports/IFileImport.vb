@@ -35,6 +35,7 @@ Friend Interface IFileImport
     Property Platform As PlatformManager.Platforms
     Property PlatformName As String
     Property SubType As Integer
+    ReadOnly Property PlatformHeaders As ImportFileHelper.MatchingPlatform()
     Property FileNames As String()
     Property CheckFirstLine As Boolean
     Property CSV() As IDataFileHelper

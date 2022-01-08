@@ -101,6 +101,12 @@ Public MustInherit Class FileImportBase
         End Set
     End Property
 
+    Public Overridable ReadOnly Property PlatformHeaders As ImportFileHelper.MatchingPlatform() Implements IFileImport.PlatformHeaders
+        Get
+            Return Nothing
+        End Get
+    End Property
+
     Private _SubType As Integer
     Public Property SubType() As Integer Implements IFileImport.SubType
         Get

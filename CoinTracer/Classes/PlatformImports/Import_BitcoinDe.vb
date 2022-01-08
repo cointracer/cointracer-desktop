@@ -35,6 +35,135 @@ Public Class Import_BitcoinDe
     Inherits FileImportBase
     Implements IFileImport
 
+    Private Const PLATFORMID = PlatformManager.Platforms.BitcoinDe
+    Private Const PLATFORMFULLNAME As String = "Bitcoin.de"
+
+
+    Public Sub New()
+        MyBase.New()
+    End Sub
+
+
+    ''' <summary>
+    ''' Returns all matching data file headers for this import
+    ''' </summary>
+    Public Overrides ReadOnly Property PlatformHeaders As ImportFileHelper.MatchingPlatform() Implements IFileImport.PlatformHeaders
+        Get
+            Dim Result As ImportFileHelper.MatchingPlatform() = {
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #1
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Referenz;""Kurs (€/BTC)"";""BTC vor Gebühr"";""EUR vor Gebühr"";""BTC nach Gebühr"";""EUR nach Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 0},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #2
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Referenz;""Kurs (�/BTC)"";""BTC vor Geb�hr"";""EUR vor Geb�hr"";""BTC nach Geb�hr"";""EUR nach Geb�hr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 0},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #3 (since 2017-07)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTC vor Gebühr"";""EUR vor Gebühr"";""BTC nach Gebühr"";""EUR nach Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 1},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #4 (since 2017-07)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTC vor Geb�hr"";""EUR vor Geb�hr"";""BTC nach Geb�hr"";""EUR nach Geb�hr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 1},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #5 (BCH, since 2017-08)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BCH vor Gebühr"";""EUR vor Gebühr"";""BCH nach Gebühr"";""EUR nach Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 2},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #6 (ETH, since 2017-10)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""ETH vor Gebühr"";""EUR vor Gebühr"";""ETH nach Gebühr"";""EUR nach Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 3},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #7 (BTC, since 2018-02, no Fidor.de fees)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTC vor Gebühr"";""EUR vor Gebühr"";""BTC nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 1},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #8 (BCH, since 2018-02, no Fidor.de fees)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BCH vor Gebühr"";""EUR vor Gebühr"";""BCH nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 2},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #9 (ETH, since 2018-02, no Fidor.de fees)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""ETH vor Gebühr"";""EUR vor Gebühr"";""ETH nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 3},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #10 (BTG, since 2018-02, no Fidor.de fees)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTG vor Gebühr"";""EUR vor Gebühr"";""BTG nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 4},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #11 (BTC, since 2018-02, Fidor.de fees included)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTC vor Gebühr"";""EUR vor Gebühr"";""BTC nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 1 + 128},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #12 (BCH, since 2018-02, Fidor.de fees included)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BCH vor Gebühr"";""EUR vor Gebühr"";""BCH nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 2 + 128},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #13 (ETH, since 2018-02, Fidor.de fees included)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""ETH vor Gebühr"";""EUR vor Gebühr"";""ETH nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 3 + 128},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #14 (BTG, since 2018-02, Fidor.de fees included)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTG vor Gebühr"";""EUR vor Gebühr"";""BTG nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 4 + 128},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #15 (Any coin, since 2019-01, no Fidor.de fees)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währung;Referenz;???-Adresse;Kurs;""Einheit (Kurs)"";""??? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""??? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.LikeMatch,
+                 .SubType = 5},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #16 (Any coin, since 2019-01, Fidor.de fees included)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währung;Referenz;???-Adresse;Kurs;""Einheit (Kurs)"";""??? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""??? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.LikeMatch,
+                 .SubType = 5 + 128},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #17 (Any 4-letter-coin, since 2019-01, no Fidor.de fees)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währung;Referenz;????-Adresse;Kurs;""Einheit (Kurs)"";""???? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""???? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.LikeMatch,
+                 .SubType = 5},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitcoin.de #18 (Any 4-letter-coin, since 2019-01, Fidor.de fees included)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Datum;Typ;Währung;Referenz;????-Adresse;Kurs;""Einheit (Kurs)"";""???? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""???? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.LikeMatch,
+                 .SubType = 5 + 128}
+                }
+            Return Result
+        End Get
+    End Property
+
+
     Private Class BitcoinDeLineObject
 
         Private _Import As Import
@@ -224,7 +353,6 @@ Public Class Import_BitcoinDe
     End Class
 
 
-
     ''' <summary>
     ''' Initializes this import
     ''' </summary>
@@ -232,7 +360,8 @@ Public Class Import_BitcoinDe
     Public Sub New(MainImportObject As Import)
         MyBase.New(MainImportObject)
 
-        Platform = PlatformManager.Platforms.BitcoinDe
+        Platform = PLATFORMID
+        PlatformName = PLATFORMFULLNAME
         CSVEncoding = Text.Encoding.UTF8
         CSVAutoDetectEncoding = False
         MultiSelectFiles = False

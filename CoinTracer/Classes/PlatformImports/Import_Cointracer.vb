@@ -36,6 +36,75 @@ Public Class Import_CoinTracer
     Inherits FileImportBase
     Implements IFileImport
 
+    Private Const PLATFORMID = PlatformManager.Platforms.CoinTracer
+    Private Const PLATFORMFULLNAME As String = "CoinTracer"
+
+
+    Public Sub New()
+        MyBase.New()
+    End Sub
+
+
+    ''' <summary>
+    ''' Returns all matching data file headers for this import
+    ''' </summary>
+    Public Overrides ReadOnly Property PlatformHeaders As ImportFileHelper.MatchingPlatform() Implements IFileImport.PlatformHeaders
+        Get
+            Dim Result As ImportFileHelper.MatchingPlatform() = {
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Cointracer #1 - mmaximum set of columns
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;FeePlatform;FeeCurrency;FeeAmount;DateOfAcquisition;TaxAmount",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.ContainsAllMatch,
+                 .SubType = 7},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Cointracer #2 - fee columns & tax amount included, no DateOfAcquisition
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;FeePlatform;FeeCurrency;FeeAmount;TaxAmount",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.ContainsAllMatch,
+                 .SubType = 5},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Cointracer #3 - no fee columns included, but DateOfAcquisition and tax amount
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;DateOfAcquisition;TaxAmount",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.ContainsAllMatch,
+                 .SubType = 6},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Cointracer #4 - nothing but tax amount
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;TaxAmount",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.ContainsAllMatch,
+                 .SubType = 4},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Cointracer #5 - fees and DateOfAcquisition, but no TaxAmount
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;FeePlatform;FeeCurrency;FeeAmount;DateOfAcquisition",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.ContainsAllMatch,
+                 .SubType = 3},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Cointracer #6 - fee columns included, no DateOfAcquisition, no TaxAmount
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;FeePlatform;FeeCurrency;FeeAmount",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.ContainsAllMatch,
+                 .SubType = 1},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Cointracer #7 - no fee columns and no TaxAmount included, but DateOfAcquisition
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;DateOfAcquisition",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.ContainsAllMatch,
+                 .SubType = 2},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Cointracer #8 - minimal set of columns
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.ContainsAllMatch,
+                 .SubType = 0}
+                }
+            Return Result
+        End Get
+    End Property
+
+
     ''' <summary>
     ''' Helper structure for holding the column indexes of each value
     ''' </summary>
@@ -242,7 +311,7 @@ Public Class Import_CoinTracer
     Public Sub New(MainImportObject As Import)
         MyBase.New(MainImportObject)
 
-        Platform = PlatformManager.Platforms.CoinTracer
+        Platform = PLATFORMID
         CSVAutoDetectEncoding = True
         MultiSelectFiles = False
         CSVSkipFirstLine = False
@@ -250,6 +319,7 @@ Public Class Import_CoinTracer
         CheckFirstLine = True
         _Culture = Nothing
     End Sub
+
 
     ''' <summary>
     ''' This method is initiated by the base class after reading the file content. Field separators and number format is determined here.
@@ -424,13 +494,6 @@ Public Class Import_CoinTracer
                                     .DoNotImport = False
                                 End If
                             End If
-                            If TLO.TaxAmount > 0 Then
-                                .WertEUR = TLO.TaxAmount
-                            ElseIf (.TradetypID = DBHelper.TradeTypen.Einzahlung Or .TradetypID = DBHelper.TradeTypen.Verkauf) AndAlso .ZielKontoID = DBHelper.Konten.EUR Then
-                                .WertEUR = .ZielBetrag
-                            ElseIf (.TradetypID = DBHelper.TradeTypen.Auszahlung Or .TradetypID = DBHelper.TradeTypen.Kauf Or .TradetypID = DBHelper.TradeTypen.Transfer) AndAlso .QuellKontoID = DBHelper.Konten.EUR Then
-                                .WertEUR = .QuellBetrag
-                            End If
                             If TLO.FeeAmount > 0 Then
                                 ' Create fee record
                                 RecordFee = .Clone()
@@ -454,6 +517,14 @@ Public Class Import_CoinTracer
                                     ' Assume fee at source of transaction
                                     .QuellBetrag += RecordFee.QuellBetrag
                                 End If
+                            End If
+                            If TLO.TaxAmount > 0 Then
+                                .WertEUR = TLO.TaxAmount
+                            ElseIf (.TradetypID = DBHelper.TradeTypen.Verkauf) AndAlso .ZielKontoID = AccountManager.Accounts.EUR Then
+                                .WertEUR = .BetragNachGebuehr
+                            ElseIf (.TradetypID = DBHelper.TradeTypen.Einzahlung Or .TradetypID = DBHelper.TradeTypen.Auszahlung Or
+                                    .TradetypID = DBHelper.TradeTypen.Kauf Or .TradetypID = DBHelper.TradeTypen.Transfer) AndAlso .QuellKontoID = AccountManager.Accounts.EUR Then
+                                .WertEUR = .QuellBetrag
                             End If
                             If (.TradetypID = DBHelper.TradeTypen.Auszahlung OrElse .TradetypID = DBHelper.TradeTypen.Einzahlung) _
                                 AndAlso .QuellPlattformID <> PlatformManager.Platforms.Unknown AndAlso .ZielPlattformID <> PlatformManager.Platforms.Unknown Then

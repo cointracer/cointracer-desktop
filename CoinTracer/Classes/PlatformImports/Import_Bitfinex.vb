@@ -36,6 +36,45 @@ Public Class Import_Bitfinex
     Inherits FileImportBase
     Implements IFileImport
 
+    Private Const PLATFORMID = PlatformManager.Platforms.Bitfinex
+    Private Const PLATFORMFULLNAME As String = "Bitfinex.com"
+
+
+    Public Sub New()
+        MyBase.New()
+    End Sub
+
+
+    ''' <summary>
+    ''' Returns all matching data file headers for this import
+    ''' </summary>
+    Public Overrides ReadOnly Property PlatformHeaders As ImportFileHelper.MatchingPlatform() Implements IFileImport.PlatformHeaders
+        Get
+            Dim Result As ImportFileHelper.MatchingPlatform() = {
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitfinex.com (pre 2019)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Currency,Description,Amount,Balance,Date",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 0},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitfinex.com (since 2019-01)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "DESCRIPTION,CURRENCY,AMOUNT,BALANCE,DATE,WALLET",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 1},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Bitfinex.com (since 2021-01)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "#,DESCRIPTION,CURRENCY,AMOUNT,BALANCE,DATE,WALLET",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 2}
+                }
+            Return Result
+        End Get
+    End Property
+
+
     ''' <summary>
     ''' Initializes this import
     ''' </summary>
@@ -43,7 +82,8 @@ Public Class Import_Bitfinex
     Public Sub New(MainImportObject As Import)
         MyBase.New(MainImportObject)
 
-        Platform = PlatformManager.Platforms.Bitfinex
+        Platform = PLATFORMID
+        PlatformName = PLATFORMFULLNAME
         CSVAutoDetectEncoding = True
         CSVDecimalPoint = "."c
         CSVDecimalSeparator = ""
@@ -366,7 +406,7 @@ Public Class Import_Bitfinex
                                                       "/" & LedgerItem.Amount.ToString("#########0.0###", CultureInfo.InvariantCulture))
                             .Zeitpunkt = LedgerItem.Time
                             .ZeitpunktZiel = .Zeitpunkt
-                            .ImportPlattformID = PlatformManager.Platforms.Bitfinex
+                            .ImportPlattformID = PLATFORMID
                             .Info = LedgerItem.Description
                             KontoRow = MainImportObject.RetrieveAccount(LedgerItem.Currency1)
 
@@ -375,7 +415,7 @@ Public Class Import_Bitfinex
                                     ' deposit
                                     .TradetypID = DBHelper.TradeTypen.Einzahlung
                                     .QuellPlattformID = PlatformManager.Platforms.Unknown
-                                    .ZielPlattformID = PlatformManager.Platforms.Bitfinex
+                                    .ZielPlattformID = PLATFORMID
                                     .ZielBetrag = LedgerItem.Amount
                                     .QuellBetrag = .ZielBetrag
                                     .QuellBetragNachGebuehr = .QuellBetrag
@@ -403,7 +443,7 @@ Public Class Import_Bitfinex
                                         RecordFee.QuellBetrag = RecordFee.ZielBetrag
                                         RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
                                         RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
-                                        RecordFee.QuellPlattformID = PlatformManager.Platforms.Bitfinex
+                                        RecordFee.QuellPlattformID = PLATFORMID
                                         ' Adjust values of original deposit
                                         .BetragNachGebuehr -= RecordFee.QuellBetrag
                                         LedgerItem2.Processed = True
@@ -411,8 +451,8 @@ Public Class Import_Bitfinex
                                 Case BitfinexClient.TransactionTypes.Distribution
                                     ' Coin distribution
                                     .TradetypID = DBHelper.TradeTypen.Kauf
-                                    .QuellPlattformID = PlatformManager.Platforms.Bitfinex
-                                    .ZielPlattformID = PlatformManager.Platforms.Bitfinex
+                                    .QuellPlattformID = PLATFORMID
+                                    .ZielPlattformID = PLATFORMID
                                     .ZielBetrag = LedgerItem.Amount
                                     .QuellBetrag = 0
                                     .QuellBetragNachGebuehr = 0
@@ -422,7 +462,7 @@ Public Class Import_Bitfinex
                                 Case BitfinexClient.TransactionTypes.Withdrawal
                                     ' withdrawal
                                     .TradetypID = DBHelper.TradeTypen.Auszahlung
-                                    .QuellPlattformID = PlatformManager.Platforms.Bitfinex
+                                    .QuellPlattformID = PLATFORMID
                                     .ZielPlattformID = PlatformManager.Platforms.Unknown
                                     .QuellBetrag = -LedgerItem.Amount
                                     .QuellBetragNachGebuehr = .QuellBetrag
@@ -451,7 +491,7 @@ Public Class Import_Bitfinex
                                         RecordFee.QuellBetrag = RecordFee.ZielBetrag
                                         RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
                                         RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
-                                        RecordFee.ZielPlattformID = PlatformManager.Platforms.Bitfinex
+                                        RecordFee.ZielPlattformID = PLATFORMID
                                         ' Adjust values of original withdrawal
                                         .QuellBetrag += RecordFee.QuellBetrag
                                         LedgerItem2.Processed = True
@@ -515,7 +555,7 @@ Public Class Import_Bitfinex
                                     End If
 
                                     ' create trade entry
-                                    .QuellPlattformID = PlatformManager.Platforms.Bitfinex
+                                    .QuellPlattformID = PLATFORMID
                                     .ZielPlattformID = .QuellPlattformID
                                     .ZielKontoID = MainImportObject.GetAccount(ToLedgerItem.Currency1).ID
                                     .ZielBetrag = ToLedgerItem.Amount
@@ -649,7 +689,7 @@ Public Class Import_Bitfinex
                                     End If
 
                                     ' create trade entry
-                                    .QuellPlattformID = PlatformManager.Platforms.Bitfinex
+                                    .QuellPlattformID = PLATFORMID
                                     .ZielPlattformID = .QuellPlattformID
                                     .ZielKontoID = MainImportObject.GetAccount(ToLedgerItem.Currency1).ID
                                     .ZielBetrag = ToLedgerItem.Amount

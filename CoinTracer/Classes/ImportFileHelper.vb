@@ -87,7 +87,7 @@ Public Class ImportFileHelper
         End Get
     End Property
 
-    Private _AllPlatforms As MatchingPlatform()
+    Private Shared _AllPlatforms As MatchingPlatform()
     ''' <summary>
     ''' Array aller bekannten Plattformen
     ''' </summary>
@@ -129,9 +129,9 @@ Public Class ImportFileHelper
                 Cursor.Current = Cursors.Default
                 MsgBoxEx.BringToFront()
                 MessageBox.Show(MessageString,
-                            My.Resources.MyStrings.importMsgMixedFileFormatsTitle,
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation)
+                                My.Resources.MyStrings.importMsgMixedFileFormatsTitle,
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Exclamation)
             Else
                 Throw New InvalidImportFileFormatException(MessageString)
             End If
@@ -342,186 +342,6 @@ Public Class ImportFileHelper
             .SubType = 0
         End With
         Cnt += 1
-        ' Bitcoin.de #1
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Referenz;""Kurs (€/BTC)"";""BTC vor Gebühr"";""EUR vor Gebühr"";""BTC nach Gebühr"";""EUR nach Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 0
-        End With
-        Cnt += 1
-        ' Bitcoin.de #2
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Referenz;""Kurs (�/BTC)"";""BTC vor Geb�hr"";""EUR vor Geb�hr"";""BTC nach Geb�hr"";""EUR nach Geb�hr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 0
-        End With
-        Cnt += 1
-        ' Bitcoin.de #3 (since 2017-07)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTC vor Gebühr"";""EUR vor Gebühr"";""BTC nach Gebühr"";""EUR nach Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 1
-        End With
-        Cnt += 1
-        ' Bitcoin.de #4 (since 2017-07)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTC vor Geb�hr"";""EUR vor Geb�hr"";""BTC nach Geb�hr"";""EUR nach Geb�hr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 1
-        End With
-        Cnt += 1
-        ' Bitcoin.de #5 (BCH, since 2017-08)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BCH vor Gebühr"";""EUR vor Gebühr"";""BCH nach Gebühr"";""EUR nach Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 2
-        End With
-        Cnt += 1
-        ' Bitcoin.de #6 (ETH, since 2017-10)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""ETH vor Gebühr"";""EUR vor Gebühr"";""ETH nach Gebühr"";""EUR nach Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 3
-        End With
-        Cnt += 1
-        ' Bitcoin.de #7 (BTC, since 2018-02, no Fidor.de fees)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTC vor Gebühr"";""EUR vor Gebühr"";""BTC nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 1
-        End With
-        Cnt += 1
-        ' Bitcoin.de #8 (BCH, since 2018-02, no Fidor.de fees)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BCH vor Gebühr"";""EUR vor Gebühr"";""BCH nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 2
-        End With
-        Cnt += 1
-        ' Bitcoin.de #9 (ETH, since 2018-02, no Fidor.de fees)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""ETH vor Gebühr"";""EUR vor Gebühr"";""ETH nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 3
-        End With
-        Cnt += 1
-        ' Bitcoin.de #10 (BTG, since 2018-02, no Fidor.de fees)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTG vor Gebühr"";""EUR vor Gebühr"";""BTG nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 4
-        End With
-        Cnt += 1
-        ' Bitcoin.de #11 (BTC, since 2018-02, Fidor.de fees included)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTC vor Gebühr"";""EUR vor Gebühr"";""BTC nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 1 + 128
-        End With
-        Cnt += 1
-        ' Bitcoin.de #12 (BCH, since 2018-02, Fidor.de fees included)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BCH vor Gebühr"";""EUR vor Gebühr"";""BCH nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 2 + 128
-        End With
-        Cnt += 1
-        ' Bitcoin.de #13 (ETH, since 2018-02, Fidor.de fees included)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""ETH vor Gebühr"";""EUR vor Gebühr"";""ETH nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 3 + 128
-        End With
-        Cnt += 1
-        ' Bitcoin.de #14 (BTG, since 2018-02, Fidor.de fees included)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währungen;Referenz;Kurs;""BTG vor Gebühr"";""EUR vor Gebühr"";""BTG nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de-Gebühr"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 4 + 128
-        End With
-        Cnt += 1
-        ' Bitcoin.de #15 (Any coin, since 2019-01, no Fidor.de fees)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währung;Referenz;???-Adresse;Kurs;""Einheit (Kurs)"";""??? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""??? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.LikeMatch
-            .SubType = 5
-        End With
-        Cnt += 1
-        ' Bitcoin.de #16 (Any coin, since 2019-01, Fidor.de fees included)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währung;Referenz;???-Adresse;Kurs;""Einheit (Kurs)"";""??? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""??? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.LikeMatch
-            .SubType = 5 + 128
-        End With
-        Cnt += 1
-        ' Bitcoin.de #17 (Any 4-letter-coin, since 2019-01, no Fidor.de fees)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währung;Referenz;????-Adresse;Kurs;""Einheit (Kurs)"";""???? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""???? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.LikeMatch
-            .SubType = 5
-        End With
-        Cnt += 1
-        ' Bitcoin.de #18 (Any 4-letter-coin, since 2019-01, Fidor.de fees included)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.BitcoinDe)
-            .PlatformName = "Bitcoin.de"
-            .FilesFirstLine = "Datum;Typ;Währung;Referenz;????-Adresse;Kurs;""Einheit (Kurs)"";""???? vor Gebühr"";""Menge vor Gebühr"";""Einheit (Menge vor Gebühr)"";""???? nach Bitcoin.de-Gebühr"";""Menge nach Bitcoin.de-Gebühr"";""Einheit (Menge nach Bitcoin.de-Gebühr)"";""EUR nach Bitcoin.de- und Fidor-Gebühr"";""Zu- / Abgang"";Kontostand"
-            .MatchingType = ImportFileMatchingTypes.LikeMatch
-            .SubType = 5 + 128
-        End With
-        Cnt += 1
         ' Bistamp.net
         ReDim Preserve _AllPlatforms(Cnt)
         With _AllPlatforms(Cnt)
@@ -548,66 +368,6 @@ Public Class ImportFileHelper
             .PlatformID = CInt(PlatformManager.Platforms.BitstampNet)
             .PlatformName = "Bistamp.net"
             .FilesFirstLine = "Type,Datetime,Account,Amount,Value,Rate,Fee,Sub Type"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 2
-        End With
-        Cnt += 1
-        ' Kraken.com Leger (until about 2020)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Kraken)
-            .PlatformName = "Kraken.com"
-            .FilesFirstLine = """txid"",""refid"",""time"",""type"",""aclass"",""asset"",""amount"",""fee"",""balance"""
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 0
-        End With
-        Cnt += 1
-        ' Kraken.com Ledger (2021 and later)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Kraken)
-            .PlatformName = "Kraken.com"
-            .FilesFirstLine = """txid"",""refid"",""time"",""type"",""subtype"",""aclass"",""asset"",""amount"",""fee"",""balance"""
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 1
-        End With
-        Cnt += 1
-        ' Kraken.com Trades (2021 and later)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Kraken)
-            .PlatformName = "Kraken.com"
-            .FilesFirstLine = """txid"",""ordertxid"",""pair"",""time"",""type"",""ordertype"",""price"",""cost"",""fee"",""vol"",""margin"",""misc"",""ledgers"""
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 65
-        End With
-        Cnt += 1
-        ' Bitfinex.com
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Bitfinex)
-            .PlatformName = "Bitfinex.com"
-            .FilesFirstLine = "Currency,Description,Amount,Balance,Date"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 0
-        End With
-        Cnt += 1
-        ' Bitfinex.com (since 2019-01)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Bitfinex)
-            .PlatformName = "Bitfinex.com"
-            .FilesFirstLine = "DESCRIPTION,CURRENCY,AMOUNT,BALANCE,DATE,WALLET"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 1
-        End With
-        Cnt += 1
-        ' Bitfinex.com (since 2021-01)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Bitfinex)
-            .PlatformName = "Bitfinex.com"
-            .FilesFirstLine = "#,DESCRIPTION,CURRENCY,AMOUNT,BALANCE,DATE,WALLET"
             .MatchingType = ImportFileMatchingTypes.StartsWithMatch
             .SubType = 2
         End With
@@ -652,126 +412,27 @@ Public Class ImportFileHelper
             .SubType = 0
         End With
         Cnt += 1
-        ' Cointracer #1 - mmaximum set of columns
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.CoinTracer)
-            .PlatformName = "CoinTracer"
-            .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;FeePlatform;FeeCurrency;FeeAmount;DateOfAcquisition;TaxAmount"
-            .MatchingType = ImportFileMatchingTypes.ContainsAllMatch
-            .SubType = 7
-        End With
-        Cnt += 1
-        ' Cointracer #2 - fee columns & tax amount included, no DateOfAcquisition
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.CoinTracer)
-            .PlatformName = "CoinTracer"
-            .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;FeePlatform;FeeCurrency;FeeAmount;TaxAmount"
-            .MatchingType = ImportFileMatchingTypes.ContainsAllMatch
-            .SubType = 5
-        End With
-        Cnt += 1
-        ' Cointracer #3 - no fee columns included, but DateOfAcquisition and tax amount
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.CoinTracer)
-            .PlatformName = "CoinTracer"
-            .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;DateOfAcquisition;TaxAmount"
-            .MatchingType = ImportFileMatchingTypes.ContainsAllMatch
-            .SubType = 6
-        End With
-        Cnt += 1
-        ' Cointracer #4 - nothing but tax amount
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.CoinTracer)
-            .PlatformName = "CoinTracer"
-            .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;TaxAmount"
-            .MatchingType = ImportFileMatchingTypes.ContainsAllMatch
-            .SubType = 4
-        End With
-        Cnt += 1
-        ' Cointracer #4 - fees and DateOfAcquisition, but no TaxAmount
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.CoinTracer)
-            .PlatformName = "CoinTracer"
-            .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;FeePlatform;FeeCurrency;FeeAmount;DateOfAcquisition"
-            .MatchingType = ImportFileMatchingTypes.ContainsAllMatch
-            .SubType = 3
-        End With
-        Cnt += 1
-        ' Cointracer #2 - fee columns included, no DateOfAcquisition, no TaxAmount
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.CoinTracer)
-            .PlatformName = "CoinTracer"
-            .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;FeePlatform;FeeCurrency;FeeAmount"
-            .MatchingType = ImportFileMatchingTypes.ContainsAllMatch
-            .SubType = 1
-        End With
-        Cnt += 1
-        ' Cointracer #3 - no fee columns and no TaxAmount included, but DateOfAcquisition
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.CoinTracer)
-            .PlatformName = "CoinTracer"
-            .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount;DateOfAcquisition"
-            .MatchingType = ImportFileMatchingTypes.ContainsAllMatch
-            .SubType = 2
-        End With
-        Cnt += 1
-        ' Cointracer #4 - minimal set of columns
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.CoinTracer)
-            .PlatformName = "CoinTracer"
-            .FilesFirstLine = "Reference;DateTime;Info;SourcePlatform;SourceCurrency;SourceAmount;TargetPlatform;TargetCurrency;TargetAmount"
-            .MatchingType = ImportFileMatchingTypes.ContainsAllMatch
-            .SubType = 0
-        End With
-        Cnt += 1
-        ' Binance.com - Trade History
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Binance)
-            .PlatformName = "Binance.com"
-            .FilesFirstLine = "Date(UTC),Market,Type,Price,Amount,Total,Fee,Fee Coin"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 0
-        End With
-        Cnt += 1
-        ' Binance.com - Crypto Deposit or Withdrawal History
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Binance)
-            .PlatformName = "Binance.com"
-            .FilesFirstLine = "Date(UTC),Coin,Amount,TransactionFee,Address,TXID,SourceAddress,PaymentID,Status"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 1
-        End With
-        Cnt += 1
-        ' Binance.com - Fiat Deposit or Withdrawal History
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Binance)
-            .PlatformName = "Binance.com"
-            .FilesFirstLine = "Date(UTC*),Coin,Amount,Status,Payment Method,Indicated Amount,Fee,Order ID"
-            .MatchingType = ImportFileMatchingTypes.LikeMatch
-            .SubType = 2
-        End With
-        Cnt += 1
-        ' Binance.com - Crypto Convert History
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Binance)
-            .PlatformName = "Binance.com"
-            .FilesFirstLine = "Date,Pair,Type,Sell,Buy,Price,Inverse Price,Date Updated,Status"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 3
-        End With
-        Cnt += 1
+
+        ' Discover and add all platform headers from FileImportBase derived classes
+        Dim FileImport As IFileImport
+        Dim Headers As MatchingPlatform()
+        Dim i As Integer
+        For Each ImportType In Reflection.Assembly.GetExecutingAssembly().GetTypes()
+            If ImportType.BaseType?.FullName = "CoinTracer.FileImportBase" Then
+                Try
+                    FileImport = Activator.CreateInstance(ImportType)
+                    Headers = FileImport.PlatformHeaders
+                    If Headers IsNot Nothing Then
+                        ReDim Preserve _AllPlatforms(_AllPlatforms.Length + Headers.Length - 1)
+                        For i = 1 To Headers.Length
+                            _AllPlatforms(_AllPlatforms.Length - i) = Headers(Headers.Length - i).Copy
+                        Next
+                    End If
+                Catch ex As MissingMethodException
+                    ' doesn't matter...
+                End Try
+            End If
+        Next
     End Sub
 
     ''' <summary>

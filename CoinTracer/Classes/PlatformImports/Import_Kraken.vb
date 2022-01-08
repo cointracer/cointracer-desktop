@@ -37,6 +37,46 @@ Public Class Import_Kraken
     Inherits FileImportBase
     Implements IFileImport
 
+
+    Private Const PLATFORMID = PlatformManager.Platforms.Kraken
+    Private Const PLATFORMFULLNAME As String = "Kraken.com"
+
+
+    Public Sub New()
+        MyBase.New()
+    End Sub
+
+
+    ''' <summary>
+    ''' Returns all matching data file headers for this import
+    ''' </summary>
+    Public Overrides ReadOnly Property PlatformHeaders As ImportFileHelper.MatchingPlatform() Implements IFileImport.PlatformHeaders
+        Get
+            Dim Result As ImportFileHelper.MatchingPlatform() = {
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Kraken.com Leger (until about 2020)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = """txid"",""refid"",""time"",""type"",""aclass"",""asset"",""amount"",""fee"",""balance""",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 0},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Kraken.com Ledger (2021 and later)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = """txid"",""refid"",""time"",""type"",""subtype"",""aclass"",""asset"",""amount"",""fee"",""balance""",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 1},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Kraken.com Trades (2021 and later)
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = """txid"",""ordertxid"",""pair"",""time"",""type"",""ordertype"",""price"",""cost"",""fee"",""vol"",""margin"",""misc"",""ledgers""",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 65}
+                }
+            Return Result
+        End Get
+    End Property
+
+
     ''' <summary>
     ''' Represents a single line from Kraken export files
     ''' </summary>
@@ -161,7 +201,8 @@ Public Class Import_Kraken
     Public Sub New(MainImportObject As Import)
         MyBase.New(MainImportObject)
 
-        Platform = PlatformManager.Platforms.Kraken
+        Platform = PLATFORMID
+        PlatformName = PLATFORMFULLNAME
         CSVAutoDetectEncoding = False
         CSVEncoding = Text.Encoding.UTF8
         CSVDecimalPoint = "."c

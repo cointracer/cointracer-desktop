@@ -35,6 +35,51 @@ Public Class Import_Binance
     Inherits FileImportBase
     Implements IFileImport
 
+    Private Const PLATFORMID = PlatformManager.Platforms.Binance
+    Private Const PLATFORMFULLNAME As String = "Binance.com"
+
+
+    Public Sub New()
+        MyBase.New()
+    End Sub
+
+
+    ''' <summary>
+    ''' Returns all matching data file headers for this import
+    ''' </summary>
+    Public Overrides ReadOnly Property PlatformHeaders As ImportFileHelper.MatchingPlatform() Implements IFileImport.PlatformHeaders
+        Get
+            Dim Result As ImportFileHelper.MatchingPlatform() = {
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Trade history
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Date(UTC),Market,Type,Price,Amount,Total,Fee,Fee Coin",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 0},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Crypto deposit or withdrawal history
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Date(UTC),Coin,Amount,TransactionFee,Address,TXID,SourceAddress,PaymentID,Status",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 1},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Fiat deposit or withdrawal history
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Date(UTC*),Coin,Amount,Status,Payment Method,Indicated Amount,Fee,Order ID",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.LikeMatch,
+                 .SubType = 2},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Crypto convert history
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Date,Pair,Type,Sell,Buy,Price,Inverse Price,Date Updated,Status",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 3}
+                }
+            Return Result
+        End Get
+    End Property
+
+
     Private Class BinanceTradeHistoryRow
 
         Private _Date As Date
@@ -138,6 +183,7 @@ Public Class Import_Binance
 
     End Class
 
+
     Private Class BinanceCryptoFundingHistoryRow
 
         Private _Date As Date
@@ -227,6 +273,7 @@ Public Class Import_Binance
 
     End Class
 
+
     Private Class BinanceFiatFundingHistoryRow
 
         Private _Date As Date
@@ -300,6 +347,7 @@ Public Class Import_Binance
 
     End Class
 
+
     Private Class BinanceConvertHistoryRow
 
         Private _Date As Date
@@ -366,6 +414,7 @@ Public Class Import_Binance
 
     End Class
 
+
     ''' <summary>
     ''' Helper function for parsing decimal strings
     ''' </summary>
@@ -420,7 +469,8 @@ Public Class Import_Binance
     Public Sub New(MainImportObject As Import)
         MyBase.New(MainImportObject)
 
-        Platform = PlatformManager.Platforms.Binance
+        Platform = PLATFORMID
+        PlatformName = PLATFORMFULLNAME
         CSVEncoding = Text.Encoding.UTF8
         CSVAutoDetectEncoding = False
         MultiSelectFiles = False
@@ -428,6 +478,7 @@ Public Class Import_Binance
         FileDialogTitle = My.Resources.MyStrings.importOpenFileTitle
         FileDialogFilter = My.Resources.MyStrings.importOpenFileFilterExcel
     End Sub
+
 
     ''' <summary>
     ''' Show an import hint and present the OFD to the user.
@@ -684,12 +735,12 @@ Public Class Import_Binance
                                     .TradetypID = DBHelper.TradeTypen.Einzahlung
                                     .QuellPlattformID = PlatformManager.Platforms.Unknown
                                     .ZielPlattformID = Platform
+                                    .ZielBetrag = BHO.Amount + BHO.Fee
                                     If .QuellKontoID = AccountManager.Accounts.EUR Then
-                                        .WertEUR = BHO.Amount
+                                        .WertEUR = .ZielBetrag
                                     Else
                                         .WertEUR = 0
                                     End If
-                                    .ZielBetrag = BHO.Amount + BHO.Fee
                                     .BetragNachGebuehr = BHO.Amount
                                     .QuellBetrag = .ZielBetrag
                                     .QuellBetragNachGebuehr = .QuellBetrag
