@@ -1109,7 +1109,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Binance.com - Exportdatei (*.xlsx) ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Binance.com - Exportdatei (*.xlsx, *.zip, *.csv) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importLabelBinance() As String
             Get
@@ -1190,7 +1190,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Kraken - Ledger Export (ledgers.csv) ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Kraken - Ledger oder Trades Export (*.csv, *.zip) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importLabelKraken() As String
             Get
@@ -1451,7 +1451,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Import-Dateien (*.csv;*.xlsx)|*.csv;*.xlsx|Alle Dateien (*.*)|*.* ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Import-Dateien (*.csv;*.xlsx;*.zip)|*.csv;*.xlsx;*.zip|Alle Dateien (*.*)|*.* ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgAutodetectOpenFilter() As String
             Get
@@ -1705,6 +1705,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Die Datei &apos;{0}&apos; konnte nicht verarbeitet werden. Sie enthält entweder keine gültigen Transaktionsdaten oder es ist ein Fehler beim Entpacken aufgetreten. Der Import wird abgebrochen. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgInvalidZipFile() As String
+            Get
+                Return ResourceManager.GetString("importMsgInvalidZipFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Fehler bei der Verarbeitung ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgInvalidZipFileTitle() As String
+            Get
+                Return ResourceManager.GetString("importMsgInvalidZipFileTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Kraken.com API-Aufruf: Fehler bei Ledger-Eintrag {0}: ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgKrakenApiErrorPrefix() As String
@@ -1732,42 +1750,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie in der Leiste oben &quot;History&quot;.{0}3. Klicken Sie in der Leiste darunter auf &quot;Export&quot; und stellen Sie unter &quot;Export Data&quot; &quot;Ledgers&quot; ein (nicht Trades!).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf &quot;Select All&quot; und anschließend auf &quot;Submit&quot;. Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie rechts neben dem Export-Eintrag auf die drei Punkte und wählen &quot;Downlo [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property importMsgKrakenCSV() As String
-            Get
-                Return ResourceManager.GetString("importMsgKrakenCSV", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Datenimport von Kraken.com ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property importMsgKrakenCSVCaption() As String
-            Get
-                Return ResourceManager.GetString("importMsgKrakenCSVCaption", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Schritte 2: Prüfe eingelesene Datenzeilen... ({0}/{1}) ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property importMsgKrakenCSVCheckLines() As String
-            Get
-                Return ResourceManager.GetString("importMsgKrakenCSVCheckLines", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Schritt 1: Lese Datei ein... ({0}/{1}) ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property importMsgKrakenCSVReadFile() As String
-            Get
-                Return ResourceManager.GetString("importMsgKrakenCSVReadFile", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Ungültiger Trade {0}: Sowohl Buchung als auch Gegenbuchung haben einen positiven Wert. ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgKrakenErrorNoNegativeValue() As String
@@ -1782,6 +1764,42 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importMsgKrakenErrorNoSecondEntry() As String
             Get
                 Return ResourceManager.GetString("importMsgKrakenErrorNoSecondEntry", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie in der Leiste oben &quot;History&quot;.{0}3. Klicken Sie in der Leiste darunter auf &quot;Export&quot; und stellen Sie unter &quot;Export Data&quot; &quot;Ledgers&quot; ein (oder Trades).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf &quot;Select All&quot; und anschließend auf &quot;Submit&quot;. Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie rechts neben dem Export-Eintrag auf die drei Punkte und wählen &quot;Download [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenFile() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenFile", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Datenimport von Kraken.com ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenFileCaption() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenFileCaption", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Schritte 2: Prüfe eingelesene Datenzeilen... ({0}/{1}) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenFileCheckLines() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenFileCheckLines", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Schritt 1: Lese Datei ein... ({0}/{1}) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenFileReadFile() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenFileReadFile", resourceCulture)
             End Get
         End Property
         
@@ -1930,11 +1948,38 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Sie haben eine Zip-Datei und weitere Dateien selektiert. Für den Import wird nun ausschließlich die Zip-Datei &apos;{0}&apos; verwendet. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgZipAndOtherFiles() As String
+            Get
+                Return ResourceManager.GetString("importMsgZipAndOtherFiles", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweis zum Import von Zip-Dateien ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgZipAndOtherFilesTitle() As String
+            Get
+                Return ResourceManager.GetString("importMsgZipAndOtherFilesTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Fehler beim Öffnen der Datei {0}: {1} ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importOpenFileError() As String
             Get
                 Return ResourceManager.GetString("importOpenFileError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Binance-Export-Dateien (*.xlsx;*.zip;*.csv)|*.xlsx;*.zip;*.csv|Alle Dateien (*.*)|*.* ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importOpenFileFilterBinance() As String
+            Get
+                Return ResourceManager.GetString("importOpenFileFilterBinance", resourceCulture)
             End Get
         End Property
         
@@ -1957,6 +2002,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Ledger- oder Trade-Dateien (*.csv;*.zip)|*.csv;*.zip|Alle Dateien (*.*)|*.* ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importOpenFileFilterKraken() As String
+            Get
+                Return ResourceManager.GetString("importOpenFileFilterKraken", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Datenexport-Dateien von Bitfinex.com auswählen... (history_[???].csv) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importOpenFileFilterTitleBitfinex() As String
@@ -1966,7 +2020,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Ledger-Datenexport von Kraken.com auswählen... (ledgers.csv) ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Ledger- oder Trades-Datenexport von Kraken.com auswählen... (*.csv, *.zip) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importOpenFileFilterTitleKraken() As String
             Get
@@ -1984,7 +2038,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Exportdatei von Binance.com auswählen... (*.csv) ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Exportdatei von Binance.com auswählen... (*.xlsx, *.zip, *.csv) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importOpenFileTitleBinance() As String
             Get

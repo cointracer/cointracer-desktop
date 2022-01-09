@@ -318,6 +318,16 @@ Public Class Import
         End Set
     End Property
 
+    Private _TempFilesPrefix As String
+    Public Property TempFilesPrefix() As String
+        Get
+            Return _TempFilesPrefix
+        End Get
+        Set(ByVal value As String)
+            _TempFilesPrefix = value
+        End Set
+    End Property
+
     ''' <summary>
     ''' Initalisiert die Progressform für dieses Modul
     ''' </summary>
@@ -460,16 +470,16 @@ Public Class Import
                     _ZuletztEingelesen = 0
                     _ZuletztUeberprungen = 0
                     Select Case ApiRow.PlattformID
-                        Case PlatformManager.Platforms.Kraken
-                            Plattform = PlatformManager.Platforms.Kraken
+                        Case Platforms.Kraken
+                            Plattform = Platforms.Kraken
                             ThisImport = New Import_Kraken_Api(Me)
                             ApiMsg = "Kraken (""" & RowName & """)"
-                        Case PlatformManager.Platforms.BitcoinDe
-                            Plattform = PlatformManager.Platforms.BitcoinDe
+                        Case Platforms.BitcoinDe
+                            Plattform = Platforms.BitcoinDe
                             ThisImport = New Import_BitcoinDe_Api(Me)
                             ApiMsg = "Bitcoin.de (""" & RowName & """)"
-                        Case PlatformManager.Platforms.Bitfinex
-                            Plattform = PlatformManager.Platforms.Bitfinex
+                        Case Platforms.Bitfinex
+                            Plattform = Platforms.Bitfinex
                             ThisImport = New Import_Bitfinex_Api(Me)
                             ApiMsg = "Bitfinex.com (""" & RowName & """)"
                         Case Else
@@ -542,7 +552,9 @@ Public Class Import
     Public Sub DoImport(Optional ByRef FilesList() As String = Nothing)
 
         Dim OFD As New OpenFileDialog()
-        Dim Content1 As String = "", Content2 As String, AllRows As New List(Of String())
+        Dim Content1 As String = ""
+        Dim Content2 As String
+        Dim AllRows As New List(Of String())
         Dim FileNames As String() = {}
         Dim SubType As Integer = 0
         Dim NewImport As Boolean = False
@@ -571,6 +583,9 @@ Public Class Import
                             If FilesList Is Nothing Then
                                 FilesList = .FileNames
                             End If
+                            ' Check if there are any zip files selected
+                            ProcessZipFile(FilesList)
+                            ' Extract first lines from each file
                             For Each Filename As String In FilesList
                                 If Filename.ToLower.EndsWith(".csv") Then
                                     Using reader As New StreamReader(Filename, Encoding.UTF8)
@@ -581,7 +596,6 @@ Public Class Import
                                         End If
                                     End Using
                                 ElseIf Filename.ToLower.EndsWith(".xlsx") Then
-                                    ' TODO: Read first lines from xlsx files
                                     XLS = New XLSHelper(Filename, True)
                                     XLS.AutoReadHeaderOnly = True
                                     FirstLine = XLS.FirstLine
@@ -599,12 +613,14 @@ Public Class Import
                                     MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgUnknownFileFormat,
                                                                   IIf(FilesList.Length > 1, "en", "")),
                                                     My.Resources.MyStrings.importMsgUnknownFileFormatTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                    EraseTempFiles()
                                     Exit Sub
                                 ElseIf _ImportFileHelper.MatchingPlatforms.Length = 1 Then
                                     ' it worked!
                                     If MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgStartPlatformImport, _ImportFileHelper.MatchingPlatforms(0).PlatformName),
                                                        My.Resources.MyStrings.importMsgStartPlatformImportTitle,
                                                         MessageBoxButtons.OKCancel, MessageBoxIcon.Information) <> DialogResult.OK Then
+                                        EraseTempFiles()
                                         Exit Sub
                                     End If
                                     _Plattform = _ImportFileHelper.MatchingPlatforms(0).PlatformID
@@ -628,13 +644,16 @@ Public Class Import
                                                                   Message, IIf(FilesList.Length > 1, "n", ""),
                                                                   Message, IIf(FilesList.Length > 1, "en", "")),
                                                                   My.Resources.MyStrings.importMsgAmbiguosFileFormatTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                                    EraseTempFiles()
                                     Exit Sub
                                 End If
                             Else
+                                EraseTempFiles()
                                 Exit Sub
                             End If
                         Catch ex As Exception
                             DefaultErrorHandler(ex, My.Resources.MyStrings.importMsgReadFileError & ex.Message)
+                            EraseTempFiles()
                             Exit Sub
                         End Try
                     Else
@@ -650,7 +669,7 @@ Public Class Import
 
 
         Select Case _Plattform
-            Case PlatformManager.Platforms.MtGox
+            Case Platforms.MtGox
                 ' Hinweis
                 If MsgBoxEx.ShowWithNotAgainOption("ImportMtGox", DialogResult.OK,
                                                    "Mt. Gox erlaubt den Download von History-Dateien in den Formaten " &
@@ -677,7 +696,7 @@ Public Class Import
                         Import_MtGox(Content1, False)
                     End If
                 End If
-            Case PlatformManager.Platforms.BitstampNet
+            Case Platforms.BitstampNet
                 If Content1.Length = 0 Then
                     With OFD
                         .Filter = My.Resources.MyStrings.importOpenFileFilterCSV
@@ -693,10 +712,10 @@ Public Class Import
                 Else
                     Import_BitstampNet(Content1, False)
                 End If
-            Case PlatformManager.Platforms.Vircurex
+            Case Platforms.Vircurex
                 ' Formular für Copy & Paste öffnen
                 Dim DF As New frmGetImportData_CnP
-                DF.ImportPlatform = PlatformManager.Platforms.Vircurex
+                DF.ImportPlatform = Platforms.Vircurex
                 If DF.ShowDialog() = DialogResult.OK Then
                     Content1 = DF.ContentOrders.Trim
                     Content2 = DF.ContentAccounts.Trim
@@ -715,10 +734,10 @@ Public Class Import
                     End If
                     DF.Dispose()
                 End If
-            Case PlatformManager.Platforms.BtcE
+            Case Platforms.BtcE
                 ' Formular für Copy & Paste öffnen
                 Dim DF As New frmGetImportData_CnP
-                DF.ImportPlatform = PlatformManager.Platforms.BtcE
+                DF.ImportPlatform = Platforms.BtcE
                 If DF.ShowDialog() = DialogResult.OK Then
                     Content1 = DF.ContentOrders.Trim
                     DF.Dispose()
@@ -726,7 +745,7 @@ Public Class Import
                         Import_BtcE(Content1)
                     End If
                 End If
-            Case PlatformManager.Platforms.MultiBit
+            Case Platforms.MultiBit
                 If Content1.Length = 0 Then
                     With OFD
                         .Filter = My.Resources.MyStrings.importOpenFileFilterCSV
@@ -741,7 +760,7 @@ Public Class Import
                 Else
                     Import_MultiBit(Content1, False)
                 End If
-            Case PlatformManager.Platforms.Poloniex
+            Case Platforms.Poloniex
                 If Content1.Length = 0 Then
                     If MsgBoxEx.ShowWithNotAgainOption("ImportPoloniexCom", DialogResult.OK,
                                                    "Sie können von Poloniex.com drei Arten von History-Daten importieren: Die Trade-History, die Withdrawal-History und die Deposit-History. " &
@@ -767,7 +786,7 @@ Public Class Import
                 Else
                     Import_Poloniex(Content1)
                 End If
-            Case PlatformManager.Platforms.Zyado
+            Case Platforms.Zyado
                 If Content1.Length = 0 Then
                     With OFD
                         .Filter = My.Resources.MyStrings.importOpenFileFilterCSV
@@ -790,25 +809,25 @@ Public Class Import
         If NewImport Then
             ' New kind of file import - refactored for better modularization
             Select Case _Plattform
-                Case PlatformManager.Platforms.BitcoinDe
+                Case Platforms.BitcoinDe
                     ' Bitcoin.de file import
                     ThisImport = New Import_BitcoinDe(Me)
-                Case PlatformManager.Platforms.Bitfinex
+                Case Platforms.Bitfinex
                     ' Bitfinex file import
                     ThisImport = New Import_Bitfinex(Me)
-                Case PlatformManager.Platforms.Kraken
+                Case Platforms.Kraken
                     ' Kraken file import
                     ThisImport = New Import_Kraken(Me)
-                Case PlatformManager.Platforms.CoinTracer
+                Case Platforms.CoinTracer
                     ' Cointracer generic file import
                     ThisImport = New Import_CoinTracer(Me)
-                Case PlatformManager.Platforms.WalletBCH
+                Case Platforms.WalletBCH
                     ' Bitcoin Cash Node
                     ThisImport = New Import_BitcoinCashNode(Me)
-                Case PlatformManager.Platforms.WalletBTC
+                Case Platforms.WalletBTC
                     ' Bitcoin Core
                     ThisImport = New Import_BitcoinCore(Me)
-                Case PlatformManager.Platforms.WalletLTC
+                Case Platforms.WalletLTC
                     ' Litecoin Core
                     ThisImport = New Import_LitecoinCore(Me)
                 Case Platforms.Binance
@@ -831,6 +850,8 @@ Public Class Import
 
         End If
 
+        EraseTempFiles()
+
         If _ZuletztEingelesen > 0 Or _ZuletztUeberprungen > 0 Then
             MsgBoxEx.BringToFront()
             MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgSummary,
@@ -842,6 +863,53 @@ Public Class Import
                             MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
+    End Sub
+
+    ''' <summary>
+    ''' Checks if there are any zip files in the given list. If so, the first one will be extracted and if there
+    ''' are any valid data files found, these will replace the given files list parameter.
+    ''' </summary>
+    ''' <param name="FilesList"></param>
+    ''' <returns>Full file name of found zip file. Nothing, if there was nothing found.</returns>
+    Friend Function ProcessZipFile(ByRef FilesList() As String) As String
+        ' Check if there are any zip files in list
+        Dim ZipFileName = Array.Find(FilesList, Function(v) v.ToLower.EndsWith(".zip"))
+        If ZipFileName?.Length > 0 Then
+            ' extract and add all valid files from archive to files list
+            Dim TempFilesPrefix As String = Nothing
+            Dim ExtractedFiles = ZipHelper.ExtractDataFiles(ZipFileName, ZipHelper.GetValidTransactionFilesEndings, TempFilesPrefix)
+            If ExtractedFiles?.Count > 0 Then
+                ' Successfully extracted
+                Me.TempFilesPrefix = TempFilesPrefix
+                If Not SilentMode AndAlso FilesList.Length > 1 Then
+                    MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgZipAndOtherFiles, Path.GetFileName(ZipFileName)),
+                                    My.Resources.MyStrings.importMsgZipAndOtherFilesTitle,
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+                FilesList = ExtractedFiles.ToArray
+            ElseIf Not SilentMode Then
+                ' Error or no valid transaction files found
+                MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgInvalidZipFile, ZipFileName),
+                                My.Resources.MyStrings.importMsgInvalidZipFileTitle,
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            End If
+        End If
+        Return ZipFileName
+    End Function
+
+    ''' <summary>
+    ''' Deletes all files with a given prefix. This is used to delete data files that have been temporarily extracted from a zip file.
+    ''' </summary>
+    Private Sub EraseTempFiles()
+        If TempFilesPrefix?.Length > 0 Then
+            For Each FileName In Directory.EnumerateFiles(Path.GetDirectoryName(TempFilesPrefix), Path.GetFileName(TempFilesPrefix) & "*")
+                Try
+                    My.Computer.FileSystem.DeleteFile(FileName)
+                Catch ex As Exception
+                    ' ignore...
+                End Try
+            Next
+        End If
     End Sub
 
     ''' <summary>
@@ -889,20 +957,20 @@ Public Class Import
                                 .SourceID = Row(4).Trim
                                 .Zeitpunkt = Row(0)
                                 .ZeitpunktZiel = .Zeitpunkt
-                                .ImportPlattformID = PlatformManager.Platforms.MultiBit
+                                .ImportPlattformID = Platforms.MultiBit
                                 .QuellKontoID = DBHelper.Konten.BTC
                                 .ZielKontoID = .QuellKontoID
                                 If CSV.StringToDecimal(Row(2)) > 0 Then
                                     ' Einzahlung
                                     .TradetypID = DBHelper.TradeTypen.Einzahlung
                                     .ZielPlattformID = _Plattform
-                                    .QuellPlattformID = PlatformManager.Platforms.Unknown
+                                    .QuellPlattformID = Platforms.Unknown
                                     .ZielBetrag = CSV.StringToDecimal(Row(2))
                                 ElseIf CSV.StringToDecimal(Row(2)) < 0 Then
                                     ' Auszahlung
                                     .TradetypID = DBHelper.TradeTypen.Auszahlung
                                     .QuellPlattformID = _Plattform
-                                    .ZielPlattformID = PlatformManager.Platforms.Unknown
+                                    .ZielPlattformID = Platforms.Unknown
                                     .ZielBetrag = -CSV.StringToDecimal(Row(2))
                                 Else
                                     .DoNotImport = True
@@ -1233,7 +1301,7 @@ Public Class Import
                                 .SourceID = MD5FromString(ImpLn.Type & ImpLn.Datetime & ImpLn.Account & ImpLn.Amount & ImpLn.Value & LineCount - 1)
                                 .Zeitpunkt = ImpLn.Datetime
                                 .ZeitpunktZiel = .Zeitpunkt
-                                .ImportPlattformID = PlatformManager.Platforms.BitstampNet
+                                .ImportPlattformID = Platforms.BitstampNet
                                 Select Case ImpLn.Type
                                     Case "Market"
                                         ' Kauf oder Verkauf
@@ -1335,7 +1403,7 @@ Public Class Import
                                         Else
                                             .WertEUR = 0
                                         End If
-                                        .ZielPlattformID = PlatformManager.Platforms.Unknown
+                                        .ZielPlattformID = Platforms.Unknown
                                         If ImpLn.Fee <> 0 Then
                                             ' Es gibt eine Gebühr!
                                             .QuellBetrag += Math.Abs(ImpLn.Fee)
@@ -1355,7 +1423,7 @@ Public Class Import
                                     Case "Deposit"
                                         ' Einzahlung (Fiat oder Coins)
                                         .TradetypID = DBHelper.TradeTypen.Einzahlung
-                                        .QuellPlattformID = PlatformManager.Platforms.Unknown
+                                        .QuellPlattformID = Platforms.Unknown
                                         .ZielPlattformID = .ImportPlattformID
                                         If ImpLn.Amount <> 0 Then
                                             .ZielKontoID = ImpLn.AmountKontoRow.ID
@@ -1474,8 +1542,8 @@ Public Class Import
                             .SourceID = Items(0)
                             .Zeitpunkt = DateAdd(DateInterval.Hour, -TimeDiff, CDate(Items(1)))
                             .ZeitpunktZiel = .Zeitpunkt
-                            .ImportPlattformID = PlatformManager.Platforms.Vircurex
-                            .QuellPlattformID = PlatformManager.Platforms.Vircurex
+                            .ImportPlattformID = Platforms.Vircurex
+                            .QuellPlattformID = Platforms.Vircurex
                             .ZielPlattformID = .QuellPlattformID
                             Select Case Items(2)
                                 Case "buy", "kaufe"
@@ -1622,7 +1690,7 @@ Public Class Import
                                     .SourceID = MD5FromString(Items(0) & Items(1) & Items(2))
                                     .Zeitpunkt = DateAdd(DateInterval.Hour, -TimeDiff, CDate(Items(0)))
                                     .ZeitpunktZiel = .Zeitpunkt
-                                    .ImportPlattformID = PlatformManager.Platforms.Vircurex
+                                    .ImportPlattformID = Platforms.Vircurex
                                     ' EnglishNotation = Items(1).Contains(".")
                                     If StrToDec(Items(1), EnglishNotation = 1) < 0 _
                                         OrElse (DirectCast(Items, ICollection).Count > 3 AndAlso Items(3).Contains("Move to reserved funds")) Then
@@ -1632,8 +1700,8 @@ Public Class Import
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         .ZielBetrag = .QuellBetrag
                                         .BetragNachGebuehr = .QuellBetrag   ' Bei Auszahlungen steht der Betrag, der am Ziel ankommt, in BetragNachGebuehr!
-                                        .QuellPlattformID = PlatformManager.Platforms.Vircurex
-                                        .ZielPlattformID = PlatformManager.Platforms.Unknown
+                                        .QuellPlattformID = Platforms.Vircurex
+                                        .ZielPlattformID = Platforms.Unknown
                                         .QuellKontoID = GetAccount(Items(2)).ID
                                         .ZielKontoID = .QuellKontoID
                                     Else
@@ -1643,8 +1711,8 @@ Public Class Import
                                         .QuellBetrag = .ZielBetrag
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         .BetragNachGebuehr = .ZielBetrag
-                                        .QuellPlattformID = PlatformManager.Platforms.Unknown
-                                        .ZielPlattformID = PlatformManager.Platforms.Vircurex
+                                        .QuellPlattformID = Platforms.Unknown
+                                        .ZielPlattformID = Platforms.Vircurex
                                         .ZielKontoID = GetAccount(Items(2)).ID
                                         .QuellKontoID = .ZielKontoID
                                     End If
@@ -1747,13 +1815,13 @@ Public Class Import
                                     .SourceID = Items(0)
                                     .Zeitpunkt = DateAdd(DateInterval.Hour, -3, CDate(Items(3))).ToLocalTime
                                     .ZeitpunktZiel = .Zeitpunkt
-                                    .ImportPlattformID = PlatformManager.Platforms.BtcE
+                                    .ImportPlattformID = Platforms.BtcE
                                     .Info = Items(2)
                                     If SubItems(DirectCast(SubItems, ICollection).Count - 1) = "payment" Then
                                         ' Einzahlung
                                         .TradetypID = DBHelper.TradeTypen.Einzahlung
-                                        .QuellPlattformID = PlatformManager.Platforms.Unknown
-                                        .ZielPlattformID = PlatformManager.Platforms.BtcE
+                                        .QuellPlattformID = Platforms.Unknown
+                                        .ZielPlattformID = Platforms.BtcE
                                         .ZielBetrag = StrToDec(SubItems(0))
                                         .ZielKontoID = GetAccount(SubItems(2)).ID
                                         .QuellKontoID = .ZielKontoID
@@ -1763,8 +1831,8 @@ Public Class Import
                                     ElseIf SubItems(2) = "Withdrawal" Then
                                         ' Auszahlung
                                         .TradetypID = DBHelper.TradeTypen.Auszahlung
-                                        .QuellPlattformID = PlatformManager.Platforms.BtcE
-                                        .ZielPlattformID = PlatformManager.Platforms.Unknown
+                                        .QuellPlattformID = Platforms.BtcE
+                                        .ZielPlattformID = Platforms.Unknown
                                         .QuellBetrag = Math.Abs(StrToDec(SubItems(0)))
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         .ZielBetrag = .QuellBetrag
@@ -1774,7 +1842,7 @@ Public Class Import
                                     ElseIf SubItems(2) = "Buy" Then
                                         ' Kauf (Coins)
                                         .TradetypID = DBHelper.TradeTypen.Kauf
-                                        .QuellPlattformID = PlatformManager.Platforms.BtcE
+                                        .QuellPlattformID = Platforms.BtcE
                                         .ZielPlattformID = .QuellPlattformID
                                         KontoRow = GetAccount(SubItems(4))
                                         .ZielKontoID = KontoRow.ID
@@ -1807,7 +1875,7 @@ Public Class Import
                                     ElseIf SubItems(2) = "Sell" Then
                                         ' Verkauf (Coins)
                                         .TradetypID = DBHelper.TradeTypen.Verkauf
-                                        .QuellPlattformID = PlatformManager.Platforms.BtcE
+                                        .QuellPlattformID = Platforms.BtcE
                                         .ZielPlattformID = .QuellPlattformID
                                         .QuellKontoID = GetAccount(SubItems(4)).ID
                                         .QuellBetrag = StrToDec(SubItems(3))
@@ -1837,7 +1905,7 @@ Public Class Import
                                         If SubItems(1) = "EUR" Or SubItems(1) = "USD" Then
                                             ' Verkauf
                                             .TradetypID = DBHelper.TradeTypen.Verkauf
-                                            .QuellPlattformID = PlatformManager.Platforms.BtcE
+                                            .QuellPlattformID = Platforms.BtcE
                                             .ZielPlattformID = .QuellPlattformID
                                             .QuellBetrag = StrToDec(SubItems(3))
                                             .QuellBetragNachGebuehr = .QuellBetrag
@@ -1864,7 +1932,7 @@ Public Class Import
                                         Else
                                             ' Kauf (Coins für Coins)
                                             .TradetypID = DBHelper.TradeTypen.Kauf
-                                            .QuellPlattformID = PlatformManager.Platforms.BtcE
+                                            .QuellPlattformID = Platforms.BtcE
                                             .ZielPlattformID = .QuellPlattformID
                                             KontoRow = GetAccount(SubItems(1))
                                             .ZielKontoID = KontoRow.ID
@@ -2204,16 +2272,16 @@ Public Class Import
                                             .SourceID = MD5FromString(DWLO.DateTime.ToString("yyyy-MM-dd HH:mm:ss") & DWLO.CurrencyString & DWLO.Amount.ToString & DWLO.Address & LineCount - 1)
                                             .Zeitpunkt = DWLO.DateTime
                                             .ZeitpunktZiel = .Zeitpunkt
-                                            .ImportPlattformID = PlatformManager.Platforms.Poloniex
+                                            .ImportPlattformID = Platforms.Poloniex
                                             .TradetypID = CInt(TradeType)
                                             QuellKontoRow = DWLO.CurrencyAccount
                                             If TradeType = DBHelper.TradeTypen.Auszahlung Then
-                                                .QuellPlattformID = PlatformManager.Platforms.Poloniex
-                                                .ZielPlattformID = PlatformManager.Platforms.Unknown
+                                                .QuellPlattformID = Platforms.Poloniex
+                                                .ZielPlattformID = Platforms.Unknown
                                                 .Info = String.Format("Auszahlung auf Adresse {0}", DWLO.Address)
                                             Else
-                                                .QuellPlattformID = PlatformManager.Platforms.Unknown
-                                                .ZielPlattformID = PlatformManager.Platforms.Poloniex
+                                                .QuellPlattformID = Platforms.Unknown
+                                                .ZielPlattformID = Platforms.Poloniex
                                                 .Info = String.Format("Einzahlung von Adresse {0}", DWLO.Address)
                                             End If
                                             .QuellBetrag = DWLO.Amount
@@ -2236,7 +2304,7 @@ Public Class Import
                                             .SourceID = MD5FromString(TLO.DateTime.ToString("yyyy-MM-dd HH:mm:ss") & TLO.Market & TLO.Type & TLO.Price.ToString & TLO.Amount.ToString & LineCount - 1)
                                             .Zeitpunkt = TLO.DateTime
                                             .ZeitpunktZiel = .Zeitpunkt
-                                            .ImportPlattformID = PlatformManager.Platforms.Poloniex
+                                            .ImportPlattformID = Platforms.Poloniex
                                             .QuellPlattformID = .ImportPlattformID
                                             .ZielPlattformID = .ImportPlattformID
                                             QuellKontoRow = TLO.Account1st
@@ -2378,7 +2446,7 @@ Public Class Import
                                 .SourceID = MD5FromString(Row(0) & Row(1) & Row(3) & Row(4) & Row(5))
                                 .Zeitpunkt = CDate(Row(5))
                                 .ZeitpunktZiel = .Zeitpunkt
-                                .ImportPlattformID = PlatformManager.Platforms.Zyado
+                                .ImportPlattformID = Platforms.Zyado
                                 .QuellPlattformID = .ImportPlattformID
                                 .ZielPlattformID = .QuellPlattformID
                                 LineFee = CSV.StringToDecimal(Row(4).Replace(" BTC", "").Replace(" €", ""))
@@ -2520,7 +2588,7 @@ Public Class Import
                                 .SourceID = Row(0)
                                 .Zeitpunkt = CDate(Row(1)).ToLocalTime
                                 .ZeitpunktZiel = .Zeitpunkt
-                                .ImportPlattformID = PlatformManager.Platforms.MtGox
+                                .ImportPlattformID = Platforms.MtGox
                                 .Info = Row(3)
                                 ' Info in Worte zerlegen, vorher  &nbsp; durch normales Space ersetzen (unten schwer zu erkennen)
                                 Tmp = Split(.Info.Replace(" ", " "), " ")
@@ -2528,7 +2596,7 @@ Public Class Import
                                     Case "in"
                                         ' Kauf
                                         .TradetypID = DBHelper.TradeTypen.Kauf
-                                        .QuellPlattformID = PlatformManager.Platforms.MtGox
+                                        .QuellPlattformID = Platforms.MtGox
                                         .ZielPlattformID = .QuellPlattformID
                                         .ZielKontoID = GetAccount(Tmp(0)).ID
                                         .ZielBetrag = CSV.StringToDecimal(Row(4))
@@ -2558,7 +2626,7 @@ Public Class Import
                                         ' Gebühr
                                         'If HistType = MtGoxHistoryType.HistoryBTC OrElse (PrevRow.Length >= 3 AndAlso (PrevRow(2) = "deposit" OrElse PrevRow(2) = "withdraw")) Then
                                         .TradetypID = DBHelper.TradeTypen.Gebühr
-                                        .QuellPlattformID = PlatformManager.Platforms.MtGox
+                                        .QuellPlattformID = Platforms.MtGox
                                         .ZielPlattformID = .QuellPlattformID
                                         .ZielBetrag = CSV.StringToDecimal(Row(4))
                                         .QuellBetrag = .ZielBetrag
@@ -2577,7 +2645,7 @@ Public Class Import
                                     Case "out"
                                         ' Verkauf oder Abhebung
                                         .TradetypID = DBHelper.TradeTypen.Verkauf
-                                        .QuellPlattformID = PlatformManager.Platforms.MtGox
+                                        .QuellPlattformID = Platforms.MtGox
                                         .ZielPlattformID = .QuellPlattformID
                                         .QuellBetrag = CSV.StringToDecimal(Row(4))
                                         .QuellBetragNachGebuehr = .QuellBetrag
@@ -2598,7 +2666,7 @@ Public Class Import
                                         Else
                                             ' Wahrscheinlich eine Abhebung
                                             .TradetypID = DBHelper.TradeTypen.Auszahlung
-                                            .ZielPlattformID = PlatformManager.Platforms.Unknown
+                                            .ZielPlattformID = Platforms.Unknown
                                             .QuellBetrag = CSV.StringToDecimal(Row(4))
                                             .QuellBetragNachGebuehr = .QuellBetrag
                                             .ZielBetrag = .QuellBetrag
@@ -2621,8 +2689,8 @@ Public Class Import
                                     Case "withdraw"
                                         ' Auszahlung
                                         .TradetypID = DBHelper.TradeTypen.Auszahlung
-                                        .QuellPlattformID = PlatformManager.Platforms.MtGox
-                                        .ZielPlattformID = PlatformManager.Platforms.Unknown
+                                        .QuellPlattformID = Platforms.MtGox
+                                        .ZielPlattformID = Platforms.Unknown
                                         .QuellBetrag = CSV.StringToDecimal(Row(4))
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         .ZielBetrag = .QuellBetrag
@@ -2641,8 +2709,8 @@ Public Class Import
                                     Case "deposit"
                                         ' Einzahlung
                                         .TradetypID = DBHelper.TradeTypen.Einzahlung
-                                        .QuellPlattformID = PlatformManager.Platforms.Unknown
-                                        .ZielPlattformID = PlatformManager.Platforms.MtGox
+                                        .QuellPlattformID = Platforms.Unknown
+                                        .ZielPlattformID = Platforms.MtGox
                                         .ZielBetrag = CSV.StringToDecimal(Row(4))
                                         .QuellBetrag = .ZielBetrag
                                         .QuellBetragNachGebuehr = .QuellBetrag
@@ -3041,7 +3109,7 @@ Public Class Import
                         TransRec.OutTradeID = .ID
                         TransRec.SourceID = MD5FromString(.SourceID & .ImportPlattformID.ToString)
                         TransRec.TradetypID = DBHelper.TradeTypen.Transfer
-                        TransRec.ZielPlattformID = PlatformManager.Platforms.Unknown
+                        TransRec.ZielPlattformID = Platforms.Unknown
                         TransRec.ZielBetrag = .BetragNachGebuehr
                         TransRec.WertEUR = 0
                         TransRec.Info = .Info & IIf(.Info.Length > 0, " ", "") & "(Transfer-Eintrag automatisch erstellt)"
@@ -3270,17 +3338,17 @@ Public Class Import
         Dim ThisImport As IFileImport = Nothing
         Dim FileNames(0) As String
         Select Case Platform
-            Case PlatformManager.Platforms.Binance
+            Case Platforms.Binance
                 ThisImport = New Import_Binance(Me)
-            Case PlatformManager.Platforms.BitcoinDe
+            Case Platforms.BitcoinDe
                 ThisImport = New Import_BitcoinDe(Me)
                 ' Import_BitcoinDe(Filename, CheckFirstLine, SubType)
-            Case PlatformManager.Platforms.Kraken
+            Case Platforms.Kraken
                 ThisImport = New Import_Kraken(Me)
                 ' Import_Kraken(Filename, CheckFirstLine)
-            Case PlatformManager.Platforms.Bitfinex
+            Case Platforms.Bitfinex
                 ThisImport = New Import_Bitfinex(Me)
-            Case PlatformManager.Platforms.CoinTracer
+            Case Platforms.CoinTracer
                 ThisImport = New Import_CoinTracer(Me)
         End Select
 
@@ -3303,9 +3371,9 @@ Public Class Import
                               ByVal ApiDatenID As Long)
         Dim ThisImport As IApiImport = Nothing
         Select Case Platform
-            Case PlatformManager.Platforms.BitcoinDe
+            Case Platforms.BitcoinDe
                 ThisImport = New Import_BitcoinDe_Api(Me)
-            Case PlatformManager.Platforms.Kraken
+            Case Platforms.Kraken
                 ThisImport = New Import_Kraken_Api(Me)
                 ThisImport.CallDelay = KrakenClient.KrakenClient.KRAKEN_API_DEFAULTINTERVAL
                 'ApiImport_Kraken(ApiKey,
@@ -3314,7 +3382,7 @@ Public Class Import
                 '                 ApiConfigName,
                 '                 ApiDatenID,
                 '                 DateToUnixTimestamp(DateTimeEnd))
-            Case PlatformManager.Platforms.Bitfinex
+            Case Platforms.Bitfinex
                 ThisImport = New Import_Bitfinex_Api(Me)
                 ThisImport.CallDelay = 6000
         End Select
@@ -3362,6 +3430,7 @@ Public Class Import
         _ApiPassword = "VerwendeDiesesWortAusKeinemGrund§"
         _DefaultApiPassword = _ApiPassword
         _ApiPwCheck = "%AuchDiesesPasswortDientKeinemEchtenZweck!"
+        _TempFilesPrefix = Nothing
     End Sub
 
     Public Sub New(ByRef Database As DBHelper, _

@@ -211,6 +211,7 @@ Public Class Import_Kraken
         CSVTextqualifier = """"c
         MultiSelectFiles = False
         FileDialogTitle = MyStrings.importOpenFileFilterTitleKraken
+        FileDialogFilter = MyStrings.importOpenFileFilterKraken
     End Sub
 
     ''' <summary>
@@ -220,8 +221,8 @@ Public Class Import_Kraken
     ''' <returns>true, if file has been opened, false otherwise</returns>
     Protected Overrides Function OpenFile() As Boolean
         If FileNames.Length > 0 OrElse MsgBoxEx.ShowWithNotAgainOption("ImportKrakenCSV", DialogResult.OK,
-                                                        String.Format(My.Resources.MyStrings.importMsgKrakenCSV, Environment.NewLine),
-                                                        My.Resources.MyStrings.importMsgKrakenCSVCaption,
+                                                        String.Format(My.Resources.MyStrings.importMsgKrakenFile, Environment.NewLine),
+                                                        My.Resources.MyStrings.importMsgKrakenFileCaption,
                                                         MessageBoxButtons.OKCancel, MessageBoxIcon.Information) = DialogResult.OK Then
             Return MyBase.OpenFile()
         Else
@@ -276,7 +277,7 @@ Public Class Import_Kraken
                 ' Fill the ledger import table
                 For l = 0 To AllLines - 1
                     Try
-                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenCSVReadFile, l * 50 / AllLines)
+                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenFileReadFile, l * 50 / AllLines)
                         Row = CSV.Rows(l)
                         If SubType = 0 AndAlso Row.Length >= 9 Then
                             ImportLedersTb.AddLedgerRow(Row(0),
@@ -318,7 +319,7 @@ Public Class Import_Kraken
                     Dim SourceKontoRow As KontenRow
                     For Each IR As Import_KrakenDataSet.LedgerRow In ImportLedersTb
                         l = IR.ID + 1
-                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenCSVCheckLines, 50 + (l * 50 / AllLines))
+                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenFileCheckLines, 50 + (l * 50 / AllLines))
                         ' Skip already processed rows
                         If IR.processed Then Continue For
                         IR.processed = True
@@ -545,7 +546,7 @@ Public Class Import_Kraken
                 ' Fill the trades import table
                 Try
                     For l = 0 To AllLines - 1
-                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenCSVReadFile, l * 50 / AllLines)
+                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenFileReadFile, l * 50 / AllLines)
                         Row = CSV.Rows(l)
                         If Row.Length >= 13 Then
                             ImportTradesTb.AddTradesRow(Row(0),
@@ -580,7 +581,7 @@ Public Class Import_Kraken
                     Dim KontoRow2 As KontenRow
                     For Each IR As Import_KrakenDataSet.TradesRow In ImportTradesTb
                         l = IR.ID + 1
-                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenCSVCheckLines, 50 + (l * 50 / AllLines))
+                        UpdateProgress(AllLines, l, MyStrings.importMsgKrakenFileCheckLines, 50 + (l * 50 / AllLines))
                         ' Skip already processed rows
                         If IR.processed Then Continue For
                         IR.processed = True

@@ -73,7 +73,13 @@ Public Class Import_Binance
                  .PlatformName = PLATFORMFULLNAME,
                  .FilesFirstLine = "Date,Pair,Type,Sell,Buy,Price,Inverse Price,Date Updated,Status",
                  .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
-                 .SubType = 3}
+                 .SubType = 3},
+                New ImportFileHelper.MatchingPlatform With
+                {.PlatformID = PLATFORMID,                  ' Trade history as zip file
+                 .PlatformName = PLATFORMFULLNAME,
+                 .FilesFirstLine = "Date(UTC),Pair,Side,Price,Executed,Amount,Fee",
+                 .MatchingType = ImportFileHelper.ImportFileMatchingTypes.StartsWithMatch,
+                 .SubType = 4}
                 }
             Return Result
         End Get
@@ -415,19 +421,121 @@ Public Class Import_Binance
     End Class
 
 
+    Private Class BinanceTradeHistoryCsvRow
+
+        Private _Date As Date
+        Public ReadOnly Property DateTime() As Date
+            Get
+                Return _Date
+            End Get
+        End Property
+
+        Private _Pair As String
+        Public ReadOnly Property Pair() As String
+            Get
+                Return _Pair
+            End Get
+        End Property
+
+        Private _Pair1Account As KontenRow
+        Public ReadOnly Property Pair1Account() As KontenRow
+            Get
+                Return _Pair1Account
+            End Get
+        End Property
+
+        Private _Pair2Account As KontenRow
+        Public ReadOnly Property Pair2Account() As KontenRow
+            Get
+                Return _Pair2Account
+            End Get
+        End Property
+
+        Private _Side As String
+        Public ReadOnly Property Side() As String
+            Get
+                Return _Side
+            End Get
+        End Property
+
+        Private _Price As Decimal
+        Public ReadOnly Property Price() As Decimal
+            Get
+                Return _Price
+            End Get
+        End Property
+
+        Private _Executed As Decimal
+        Public ReadOnly Property Executed() As Decimal
+            Get
+                Return _Executed
+            End Get
+        End Property
+
+        Private _Amount As Decimal
+        Public ReadOnly Property Amount() As Decimal
+            Get
+                Return _Amount
+            End Get
+        End Property
+
+        Private _Fee As Decimal
+        Public ReadOnly Property Fee() As Decimal
+            Get
+                Return _Fee
+            End Get
+        End Property
+
+        Private _FeeAccount As KontenRow
+        Public ReadOnly Property FeeAccount() As KontenRow
+            Get
+                Return _FeeAccount
+            End Get
+        End Property
+
+        Public Sub New(ByRef Import As Import,
+                       ByRef DataRow() As String,
+                       ByRef Pair1 As String,
+                       ByRef Pair2 As String)
+            _Pair1Account = Nothing
+            _Pair2Account = Nothing
+            _FeeAccount = Nothing
+
+            _Date = CType(DataRow(0), Date).ToLocalTime
+            _Pair = DataRow(1).Trim.ToUpper
+            _Side = DataRow(2).Trim.ToUpper
+            _Price = ParseAbsDecimal(DataRow(3))
+            _Executed = ParseAbsDecimal(DataRow(4), True)
+            _Amount = ParseAbsDecimal(DataRow(5), True)
+            _Fee = ParseAbsDecimal(DataRow(6), True)
+
+            _Pair1Account = Import.RetrieveAccount(Pair1)
+            _Pair2Account = Import.RetrieveAccount(Pair2)
+            _FeeAccount = Import.RetrieveAccount(New String(Array.FindAll(DataRow(6).ToCharArray, Function(c) Not "0123456789.".Contains(c))))
+        End Sub
+
+    End Class
+
+
     ''' <summary>
     ''' Helper function for parsing decimal strings
     ''' </summary>
-    Private Shared Function ParseAbsDecimal(ByRef ValueString As String) As Decimal
-        If ValueString IsNot Nothing AndAlso ValueString.Length > 0 Then
-            Return Math.Abs(Decimal.Parse(ValueString, CultureInfo.InvariantCulture))
+    Private Shared Function ParseAbsDecimal(ByVal ValueString As String, Optional ByVal FilterChars As Boolean = False) As Decimal
+        If ValueString?.Length > 0 Then
+            If Not FilterChars Then
+                Return Math.Abs(Decimal.Parse(ValueString, CultureInfo.InvariantCulture))
+            Else
+                Return Math.Abs(Decimal.Parse(New String(Array.FindAll(ValueString.ToCharArray, Function(c) "0123456789.".Contains(c))), CultureInfo.InvariantCulture))
+            End If
         Else
             Return 0
         End If
     End Function
 
+
     ' Use this list of base currencies for splitting the market string provided in the export files
     Private _BaseCurrencies() As String = {"AUD", "BIDR", "BKRW", "BNB", "BRL", "BTC", "BUSD", "BVND", "DAI", "DOGE", "ETH", "EUR", "GBP", "GYEN", "IDRT", "NGN", "PAX", "RUB", "TRX", "TRY", "TUSD", "UAH", "USDC", "USDP", "USDS", "USDT", "VAI", "XRP", "ZAR"}
+
 
     ''' <summary>
     ''' Split a given Market string into the corresponding currency pair strings
@@ -462,6 +570,7 @@ Public Class Import_Binance
         Return True
     End Function
 
+
     ''' <summary>
     ''' Initializes this import
     ''' </summary>
@@ -475,8 +584,12 @@ Public Class Import_Binance
         CSVAutoDetectEncoding = False
         MultiSelectFiles = False
         CheckFirstLine = True
+        CSVDecimalPoint = "."c
+        CSVDecimalSeparator = ","c
+        CSVSeparator = ","c
+        CSVTextqualifier = """"c
         FileDialogTitle = My.Resources.MyStrings.importOpenFileTitle
-        FileDialogFilter = My.Resources.MyStrings.importOpenFileFilterExcel
+        FileDialogFilter = My.Resources.MyStrings.importOpenFileFilterBinance
     End Sub
 
 
@@ -833,6 +946,127 @@ Public Class Import_Binance
                                 End If
                             End With
                         End If
+                    Catch ex As Exception
+                        If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            Return False
+                            Exit Function
+                        End If
+                    End Try
+                Next i
+
+            Case 4
+                ' *** Trade History as csv from a zip file ***
+                Dim BHO As BinanceTradeHistoryCsvRow
+                Dim Pair1 As String
+                Dim Pair2 As String
+                Const DECTOLOG As String = "0.########"
+
+                For i As Long = 0 To AllLines - 1
+                    Try
+                        UpdateProgress(AllLines, i + 1)
+                        Row = CSV.Rows(i)
+                        If Row?.Length >= 7 Then
+                            Pair1 = String.Empty
+                            Pair2 = String.Empty
+                            If SplitMarket(Row(1), Pair1, Pair2) Then
+                                BHO = New BinanceTradeHistoryCsvRow(MainImportObject, Row, Pair1, Pair2)
+                                If BHO IsNot Nothing Then
+                                    Record = New dtoTradesRecord
+                                    RecordFee = Nothing
+                                    With Record
+                                        .SourceID = MD5FromString(String.Join(";", {Row(0), Row(1), Row(2),
+                                                                              BHO.Price.ToString(DECTOLOG, CultureInfo.InvariantCulture),
+                                                                              BHO.Executed.ToString(DECTOLOG, CultureInfo.InvariantCulture),
+                                                                              BHO.Amount.ToString(DECTOLOG, CultureInfo.InvariantCulture),
+                                                                              BHO.Fee.ToString(DECTOLOG, CultureInfo.InvariantCulture),
+                                                                              BHO.FeeAccount.Code.ToUpper}))
+                                        .Zeitpunkt = BHO.DateTime
+                                        .ZeitpunktZiel = .Zeitpunkt
+                                        .ImportPlattformID = Platform
+                                        Select Case BHO.Side
+                                            Case "BUY"
+                                                ' Buy
+                                                .TradetypID = DBHelper.TradeTypen.Kauf
+                                                .QuellPlattformID = Platform
+                                                .ZielPlattformID = .QuellPlattformID
+                                                .ZielKontoID = BHO.Pair1Account.ID
+                                                .ZielBetrag = BHO.Executed
+                                                If BHO.Pair1Account.ID = BHO.FeeAccount.ID Then
+                                                    .BetragNachGebuehr = BHO.Executed - BHO.Fee
+                                                Else
+                                                    .BetragNachGebuehr = BHO.Executed
+                                                End If
+                                                .QuellBetragNachGebuehr = BHO.Amount
+                                                If BHO.Pair2Account.ID = BHO.FeeAccount.ID Then
+                                                    .QuellBetrag = BHO.Amount + BHO.Fee
+                                                Else
+                                                    .QuellBetrag = BHO.Amount
+                                                End If
+                                                .QuellKontoID = BHO.Pair2Account.ID
+                                                If .QuellKontoID = AccountManager.Accounts.EUR Then
+                                                    .WertEUR = .QuellBetrag
+                                                End If
+                                                .Info = String.Format(My.Resources.MyStrings.importInfoGenericBuy,
+                                                                      BHO.Pair1Account.Code, BHO.Executed, BHO.Amount, Pair2)
+                                            Case "SELL"
+                                                ' Sell
+                                                .TradetypID = DBHelper.TradeTypen.Verkauf
+                                                .QuellPlattformID = Platform
+                                                .ZielPlattformID = .QuellPlattformID
+                                                .ZielKontoID = BHO.Pair2Account.ID
+                                                .ZielBetrag = BHO.Amount
+                                                If BHO.Pair2Account.ID = BHO.FeeAccount.ID Then
+                                                    .BetragNachGebuehr = BHO.Amount - BHO.Fee
+                                                Else
+                                                    .BetragNachGebuehr = BHO.Amount
+                                                End If
+                                                .QuellBetragNachGebuehr = BHO.Executed
+                                                If BHO.Pair1Account.ID = BHO.FeeAccount.ID Then
+                                                    .QuellBetrag = BHO.Executed + BHO.Fee
+                                                Else
+                                                    .QuellBetrag = BHO.Executed
+                                                End If
+                                                .QuellKontoID = BHO.Pair1Account.ID
+                                                If .QuellKontoID = DBHelper.Konten.EUR Then
+                                                    .WertEUR = .QuellBetrag
+                                                End If
+                                                .Info = String.Format(My.Resources.MyStrings.importInfoGenericSell,
+                                                                      BHO.Pair1Account.Code, BHO.Executed, BHO.Amount, Pair2)
+                                            Case Else
+                                                ' Do not import
+                                                .DoNotImport = True
+                                        End Select
+
+                                        If BHO.Fee > 0 Then
+                                            ' Fee transaction
+                                            RecordFee = .Clone()
+                                            RecordFee.QuellPlattformID = Platform
+                                            RecordFee.ZielPlattformID = Platform
+                                            RecordFee.SourceID = .SourceID & "/fee"
+                                            RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
+                                            RecordFee.ZielKontoID = BHO.FeeAccount.GebuehrKontoID
+                                            RecordFee.ZielBetrag = .ZielBetrag - .BetragNachGebuehr
+                                            RecordFee.WertEUR = 0
+                                            RecordFee.BetragNachGebuehr = 0
+                                            RecordFee.QuellBetrag = RecordFee.ZielBetrag
+                                            RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
+                                            RecordFee.QuellKontoID = BHO.FeeAccount.ID
+                                            RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoGenericFee,
+                                                                           BHO.FeeAccount.Code, .SourceID)
+                                        End If
+                                        If Not .DoNotImport Then
+                                            ' Add record to list
+                                            ImportRecords.Add(Record)
+                                            If Not RecordFee Is Nothing Then
+                                                ImportRecords.Add(RecordFee)
+                                            End If
+                                        End If
+
+                                    End With
+                                End If
+                            End If
+                        End If
+
                     Catch ex As Exception
                         If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
                             Return False

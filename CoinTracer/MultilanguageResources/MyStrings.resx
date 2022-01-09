@@ -373,10 +373,10 @@
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
-  <data name="importMsgKrakenCSV" xml:space="preserve">
-    <value>Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie in der Leiste oben "History".{0}3. Klicken Sie in der Leiste darunter auf "Export" und stellen Sie unter "Export Data" "Ledgers" ein (nicht Trades!).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf "Select All" und anschließend auf "Submit". Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie rechts neben dem Export-Eintrag auf die drei Punkte und wählen "Download".{0}7. Extrahieren Sie das Archiv "ledgers.zip".{0}8. Lesen Sie die Datei "ledgers.csv" im nächsten Fenster ein.</value>
+  <data name="importMsgKrakenFile" xml:space="preserve">
+    <value>Hinweis zum Import von Kraken.com:{0}{0}1. Melden Sie sich auf Kraken.com an.{0}2. Wählen Sie in der Leiste oben "History".{0}3. Klicken Sie in der Leiste darunter auf "Export" und stellen Sie unter "Export Data" "Ledgers" ein (oder Trades).{0}4. Stellen Sie den gewünschten Exportzeitraum ein.{0}5. Klicken Sie auf "Select All" und anschließend auf "Submit". Der Export wird nun gestartet.{0}6. Nachdem der Export beendet ist, klicken Sie rechts neben dem Export-Eintrag auf die drei Punkte und wählen "Download".{0}8. Lesen Sie die Datei "ledgers.zip" (oder "trades.zip") im nächsten Fenster ein.</value>
   </data>
-  <data name="importMsgKrakenCSVCaption" xml:space="preserve">
+  <data name="importMsgKrakenFileCaption" xml:space="preserve">
     <value>Datenimport von Kraken.com</value>
   </data>
   <data name="mainCheckUpdatesMessagesPending" xml:space="preserve">
@@ -419,7 +419,7 @@
     <value>CoinTracer - generischer CSV-Import (*.csv)</value>
   </data>
   <data name="importLabelKraken" xml:space="preserve">
-    <value>Kraken - Ledger Export (ledgers.csv)</value>
+    <value>Kraken - Ledger oder Trades Export (*.csv, *.zip)</value>
   </data>
   <data name="importLabelLitecoinCore" xml:space="preserve">
     <value>Litecoin Core Client - Exportdatei (*.csv)</value>
@@ -774,7 +774,7 @@
     <value>Analysiere Trade Nr. {0}...</value>
   </data>
   <data name="importOpenFileFilterTitleKraken" xml:space="preserve">
-    <value>Ledger-Datenexport von Kraken.com auswählen... (ledgers.csv)</value>
+    <value>Ledger- oder Trades-Datenexport von Kraken.com auswählen... (*.csv, *.zip)</value>
   </data>
   <data name="donateLabelBCH" xml:space="preserve">
     <value>Bitcoin-Cash-Adresse:</value>
@@ -1041,7 +1041,7 @@ Wenn das passiert, dann warten Sie bitte einfach eine Zeit lang (mindestens eine
     <value>Import von Trading-Dateien</value>
   </data>
   <data name="importMsgAutodetectOpenFilter" xml:space="preserve">
-    <value>Import-Dateien (*.csv;*.xlsx)|*.csv;*.xlsx|Alle Dateien (*.*)|*.*</value>
+    <value>Import-Dateien (*.csv;*.xlsx;*.zip)|*.csv;*.xlsx;*.zip|Alle Dateien (*.*)|*.*</value>
   </data>
   <data name="importMsgAutodetectOpenTitle" xml:space="preserve">
     <value>Trading-Datei auswählen... (*.csv)</value>
@@ -1156,10 +1156,10 @@ Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ih
   <data name="importMsgKrakenTradesCSVCaption" xml:space="preserve">
     <value>Import von Kraken-Trades</value>
   </data>
-  <data name="importMsgKrakenCSVCheckLines" xml:space="preserve">
+  <data name="importMsgKrakenFileCheckLines" xml:space="preserve">
     <value>Schritte 2: Prüfe eingelesene Datenzeilen... ({0}/{1})</value>
   </data>
-  <data name="importMsgKrakenCSVReadFile" xml:space="preserve">
+  <data name="importMsgKrakenFileReadFile" xml:space="preserve">
     <value>Schritt 1: Lese Datei ein... ({0}/{1})</value>
   </data>
   <data name="importInfoBinanceDepositFiat" xml:space="preserve">
@@ -1172,7 +1172,7 @@ Konsultieren Sie daher bei konkreten steuerlichen und/oder Rechtsfragen immer Ih
     <value>{0}-Gebühr zu Trade Referenz {1}</value>
   </data>
   <data name="importLabelBinance" xml:space="preserve">
-    <value>Binance.com - Exportdatei (*.xlsx)</value>
+    <value>Binance.com - Exportdatei (*.xlsx, *.zip, *.csv)</value>
   </data>
   <data name="importMsgBinanceFile" xml:space="preserve">
     <value>Hinweis zum Import von Binance.com (Stand 01.01.22):
@@ -1205,9 +1205,27 @@ Erstellen einer Deposit- oder Withdrawal-History:
     <value>Excel-Dateien (*.xlsx)|*.xlsx|Alle Dateien (*.*)|*.*</value>
   </data>
   <data name="importOpenFileTitleBinance" xml:space="preserve">
-    <value>Exportdatei von Binance.com auswählen... (*.csv)</value>
+    <value>Exportdatei von Binance.com auswählen... (*.xlsx, *.zip, *.csv)</value>
   </data>
   <data name="xlsErrorInvalidFilename" xml:space="preserve">
     <value>Der angegebene Dateiname passt nicht zum Dateityp Excel-Datei (muss auf XLS oder XLSX enden)</value>
+  </data>
+  <data name="importMsgInvalidZipFile" xml:space="preserve">
+    <value>Die Datei '{0}' konnte nicht verarbeitet werden. Sie enthält entweder keine gültigen Transaktionsdaten oder es ist ein Fehler beim Entpacken aufgetreten. Der Import wird abgebrochen.</value>
+  </data>
+  <data name="importMsgInvalidZipFileTitle" xml:space="preserve">
+    <value>Fehler bei der Verarbeitung</value>
+  </data>
+  <data name="importMsgZipAndOtherFiles" xml:space="preserve">
+    <value>Sie haben eine Zip-Datei und weitere Dateien selektiert. Für den Import wird nun ausschließlich die Zip-Datei '{0}' verwendet.</value>
+  </data>
+  <data name="importMsgZipAndOtherFilesTitle" xml:space="preserve">
+    <value>Hinweis zum Import von Zip-Dateien</value>
+  </data>
+  <data name="importOpenFileFilterBinance" xml:space="preserve">
+    <value>Binance-Export-Dateien (*.xlsx;*.zip;*.csv)|*.xlsx;*.zip;*.csv|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="importOpenFileFilterKraken" xml:space="preserve">
+    <value>Ledger- oder Trade-Dateien (*.csv;*.zip)|*.csv;*.zip|Alle Dateien (*.*)|*.*</value>
   </data>
 </root>

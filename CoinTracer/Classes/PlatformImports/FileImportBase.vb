@@ -334,6 +334,7 @@ Public MustInherit Class FileImportBase
         End Set
     End Property
 
+
     ''' <summary>
     ''' Imports the given platform data into the database
     ''' </summary>
@@ -344,7 +345,7 @@ Public MustInherit Class FileImportBase
     ''' If no content is defined, an Open File Dialog is presented. Otherwise the given content is imported directly.
     ''' </summary>
     Friend Function PerformImport() As Boolean Implements IFileImport.PerformImport
-        If (Content IsNot Nothing AndAlso Content.Length > 0) OrElse (AllRows IsNot Nothing AndAlso AllRows.Count > 0) Then
+        If (Content?.Length > 0) OrElse (AllRows?.Count > 0) Then
             Return ImportContent()
         Else
             If OpenFile() Then
@@ -388,10 +389,12 @@ Public MustInherit Class FileImportBase
                 .Multiselect = MultiSelectFiles
                 If .ShowDialog() = DialogResult.OK Then
                     FileNames = .FileNames
+                    MainImportObject.ProcessZipFile(FileNames)
                 End If
             End With
         End If
-        If FileNames.Length > 0 AndAlso FileNames(0) IsNot Nothing AndAlso FileNames(0).Length > 0 Then
+        If FileNames.Length > 0 AndAlso FileNames(0)?.Length > 0 Then
+
             AllRows = New List(Of String())
             Dim ThisFileName As String = ""
             Dim FirstlinesSame As Boolean = True

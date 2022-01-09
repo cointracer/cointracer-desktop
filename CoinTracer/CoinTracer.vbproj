@@ -239,6 +239,7 @@
     <Compile Include="Classes\TextEncodingDetector.vb" />
     <Compile Include="Classes\ThreadManagerLight.vb" />
     <Compile Include="Classes\UriRequest.vb" />
+    <Compile Include="Classes\ZipHelper.vb" />
     <Compile Include="CoinTracerDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
