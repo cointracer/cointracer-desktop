@@ -1043,6 +1043,7 @@ Public Class frmMain
         ' Debug.Print(Thread.CurrentThread.CurrentUICulture.ToString)
         ' Thread.CurrentThread.CurrentUICulture = New CultureInfo("de-DE")
         ' frmEditTransfers.ShowDialog(Me)
+        Dim IFH As New ImportFileHelper({"test,test,test"})
     End Sub
 
     Private Sub cmdCourses_Click(sender As Object, e As EventArgs) Handles cmdCourses.Click

@@ -180,6 +180,8 @@ Public Class Import
 
     Private _AccountMap As Collection
 
+    Private _CurrentZipFile As String
+
     Private _ApiPwCheck As String
     Public ReadOnly Property ApiPasswordCheckPhrase() As String
         Get
@@ -887,6 +889,7 @@ Public Class Import
                                     MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
                 FilesList = ExtractedFiles.ToArray
+                _CurrentZipFile = PathEx.GetFileNameIfPossible(ZipFileName)
             ElseIf Not SilentMode Then
                 ' Error or no valid transaction files found
                 MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgInvalidZipFile, ZipFileName),
@@ -909,6 +912,8 @@ Public Class Import
                     ' ignore...
                 End Try
             Next
+            TempFilesPrefix = Nothing
+            _CurrentZipFile = Nothing
         End If
     End Sub
 
@@ -2775,13 +2780,13 @@ Public Class Import
     ''' <param name="IgnoreDuplicates">Wenn True, werden Zeilen mit gleicher SourceID innerhalb der übergebenen dtoTradeRecords-Liste 1:1 (also auch mehrfach) eingelesen. Notwendig z.B. für BitstampNet.</param>
     ''' <remarks>Im Anschluss an den Import erfolgt ggf. die automatische Weiterverarbeitung ein Ein- und Auszahlungen sowie die Kontrolle, ob die Gewinn-/Verlustberechnung zurückgesetzt werden muss</remarks>
     Friend Sub Import_Records(ImportRecords As List(Of dtoTradesRecord),
-                               Optional ByVal Filename As String = "",
-                               Optional ByVal StartPercentage As Integer = 70,
-                               Optional ByVal ProcessFeeEntries As Boolean = False,
-                               Optional ByVal IgnoreDuplicates As Boolean = False,
-                               Optional ByVal ApiDatenID As Long = 0,
-                               Optional ByVal LastImportTimestamp As Long = 0,
-                               Optional ByVal Verbose As Boolean = True)
+                              Optional ByVal Filename As String = "",
+                              Optional ByVal StartPercentage As Integer = 70,
+                              Optional ByVal ProcessFeeEntries As Boolean = False,
+                              Optional ByVal IgnoreDuplicates As Boolean = False,
+                              Optional ByVal ApiDatenID As Long = 0,
+                              Optional ByVal LastImportTimestamp As Long = 0,
+                              Optional ByVal Verbose As Boolean = True)
 
         Dim IR As dtoTradesRecord
         Dim ImporteTb As New ImporteDataTable
@@ -2845,8 +2850,12 @@ Public Class Import
         Next
         If _ZuletztEingelesen > 0 OrElse ApiDatenID > 0 Then
             ' Eintrag in Importe
+            Dim FileNameLogged As String = PathEx.GetFileNameIfPossible(Filename)
+            If _CurrentZipFile?.Length > 0 Then
+                FileNameLogged = _CurrentZipFile & ": " & FileNameLogged.Replace(TempFilesPrefix, "")
+            End If
             ImporteTa.Insert(PlattformID:=_Plattform,
-                             Dateiname:=PathEx.GetFileNameIfPossible(Filename),
+                             Dateiname:=FileNameLogged,
                              PfadDateiname:=Filename,
                              Zeitpunkt:=DateTime.Now,
                              Eingelesen:=_ZuletztEingelesen,
