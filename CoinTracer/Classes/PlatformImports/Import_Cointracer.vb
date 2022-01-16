@@ -471,7 +471,7 @@ Public Class Import_CoinTracer
                             .ZielKontoID = TLO.TargetCurrency?.ID
                             .ZielBetrag = TLO.TargetAmount
                             .BetragNachGebuehr = TLO.TargetAmount
-                            If .ZielKontoID = .QuellKontoID OrElse .ZielKontoID = DBHelper.Konten.Unbekannt OrElse .QuellKontoID = DBHelper.Konten.Unbekannt Then
+                            If .ZielKontoID = .QuellKontoID OrElse .ZielKontoID = AccountManager.Accounts.Unknown OrElse .QuellKontoID = AccountManager.Accounts.Unknown Then
                                 If .QuellPlattformID = PlatformManager.Platforms.Bank OrElse .QuellPlattformID = PlatformManager.Platforms.Unknown Then
                                     .TradetypID = DBHelper.TradeTypen.Einzahlung
                                     .DoNotImport = False

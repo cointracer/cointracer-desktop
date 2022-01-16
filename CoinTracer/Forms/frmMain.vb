@@ -557,7 +557,7 @@ Public Class frmMain
     Private Sub RefreshCourseDisplays(Optional NumberOfAddedDays As Long = -1)
         Dim LastDate As Date
         Dim Msg As String
-        LastDate = _CM.GetCoursesCutOffDay(Konten.EUR, Konten.USD)
+        LastDate = _CM.GetCoursesCutOffDay(AccountManager.Accounts.EUR, AccountManager.Accounts.USD)
         If LastDate = DATENULLVALUE Then
             _TML.SetControlText(lblCourseUSD, MyStrings.mainNoDataAvailable)
         Else
@@ -882,11 +882,11 @@ Public Class frmMain
         ToDate = DateAdd(DateInterval.Day, 1, dtpCutOffDay.Value.Date)
         Try
             ' Prüfen, ob es unberechnete USD-Trades gibt
-            If _CM.HasUnweightedTrades(Konten.USD, ToDate) Then
+            If _CM.HasUnweightedTrades(AccountManager.Accounts.USD, ToDate) Then
                 _TVM.SetTaxCurrencyValues()
             End If
-            If _CM.HasUnweightedTrades(Konten.USD, ToDate) Then
-                Dim LastUsdDate As Date = _CM.GetCoursesCutOffDay(Konten.EUR, Konten.USD)
+            If _CM.HasUnweightedTrades(AccountManager.Accounts.USD, ToDate) Then
+                Dim LastUsdDate As Date = _CM.GetCoursesCutOffDay(AccountManager.Accounts.EUR, AccountManager.Accounts.USD)
                 If LastUsdDate = DATENULLVALUE Then
                     ' es wurden noch gar keine Wechselkursdaten abgerufen
                     MsgBoxEx.PatchMsgBox(New String() {MyStrings.mainMsgGetCoursesBt1, MyStrings.Cancel})
@@ -904,7 +904,7 @@ Public Class frmMain
                     ToDate = DateAdd(DateInterval.Day, 1, LastUsdDate)
                 End If
             End If
-            If _CM.HasUnweightedTrades(Konten.USD, ToDate, UnweightedDate) Then
+            If _CM.HasUnweightedTrades(AccountManager.Accounts.USD, ToDate, UnweightedDate) Then
                 MessageBox.Show(String.Format(MyStrings.mainMsgGetCourses3, UnweightedDate),
                                 MyStrings.mainMsgGetCoursesTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 Exit Sub
@@ -1051,7 +1051,7 @@ Public Class frmMain
             ' Prüfen, ob schon Einträge vorhanden sind (ggf. warnen)
             Dim KursTa As New CoinTracerDataSetTableAdapters.KurseTableAdapter
             Dim KursTb As New CoinTracerDataSet.KurseDataTable
-            KursTa.FillBySQL(KursTb, "where QuellKontoID=" & Konten.EUR & " and ZielKontoID=" & Konten.USD)
+            KursTa.FillBySQL(KursTb, "where QuellKontoID=" & AccountManager.Accounts.EUR & " and ZielKontoID=" & AccountManager.Accounts.USD)
             If KursTb.Count = 0 Then
                 If MessageBox.Show(String.Format(MyStrings.mainMsgGetCoursesUSD, Environment.NewLine),
                                    MyStrings.mainMsgGetCoursesUSDTitle, MessageBoxButtons.OKCancel,

@@ -290,9 +290,9 @@ Friend Class Import_Kraken_Api
                                     ' Gebühr beim QuellBetrag!
                                     .QuellBetrag += Math.Abs(SourceTLO.Fee)
                                 End If
-                                If .QuellKontoID = DBHelper.Konten.EUR Then
+                                If .QuellKontoID = AccountManager.Accounts.EUR Then
                                     .WertEUR = .QuellBetrag
-                                ElseIf .ZielKontoID = DBHelper.Konten.EUR Then
+                                ElseIf .ZielKontoID = AccountManager.Accounts.EUR Then
                                     .WertEUR = .BetragNachGebuehr
                                 End If
                                 ' Record-Fee wenn vorhanden anpassen

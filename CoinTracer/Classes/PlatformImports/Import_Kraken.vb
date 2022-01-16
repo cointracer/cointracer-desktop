@@ -457,9 +457,9 @@ Public Class Import_Kraken
                                         ' Fee on source side. Increase the source amount
                                         .QuellBetrag += Math.Abs(SourceIR.fee)
                                     End If
-                                    If .QuellKontoID = DBHelper.Konten.EUR Then
+                                    If .QuellKontoID = AccountManager.Accounts.EUR Then
                                         .WertEUR = .QuellBetrag
-                                    ElseIf .ZielKontoID = DBHelper.Konten.EUR Then
+                                    ElseIf .ZielKontoID = AccountManager.Accounts.EUR Then
                                         .WertEUR = .BetragNachGebuehr
                                     End If
 
@@ -635,9 +635,9 @@ Public Class Import_Kraken
                                         ' we have a countable fee -> add it to the cost
                                         .QuellBetrag += IR.fee
                                     End If
-                                    If .QuellKontoID = DBHelper.Konten.EUR Then
+                                    If .QuellKontoID = AccountManager.Accounts.EUR Then
                                         .WertEUR = .QuellBetrag
-                                    ElseIf .ZielKontoID = DBHelper.Konten.EUR Then
+                                    ElseIf .ZielKontoID = AccountManager.Accounts.EUR Then
                                         .WertEUR = .BetragNachGebuehr
                                     End If
 
@@ -680,9 +680,9 @@ Public Class Import_Kraken
                                             .BetragNachGebuehr -= IR.fee
                                         End If
                                     End If
-                                    If .QuellKontoID = DBHelper.Konten.EUR Then
+                                    If .QuellKontoID = AccountManager.Accounts.EUR Then
                                         .WertEUR = .QuellBetrag
-                                    ElseIf .ZielKontoID = DBHelper.Konten.EUR Then
+                                    ElseIf .ZielKontoID = AccountManager.Accounts.EUR Then
                                         .WertEUR = .BetragNachGebuehr
                                     End If
                                 Case Else

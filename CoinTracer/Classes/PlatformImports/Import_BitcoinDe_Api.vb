@@ -137,7 +137,7 @@ Friend Class Import_BitcoinDe_Api
                                                     .QuellBetragNachGebuehr = .QuellBetrag
                                                     SecondaryAccount = MainImportObject.RetrieveAccount(TradeEntry("currency_to_pay")("currency").ToString)
                                                     .QuellKontoID = SecondaryAccount.ID
-                                                    If .QuellKontoID = DBHelper.Konten.EUR Then
+                                                    If .QuellKontoID = AccountManager.Accounts.EUR Then
                                                         .WertEUR = .QuellBetrag
                                                     End If
                                                     .Info = String.Format(My.Resources.MyStrings.importInfoGenericBuy,
@@ -167,7 +167,7 @@ Friend Class Import_BitcoinDe_Api
                                                     .BetragNachGebuehr = Convert.ToDecimal(TradeEntry("currency_to_pay")("after_fee").ToString, CultureInfo.InvariantCulture)
                                                     .QuellBetrag = Convert.ToDecimal(TradeEntry("currency_to_trade")("before_fee").ToString, CultureInfo.InvariantCulture)
                                                     .QuellBetragNachGebuehr = .QuellBetrag
-                                                    If .ZielKontoID = DBHelper.Konten.EUR Then
+                                                    If .ZielKontoID = AccountManager.Accounts.EUR Then
                                                         .WertEUR = .BetragNachGebuehr
                                                     End If
                                                     PrimaryAccount = MainImportObject.RetrieveAccount(TradeEntry("currency_to_trade")("currency").ToString)
@@ -257,7 +257,7 @@ Friend Class Import_BitcoinDe_Api
                                                     .WertEUR = 0
                                                     .QuellBetrag = 0
                                                     .QuellBetragNachGebuehr = 0
-                                                    .QuellKontoID = DBHelper.Konten.EUR
+                                                    .QuellKontoID = AccountManager.Accounts.EUR
                                                     .Info = LedgerItem("reference").ToString
                                                     .SourceID = .Info
                                                     FeeAmount = 0
@@ -273,7 +273,7 @@ Friend Class Import_BitcoinDe_Api
                                                     .WertEUR = 0
                                                     .QuellBetrag = 0
                                                     .QuellBetragNachGebuehr = 0
-                                                    .QuellKontoID = DBHelper.Konten.EUR
+                                                    .QuellKontoID = AccountManager.Accounts.EUR
                                                     .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeInitialization, Currency.Shortname)
                                                     .SourceID = MD5FromString(.Info & .Zeitpunkt.ToString("dd-MM-yy HH:mm:ss"))
                                                     FeeAmount = 0
@@ -293,7 +293,7 @@ Friend Class Import_BitcoinDe_Api
                                                         .WertEUR = 0
                                                         .QuellBetrag = 0
                                                         .QuellBetragNachGebuehr = 0
-                                                        .QuellKontoID = DBHelper.Konten.EUR
+                                                        .QuellKontoID = AccountManager.Accounts.EUR
                                                         .Info = My.Resources.MyStrings.importInfoBitcoinDeRegistration
                                                         .SourceID = MD5FromString(.Info & .Zeitpunkt.ToString("dd-MM-yy HH:mm:ss"))
                                                     Else
@@ -312,7 +312,7 @@ Friend Class Import_BitcoinDe_Api
                                                     .WertEUR = 0
                                                     .QuellBetrag = 0
                                                     .QuellBetragNachGebuehr = 0
-                                                    .QuellKontoID = DBHelper.Konten.EUR
+                                                    .QuellKontoID = AccountManager.Accounts.EUR
                                                     .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeAffiliateEarnings, LedgerItem("reference").ToString)
                                                     .SourceID = MD5FromString(.Info & .Zeitpunkt.ToString("dd-MM-yy HH:mm:ss"))
                                                     FeeAmount = 0

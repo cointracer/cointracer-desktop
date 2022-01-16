@@ -884,7 +884,7 @@ Public Class DBInit
         Dim SQL As String = ""
         Dim CM As New CourseManager(_cnn)
         Dim CR As New Courses
-        Dim ToDate As Date = CM.GetCoursesCutOffDay(DBHelper.Konten.EUR, DBHelper.Konten.USD)
+        Dim ToDate As Date = CM.GetCoursesCutOffDay(AccountManager.Accounts.EUR, AccountManager.Accounts.USD)
         If ToDate = DATENULLVALUE Then
             ToDate = "2008-12-31"
         End If
@@ -892,7 +892,7 @@ Public Class DBInit
             ' Es gibt neuere Kursdaten-Einträge im Courses-Objekt
             SQL = CR.GetCoursesSQL_From_USDEUR(DateAdd(DateInterval.Day, 1, ToDate))
         End If
-        ToDate = CM.GetCoursesStartDay(DBHelper.Konten.EUR, DBHelper.Konten.USD)
+        ToDate = CM.GetCoursesStartDay(AccountManager.Accounts.EUR, AccountManager.Accounts.USD)
         If ToDate > CR.CoursesMinDate_USDEUR Then
             ' Es gibt ältere Kursdaten-Einträge im Courses-Objekt
             SQL &= CR.GetCoursesSQL_To_USDEUR(DateAdd(DateInterval.Day, -1, ToDate))

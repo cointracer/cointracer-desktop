@@ -149,7 +149,7 @@ Public Class frmEditCourses
                     .ID = NewID
                     .Zeitpunkt = Today
                     .Quellbetrag = 1
-                    .QuellKontoID = CInt(DBHelper.Konten.EUR)
+                    .QuellKontoID = CInt(AccountManager.Accounts.EUR)
                     .Calculated = False
                 End With
                 Me.KurseBindingSource.EndEdit()

@@ -442,7 +442,7 @@ Public Class Import_BitcoinDe
                                 .QuellBetrag = TLO.Currency2AfterFee
                                 .QuellBetragNachGebuehr = .QuellBetrag
                                 .QuellKontoID = TLO.Currency2Account.ID
-                                If .QuellKontoID = DBHelper.Konten.EUR Then
+                                If .QuellKontoID = AccountManager.Accounts.EUR Then
                                     .WertEUR = .QuellBetrag
                                 End If
                                 .Info = String.Format(My.Resources.MyStrings.importInfoGenericBuy,
@@ -471,7 +471,7 @@ Public Class Import_BitcoinDe
                                 .BetragNachGebuehr = TLO.Currency2AfterFee
                                 .QuellBetrag = TLO.Currency1BeforeFee
                                 .QuellBetragNachGebuehr = .QuellBetrag
-                                If .ZielKontoID = DBHelper.Konten.EUR Then
+                                If .ZielKontoID = AccountManager.Accounts.EUR Then
                                     .WertEUR = .BetragNachGebuehr
                                 End If
                                 .QuellKontoID = TLO.Currency1Account.ID
@@ -557,7 +557,7 @@ Public Class Import_BitcoinDe
                                 .WertEUR = 0
                                 .QuellBetrag = 0
                                 .QuellBetragNachGebuehr = 0
-                                .QuellKontoID = DBHelper.Konten.EUR
+                                .QuellKontoID = AccountManager.Accounts.EUR
                                 .Info = TLO.Reference
                                 FeeAmount = 0
                             Case "Registrierung", "Welcome Btc", "Initialisierung"
@@ -572,7 +572,7 @@ Public Class Import_BitcoinDe
                                     .WertEUR = 0
                                     .QuellBetrag = 0
                                     .QuellBetragNachGebuehr = 0
-                                    .QuellKontoID = DBHelper.Konten.EUR
+                                    .QuellKontoID = AccountManager.Accounts.EUR
                                     If TLO.Type.Contains("Initialisierung") Then
                                         .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeInitialization, TLO.Currency1Account.Code)
                                     Else
@@ -594,7 +594,7 @@ Public Class Import_BitcoinDe
                                 .WertEUR = 0
                                 .QuellBetrag = 0
                                 .QuellBetragNachGebuehr = 0
-                                .QuellKontoID = DBHelper.Konten.EUR
+                                .QuellKontoID = AccountManager.Accounts.EUR
                                 .Info = String.Format(My.Resources.MyStrings.importInfoBitcoinDeAffiliateEarnings, TLO.Reference)
                                 .SourceID = MD5FromString(.Info & .Zeitpunkt.ToString("dd-MM-yy HH:mm:ss"))
                                 FeeAmount = 0

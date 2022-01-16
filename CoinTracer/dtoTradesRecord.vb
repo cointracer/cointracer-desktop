@@ -114,12 +114,12 @@ Public Class dtoTradesRecord
         End Set
     End Property
 
-    Private _QuellKontoID As Konten
-    Public Property QuellKontoID() As Konten
+    Private _QuellKontoID As AccountManager.Accounts
+    Public Property QuellKontoID() As AccountManager.Accounts
         Get
             Return _QuellKontoID
         End Get
-        Set(ByVal value As Konten)
+        Set(ByVal value As AccountManager.Accounts)
             _QuellKontoID = value
         End Set
     End Property
@@ -144,12 +144,12 @@ Public Class dtoTradesRecord
         End Set
     End Property
 
-    Private _ZielKontoID As Konten
-    Public Property ZielKontoID() As Konten
+    Private _ZielKontoID As AccountManager.Accounts
+    Public Property ZielKontoID() As AccountManager.Accounts
         Get
             Return _ZielKontoID
         End Get
-        Set(ByVal value As Konten)
+        Set(ByVal value As AccountManager.Accounts)
             _ZielKontoID = value
         End Set
     End Property

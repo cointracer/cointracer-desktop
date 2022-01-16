@@ -82,31 +82,6 @@ Public Class DBHelper
         TransferIntern = 69
     End Enum
 
-    ''' <summary>
-    ''' Deprecated! Do not use this any more. If you feel like it, use AccountManager.Accounts instead.
-    ''' </summary>
-    Public Enum Konten
-        Fehler = -1
-        Unbekannt = 0
-        EUR = 101
-        USD = 102
-        BTC = 201
-        LTC = 202
-        PPC = 203
-        NMC = 204
-        FEE = 224
-        BCH = 220
-        ETH = 210
-        feeEUR = 10101
-        feeUSD = 10102
-        feeBTC = 10201
-        feeLTC = 10202
-        feePPC = 10203
-        feeNMC = 10204
-        feeFEE = 10224
-    End Enum
-
-
 
     Private Const DBNAME As String = "cointracer.data"
 

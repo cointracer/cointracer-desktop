@@ -29,8 +29,6 @@
 '  *
 '  **************************************
 
-Imports CoinTracer.CoinTracerDataSet
-Imports System.Linq
 
 Public Class Import_SomecoinCoreCSV
 
@@ -41,7 +39,7 @@ Public Class Import_SomecoinCoreCSV
     ''' <param name="FileImport">The calling import object</param>
     ''' <param name="Account">Coin account being imported here</param>
     Friend Shared Function ImportCSV(ByRef FileImport As IFileImport,
-                                     Account As DBHelper.Konten) As Boolean
+                                     Account As AccountManager.Accounts) As Boolean
         Dim Row() As String
         Dim ErrorCounter As Long = FileImport.MaxErrors
         Dim Record As dtoTradesRecord

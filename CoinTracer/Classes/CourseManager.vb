@@ -124,7 +124,7 @@ Public Class CourseManager
     ''' </summary>
     ''' <param name="FromKontoID">ID des Kontos der Ausgangswährung</param>
     ''' <param name="ToKontoID">ID des Kontos der Zielwährung</param>
-    Public Function GetCoursesCutOffDay(FromKontoID As DBHelper.Konten, ToKontoID As DBHelper.Konten) As Date
+    Public Function GetCoursesCutOffDay(FromKontoID As AccountManager.Accounts, ToKontoID As AccountManager.Accounts) As Date
         Dim KursTa As New KurseTableAdapter
         Dim KursTb As New KurseDataTable
         If KursTa.FillBySQL(KursTb, "where QuellKontoID=" & DirectCast(FromKontoID, Integer) & " and ZielKontoID=" & DirectCast(ToKontoID, Integer) & " order by Zeitpunkt desc limit 1") > 0 Then
@@ -140,7 +140,7 @@ Public Class CourseManager
     ''' </summary>
     ''' <param name="FromKontoID">ID des Kontos der Ausgangswährung</param>
     ''' <param name="ToKontoID">ID des Kontos der Zielwährung</param>
-    Public Function GetCoursesStartDay(FromKontoID As DBHelper.Konten, ToKontoID As DBHelper.Konten) As Date
+    Public Function GetCoursesStartDay(FromKontoID As AccountManager.Accounts, ToKontoID As AccountManager.Accounts) As Date
         Dim KursTa As New KurseTableAdapter
         Dim KursTb As New KurseDataTable
         If KursTa.FillBySQL(KursTb, "where QuellKontoID=" & DirectCast(FromKontoID, Integer) & " and ZielKontoID=" & DirectCast(ToKontoID, Integer) & " order by Zeitpunkt limit 1") > 0 Then
@@ -157,13 +157,13 @@ Public Class CourseManager
     ''' <param name="CheckCurrency">Währung, auf die geprüft werden soll</param>
     ''' <param name="UntilDate">Datum, bis zu dem geprüft werden soll (ausschließlich!)</param>
     ''' <param name="UnweightedTradeTade">Wenn übergeben, steht hier exemplarisch ein Datum, zu dem Kursinformationen fehlen</param>
-    Public Function HasUnweightedTrades(Optional CheckCurrency As DBHelper.Konten = DBHelper.Konten.USD, _
-                                        Optional UntilDate As Date = DATENULLVALUE, _
+    Public Function HasUnweightedTrades(Optional CheckCurrency As AccountManager.Accounts = AccountManager.Accounts.USD,
+                                        Optional UntilDate As Date = DATENULLVALUE,
                                         Optional ByRef UnweightedTradeTade As String = Nothing) As Boolean
         Dim TradesTa As New TradesTableAdapter
         Dim TradesTb As New TradesDataTable
         Dim ReturnValue As Boolean
-        Dim SQL = String.Format("where ((TradeTypID in (2,4) and ZielKontoID={0} and BetragNachGebuehr>0 and WertEUR=0) " & _
+        Dim SQL = String.Format("where ((TradeTypID in (2,4) and ZielKontoID={0} and BetragNachGebuehr>0 and WertEUR=0) " &
                                 " or (TradeTypID in (1,3) and QuellKontoID={0} and QuellBetragNachGebuehr>0 and WertEUR=0))", CLng(CheckCurrency))
         If UntilDate <> DATENULLVALUE Then
             SQL &= String.Format(" and Zeitpunkt<'{0}'", UntilDate.ToString("yyyy-MM-dd"))
@@ -208,7 +208,7 @@ Public Class CourseManager
                     End If
                     Dim KursTa As New KurseTableAdapter
                     Dim KursTb As New KurseDataTable
-                    KursTa.FillBySQL(KursTb, "where QuellKontoID=" & DBHelper.Konten.EUR & " and ZielKontoID=" & DBHelper.Konten.USD)
+                    KursTa.FillBySQL(KursTb, "where QuellKontoID=" & AccountManager.Accounts.EUR & " and ZielKontoID=" & AccountManager.Accounts.USD)
                     Try
                         ' Datei einlesen
                         AllLines = File.ReadAllLines(.FileName, Text.Encoding.Default)
@@ -250,7 +250,7 @@ Public Class CourseManager
 
         Dim URI As String = "https://api.statistiken.bundesbank.de/rest/download/BBEX3/D.USD.EUR.BB.AC.000?format=csv&lang=de"
 
-        Dim LastCOD As Date = GetCoursesCutOffDay(DBHelper.Konten.EUR, DBHelper.Konten.USD)
+        Dim LastCOD As Date = GetCoursesCutOffDay(AccountManager.Accounts.EUR, AccountManager.Accounts.USD)
         Dim HttpRequest As New UriRequest(URI)
         Dim Csv As String
         Dim Added As Long = 0
@@ -260,7 +260,7 @@ Public Class CourseManager
             ' Prüfen, ob schon Einträge vorhanden sind (ggf. warnen)
             Dim KursTa As New KurseTableAdapter
             Dim KursTb As New KurseDataTable
-            KursTa.FillBySQL(KursTb, "where QuellKontoID=" & DBHelper.Konten.EUR & " and ZielKontoID=" & DBHelper.Konten.USD)
+            KursTa.FillBySQL(KursTb, "where QuellKontoID=" & AccountManager.Accounts.EUR & " and ZielKontoID=" & AccountManager.Accounts.USD)
             If KursTb.Count = 0 AndAlso Not _SilentMode Then
                 If MessageBox.Show("Sie rufen die Währungskursdaten EUR <> USD zum ersten Mal ab. Es wird jetzt eine Verbindung mit " &
                                    "www.bundesbank.de aufgebaut, um alle verfügbaren Kursdaten abzufragen. " & System.Environment.NewLine & System.Environment.NewLine &
@@ -320,8 +320,8 @@ Public Class CourseManager
     ''' Schreibt das übergebene String-Array in die Kurse-Tabelle. Schließt anschließend das WaitWindow und gibt TableAdapter frei.
     ''' </summary>
     ''' <returns>Anzahl der Tage, für die Kursinformationen eingelesen wurden</returns>
-    Private Function InsertCoursesEurUsd(ByRef Lines() As String, _
-                                         ByRef KurseTa As KurseTableAdapter, _
+    Private Function InsertCoursesEurUsd(ByRef Lines() As String,
+                                         ByRef KurseTa As KurseTableAdapter,
                                          ByRef KurseTb As KurseDataTable) As Long
         Dim Line As String
         Dim LineNum As Long = 0
@@ -351,8 +351,8 @@ Public Class CourseManager
                         Items(1) = "-1"
                     End If
                     ' Zeile eintragen
-                    KurseTa.Insert(CDate(Items(0)), 1, DBHelper.Konten.EUR, _
-                                  Single.Parse(Items(1), CIde), DBHelper.Konten.USD, 0)
+                    KurseTa.Insert(CDate(Items(0)), 1, AccountManager.Accounts.EUR,
+                                  Single.Parse(Items(1), CIde), AccountManager.Accounts.USD, 0)
                     Added += 1
                 End If
             End If
@@ -363,20 +363,20 @@ Public Class CourseManager
         Else
             ProgressWaitManager.UpdateProgress(90, "Ergänze fehlende Tage...")
         End If
-        _DS.ExecuteSQL(String.Format("update Kurse set ZielBetrag = " & _
-            "round((coalesce((select ZielBetrag from Kurse k2 " & _
-            "where k2.Zeitpunkt<Kurse.Zeitpunkt and k2.ZielBetrag>=0 and k2.QuellKontoID={0} and k2.ZielKontoID={1} " & _
-            "order by k2.Zeitpunkt desc limit 1), (select ZielBetrag from Kurse k3 " & _
-            "where k3.Zeitpunkt>Kurse.Zeitpunkt and k3.ZielBetrag>=0 and k3.QuellKontoID={0} and k3.ZielKontoID={1} " & _
-            "order by k3.Zeitpunkt asc limit 1)) + " & _
-            "coalesce((select ZielBetrag from Kurse k3 " & _
-            "where k3.Zeitpunkt>Kurse.Zeitpunkt and k3.ZielBetrag>=0 and k3.QuellKontoID={0} and k3.ZielKontoID={1} " & _
-            "order by k3.Zeitpunkt asc limit 1), (select ZielBetrag from Kurse k2 " & _
-            "where k2.Zeitpunkt<Kurse.Zeitpunkt and k2.ZielBetrag>=0 and k2.QuellKontoID={0} and k2.ZielKontoID={1} " & _
-            "order by k2.Zeitpunkt desc limit 1))) / 2, 4), " & _
-            "Calculated=1 " & _
-            "where Kurse.QuellKontoID={0} and Kurse.ZielKontoID={1} and Kurse.ZielBetrag=-1", _
-            CInt(DBHelper.Konten.EUR), CInt(DBHelper.Konten.USD)))
+        _DS.ExecuteSQL(String.Format("update Kurse set ZielBetrag = " &
+            "round((coalesce((select ZielBetrag from Kurse k2 " &
+            "where k2.Zeitpunkt<Kurse.Zeitpunkt and k2.ZielBetrag>=0 and k2.QuellKontoID={0} and k2.ZielKontoID={1} " &
+            "order by k2.Zeitpunkt desc limit 1), (select ZielBetrag from Kurse k3 " &
+            "where k3.Zeitpunkt>Kurse.Zeitpunkt and k3.ZielBetrag>=0 and k3.QuellKontoID={0} and k3.ZielKontoID={1} " &
+            "order by k3.Zeitpunkt asc limit 1)) + " &
+            "coalesce((select ZielBetrag from Kurse k3 " &
+            "where k3.Zeitpunkt>Kurse.Zeitpunkt and k3.ZielBetrag>=0 and k3.QuellKontoID={0} and k3.ZielKontoID={1} " &
+            "order by k3.Zeitpunkt asc limit 1), (select ZielBetrag from Kurse k2 " &
+            "where k2.Zeitpunkt<Kurse.Zeitpunkt and k2.ZielBetrag>=0 and k2.QuellKontoID={0} and k2.ZielKontoID={1} " &
+            "order by k2.Zeitpunkt desc limit 1))) / 2, 4), " &
+            "Calculated=1 " &
+            "where Kurse.QuellKontoID={0} and Kurse.ZielKontoID={1} and Kurse.ZielBetrag=-1",
+            CInt(AccountManager.Accounts.EUR), CInt(AccountManager.Accounts.USD)))
         If _SilentMode Then
             _TML.MessageText = "Kursabruf abgeschlossen!"
         Else

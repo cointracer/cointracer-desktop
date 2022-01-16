@@ -448,6 +448,10 @@ Public Class Import_Bitfinex
                                         .BetragNachGebuehr -= RecordFee.QuellBetrag
                                         LedgerItem2.Processed = True
                                     End If
+                                    ' set taxable value (not really needed, since this is a fiat deposit, but anyway...)
+                                    If .ZielKontoID = AccountManager.Accounts.EUR Then
+                                        .WertEUR = .BetragNachGebuehr
+                                    End If
                                 Case BitfinexClient.TransactionTypes.Distribution
                                     ' Coin distribution
                                     .TradetypID = DBHelper.TradeTypen.Kauf
@@ -458,7 +462,7 @@ Public Class Import_Bitfinex
                                     .QuellBetragNachGebuehr = 0
                                     .BetragNachGebuehr = .ZielBetrag
                                     .ZielKontoID = KontoRow.ID
-                                    .QuellKontoID = DBHelper.Konten.EUR
+                                    .QuellKontoID = AccountManager.Accounts.EUR
                                 Case BitfinexClient.TransactionTypes.Withdrawal
                                     ' withdrawal
                                     .TradetypID = DBHelper.TradeTypen.Auszahlung
@@ -495,6 +499,10 @@ Public Class Import_Bitfinex
                                         ' Adjust values of original withdrawal
                                         .QuellBetrag += RecordFee.QuellBetrag
                                         LedgerItem2.Processed = True
+                                    End If
+                                    ' set taxable value (not really needed, since this is a fiat withdrawal, but anyway...)
+                                    If .QuellKontoID = AccountManager.Accounts.EUR Then
+                                        .WertEUR = .QuellBetrag
                                     End If
                                 Case BitfinexClient.TransactionTypes.Exchange
                                     ' some kind of exchange - find corresponding entry
@@ -628,7 +636,12 @@ Public Class Import_Bitfinex
                                             LedgerItem2.Processed = True
                                         End If
                                     End If
-
+                                    ' set taxable value
+                                    If .TradetypID = DBHelper.TradeTypen.Verkauf AndAlso .ZielKontoID = AccountManager.Accounts.EUR Then
+                                        .WertEUR = .BetragNachGebuehr
+                                    ElseIf .TradetypID = DBHelper.TradeTypen.Kauf AndAlso .QuellKontoID = AccountManager.Accounts.EUR Then
+                                        .WertEUR = .QuellBetrag
+                                    End If
                                 Case BitfinexClient.TransactionTypes.Settlement
                                     ' a settlement entry (can be treated like an exchange) - find corresponding entry
                                     i2nd = FindLegerItem(LedgerItems,
@@ -711,6 +724,12 @@ Public Class Import_Bitfinex
                                                       "/" & Normalize_Entry(FromLedgerItem.Description).ToLower)
                                     LedgerItem.Processed = True
                                     LedgerItem2.Processed = True
+                                    ' set taxable value
+                                    If .TradetypID = DBHelper.TradeTypen.Verkauf AndAlso .ZielKontoID = AccountManager.Accounts.EUR Then
+                                        .WertEUR = .BetragNachGebuehr
+                                    ElseIf .TradetypID = DBHelper.TradeTypen.Kauf AndAlso .QuellKontoID = AccountManager.Accounts.EUR Then
+                                        .WertEUR = .QuellBetrag
+                                    End If
 
                                 Case Else
                                     ' undefined or fee ledger type: do not import

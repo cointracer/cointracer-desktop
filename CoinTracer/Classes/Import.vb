@@ -963,7 +963,7 @@ Public Class Import
                                 .Zeitpunkt = Row(0)
                                 .ZeitpunktZiel = .Zeitpunkt
                                 .ImportPlattformID = Platforms.MultiBit
-                                .QuellKontoID = DBHelper.Konten.BTC
+                                .QuellKontoID = AccountManager.Accounts.BTC
                                 .ZielKontoID = .QuellKontoID
                                 If CSV.StringToDecimal(Row(2)) > 0 Then
                                     ' Einzahlung
@@ -1320,7 +1320,7 @@ Public Class Import
                                             .BetragNachGebuehr = .ZielBetrag
                                             .QuellBetrag = Math.Abs(ImpLn.Value) + Math.Abs(ImpLn.Fee)
                                             .QuellBetragNachGebuehr = Math.Abs(ImpLn.Value)
-                                            If ImpLn.ValueKontoRow.ID = CInt(DBHelper.Konten.EUR) Then
+                                            If ImpLn.ValueKontoRow.ID = CInt(AccountManager.Accounts.EUR) Then
                                                 .WertEUR = .QuellBetrag
                                             Else
                                                 .WertEUR = 0
@@ -1357,7 +1357,7 @@ Public Class Import
                                             .QuellBetragNachGebuehr = .QuellBetrag
                                             .ZielBetrag = Math.Abs(ImpLn.Value)
                                             .BetragNachGebuehr = Math.Abs(ImpLn.Value) - Math.Abs(ImpLn.Fee)
-                                            If ImpLn.ValueKontoRow.ID = CInt(DBHelper.Konten.EUR) Then
+                                            If ImpLn.ValueKontoRow.ID = CInt(AccountManager.Accounts.EUR) Then
                                                 .WertEUR = .BetragNachGebuehr
                                             Else
                                                 .WertEUR = 0
@@ -1403,7 +1403,7 @@ Public Class Import
                                         .ZielBetrag = .QuellBetrag
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         .BetragNachGebuehr = .ZielBetrag
-                                        If .QuellKontoID = DBHelper.Konten.EUR Then
+                                        If .QuellKontoID = AccountManager.Accounts.EUR Then
                                             .WertEUR = .ZielBetrag
                                         Else
                                             .WertEUR = 0
@@ -1441,7 +1441,7 @@ Public Class Import
                                             .Info = String.Format("Einzahlung {0}", ImpLn.ValueKontoRow.Code)
                                         End If
                                         .BetragNachGebuehr = .ZielBetrag
-                                        If .ZielKontoID = DBHelper.Konten.EUR Then
+                                        If .ZielKontoID = AccountManager.Accounts.EUR Then
                                             .WertEUR = .ZielBetrag
                                         Else
                                             .WertEUR = 0
@@ -1560,7 +1560,7 @@ Public Class Import
                                     .QuellBetragNachGebuehr = .QuellBetrag
                                     .BetragNachGebuehr = .ZielBetrag - StrToDec(Items(7), EnglishNotation = 1)
                                     .QuellKontoID = GetAccount(Items(6)).ID
-                                    If .QuellKontoID = DBHelper.Konten.EUR Then
+                                    If .QuellKontoID = AccountManager.Accounts.EUR Then
                                         .WertEUR = StrToDec(Items(5), EnglishNotation = 1) * .BetragNachGebuehr
                                     End If
                                     .Info = Items(4) & " gekauft - Kurs " & Items(5) & " " & Items(6)
@@ -1586,7 +1586,7 @@ Public Class Import
                                     .ZielBetrag = .QuellBetrag * StrToDec(Items(5), EnglishNotation = 1)
                                     .BetragNachGebuehr = .ZielBetrag - StrToDec(Items(7), EnglishNotation = 1)
                                     .ZielKontoID = GetAccount(Items(6)).ID
-                                    If .ZielKontoID = DBHelper.Konten.EUR Then
+                                    If .ZielKontoID = AccountManager.Accounts.EUR Then
                                         .WertEUR = .BetragNachGebuehr
                                     End If
                                     .Info = Items(4) & " verkauft - Kurs " & Items(5) & " " & Items(6)
@@ -1862,7 +1862,7 @@ Public Class Import
                                         .QuellBetrag = Math.Round(StrToDec(SubItems(DirectCast(SubItems, ICollection).Count - 2)) * .ZielBetrag, 8, MidpointRounding.AwayFromZero)
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         .QuellKontoID = GetAccount(SubItems(DirectCast(SubItems, ICollection).Count - 1)).ID
-                                        If .QuellKontoID = DBHelper.Konten.EUR Then
+                                        If .QuellKontoID = AccountManager.Accounts.EUR Then
                                             .WertEUR = .QuellBetrag
                                         End If
                                         ' Gebühren-Transaktion
@@ -1889,7 +1889,7 @@ Public Class Import
                                         .ZielBetrag = StrToDec(SubItems(13))
                                         KontoRow = GetAccount(SubItems(1))
                                         .ZielKontoID = KontoRow.ID
-                                        If .ZielKontoID = DBHelper.Konten.EUR Then
+                                        If .ZielKontoID = AccountManager.Accounts.EUR Then
                                             .WertEUR = .BetragNachGebuehr
                                         End If
                                         ' Gebühren-Transaktion
@@ -1919,7 +1919,7 @@ Public Class Import
                                             .BetragNachGebuehr = StrToDec(SubItems(0))
                                             KontoRow = GetAccount(SubItems(1))
                                             .ZielKontoID = KontoRow.ID
-                                            If .ZielKontoID = DBHelper.Konten.EUR Then
+                                            If .ZielKontoID = AccountManager.Accounts.EUR Then
                                                 .WertEUR = .BetragNachGebuehr
                                             End If
                                             ' Gebühren-Transaktion
@@ -2295,6 +2295,12 @@ Public Class Import
                                             .BetragNachGebuehr = .ZielBetrag
                                             .QuellKontoID = QuellKontoRow.ID
                                             .ZielKontoID = .QuellKontoID
+                                            ' Set taxable amount
+                                            If .QuellKontoID = AccountManager.Accounts.EUR Then
+                                                .WertEUR = .QuellBetrag
+                                            ElseIf .ZielKontoID = AccountManager.Accounts.EUR Then
+                                                .WertEUR = .BetragNachGebuehr
+                                            End If
                                             ' Record der Liste hinzufügen
                                             ImportRecords.Add(Record)
                                         End With
@@ -2351,6 +2357,12 @@ Public Class Import
                                                                   TLO.Fee.ToString(INFONUMBERFORMAT), TLO.Total.ToString(INFONUMBERFORMAT))
                                             If TLO.OrderNumber.Length > 0 Then
                                                 .Info &= String.Format(" / Order {0}", TLO.OrderNumber)
+                                            End If
+                                            ' Set taxable amount
+                                            If .QuellKontoID = AccountManager.Accounts.EUR Then
+                                                .WertEUR = .QuellBetrag
+                                            ElseIf .ZielKontoID = AccountManager.Accounts.EUR Then
+                                                .WertEUR = .BetragNachGebuehr
                                             End If
                                             ' Record der Liste hinzufügen
                                             ImportRecords.Add(Record)
@@ -2460,12 +2472,12 @@ Public Class Import
                                     Case "Bought"
                                         ' Kauf
                                         .TradetypID = DBHelper.TradeTypen.Kauf
-                                        .ZielKontoID = DBHelper.Konten.BTC
+                                        .ZielKontoID = AccountManager.Accounts.BTC
                                         .ZielBetrag = CSV.StringToDecimal(Row(1))
                                         .BetragNachGebuehr = .ZielBetrag - LineFee
                                         .QuellBetrag = CSV.StringToDecimal(Row(3).Substring(0, Row(3).Length - 2))
                                         .QuellBetragNachGebuehr = .QuellBetrag
-                                        .QuellKontoID = DBHelper.Konten.EUR
+                                        .QuellKontoID = AccountManager.Accounts.EUR
                                         .WertEUR = .QuellBetrag
                                         .Info = String.Format("Kauf BTC - Volumen {0} BTC für {1} EUR / Kurs {2}", .ZielBetrag, .QuellBetrag, Row(2))
                                         ' Gebühren-Transaktion
@@ -2473,13 +2485,13 @@ Public Class Import
                                             RecordFee = .Clone()
                                             RecordFee.SourceID = .SourceID & "/fee"
                                             RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
-                                            RecordFee.ZielKontoID = DBHelper.Konten.feeBTC
+                                            RecordFee.ZielKontoID = AccountManager.Accounts.feeBTC
                                             RecordFee.ZielBetrag = LineFee
                                             RecordFee.WertEUR = 0
                                             RecordFee.BetragNachGebuehr = 0
                                             RecordFee.QuellBetrag = RecordFee.ZielBetrag
                                             RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                            RecordFee.QuellKontoID = DBHelper.Konten.BTC
+                                            RecordFee.QuellKontoID = AccountManager.Accounts.BTC
                                             RecordFee.Info = "Gebühr zu BTC-Kauf Referenz " & .SourceID
                                         End If
                                     Case "Sold"
@@ -2487,10 +2499,10 @@ Public Class Import
                                         .TradetypID = DBHelper.TradeTypen.Verkauf
                                         .QuellBetrag = CSV.StringToDecimal(Row(1))
                                         .QuellBetragNachGebuehr = .QuellBetrag
-                                        .QuellKontoID = DBHelper.Konten.BTC
+                                        .QuellKontoID = AccountManager.Accounts.BTC
                                         .ZielBetrag = CSV.StringToDecimal(Row(3).Substring(0, Row(3).Length - 2))
                                         .BetragNachGebuehr = .ZielBetrag - LineFee
-                                        .ZielKontoID = DBHelper.Konten.EUR
+                                        .ZielKontoID = AccountManager.Accounts.EUR
                                         .WertEUR = .BetragNachGebuehr
                                         .Info = String.Format("Verkauf BTC - Volumen {0} BTC für {1} EUR / Kurs {2}", .ZielBetrag, .QuellBetrag, Row(2))
                                         ' Gebühren-Transaktion
@@ -2498,7 +2510,7 @@ Public Class Import
                                             RecordFee = .Clone()
                                             RecordFee.SourceID = .SourceID & "/fee"
                                             RecordFee.TradetypID = DBHelper.TradeTypen.Gebühr
-                                            RecordFee.ZielKontoID = DBHelper.Konten.feeEUR
+                                            RecordFee.ZielKontoID = AccountManager.Accounts.feeEUR
                                             RecordFee.ZielBetrag = LineFee
                                             RecordFee.WertEUR = 0
                                             RecordFee.BetragNachGebuehr = 0
@@ -2611,7 +2623,7 @@ Public Class Import
                                             If IsNumeric(Left(Tmp(6), 1)) Then
                                                 .QuellBetrag = Math.Round(CSV.StringToDecimal(Tmp(6)) * .ZielBetrag, 8, MidpointRounding.AwayFromZero)
                                                 .QuellBetragNachGebuehr = .QuellBetrag
-                                                .QuellKontoID = DBHelper.Konten.Fehler
+                                                .QuellKontoID = AccountManager.Accounts.[Error]
                                             Else
                                                 .QuellBetrag = Math.Round(CSV.StringToDecimal(Tmp(6).Substring(1)) * .ZielBetrag, 8, MidpointRounding.AwayFromZero)
                                                 .QuellBetragNachGebuehr = .QuellBetrag
@@ -2624,7 +2636,7 @@ Public Class Import
                                             .QuellKontoID = GetAccount(Tmp(7)).ID
 
                                         End If
-                                        If .QuellKontoID = DBHelper.Konten.EUR Then
+                                        If .QuellKontoID = AccountManager.Accounts.EUR Then
                                             .WertEUR = .QuellBetrag
                                         End If
                                     Case "fee"
@@ -2638,13 +2650,13 @@ Public Class Import
                                         .QuellBetragNachGebuehr = .QuellBetrag
                                         Select Case HistType
                                             Case MtGoxHistoryType.HistoryEUR
-                                                .QuellKontoID = DBHelper.Konten.EUR
+                                                .QuellKontoID = AccountManager.Accounts.EUR
                                                 .SourceID = "EUR/" & .SourceID
                                             Case MtGoxHistoryType.HistoryUSD
-                                                .QuellKontoID = DBHelper.Konten.USD
+                                                .QuellKontoID = AccountManager.Accounts.USD
                                                 .SourceID = "USD/" & .SourceID
                                             Case Else
-                                                .QuellKontoID = DBHelper.Konten.BTC
+                                                .QuellKontoID = AccountManager.Accounts.BTC
                                         End Select
                                         .ZielKontoID = GetAccount(.QuellKontoID).GebuehrKontoID
                                     Case "out"
@@ -2659,7 +2671,7 @@ Public Class Import
                                             ' Wahrscheinlich Dollar
                                             If IsNumeric(Left(Tmp(6), 1)) Then
                                                 .ZielBetrag = Math.Round(CSV.StringToDecimal(Tmp(6)) * .QuellBetrag, 8, MidpointRounding.AwayFromZero)
-                                                .ZielKontoID = DBHelper.Konten.Fehler
+                                                .ZielKontoID = AccountManager.Accounts.[Error]
                                             Else
                                                 .ZielBetrag = Math.Round(CSV.StringToDecimal(Tmp(6).Substring(1)) * .QuellBetrag, 8, MidpointRounding.AwayFromZero)
                                                 .ZielKontoID = GetAccount(Left(Tmp(6), 1)).ID
@@ -2677,18 +2689,18 @@ Public Class Import
                                             .ZielBetrag = .QuellBetrag
                                             Select Case HistType
                                                 Case MtGoxHistoryType.HistoryEUR
-                                                    .QuellKontoID = DBHelper.Konten.EUR
+                                                    .QuellKontoID = AccountManager.Accounts.EUR
                                                     .SourceID = "EUR/" & .SourceID
                                                 Case MtGoxHistoryType.HistoryUSD
-                                                    .QuellKontoID = DBHelper.Konten.USD
+                                                    .QuellKontoID = AccountManager.Accounts.USD
                                                     .SourceID = "USD/" & .SourceID
                                                 Case Else
-                                                    .QuellKontoID = DBHelper.Konten.BTC
+                                                    .QuellKontoID = AccountManager.Accounts.BTC
                                             End Select
                                             .ZielKontoID = .QuellKontoID
                                         End If
                                         .BetragNachGebuehr = .ZielBetrag
-                                        If .ZielKontoID = DBHelper.Konten.EUR Then
+                                        If .ZielKontoID = AccountManager.Accounts.EUR Then
                                             .WertEUR = .ZielBetrag
                                         End If
                                     Case "withdraw"
@@ -2702,13 +2714,13 @@ Public Class Import
                                         .BetragNachGebuehr = .QuellBetrag   ' Bei Auszahlungen steht der Betrag, der am Ziel ankommt, in BetragNachGebuehr!
                                         Select Case HistType
                                             Case MtGoxHistoryType.HistoryEUR
-                                                .QuellKontoID = DBHelper.Konten.EUR
+                                                .QuellKontoID = AccountManager.Accounts.EUR
                                                 .SourceID = "EUR/" & .SourceID
                                             Case MtGoxHistoryType.HistoryUSD
-                                                .QuellKontoID = DBHelper.Konten.USD
+                                                .QuellKontoID = AccountManager.Accounts.USD
                                                 .SourceID = "USD/" & .SourceID
                                             Case Else
-                                                .QuellKontoID = DBHelper.Konten.BTC
+                                                .QuellKontoID = AccountManager.Accounts.BTC
                                         End Select
                                         .ZielKontoID = .QuellKontoID
                                     Case "deposit"
@@ -2722,13 +2734,13 @@ Public Class Import
                                         .BetragNachGebuehr = .ZielBetrag
                                         Select Case HistType
                                             Case MtGoxHistoryType.HistoryEUR
-                                                .ZielKontoID = DBHelper.Konten.EUR
+                                                .ZielKontoID = AccountManager.Accounts.EUR
                                                 .SourceID = "EUR/" & .SourceID
                                             Case MtGoxHistoryType.HistoryUSD
-                                                .ZielKontoID = DBHelper.Konten.USD
+                                                .ZielKontoID = AccountManager.Accounts.USD
                                                 .SourceID = "USD/" & .SourceID
                                             Case Else
-                                                .ZielKontoID = DBHelper.Konten.BTC
+                                                .ZielKontoID = AccountManager.Accounts.BTC
                                         End Select
                                         .QuellKontoID = .ZielKontoID
                                     Case Else
@@ -2980,7 +2992,7 @@ Public Class Import
             With TradeRec
                 If .TradetypID = DBHelper.TradeTypen.Einzahlung Then
                     ' Assume that all fiat deposits come from Platfroms.Bank
-                    If (.QuellKontoID = DBHelper.Konten.EUR Or .QuellKontoID = DBHelper.Konten.USD) AndAlso .QuellPlattformID = Platforms.Unknown Then
+                    If (.QuellKontoID = AccountManager.Accounts.EUR Or .QuellKontoID = AccountManager.Accounts.USD) AndAlso .QuellPlattformID = Platforms.Unknown Then
                         .QuellPlattformID = Platforms.Bank
                     End If
                     ' Offene *Einzahlung* - Transfer-Eintrag mit Auszahlungsinformationen suchen

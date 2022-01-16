@@ -670,7 +670,7 @@ Public Class Import_Binance
                                                 .QuellBetrag = BHO.Total
                                             End If
                                             .QuellKontoID = BHO.Market2Account.ID
-                                            If .QuellKontoID = DBHelper.Konten.EUR Then
+                                            If .QuellKontoID = AccountManager.Accounts.EUR Then
                                                 .WertEUR = .QuellBetrag
                                             End If
                                             .Info = String.Format(My.Resources.MyStrings.importInfoGenericBuy,
@@ -694,8 +694,10 @@ Public Class Import_Binance
                                                 .QuellBetrag = BHO.Amount
                                             End If
                                             .QuellKontoID = BHO.Market1Account.ID
-                                            If .QuellKontoID = DBHelper.Konten.EUR Then
+                                            If .QuellKontoID = AccountManager.Accounts.EUR Then
                                                 .WertEUR = .QuellBetrag
+                                            ElseIf .ZielKontoID = AccountManager.Accounts.EUR Then
+                                                .WertEUR = .BetragNachGebuehr
                                             End If
                                             .Info = String.Format(My.Resources.MyStrings.importInfoGenericSell,
                                                                   BHO.Market1Account.Code, BHO.Amount, BHO.Total, Market2)
@@ -864,15 +866,15 @@ Public Class Import_Binance
                                     .TradetypID = DBHelper.TradeTypen.Auszahlung
                                     .ZielPlattformID = PlatformManager.Platforms.Unknown
                                     .QuellPlattformID = Platform
+                                    .QuellBetrag = .ZielBetrag + BHO.Fee
+                                    .QuellBetragNachGebuehr = .ZielBetrag
                                     If .QuellKontoID = AccountManager.Accounts.EUR Then
-                                        .WertEUR = BHO.Amount
+                                        .WertEUR = .QuellBetrag
                                     Else
                                         .WertEUR = 0
                                     End If
                                     .ZielBetrag = BHO.Amount
                                     .BetragNachGebuehr = .ZielBetrag
-                                    .QuellBetrag = .ZielBetrag + BHO.Fee
-                                    .QuellBetragNachGebuehr = .ZielBetrag
                                     .Info = String.Format(My.Resources.MyStrings.importInfoGenericPayout,
                                                           BHO.Coin, BHO.OrderID)
                                 End If
@@ -1027,8 +1029,10 @@ Public Class Import_Binance
                                                     .QuellBetrag = BHO.Executed
                                                 End If
                                                 .QuellKontoID = BHO.Pair1Account.ID
-                                                If .QuellKontoID = DBHelper.Konten.EUR Then
+                                                If .QuellKontoID = AccountManager.Accounts.EUR Then
                                                     .WertEUR = .QuellBetrag
+                                                ElseIf .ZielKontoID = AccountManager.Accounts.EUR Then
+                                                    .WertEUR = .BetragNachGebuehr
                                                 End If
                                                 .Info = String.Format(My.Resources.MyStrings.importInfoGenericSell,
                                                                       BHO.Pair1Account.Code, BHO.Executed, BHO.Amount, Pair2)
