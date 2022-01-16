@@ -4,8 +4,7 @@ Version 0.9.7.1 / 10.01.2022
 
 Verbesserungen:
 - Import für Binance.com erweitert, sodass jetzt auch
-  Trades, als Zip-Datei heruntergeladen, verarbeitet
-  werden können.
+  Trades als Zip-Datei verarbeitet werden können.
 
 
 ******************************************************
