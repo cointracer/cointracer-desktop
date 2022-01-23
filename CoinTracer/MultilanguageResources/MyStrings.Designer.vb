@@ -965,6 +965,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Datenzeile kann nicht verarbeitet werden, da sowohl Quell- und Zielplattform als auch Quell- und Zielasset abweichen. Asset-Transfers und Asset-Käufe oder -Verkäufe müssen in separaten Datenzeilen abgebildet werden. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importErrorAccountsAndPlatformsDiffer() As String
+            Get
+                Return ResourceManager.GetString("importErrorAccountsAndPlatformsDiffer", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Einzahlung, Order-ID {1} ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importInfoBinanceDepositFiat() As String

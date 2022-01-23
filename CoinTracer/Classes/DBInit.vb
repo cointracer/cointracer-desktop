@@ -371,7 +371,7 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(37, "update Konten set Fix = 1 where Fix = 'Y'"),
         New SqlUpdateSequenceStruct(VersionID:=37, CustomAction:=3),
         New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=4, Message:=My.Resources.MyStrings.dbUpdateMsgReportReset),
-        New SqlUpdateSequenceStruct(VersionID:=43, CustomAction:=-1)    ' <-- just insert the latest db version number here
+        New SqlUpdateSequenceStruct(VersionID:=44, CustomAction:=5)    ' <-- just insert the latest db version number here
     }
 
 
@@ -872,6 +872,13 @@ Public Class DBInit
                 ' Gainings calculation has changed: clear the table [Kalkulationen]
                 With New CoinTracerDataSetTableAdapters.KalkulationenTableAdapter
                     .DeleteAllRows()
+                End With
+            Case 5
+                ' Make sure no fee accounts with ids in range 300 to 399 are used any more
+                With New CoinTracerDataSetTableAdapters.KontenTableAdapter
+                    For Each Code In New List(Of String) From {"EUR", "USD", "BTC", "LTC", "PPC", "NMC", "NVC", "XPM", "MSC", "FTC", "TRC", "ETH", "LSK", "XLM", "REP", "BFX", "ETC", "RRT", "ZEC", "XMR", "XRP", "BCH", "IOT", "BTG"}
+                        .UpdateFeeID(Code, "fee" & Code)
+                    Next
                 End With
         End Select
     End Sub

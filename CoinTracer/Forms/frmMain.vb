@@ -476,12 +476,12 @@ Public Class frmMain
         DataGridViewDoubleBuffer(grdReport)
 
         ' Tabellen-Grids initialisieren
-        grdTrades.BindGrid(New CoinTracerDataSetTableAdapters.VW_TradesTableAdapter())
-        grdImporte.BindGrid(New CoinTracerDataSetTableAdapters.VW_ImporteTableAdapter())
-        grdKonten.BindGrid(New CoinTracerDataSetTableAdapters.VW_KontenTableAdapter())
-        grdPlattformen.BindGrid(New CoinTracerDataSetTableAdapters.VW_PlattformenTableAdapter())
-        grdKurse.BindGrid(New CoinTracerDataSetTableAdapters.VW_KurseTableAdapter())
-        grdBerechnungen.BindGrid(New CoinTracerDataSetTableAdapters.VW_BerechnungenTableAdapter())
+        grdTrades.BindGrid(New VW_TradesTableAdapter())
+        grdImporte.BindGrid(New VW_ImporteTableAdapter())
+        grdKonten.BindGrid(New VW_KontenTableAdapter())
+        grdPlattformen.BindGrid(New VW_PlattformenTableAdapter())
+        grdKurse.BindGrid(New VW_KurseTableAdapter())
+        grdBerechnungen.BindGrid(New VW_BerechnungenTableAdapter())
 
         ' Szenario-Combobox initialisieren
         cbxSzenario.Initialize(_cnn, "select 0 as Class, 0 as ID, 'Standard' as Bezeichnung, CVS from Szenarien where ID = 0 " &
@@ -883,7 +883,7 @@ Public Class frmMain
         Try
             ' Prüfen, ob es unberechnete USD-Trades gibt
             If _CM.HasUnweightedTrades(AccountManager.Accounts.USD, ToDate) Then
-                _TVM.SetTaxCurrencyValues()
+                _TVM.SetTaxCurrencyValues(AccountManager.Accounts.USD)
             End If
             If _CM.HasUnweightedTrades(AccountManager.Accounts.USD, ToDate) Then
                 Dim LastUsdDate As Date = _CM.GetCoursesCutOffDay(AccountManager.Accounts.EUR, AccountManager.Accounts.USD)

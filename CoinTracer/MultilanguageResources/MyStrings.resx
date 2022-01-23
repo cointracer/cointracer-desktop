@@ -1228,4 +1228,7 @@ Erstellen einer Deposit- oder Withdrawal-History:
   <data name="importOpenFileFilterKraken" xml:space="preserve">
     <value>Ledger- oder Trade-Dateien (*.csv;*.zip)|*.csv;*.zip|Alle Dateien (*.*)|*.*</value>
   </data>
+  <data name="importErrorAccountsAndPlatformsDiffer" xml:space="preserve">
+    <value>Datenzeile kann nicht verarbeitet werden, da sowohl Quell- und Zielplattform als auch Quell- und Zielasset abweichen. Asset-Transfers und Asset-Käufe oder -Verkäufe müssen in separaten Datenzeilen abgebildet werden.</value>
+  </data>
 </root>

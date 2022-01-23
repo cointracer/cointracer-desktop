@@ -1,4 +1,15 @@
 ﻿******************************************************
+Version 0.9.7.2 / 23.01.2022
+----------------------------
+
+Verbesserungen:
+- Gewinnberechnung und alle Importe so verändert, dass
+  Kaufgebühren in EUR bei der Gewinnberechnung korrekt 
+  berücksichtigt werden. Darüber hinaus werden Transfer-
+  Gebühren jetzt korrekt ausgewiesen und berücksichtigt.
+
+
+******************************************************
 Version 0.9.7.1 / 10.01.2022
 ----------------------------
 

@@ -160,7 +160,7 @@
     <value>tpDashboard</value>
   </data>
   <data name="&gt;&gt;tpDashboard.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpDashboard.Parent" xml:space="preserve">
     <value>TableLayoutPanel3</value>
@@ -190,7 +190,7 @@
     <value>gnd1stTab</value>
   </data>
   <data name="&gt;&gt;gnd1stTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd1stTab.Parent" xml:space="preserve">
     <value>TableLayoutPanel4</value>
@@ -349,7 +349,7 @@
     <value>dshgrdBestaende</value>
   </data>
   <data name="&gt;&gt;dshgrdBestaende.Type" xml:space="preserve">
-    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dshgrdBestaende.Parent" xml:space="preserve">
     <value>spltCntGainings.Panel1</value>
@@ -388,7 +388,7 @@
     <value>dshgrdAbgaenge</value>
   </data>
   <data name="&gt;&gt;dshgrdAbgaenge.Type" xml:space="preserve">
-    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DashboardDataGridView, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dshgrdAbgaenge.Parent" xml:space="preserve">
     <value>spltCntGainings.Panel2</value>
@@ -877,7 +877,7 @@
     <value>cmdCourses</value>
   </data>
   <data name="&gt;&gt;cmdCourses.Type" xml:space="preserve">
-    <value>CoinTracer.PaddingButton, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.PaddingButton, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cmdCourses.Parent" xml:space="preserve">
     <value>grpCourses</value>
@@ -1328,7 +1328,7 @@
     <value>cbxSzenario</value>
   </data>
   <data name="&gt;&gt;cbxSzenario.Type" xml:space="preserve">
-    <value>CoinTracer.DataBoundComboBox, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataBoundComboBox, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;cbxSzenario.Parent" xml:space="preserve">
     <value>grpSzenarien</value>
@@ -1709,7 +1709,7 @@
     <value>tpGainings</value>
   </data>
   <data name="&gt;&gt;tpGainings.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpGainings.Parent" xml:space="preserve">
     <value>grpGainings</value>
@@ -1736,7 +1736,7 @@
     <value>gnd2ndTab</value>
   </data>
   <data name="&gt;&gt;gnd2ndTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd2ndTab.Parent" xml:space="preserve">
     <value>grpGainings</value>
@@ -1817,7 +1817,7 @@
     <value>vssGlobalStrategy</value>
   </data>
   <data name="&gt;&gt;vssGlobalStrategy.Type" xml:space="preserve">
-    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;vssGlobalStrategy.Parent" xml:space="preserve">
     <value>grpSettings</value>
@@ -2028,7 +2028,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>dpctlHaltefrist</value>
   </data>
   <data name="&gt;&gt;dpctlHaltefrist.Type" xml:space="preserve">
-    <value>CoinTracer.DataPeriodControl, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataPeriodControl, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;dpctlHaltefrist.Parent" xml:space="preserve">
     <value>grpSettings</value>
@@ -2196,16 +2196,16 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>NoControl</value>
   </data>
   <data name="Label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>299, 138</value>
+    <value>270, 138</value>
   </data>
   <data name="Label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 15</value>
+    <value>86, 15</value>
   </data>
   <data name="Label13.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
   </data>
   <data name="Label13.Text" xml:space="preserve">
-    <value>Transfers:</value>
+    <value>Coin-Transfers:</value>
   </data>
   <data name="&gt;&gt;Label13.Name" xml:space="preserve">
     <value>Label13</value>
@@ -2657,13 +2657,22 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="Total.Width" type="System.Int32, mscorlib">
     <value>90</value>
   </data>
-  <metadata name="Gesamt_EUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="CoinAnteil.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="Gesamt_EUR.HeaderText" xml:space="preserve">
+  <data name="CoinAnteil.HeaderText" xml:space="preserve">
+    <value>Coin-Anteil</value>
+  </data>
+  <data name="CoinAnteil.Width" type="System.Int32, mscorlib">
+    <value>88</value>
+  </data>
+  <metadata name="Wert_EUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Wert_EUR.HeaderText" xml:space="preserve">
     <value>Wert [€]</value>
   </data>
-  <data name="Gesamt_EUR.Width" type="System.Int32, mscorlib">
+  <data name="Wert_EUR.Width" type="System.Int32, mscorlib">
     <value>90</value>
   </data>
   <metadata name="Kurs_EUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
@@ -2692,15 +2701,6 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   </data>
   <data name="Kaufdatum.Width" type="System.Int32, mscorlib">
     <value>96</value>
-  </data>
-  <metadata name="CoinAnteil.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="CoinAnteil.HeaderText" xml:space="preserve">
-    <value>Coin-Anteil</value>
-  </data>
-  <data name="CoinAnteil.Width" type="System.Int32, mscorlib">
-    <value>88</value>
   </data>
   <data name="OrgPriceEUR.HeaderText" xml:space="preserve">
     <value>Kaufpreis [€]</value>
@@ -2784,7 +2784,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>ccbReportPlatforms</value>
   </data>
   <data name="&gt;&gt;ccbReportPlatforms.Type" xml:space="preserve">
-    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ccbReportPlatforms.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -2802,7 +2802,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>266, 5</value>
   </data>
   <data name="gnd3rdTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 238</value>
+    <value>297, 103</value>
   </data>
   <data name="gnd3rdTab.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -2811,7 +2811,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>gnd3rdTab</value>
   </data>
   <data name="&gt;&gt;gnd3rdTab.Type" xml:space="preserve">
-    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;gnd3rdTab.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -2844,7 +2844,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>tpReport</value>
   </data>
   <data name="&gt;&gt;tpReport.Type" xml:space="preserve">
-    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;tpReport.Parent" xml:space="preserve">
     <value>tabReports</value>
@@ -2887,6 +2887,9 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   </data>
   <data name="cmdReportPreview.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>TextBeforeImage</value>
+  </data>
+  <data name="cmdReportPreview.ToolTip" xml:space="preserve">
+    <value>Bericht anzeigen, exportieren oder drucken...</value>
   </data>
   <data name="&gt;&gt;cmdReportPreview.Name" xml:space="preserve">
     <value>cmdReportPreview</value>
@@ -3006,7 +3009,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdTrades</value>
   </data>
   <data name="&gt;&gt;grdTrades.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdTrades.Parent" xml:space="preserve">
     <value>tabTrades</value>
@@ -3078,7 +3081,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdImporte</value>
   </data>
   <data name="&gt;&gt;grdImporte.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdImporte.Parent" xml:space="preserve">
     <value>tabImporte</value>
@@ -3156,7 +3159,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdPlattformen</value>
   </data>
   <data name="&gt;&gt;grdPlattformen.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdPlattformen.Parent" xml:space="preserve">
     <value>tabPlattformen</value>
@@ -3228,7 +3231,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdKonten</value>
   </data>
   <data name="&gt;&gt;grdKonten.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdKonten.Parent" xml:space="preserve">
     <value>tabKonten</value>
@@ -3300,7 +3303,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdKurse</value>
   </data>
   <data name="&gt;&gt;grdKurse.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdKurse.Parent" xml:space="preserve">
     <value>tabKurse</value>
@@ -3378,7 +3381,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>grdBerechnungen</value>
   </data>
   <data name="&gt;&gt;grdBerechnungen.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;grdBerechnungen.Parent" xml:space="preserve">
     <value>tabBerechnungen</value>
@@ -3424,7 +3427,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADo
-        CQAAAk1TRnQBSQFMAwEBAAEIAQoBCAEKARgBAAEYAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
+        CQAAAk1TRnQBSQFMAwEBAAEgAQoBIAEKARgBAAEYAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
         AWADAAEYAwABAQEAAQgGAAEJGAABgAIAAYADAAKAAQABgAMAAYABAAGAAQACgAIAA8ABAAHAAdwBwAEA
         AfABygGmAQABMwUAATMBAAEzAQABMwEAAjMCAAMWAQADHAEAAyIBAAMpAQADVQEAA00BAANCAQADOQEA
         AYABfAH/AQACUAH/AQABkwEAAdYBAAH/AewBzAEAAcYB1gHvAQAB1gLnAQABkAGpAa0CAAH/ATMDAAFm
@@ -3531,7 +3534,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADI
-        FAAAAk1TRnQBSQFMAgEBBAEAAQgBCgEIAQoBIAEAASABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        FAAAAk1TRnQBSQFMAgEBBAEAASABCgEgAQoBIAEAASABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABgAMAAUADAAEBAQABCAYAASAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -4029,7 +4032,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>ThreadsafeStatusStrip1</value>
   </data>
   <data name="&gt;&gt;ThreadsafeStatusStrip1.Type" xml:space="preserve">
-    <value>CoinTracer.ThreadsafeStatusStrip, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.ThreadsafeStatusStrip, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ThreadsafeStatusStrip1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -5914,6 +5917,114 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;InfoToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;Vorgang.Name" xml:space="preserve">
+    <value>Vorgang</value>
+  </data>
+  <data name="&gt;&gt;Vorgang.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Timestamp.Name" xml:space="preserve">
+    <value>Timestamp</value>
+  </data>
+  <data name="&gt;&gt;Timestamp.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Art.Name" xml:space="preserve">
+    <value>Art</value>
+  </data>
+  <data name="&gt;&gt;Art.Type" xml:space="preserve">
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Plattform.Name" xml:space="preserve">
+    <value>Plattform</value>
+  </data>
+  <data name="&gt;&gt;Plattform.Type" xml:space="preserve">
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;TypeCoins.Name" xml:space="preserve">
+    <value>TypeCoins</value>
+  </data>
+  <data name="&gt;&gt;TypeCoins.Type" xml:space="preserve">
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;AmountCoins.Name" xml:space="preserve">
+    <value>AmountCoins</value>
+  </data>
+  <data name="&gt;&gt;AmountCoins.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;PriceUSD.Name" xml:space="preserve">
+    <value>PriceUSD</value>
+  </data>
+  <data name="&gt;&gt;PriceUSD.Type" xml:space="preserve">
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Total.Name" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="&gt;&gt;Total.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;CoinAnteil.Name" xml:space="preserve">
+    <value>CoinAnteil</value>
+  </data>
+  <data name="&gt;&gt;CoinAnteil.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Wert_EUR.Name" xml:space="preserve">
+    <value>Wert_EUR</value>
+  </data>
+  <data name="&gt;&gt;Wert_EUR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Kurs_EUR.Name" xml:space="preserve">
+    <value>Kurs_EUR</value>
+  </data>
+  <data name="&gt;&gt;Kurs_EUR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Kaufvorgang.Name" xml:space="preserve">
+    <value>Kaufvorgang</value>
+  </data>
+  <data name="&gt;&gt;Kaufvorgang.Type" xml:space="preserve">
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;Kaufdatum.Name" xml:space="preserve">
+    <value>Kaufdatum</value>
+  </data>
+  <data name="&gt;&gt;Kaufdatum.Type" xml:space="preserve">
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;OrgPriceEUR.Name" xml:space="preserve">
+    <value>OrgPriceEUR</value>
+  </data>
+  <data name="&gt;&gt;OrgPriceEUR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;KaufkursEUR.Name" xml:space="preserve">
+    <value>KaufkursEUR</value>
+  </data>
+  <data name="&gt;&gt;KaufkursEUR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;VerkaufspreisEUR.Name" xml:space="preserve">
+    <value>VerkaufspreisEUR</value>
+  </data>
+  <data name="&gt;&gt;VerkaufspreisEUR.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Gaining.Name" xml:space="preserve">
+    <value>Gaining</value>
+  </data>
+  <data name="&gt;&gt;Gaining.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TaxFree.Name" xml:space="preserve">
+    <value>TaxFree</value>
+  </data>
+  <data name="&gt;&gt;TaxFree.Type" xml:space="preserve">
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
+  </data>
   <data name="&gt;&gt;tsmiEditTrades.Name" xml:space="preserve">
     <value>tsmiEditTrades</value>
   </data>
@@ -6002,13 +6113,13 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>DataGridViewAutoFilterTextBoxColumn4</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn4.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn5.Name" xml:space="preserve">
     <value>DataGridViewAutoFilterTextBoxColumn5</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn5.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewTextBoxColumn5.Name" xml:space="preserve">
     <value>DataGridViewTextBoxColumn5</value>
@@ -6020,7 +6131,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>DataGridViewAutoFilterTextBoxColumn6</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn6.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;DataGridViewTextBoxColumn6.Name" xml:space="preserve">
     <value>DataGridViewTextBoxColumn6</value>
@@ -6056,121 +6167,13 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>DataGridViewAutoFilterTextBoxColumn7</value>
   </data>
   <data name="&gt;&gt;DataGridViewAutoFilterTextBoxColumn7.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Name" xml:space="preserve">
     <value>EnhancedToolTip1</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Type" xml:space="preserve">
-    <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;Vorgang.Name" xml:space="preserve">
-    <value>Vorgang</value>
-  </data>
-  <data name="&gt;&gt;Vorgang.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Timestamp.Name" xml:space="preserve">
-    <value>Timestamp</value>
-  </data>
-  <data name="&gt;&gt;Timestamp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Art.Name" xml:space="preserve">
-    <value>Art</value>
-  </data>
-  <data name="&gt;&gt;Art.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;Plattform.Name" xml:space="preserve">
-    <value>Plattform</value>
-  </data>
-  <data name="&gt;&gt;Plattform.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;TypeCoins.Name" xml:space="preserve">
-    <value>TypeCoins</value>
-  </data>
-  <data name="&gt;&gt;TypeCoins.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;AmountCoins.Name" xml:space="preserve">
-    <value>AmountCoins</value>
-  </data>
-  <data name="&gt;&gt;AmountCoins.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;PriceUSD.Name" xml:space="preserve">
-    <value>PriceUSD</value>
-  </data>
-  <data name="&gt;&gt;PriceUSD.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;Total.Name" xml:space="preserve">
-    <value>Total</value>
-  </data>
-  <data name="&gt;&gt;Total.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Gesamt_EUR.Name" xml:space="preserve">
-    <value>Gesamt_EUR</value>
-  </data>
-  <data name="&gt;&gt;Gesamt_EUR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Kurs_EUR.Name" xml:space="preserve">
-    <value>Kurs_EUR</value>
-  </data>
-  <data name="&gt;&gt;Kurs_EUR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Kaufvorgang.Name" xml:space="preserve">
-    <value>Kaufvorgang</value>
-  </data>
-  <data name="&gt;&gt;Kaufvorgang.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;Kaufdatum.Name" xml:space="preserve">
-    <value>Kaufdatum</value>
-  </data>
-  <data name="&gt;&gt;Kaufdatum.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;CoinAnteil.Name" xml:space="preserve">
-    <value>CoinAnteil</value>
-  </data>
-  <data name="&gt;&gt;CoinAnteil.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;OrgPriceEUR.Name" xml:space="preserve">
-    <value>OrgPriceEUR</value>
-  </data>
-  <data name="&gt;&gt;OrgPriceEUR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;KaufkursEUR.Name" xml:space="preserve">
-    <value>KaufkursEUR</value>
-  </data>
-  <data name="&gt;&gt;KaufkursEUR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;VerkaufspreisEUR.Name" xml:space="preserve">
-    <value>VerkaufspreisEUR</value>
-  </data>
-  <data name="&gt;&gt;VerkaufspreisEUR.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Gaining.Name" xml:space="preserve">
-    <value>Gaining</value>
-  </data>
-  <data name="&gt;&gt;Gaining.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TaxFree.Name" xml:space="preserve">
-    <value>TaxFree</value>
-  </data>
-  <data name="&gt;&gt;TaxFree.Type" xml:space="preserve">
-    <value>CoinTracer.DataGridViewAutoFilterTextBoxColumn, CoinTracer, Version=0.9.6.2, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.7.1, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmMain</value>

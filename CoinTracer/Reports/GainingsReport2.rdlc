@@ -1,37 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
- **************************************
- *
- * Copyright 2013-2021 Andreas Nebinger
- *
- * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
-   Folgeversionen der EUPL ("Lizenz");
- * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
-
- * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
- 
- * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
-   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
-   ausdrücklich oder stillschweigend - verbreitet.
- * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
-
- =======
- English
- =======
- 
- * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
-   subsequent versions of the EUPL (the "Licence");
- * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
- 
- * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
- 
- * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
-   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the Licence for the specific language governing permissions and limitations under the Licence.
- *
- **************************************
--->
-
 <Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2010/01/reportdefinition">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
@@ -82,8 +49,8 @@
           <DataField>Gesamtpreis</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
         </Field>
-        <Field Name="GesamtwertEUR">
-          <DataField>GesamtwertEUR</DataField>
+        <Field Name="WertEUR">
+          <DataField>WertEUR</DataField>
           <rd:TypeName>System.Object</rd:TypeName>
         </Field>
         <Field Name="KursEUR">
@@ -129,7 +96,7 @@
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>CoinTracerDataSet</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Andreas\Documents\Visual Studio 2013\Projects\CoinTracer\CoinTracer\CoinTracerDataSet.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Andreas\Documents\Visual Studio 2015\Projects\CoinTracer-Desktop\CoinTracer\CoinTracerDataSet.xsd</rd:SchemaPath>
         <rd:TableName>VW_GainingsReport2</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
@@ -1891,14 +1858,14 @@
                                                   <TablixHeader>
                                                     <Size>1.81208cm</Size>
                                                     <CellContents>
-                                                      <Textbox Name="GesamtwertEUR1">
+                                                      <Textbox Name="WertEUR">
                                                         <CanGrow>true</CanGrow>
                                                         <KeepTogether>true</KeepTogether>
                                                         <Paragraphs>
                                                           <Paragraph>
                                                             <TextRuns>
                                                               <TextRun>
-                                                                <Value>=Fields!GesamtwertEUR.Value</Value>
+                                                                <Value>=Sum(Fields!WertEUR.Value)</Value>
                                                                 <Style>
                                                                   <FontFamily>Segoe UI Semilight</FontFamily>
                                                                   <FontSize>8pt</FontSize>
@@ -1912,7 +1879,6 @@
                                                             </Style>
                                                           </Paragraph>
                                                         </Paragraphs>
-                                                        <rd:DefaultName>GesamtwertEUR1</rd:DefaultName>
                                                         <Style>
                                                           <Border>
                                                             <Color>#e5e5e5</Color>
@@ -1938,7 +1904,7 @@
                                                               <Paragraph>
                                                                 <TextRuns>
                                                                   <TextRun>
-                                                                    <Value>=Fields!KursEUR.Value</Value>
+                                                                    <Value>=Sum(Fields!WertEUR.Value)/Fields!CoinMenge.Value</Value>
                                                                     <Style>
                                                                       <FontFamily>Segoe UI Semilight</FontFamily>
                                                                       <FontSize>8pt</FontSize>
@@ -2551,7 +2517,31 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Hinweis: Wenn in Spalte "Vorgang Anschaffung" Vorgangsnummern in Klammern erscheinen, beziehen sich diese auf den zugehörigen Transfer-Vorgang.</Value>
+                    <Value>Hinweise: </Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>- In Spalte "Vorgang Anschaffung" beziehen sich eingeklammerte Vorgangsnummern auf den jeweils zugehörigen Transfer-Vorgang.</Value>
+                    <Style>
+                      <FontFamily>Segoe UI</FontFamily>
+                      <FontSize>9pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>- In Spalte "Anteil Coins" stellt eine Mengenangabe in Klammern den Coin-Anteil dar, der bei einem Transfer auf der Zielplattform angekommen ist.</Value>
                     <Style>
                       <FontFamily>Segoe UI</FontFamily>
                       <FontSize>9pt</FontSize>

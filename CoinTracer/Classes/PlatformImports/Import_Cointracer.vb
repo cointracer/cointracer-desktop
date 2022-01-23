@@ -483,7 +483,10 @@ Public Class Import_CoinTracer
                                     .DoNotImport = False
                                 End If
                             Else
-                                If TLO.TargetCurrency.IstFiat = False Then
+                                If .QuellPlattformID <> .ZielPlattformID Then
+                                    ' That's odd: we have different assets AND different platforms. Throw an error and ignore this line
+                                    Throw New ApplicationException(My.Resources.MyStrings.importErrorAccountsAndPlatformsDiffer)
+                                ElseIf TLO.TargetCurrency.IstFiat = False Then
                                     .TradetypID = DBHelper.TradeTypen.Kauf
                                     .DoNotImport = False
                                 ElseIf TLO.TargetCurrency.IstFiat AndAlso TLO.SourceCurrency.IstFiat = False Then

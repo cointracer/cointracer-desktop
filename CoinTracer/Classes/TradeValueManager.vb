@@ -190,7 +190,7 @@ Public Class TransferMerger
             ResultMessage = "Angegebene Trade-ID ist kein Transfer"
         ElseIf _1stTradeRow.ZielKontoID <> _1stTradeRow.QuellKontoID OrElse _2ndTradeRow.ZielKontoID <> _2ndTradeRow.QuellKontoID _
             OrElse _1stTradeRow.ZielKontoID <> _2ndTradeRow.QuellKontoID _
-            OrElse _1stTradeRow.ZielKontoID = DBHelper.Konten.Unbekannt Then
+            OrElse _1stTradeRow.ZielKontoID = AccountManager.Accounts.Unknown Then
             ResultCode = -3
             ResultMessage = "Die ausgewählten Transfers müssen identische Quell- bzw. Zielkonten haben"
         ElseIf GetResultingPlatform(_1stTradeRow.ZielPlattformID, _2ndTradeRow.ZielPlattformID) = PlatformManager.Platforms.Unknown _
@@ -219,7 +219,7 @@ Public Class TransferMerger
     ''' <param name="SecondTransferID">Optional: ID des zweiten Transfers</param>
     ''' <param name="FeeTrade">TradesRow des ggf. angelegten Gebühren-Transfers / Nothing, wenn keine Gebühren angelegt wurden.</param>
     ''' <returns>TradesRow des zusammengeführten Transfers</returns>
-    Public Function MergeTrades(Optional ByVal SecondTransferID As Long = -1, _
+    Public Function MergeTrades(Optional ByVal SecondTransferID As Long = -1,
                                 Optional ByRef FeeTrade As TradesRow = Nothing) As TradesRow
         Dim Result As TradesRow = Nothing
         If SecondTransferID <> -1 Then
@@ -293,19 +293,19 @@ Public Class TransferMerger
     ''' Zeigt eine Erklärung zur Vorgehensweise beim Zusammenführen von Transfers an
     ''' </summary>
     Public Function ShowAdvice() As DialogResult
-        Return MsgBoxEx.ShowWithNotAgainOption("MergeTransfers", DialogResult.OK, _
-                                               "Beim Import von Trade-Daten versucht der " & Application.ProductName & " Ein- und Auszahlungen plattformübergreifend zu erkennen " & _
-                                               "und zu Transfers zusammenzufassen. Wenn die automatische Erkennung nicht erfolgreich war, befinden sich ggf. " & _
-                                               "zwei Transfer-Einträge in den Trade-Daten, die zu einem einzigen Transfer zusammengefasst werden können." & Environment.NewLine & Environment.NewLine & _
-                                               "Beispiel:" & Environment.NewLine & "Transfer A = 5,48 BTC von Plattform 'unbekannt' nach 'Kraken' " & Environment.NewLine & _
-                                               "Transfer B = 5,50 BTC von Plattform 'Bitcoin.de' nach 'unbekannt'" & Environment.NewLine & _
-                                               "Transfer A und Transfer B können zu einem einzigen Transfer C zusammengefasst werden:" & Environment.NewLine & _
-                                               "Transfer C = 5,50 BTC von Plattform 'Bitcoin.de' nach 'Kraken', 0,02 BTC Gebühr" & Environment.NewLine & Environment.NewLine & _
-                                               "Genau hierfür dient das Zusammenlegen von Transfers." & Environment.NewLine & Environment.NewLine & _
-                                               "Sie haben nun den ersten von zwei zusammenzufassenden Transfers ausgewählt. Im nächsten Schritt wählen Sie bitte den " & _
-                                               "Zweiten aus und klicken Sie anschließend auf 'Zusammenfassen'." & Environment.NewLine & Environment.NewLine & _
-                                               "Bitte beachten Sie, dass nur solche Transfers zusammengefasst werden können, die bzgl. Betrag oder Ziel bzw. Ursprung " & _
-                                               "zueinander passen.", "Transfers zusammenführen", MessageBoxButtons.OKCancel, MessageBoxIcon.Information, _
+        Return MsgBoxEx.ShowWithNotAgainOption("MergeTransfers", DialogResult.OK,
+                                               "Beim Import von Trade-Daten versucht der " & Application.ProductName & " Ein- und Auszahlungen plattformübergreifend zu erkennen " &
+                                               "und zu Transfers zusammenzufassen. Wenn die automatische Erkennung nicht erfolgreich war, befinden sich ggf. " &
+                                               "zwei Transfer-Einträge in den Trade-Daten, die zu einem einzigen Transfer zusammengefasst werden können." & Environment.NewLine & Environment.NewLine &
+                                               "Beispiel:" & Environment.NewLine & "Transfer A = 5,48 BTC von Plattform 'unbekannt' nach 'Kraken' " & Environment.NewLine &
+                                               "Transfer B = 5,50 BTC von Plattform 'Bitcoin.de' nach 'unbekannt'" & Environment.NewLine &
+                                               "Transfer A und Transfer B können zu einem einzigen Transfer C zusammengefasst werden:" & Environment.NewLine &
+                                               "Transfer C = 5,50 BTC von Plattform 'Bitcoin.de' nach 'Kraken', 0,02 BTC Gebühr" & Environment.NewLine & Environment.NewLine &
+                                               "Genau hierfür dient das Zusammenlegen von Transfers." & Environment.NewLine & Environment.NewLine &
+                                               "Sie haben nun den ersten von zwei zusammenzufassenden Transfers ausgewählt. Im nächsten Schritt wählen Sie bitte den " &
+                                               "Zweiten aus und klicken Sie anschließend auf 'Zusammenfassen'." & Environment.NewLine & Environment.NewLine &
+                                               "Bitte beachten Sie, dass nur solche Transfers zusammengefasst werden können, die bzgl. Betrag oder Ziel bzw. Ursprung " &
+                                               "zueinander passen.", "Transfers zusammenführen", MessageBoxButtons.OKCancel, MessageBoxIcon.Information,
                                                MessageBoxDefaultButton.Button1)
     End Function
 
@@ -319,7 +319,7 @@ Public Class TransferMerger
     ''' </summary>
     ''' <param name="TradesTableAdapter">TableAdapter für Trades-DataTable</param>
     ''' <param name="DataSet">DataSet für die Trades-Tabelle</param>
-    Public Sub New(TradesTableAdapter As CoinTracerDataSetTableAdapters.TradesTableAdapter, _
+    Public Sub New(TradesTableAdapter As CoinTracerDataSetTableAdapters.TradesTableAdapter,
                    DataSet As CoinTracerDataSet)
         Me.New()
         _TradesTable = DataSet.Trades
@@ -339,12 +339,12 @@ Public Class TransferMerger
                 Dim KontenRow As CoinTracerDataSet.KontenRow = _KontenTable.FindByID(TradeRow.QuellKontoID)
                 Dim QuellPlattformenRow As CoinTracerDataSet.PlattformenRow = _PlattformenTable.FindByID(TradeRow.QuellPlattformID)
                 Dim ZielPlattformenRow As CoinTracerDataSet.PlattformenRow = _PlattformenTable.FindByID(TradeRow.ZielPlattformID)
-                Description = String.Format("(ID {0}) {1} | {4} {5} | {2} → {3}", _
+                Description = String.Format("(ID {0}) {1} | {4} {5} | {2} → {3}",
                                             TradeRow.ID,
-                                            TradeRow.Zeitpunkt.ToString("yyyy-MM-dd hh:mm:ss"), _
-                                            QuellPlattformenRow.Bezeichnung, _
-                                            ZielPlattformenRow.Bezeichnung, _
-                                            TradeRow.QuellBetrag, _
+                                            TradeRow.Zeitpunkt.ToString("yyyy-MM-dd hh:mm:ss"),
+                                            QuellPlattformenRow.Bezeichnung,
+                                            ZielPlattformenRow.Bezeichnung,
+                                            TradeRow.QuellBetrag,
                                             KontenRow.Bezeichnung)
             Else
                 Description = "- unbekannt -"
@@ -427,6 +427,7 @@ Public Class TradeValueManager
         Public TxTA As TradeTxTableAdapter
         Public TxTb As TradeTxDataTable
         Public KontenTb As KontenDataTable
+        Public KurseTb As KurseDataTable
         Public PlattformenTb As PlattformenDataTable
         Public TradeValuesTA As TradesWerteTableAdapter
         Public TradeValuesTb As TradesWerteDataTable
@@ -751,23 +752,14 @@ Public Class TradeValueManager
     End Function
 
     ''' <summary>
-    ''' Füllt bei Trades in Fremdwährungen den jeweiligen Wert in der Steuer-Währung (aktuell nur EUR)
+    ''' Sets the taxable value for all trades with the given TargetAccountID
     ''' </summary>
-    Public Sub SetTaxCurrencyValues()
-        Dim SQL As String
+    Public Sub SetTaxCurrencyValues(ByVal TargetAccountID As AccountManager.Accounts)
         Cursor.Current = Cursors.WaitCursor
         Try
-            ' Trades in USD -> EUR-Wert behandeln
-            SQL = "update Trades set WertEUR=coalesce((select round((t.BetragNachGebuehr / t.{1}Betrag) * t.{2}Betrag / k.ZielBetrag , 8) " &
-                  "from Trades t inner join Kurse k on (date(k.Zeitpunkt)=date(t.Zeitpunkt) and k.ZielKontoID=t.{2}KontoID) " &
-                  "where t.ID=Trades.ID), 0) " &
-                  "where TradeTypID{0} and {2}KontoID=102 and WertEUR=0 and {2}Betrag>0"
-            ' Käufe
-            _DS.ExecuteSQL(String.Format(SQL, "=3", "Ziel", "Quell"))
-            ' Verkäufe & Einzahlungen & Transfers
-            _DS.ExecuteSQL(String.Format(SQL, " in (1,4,5)", "Ziel", "Ziel"))
-            ' Auszahlungen
-            _DS.ExecuteSQL(String.Format(SQL, "=2", "Quell", "Quell"))
+            Dim TradesTA As New TradesTableAdapter
+            TradesTA.UpdateTaxValuesIncoming(AccountManager.Accounts.EUR, TargetAccountID)
+            TradesTA.UpdateTaxValuesOutgoing(AccountManager.Accounts.EUR, TargetAccountID)
         Catch ex As Exception
             Cursor.Current = Cursors.Default
             Throw
@@ -842,7 +834,7 @@ Public Class TradeValueManager
         Dim TotalOutRows As Long
 
         Cursor.Current = Cursors.WaitCursor
-        InitProgressForm(My.Resources.MyStrings.calcGainingsInitProgressMessage)
+        InitProgressForm(MyStrings.calcGainingsInitProgressMessage)
         Try
             ' Write new calculation entry, rollback other calculations if needed
             If UntilTime = DATENULLVALUE Then
@@ -855,6 +847,9 @@ Public Class TradeValueManager
                 _LastUnclearSpendings = 0
                 ' Get open trade rows
                 With New TradesTableAdapter With {.ClearBeforeFill = False}
+                    ' Change all crypto sells into buys (until we handle these more intelligent)
+                    .UpdateBuyForSell()
+                    ' Retrieve the open trades
                     _CalcParams.TradesTb = .GetOpenTradesBySzenarioID(_SzenarioID, UntilTime)
                 End With
                 If (_CalcParams.TradesTb.Rows.Count <> 0) Then
@@ -865,6 +860,9 @@ Public Class TradeValueManager
                     End With
                     With New KontenTableAdapter
                         _CalcParams.KontenTb = .GetData()
+                    End With
+                    With New KurseTableAdapter
+                        _CalcParams.KurseTb = .GetData()
                     End With
                     _LongTermInterval = New LongTermTaxPeriod(_TCS.LongTermPeriodSQL)
 
@@ -1007,16 +1005,16 @@ Public Class TradeValueManager
         If Not _CalcParams.TradeIDsCleared.Contains(Trade.ID) Then
             Dim TargetIsFiat As Boolean = _CalcParams.KontenTb.FindByID(Trade.ZielKontoID).IstFiat
             Dim AmountToAssign As Decimal
-            If ((Trade.TradeTypID = DBHelper.TradeTypen.Kauf) OrElse ((Trade.TradeTypID = DBHelper.TradeTypen.Transfer) And Not TargetIsFiat)) Then
+            If (Trade.TradeTypID = DBHelper.TradeTypen.Kauf) OrElse ((Trade.TradeTypID = DBHelper.TradeTypen.Transfer) And Not TargetIsFiat) Then
                 ' Buy or crypto transfer from external source: charge values
                 AmountToAssign = ChargeTx(Trade)
-            ElseIf ((Trade.TradeTypID = DBHelper.TradeTypen.Verkauf) OrElse ((Trade.TradeTypID = DBHelper.TradeTypen.Verlust) And Not TargetIsFiat)) Then
+            ElseIf (Trade.TradeTypID = DBHelper.TradeTypen.Verkauf) OrElse ((Trade.TradeTypID = DBHelper.TradeTypen.Verlust) And Not TargetIsFiat) Then
                 ' Sell or loss: discharge values
                 AmountToAssign = DischargeTx(Trade, False)
             ElseIf (Trade.TradeTypID = DBHelper.TradeTypen.TransferIntern) Then
                 ' Internal crypto transfer: shift values form one platform to another
                 AmountToAssign = DischargeTx(Trade, True)
-            ElseIf (Trade.TradeTypID = DBHelper.TradeTypen.KaufCoin4Coin) Then
+            ElseIf Trade.TradeTypID = DBHelper.TradeTypen.KaufCoin4Coin Then
                 ' Buy crypto with crypto: evaluate value of given coins and assign it to purchased coins
                 Dim WertEUR As Decimal?
                 AmountToAssign = DischargeTx(Trade, False, WertEUR)
@@ -1040,8 +1038,8 @@ Public Class TradeValueManager
     ''' <returns>0.0</returns>
     Private Function ChargeTx(ByVal Trade As TradesRow,
                               ByVal Optional WertEUR As Decimal? = Nothing) As Decimal
-        Dim TxRow As TradeTxRow = _CalcParams.TxTb.NewTradeTxRow
         If Trade.BetragNachGebuehr > AMOUNT_TOLERANCE Then
+            Dim TxRow As TradeTxRow = _CalcParams.TxTb.NewTradeTxRow
             With TxRow
                 .TxID = _CalcParams.TxTb.MaxID
                 .SzenarioID = _SzenarioID
@@ -1053,7 +1051,23 @@ Public Class TradeValueManager
                 .Zeitpunkt = Trade.ZeitpunktZiel
                 .KaufZeitpunkt = Trade.InZeitpunkt
                 .Betrag = Trade.BetragNachGebuehr
-                .WertEUR = IIf(WertEUR Is Nothing, Trade.WertEUR, WertEUR)
+                If WertEUR Is Nothing Then
+                    If Trade.QuellKontoID = AccountManager.Accounts.EUR Then
+                        ' Asset paid with EUR, this is simple
+                        .WertEUR = Trade.QuellBetrag
+                    ElseIf Trade.QuellKontoID = AccountManager.Accounts.USD Then
+                        ' Asset paid with USD, get course information and set tax value
+                        .WertEUR = Trade.QuellBetrag / _CalcParams.KurseTb.FirstOrDefault(Function(k)
+                                                                                              Return k.Zeitpunkt.[Date] = Trade.Zeitpunkt.[Date] And k.ZielKontoID = AccountManager.Accounts.USD And k.QuellKontoID = AccountManager.Accounts.EUR
+                                                                                          End Function).ZielBetrag
+                    Else
+                        ' Fallback solution: use whatever is stored in the trade row
+                        .WertEUR = Trade.WertEUR
+                    End If
+                Else
+                    .WertEUR = WertEUR
+                End If
+                ' .WertEUR = IIf(WertEUR Is Nothing, Trade.WertEUR, WertEUR)
                 .Entwertet = False
                 .IstLangzeit = False
                 .IstRest = False
@@ -1101,7 +1115,7 @@ Public Class TradeValueManager
         End If
         Dim SelectedTx = _CalcParams.TxTb.Where(_CalcParams.FilterTxFunction).OrderBy(_CalcParams.SortTxFunction)
         For Each TxRow In SelectedTx
-            If (AmountToAssign - TxRow.Betrag <= AMOUNT_TOLERANCE) Or TransferMode Then
+            If TransferMode OrElse (AmountToAssign - TxRow.Betrag <= AMOUNT_TOLERANCE) Then
                 ' TxRow has more value than needed or we are transferring value: derive rows
                 Dim RowAmountToAssign As Decimal = Math.Min(TxRow.Betrag, AmountToAssign)
                 Dim DerivedTxRow As TradeTxRow = TxRow.Derive
@@ -1110,9 +1124,11 @@ Public Class TradeValueManager
                     .InKalkulationID = _CalcParams.CalculationID
                     If TransferFee > RowAmountToAssign Then
                         .Betrag = 0
+                        .Gebuehr = RowAmountToAssign
                         TransferFee -= RowAmountToAssign
                     Else
                         .Betrag = RowAmountToAssign - TransferFee
+                        .Gebuehr = TransferFee
                         TransferFee = 0
                     End If
                     .WertEUR = (TxRow.WertEUR / TxRow.Betrag) * RowAmountToAssign
@@ -1291,7 +1307,7 @@ Public Class TradeValueManager
                                 .QuellKontoID = Row("KontoID")
                                 .ZielBetrag = 0D
                                 .ZielKontoID = .QuellKontoID
-                                .WertEUR = IIf(.QuellKontoID = DBHelper.Konten.EUR, .QuellBetrag, 0)
+                                .WertEUR = IIf(.QuellKontoID = AccountManager.Accounts.EUR, .QuellBetrag, 0)
                                 .Info = String.Format("Verlust aufgrund Betriebseinstellung der Plattform {0}", Row("PlattformBezeichnung"))
                                 .BetragNachGebuehr = 0
                                 .ImportID = 0
