@@ -1,4 +1,13 @@
 ﻿******************************************************
+Version 0.9.7.3 / 23.01.2022
+----------------------------
+
+Verbesserungen:
+- Hotfix damit Datenbank-Updates von vorherigen Versionen
+  korrekt durchgeführt werden.
+
+
+******************************************************
 Version 0.9.7.2 / 23.01.2022
 ----------------------------
 
