@@ -549,6 +549,12 @@ Namespace CoinTracerDataSetTableAdapters
             If ClearBeforeFill Then
                 dataTable.Clear()
             End If
+            ' Pure desparation: Built-in parameter logic does not work for unknown reasons!!! So replace parameters by hand... (2022-01-23)
+            With Adapter.SelectCommand
+                .CommandText = Replace(.CommandText, "@TaxablesOnly", TaxablesOnly)
+                .CommandText = Replace(.CommandText, "@TradesClass", TradesClass)
+                .CommandText = Replace(.CommandText, "@SzenarioID", SzenarioID)
+            End With
             Dim ReturnValue As Integer = Adapter.Fill(dataTable)
             Adapter.SelectCommand.CommandText = CommandTextBackup
             Return ReturnValue

@@ -548,15 +548,6 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_GainingsReport2&quot; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v41_02() As String
-            Get
-                Return ResourceManager.GetString("db_v41_02", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Gainings&quot; AS 
         '''select
         '''t.Zeitpunkt Zeitpunkt,
@@ -567,36 +558,6 @@ Namespace My.Resources
         Friend Shared ReadOnly Property db_v41_03() As String
             Get
                 Return ResourceManager.GetString("db_v41_03", resourceCulture)
-            End Get
-        End Property
-        
-        '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_GainingsReport2&quot; AS 
-        '''select 
-        '''t.ID Vorgang,
-        '''t.Zeitpunkt Zeitpunkt,
-        '''tt.Bezeichnung Art,
-        '''case t.TradeTypID
-        '''	when 5 then qp.Bezeichnung || &apos; → &apos; || zp.Bezeichnung
-        '''	else qp.Bezeichnung 
-        '''end Plattform,
-        '''case t.TradeTypID
-        '''	when 3 then zk.Bezeichnung
-        '''	else qk.Bezeichnung 
-        '''end [Coin-Art],
-        '''case t.TradeTypID
-        '''	when 3 then round(t.BetragNachGebuehr, 8)
-        '''	else round(t.QuellBetrag, 8) 
-        '''end [Coin-Menge],
-        '''case t.TradeTypID
-        '''	when 3 then qk.Bezeichnung
-        '''	when 5 then &apos;-&apos;
-        '''	else zk.Bezeichnung 
-        ''' [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
-        '''</summary>
-        Friend Shared ReadOnly Property db_v41_04() As String
-            Get
-                Return ResourceManager.GetString("db_v41_04", resourceCulture)
             End Get
         End Property
         
@@ -778,6 +739,53 @@ Namespace My.Resources
         Friend Shared ReadOnly Property db_v43_06() As String
             Get
                 Return ResourceManager.GetString("db_v43_06", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die ALTER TABLE [TradeTx] ADD COLUMN [Gebuehr] NUMERIC DEFAULT 0 NULL ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v44_01() As String
+            Get
+                Return ResourceManager.GetString("db_v44_01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_GainingsReport2&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v44_02() As String
+            Get
+                Return ResourceManager.GetString("db_v44_02", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_GainingsReport2&quot; AS 
+        '''select 
+        '''t.ID Vorgang,
+        '''t.Zeitpunkt Zeitpunkt,
+        '''tt.Bezeichnung Art,
+        '''case t.TradeTypID
+        '''	when 5 then qp.Bezeichnung || &apos; → &apos; || zp.Bezeichnung
+        '''	else qp.Bezeichnung 
+        '''end Plattform,
+        '''case t.TradeTypID
+        '''	when 3 then zk.Bezeichnung
+        '''	else qk.Bezeichnung 
+        '''end [Coin-Art],
+        '''case 
+        '''	when t.TradeTypID in (3, 5) then round(t.BetragNachGebuehr, 8)
+        '''	else round(t.QuellBetrag, 8) 
+        '''end [Coin-Menge],
+        '''case t.TradeTypID
+        '''	when 3 then qk.Bezeichnung
+        '''	else zk.Bezeichnung 
+        '''end [Zahl [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v44_03() As String
+            Get
+                Return ResourceManager.GetString("db_v44_03", resourceCulture)
             End Get
         End Property
     End Class
