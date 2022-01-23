@@ -383,9 +383,6 @@ Public Class frmMain
             cbxImports.SelectedIndex = My.Settings.LastImportMethod
         End If
 
-        ' Init tax report settings
-        _TCS = New TaxCalculationSettings(Me)
-
         If IsNumeric(My.Settings.ReportDetail1) Then
             cbxReportTransfers.SelectedIndex = My.Settings.ReportDetail1
         Else
@@ -509,6 +506,9 @@ Public Class frmMain
             End If
             EnhancedToolTip1.SetToolTip(ccbReportPlatforms, .Text)
         End With
+
+        ' Init tax report settings
+        _TCS = New TaxCalculationSettings(Me)
 
         ' Read tax report settings from the settings (thus overriding the scenario settings, which could have been overwritten since last exit)
         _TCS.ReadSettings()

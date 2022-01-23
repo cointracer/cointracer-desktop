@@ -36,6 +36,7 @@ Partial Class ValueStrategySelector
         'rbFifo
         '
         resources.ApplyResources(Me.rbFifo, "rbFifo")
+        Me.rbFifo.Checked = True
         Me.rbFifo.Name = "rbFifo"
         Me.rbFifo.TabStop = True
         Me.EnhancedToolTip1.SetToolTip(Me.rbFifo, resources.GetString("rbFifo.ToolTip"))
@@ -45,7 +46,6 @@ Partial Class ValueStrategySelector
         '
         resources.ApplyResources(Me.rbLifo, "rbLifo")
         Me.rbLifo.Name = "rbLifo"
-        Me.rbLifo.TabStop = True
         Me.EnhancedToolTip1.SetToolTip(Me.rbLifo, resources.GetString("rbLifo.ToolTip"))
         Me.rbLifo.UseVisualStyleBackColor = True
         '
@@ -53,7 +53,6 @@ Partial Class ValueStrategySelector
         '
         resources.ApplyResources(Me.rbHifo, "rbHifo")
         Me.rbHifo.Name = "rbHifo"
-        Me.rbHifo.TabStop = True
         Me.EnhancedToolTip1.SetToolTip(Me.rbHifo, resources.GetString("rbHifo.ToolTip"))
         Me.rbHifo.UseVisualStyleBackColor = True
         '
@@ -61,7 +60,6 @@ Partial Class ValueStrategySelector
         '
         resources.ApplyResources(Me.rbLofo, "rbLofo")
         Me.rbLofo.Name = "rbLofo"
-        Me.rbLofo.TabStop = True
         Me.EnhancedToolTip1.SetToolTip(Me.rbLofo, resources.GetString("rbLofo.ToolTip"))
         Me.rbLofo.UseVisualStyleBackColor = True
         '
