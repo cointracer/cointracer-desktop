@@ -202,7 +202,7 @@ Public Class DataGridViewAutoFilterTextBoxColumn
 
 #End Region 'public properties
 
-#Region "public, static, convenience methods: RemoveFilter and GetFilterStatus"
+#Region "public, static, convenience methods: RemoveFilter, GetFilter, SetFilter and GetFilterStatus"
 
     ''' <summary>
     ''' Removes the filter from the BindingSource bound to the specified DataGridView. 

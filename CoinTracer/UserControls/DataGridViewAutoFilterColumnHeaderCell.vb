@@ -78,6 +78,18 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     Private Const MAXFILTERITEMS As Long = &H2000
 
     ''' <summary>
+    ''' Holds a backup of the current filter settings. This can be used to backup and restore filter and sorting settings.
+    ''' </summary>
+    Private Structure FilterSettings
+        Dim filtered As Boolean
+        Dim SortDir As SortOrder
+        Dim selectedFilterValue As String
+        Dim currentColumnFilter As String
+        Dim currentColumnFilterItems() As String
+    End Structure
+    Private _filterBackup As FilterSettings
+
+    ''' <summary>
     ''' Initializes a new instance of the DataGridViewColumnHeaderCell 
     ''' class and sets its property values to the property values of the 
     ''' specified DataGridViewColumnHeaderCell.
@@ -1105,7 +1117,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     ''' representations of each unique value in the column, accounting for all 
     ''' filters except the current column's. Also adds special filter options. 
     ''' </summary>
-    ''' <returns>True if the filter list contains all element, False if it has been cut off (due to being too long)</returns>
+    ''' <returns>True if the filter list contains all elements, False if it has been cut off (due to being too long)</returns>
     Private Function PopulateFilters() As Boolean
 
         Dim AllItemsProcessed As Boolean = True
@@ -1438,7 +1450,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
     Public Shared Sub RemoveFilter(ByVal dataGridView As DataGridView)
 
         If dataGridView Is Nothing Then
-            Throw New ArgumentNullException("dataGridView")
+            Throw New ArgumentNullException(NameOf(dataGridView))
         End If
 
         ' Cast the data source to a BindingSource.
@@ -1482,7 +1494,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
 
         ' Continue only if the specified value is valid. 
         If dataGridView Is Nothing Then
-            Throw New ArgumentNullException("dataGridView")
+            Throw New ArgumentNullException(NameOf(dataGridView))
         End If
 
         ' Cast the data source to a BindingSource.
@@ -1672,7 +1684,43 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
 
 #End Region 'button bounds
 
-#Region "public properties: FilteringEnabled, AutomaticSortingEnabled, DropDownListBoxMaxLines" '
+#Region "public methods: FilterSettingBackup, FilterSettingRestore"
+
+    Public Sub FilterSettingBackup()
+        With _filterBackup
+            .currentColumnFilter = currentColumnFilter
+            .currentColumnFilterItems = currentColumnFilterItems.Clone
+            .filtered = filtered
+            .selectedFilterValue = selectedFilterValue
+            If DataGridView.SortedColumn Is OwningColumn Then
+                .SortDir = DataGridView.SortOrder
+            Else
+                .SortDir = Nothing
+            End If
+        End With
+
+    End Sub
+
+    Public Sub FilterSettingRestore()
+        With _filterBackup
+            If .filtered Then
+                currentColumnFilter = .currentColumnFilter
+                currentColumnFilterItems = .currentColumnFilterItems.Clone
+                filtered = .filtered
+                selectedFilterValue = .selectedFilterValue
+                UpdateFilter()
+            End If
+            If .SortDir = SortOrder.Ascending Then
+                DataGridView.Sort(OwningColumn, ListSortDirection.Ascending)
+            ElseIf .SortDir = SortOrder.Descending Then
+                DataGridView.Sort(OwningColumn, ListSortDirection.Descending)
+            End If
+        End With
+    End Sub
+
+#End Region
+
+#Region "public properties: FilteringEnabled, AutomaticSortingEnabled, DropDownListBoxMaxLines"
 
     ''' <summary>
     ''' Indicates whether filtering is enabled for the owning column. 

@@ -103,6 +103,8 @@ Public Class BoundDataGridView
 
     Private _Initialized As Boolean
 
+    Private _FilterColumns As List(Of Object)
+
     Private _SQLStatement As String
     Public ReadOnly Property SQLStatement() As String
         Get
@@ -150,9 +152,32 @@ Public Class BoundDataGridView
     End Sub
 
     ''' <summary>
+    ''' Makes a backup of the current filter and sorting settings
+    ''' </summary>
+    Public Sub FilterBackup()
+        _FilterColumns = New List(Of Object)
+        For Each Col In Columns
+            If TypeOf Col Is DataGridViewAutoFilterTextBoxColumn Then
+                Col.HeaderCell.FilterSettingBackup
+                _FilterColumns.Add(Col)
+            End If
+        Next
+    End Sub
+
+    ''' <summary>
+    ''' Restores all filter and sorting settings
+    ''' </summary>
+    Public Sub FilterRestore()
+        ' Restore filtering columns
+        For Each Col In _FilterColumns
+            Col.HeaderCell.FilterSettingRestore
+        Next
+    End Sub
+
+    ''' <summary>
     ''' Lädt das Grid neu. Vorher muss über 'BindGrid' das zugehörige SQL-Statement gesetzt werden.
     ''' </summary>
-    Public Sub Reload()
+    Public Sub Reload(Optional ByVal KeepFilters As Boolean = True)
         If _TbA Is Nothing Then
             If _DBO IsNot Nothing Then
                 _DBO = Nothing
@@ -176,13 +201,15 @@ Public Class BoundDataGridView
             'Else
             '    Tb = New CoinTracerDataSet.VW_TradesDataTable
             'End If
+            If KeepFilters Then FilterBackup()
             _TbA.Fill(DirectCast(Tb, DataTable))
             SetBindingSource(Tb)
+            If KeepFilters Then FilterRestore()
         End If
     End Sub
 
     ''' <summary>
-    ''' Removes alle columns filters from the grid
+    ''' Removes all column filters from the grid
     ''' </summary>
     Public Sub RemoveFilters()
         DataGridViewAutoFilterTextBoxColumn.RemoveFilter(Me)
