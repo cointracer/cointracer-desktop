@@ -3009,12 +3009,12 @@ Public Class Import
                         ' Passenden Transfer gefunden!
                         UpdateCounter += 1
                         TransRec = New dtoTradesRecord(FoundTrades(0))
-                        If .ZielBetrag < TransRec.QuellBetrag Then
+                        If .BetragNachGebuehr < TransRec.BetragNachGebuehr Then
                             ' Einzahlungsbetrag ist geringer als der ursprüngliche Auszahlungsbetrag, wir brauchen einen Gebühren-Eintrag!
                             GebRec = TransRec.Clone
                             GebRec.TradetypID = DBHelper.TradeTypen.Gebühr
                             GebRec.ZielPlattformID = GebRec.QuellPlattformID
-                            GebRec.QuellBetrag = TransRec.QuellBetrag - .ZielBetrag
+                            GebRec.QuellBetrag = TransRec.BetragNachGebuehr - .BetragNachGebuehr
                             GebRec.QuellBetragNachGebuehr = GebRec.QuellBetrag
                             GebRec.ZielBetrag = GebRec.QuellBetrag
                             GebRec.ZielKontoID = GetAccount(TransRec.QuellKontoID).GebuehrKontoID
@@ -3028,7 +3028,7 @@ Public Class Import
                             GebRec.ImportID = .ImportID
                             tbTrades.Rows.Add(GebRec.GetNewDataRow(tbTrades, MaxID))
                             ' QuellBetragNachGebuehr der Transaktion verringern (QuellBetrag muss aber so bleiben!)
-                            TransRec.QuellBetragNachGebuehr = .ZielBetrag
+                            ' TransRec.QuellBetragNachGebuehr = .ZielBetrag
                         End If
                         ' Transfer-Datensatz und Trade-Datensatz anpassen
                         .Entwertet = 1
@@ -3052,9 +3052,9 @@ Public Class Import
                         TransRec.SourceID = MD5FromString(.SourceID & .ImportPlattformID.ToString)
                         TransRec.TradetypID = DBHelper.TradeTypen.Transfer
                         TransRec.QuellPlattformID = .QuellPlattformID
-                        TransRec.QuellBetrag = .ZielBetrag
-                        TransRec.QuellBetragNachGebuehr = TransRec.QuellBetrag
-                        TransRec.WertEUR = 0
+                        ' TransRec.QuellBetrag = .ZielBetrag
+                        ' TransRec.QuellBetragNachGebuehr = TransRec.QuellBetrag
+                        ' TransRec.WertEUR = 0
                         TransRec.Info = .Info & IIf(.Info.Length > 0, " ", "") & "(Transfer-Eintrag automatisch erstellt)"
                         TransRec.RefTradeID = 0
                         TransRec.OutTradeID = 0
@@ -3082,13 +3082,13 @@ Public Class Import
                         ' Found at least one matching transfer (first one is the most likely)
                         UpdateCounter += 1
                         TransRec = New dtoTradesRecord(FoundTrades(0))
-                        If .BetragNachGebuehr > TransRec.ZielBetrag Then
+                        If .BetragNachGebuehr > TransRec.BetragNachGebuehr Then
                             ' Auszahlungsbetrag ist höher als der angekommene Einzahlungsbetrag: wir brauchen einen Gebühren-Eintrag!
                             GebRec = TransRec.Clone
                             GebRec.TradetypID = DBHelper.TradeTypen.Gebühr
                             GebRec.QuellPlattformID = .QuellPlattformID
                             GebRec.ZielPlattformID = GebRec.QuellPlattformID
-                            GebRec.QuellBetrag = .QuellBetragNachGebuehr - TransRec.ZielBetrag
+                            GebRec.QuellBetrag = .BetragNachGebuehr - TransRec.BetragNachGebuehr
                             GebRec.QuellBetragNachGebuehr = GebRec.QuellBetrag
                             GebRec.ZielBetrag = GebRec.QuellBetrag
                             GebRec.QuellKontoID = TransRec.ZielKontoID
@@ -3103,7 +3103,7 @@ Public Class Import
                             GebRec.ImportPlattformID = .ImportPlattformID
                             GebRec.ImportID = .ImportID
                             tbTrades.Rows.Add(GebRec.GetNewDataRow(tbTrades, MaxID))
-                            ' Einzahlungs-Betrag um Gebühr erhöhen (BetragNachGebuehr muss aber so bleiben!)
+                            ' Einzahlungs-Betrag um Gebühr vermindern (nur informatorisch - Datensatz wird ohnehin entwertet)
                             .QuellBetragNachGebuehr = TransRec.ZielBetrag
                             ' TransRec.ZielBetrag = .BetragNachGebuehr
                         Else
@@ -3131,8 +3131,8 @@ Public Class Import
                         TransRec.SourceID = MD5FromString(.SourceID & .ImportPlattformID.ToString)
                         TransRec.TradetypID = DBHelper.TradeTypen.Transfer
                         TransRec.ZielPlattformID = Platforms.Unknown
-                        TransRec.ZielBetrag = .BetragNachGebuehr
-                        TransRec.WertEUR = 0
+                        ' TransRec.ZielBetrag = .BetragNachGebuehr
+                        ' TransRec.WertEUR = 0
                         TransRec.Info = .Info & IIf(.Info.Length > 0, " ", "") & "(Transfer-Eintrag automatisch erstellt)"
                         TransRec.RefTradeID = 0
                         TransRec.InTradeID = 0

@@ -482,7 +482,7 @@
     <value>Analysiere Trade Nr. {0}...</value>
   </data>
   <data name="importMsgApiServerError" xml:space="preserve">
-    <value>Der {0}-Server meldet einen Fehler: "{1}"</value>
+    <value>Fehler beim API-Datenabruf von {0}: "{1}"</value>
   </data>
   <data name="importMsgBitcoinDeApiNoNewData" xml:space="preserve">
     <value>Es stehen keine neuen Daten zur Verfügung.</value>
@@ -1230,5 +1230,11 @@ Erstellen einer Deposit- oder Withdrawal-History:
   </data>
   <data name="importErrorAccountsAndPlatformsDiffer" xml:space="preserve">
     <value>Datenzeile kann nicht verarbeitet werden, da sowohl Quell- und Zielplattform als auch Quell- und Zielasset abweichen. Asset-Transfers und Asset-Käufe oder -Verkäufe müssen in separaten Datenzeilen abgebildet werden.</value>
+  </data>
+  <data name="importErrorBitcoinDeApiHttpsCall" xml:space="preserve">
+    <value>Bitcoin.de API-Aufruf: QueryAPI: Fehler bei HTTPS-Aufruf: {0}</value>
+  </data>
+  <data name="importErrorBitcoinDeApiServer" xml:space="preserve">
+    <value>Bitcoin.de API-Aufruf: QueryAPI: Server meldet Fehler! ResponseCode: {0}, Rückgabe: '{1}' / Interner Credit-Zähler: {2}</value>
   </data>
 </root>

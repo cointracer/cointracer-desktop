@@ -51,7 +51,7 @@ Namespace BitcoinDeClient
         End Sub
 
         Public Sub New()
-            Me.New("BTC|BCH|ETH|BSV|LTC|XRP|DOGE")
+            Me.New("BTC|BCH|BTG|ETH|BSV|LTC|XRP|DOGE")
         End Sub
 
     End Class
@@ -200,23 +200,31 @@ Namespace BitcoinDeClient
                         End Using
                     End Using
                 Catch wex As WebException
-                    Using response As HttpWebResponse = DirectCast(wex.Response, HttpWebResponse)
-                        Using str As Stream = response.GetResponseStream()
-                            Using sr As New StreamReader(str)
-                                WriteLogEntry(String.Format("Bitcoin.de API-Aufruf: QueryAPI: Server meldet Fehler! ResponseCode: {0}, Rückgabe: '{1}' / Interner Credit-Zähler: {2}",
-                                        response.StatusCode, sr.ReadToEnd, _ApiCredits), TraceEventType.Information)
-                                If response.StatusCode = ApiHttpResponseCodes.TooManyRequests Then
-                                    ' too much, too fast - wait and retry
-                                    Thread.Sleep((Credits + 2) * APIWAITUNIT)
-                                    _ApiCredits = 0
-                                    retry = True
-                                Else
-                                    Throw
-                                    hmac_data = Nothing
-                                End If
+                    If IsNothing(wex.Response) Then
+                        ' Basic communication error
+                        WriteLogEntry(String.Format(My.Resources.MyStrings.importErrorBitcoinDeApiHttpsCall, wex.Message), TraceEventType.Error)
+                        hmac_data = Nothing
+                        Throw
+                    Else
+                        ' API server has responded with an error
+                        Using response As HttpWebResponse = DirectCast(wex.Response, HttpWebResponse)
+                            Using str As Stream = response.GetResponseStream()
+                                Using sr As New StreamReader(str)
+                                    WriteLogEntry(String.Format(My.Resources.MyStrings.importErrorBitcoinDeApiServer,
+                                                  response.StatusCode, sr.ReadToEnd, _ApiCredits), TraceEventType.Information)
+                                    If response.StatusCode = ApiHttpResponseCodes.TooManyRequests Then
+                                        ' too much, too fast - wait and retry
+                                        Thread.Sleep((Credits + 2) * APIWAITUNIT)
+                                        _ApiCredits = 0
+                                        retry = True
+                                    Else
+                                        hmac_data = Nothing
+                                        Throw
+                                    End If
+                                End Using
                             End Using
                         End Using
-                    End Using
+                    End If
                 End Try
             Loop While retry
             Return hmac_data

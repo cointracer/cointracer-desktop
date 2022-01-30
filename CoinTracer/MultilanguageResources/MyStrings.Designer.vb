@@ -974,6 +974,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Bitcoin.de API-Aufruf: QueryAPI: Fehler bei HTTPS-Aufruf: {0} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importErrorBitcoinDeApiHttpsCall() As String
+            Get
+                Return ResourceManager.GetString("importErrorBitcoinDeApiHttpsCall", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Bitcoin.de API-Aufruf: QueryAPI: Server meldet Fehler! ResponseCode: {0}, Rückgabe: &apos;{1}&apos; / Interner Credit-Zähler: {2} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importErrorBitcoinDeApiServer() As String
+            Get
+                Return ResourceManager.GetString("importErrorBitcoinDeApiServer", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die {0}-Einzahlung, Order-ID {1} ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importInfoBinanceDepositFiat() As String
@@ -1388,7 +1406,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Der {0}-Server meldet einen Fehler: &quot;{1}&quot; ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Fehler beim API-Datenabruf von {0}: &quot;{1}&quot; ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgApiServerError() As String
             Get
