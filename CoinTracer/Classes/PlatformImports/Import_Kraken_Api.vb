@@ -31,6 +31,7 @@
 
 Imports Newtonsoft.Json.Linq
 Imports CoinTracer.CoinTracerDataSet
+Imports CoinTracer.My.Resources
 
 Friend Class Import_Kraken_Api
     Inherits ApiImportBase
@@ -64,7 +65,7 @@ Friend Class Import_Kraken_Api
 
         Cursor.Current = Cursors.WaitCursor
 
-        InitProgressForm(String.Format(My.Resources.MyStrings.importMsgImportStarting, PlatformName))
+        InitProgressForm(String.Format(MyStrings.importMsgImportStarting, PlatformName))
 
         Try
             Dim Record As dtoTradesRecord
@@ -98,10 +99,10 @@ Friend Class Import_Kraken_Api
             Do Until LedgerItem Is Nothing
 
                 AnalyseCounter += 1
-                ProgressWaitManager.UpdateProgress(Math.Min(AnalyseCounter / KrakenChunkLimit, 1) * ReadImportdataPercentage, String.Format(My.Resources.MyStrings.importMsgKrakenApiProgess, AnalyseCounter.ToString(Import.MESSAGENUMBERFORMAT)))
+                ProgressWaitManager.UpdateProgress(Math.Min(AnalyseCounter / KrakenChunkLimit, 1) * ReadImportdataPercentage, String.Format(MyStrings.importMsgKrakenApiProgess, AnalyseCounter.ToString(Import.MESSAGENUMBERFORMAT)))
 
                 LedgerEntry = JObject.Parse(LedgerItem.Value.ToString)
-                WriteLogEntry(String.Format(My.Resources.MyStrings.importLogKrakenLedgerItem,
+                WriteLogEntry(String.Format(MyStrings.importLogKrakenLedgerItem,
                                         LedgerItem.ToString,
                                         Environment.NewLine), TraceEventType.Verbose)
                 ' Den jeweils jüngsten Timestamp als Aufsetzpunkt für die Rückgabe merken
@@ -196,7 +197,7 @@ Friend Class Import_Kraken_Api
                                     RecordFee.ZielPlattformID = Platform
                                     RecordFee.WertEUR = 0
                                     RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                                    RecordFee.Info = String.Format(My.Resources.MyStrings.ImportInfoKrakenTradeFeeCredits, .SourceID)
+                                    RecordFee.Info = String.Format(MyStrings.ImportInfoKrakenTradeFeeCredits, .SourceID)
                                     ' Loop-Variable auf nächste Instanz stellen
                                     LedgerItem1st = LedgerItem      ' nur sicherheitshalber für Log-Einträge merken...
                                     LedgerItem = LedgerItem2
@@ -220,25 +221,30 @@ Friend Class Import_Kraken_Api
                                     End If
                                 End If
                                 If LedgerError > KrakenApiMissingLederErrors.NoError Then
-                                    If TLO.Amount <= Import_Kraken.KRAKEN_ZEROVALUETRADELIMIT Then
+                                    If TLO.Amount <= Import_Kraken.KRAKEN_ZEROVALUETRADELIMIT OrElse
+                                            (Not MainImportObject.SilentMode AndAlso MsgBoxEx.ShowInFront(String.Format(MyStrings.importMsgKrakenWarningNoSecondEntry, Environment.NewLine, TLO.TxId, AnalyseCounter, TLO.Amount.ToString(Import.INFONUMBERFORMAT, CultureInfo.InvariantCulture), TLO.Asset),
+                                                                                                          MyStrings.importMsgKrakenWarningNoSecondEntryTitle,
+                                                                                                          MessageBoxButtons.OKCancel,
+                                                                                                          MessageBoxIcon.Exclamation,
+                                                                                                          MessageBoxDefaultButton.Button1) = DialogResult.OK) Then
                                         ' The value of this trade is very low: assume the corresponding second entry would be zero
                                         NextTLO = New Import_Kraken.KrakenLineObject(MainImportObject, DateFromUnixTimestamp(LedgerEntry("time").ToString),
-                                                                       LedgerItem.Name,
-                                                                       LedgerEntry("refid").ToString,
-                                                                       LedgerEntry("type").ToString,
-                                                                       LedgerEntry("asset").ToString,
-                                                                       "0.0",
-                                                                       "0.0")
+                                                                                     LedgerItem.Name,
+                                                                                     LedgerEntry("refid").ToString,
+                                                                                     LedgerEntry("type").ToString,
+                                                                                     LedgerEntry("asset").ToString,
+                                                                                     "0.0",
+                                                                                     "0.0")
                                         ' set loop variable to the item that has already been fetched
                                         LedgerItem = LedgerItem2
                                         SkipGetNextLedgerItem = True
                                         LedgerError = KrakenApiMissingLederErrors.NoError
                                     Else
-                                        Dim ErrorMessage As String = String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID)
-                                        ErrorMessage = String.Format(My.Resources.MyStrings.importMsgKrakenApiErrorPrefix, AnalyseCounter.ToString(Import.MESSAGENUMBERFORMAT)) & " " & ErrorMessage
-                                        WriteLogEntry(ErrorMessage & " " & My.Resources.MyStrings.importMsgKrakenApiErrorSuffix & LedgerItem.ToString & Environment.NewLine,
+                                        Dim ErrorMessage As String = String.Format(MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID)
+                                        ErrorMessage = String.Format(MyStrings.importMsgKrakenApiErrorPrefix, AnalyseCounter.ToString(Import.MESSAGENUMBERFORMAT)) & " " & ErrorMessage
+                                        WriteLogEntry(ErrorMessage & " " & MyStrings.importMsgKrakenApiErrorSuffix & LedgerItem.ToString & Environment.NewLine,
                                             TraceEventType.Information)
-                                        Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
+                                        Throw New Exception(String.Format(MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
                                     End If
                                 End If
                                 NextTLO = New Import_Kraken.KrakenLineObject(MainImportObject, DateFromUnixTimestamp(LedgerEntry2("time").ToString),
@@ -257,7 +263,7 @@ Friend Class Import_Kraken_Api
                                     SourceTLO = NextTLO
                                     TargetTLO = TLO
                                 Else
-                                    Throw New Exception(String.Format(My.Resources.MyStrings.importMsgKrakenErrorNoNegativeValue, .SourceID))
+                                    Throw New Exception(String.Format(MyStrings.importMsgKrakenErrorNoNegativeValue, .SourceID))
                                 End If
                                 QuellKontoRow = MainImportObject.RetrieveAccount(SourceTLO.Asset)
                                 KontoRow = MainImportObject.RetrieveAccount(TargetTLO.Asset)
@@ -316,7 +322,7 @@ Friend Class Import_Kraken_Api
                             RecordFee.WertEUR = 0
                             RecordFee.QuellBetrag = RecordFee.ZielBetrag
                             RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                            RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                            RecordFee.Info = String.Format(MyStrings.importInfoTradeFee, .SourceID)
                             ImportRecords.Add(RecordFee)
                             RecordFee = Nothing
                         End If
@@ -333,7 +339,7 @@ Friend Class Import_Kraken_Api
                             RecordFee.WertEUR = 0
                             RecordFee.QuellBetrag = RecordFee.ZielBetrag
                             RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
-                            RecordFee.Info = String.Format(My.Resources.MyStrings.importInfoTradeFee, .SourceID)
+                            RecordFee.Info = String.Format(MyStrings.importInfoTradeFee, .SourceID)
                         End If
                     Catch ex As Exception
                         If ApiImportError(ErrCounter, AnalyseCounter, ex) = 0 Then
@@ -363,7 +369,7 @@ Friend Class Import_Kraken_Api
             ' Import durchführen
             If ImportRecords.Count > 0 Then
                 MainImportObject.Import_Records(ImportRecords,
-                               String.Format(My.Resources.MyStrings.importMsgApiImportLabel, ApiConfigName),
+                               String.Format(MyStrings.importMsgApiImportLabel, ApiConfigName),
                                ReadImportdataPercentage,
                                False,
                                True,

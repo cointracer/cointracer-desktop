@@ -169,6 +169,7 @@ Public Class Import
     End Class
 
     Friend Const MESSAGENUMBERFORMAT As String = "#,###,##0"
+    Friend Const INFONUMBERFORMAT As String = "#,###,##0.########"
 
     Private _MaxErrors As Integer = 6
 
@@ -503,14 +504,13 @@ Public Class Import
                         ApiRow.LastImportTimestamp = Math.Truncate(LastestUnixTimestamp)
                     End If
                     If LastestUnixTimestamp >= 0 Then
-                        MsgBoxEx.BringToFront()
-                        MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgApiSummary,
-                                                  Environment.NewLine,
-                                                  ApiMsg,
-                                                  _ZuletztEingelesen.ToString(MESSAGENUMBERFORMAT),
-                                                  _ZuletztUeberprungen.ToString(MESSAGENUMBERFORMAT),
-                                                  IIf(_LastTransfersUpdated > 0 OrElse _LastTransfersInserted > 0, Environment.NewLine & Environment.NewLine & GetProcessedTransfersString(), "")),
-                                    My.Resources.MyStrings.importMsgApiSummaryTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        MsgBoxEx.ShowInFront(String.Format(My.Resources.MyStrings.importMsgApiSummary,
+                                                           Environment.NewLine,
+                                                           ApiMsg,
+                                                           _ZuletztEingelesen.ToString(MESSAGENUMBERFORMAT),
+                                                           _ZuletztUeberprungen.ToString(MESSAGENUMBERFORMAT),
+                                                           IIf(_LastTransfersUpdated > 0 OrElse _LastTransfersInserted > 0, Environment.NewLine & Environment.NewLine & GetProcessedTransfersString(), "")),
+                                             My.Resources.MyStrings.importMsgApiSummaryTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
                 Catch ex As Exception
                     Dim ErrorMessage As String = String.Format(My.Resources.MyStrings.importMsgApiServerError, ApiMsg, ex.Message)
@@ -855,14 +855,13 @@ Public Class Import
         EraseTempFiles()
 
         If _ZuletztEingelesen > 0 Or _ZuletztUeberprungen > 0 Then
-            MsgBoxEx.BringToFront()
-            MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgSummary,
-                                          Environment.NewLine,
-                                          _ZuletztEingelesen.ToString(MESSAGENUMBERFORMAT),
-                                          _ZuletztUeberprungen.ToString(MESSAGENUMBERFORMAT),
-                                          IIf(_LastTransfersUpdated > 0 OrElse _LastTransfersInserted > 0, Environment.NewLine & GetProcessedTransfersString(), "")),
-                            My.Resources.MyStrings.importMsgSummaryTitle,
-                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MsgBoxEx.ShowInFront(String.Format(My.Resources.MyStrings.importMsgSummary,
+                                               Environment.NewLine,
+                                               _ZuletztEingelesen.ToString(MESSAGENUMBERFORMAT),
+                                               _ZuletztUeberprungen.ToString(MESSAGENUMBERFORMAT),
+                                               IIf(_LastTransfersUpdated > 0 OrElse _LastTransfersInserted > 0, Environment.NewLine & GetProcessedTransfersString(), "")),
+                                 My.Resources.MyStrings.importMsgSummaryTitle,
+                                 MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
     End Sub
@@ -2216,7 +2215,6 @@ Public Class Import
     ''' <param name="FileNames">Einzulesende Dateinamen, kommasepariert</param>
     Private Sub Import_Poloniex(ByRef FileNames As String)
 
-        Const INFONUMBERFORMAT As String = "#,###,##0.########"
         Dim LineCount As Long
         Dim AllLines As Long
         Dim ColOffset As Byte = 1
@@ -2908,9 +2906,8 @@ Public Class Import
         DestroyProgressForm()
 
         If ImportRecords.Count = 0 AndAlso ApiDatenID = 0 AndAlso Verbose Then
-            MsgBoxEx.BringToFront()
-            MessageBox.Show("Es wurden keine Trades importiert, weil keine gültigen Datenzeilen enthalten waren (oder erkannt werden konnten).",
-                            "Nichts importiert", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MsgBoxEx.ShowInFront("Es wurden keine Trades importiert, weil keine gültigen Datenzeilen enthalten waren (oder erkannt werden konnten).",
+                                 "Nichts importiert", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
     End Sub

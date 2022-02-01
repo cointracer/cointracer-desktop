@@ -40,7 +40,20 @@ Public Class MsgBoxEx
     Private Shared _hWndButtons() As IntPtr
     Private Shared _HelpCtrl As Control
 
-
+    ''' <summary>
+    ''' Displays a message box and brings it to the front
+    ''' </summary>
+    Public Shared Function ShowInFront(text As String, caption As String, buttons As MessageBoxButtons, icon As MessageBoxIcon, defaultButton As MessageBoxDefaultButton) As DialogResult
+        PatchMsgBox(Nothing)
+        Return MessageBox.Show(text, caption, buttons, icon, defaultButton)
+    End Function
+    ''' <summary>
+    ''' Displays a message box and brings it to the front
+    ''' </summary>
+    Public Shared Function ShowInFront(text As String, caption As String, buttons As MessageBoxButtons, icon As MessageBoxIcon) As DialogResult
+        PatchMsgBox(Nothing)
+        Return MessageBox.Show(text, caption, buttons, icon)
+    End Function
 
     Public Shared Sub PatchMsgBox(ByVal ButtonLabels() As String)
         ''--- Updates message box buttons

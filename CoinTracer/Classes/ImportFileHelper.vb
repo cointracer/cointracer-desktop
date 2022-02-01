@@ -127,11 +127,10 @@ Public Class ImportFileHelper
             Dim MessageString As String = My.Resources.MyStrings.importMsgMixedFileFormats
             If InteractiveMode Then
                 Cursor.Current = Cursors.Default
-                MsgBoxEx.BringToFront()
-                MessageBox.Show(MessageString,
-                                My.Resources.MyStrings.importMsgMixedFileFormatsTitle,
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Exclamation)
+                MsgBoxEx.ShowInFront(MessageString,
+                                     My.Resources.MyStrings.importMsgMixedFileFormatsTitle,
+                                     MessageBoxButtons.OK,
+                                     MessageBoxIcon.Exclamation)
             Else
                 Throw New InvalidImportFileFormatException(MessageString)
             End If
@@ -480,11 +479,10 @@ Public Class ImportFileHelper
         Dim MessageString As String = String.Format(My.Resources.MyStrings.importMsgInvalidFileFormat, Path.GetFileName(Filename))
         If InteractiveMode Then
             Cursor.Current = Cursors.Default
-            MsgBoxEx.BringToFront()
-            MessageBox.Show(MessageString,
-                            My.Resources.MyStrings.importMsgInvalidFileFormatTitle,
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Exclamation)
+            MsgBoxEx.ShowInFront(MessageString,
+                                 My.Resources.MyStrings.importMsgInvalidFileFormatTitle,
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Exclamation)
         Else
             Throw New InvalidImportFileFormatException(MessageString)
         End If

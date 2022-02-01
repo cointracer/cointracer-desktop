@@ -61,8 +61,7 @@ Module modHelper
         Else
             Title = DialogBoxTitle
         End If
-        MsgBoxEx.BringToFront()
-        MessageBox.Show(Msg, Title, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        MsgBoxEx.ShowInFront(Msg, Title, MessageBoxButtons.OK, MessageBoxIcon.Error)
         WriteLogEntry(Msg, TraceEventType.Error)
         If EndApplication Then
             Application.Exit()

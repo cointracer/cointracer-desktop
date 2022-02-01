@@ -1849,6 +1849,25 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Achtung: In Zeile {2} konnte für den Trade {1} über {3} {4} keine Gegenbuchung in den Daten gefunden werden.{0}{0}Klicken Sie OK, um den Trade zu einem Gegenwert von 0,00 EUR zu importieren. 
+        '''Mit Abbrechen überspringen Sie den Trade. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenWarningNoSecondEntry() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenWarningNoSecondEntry", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Fehlende Gegenbuchung in Import-Daten ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgKrakenWarningNoSecondEntryTitle() As String
+            Get
+                Return ResourceManager.GetString("importMsgKrakenWarningNoSecondEntryTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Die ausgewählten Dateien haben offenbar kein einheitliches Format. Bitte wählen Sie einheitlich formatierte Dateien aus und versuchen Sie es erneut. ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgMixedFileFormats() As String

@@ -277,7 +277,6 @@ Friend MustInherit Class ApiImportBase
             Return StashedImport
         Else
             If Not MainImportObject.SilentMode Then
-                ' MsgBoxEx.BringToFront()
                 MsgBoxEx.PatchMsgBox(New String() {My.Resources.MyStrings.globalContinue, My.Resources.MyStrings.Retry})
                 If MessageBox.Show(String.Format(My.Resources.MyStrings.importMsgApiResume, Environment.NewLine,
                                                  PlatformName, My.Resources.MyStrings.globalContinue, My.Resources.MyStrings.Retry),

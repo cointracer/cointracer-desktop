@@ -405,7 +405,12 @@ Public Class Import_Kraken
                                                                  End Function).FirstOrDefault()
                                     If IR2nd Is Nothing Then
                                         ' No matching row found. This is only acceptable for very small amounts
-                                        If IR.amount <= KRAKEN_ZEROVALUETRADELIMIT Then
+                                        If IR.amount <= KRAKEN_ZEROVALUETRADELIMIT OrElse
+                                            (Not MainImportObject.SilentMode AndAlso MsgBoxEx.ShowInFront(String.Format(MyStrings.importMsgKrakenWarningNoSecondEntry, Environment.NewLine, IR.txid, l, IR.amount.ToString(Import.INFONUMBERFORMAT, CultureInfo.InvariantCulture), IR.asset),
+                                                                                                          MyStrings.importMsgKrakenWarningNoSecondEntryTitle,
+                                                                                                          MessageBoxButtons.OKCancel,
+                                                                                                          MessageBoxIcon.Exclamation,
+                                                                                                          MessageBoxDefaultButton.Button1) = DialogResult.OK) Then
                                             ' assume the corresponding second entry would be zero
                                             IR2nd = ImportLedersTempTb.AddLedgerRow(IR.txid, IR.refid, IR.time, IR.type, IR.subtype, IR.aclass, "EUR", 0, 0, 0, True)
                                         Else
@@ -534,7 +539,7 @@ Public Class Import_Kraken
                     Next
 
                 Catch ex As Exception
-                    If FileImportError(ErrCounter, l + 1, ex) = 0 Then
+                    If FileImportError(ErrCounter, l, ex) = 0 Then
                         Return False
                         Exit Function
                     End If
