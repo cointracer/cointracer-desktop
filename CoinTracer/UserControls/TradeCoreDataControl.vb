@@ -54,6 +54,13 @@ Public Class TradeCoreDataControl
         End Get
     End Property
 
+    Private _RowsInsertedOrDeleted As Boolean
+    Public ReadOnly Property RowsInsertedOrDeleted() As Boolean
+        Get
+            Return _RowsInsertedOrDeleted
+        End Get
+    End Property
+
 
     Private _ControlMode As ControlModes
     Public Property ControlMode() As ControlModes
@@ -181,7 +188,7 @@ Public Class TradeCoreDataControl
         TradesPlattformenImportBindingSource.DataSource = _DS
         TradesPlattformenImportBindingSource.DataMember = "Plattformen"
         Dim b As New Binding("SelectedValue",
-             Me.TradesBindingSource, "ImportPlattformID", True)
+             TradesBindingSource, "ImportPlattformID", True)
         ImportPlattformIDComboBox.DataBindings.Clear()
         ImportPlattformIDComboBox.DataBindings.Add(b)
 
@@ -189,7 +196,7 @@ Public Class TradeCoreDataControl
         TradesPlattformenQuellBindingSource.DataSource = _DS
         TradesPlattformenQuellBindingSource.DataMember = "Plattformen"
         b = New Binding("SelectedValue",
-             Me.TradesBindingSource, "QuellPlattformID", True)
+             TradesBindingSource, "QuellPlattformID", True)
         QuellPlattformIDComboBox.DataBindings.Clear()
         QuellPlattformIDComboBox.DataBindings.Add(b)
 
@@ -197,7 +204,7 @@ Public Class TradeCoreDataControl
         TradesPlattformenZielBindingSource.DataSource = _DS
         TradesPlattformenZielBindingSource.DataMember = "Plattformen"
         b = New Binding("SelectedValue",
-            Me.TradesBindingSource, "ZielPlattformID", True)
+            TradesBindingSource, "ZielPlattformID", True)
         ZielPlattformIDComboBox.DataBindings.Clear()
         ZielPlattformIDComboBox.DataBindings.Add(b)
 
@@ -205,7 +212,7 @@ Public Class TradeCoreDataControl
         TradesKontenQuellBindingSource.DataSource = _DS
         TradesKontenQuellBindingSource.DataMember = "Konten"
         b = New Binding("SelectedValue",
-             Me.TradesBindingSource, "QuellKontoID", True)
+             TradesBindingSource, "QuellKontoID", True)
         QuellKontoComboBox.DataBindings.Clear()
         QuellKontoComboBox.DataBindings.Add(b)
 
@@ -213,7 +220,7 @@ Public Class TradeCoreDataControl
         TradesKontenZielBindingSource.DataSource = _DS
         TradesKontenZielBindingSource.DataMember = "Konten"
         b = New Binding("SelectedValue",
-             Me.TradesBindingSource, "ZielKontoID", True)
+             TradesBindingSource, "ZielKontoID", True)
         ZielKontoComboBox.DataBindings.Clear()
         ZielKontoComboBox.DataBindings.Add(b)
 
@@ -221,19 +228,20 @@ Public Class TradeCoreDataControl
         TradesTradeTypenBindingSource.DataSource = _DS
         TradesTradeTypenBindingSource.DataMember = "TradeTypen"
         b = New Binding("SelectedValue",
-             Me.TradesBindingSource, "TradeTypID", True)
+             TradesBindingSource, "TradeTypID", True)
         TradeTypIDComboBox.DataBindings.Clear()
         TradeTypIDComboBox.DataBindings.Add(b)
 
         ' ID des Start-Datensatzes
         _StartID = StartID
         If _StartID >= 0 Then
-            Me.TradesBindingSource.Position = Me.TradesBindingSource.Find("ID", StartID)
+            TradesBindingSource.Position = TradesBindingSource.Find("ID", StartID)
         Else
             TradesBindingSource_CurrentChanged(Nothing, Nothing)
         End If
 
         _LastEdited = 0
+        _RowsInsertedOrDeleted = False
 
     End Sub
 
@@ -244,9 +252,9 @@ Public Class TradeCoreDataControl
     ''' <remarks></remarks>
     Public Sub Reload(Optional ByVal JumpToID As Long = 0)
         _TradesTa.FillBySQL(_DS.Trades, _WhereEtcSQL)
-        Me.TradesBindingSource.ResetBindings(False)
+        TradesBindingSource.ResetBindings(False)
         If JumpToID > 0 Then
-            Me.TradesBindingSource.Position = Me.TradesBindingSource.Find("ID", JumpToID)
+            TradesBindingSource.Position = TradesBindingSource.Find("ID", JumpToID)
         Else
             TradesBindingSource_CurrentChanged(Nothing, Nothing)
         End If
@@ -303,7 +311,7 @@ Public Class TradeCoreDataControl
         ' Disable input control linking logic
         _IsLoading = True
         ' Controls dis-/enablen
-        Dim SomeSelected As Boolean = Me.TradesBindingSource.Position >= 0
+        Dim SomeSelected As Boolean = TradesBindingSource.Position >= 0
         BindingNavigatorDeleteItem.Enabled = _ControlMode = ControlModes.EditTrades And SomeSelected
         BindingNavigatorAddNewItem.Enabled = _ControlMode = ControlModes.EditTrades
         If SomeSelected Then
@@ -370,8 +378,9 @@ Public Class TradeCoreDataControl
     Private Sub BindingNavigatorDeleteItem_Click(sender As Object, e As EventArgs) Handles BindingNavigatorDeleteItem.Click
         If MessageBox.Show("Sind Sie sicher, dass der aktuelle Trade-Eintrag unwiderruflich gelöscht werden soll?",
                            "Trades bearbeiten", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button2) = DialogResult.Yes Then
-            Me.TradesBindingNavigator.BindingSource.RemoveCurrent()
+            TradesBindingNavigator.BindingSource.RemoveCurrent()
             ErrProvider.Clear()
+            _RowsInsertedOrDeleted = True
         End If
     End Sub
 
@@ -410,6 +419,7 @@ Public Class TradeCoreDataControl
                 TradesBindingNavigator.BindingSource.Position = TradesBindingNavigator.BindingSource.Find("ID", NewID)
                 TradesBindingSource_CurrentChanged(Nothing, Nothing)
                 SourceIDTextBox.Focus()
+                _RowsInsertedOrDeleted = True
             End If
         Catch ex As Exception
             DefaultErrorHandler(ex, "Beim Anlegen des neuen Datensatzes ist ein Fehler aufgetreten: " & ex.Message)

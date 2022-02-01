@@ -80,9 +80,16 @@ Public Class frmEditTrades
         End Get
     End Property
 
+    Private _RowsInsertedOrDeleted As Boolean
+    Public ReadOnly Property RowsInsertedOrDeleted() As Boolean
+        Get
+            Return _RowsInsertedOrDeleted
+        End Get
+    End Property
 
     Private Sub frmEditTrades_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         _RecordsModified = 0
+        _RowsInsertedOrDeleted = False
         ' Daten aus Trades holen - in Abhängigkeit vom Edit-Modus
         ResetTradeData()
         ' Hilfsobjekt für das Zusammenführen von Transfers initialisieren
@@ -96,10 +103,11 @@ Public Class frmEditTrades
         Try
             dctrlTrades.UpdateDatabase()
             _RecordsModified = dctrlTrades.RecordsModified
+            _RowsInsertedOrDeleted = dctrlTrades.RowsInsertedOrDeleted
         Catch ex As Exception
             DefaultErrorHandler(ex, "Fehler beim Speichern der Daten: " & ex.Message)
         End Try
-        Me.Close()
+        Close()
     End Sub
 
     Private Sub cmdCancel_MouseEnter(sender As Object, e As EventArgs) Handles cmdCancel.MouseEnter
@@ -150,10 +158,10 @@ Public Class frmEditTrades
             Try
                 If _TransferMerger.CheckTradeMergability(dctrlTrades.CurrentTradeID, Result, ResultMessage) Then
                     ' Alles okay, Transfers zusammenführen
-                    If MessageBox.Show(String.Format("Möchten Sie diese beiden Transfers zusammenfassen:{0}{0}Transfer 1: {0}{1}{0}{0}Transfer 2: {0}{2}", _
-                                                     Environment.NewLine, _
-                                                     _TransferMerger.FirstTransferDescription, _
-                                                     _TransferMerger.SecondTransferDescription), "Transfers zusammenfassen", _
+                    If MessageBox.Show(String.Format("Möchten Sie diese beiden Transfers zusammenfassen:{0}{0}Transfer 1: {0}{1}{0}{0}Transfer 2: {0}{2}",
+                                                     Environment.NewLine,
+                                                     _TransferMerger.FirstTransferDescription,
+                                                     _TransferMerger.SecondTransferDescription), "Transfers zusammenfassen",
                                                  MessageBoxButtons.OKCancel, MessageBoxIcon.Question) = Windows.Forms.DialogResult.OK Then
                         _TransferMerger.MergeTrades()
                         MessageBox.Show("Beide Transfers wurden erfolgreich zusammengefasst!", "Transfers zusammenfassen", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -161,9 +169,8 @@ Public Class frmEditTrades
                         cmdMergeAbort_Click(Nothing, Nothing)
                     End If
                 Else
-                    MsgBoxEx.BringToFront()
-                    MessageBox.Show("Diese beiden Transfers können nicht zusammengefasst werden:" & Environment.NewLine & Environment.NewLine & _
-                                    ResultMessage & "!", "Transfers zusammenfassen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+                    MsgBoxEx.ShowInFront("Diese beiden Transfers können nicht zusammengefasst werden:" & Environment.NewLine & Environment.NewLine &
+                                         ResultMessage & "!", "Transfers zusammenfassen", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
                 End If
             Catch ex As Exception
                 DefaultErrorHandler(ex, "Beim Zusammenfassen der Transfers ist ein Fehler aufgetreten: " & ex.Message)
@@ -207,9 +214,9 @@ Public Class frmEditTrades
         If Changed Then
             Select Case ModusComboBox.SelectedIndex
                 Case 1
-                    Me.EditMode = TradesEditModes.TransfersOnly
+                    EditMode = TradesEditModes.TransfersOnly
                 Case Else
-                    Me.EditMode = TradesEditModes.AllTypes
+                    EditMode = TradesEditModes.AllTypes
             End Select
             ResetTradeData()
             dctrlTrades_CurrentChanged(Nothing, Nothing)

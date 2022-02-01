@@ -1262,7 +1262,7 @@ Public Class frmMain
     ''' <summary>
     ''' Lädt das Grid in der jeweils angeklickten TabPage aus dem Tables-TabControl neu
     ''' </summary>
-    Private Sub ReloadTablesTab()
+    Private Sub ReloadTablesTab(Optional KeepSelectedCells As Boolean = False)
         Dim Grd As BoundDataGridView
         Select Case tctlTables.SelectedIndex
             Case 1
@@ -1284,7 +1284,21 @@ Public Class frmMain
                 ' Standard
                 Grd = grdTrades
         End Select
-        Grd.Reload()
+        If KeepSelectedCells Then
+            ' make a backup of all selected cells
+            Dim CellsBackup As New List(Of Integer())
+            For Each cell In Grd.SelectedCells
+                CellsBackup.Add({cell.RowIndex, cell.ColumnIndex})
+            Next
+            Grd.Reload()
+            ' and restore the selection
+            For Each cell In CellsBackup
+                Grd.Rows(cell(0)).Cells(cell(1)).Selected = True
+            Next
+        Else
+            ' or just reload and switch to first row
+            Grd.Reload()
+        End If
         If Grd.Name = "grdBerechnungen" AndAlso Grd.ColumnCount >= 4 Then
             Grd.Columns(Grd.ColumnCount - 1).Visible = False
         End If
@@ -1297,7 +1311,7 @@ Public Class frmMain
         End If
     End Sub
 
-    Friend Sub RefreshAfterTradesEdit()
+    Friend Sub RefreshAfterTradesEdit(Optional KeepSelectedCells As Boolean = False)
         _DB.Reset_DataAdapter(TableNames.Kalkulationen)
         If _DB.DataTable(TableNames.Kalkulationen).Rows.Count > 0 Then
             If MessageBox.Show(String.Format(MyStrings.mainEditTradesAdvice, Environment.NewLine), MyStrings.mainEditTradesAdviceTitle,
@@ -1306,7 +1320,7 @@ Public Class frmMain
             End If
         End If
         _TVM.ResetAllLossTrades()
-        ReloadTablesTab()
+        ReloadTablesTab(KeepSelectedCells)
         FillDataTimesGrid()
         RefreshOpenTransfers()
         dshgrdBestaende.Reload()
@@ -1324,7 +1338,7 @@ Public Class frmMain
                 .StartID = Grd.Rows(Grd.CurrentCell.RowIndex).Cells(0).Value
             End If
             If .ShowDialog(Me) = Windows.Forms.DialogResult.OK AndAlso .RecordsModified > 0 Then
-                RefreshAfterTradesEdit()
+                RefreshAfterTradesEdit(Not .RowsInsertedOrDeleted)
             End If
             .Dispose()
         End With
