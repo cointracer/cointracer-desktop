@@ -376,6 +376,8 @@ Public Class frmMain
             End If
             ' Initialize values for transfer detection
             TransferDetection.Init()
+            ' Initialize recent files menu
+            UpdateRecentFileMenuEntries()
         Catch ex As Exception
             ' Don't care...
         End Try
@@ -1233,12 +1235,15 @@ Public Class frmMain
 #End If
         Try
             Cursor.Current = Cursors.WaitCursor
+            ' Add file to recent files list
+
             Dim DBInit As New DBInit
-            ' Okay: Aktuelle Datenbank sicherheitshalber kopieren
+            ' Aktuelle Datenbank sicherheitshalber kopieren
             My.Computer.FileSystem.CopyFile(DBInit.DatabaseFile, DBInit.DatabaseFile & ".bak", True)
             ' Und jetzt Backup-Datei als Live-Datei kopieren
             My.Computer.FileSystem.CopyFile(Filename, DBInit.DatabaseFile, True)
             ' Datenbank "einklinken"
+            PushToRecentFiles(Filename)
             DBInit.InitDatabase()
             frmMain_Load(Me, New EventArgs)
             ReloadTablesTab()
@@ -1254,6 +1259,72 @@ Public Class frmMain
             DefaultErrorHandler(ex, String.Format(MyStrings.mainMsgLoadDBError, NewLine, ex.Message))
         End Try
     End Sub
+
+    ''' <summary>
+    ''' Pushes a file onto the stack of recently used (database) files
+    ''' </summary>
+    ''' <param name="Filename">Fully qualified name of database file</param>
+    Private Sub PushToRecentFiles(Filename As String)
+        With My.Settings
+            If .RecentFilesList.Length = 0 Then
+                .RecentFilesList = Filename
+            Else
+                ' Check if file is already in list
+                If Not .RecentFilesList.Contains(Filename) Then
+                    ' Add file
+                    Dim FilesList As String() = (Filename & "|" & .RecentFilesList).Split("|"c)
+                    If FilesList.Length > 2 Then
+                        Array.Resize(FilesList, 2)
+                    End If
+                    .RecentFilesList = String.Join("|", FilesList)
+                End If
+            End If
+        End With
+        UpdateRecentFileMenuEntries()
+    End Sub
+
+    Private Sub UpdateRecentFileMenuEntries()
+        Dim FilesList As String() = My.Settings.RecentFilesList.Split("|"c)
+        With cmnRecentFiles
+            .Items.Clear()
+            If FilesList?.Length > 0 AndAlso FilesList(0).Length > 0 Then
+                ' (re)build menu entries
+                RecentFilesListMenuItem.Visible = True
+                For i = 0 To FilesList.Length - 1
+                    .Items.Add(i + 1 & ": " & FilesList(i), Nothing, New EventHandler(AddressOf RecentFilesClickHandler))
+                    With .Items.Item(.Items.Count - 1)
+                        .Tag = FilesList(i)
+                    End With
+                Next
+                ' Add separator and delete entry
+                .Items.Add(New ToolStripSeparator)
+                .Items.Add(MyStrings.mnuItmClearRecentDbFiles, ct_erase, New EventHandler(AddressOf ClearRecentFilesClickHandler))
+            Else
+                ' Disable menu entry
+                RecentFilesListMenuItem.Visible = False
+            End If
+        End With
+    End Sub
+
+    ''' <summary>
+    ''' Handles Click on one of the recent database files menu entries.
+    ''' Loads the corresponding database file.
+    ''' </summary>
+    Private Sub RecentFilesClickHandler(sender As Object, e As EventArgs)
+        Dim Item As ToolStripDropDownItem = TryCast(sender, ToolStripDropDownItem)
+        If Item?.Tag?.ToString.Length > 0 Then
+            LoadDatabase(Item.Tag, True)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Clears the recent files list
+    ''' </summary>
+    Private Sub ClearRecentFilesClickHandler(sender As Object, e As EventArgs)
+        My.Settings.RecentFilesList = String.Empty
+        UpdateRecentFileMenuEntries()
+    End Sub
+
 
     Private Sub tctlTables_SelectedIndexChanged(sender As Object, e As EventArgs) Handles tctlTables.SelectedIndexChanged
         ReloadTablesTab()
