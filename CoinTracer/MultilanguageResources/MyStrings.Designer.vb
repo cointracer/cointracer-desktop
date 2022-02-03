@@ -1849,8 +1849,11 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Sucht eine lokalisierte Zeichenfolge, die Achtung: In Zeile {2} konnte für den Trade {1} über {3} {4} keine Gegenbuchung in den Daten gefunden werden.{0}{0}Klicken Sie OK, um den Trade zu einem Gegenwert von 0,00 EUR zu importieren. 
-        '''Mit Abbrechen überspringen Sie den Trade. ähnelt.
+        '''  Sucht eine lokalisierte Zeichenfolge, die Achtung: In Zeile {1} konnte für den Trade {0} über {2} {3} keine Gegenbuchung in den Daten gefunden werden.
+        '''
+        '''Wählen Sie Ja, um den Trade zu einem Gegenwert von 0,00 EUR zu importieren.
+        '''Wählen Sie Nein, um den Trade zu ignorieren (und nicht zu importieren).
+        '''Mit Abbrechen brechen Sie den Import ab. ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgKrakenWarningNoSecondEntry() As String
             Get
@@ -2985,6 +2988,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property mnuItmClearFilters() As String
             Get
                 Return ResourceManager.GetString("mnuItmClearFilters", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Dateiverlauf löschen ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property mnuItmClearRecentDbFiles() As String
+            Get
+                Return ResourceManager.GetString("mnuItmClearRecentDbFiles", resourceCulture)
             End Get
         End Property
         

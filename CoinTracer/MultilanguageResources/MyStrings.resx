@@ -1238,10 +1238,16 @@ Erstellen einer Deposit- oder Withdrawal-History:
     <value>Bitcoin.de API-Aufruf: QueryAPI: Server meldet Fehler! ResponseCode: {0}, Rückgabe: '{1}' / Interner Credit-Zähler: {2}</value>
   </data>
   <data name="importMsgKrakenWarningNoSecondEntry" xml:space="preserve">
-    <value>Achtung: In Zeile {2} konnte für den Trade {1} über {3} {4} keine Gegenbuchung in den Daten gefunden werden.{0}{0}Klicken Sie OK, um den Trade zu einem Gegenwert von 0,00 EUR zu importieren. 
-Mit Abbrechen überspringen Sie den Trade.</value>
+    <value>Achtung: In Zeile {1} konnte für den Trade {0} über {2} {3} keine Gegenbuchung in den Daten gefunden werden.
+
+Wählen Sie Ja, um den Trade zu einem Gegenwert von 0,00 EUR zu importieren.
+Wählen Sie Nein, um den Trade zu ignorieren (und nicht zu importieren).
+Mit Abbrechen brechen Sie den Import ab.</value>
   </data>
   <data name="importMsgKrakenWarningNoSecondEntryTitle" xml:space="preserve">
     <value>Fehlende Gegenbuchung in Import-Daten</value>
+  </data>
+  <data name="mnuItmClearRecentDbFiles" xml:space="preserve">
+    <value>Dateiverlauf löschen</value>
   </data>
 </root>

@@ -94,6 +94,7 @@ Friend Class Import_Kraken_Api
             Dim SourceTLO As Import_Kraken.KrakenLineObject
             Dim TargetTLO As Import_Kraken.KrakenLineObject
             Dim PreviousID As String = ""
+            Dim DlgResult As DialogResult
 
             ' Schleife über alle Ledger-Items
             Do Until LedgerItem Is Nothing
@@ -221,13 +222,19 @@ Friend Class Import_Kraken_Api
                                     End If
                                 End If
                                 If LedgerError > KrakenApiMissingLederErrors.NoError Then
-                                    If TLO.Amount <= Import_Kraken.KRAKEN_ZEROVALUETRADELIMIT OrElse
-                                            (Not MainImportObject.SilentMode AndAlso MsgBoxEx.ShowInFront(String.Format(MyStrings.importMsgKrakenWarningNoSecondEntry, Environment.NewLine, TLO.TxId, AnalyseCounter, TLO.Amount.ToString(Import.INFONUMBERFORMAT, CultureInfo.InvariantCulture), TLO.Asset),
-                                                                                                          MyStrings.importMsgKrakenWarningNoSecondEntryTitle,
-                                                                                                          MessageBoxButtons.OKCancel,
-                                                                                                          MessageBoxIcon.Exclamation,
-                                                                                                          MessageBoxDefaultButton.Button1) = DialogResult.OK) Then
-                                        ' The value of this trade is very low: assume the corresponding second entry would be zero
+                                    If TLO.Amount <= Import_Kraken.KRAKEN_ZEROVALUETRADELIMIT Then
+                                        DlgResult = DialogResult.Yes
+                                    ElseIf MainImportObject.SilentMode Then
+                                        DlgResult = DialogResult.Cancel
+                                    Else
+                                        DlgResult = MsgBoxEx.ShowInFront(String.Format(MyStrings.importMsgKrakenWarningNoSecondEntry, TLO.TxId, AnalyseCounter, TLO.Amount.ToString(Import.INFONUMBERFORMAT, CultureInfo.InvariantCulture), TLO.Asset),
+                                                                         MyStrings.importMsgKrakenWarningNoSecondEntryTitle,
+                                                                         MessageBoxButtons.YesNoCancel,
+                                                                         MessageBoxIcon.Exclamation,
+                                                                         MessageBoxDefaultButton.Button1)
+                                    End If
+                                    If DlgResult = DialogResult.Yes Then
+                                        ' assume the corresponding second entry would be zero
                                         NextTLO = New Import_Kraken.KrakenLineObject(MainImportObject, DateFromUnixTimestamp(LedgerEntry("time").ToString),
                                                                                      LedgerItem.Name,
                                                                                      LedgerEntry("refid").ToString,
@@ -239,21 +246,25 @@ Friend Class Import_Kraken_Api
                                         LedgerItem = LedgerItem2
                                         SkipGetNextLedgerItem = True
                                         LedgerError = KrakenApiMissingLederErrors.NoError
+                                    ElseIf DlgResult = DialogResult.No Then
+                                        ' skip this entry
+                                        Continue Do
                                     Else
+                                        ' abort import
                                         Dim ErrorMessage As String = String.Format(MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID)
                                         ErrorMessage = String.Format(MyStrings.importMsgKrakenApiErrorPrefix, AnalyseCounter.ToString(Import.MESSAGENUMBERFORMAT)) & " " & ErrorMessage
                                         WriteLogEntry(ErrorMessage & " " & MyStrings.importMsgKrakenApiErrorSuffix & LedgerItem.ToString & Environment.NewLine,
                                             TraceEventType.Information)
-                                        Throw New Exception(String.Format(MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
+                                        Throw New ImportFileException(String.Format(MyStrings.importMsgKrakenErrorNoSecondEntry, .SourceID))
                                     End If
                                 End If
                                 NextTLO = New Import_Kraken.KrakenLineObject(MainImportObject, DateFromUnixTimestamp(LedgerEntry2("time").ToString),
-                                                               LedgerItem2.Name,
-                                                               LedgerEntry2("refid").ToString,
-                                                               LedgerEntry2("type").ToString,
-                                                               LedgerEntry2("asset").ToString,
-                                                               LedgerEntry2("amount").ToString,
-                                                               LedgerEntry2("fee").ToString)
+                                                                             LedgerItem2.Name,
+                                                                             LedgerEntry2("refid").ToString,
+                                                                             LedgerEntry2("type").ToString,
+                                                                             LedgerEntry2("asset").ToString,
+                                                                             LedgerEntry2("amount").ToString,
+                                                                             LedgerEntry2("fee").ToString)
 
                                 Dim QuellKontoRow As KontenRow
                                 If TLO.Amount < 0 OrElse (TLO.Amount = 0 And NextTLO.Amount > 0) Then
@@ -341,6 +352,11 @@ Friend Class Import_Kraken_Api
                             RecordFee.QuellBetragNachGebuehr = RecordFee.QuellBetrag
                             RecordFee.Info = String.Format(MyStrings.importInfoTradeFee, .SourceID)
                         End If
+                    Catch ex As ImportFileException
+                        ErrCounter = 1
+                        ApiImportError(ErrCounter, AnalyseCounter, ex)
+                        Return 0
+                        Exit Function
                     Catch ex As Exception
                         If ApiImportError(ErrCounter, AnalyseCounter, ex) = 0 Then
                             Return 0

@@ -44,10 +44,6 @@ Public Class ImportFileException
     Public Sub New(ByVal message As String, ByVal inner As Exception)
         MyBase.New(message, inner)
     End Sub
-
-    Protected Sub New(ByVal info As Runtime.Serialization.SerializationInfo, ByVal context As Runtime.Serialization.StreamingContext)
-        MyBase.New(info, context)
-    End Sub
 End Class
 
 ''' <summary>
@@ -543,8 +539,8 @@ Public MustInherit Class FileImportBase
     ''' <param name="ex">Exception (message will be displayed)</param>
     ''' <returns></returns>
     Protected Friend Function FileImportError(ByRef ErrorCounter As Long,
-                                       ByVal Line As Long,
-                                       ByRef ex As Exception) As Long Implements IFileImport.FileImportError
+                                              ByVal Line As Long,
+                                              ByRef ex As Exception) As Long Implements IFileImport.FileImportError
         Cursor.Current = Cursors.Default
         ErrorCounter -= 1
         Dim ErrorMessage As String = String.Format(My.Resources.MyStrings.importMsgInvalidDataInLine,
