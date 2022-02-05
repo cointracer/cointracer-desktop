@@ -3267,7 +3267,7 @@ Public Class Import
     ''' <param name="AccountShort">CODE des Kontos. Wenn Leerstring, wird der in Account übergebene String bei einer Neuanlage sowohl für die Bezeichnung als auch für den CODE verwendet.</param>
     ''' <returns>KontenRow des gefundenen Kontos</returns>
     Friend Function RetrieveAccount(ByVal Account As String,
-                                     Optional ByVal AccountShort As String = "") As KontenRow
+                                    Optional ByVal AccountShort As String = "") As KontenRow
         Dim FoundRows() As KontenRow
         Account = Account.Trim
         If Integer.TryParse(Account, Nothing) Then
@@ -3303,7 +3303,7 @@ Public Class Import
                 ' Nicht gefunden - also inkl. Gebührenkonto anlegen
                 Dim ID As Long = 1
                 Dim FeeID As Long = 2
-                FoundRows = _KontenTb.Select("ID < 311")
+                FoundRows = _KontenTb.Select("ID < " & AccountManager.FEEMINACCOUNT)
                 If DirectCast(FoundRows, ICollection).Count = 0 Then
                     FoundRows = _KontenTb.Select("")
                 End If
