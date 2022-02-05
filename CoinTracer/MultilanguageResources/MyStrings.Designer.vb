@@ -2168,6 +2168,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Beim Initialisieren das Datenbank ist ein Fehler aufgetreten! Die aktuelle Datenbank kann nicht verwendet werden.{0}{0}({1}) ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property initDbInitializeError() As String
+            Get
+                Return ResourceManager.GetString("initDbInitializeError", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Bei der Aktualisierung der Datenbank ist ein Fehler aufgetreten! Die aktuelle Datenbank kann nicht verwendet werden.{0}{0}({1}) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property initDbUpdateError() As String

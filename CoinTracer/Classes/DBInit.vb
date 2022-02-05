@@ -31,13 +31,14 @@
 
 Imports System.IO
 Imports System.Environment
+Imports CoinTracer.My.Resources
 
 ''' <summary>
-''' Bildet einen Fehler beim Update der Datenbank ab
+''' Represets a general error while initializing a database
 ''' </summary>
 <Serializable()>
-Public Class DatabaseUpdateException
-    Inherits System.Exception
+Public Class DatabaseInitException
+    Inherits Exception
     Implements Runtime.Serialization.ISerializable
 
     Public Sub New(ByVal message As String)
@@ -48,9 +49,24 @@ Public Class DatabaseUpdateException
         MyBase.New(message, inner)
     End Sub
 
-    Protected Sub New(ByVal info As Runtime.Serialization.SerializationInfo, ByVal context As Runtime.Serialization.StreamingContext)
-        MyBase.New(info, context)
+End Class
+
+''' <summary>
+''' Bildet einen Fehler beim Update der Datenbank ab
+''' </summary>
+<Serializable()>
+Public Class DatabaseUpdateException
+    Inherits Exception
+    Implements Runtime.Serialization.ISerializable
+
+    Public Sub New(ByVal message As String)
+        MyBase.New(message)
     End Sub
+
+    Public Sub New(ByVal message As String, ByVal inner As Exception)
+        MyBase.New(message, inner)
+    End Sub
+
 End Class
 
 ''' <summary>
@@ -58,7 +74,7 @@ End Class
 ''' </summary>
 <Serializable()>
 Public Class DirectoryNotWritableException
-    Inherits System.Exception
+    Inherits Exception
     Implements Runtime.Serialization.ISerializable
 
     Public Sub New(ByVal message As String)
@@ -69,9 +85,6 @@ Public Class DirectoryNotWritableException
         MyBase.New(message, inner)
     End Sub
 
-    Protected Sub New(ByVal info As Runtime.Serialization.SerializationInfo, ByVal context As Runtime.Serialization.StreamingContext)
-        MyBase.New(info, context)
-    End Sub
 End Class
 
 ''' <summary>
@@ -370,7 +383,7 @@ Public Class DBInit
                                         "order by k.Zeitpunkt, s.ID"),
         New SqlUpdateSequenceStruct(37, "update Konten set Fix = 1 where Fix = 'Y'"),
         New SqlUpdateSequenceStruct(VersionID:=37, CustomAction:=3),
-        New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=4, Message:=My.Resources.MyStrings.dbUpdateMsgReportReset),
+        New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=4, Message:=MyStrings.dbUpdateMsgReportReset),
         New SqlUpdateSequenceStruct(VersionID:=44, CustomAction:=5),
         New SqlUpdateSequenceStruct(VersionID:=44, CustomAction:=-1)    ' <-- just insert the latest db version number here
     }
@@ -381,7 +394,7 @@ Public Class DBInit
 
     ' IDisposable
     Protected Overridable Sub Dispose(ByVal disposing As Boolean)
-        If Not Me.disposedValue Then
+        If Not disposedValue Then
             If disposing Then
                 If _cnn IsNot Nothing Then
                     _cnn.Dispose()
@@ -389,7 +402,7 @@ Public Class DBInit
             End If
             ' TO DO: free unmanaged resources (unmanaged objects) and override Finalize() below.
         End If
-        Me.disposedValue = True
+        disposedValue = True
     End Sub
 
     ' TO DO: override Finalize() only if Dispose(ByVal disposing As Boolean) above has code to free unmanaged resources.
@@ -445,7 +458,7 @@ Public Class DBInit
                     Return Path.GetDirectoryName(Application.ExecutablePath) & "\"
                 Case Else
                     If My.Settings.DataDirectory.Length = 0 Then
-                        Return Me.DatabaseDirectory(DataBaseDirectories.UserAppDataDirectory)
+                        Return DatabaseDirectory(DataBaseDirectories.UserAppDataDirectory)
                     Else
                         Return Path.GetDirectoryName(My.Settings.DataDirectory) & "\"
                     End If
@@ -537,50 +550,55 @@ Public Class DBInit
     ''' Initialisiert die Datenbank, legt sie ggf. an, baut die Verbindung auf und liest aktuelle Version ein
     ''' </summary>
     Public Sub InitDatabase(Optional ByRef DatabaseFilename As String = DBDEFAULTNAME)
-        _DBName = DatabaseFilename
-        ' Prüfen, ob Datenbank vorhanden ist
-        Dim DBFile As String
-        DBFile = DatabaseFile
-        If Not File.Exists(DBFile) Then
-            ' Offenbar der erste Start - ggf. fragen, wohin die Datenbank gespeichert werden soll.
-            If CheckIfWritable(DatabaseDirectory(DataBaseDirectories.ApplicationDirectory)) Then
-                MsgBoxEx.PatchMsgBox(New String() {My.Resources.MyStrings.initMsgSelectDbFolderOptionUser, My.Resources.MyStrings.initMsgSelectDbFolderOptionGlobal})
-                If MessageBox.Show(My.Resources.MyStrings.initMsgSelectDbFolder, My.Resources.MyStrings.initMsgSelectDbFolderTitle,
+        Try
+            _DBName = DatabaseFilename
+            ' Prüfen, ob Datenbank vorhanden ist
+            Dim DBFile As String
+            DBFile = DatabaseFile
+            If Not File.Exists(DBFile) Then
+                ' Offenbar der erste Start - ggf. fragen, wohin die Datenbank gespeichert werden soll.
+                If CheckIfWritable(DatabaseDirectory(DataBaseDirectories.ApplicationDirectory)) Then
+                    MsgBoxEx.PatchMsgBox(New String() {MyStrings.initMsgSelectDbFolderOptionUser, MyStrings.initMsgSelectDbFolderOptionGlobal})
+                    If MessageBox.Show(MyStrings.initMsgSelectDbFolder, MyStrings.initMsgSelectDbFolderTitle,
                                    MessageBoxButtons.RetryCancel, MessageBoxIcon.Question) = DialogResult.Retry Then
-                    My.Settings.DataDirectory = DatabaseDirectory(DataBaseDirectories.UserAppDataDirectory)
+                        My.Settings.DataDirectory = DatabaseDirectory(DataBaseDirectories.UserAppDataDirectory)
+                    Else
+                        My.Settings.DataDirectory = DatabaseDirectory(DataBaseDirectories.ApplicationDirectory)
+                    End If
+                    DBFile = DatabaseFile
                 Else
-                    My.Settings.DataDirectory = DatabaseDirectory(DataBaseDirectories.ApplicationDirectory)
+                    My.Settings.DataDirectory = DatabaseDirectory(DataBaseDirectories.UserAppDataDirectory)
                 End If
-                DBFile = DatabaseFile
-            Else
-                My.Settings.DataDirectory = DatabaseDirectory(DataBaseDirectories.UserAppDataDirectory)
+                Dim FFSP As New FlexFileSettingsProvider
+                FFSP.UserConfigFile = Path.Combine(DatabaseDirectory, FFSP.GetUserConfigFileName)
             End If
-            Dim FFSP As New FlexFileSettingsProvider
-            FFSP.UserConfigFile = Path.Combine(DatabaseDirectory, FFSP.GetUserConfigFileName)
-        End If
-        If Not Directory.Exists(Path.GetDirectoryName(DBFile)) Then
-            Try
-                Directory.CreateDirectory(Path.GetDirectoryName(DBFile))
-            Catch ex As Exception
-                Throw
-                Exit Sub
-            End Try
-        End If
-        If Not File.Exists(DBFile) Then
-            ' Default-Datenbank kopieren
-            Try
-                File.WriteAllBytes(DBFile, My.Resources.cointracerDefault)
-            Catch ex As Exception
-                Throw
-                Exit Sub
-            End Try
-        End If
+            If Not Directory.Exists(Path.GetDirectoryName(DBFile)) Then
+                Try
+                    Directory.CreateDirectory(Path.GetDirectoryName(DBFile))
+                Catch ex As Exception
+                    Throw
+                    Exit Sub
+                End Try
+            End If
+            If Not File.Exists(DBFile) Then
+                ' Default-Datenbank kopieren
+                Try
+                    File.WriteAllBytes(DBFile, cointracerDefault)
+                Catch ex As Exception
+                    Throw
+                    Exit Sub
+                End Try
+            End If
 
-        ' Connection aufbauen
-        SetConnection(DBFile)
+            ' Connection aufbauen
+            SetConnection(DBFile)
 
-        ' aktuelle Version holen
-        _LocalDBVersionID = GetVersionIDFromDB()
+            ' aktuelle Version holen
+            _LocalDBVersionID = GetVersionIDFromDB()
+
+        Catch ex As Exception
+            Throw New DatabaseInitException(String.Format(MyStrings.initDbInitializeError, NewLine, ex.Message), ex)
+        End Try
 
     End Sub
 
@@ -647,7 +665,7 @@ Public Class DBInit
         Try
             Dim DBO As New DBObjects(SQL, _cnn)
             If DBO IsNot Nothing AndAlso DBO.DataTable.Rows.Count > 0 Then
-                Return CInt(DBO.DataTable.Rows(0)(ReturnFieldName))
+                Return DBO.DataTable.Rows(0)(ReturnFieldName)
             Else
                 Throw New Exception(String.Format("Die Datenbankabfrage konnte nicht erfolgreich durchgeführt werden!"))
             End If
@@ -696,7 +714,7 @@ Public Class DBInit
                     End If
                 Next
                 ' Kursdaten ggf. aktualisieren
-                Me.InitCourseData()
+                InitCourseData()
                 ' Check if platforms are all right
                 PlatformManager.PlatformsSyncDB(_cnn)
                 ' Check if accounts are in sync
@@ -710,7 +728,7 @@ Public Class DBInit
                     myBuildInfo.FileBuildPart & ")"
                 DBHelp.ExecuteSQL(SQL)
             Catch ex As Exception
-                Throw New DatabaseUpdateException(String.Format(My.Resources.MyStrings.initDbUpdateError, NewLine, ex.Message), ex)
+                Throw New DatabaseUpdateException(String.Format(MyStrings.initDbUpdateError, NewLine, ex.Message), ex)
             End Try
             Return True
         ElseIf _LocalDBVersionID > RequiredVersionID Then
@@ -735,7 +753,7 @@ Public Class DBInit
     ''' </summary>
     ''' <param name="DBVersion">Maximum database version. Every SQL statement with version smaller than or equal to this parameter will be executed, so long as it is higher than the current local database version</param>
     Private Sub ProcessSqlRessourceStrings(ByVal DBVersion As Integer)
-        Dim ItemResourceSet As Resources.ResourceSet = My.Resources.SQLs.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, True, True)
+        Dim ItemResourceSet As System.Resources.ResourceSet = SQLs.ResourceManager.GetResourceSet(CultureInfo.CurrentCulture, True, True)
         Dim ItemEnumerator As IDictionaryEnumerator = ItemResourceSet.GetEnumerator
         Dim SqlStrings As New List(Of String)
         Dim CurrentKey As String
@@ -752,7 +770,7 @@ Public Class DBInit
             SqlStrings.Sort()
             Dim DBHelp As New DBHelper(_cnn)
             For Each CurrentKey In SqlStrings
-                CurrentSql = My.Resources.SQLs.ResourceManager.GetObject(CurrentKey).ToString
+                CurrentSql = SQLs.ResourceManager.GetObject(CurrentKey).ToString
                 If CurrentSql.Length > 0 Then
                     Try
                         DBHelp.ExecuteSQL(CurrentSql)

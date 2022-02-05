@@ -131,9 +131,273 @@
   <data name="grpBestand.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
+  <data name="&gt;&gt;TableLayoutPanel3.Name" xml:space="preserve">
+    <value>TableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel3.Parent" xml:space="preserve">
+    <value>grpBestand</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tpDashboard" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="TableLayoutPanel4" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="spltCntGainings" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,2,Absolute,69,Absolute,69,Percent,100,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="grpBestand.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="grpBestand.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="grpBestand.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="grpBestand.Size" type="System.Drawing.Size, System.Drawing">
+    <value>616, 461</value>
+  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="grpBestand.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="grpBestand.Text" xml:space="preserve">
+    <value>Kontenübersicht</value>
+  </data>
+  <data name="&gt;&gt;grpBestand.Name" xml:space="preserve">
+    <value>grpBestand</value>
+  </data>
+  <data name="&gt;&gt;grpBestand.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpBestand.Parent" xml:space="preserve">
+    <value>spltCntDashboard.Panel1</value>
+  </data>
+  <data name="&gt;&gt;grpBestand.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Panel1.Name" xml:space="preserve">
+    <value>spltCntDashboard.Panel1</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Panel1.Parent" xml:space="preserve">
+    <value>spltCntDashboard</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="spltCntDashboard.Panel1MinSize" type="System.Int32, mscorlib">
+    <value>360</value>
+  </data>
+  <data name="TableLayoutPanel2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="TableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;Button1.Name" xml:space="preserve">
+    <value>Button1</value>
+  </data>
+  <data name="&gt;&gt;Button1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Button1.Parent" xml:space="preserve">
+    <value>TableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;Button1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpDataTimes.Name" xml:space="preserve">
+    <value>grpDataTimes</value>
+  </data>
+  <data name="&gt;&gt;grpDataTimes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpDataTimes.Parent" xml:space="preserve">
+    <value>TableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;grpDataTimes.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;grpImport.Name" xml:space="preserve">
+    <value>grpImport</value>
+  </data>
+  <data name="&gt;&gt;grpImport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpImport.Parent" xml:space="preserve">
+    <value>TableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;grpImport.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;grpCourses.Name" xml:space="preserve">
+    <value>grpCourses</value>
+  </data>
+  <data name="&gt;&gt;grpCourses.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpCourses.Parent" xml:space="preserve">
+    <value>TableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;grpCourses.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;grpApiImport.Name" xml:space="preserve">
+    <value>grpApiImport</value>
+  </data>
+  <data name="&gt;&gt;grpApiImport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpApiImport.Parent" xml:space="preserve">
+    <value>TableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;grpApiImport.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="TableLayoutPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="TableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="TableLayoutPanel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 0, 0, 0</value>
+  </data>
+  <data name="TableLayoutPanel2.RowCount" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="TableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>332, 465</value>
+  </data>
+  <data name="TableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel2.Name" xml:space="preserve">
+    <value>TableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel2.Parent" xml:space="preserve">
+    <value>spltCntDashboard.Panel2</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="Button1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="grpDataTimes" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="grpImport" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="grpCourses" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="grpApiImport" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,Percent,100,Absolute,102,Absolute,68,Absolute,105" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Panel2.Name" xml:space="preserve">
+    <value>spltCntDashboard.Panel2</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Panel2.Parent" xml:space="preserve">
+    <value>spltCntDashboard</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="spltCntDashboard.Panel2MinSize" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="spltCntDashboard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>952, 465</value>
+  </data>
+  <data name="spltCntDashboard.SplitterDistance" type="System.Int32, mscorlib">
+    <value>616</value>
+  </data>
+  <data name="spltCntDashboard.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Name" xml:space="preserve">
+    <value>spltCntDashboard</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.Parent" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;spltCntDashboard.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="TableLayoutPanel3.ColumnCount" type="System.Int32, mscorlib">
     <value>1</value>
+  </data>
+  <data name="&gt;&gt;tpDashboard.Name" xml:space="preserve">
+    <value>tpDashboard</value>
+  </data>
+  <data name="&gt;&gt;tpDashboard.Type" xml:space="preserve">
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tpDashboard.Parent" xml:space="preserve">
+    <value>TableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;tpDashboard.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel4.Name" xml:space="preserve">
+    <value>TableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel4.Parent" xml:space="preserve">
+    <value>TableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="TableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gnd1stTab" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cmdReloadDash" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,270,AutoSize,0" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;spltCntGainings.Name" xml:space="preserve">
+    <value>spltCntGainings</value>
+  </data>
+  <data name="&gt;&gt;spltCntGainings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;spltCntGainings.Parent" xml:space="preserve">
+    <value>TableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;spltCntGainings.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="TableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="TableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 20</value>
+  </data>
+  <data name="TableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="TableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>610, 437</value>
+  </data>
+  <data name="TableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel3.Name" xml:space="preserve">
+    <value>TableLayoutPanel3</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel3.Parent" xml:space="preserve">
+    <value>grpBestand</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tpDashboard" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="TableLayoutPanel4" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="spltCntGainings" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,2,Absolute,69,Absolute,69,Percent,100,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="tpDashboard.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -171,21 +435,6 @@
   <data name="TableLayoutPanel4.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="gnd1stTab.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="gnd1stTab.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="gnd1stTab.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="gnd1stTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 52</value>
-  </data>
-  <data name="gnd1stTab.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;gnd1stTab.Name" xml:space="preserve">
     <value>gnd1stTab</value>
   </data>
@@ -197,24 +446,6 @@
   </data>
   <data name="&gt;&gt;gnd1stTab.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="cmdReloadDash.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="cmdReloadDash.Location" type="System.Drawing.Point, System.Drawing">
-    <value>273, 3</value>
-  </data>
-  <data name="cmdReloadDash.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 31</value>
-  </data>
-  <data name="cmdReloadDash.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <metadata name="EnhancedToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="cmdReloadDash.ToolTip" xml:space="preserve">
-    <value>Übersicht aktualisieren</value>
   </data>
   <data name="&gt;&gt;cmdReloadDash.Name" xml:space="preserve">
     <value>cmdReloadDash</value>
@@ -260,6 +491,63 @@
   </data>
   <data name="TableLayoutPanel4.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
     <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="gnd1stTab" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="cmdReloadDash" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,270,AutoSize,0" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="gnd1stTab.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="gnd1stTab.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="gnd1stTab.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="gnd1stTab.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 52</value>
+  </data>
+  <data name="gnd1stTab.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;gnd1stTab.Name" xml:space="preserve">
+    <value>gnd1stTab</value>
+  </data>
+  <data name="&gt;&gt;gnd1stTab.Type" xml:space="preserve">
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;gnd1stTab.Parent" xml:space="preserve">
+    <value>TableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;gnd1stTab.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <metadata name="EnhancedToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="cmdReloadDash.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="cmdReloadDash.Location" type="System.Drawing.Point, System.Drawing">
+    <value>273, 3</value>
+  </data>
+  <data name="cmdReloadDash.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 31</value>
+  </data>
+  <data name="cmdReloadDash.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="cmdReloadDash.ToolTip" xml:space="preserve">
+    <value>Übersicht aktualisieren</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadDash.Name" xml:space="preserve">
+    <value>cmdReloadDash</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadDash.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadDash.Parent" xml:space="preserve">
+    <value>TableLayoutPanel4</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadDash.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="spltCntGainings.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -465,87 +753,6 @@
   <data name="&gt;&gt;spltCntGainings.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="TableLayoutPanel3.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="TableLayoutPanel3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 20</value>
-  </data>
-  <data name="TableLayoutPanel3.RowCount" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="TableLayoutPanel3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>610, 437</value>
-  </data>
-  <data name="TableLayoutPanel3.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel3.Name" xml:space="preserve">
-    <value>TableLayoutPanel3</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel3.Parent" xml:space="preserve">
-    <value>grpBestand</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel3.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="TableLayoutPanel3.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="tpDashboard" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="TableLayoutPanel4" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="spltCntGainings" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="Absolute,2,Absolute,69,Absolute,69,Percent,100,Absolute,20,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="grpBestand.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="grpBestand.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="grpBestand.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="grpBestand.Size" type="System.Drawing.Size, System.Drawing">
-    <value>616, 461</value>
-  </data>
-  <data name="grpBestand.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="grpBestand.Text" xml:space="preserve">
-    <value>Kontenübersicht</value>
-  </data>
-  <data name="&gt;&gt;grpBestand.Name" xml:space="preserve">
-    <value>grpBestand</value>
-  </data>
-  <data name="&gt;&gt;grpBestand.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpBestand.Parent" xml:space="preserve">
-    <value>spltCntDashboard.Panel1</value>
-  </data>
-  <data name="&gt;&gt;grpBestand.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Panel1.Name" xml:space="preserve">
-    <value>spltCntDashboard.Panel1</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Panel1.Parent" xml:space="preserve">
-    <value>spltCntDashboard</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Panel1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="spltCntDashboard.Panel1MinSize" type="System.Int32, mscorlib">
-    <value>360</value>
-  </data>
-  <data name="TableLayoutPanel2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
-  </data>
-  <data name="TableLayoutPanel2.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
   <data name="Button1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -575,30 +782,6 @@
   </data>
   <data name="grpDataTimes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="grdDataTimes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="Wallet.HeaderText" xml:space="preserve">
-    <value>Börse/Wallet</value>
-  </data>
-  <data name="Wallet.Width" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <data name="Zeitpunkt.HeaderText" xml:space="preserve">
-    <value>Jüngste Transaktion</value>
-  </data>
-  <data name="Zeitpunkt.Width" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <data name="grdDataTimes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>10, 24</value>
-  </data>
-  <data name="grdDataTimes.Size" type="System.Drawing.Size, System.Drawing">
-    <value>305, 108</value>
-  </data>
-  <data name="grdDataTimes.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
   </data>
   <data name="&gt;&gt;grdDataTimes.Name" xml:space="preserve">
     <value>grdDataTimes</value>
@@ -639,8 +822,110 @@
   <data name="&gt;&gt;grpDataTimes.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="grdDataTimes.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="grdDataTimes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 24</value>
+  </data>
+  <data name="grdDataTimes.Size" type="System.Drawing.Size, System.Drawing">
+    <value>305, 108</value>
+  </data>
+  <data name="grdDataTimes.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;grdDataTimes.Name" xml:space="preserve">
+    <value>grdDataTimes</value>
+  </data>
+  <data name="&gt;&gt;grdDataTimes.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grdDataTimes.Parent" xml:space="preserve">
+    <value>grpDataTimes</value>
+  </data>
+  <data name="&gt;&gt;grdDataTimes.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Wallet.HeaderText" xml:space="preserve">
+    <value>Börse/Wallet</value>
+  </data>
+  <data name="Wallet.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="Zeitpunkt.HeaderText" xml:space="preserve">
+    <value>Jüngste Transaktion</value>
+  </data>
+  <data name="Zeitpunkt.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
   <data name="grpImport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;ShowHistoricImportsCheckbox.Name" xml:space="preserve">
+    <value>ShowHistoricImportsCheckbox</value>
+  </data>
+  <data name="&gt;&gt;ShowHistoricImportsCheckbox.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ShowHistoricImportsCheckbox.Parent" xml:space="preserve">
+    <value>grpImport</value>
+  </data>
+  <data name="&gt;&gt;ShowHistoricImportsCheckbox.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cbxImports.Name" xml:space="preserve">
+    <value>cbxImports</value>
+  </data>
+  <data name="&gt;&gt;cbxImports.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxImports.Parent" xml:space="preserve">
+    <value>grpImport</value>
+  </data>
+  <data name="&gt;&gt;cbxImports.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cmdImport.Name" xml:space="preserve">
+    <value>cmdImport</value>
+  </data>
+  <data name="&gt;&gt;cmdImport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdImport.Parent" xml:space="preserve">
+    <value>grpImport</value>
+  </data>
+  <data name="&gt;&gt;cmdImport.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 194</value>
+  </data>
+  <data name="grpImport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="grpImport.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="grpImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 94</value>
+  </data>
+  <data name="grpImport.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="grpImport.Text" xml:space="preserve">
+    <value>Daten importieren</value>
+  </data>
+  <data name="&gt;&gt;grpImport.Name" xml:space="preserve">
+    <value>grpImport</value>
+  </data>
+  <data name="&gt;&gt;grpImport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpImport.Parent" xml:space="preserve">
+    <value>TableLayoutPanel2</value>
+  </data>
+  <data name="&gt;&gt;grpImport.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="ShowHistoricImportsCheckbox.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -732,35 +1017,86 @@
   <data name="&gt;&gt;cmdImport.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="grpImport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 194</value>
+  <data name="&gt;&gt;lblCoinCourses.Name" xml:space="preserve">
+    <value>lblCoinCourses</value>
   </data>
-  <data name="grpImport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+  <data name="&gt;&gt;lblCoinCourses.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="grpImport.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+  <data name="&gt;&gt;lblCoinCourses.Parent" xml:space="preserve">
+    <value>grpCourses</value>
   </data>
-  <data name="grpImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 94</value>
-  </data>
-  <data name="grpImport.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;lblCoinCourses.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="grpImport.Text" xml:space="preserve">
-    <value>Daten importieren</value>
+  <data name="&gt;&gt;cmdCoinCourses.Name" xml:space="preserve">
+    <value>cmdCoinCourses</value>
   </data>
-  <data name="&gt;&gt;grpImport.Name" xml:space="preserve">
-    <value>grpImport</value>
+  <data name="&gt;&gt;cmdCoinCourses.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpImport.Type" xml:space="preserve">
+  <data name="&gt;&gt;cmdCoinCourses.Parent" xml:space="preserve">
+    <value>grpCourses</value>
+  </data>
+  <data name="&gt;&gt;cmdCoinCourses.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;lblCourseUSD.Name" xml:space="preserve">
+    <value>lblCourseUSD</value>
+  </data>
+  <data name="&gt;&gt;lblCourseUSD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCourseUSD.Parent" xml:space="preserve">
+    <value>grpCourses</value>
+  </data>
+  <data name="&gt;&gt;lblCourseUSD.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;cmdCourses.Name" xml:space="preserve">
+    <value>cmdCourses</value>
+  </data>
+  <data name="&gt;&gt;cmdCourses.Type" xml:space="preserve">
+    <value>CoinTracer.PaddingButton, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cmdCourses.Parent" xml:space="preserve">
+    <value>grpCourses</value>
+  </data>
+  <data name="&gt;&gt;cmdCourses.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grpCourses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="grpCourses.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 364</value>
+  </data>
+  <data name="grpCourses.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="grpCourses.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="grpCourses.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 97</value>
+  </data>
+  <data name="grpCourses.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="grpCourses.Text" xml:space="preserve">
+    <value>Wechselkursdaten</value>
+  </data>
+  <data name="&gt;&gt;grpCourses.Name" xml:space="preserve">
+    <value>grpCourses</value>
+  </data>
+  <data name="&gt;&gt;grpCourses.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpImport.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpCourses.Parent" xml:space="preserve">
     <value>TableLayoutPanel2</value>
   </data>
-  <data name="&gt;&gt;grpImport.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;grpCourses.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="lblCoinCourses.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -885,38 +1221,56 @@
   <data name="&gt;&gt;cmdCourses.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="grpCourses.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+  <data name="&gt;&gt;cmdConfigApi.Name" xml:space="preserve">
+    <value>cmdConfigApi</value>
+  </data>
+  <data name="&gt;&gt;cmdConfigApi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdConfigApi.Parent" xml:space="preserve">
+    <value>grpApiImport</value>
+  </data>
+  <data name="&gt;&gt;cmdConfigApi.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cmdImportApi.Name" xml:space="preserve">
+    <value>cmdImportApi</value>
+  </data>
+  <data name="&gt;&gt;cmdImportApi.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdImportApi.Parent" xml:space="preserve">
+    <value>grpApiImport</value>
+  </data>
+  <data name="&gt;&gt;cmdImportApi.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="grpApiImport.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="grpCourses.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 364</value>
+  <data name="grpApiImport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 295</value>
   </data>
-  <data name="grpCourses.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+  <data name="grpApiImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>326, 62</value>
   </data>
-  <data name="grpCourses.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
+  <data name="grpApiImport.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
-  <data name="grpCourses.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 97</value>
+  <data name="grpApiImport.Text" xml:space="preserve">
+    <value>API-Importe</value>
   </data>
-  <data name="grpCourses.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+  <data name="&gt;&gt;grpApiImport.Name" xml:space="preserve">
+    <value>grpApiImport</value>
   </data>
-  <data name="grpCourses.Text" xml:space="preserve">
-    <value>Wechselkursdaten</value>
-  </data>
-  <data name="&gt;&gt;grpCourses.Name" xml:space="preserve">
-    <value>grpCourses</value>
-  </data>
-  <data name="&gt;&gt;grpCourses.Type" xml:space="preserve">
+  <data name="&gt;&gt;grpApiImport.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpCourses.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpApiImport.Parent" xml:space="preserve">
     <value>TableLayoutPanel2</value>
   </data>
-  <data name="&gt;&gt;grpCourses.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;grpApiImport.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="cmdConfigApi.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -981,102 +1335,6 @@
   <data name="&gt;&gt;cmdImportApi.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="grpApiImport.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="grpApiImport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 295</value>
-  </data>
-  <data name="grpApiImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>326, 62</value>
-  </data>
-  <data name="grpApiImport.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="grpApiImport.Text" xml:space="preserve">
-    <value>API-Importe</value>
-  </data>
-  <data name="&gt;&gt;grpApiImport.Name" xml:space="preserve">
-    <value>grpApiImport</value>
-  </data>
-  <data name="&gt;&gt;grpApiImport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpApiImport.Parent" xml:space="preserve">
-    <value>TableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;grpApiImport.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="TableLayoutPanel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="TableLayoutPanel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="TableLayoutPanel2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 0, 0, 0</value>
-  </data>
-  <data name="TableLayoutPanel2.RowCount" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="TableLayoutPanel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 465</value>
-  </data>
-  <data name="TableLayoutPanel2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel2.Name" xml:space="preserve">
-    <value>TableLayoutPanel2</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel2.Parent" xml:space="preserve">
-    <value>spltCntDashboard.Panel2</value>
-  </data>
-  <data name="&gt;&gt;TableLayoutPanel2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="TableLayoutPanel2.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="Button1" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="grpDataTimes" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="grpImport" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="grpCourses" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="grpApiImport" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100" /&gt;&lt;Rows Styles="AutoSize,0,Percent,100,Absolute,102,Absolute,68,Absolute,105" /&gt;&lt;/TableLayoutSettings&gt;</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Panel2.Name" xml:space="preserve">
-    <value>spltCntDashboard.Panel2</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitterPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Panel2.Parent" xml:space="preserve">
-    <value>spltCntDashboard</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="spltCntDashboard.Panel2MinSize" type="System.Int32, mscorlib">
-    <value>100</value>
-  </data>
-  <data name="spltCntDashboard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>952, 465</value>
-  </data>
-  <data name="spltCntDashboard.SplitterDistance" type="System.Int32, mscorlib">
-    <value>616</value>
-  </data>
-  <data name="spltCntDashboard.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Name" xml:space="preserve">
-    <value>spltCntDashboard</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Type" xml:space="preserve">
-    <value>System.Windows.Forms.SplitContainer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.Parent" xml:space="preserve">
-    <value>TableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;spltCntDashboard.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
   <metadata name="MenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>169, 17</value>
   </metadata>
@@ -1089,22 +1347,10 @@
   <data name="DatabaseLoadMenuItem.Text" xml:space="preserve">
     <value>Datenbank &amp;öffnen...</value>
   </data>
-  <metadata name="cmnRecentFiles.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>390, 56</value>
-  </metadata>
-  <data name="cmnRecentFiles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 4</value>
-  </data>
-  <data name="&gt;&gt;cmnRecentFiles.Name" xml:space="preserve">
-    <value>cmnRecentFiles</value>
-  </data>
-  <data name="&gt;&gt;cmnRecentFiles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="RecentFilesListMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="RecentDBsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 22</value>
   </data>
-  <data name="RecentFilesListMenuItem.Text" xml:space="preserve">
+  <data name="RecentDBsToolStripMenuItem.Text" xml:space="preserve">
     <value>Zuletzt geöffnete Datenbanken</value>
   </data>
   <data name="DatabaseSaveMenuItem.ShortcutKeyDisplayString" xml:space="preserve">
@@ -1150,6 +1396,60 @@
   <data name="DateiToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;Datei</value>
   </data>
+  <data name="ExtrasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 19</value>
+  </data>
+  <data name="ExtrasToolStripMenuItem.Text" xml:space="preserve">
+    <value>E&amp;xtras</value>
+  </data>
+  <data name="HilfeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 19</value>
+  </data>
+  <data name="HilfeToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hilfe</value>
+  </data>
+  <data name="MenuStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="MenuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 3, 0, 3</value>
+  </data>
+  <data name="MenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>966, 25</value>
+  </data>
+  <data name="MenuStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="MenuStrip1.Text" xml:space="preserve">
+    <value>MenuStrip1</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip1.Name" xml:space="preserve">
+    <value>MenuStrip1</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;MenuStrip1.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <metadata name="cmnRecentFiles.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>390, 56</value>
+  </metadata>
+  <data name="cmnRecentFiles.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="cmnRecentFiles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 4</value>
+  </data>
+  <data name="&gt;&gt;cmnRecentFiles.Name" xml:space="preserve">
+    <value>cmnRecentFiles</value>
+  </data>
+  <data name="&gt;&gt;cmnRecentFiles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="tsmiOptions.Size" type="System.Drawing.Size, System.Drawing">
     <value>261, 22</value>
   </data>
@@ -1179,12 +1479,6 @@
   </data>
   <data name="NewDBToolStripMenuItem.Text" xml:space="preserve">
     <value>Gesamte Datenbank zurücksetzen...</value>
-  </data>
-  <data name="ExtrasToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 19</value>
-  </data>
-  <data name="ExtrasToolStripMenuItem.Text" xml:space="preserve">
-    <value>E&amp;xtras</value>
   </data>
   <data name="DisclaimerToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
@@ -1228,62 +1522,11 @@
   <data name="InfoToolStripMenuItem.Text" xml:space="preserve">
     <value>Inf&amp;o</value>
   </data>
-  <data name="HilfeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 19</value>
-  </data>
-  <data name="HilfeToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hilfe</value>
-  </data>
-  <data name="MenuStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="MenuStrip1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 3, 0, 3</value>
-  </data>
-  <data name="MenuStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>966, 25</value>
-  </data>
-  <data name="MenuStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="MenuStrip1.Text" xml:space="preserve">
-    <value>MenuStrip1</value>
-  </data>
-  <data name="&gt;&gt;MenuStrip1.Name" xml:space="preserve">
-    <value>MenuStrip1</value>
-  </data>
-  <data name="&gt;&gt;MenuStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;MenuStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;MenuStrip1.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
   <data name="tctlMain.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="tabDashboard.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="TableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="TableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="TableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 4</value>
-  </data>
-  <data name="TableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="TableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>952, 465</value>
-  </data>
-  <data name="TableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
   </data>
   <data name="&gt;&gt;TableLayoutPanel1.Name" xml:space="preserve">
     <value>TableLayoutPanel1</value>
@@ -1331,6 +1574,950 @@
     <value>tctlMain</value>
   </data>
   <data name="&gt;&gt;tabDashboard.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpSzenarien.Name" xml:space="preserve">
+    <value>grpSzenarien</value>
+  </data>
+  <data name="&gt;&gt;grpSzenarien.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpSzenarien.Parent" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;grpSzenarien.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpCalculate.Name" xml:space="preserve">
+    <value>grpCalculate</value>
+  </data>
+  <data name="&gt;&gt;grpCalculate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpCalculate.Parent" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;grpCalculate.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;grpGainings.Name" xml:space="preserve">
+    <value>grpGainings</value>
+  </data>
+  <data name="&gt;&gt;grpGainings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpGainings.Parent" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;grpGainings.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;grpSettings.Name" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;grpSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpSettings.Parent" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;grpSettings.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="tabSettings.ImageIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 39</value>
+  </data>
+  <data name="tabSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="tabSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>958, 473</value>
+  </data>
+  <data name="tabSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabSettings.Text" xml:space="preserve">
+    <value>Berechnungen</value>
+  </data>
+  <data name="&gt;&gt;tabSettings.Name" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;tabSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabSettings.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tabSettings.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;Label13.Name" xml:space="preserve">
+    <value>Label13</value>
+  </data>
+  <data name="&gt;&gt;Label13.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label13.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;Label13.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grpReportAdditionalData.Name" xml:space="preserve">
+    <value>grpReportAdditionalData</value>
+  </data>
+  <data name="&gt;&gt;grpReportAdditionalData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpReportAdditionalData.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;grpReportAdditionalData.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;Label8.Name" xml:space="preserve">
+    <value>Label8</value>
+  </data>
+  <data name="&gt;&gt;Label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label8.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;Label8.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;lblSzenarioRpt.Name" xml:space="preserve">
+    <value>lblSzenarioRpt</value>
+  </data>
+  <data name="&gt;&gt;lblSzenarioRpt.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblSzenarioRpt.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;lblSzenarioRpt.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;Label6.Name" xml:space="preserve">
+    <value>Label6</value>
+  </data>
+  <data name="&gt;&gt;Label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label6.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;Label6.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;cmdReportExport.Name" xml:space="preserve">
+    <value>cmdReportExport</value>
+  </data>
+  <data name="&gt;&gt;cmdReportExport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdReportExport.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;cmdReportExport.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;cbxReportTradeSelection.Name" xml:space="preserve">
+    <value>cbxReportTradeSelection</value>
+  </data>
+  <data name="&gt;&gt;cbxReportTradeSelection.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxReportTradeSelection.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;cbxReportTradeSelection.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadReport.Name" xml:space="preserve">
+    <value>cmdReloadReport</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadReport.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadReport.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;cbxReportTransfers.Name" xml:space="preserve">
+    <value>cbxReportTransfers</value>
+  </data>
+  <data name="&gt;&gt;cbxReportTransfers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxReportTransfers.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;cbxReportTransfers.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;grdReport.Name" xml:space="preserve">
+    <value>grdReport</value>
+  </data>
+  <data name="&gt;&gt;grdReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grdReport.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;grdReport.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;ccbReportPlatforms.Name" xml:space="preserve">
+    <value>ccbReportPlatforms</value>
+  </data>
+  <data name="&gt;&gt;ccbReportPlatforms.Type" xml:space="preserve">
+    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ccbReportPlatforms.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;ccbReportPlatforms.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;gnd3rdTab.Name" xml:space="preserve">
+    <value>gnd3rdTab</value>
+  </data>
+  <data name="&gt;&gt;gnd3rdTab.Type" xml:space="preserve">
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;gnd3rdTab.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;gnd3rdTab.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;tpReport.Name" xml:space="preserve">
+    <value>tpReport</value>
+  </data>
+  <data name="&gt;&gt;tpReport.Type" xml:space="preserve">
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tpReport.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;tpReport.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;cmdReportPreview.Name" xml:space="preserve">
+    <value>cmdReportPreview</value>
+  </data>
+  <data name="&gt;&gt;cmdReportPreview.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdReportPreview.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;cmdReportPreview.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="tabReports.ImageIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabReports.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 39</value>
+  </data>
+  <data name="tabReports.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="tabReports.Size" type="System.Drawing.Size, System.Drawing">
+    <value>958, 473</value>
+  </data>
+  <data name="tabReports.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabReports.Text" xml:space="preserve">
+    <value>Bericht</value>
+  </data>
+  <data name="&gt;&gt;tabReports.Name" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;tabReports.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabReports.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tabReports.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblRightMouse.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="lblRightMouse.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblRightMouse.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 8.25pt</value>
+  </data>
+  <data name="lblRightMouse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="lblRightMouse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>563, 17</value>
+  </data>
+  <data name="lblRightMouse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>378, 13</value>
+  </data>
+  <data name="lblRightMouse.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="lblRightMouse.Text" xml:space="preserve">
+    <value>(Hinweis: rechte Maustaste auf einer Tabellenzeile für weitere Optionen)</value>
+  </data>
+  <data name="lblRightMouse.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
+  </data>
+  <data name="&gt;&gt;lblRightMouse.Name" xml:space="preserve">
+    <value>lblRightMouse</value>
+  </data>
+  <data name="&gt;&gt;lblRightMouse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblRightMouse.Parent" xml:space="preserve">
+    <value>tabTable</value>
+  </data>
+  <data name="&gt;&gt;lblRightMouse.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tctlTables.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;grdTrades.Name" xml:space="preserve">
+    <value>grdTrades</value>
+  </data>
+  <data name="&gt;&gt;grdTrades.Type" xml:space="preserve">
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;grdTrades.Parent" xml:space="preserve">
+    <value>tabTrades</value>
+  </data>
+  <data name="&gt;&gt;grdTrades.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabTrades.ImageKey" xml:space="preserve">
+    <value>tab_table.png</value>
+  </data>
+  <data name="tabTrades.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 31</value>
+  </data>
+  <data name="tabTrades.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabTrades.Size" type="System.Drawing.Size, System.Drawing">
+    <value>947, 427</value>
+  </data>
+  <data name="tabTrades.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="tabTrades.Text" xml:space="preserve">
+    <value>Trades</value>
+  </data>
+  <data name="&gt;&gt;tabTrades.Name" xml:space="preserve">
+    <value>tabTrades</value>
+  </data>
+  <data name="&gt;&gt;tabTrades.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabTrades.Parent" xml:space="preserve">
+    <value>tctlTables</value>
+  </data>
+  <data name="&gt;&gt;tabTrades.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;grdImporte.Name" xml:space="preserve">
+    <value>grdImporte</value>
+  </data>
+  <data name="&gt;&gt;grdImporte.Type" xml:space="preserve">
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;grdImporte.Parent" xml:space="preserve">
+    <value>tabImporte</value>
+  </data>
+  <data name="&gt;&gt;grdImporte.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabImporte.ImageKey" xml:space="preserve">
+    <value>tab_table.png</value>
+  </data>
+  <data name="tabImporte.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 31</value>
+  </data>
+  <data name="tabImporte.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabImporte.Size" type="System.Drawing.Size, System.Drawing">
+    <value>947, 427</value>
+  </data>
+  <data name="tabImporte.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabImporte.Text" xml:space="preserve">
+    <value>Importe</value>
+  </data>
+  <data name="&gt;&gt;tabImporte.Name" xml:space="preserve">
+    <value>tabImporte</value>
+  </data>
+  <data name="&gt;&gt;tabImporte.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabImporte.Parent" xml:space="preserve">
+    <value>tctlTables</value>
+  </data>
+  <data name="&gt;&gt;tabImporte.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;grdPlattformen.Name" xml:space="preserve">
+    <value>grdPlattformen</value>
+  </data>
+  <data name="&gt;&gt;grdPlattformen.Type" xml:space="preserve">
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;grdPlattformen.Parent" xml:space="preserve">
+    <value>tabPlattformen</value>
+  </data>
+  <data name="&gt;&gt;grdPlattformen.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabPlattformen.ImageKey" xml:space="preserve">
+    <value>tab_table.png</value>
+  </data>
+  <data name="tabPlattformen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 31</value>
+  </data>
+  <data name="tabPlattformen.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabPlattformen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>947, 427</value>
+  </data>
+  <data name="tabPlattformen.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="tabPlattformen.Text" xml:space="preserve">
+    <value>Plattformen</value>
+  </data>
+  <data name="&gt;&gt;tabPlattformen.Name" xml:space="preserve">
+    <value>tabPlattformen</value>
+  </data>
+  <data name="&gt;&gt;tabPlattformen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabPlattformen.Parent" xml:space="preserve">
+    <value>tctlTables</value>
+  </data>
+  <data name="&gt;&gt;tabPlattformen.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;grdKonten.Name" xml:space="preserve">
+    <value>grdKonten</value>
+  </data>
+  <data name="&gt;&gt;grdKonten.Type" xml:space="preserve">
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;grdKonten.Parent" xml:space="preserve">
+    <value>tabKonten</value>
+  </data>
+  <data name="&gt;&gt;grdKonten.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabKonten.ImageKey" xml:space="preserve">
+    <value>tab_table.png</value>
+  </data>
+  <data name="tabKonten.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 31</value>
+  </data>
+  <data name="tabKonten.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabKonten.Size" type="System.Drawing.Size, System.Drawing">
+    <value>947, 427</value>
+  </data>
+  <data name="tabKonten.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="tabKonten.Text" xml:space="preserve">
+    <value>Konten</value>
+  </data>
+  <data name="&gt;&gt;tabKonten.Name" xml:space="preserve">
+    <value>tabKonten</value>
+  </data>
+  <data name="&gt;&gt;tabKonten.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabKonten.Parent" xml:space="preserve">
+    <value>tctlTables</value>
+  </data>
+  <data name="&gt;&gt;tabKonten.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;grdKurse.Name" xml:space="preserve">
+    <value>grdKurse</value>
+  </data>
+  <data name="&gt;&gt;grdKurse.Type" xml:space="preserve">
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;grdKurse.Parent" xml:space="preserve">
+    <value>tabKurse</value>
+  </data>
+  <data name="&gt;&gt;grdKurse.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabKurse.ImageKey" xml:space="preserve">
+    <value>tab_table.png</value>
+  </data>
+  <data name="tabKurse.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 31</value>
+  </data>
+  <data name="tabKurse.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabKurse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>947, 427</value>
+  </data>
+  <data name="tabKurse.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="tabKurse.Text" xml:space="preserve">
+    <value>Kurse</value>
+  </data>
+  <data name="&gt;&gt;tabKurse.Name" xml:space="preserve">
+    <value>tabKurse</value>
+  </data>
+  <data name="&gt;&gt;tabKurse.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabKurse.Parent" xml:space="preserve">
+    <value>tctlTables</value>
+  </data>
+  <data name="&gt;&gt;tabKurse.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <metadata name="cmnBerechnungen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>236, 56</value>
+  </metadata>
+  <data name="tsmiViewCalculations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 22</value>
+  </data>
+  <data name="tsmiViewCalculations.Text" xml:space="preserve">
+    <value>Berechnungsdetails anzeigen...</value>
+  </data>
+  <data name="tsmiEraseCalculation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>256, 22</value>
+  </data>
+  <data name="tsmiEraseCalculation.Text" xml:space="preserve">
+    <value>Berechnung rückgängig machen...</value>
+  </data>
+  <data name="cmnBerechnungen.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
+    <value>Inherit</value>
+  </data>
+  <data name="cmnBerechnungen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>257, 48</value>
+  </data>
+  <data name="&gt;&gt;cmnBerechnungen.Name" xml:space="preserve">
+    <value>cmnBerechnungen</value>
+  </data>
+  <data name="&gt;&gt;cmnBerechnungen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="grdBerechnungen.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="grdBerechnungen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="grdBerechnungen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>941, 421</value>
+  </data>
+  <data name="grdBerechnungen.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;grdBerechnungen.Name" xml:space="preserve">
+    <value>grdBerechnungen</value>
+  </data>
+  <data name="&gt;&gt;grdBerechnungen.Type" xml:space="preserve">
+    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;grdBerechnungen.Parent" xml:space="preserve">
+    <value>tabBerechnungen</value>
+  </data>
+  <data name="&gt;&gt;grdBerechnungen.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="tabBerechnungen.ImageKey" xml:space="preserve">
+    <value>tab_table.png</value>
+  </data>
+  <data name="tabBerechnungen.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 31</value>
+  </data>
+  <data name="tabBerechnungen.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="tabBerechnungen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>947, 427</value>
+  </data>
+  <data name="tabBerechnungen.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="tabBerechnungen.Text" xml:space="preserve">
+    <value>Berechnungen</value>
+  </data>
+  <data name="&gt;&gt;tabBerechnungen.Name" xml:space="preserve">
+    <value>tabBerechnungen</value>
+  </data>
+  <data name="&gt;&gt;tabBerechnungen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabBerechnungen.Parent" xml:space="preserve">
+    <value>tctlTables</value>
+  </data>
+  <data name="&gt;&gt;tabBerechnungen.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <metadata name="imlTables.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>495, 17</value>
+  </metadata>
+  <data name="imlTables.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADo
+        CQAAAk1TRnQBSQFMAwEBAAFwAQoBcAEKARgBAAEYAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
+        AWADAAEYAwABAQEAAQgGAAEJGAABgAIAAYADAAKAAQABgAMAAYABAAGAAQACgAIAA8ABAAHAAdwBwAEA
+        AfABygGmAQABMwUAATMBAAEzAQABMwEAAjMCAAMWAQADHAEAAyIBAAMpAQADVQEAA00BAANCAQADOQEA
+        AYABfAH/AQACUAH/AQABkwEAAdYBAAH/AewBzAEAAcYB1gHvAQAB1gLnAQABkAGpAa0CAAH/ATMDAAFm
+        AwABmQMAAcwCAAEzAwACMwIAATMBZgIAATMBmQIAATMBzAIAATMB/wIAAWYDAAFmATMCAAJmAgABZgGZ
+        AgABZgHMAgABZgH/AgABmQMAAZkBMwIAAZkBZgIAApkCAAGZAcwCAAGZAf8CAAHMAwABzAEzAgABzAFm
+        AgABzAGZAgACzAIAAcwB/wIAAf8BZgIAAf8BmQIAAf8BzAEAATMB/wIAAf8BAAEzAQABMwEAAWYBAAEz
+        AQABmQEAATMBAAHMAQABMwEAAf8BAAH/ATMCAAMzAQACMwFmAQACMwGZAQACMwHMAQACMwH/AQABMwFm
+        AgABMwFmATMBAAEzAmYBAAEzAWYBmQEAATMBZgHMAQABMwFmAf8BAAEzAZkCAAEzAZkBMwEAATMBmQFm
+        AQABMwKZAQABMwGZAcwBAAEzAZkB/wEAATMBzAIAATMBzAEzAQABMwHMAWYBAAEzAcwBmQEAATMCzAEA
+        ATMBzAH/AQABMwH/ATMBAAEzAf8BZgEAATMB/wGZAQABMwH/AcwBAAEzAv8BAAFmAwABZgEAATMBAAFm
+        AQABZgEAAWYBAAGZAQABZgEAAcwBAAFmAQAB/wEAAWYBMwIAAWYCMwEAAWYBMwFmAQABZgEzAZkBAAFm
+        ATMBzAEAAWYBMwH/AQACZgIAAmYBMwEAA2YBAAJmAZkBAAJmAcwBAAFmAZkCAAFmAZkBMwEAAWYBmQFm
+        AQABZgKZAQABZgGZAcwBAAFmAZkB/wEAAWYBzAIAAWYBzAEzAQABZgHMAZkBAAFmAswBAAFmAcwB/wEA
+        AWYB/wIAAWYB/wEzAQABZgH/AZkBAAFmAf8BzAEAAcwBAAH/AQAB/wEAAcwBAAKZAgABmQEzAZkBAAGZ
+        AQABmQEAAZkBAAHMAQABmQMAAZkCMwEAAZkBAAFmAQABmQEzAcwBAAGZAQAB/wEAAZkBZgIAAZkBZgEz
+        AQABmQEzAWYBAAGZAWYBmQEAAZkBZgHMAQABmQEzAf8BAAKZATMBAAKZAWYBAAOZAQACmQHMAQACmQH/
+        AQABmQHMAgABmQHMATMBAAFmAcwBZgEAAZkBzAGZAQABmQLMAQABmQHMAf8BAAGZAf8CAAGZAf8BMwEA
+        AZkBzAFmAQABmQH/AZkBAAGZAf8BzAEAAZkC/wEAAcwDAAGZAQABMwEAAcwBAAFmAQABzAEAAZkBAAHM
+        AQABzAEAAZkBMwIAAcwCMwEAAcwBMwFmAQABzAEzAZkBAAHMATMBzAEAAcwBMwH/AQABzAFmAgABzAFm
+        ATMBAAGZAmYBAAHMAWYBmQEAAcwBZgHMAQABmQFmAf8BAAHMAZkCAAHMAZkBMwEAAcwBmQFmAQABzAKZ
+        AQABzAGZAcwBAAHMAZkB/wEAAswCAALMATMBAALMAWYBAALMAZkBAAPMAQACzAH/AQABzAH/AgABzAH/
+        ATMBAAGZAf8BZgEAAcwB/wGZAQABzAH/AcwBAAHMAv8BAAHMAQABMwEAAf8BAAFmAQAB/wEAAZkBAAHM
+        ATMCAAH/AjMBAAH/ATMBZgEAAf8BMwGZAQAB/wEzAcwBAAH/ATMB/wEAAf8BZgIAAf8BZgEzAQABzAJm
+        AQAB/wFmAZkBAAH/AWYBzAEAAcwBZgH/AQAB/wGZAgAB/wGZATMBAAH/AZkBZgEAAf8CmQEAAf8BmQHM
+        AQAB/wGZAf8BAAH/AcwCAAH/AcwBMwEAAf8BzAFmAQAB/wHMAZkBAAH/AswBAAH/AcwB/wEAAv8BMwEA
+        AcwB/wFmAQAC/wGZAQAC/wHMAQACZgH/AQABZgH/AWYBAAFmAv8BAAH/AmYBAAH/AWYB/wEAAv8BZgEA
+        ASEBAAGlAQADXwEAA3cBAAOGAQADlgEAA8sBAAOyAQAD1wEAA90BAAPjAQAD6gEAA/EBAAP4AQAB8AH7
+        Af8BAAGkAqABAAOAAwAB/wIAAf8DAAL/AQAB/wMAAf8BAAH/AQAC/wIAA/8CABb/SQAY/0kAAbwGswGt
+        BLMBrQOzAa0EswHxSgABuwH0Ev8B9AG7SgABuwEZAQkB8AIJAfABuwHwBAkB8AEJAfABuwHwAgkB8wG7
+        SgABuwHzAfQC/wH0Af8BCQH/AvQB8wHwAf8B9AH/AQkB/wL0AfMBu0oAAbsB8wX/AQkD/wH0AfAD/wEJ
+        A/8B8wG7SgABuwEZBf8BCQT/ARkD/wEJA/8BGQG7SgABuwHzAbsBCQK7AwkCuwIJArsDCQK7AfMBu0oA
+        AbsB8wX/AbsE/wHwA/8BuwP/AfMBu0oAAbsB8wEZA/QB/wG7Af8C9AHzAQkB/wH0Af8BuwH/AfQBGQHz
+        AbtKAAG7AfMF/wG7BP8BCQP/AbsD/wHzAbtKAAG7AfQBtRC7AbUB9AG7SgABuwHzBf8BuwP/AfQBCQP/
+        AbsD/wHzAbtKAAG7AfMEGQH/AbsB/wMZAQkB9AEZAf8BuwH/AhkB8wG7SgABuwHzBRkBuwQZAQkDGQG7
+        AxkB8wG7SgABuwHzBQkBuwQJAbsDCQG7AwkB8wG7SgABuwHzBBkB9AG7AfQDGQEJAeIBGQH0AbsB9AIZ
+        AfMBu0oAAbsB8wQZAfQBuwH0AxkBCQIZAfQBuwH0AhkB8wG7SgABuwHzBdwBuwTcAQkD3AG7A9wB8wG7
+        SgABuwEZAXkEegG7A3oBeQHvA3oBuwJ6AXkBGQG7SgABuwH0BXoBCQN6AZoBBwN6AQkDegH0AbtKAAEJ
+        AboB2wG6A9sBuwHbBLoD2wG7AdsBugHbAboBCUoAFv9JAAFCAU0BPgcAAT4DAAEoAwABYAMAARgDAAEB
+        AQABAQUAASABARYAA/8BAAGAAQABARUAAYABAAEBCQABgAEAAQEJAAGAAQABAQkAAYABAAEBCQABgAEA
+        AQEJAAGAAQABAQkAAYABAAEBCQABgAEAAQEJAAGAAQABAQkAAYABAAEBCQABgAEAAQEJAAGAAQABAQkA
+        AYABAAEBCQABgAEAAQEJAAGAAQABAQkAAYABAAEBCQABgAEAAQEJAAGAAQABAQkAAYABAAEBCQABgAEA
+        AQEJAAGAAQABAQkAAYABAAEBCQAL
+</value>
+  </data>
+  <data name="tctlTables.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 4</value>
+  </data>
+  <data name="tctlTables.Size" type="System.Drawing.Size, System.Drawing">
+    <value>955, 462</value>
+  </data>
+  <data name="tctlTables.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;tctlTables.Name" xml:space="preserve">
+    <value>tctlTables</value>
+  </data>
+  <data name="&gt;&gt;tctlTables.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tctlTables.Parent" xml:space="preserve">
+    <value>tabTable</value>
+  </data>
+  <data name="&gt;&gt;tctlTables.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="tabTable.ImageIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabTable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 39</value>
+  </data>
+  <data name="tabTable.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="tabTable.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="tabTable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>958, 473</value>
+  </data>
+  <data name="tabTable.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="tabTable.Text" xml:space="preserve">
+    <value>Tabellen</value>
+  </data>
+  <data name="&gt;&gt;tabTable.Name" xml:space="preserve">
+    <value>tabTable</value>
+  </data>
+  <data name="&gt;&gt;tabTable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabTable.Parent" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tabTable.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <metadata name="imlTabs.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>284, 17</value>
+  </metadata>
+  <data name="imlTabs.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
+        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADI
+        FAAAAk1TRnQBSQFMAgEBBAEAAXABCgFwAQoBIAEAASABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        AwABgAMAAUADAAEBAQABCAYAASAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
+        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
+        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
+        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
+        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
+        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
+        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
+        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
+        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
+        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
+        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
+        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
+        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
+        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
+        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
+        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
+        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
+        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
+        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
+        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
+        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
+        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
+        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
+        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
+        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
+        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
+        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
+        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD//8A/wD/AP8A/wD/AP8A
+        /wD/AP8A/wD/AP8A/wD/AP8AVwAG/x8ABP8YAAX/GgAX/wcAA/8B8wG8AfME/x0AAf8B8gH0A/8WAAH/
+        AfQC8AL/FwAa/wUAAv8B8gEaAXgBNQEcAbwBGgHzAv8DAAP/FgAB/wHsAfcBvAH0A/8VAAEaAnQBvAL/
+        FgAB/wHzFrsB8gH/BQAB/wEaAZoBUAE2AToBNQFRAXoBeQHxAf8CAAj/EwAB8gHqAXMBHAG8AfQC/xQA
+        AfQBmgHDAXkBmQH0Av8UAAH/AbQWCQG0Af8FAAH/AXoBUAE1AzYBNQEvAXoBmQT/AfMBUAHvA/QD/w0A
+        A/8BAAH0AXMBmgF6AXQBcwEHAf8BAAP/EQABmQHDAaABmgGZAfQC/xMAAf8BrAf/AfIE/wHwBP8B8AT/
+        AbMB9AUAAf8BegEuAV0FNgEvAZoB9AHzAfQBGgFPATYBNQFzAXoBeQEaAv8MAAL/AfQC/wH0AesBGgHD
+        AXoBUwFuAfQB/wL0Av8QAAEbAZoCwwGaAZMB8wL/EgAB/wGsB/8B8AT/AQkE/wEJBP8BswH0BQAB/wJ6
+        AS4BXQU2AVABegF1AXoBLgM2AS8BWAJZAZkMAAL/AQcB6wHyAfQB8gHsAZkBGwF6ATIBUwFzAfMB7wHs
+        AfIC/xAAAXkBwwGgAcMBmgGZAfMC/xEAAf8BrAf/AfAE/wG8BP8BCQT/AbMB9AUAAf8BdQHDARsBLwFY
+        BDYBNQFRAXoBLgU2AS4BeQFZAXoLAAH/AfQBvAHtAfcB6wHwAe8BkgGZAVIBwwF6AlMBSwHtAfcB7QHz
+        Av8PAAGZAcMCoAHDAZoBdAHyAv8QAAH/AawB/xQJAf8BswH0BQAB/wF6AZoBegF5AVABVwQ2ATUBLgc2
+        AS4BWAF6Af8BAAP/BgAB/wHwAe0BvAHzAbwB7AGSAfEBGQGTAVIBwwGaAVMBMgF0AfMBBwHtAfMB/w8A
+        AfQBeQHDAqABwwGgAXQB8QL/DwAB/wGsB/8B8AT/AQkE/wEJBP8BswH0BQAB/wF1AZoBoAHDAZkBVgFY
+        DTYBLwF0Bf8GAAH/AesBBwHyAbwC8AHxAfABvAHxAZMBUgHDAZoBUwErAXQB9AH3AZIRAAF0AcMDoAHD
+        AaABeQHwAv8OAAH/AawH/wHwBP8BCQT/AQkE/wGzAfQFAAH/AXUBwwGaAhoBdAFQAV0HNgFdAVgENgEv
+        Ae8B/wEHAXMB/wYAAf8BvAGSAfAHvAHwAZMBUgHDAZoBUwExAXQB7QHyEQAB8wGaAcMDoALDAXkBvAH0
+        Af8NAAH/AawH/wHwBP8BCQT/AQkE/wGzAfQFAAH/A3oCmgF6AVgBLgF+BTYBfgEuAVABWAQ2ATUBUAF4
+        AS8B9AQABP8BBwHvAfAEvAHxAvIB8QHvAVIBwwGaAVMBMgFLA/8LAAX/AXQBwwWgAcMBmQG8AfQB/wwA
+        Af8BrAH/FAkB9AGzAfQFAAH/AXUBwwH2Af8B9gHDAZoBegEuAX4DNgF+AS4B/wGYAlcFNgF5AS8B9AQA
+        Af8B9ALwAfcBBwS8AfEB7wLtAQcB8gHvAVIBwwGaAjIBcwHyAv8JAAL/BPMBBwGaBqABwwGaAZkB9AH/
+        CwAB/wGsB/8BCQT/AQkE/wEJBP8BswH0BQAB/wF1Af8CegJZAnoBWQFPAVgBNgF+AS4DmgFRAXgFNgF5
+        AS8B9AQAAf8B9wHsAesBkgHwA7wB8QHtAQcC9AGSAfcB8gEcAVIBwwF6AjIBSwG8Af8KAAEaBVIBeQHD
+        AZoFoAHDAZoBmQH0Av8JAAH/AawB/wb0AQkB/wL0Af8BCQH/AvQB/wEJAf8C9AH/AbMB9AYAAXUIegFS
+        AVABeQEuAXoBmgHDAqABUAF5BDYBeQFQAfQEAAH/AesB/wHzAfIBvAIHAfAB7wG8BAABkgEHAfABHAFS
+        AcMBegFSAa4B9wHzAv8IAAEaAZoBwwSgCJoBwwGaAZkB8wL/BwAC/wGsBv8B9AEJBP8BCQT/AQkC/wH0
+        Af8BswH0BgABGgh6AZoBeQFQAVMEwwKgASgBnwM2AXkBUAH0BAAB/wHsAfMFBwHxAZIB9AMAAf8B8gH3
+        AfEBvAF0AVMBGwG7AZIB6wHvAfQB/wgAARsBeQHDDZoBwwGaAZkB8wH/BgAD/wGzAfAEBwK8DgkB/wGz
+        AfQFAAH/AQAB9AEbARoBGwEaAXUBmgIaApoBUwHDAnoBWQF6AVcBeAGfA3kBoAFQAfQEAAH/AewB8wHv
+        BAcB8QGSAfQE/wHxAfcB8QEHAbwBdAGSAfMBvAHtAY4BtgH/CAAB9AGZAcMHmgnDAZkHAAH/AfIBBwHv
+        AQcEvAEHAu8B8AMZAbsEGQG7AxkB/wGzAfQMAAF6ApoBegJZAVMCegLlAaABLgZQAS8B/wUAAewB/wLy
+        AbwCBwHwAe8BBwP/AfQBkgEHAbwCBwLxAu8CtgGOAf8IAAH/AZkBwwGaAXoCmgJ6AcMJdAGZCAABvAIH
+        AbwB8ALxAfABvAEHAe8BvAMZAbsEGQG7AxkB/wGzAfQMAAF6AcMC9gHDAaABmgV6AnQBGgb/BQAB7wHt
+        AewB9wHwAwcB8QHtAe8C8QGSAfcB8gEHAe8BBwHxAuwBtgHdAbYB8wH/CAAB/wGZARoBmgV6AcMBmgGZ
+        AfQG9gH/CAADBwG8AfAC8QHwAbwBBwHvAQcDGQG7BBkBuwMZAf8BswH0DAABegHDAZoBegF1AVMBdQF6
+        AVkBmQEABP8LAAL/AfQB7wG8AQcC7wEHAfIB7wKSAbwB8gEHAu8B8AHvAfAB/wH0AbYB8wsAAZkBmgGg
+        BnoB9gF0AfIB/w4AAbwBBwHyAfME9AHzAfIBBwG7AxkBuwQZAbsDGQH/AbMB9AwAAXoBmgGgAZoCegNZ
+        AZkRAAH/AfQCBwG8A+8BBwHwAvIBvAPvAQcB8gHtAfIB/w4AARoBmgHDBnoBmgHDAXQB9AH/DQAC8AEH
+        Ae8FBwK8BO8BuwTvAbsD7wHzAbMB9AwAAXoC9gHDARoCmgF6AVkBmREAAf8BvAH3AfEBBwzvAbwB8AHt
+        AfIB/w0AAfMBmQHDB3oBwwEaAZkC/wwAAbwB7wEHAbwB8QLyAfEBvAEHAfcBeQJ6AVkBtAFZAnoBWQG0
+        AVkBegFZAcMBswH0DAABegEaAZoBegVZAZkRAAH/Ae0B8AG8AfcBBwHwAQcG7wG8AfAB7wH3AfMB7wH3
+        DgAB9AF0AcMIegHDAZkB8QL/CwADBwK8AvEB8AG8AgcBvAPDAfQEwwH0A8MB/wGzAf8MAAF6AcMB9gHD
+        AaABmgJ6AVkBmREAAf8B8gHvAfAC8QH3AbwB8QEHAu8B8AHxAQcB7wLxAbwB7wH0DwABdAHDAZoHegGa
+        AcMBmQHzAf8LAAIHAfEB8wP/AfQB8wHxAQcBtA6zAf8MAAF5Af8BoAGaBHoBWQGZEwAB8gHvAbwBkgH0
+        AQcB7wHwAe8B9wH0Ae0C8QHvAbwB7wH0EAABmQEaAcMBWQd6AaABGgGZAfQB/woAAQcB8wHyBvAB8wHy
+        AfAbAAF5AaAHegGZFAAB8QHtAfQBAAHzAfcB8AL3AfQB7QH/AQABvAH3Af8RAAEaAZoBwwlZAcMBmQHx
+        Af8KAAK8CPABBwHwGwABmgJ6BOUCegGaGAAB9AHvAf8C9AH/Ae0WAAHzAXkM9gF0Af8KAAH0A7wE8AG8
+        AQcBvAH0GgAB/wEAARsBmgR6AZoBGwEAAf8XAAH/AQcE9wHwFgAB/wGZDXQB/wsAAf8B8wbxAfMB//8A
+        0wABQgFNAT4HAAE+AwABKAMAAYADAAFAAwABAQEAAQEGAAEEFgAD//8A/wADAAj/AfwBDwP/AeEC/wH+
+        AQ8C/wH8AgABBwHwAQMD/wHgAX8B/wH+AQcC/wHwAgABAwHgAQEBxwL/AeABHwL/AQMC/wHwAgABAwHg
+        AQEBgAF/Af8B8AEPAv8BAAL/AfACAAEDAeACAAEfAf8BEAEIAv8BgAF/Af8B8AIAAQMB4AIAAR8B/gIA
+        AX8B/wGAAT8B/wHwAgABAwHgAgABPwH8AgABPwH/AcABHwH/AfACAAEDAeACAAE/AfgCAAEfAf8BwAEP
+        Af8B8AIAAQMB4AIAAREB+AIAAR8B/wHAAQcB/wHwAgABAwHgAgABAQH4AgABPwH/AeABAwH/AfACAAED
+        AeACAAEBAfgCAAE/Af8B4AEBAf8B8AIAAQMB4AIAAQEB4AIAAQ8B/gIAAf8B8AIAAQMB4AIAAQEB4AIA
+        AQcB/AIAAX8B8AIAAQMB4AIAAQEB4AIAAQcB/gIAAR8B8AIAAQMB8AIAAQEB4AEDAcABAQH+AgABDwHg
+        AgABAwHwAgABAQHgAQMBgAEBAf4CAAEPAcACAAEDAegCAAEBAeACAAEBAf4CAAEfAcACAAEDAf8BwAEA
+        AQEB8AIAAQEB/gIAAR8B4AIAAQMB/wHAAQABAQHwAgABAQH+AgABHwHgAgABAwH/AcABCAF/AfACAAEH
+        Af8BAAEHAf8B4AIAAQMB/wHAAQ8B/wH4AgABPwH/AQABAwH/AeACAAEDAf8BwAEPAf8B+AIAAR8B/wEA
+        AQEB/wHgAgABAwH/AcABDwH/AfgCAAE/Af8CAAH/AeACAAEDAf8BwAEPAf8B+AIAAT8B/wGAAQAB/wHg
+        AgABAwH/AcABDwH/Af4CAAF/Af8BgAEAAX8B4AEBA/8BwAEPAv8BEAEIAv8BgAEAAX8B4AEBA/8BwAEP
+        Av8B8AEfAv8BgAEAAX8B4AEBA/8BoAEXAv8B8AEfAv8BgAEAAX8B8AEDOv8L
+</value>
+  </data>
+  <data name="tctlMain.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 29</value>
+  </data>
+  <data name="tctlMain.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="tctlMain.Size" type="System.Drawing.Size, System.Drawing">
+    <value>966, 516</value>
+  </data>
+  <data name="tctlMain.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;tctlMain.Name" xml:space="preserve">
+    <value>tctlMain</value>
+  </data>
+  <data name="&gt;&gt;tctlMain.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tctlMain.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tctlMain.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="TableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="TableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="TableLayoutPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 4</value>
+  </data>
+  <data name="TableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="TableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>952, 465</value>
+  </data>
+  <data name="TableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel1.Name" xml:space="preserve">
+    <value>TableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel1.Parent" xml:space="preserve">
+    <value>tabDashboard</value>
+  </data>
+  <data name="&gt;&gt;TableLayoutPanel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="TableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="spltCntDashboard" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Percent,100,Absolute,20" /&gt;&lt;Rows Styles="Percent,100" /&gt;&lt;/TableLayoutSettings&gt;</value>
+  </data>
+  <data name="&gt;&gt;cbxSzenario.Name" xml:space="preserve">
+    <value>cbxSzenario</value>
+  </data>
+  <data name="&gt;&gt;cbxSzenario.Type" xml:space="preserve">
+    <value>CoinTracer.DataBoundComboBox, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;cbxSzenario.Parent" xml:space="preserve">
+    <value>grpSzenarien</value>
+  </data>
+  <data name="&gt;&gt;cbxSzenario.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cmdSzenarioDelete.Name" xml:space="preserve">
+    <value>cmdSzenarioDelete</value>
+  </data>
+  <data name="&gt;&gt;cmdSzenarioDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdSzenarioDelete.Parent" xml:space="preserve">
+    <value>grpSzenarien</value>
+  </data>
+  <data name="&gt;&gt;cmdSzenarioDelete.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cmdSzenarioSave.Name" xml:space="preserve">
+    <value>cmdSzenarioSave</value>
+  </data>
+  <data name="&gt;&gt;cmdSzenarioSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdSzenarioSave.Parent" xml:space="preserve">
+    <value>grpSzenarien</value>
+  </data>
+  <data name="&gt;&gt;cmdSzenarioSave.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;Label12.Name" xml:space="preserve">
+    <value>Label12</value>
+  </data>
+  <data name="&gt;&gt;Label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label12.Parent" xml:space="preserve">
+    <value>grpSzenarien</value>
+  </data>
+  <data name="&gt;&gt;Label12.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grpSzenarien.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 10</value>
+  </data>
+  <data name="grpSzenarien.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 93</value>
+  </data>
+  <data name="grpSzenarien.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="grpSzenarien.Text" xml:space="preserve">
+    <value>Szenarien</value>
+  </data>
+  <data name="&gt;&gt;grpSzenarien.Name" xml:space="preserve">
+    <value>grpSzenarien</value>
+  </data>
+  <data name="&gt;&gt;grpSzenarien.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpSzenarien.Parent" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;grpSzenarien.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="cbxSzenario.Location" type="System.Drawing.Point, System.Drawing">
@@ -1435,29 +2622,113 @@
   <data name="&gt;&gt;Label12.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="grpSzenarien.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 10</value>
+  <data name="&gt;&gt;Label15.Name" xml:space="preserve">
+    <value>Label15</value>
   </data>
-  <data name="grpSzenarien.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 93</value>
+  <data name="&gt;&gt;Label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="grpSzenarien.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+  <data name="&gt;&gt;Label15.Parent" xml:space="preserve">
+    <value>grpCalculate</value>
   </data>
-  <data name="grpSzenarien.Text" xml:space="preserve">
-    <value>Szenarien</value>
+  <data name="&gt;&gt;Label15.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;grpSzenarien.Name" xml:space="preserve">
-    <value>grpSzenarien</value>
+  <data name="&gt;&gt;lblTransfersOpen.Name" xml:space="preserve">
+    <value>lblTransfersOpen</value>
   </data>
-  <data name="&gt;&gt;grpSzenarien.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblTransfersOpen.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTransfersOpen.Parent" xml:space="preserve">
+    <value>grpCalculate</value>
+  </data>
+  <data name="&gt;&gt;lblTransfersOpen.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cmdTransfers.Name" xml:space="preserve">
+    <value>cmdTransfers</value>
+  </data>
+  <data name="&gt;&gt;cmdTransfers.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdTransfers.Parent" xml:space="preserve">
+    <value>grpCalculate</value>
+  </data>
+  <data name="&gt;&gt;cmdTransfers.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;Label11.Name" xml:space="preserve">
+    <value>Label11</value>
+  </data>
+  <data name="&gt;&gt;Label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label11.Parent" xml:space="preserve">
+    <value>grpCalculate</value>
+  </data>
+  <data name="&gt;&gt;Label11.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cmdCalculateGainings.Name" xml:space="preserve">
+    <value>cmdCalculateGainings</value>
+  </data>
+  <data name="&gt;&gt;cmdCalculateGainings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdCalculateGainings.Parent" xml:space="preserve">
+    <value>grpCalculate</value>
+  </data>
+  <data name="&gt;&gt;cmdCalculateGainings.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;dtpCutOffDay.Name" xml:space="preserve">
+    <value>dtpCutOffDay</value>
+  </data>
+  <data name="&gt;&gt;dtpCutOffDay.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DateTimePicker, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dtpCutOffDay.Parent" xml:space="preserve">
+    <value>grpCalculate</value>
+  </data>
+  <data name="&gt;&gt;dtpCutOffDay.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;Label9.Name" xml:space="preserve">
+    <value>Label9</value>
+  </data>
+  <data name="&gt;&gt;Label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label9.Parent" xml:space="preserve">
+    <value>grpCalculate</value>
+  </data>
+  <data name="&gt;&gt;Label9.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="grpCalculate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 365</value>
+  </data>
+  <data name="grpCalculate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>677, 98</value>
+  </data>
+  <data name="grpCalculate.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="grpCalculate.Text" xml:space="preserve">
+    <value>Berechnungen</value>
+  </data>
+  <data name="&gt;&gt;grpCalculate.Name" xml:space="preserve">
+    <value>grpCalculate</value>
+  </data>
+  <data name="&gt;&gt;grpCalculate.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpSzenarien.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpCalculate.Parent" xml:space="preserve">
     <value>tabSettings</value>
   </data>
-  <data name="&gt;&gt;grpSzenarien.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;grpCalculate.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="Label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1678,29 +2949,65 @@
   <data name="&gt;&gt;Label9.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="grpCalculate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 365</value>
+  <data name="&gt;&gt;tpGainings.Name" xml:space="preserve">
+    <value>tpGainings</value>
   </data>
-  <data name="grpCalculate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>677, 98</value>
+  <data name="&gt;&gt;tpGainings.Type" xml:space="preserve">
+    <value>CoinTracer.TimePeriodControl, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="grpCalculate.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="&gt;&gt;tpGainings.Parent" xml:space="preserve">
+    <value>grpGainings</value>
   </data>
-  <data name="grpCalculate.Text" xml:space="preserve">
-    <value>Berechnungen</value>
+  <data name="&gt;&gt;tpGainings.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;grpCalculate.Name" xml:space="preserve">
-    <value>grpCalculate</value>
+  <data name="&gt;&gt;gnd2ndTab.Name" xml:space="preserve">
+    <value>gnd2ndTab</value>
   </data>
-  <data name="&gt;&gt;grpCalculate.Type" xml:space="preserve">
+  <data name="&gt;&gt;gnd2ndTab.Type" xml:space="preserve">
+    <value>CoinTracer.GainingsDisplay, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;gnd2ndTab.Parent" xml:space="preserve">
+    <value>grpGainings</value>
+  </data>
+  <data name="&gt;&gt;gnd2ndTab.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadGainings.Name" xml:space="preserve">
+    <value>cmdReloadGainings</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadGainings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadGainings.Parent" xml:space="preserve">
+    <value>grpGainings</value>
+  </data>
+  <data name="&gt;&gt;cmdReloadGainings.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="grpGainings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 224</value>
+  </data>
+  <data name="grpGainings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>260, 239</value>
+  </data>
+  <data name="grpGainings.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="grpGainings.Text" xml:space="preserve">
+    <value>Gewinne/Verluste</value>
+  </data>
+  <data name="&gt;&gt;grpGainings.Name" xml:space="preserve">
+    <value>grpGainings</value>
+  </data>
+  <data name="&gt;&gt;grpGainings.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;grpCalculate.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpGainings.Parent" xml:space="preserve">
     <value>tabSettings</value>
   </data>
-  <data name="&gt;&gt;grpCalculate.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;grpGainings.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="tpGainings.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
@@ -1789,32 +3096,164 @@
   <data name="&gt;&gt;cmdReloadGainings.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="grpGainings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 224</value>
-  </data>
-  <data name="grpGainings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>260, 239</value>
-  </data>
-  <data name="grpGainings.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="grpGainings.Text" xml:space="preserve">
-    <value>Gewinne/Verluste</value>
-  </data>
-  <data name="&gt;&gt;grpGainings.Name" xml:space="preserve">
-    <value>grpGainings</value>
-  </data>
-  <data name="&gt;&gt;grpGainings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpGainings.Parent" xml:space="preserve">
-    <value>tabSettings</value>
-  </data>
-  <data name="&gt;&gt;grpGainings.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="grpSettings.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
+  </data>
+  <data name="&gt;&gt;vssGlobalStrategy.Name" xml:space="preserve">
+    <value>vssGlobalStrategy</value>
+  </data>
+  <data name="&gt;&gt;vssGlobalStrategy.Type" xml:space="preserve">
+    <value>CoinTracer.ValueStrategySelector, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;vssGlobalStrategy.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;vssGlobalStrategy.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cmdTCSExtended.Name" xml:space="preserve">
+    <value>cmdTCSExtended</value>
+  </data>
+  <data name="&gt;&gt;cmdTCSExtended.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdTCSExtended.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;cmdTCSExtended.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;Label17.Name" xml:space="preserve">
+    <value>Label17</value>
+  </data>
+  <data name="&gt;&gt;Label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label17.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;Label17.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;cbxCoins4CoinsAccounting.Name" xml:space="preserve">
+    <value>cbxCoins4CoinsAccounting</value>
+  </data>
+  <data name="&gt;&gt;cbxCoins4CoinsAccounting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxCoins4CoinsAccounting.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;cbxCoins4CoinsAccounting.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;Label16.Name" xml:space="preserve">
+    <value>Label16</value>
+  </data>
+  <data name="&gt;&gt;Label16.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label16.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;Label16.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;cbxWalletAware.Name" xml:space="preserve">
+    <value>cbxWalletAware</value>
+  </data>
+  <data name="&gt;&gt;cbxWalletAware.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cbxWalletAware.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;cbxWalletAware.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;lblHaltefrist.Name" xml:space="preserve">
+    <value>lblHaltefrist</value>
+  </data>
+  <data name="&gt;&gt;lblHaltefrist.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblHaltefrist.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;lblHaltefrist.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;dpctlHaltefrist.Name" xml:space="preserve">
+    <value>dpctlHaltefrist</value>
+  </data>
+  <data name="&gt;&gt;dpctlHaltefrist.Type" xml:space="preserve">
+    <value>CoinTracer.DataPeriodControl, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;dpctlHaltefrist.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;dpctlHaltefrist.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;Label5.Name" xml:space="preserve">
+    <value>Label5</value>
+  </data>
+  <data name="&gt;&gt;Label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label5.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;Label5.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;Label18.Name" xml:space="preserve">
+    <value>Label18</value>
+  </data>
+  <data name="&gt;&gt;Label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label18.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;Label18.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;Label14.Name" xml:space="preserve">
+    <value>Label14</value>
+  </data>
+  <data name="&gt;&gt;Label14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label14.Parent" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;Label14.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="grpSettings.Location" type="System.Drawing.Point, System.Drawing">
+    <value>278, 10</value>
+  </data>
+  <data name="grpSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>677, 349</value>
+  </data>
+  <data name="grpSettings.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="grpSettings.Text" xml:space="preserve">
+    <value>Einstellungen für die Gewinn-/Verlustberechnung</value>
+  </data>
+  <data name="&gt;&gt;grpSettings.Name" xml:space="preserve">
+    <value>grpSettings</value>
+  </data>
+  <data name="&gt;&gt;grpSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpSettings.Parent" xml:space="preserve">
+    <value>tabSettings</value>
+  </data>
+  <data name="&gt;&gt;grpSettings.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
   <data name="vssGlobalStrategy.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2153,60 +3592,6 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;Label14.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="grpSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>278, 10</value>
-  </data>
-  <data name="grpSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>677, 349</value>
-  </data>
-  <data name="grpSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="grpSettings.Text" xml:space="preserve">
-    <value>Einstellungen für die Gewinn-/Verlustberechnung</value>
-  </data>
-  <data name="&gt;&gt;grpSettings.Name" xml:space="preserve">
-    <value>grpSettings</value>
-  </data>
-  <data name="&gt;&gt;grpSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpSettings.Parent" xml:space="preserve">
-    <value>tabSettings</value>
-  </data>
-  <data name="&gt;&gt;grpSettings.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="tabSettings.ImageIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tabSettings.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 39</value>
-  </data>
-  <data name="tabSettings.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabSettings.Size" type="System.Drawing.Size, System.Drawing">
-    <value>958, 473</value>
-  </data>
-  <data name="tabSettings.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tabSettings.Text" xml:space="preserve">
-    <value>Berechnungen</value>
-  </data>
-  <data name="&gt;&gt;tabSettings.Name" xml:space="preserve">
-    <value>tabSettings</value>
-  </data>
-  <data name="&gt;&gt;tabSettings.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabSettings.Parent" xml:space="preserve">
-    <value>tctlMain</value>
-  </data>
-  <data name="&gt;&gt;tabSettings.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="Label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -2236,6 +3621,102 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   </data>
   <data name="&gt;&gt;Label13.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="&gt;&gt;tbxReportAdvice.Name" xml:space="preserve">
+    <value>tbxReportAdvice</value>
+  </data>
+  <data name="&gt;&gt;tbxReportAdvice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbxReportAdvice.Parent" xml:space="preserve">
+    <value>grpReportAdditionalData</value>
+  </data>
+  <data name="&gt;&gt;tbxReportAdvice.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;Label4.Name" xml:space="preserve">
+    <value>Label4</value>
+  </data>
+  <data name="&gt;&gt;Label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label4.Parent" xml:space="preserve">
+    <value>grpReportAdditionalData</value>
+  </data>
+  <data name="&gt;&gt;Label4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;tbxTaxNumber.Name" xml:space="preserve">
+    <value>tbxTaxNumber</value>
+  </data>
+  <data name="&gt;&gt;tbxTaxNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbxTaxNumber.Parent" xml:space="preserve">
+    <value>grpReportAdditionalData</value>
+  </data>
+  <data name="&gt;&gt;tbxTaxNumber.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;tbxUserName.Name" xml:space="preserve">
+    <value>tbxUserName</value>
+  </data>
+  <data name="&gt;&gt;tbxUserName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tbxUserName.Parent" xml:space="preserve">
+    <value>grpReportAdditionalData</value>
+  </data>
+  <data name="&gt;&gt;tbxUserName.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;Label3.Name" xml:space="preserve">
+    <value>Label3</value>
+  </data>
+  <data name="&gt;&gt;Label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label3.Parent" xml:space="preserve">
+    <value>grpReportAdditionalData</value>
+  </data>
+  <data name="&gt;&gt;Label3.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;Label2.Name" xml:space="preserve">
+    <value>Label2</value>
+  </data>
+  <data name="&gt;&gt;Label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label2.Parent" xml:space="preserve">
+    <value>grpReportAdditionalData</value>
+  </data>
+  <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="grpReportAdditionalData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>578, 6</value>
+  </data>
+  <data name="grpReportAdditionalData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>187, 154</value>
+  </data>
+  <data name="grpReportAdditionalData.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="grpReportAdditionalData.Text" xml:space="preserve">
+    <value>Zusätzliche Angaben (optional)</value>
+  </data>
+  <data name="&gt;&gt;grpReportAdditionalData.Name" xml:space="preserve">
+    <value>grpReportAdditionalData</value>
+  </data>
+  <data name="&gt;&gt;grpReportAdditionalData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpReportAdditionalData.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;grpReportAdditionalData.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="tbxReportAdvice.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 122</value>
@@ -2389,30 +3870,6 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   </data>
   <data name="&gt;&gt;Label2.ZOrder" xml:space="preserve">
     <value>5</value>
-  </data>
-  <data name="grpReportAdditionalData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>578, 6</value>
-  </data>
-  <data name="grpReportAdditionalData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>187, 154</value>
-  </data>
-  <data name="grpReportAdditionalData.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="grpReportAdditionalData.Text" xml:space="preserve">
-    <value>Zusätzliche Angaben (optional)</value>
-  </data>
-  <data name="&gt;&gt;grpReportAdditionalData.Name" xml:space="preserve">
-    <value>grpReportAdditionalData</value>
-  </data>
-  <data name="&gt;&gt;grpReportAdditionalData.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpReportAdditionalData.Parent" xml:space="preserve">
-    <value>tabReports</value>
-  </data>
-  <data name="&gt;&gt;grpReportAdditionalData.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="Label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2627,8 +4084,56 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;cbxReportTransfers.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
+  <metadata name="CoinAnteil.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Wert_EUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Kurs_EUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Kaufvorgang.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Kaufdatum.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="KaufkursEUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="VerkaufspreisEUR.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="TaxFree.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <data name="grdReport.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="grdReport.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 166</value>
+  </data>
+  <data name="grdReport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 4, 3, 4</value>
+  </data>
+  <data name="grdReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>952, 303</value>
+  </data>
+  <data name="grdReport.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;grdReport.Name" xml:space="preserve">
+    <value>grdReport</value>
+  </data>
+  <data name="&gt;&gt;grdReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grdReport.Parent" xml:space="preserve">
+    <value>tabReports</value>
+  </data>
+  <data name="&gt;&gt;grdReport.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="Vorgang.HeaderText" xml:space="preserve">
     <value>Vorgang</value>
@@ -2759,30 +4264,6 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="TaxFree.Width" type="System.Int32, mscorlib">
     <value>86</value>
   </data>
-  <data name="grdReport.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 166</value>
-  </data>
-  <data name="grdReport.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="grdReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>952, 303</value>
-  </data>
-  <data name="grdReport.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;grdReport.Name" xml:space="preserve">
-    <value>grdReport</value>
-  </data>
-  <data name="&gt;&gt;grdReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grdReport.Parent" xml:space="preserve">
-    <value>tabReports</value>
-  </data>
-  <data name="&gt;&gt;grdReport.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
   <data name="ccbReportPlatforms.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
   </data>
@@ -2820,7 +4301,7 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
     <value>266, 5</value>
   </data>
   <data name="gnd3rdTab.Size" type="System.Drawing.Size, System.Drawing">
-    <value>297, 223</value>
+    <value>297, 253</value>
   </data>
   <data name="gnd3rdTab.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -2921,87 +4402,9 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;cmdReportPreview.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="tabReports.ImageIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabReports.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 39</value>
-  </data>
-  <data name="tabReports.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabReports.Size" type="System.Drawing.Size, System.Drawing">
-    <value>958, 473</value>
-  </data>
-  <data name="tabReports.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabReports.Text" xml:space="preserve">
-    <value>Bericht</value>
-  </data>
-  <data name="&gt;&gt;tabReports.Name" xml:space="preserve">
-    <value>tabReports</value>
-  </data>
-  <data name="&gt;&gt;tabReports.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabReports.Parent" xml:space="preserve">
-    <value>tctlMain</value>
-  </data>
-  <data name="&gt;&gt;tabReports.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="lblRightMouse.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="lblRightMouse.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblRightMouse.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 8.25pt</value>
-  </data>
-  <data name="lblRightMouse.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="lblRightMouse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>563, 17</value>
-  </data>
-  <data name="lblRightMouse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>378, 13</value>
-  </data>
-  <data name="lblRightMouse.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="lblRightMouse.Text" xml:space="preserve">
-    <value>(Hinweis: rechte Maustaste auf einer Tabellenzeile für weitere Optionen)</value>
-  </data>
-  <data name="lblRightMouse.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
-  </data>
-  <data name="&gt;&gt;lblRightMouse.Name" xml:space="preserve">
-    <value>lblRightMouse</value>
-  </data>
-  <data name="&gt;&gt;lblRightMouse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRightMouse.Parent" xml:space="preserve">
-    <value>tabTable</value>
-  </data>
-  <data name="&gt;&gt;lblRightMouse.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tctlTables.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
   <metadata name="cmnTrades.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>748, 17</value>
   </metadata>
-  <data name="tsmiEditTrades.Size" type="System.Drawing.Size, System.Drawing">
-    <value>175, 22</value>
-  </data>
-  <data name="tsmiEditTrades.Text" xml:space="preserve">
-    <value>Trades bearbeiten...</value>
-  </data>
   <data name="cmnTrades.Size" type="System.Drawing.Size, System.Drawing">
     <value>176, 26</value>
   </data>
@@ -3035,45 +4438,15 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;grdTrades.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabTrades.ImageKey" xml:space="preserve">
-    <value>tab_table.png</value>
+  <data name="tsmiEditTrades.Size" type="System.Drawing.Size, System.Drawing">
+    <value>175, 22</value>
   </data>
-  <data name="tabTrades.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 31</value>
-  </data>
-  <data name="tabTrades.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabTrades.Size" type="System.Drawing.Size, System.Drawing">
-    <value>947, 427</value>
-  </data>
-  <data name="tabTrades.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="tabTrades.Text" xml:space="preserve">
-    <value>Trades</value>
-  </data>
-  <data name="&gt;&gt;tabTrades.Name" xml:space="preserve">
-    <value>tabTrades</value>
-  </data>
-  <data name="&gt;&gt;tabTrades.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabTrades.Parent" xml:space="preserve">
-    <value>tctlTables</value>
-  </data>
-  <data name="&gt;&gt;tabTrades.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="tsmiEditTrades.Text" xml:space="preserve">
+    <value>Trades bearbeiten...</value>
   </data>
   <metadata name="cmnImporte.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>377, 17</value>
   </metadata>
-  <data name="tsmiEraseImport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>228, 22</value>
-  </data>
-  <data name="tsmiEraseImport.Text" xml:space="preserve">
-    <value>Import rückgängig machen...</value>
-  </data>
   <data name="cmnImporte.Size" type="System.Drawing.Size, System.Drawing">
     <value>229, 26</value>
   </data>
@@ -3107,51 +4480,15 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;grdImporte.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabImporte.ImageKey" xml:space="preserve">
-    <value>tab_table.png</value>
+  <data name="tsmiEraseImport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>228, 22</value>
   </data>
-  <data name="tabImporte.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 31</value>
-  </data>
-  <data name="tabImporte.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabImporte.Size" type="System.Drawing.Size, System.Drawing">
-    <value>947, 427</value>
-  </data>
-  <data name="tabImporte.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabImporte.Text" xml:space="preserve">
-    <value>Importe</value>
-  </data>
-  <data name="&gt;&gt;tabImporte.Name" xml:space="preserve">
-    <value>tabImporte</value>
-  </data>
-  <data name="&gt;&gt;tabImporte.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabImporte.Parent" xml:space="preserve">
-    <value>tctlTables</value>
-  </data>
-  <data name="&gt;&gt;tabImporte.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="tsmiEraseImport.Text" xml:space="preserve">
+    <value>Import rückgängig machen...</value>
   </data>
   <metadata name="cmnPlattformen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>859, 17</value>
   </metadata>
-  <data name="tsmiEditPlattformen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 22</value>
-  </data>
-  <data name="tsmiEditPlattformen.Text" xml:space="preserve">
-    <value>Plattformen bearbeiten...</value>
-  </data>
-  <data name="tsmiMergePlatformTrades.Size" type="System.Drawing.Size, System.Drawing">
-    <value>289, 22</value>
-  </data>
-  <data name="tsmiMergePlatformTrades.Text" xml:space="preserve">
-    <value>Trades auf andere Plattform übertragen...</value>
-  </data>
   <data name="cmnPlattformen.Size" type="System.Drawing.Size, System.Drawing">
     <value>290, 48</value>
   </data>
@@ -3185,45 +4522,21 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;grdPlattformen.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabPlattformen.ImageKey" xml:space="preserve">
-    <value>tab_table.png</value>
+  <data name="tsmiEditPlattformen.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 22</value>
   </data>
-  <data name="tabPlattformen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 31</value>
+  <data name="tsmiEditPlattformen.Text" xml:space="preserve">
+    <value>Plattformen bearbeiten...</value>
   </data>
-  <data name="tabPlattformen.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
+  <data name="tsmiMergePlatformTrades.Size" type="System.Drawing.Size, System.Drawing">
+    <value>289, 22</value>
   </data>
-  <data name="tabPlattformen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>947, 427</value>
-  </data>
-  <data name="tabPlattformen.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="tabPlattformen.Text" xml:space="preserve">
-    <value>Plattformen</value>
-  </data>
-  <data name="&gt;&gt;tabPlattformen.Name" xml:space="preserve">
-    <value>tabPlattformen</value>
-  </data>
-  <data name="&gt;&gt;tabPlattformen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabPlattformen.Parent" xml:space="preserve">
-    <value>tctlTables</value>
-  </data>
-  <data name="&gt;&gt;tabPlattformen.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="tsmiMergePlatformTrades.Text" xml:space="preserve">
+    <value>Trades auf andere Plattform übertragen...</value>
   </data>
   <metadata name="cmnKonten.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>
   </metadata>
-  <data name="tsmiEditKonten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 22</value>
-  </data>
-  <data name="tsmiEditKonten.Text" xml:space="preserve">
-    <value>Konten bearbeiten...</value>
-  </data>
   <data name="cmnKonten.Size" type="System.Drawing.Size, System.Drawing">
     <value>181, 26</value>
   </data>
@@ -3257,45 +4570,15 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;grdKonten.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabKonten.ImageKey" xml:space="preserve">
-    <value>tab_table.png</value>
+  <data name="tsmiEditKonten.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
   </data>
-  <data name="tabKonten.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 31</value>
-  </data>
-  <data name="tabKonten.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabKonten.Size" type="System.Drawing.Size, System.Drawing">
-    <value>947, 427</value>
-  </data>
-  <data name="tabKonten.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="tabKonten.Text" xml:space="preserve">
-    <value>Konten</value>
-  </data>
-  <data name="&gt;&gt;tabKonten.Name" xml:space="preserve">
-    <value>tabKonten</value>
-  </data>
-  <data name="&gt;&gt;tabKonten.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabKonten.Parent" xml:space="preserve">
-    <value>tctlTables</value>
-  </data>
-  <data name="&gt;&gt;tabKonten.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="tsmiEditKonten.Text" xml:space="preserve">
+    <value>Konten bearbeiten...</value>
   </data>
   <metadata name="cmnKurse.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>131, 56</value>
   </metadata>
-  <data name="tsmiEditKurse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="tsmiEditKurse.Text" xml:space="preserve">
-    <value>Kurse bearbeiten...</value>
-  </data>
   <data name="cmnKurse.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 26</value>
   </data>
@@ -3329,349 +4612,143 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;grdKurse.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="tabKurse.ImageKey" xml:space="preserve">
-    <value>tab_table.png</value>
+  <data name="tsmiEditKurse.Size" type="System.Drawing.Size, System.Drawing">
+    <value>171, 22</value>
   </data>
-  <data name="tabKurse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 31</value>
-  </data>
-  <data name="tabKurse.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabKurse.Size" type="System.Drawing.Size, System.Drawing">
-    <value>947, 427</value>
-  </data>
-  <data name="tabKurse.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="tabKurse.Text" xml:space="preserve">
-    <value>Kurse</value>
-  </data>
-  <data name="&gt;&gt;tabKurse.Name" xml:space="preserve">
-    <value>tabKurse</value>
-  </data>
-  <data name="&gt;&gt;tabKurse.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabKurse.Parent" xml:space="preserve">
-    <value>tctlTables</value>
-  </data>
-  <data name="&gt;&gt;tabKurse.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <metadata name="cmnBerechnungen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>236, 56</value>
-  </metadata>
-  <data name="tsmiViewCalculations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 22</value>
-  </data>
-  <data name="tsmiViewCalculations.Text" xml:space="preserve">
-    <value>Berechnungsdetails anzeigen...</value>
-  </data>
-  <data name="tsmiEraseCalculation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>256, 22</value>
-  </data>
-  <data name="tsmiEraseCalculation.Text" xml:space="preserve">
-    <value>Berechnung rückgängig machen...</value>
-  </data>
-  <data name="cmnBerechnungen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>257, 48</value>
-  </data>
-  <data name="&gt;&gt;cmnBerechnungen.Name" xml:space="preserve">
-    <value>cmnBerechnungen</value>
-  </data>
-  <data name="&gt;&gt;cmnBerechnungen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="grdBerechnungen.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="grdBerechnungen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
-  </data>
-  <data name="grdBerechnungen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>941, 421</value>
-  </data>
-  <data name="grdBerechnungen.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;grdBerechnungen.Name" xml:space="preserve">
-    <value>grdBerechnungen</value>
-  </data>
-  <data name="&gt;&gt;grdBerechnungen.Type" xml:space="preserve">
-    <value>CoinTracer.BoundDataGridView, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;grdBerechnungen.Parent" xml:space="preserve">
-    <value>tabBerechnungen</value>
-  </data>
-  <data name="&gt;&gt;grdBerechnungen.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="tabBerechnungen.ImageKey" xml:space="preserve">
-    <value>tab_table.png</value>
-  </data>
-  <data name="tabBerechnungen.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 31</value>
-  </data>
-  <data name="tabBerechnungen.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="tabBerechnungen.Size" type="System.Drawing.Size, System.Drawing">
-    <value>947, 427</value>
-  </data>
-  <data name="tabBerechnungen.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="tabBerechnungen.Text" xml:space="preserve">
-    <value>Berechnungen</value>
-  </data>
-  <data name="&gt;&gt;tabBerechnungen.Name" xml:space="preserve">
-    <value>tabBerechnungen</value>
-  </data>
-  <data name="&gt;&gt;tabBerechnungen.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabBerechnungen.Parent" xml:space="preserve">
-    <value>tctlTables</value>
-  </data>
-  <data name="&gt;&gt;tabBerechnungen.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <metadata name="imlTables.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>495, 17</value>
-  </metadata>
-  <data name="imlTables.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADo
-        CQAAAk1TRnQBSQFMAwEBAAFgAQoBYAEKARgBAAEYAQAE/wEJAQAI/wFCAU0BNgEEBgABNgEEAgABKAMA
-        AWADAAEYAwABAQEAAQgGAAEJGAABgAIAAYADAAKAAQABgAMAAYABAAGAAQACgAIAA8ABAAHAAdwBwAEA
-        AfABygGmAQABMwUAATMBAAEzAQABMwEAAjMCAAMWAQADHAEAAyIBAAMpAQADVQEAA00BAANCAQADOQEA
-        AYABfAH/AQACUAH/AQABkwEAAdYBAAH/AewBzAEAAcYB1gHvAQAB1gLnAQABkAGpAa0CAAH/ATMDAAFm
-        AwABmQMAAcwCAAEzAwACMwIAATMBZgIAATMBmQIAATMBzAIAATMB/wIAAWYDAAFmATMCAAJmAgABZgGZ
-        AgABZgHMAgABZgH/AgABmQMAAZkBMwIAAZkBZgIAApkCAAGZAcwCAAGZAf8CAAHMAwABzAEzAgABzAFm
-        AgABzAGZAgACzAIAAcwB/wIAAf8BZgIAAf8BmQIAAf8BzAEAATMB/wIAAf8BAAEzAQABMwEAAWYBAAEz
-        AQABmQEAATMBAAHMAQABMwEAAf8BAAH/ATMCAAMzAQACMwFmAQACMwGZAQACMwHMAQACMwH/AQABMwFm
-        AgABMwFmATMBAAEzAmYBAAEzAWYBmQEAATMBZgHMAQABMwFmAf8BAAEzAZkCAAEzAZkBMwEAATMBmQFm
-        AQABMwKZAQABMwGZAcwBAAEzAZkB/wEAATMBzAIAATMBzAEzAQABMwHMAWYBAAEzAcwBmQEAATMCzAEA
-        ATMBzAH/AQABMwH/ATMBAAEzAf8BZgEAATMB/wGZAQABMwH/AcwBAAEzAv8BAAFmAwABZgEAATMBAAFm
-        AQABZgEAAWYBAAGZAQABZgEAAcwBAAFmAQAB/wEAAWYBMwIAAWYCMwEAAWYBMwFmAQABZgEzAZkBAAFm
-        ATMBzAEAAWYBMwH/AQACZgIAAmYBMwEAA2YBAAJmAZkBAAJmAcwBAAFmAZkCAAFmAZkBMwEAAWYBmQFm
-        AQABZgKZAQABZgGZAcwBAAFmAZkB/wEAAWYBzAIAAWYBzAEzAQABZgHMAZkBAAFmAswBAAFmAcwB/wEA
-        AWYB/wIAAWYB/wEzAQABZgH/AZkBAAFmAf8BzAEAAcwBAAH/AQAB/wEAAcwBAAKZAgABmQEzAZkBAAGZ
-        AQABmQEAAZkBAAHMAQABmQMAAZkCMwEAAZkBAAFmAQABmQEzAcwBAAGZAQAB/wEAAZkBZgIAAZkBZgEz
-        AQABmQEzAWYBAAGZAWYBmQEAAZkBZgHMAQABmQEzAf8BAAKZATMBAAKZAWYBAAOZAQACmQHMAQACmQH/
-        AQABmQHMAgABmQHMATMBAAFmAcwBZgEAAZkBzAGZAQABmQLMAQABmQHMAf8BAAGZAf8CAAGZAf8BMwEA
-        AZkBzAFmAQABmQH/AZkBAAGZAf8BzAEAAZkC/wEAAcwDAAGZAQABMwEAAcwBAAFmAQABzAEAAZkBAAHM
-        AQABzAEAAZkBMwIAAcwCMwEAAcwBMwFmAQABzAEzAZkBAAHMATMBzAEAAcwBMwH/AQABzAFmAgABzAFm
-        ATMBAAGZAmYBAAHMAWYBmQEAAcwBZgHMAQABmQFmAf8BAAHMAZkCAAHMAZkBMwEAAcwBmQFmAQABzAKZ
-        AQABzAGZAcwBAAHMAZkB/wEAAswCAALMATMBAALMAWYBAALMAZkBAAPMAQACzAH/AQABzAH/AgABzAH/
-        ATMBAAGZAf8BZgEAAcwB/wGZAQABzAH/AcwBAAHMAv8BAAHMAQABMwEAAf8BAAFmAQAB/wEAAZkBAAHM
-        ATMCAAH/AjMBAAH/ATMBZgEAAf8BMwGZAQAB/wEzAcwBAAH/ATMB/wEAAf8BZgIAAf8BZgEzAQABzAJm
-        AQAB/wFmAZkBAAH/AWYBzAEAAcwBZgH/AQAB/wGZAgAB/wGZATMBAAH/AZkBZgEAAf8CmQEAAf8BmQHM
-        AQAB/wGZAf8BAAH/AcwCAAH/AcwBMwEAAf8BzAFmAQAB/wHMAZkBAAH/AswBAAH/AcwB/wEAAv8BMwEA
-        AcwB/wFmAQAC/wGZAQAC/wHMAQACZgH/AQABZgH/AWYBAAFmAv8BAAH/AmYBAAH/AWYB/wEAAv8BZgEA
-        ASEBAAGlAQADXwEAA3cBAAOGAQADlgEAA8sBAAOyAQAD1wEAA90BAAPjAQAD6gEAA/EBAAP4AQAB8AH7
-        Af8BAAGkAqABAAOAAwAB/wIAAf8DAAL/AQAB/wMAAf8BAAH/AQAC/wIAA/8CABb/SQAY/0kAAbwGswGt
-        BLMBrQOzAa0EswHxSgABuwH0Ev8B9AG7SgABuwEZAQkB8AIJAfABuwHwBAkB8AEJAfABuwHwAgkB8wG7
-        SgABuwHzAfQC/wH0Af8BCQH/AvQB8wHwAf8B9AH/AQkB/wL0AfMBu0oAAbsB8wX/AQkD/wH0AfAD/wEJ
-        A/8B8wG7SgABuwEZBf8BCQT/ARkD/wEJA/8BGQG7SgABuwHzAbsBCQK7AwkCuwIJArsDCQK7AfMBu0oA
-        AbsB8wX/AbsE/wHwA/8BuwP/AfMBu0oAAbsB8wEZA/QB/wG7Af8C9AHzAQkB/wH0Af8BuwH/AfQBGQHz
-        AbtKAAG7AfMF/wG7BP8BCQP/AbsD/wHzAbtKAAG7AfQBtRC7AbUB9AG7SgABuwHzBf8BuwP/AfQBCQP/
-        AbsD/wHzAbtKAAG7AfMEGQH/AbsB/wMZAQkB9AEZAf8BuwH/AhkB8wG7SgABuwHzBRkBuwQZAQkDGQG7
-        AxkB8wG7SgABuwHzBQkBuwQJAbsDCQG7AwkB8wG7SgABuwHzBBkB9AG7AfQDGQEJAeIBGQH0AbsB9AIZ
-        AfMBu0oAAbsB8wQZAfQBuwH0AxkBCQIZAfQBuwH0AhkB8wG7SgABuwHzBdwBuwTcAQkD3AG7A9wB8wG7
-        SgABuwEZAXkEegG7A3oBeQHvA3oBuwJ6AXkBGQG7SgABuwH0BXoBCQN6AZoBBwN6AQkDegH0AbtKAAEJ
-        AboB2wG6A9sBuwHbBLoD2wG7AdsBugHbAboBCUoAFv9JAAFCAU0BPgcAAT4DAAEoAwABYAMAARgDAAEB
-        AQABAQUAASABARYAA/8BAAGAAQABARUAAYABAAEBCQABgAEAAQEJAAGAAQABAQkAAYABAAEBCQABgAEA
-        AQEJAAGAAQABAQkAAYABAAEBCQABgAEAAQEJAAGAAQABAQkAAYABAAEBCQABgAEAAQEJAAGAAQABAQkA
-        AYABAAEBCQABgAEAAQEJAAGAAQABAQkAAYABAAEBCQABgAEAAQEJAAGAAQABAQkAAYABAAEBCQABgAEA
-        AQEJAAGAAQABAQkAAYABAAEBCQAL
-</value>
-  </data>
-  <data name="tctlTables.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 4</value>
-  </data>
-  <data name="tctlTables.Size" type="System.Drawing.Size, System.Drawing">
-    <value>955, 462</value>
-  </data>
-  <data name="tctlTables.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;tctlTables.Name" xml:space="preserve">
-    <value>tctlTables</value>
-  </data>
-  <data name="&gt;&gt;tctlTables.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tctlTables.Parent" xml:space="preserve">
-    <value>tabTable</value>
-  </data>
-  <data name="&gt;&gt;tctlTables.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="tabTable.ImageIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabTable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 39</value>
-  </data>
-  <data name="tabTable.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabTable.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tabTable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>958, 473</value>
-  </data>
-  <data name="tabTable.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="tabTable.Text" xml:space="preserve">
-    <value>Tabellen</value>
-  </data>
-  <data name="&gt;&gt;tabTable.Name" xml:space="preserve">
-    <value>tabTable</value>
-  </data>
-  <data name="&gt;&gt;tabTable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabTable.Parent" xml:space="preserve">
-    <value>tctlMain</value>
-  </data>
-  <data name="&gt;&gt;tabTable.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <metadata name="imlTabs.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>284, 17</value>
-  </metadata>
-  <data name="imlTabs.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
-    <value>
-        AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
-        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
-        ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADI
-        FAAAAk1TRnQBSQFMAgEBBAEAAWABCgFgAQoBIAEAASABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
-        AwABgAMAAUADAAEBAQABCAYAASAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
-        AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
-        AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
-        AWYDAAGZAwABzAIAATMDAAIzAgABMwFmAgABMwGZAgABMwHMAgABMwH/AgABZgMAAWYBMwIAAmYCAAFm
-        AZkCAAFmAcwCAAFmAf8CAAGZAwABmQEzAgABmQFmAgACmQIAAZkBzAIAAZkB/wIAAcwDAAHMATMCAAHM
-        AWYCAAHMAZkCAALMAgABzAH/AgAB/wFmAgAB/wGZAgAB/wHMAQABMwH/AgAB/wEAATMBAAEzAQABZgEA
-        ATMBAAGZAQABMwEAAcwBAAEzAQAB/wEAAf8BMwIAAzMBAAIzAWYBAAIzAZkBAAIzAcwBAAIzAf8BAAEz
-        AWYCAAEzAWYBMwEAATMCZgEAATMBZgGZAQABMwFmAcwBAAEzAWYB/wEAATMBmQIAATMBmQEzAQABMwGZ
-        AWYBAAEzApkBAAEzAZkBzAEAATMBmQH/AQABMwHMAgABMwHMATMBAAEzAcwBZgEAATMBzAGZAQABMwLM
-        AQABMwHMAf8BAAEzAf8BMwEAATMB/wFmAQABMwH/AZkBAAEzAf8BzAEAATMC/wEAAWYDAAFmAQABMwEA
-        AWYBAAFmAQABZgEAAZkBAAFmAQABzAEAAWYBAAH/AQABZgEzAgABZgIzAQABZgEzAWYBAAFmATMBmQEA
-        AWYBMwHMAQABZgEzAf8BAAJmAgACZgEzAQADZgEAAmYBmQEAAmYBzAEAAWYBmQIAAWYBmQEzAQABZgGZ
-        AWYBAAFmApkBAAFmAZkBzAEAAWYBmQH/AQABZgHMAgABZgHMATMBAAFmAcwBmQEAAWYCzAEAAWYBzAH/
-        AQABZgH/AgABZgH/ATMBAAFmAf8BmQEAAWYB/wHMAQABzAEAAf8BAAH/AQABzAEAApkCAAGZATMBmQEA
-        AZkBAAGZAQABmQEAAcwBAAGZAwABmQIzAQABmQEAAWYBAAGZATMBzAEAAZkBAAH/AQABmQFmAgABmQFm
-        ATMBAAGZATMBZgEAAZkBZgGZAQABmQFmAcwBAAGZATMB/wEAApkBMwEAApkBZgEAA5kBAAKZAcwBAAKZ
-        Af8BAAGZAcwCAAGZAcwBMwEAAWYBzAFmAQABmQHMAZkBAAGZAswBAAGZAcwB/wEAAZkB/wIAAZkB/wEz
-        AQABmQHMAWYBAAGZAf8BmQEAAZkB/wHMAQABmQL/AQABzAMAAZkBAAEzAQABzAEAAWYBAAHMAQABmQEA
-        AcwBAAHMAQABmQEzAgABzAIzAQABzAEzAWYBAAHMATMBmQEAAcwBMwHMAQABzAEzAf8BAAHMAWYCAAHM
-        AWYBMwEAAZkCZgEAAcwBZgGZAQABzAFmAcwBAAGZAWYB/wEAAcwBmQIAAcwBmQEzAQABzAGZAWYBAAHM
-        ApkBAAHMAZkBzAEAAcwBmQH/AQACzAIAAswBMwEAAswBZgEAAswBmQEAA8wBAALMAf8BAAHMAf8CAAHM
-        Af8BMwEAAZkB/wFmAQABzAH/AZkBAAHMAf8BzAEAAcwC/wEAAcwBAAEzAQAB/wEAAWYBAAH/AQABmQEA
-        AcwBMwIAAf8CMwEAAf8BMwFmAQAB/wEzAZkBAAH/ATMBzAEAAf8BMwH/AQAB/wFmAgAB/wFmATMBAAHM
-        AmYBAAH/AWYBmQEAAf8BZgHMAQABzAFmAf8BAAH/AZkCAAH/AZkBMwEAAf8BmQFmAQAB/wKZAQAB/wGZ
-        AcwBAAH/AZkB/wEAAf8BzAIAAf8BzAEzAQAB/wHMAWYBAAH/AcwBmQEAAf8CzAEAAf8BzAH/AQAC/wEz
-        AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
-        AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
-        AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD//8A/wD/AP8A/wD/AP8A
-        /wD/AP8A/wD/AP8A/wD/AP8AVwAG/x8ABP8YAAX/GgAX/wcAA/8B8wG8AfME/x0AAf8B8gH0A/8WAAH/
-        AfQC8AL/FwAa/wUAAv8B8gEaAXgBNQEcAbwBGgHzAv8DAAP/FgAB/wHsAfcBvAH0A/8VAAEaAnQBvAL/
-        FgAB/wHzFrsB8gH/BQAB/wEaAZoBUAE2AToBNQFRAXoBeQHxAf8CAAj/EwAB8gHqAXMBHAG8AfQC/xQA
-        AfQBmgHDAXkBmQH0Av8UAAH/AbQWCQG0Af8FAAH/AXoBUAE1AzYBNQEvAXoBmQT/AfMBUAHvA/QD/w0A
-        A/8BAAH0AXMBmgF6AXQBcwEHAf8BAAP/EQABmQHDAaABmgGZAfQC/xMAAf8BrAf/AfIE/wHwBP8B8AT/
-        AbMB9AUAAf8BegEuAV0FNgEvAZoB9AHzAfQBGgFPATYBNQFzAXoBeQEaAv8MAAL/AfQC/wH0AesBGgHD
-        AXoBUwFuAfQB/wL0Av8QAAEbAZoCwwGaAZMB8wL/EgAB/wGsB/8B8AT/AQkE/wEJBP8BswH0BQAB/wJ6
-        AS4BXQU2AVABegF1AXoBLgM2AS8BWAJZAZkMAAL/AQcB6wHyAfQB8gHsAZkBGwF6ATIBUwFzAfMB7wHs
-        AfIC/xAAAXkBwwGgAcMBmgGZAfMC/xEAAf8BrAf/AfAE/wG8BP8BCQT/AbMB9AUAAf8BdQHDARsBLwFY
-        BDYBNQFRAXoBLgU2AS4BeQFZAXoLAAH/AfQBvAHtAfcB6wHwAe8BkgGZAVIBwwF6AlMBSwHtAfcB7QHz
-        Av8PAAGZAcMCoAHDAZoBdAHyAv8QAAH/AawB/xQJAf8BswH0BQAB/wF6AZoBegF5AVABVwQ2ATUBLgc2
-        AS4BWAF6Af8BAAP/BgAB/wHwAe0BvAHzAbwB7AGSAfEBGQGTAVIBwwGaAVMBMgF0AfMBBwHtAfMB/w8A
-        AfQBeQHDAqABwwGgAXQB8QL/DwAB/wGsB/8B8AT/AQkE/wEJBP8BswH0BQAB/wF1AZoBoAHDAZkBVgFY
-        DTYBLwF0Bf8GAAH/AesBBwHyAbwC8AHxAfABvAHxAZMBUgHDAZoBUwErAXQB9AH3AZIRAAF0AcMDoAHD
-        AaABeQHwAv8OAAH/AawH/wHwBP8BCQT/AQkE/wGzAfQFAAH/AXUBwwGaAhoBdAFQAV0HNgFdAVgENgEv
-        Ae8B/wEHAXMB/wYAAf8BvAGSAfAHvAHwAZMBUgHDAZoBUwExAXQB7QHyEQAB8wGaAcMDoALDAXkBvAH0
-        Af8NAAH/AawH/wHwBP8BCQT/AQkE/wGzAfQFAAH/A3oCmgF6AVgBLgF+BTYBfgEuAVABWAQ2ATUBUAF4
-        AS8B9AQABP8BBwHvAfAEvAHxAvIB8QHvAVIBwwGaAVMBMgFLA/8LAAX/AXQBwwWgAcMBmQG8AfQB/wwA
-        Af8BrAH/FAkB9AGzAfQFAAH/AXUBwwH2Af8B9gHDAZoBegEuAX4DNgF+AS4B/wGYAlcFNgF5AS8B9AQA
-        Af8B9ALwAfcBBwS8AfEB7wLtAQcB8gHvAVIBwwGaAjIBcwHyAv8JAAL/BPMBBwGaBqABwwGaAZkB9AH/
-        CwAB/wGsB/8BCQT/AQkE/wEJBP8BswH0BQAB/wF1Af8CegJZAnoBWQFPAVgBNgF+AS4DmgFRAXgFNgF5
-        AS8B9AQAAf8B9wHsAesBkgHwA7wB8QHtAQcC9AGSAfcB8gEcAVIBwwF6AjIBSwG8Af8KAAEaBVIBeQHD
-        AZoFoAHDAZoBmQH0Av8JAAH/AawB/wb0AQkB/wL0Af8BCQH/AvQB/wEJAf8C9AH/AbMB9AYAAXUIegFS
-        AVABeQEuAXoBmgHDAqABUAF5BDYBeQFQAfQEAAH/AesB/wHzAfIBvAIHAfAB7wG8BAABkgEHAfABHAFS
-        AcMBegFSAa4B9wHzAv8IAAEaAZoBwwSgCJoBwwGaAZkB8wL/BwAC/wGsBv8B9AEJBP8BCQT/AQkC/wH0
-        Af8BswH0BgABGgh6AZoBeQFQAVMEwwKgASgBnwM2AXkBUAH0BAAB/wHsAfMFBwHxAZIB9AMAAf8B8gH3
-        AfEBvAF0AVMBGwG7AZIB6wHvAfQB/wgAARsBeQHDDZoBwwGaAZkB8wH/BgAD/wGzAfAEBwK8DgkB/wGz
-        AfQFAAH/AQAB9AEbARoBGwEaAXUBmgIaApoBUwHDAnoBWQF6AVcBeAGfA3kBoAFQAfQEAAH/AewB8wHv
-        BAcB8QGSAfQE/wHxAfcB8QEHAbwBdAGSAfMBvAHtAY4BtgH/CAAB9AGZAcMHmgnDAZkHAAH/AfIBBwHv
-        AQcEvAEHAu8B8AMZAbsEGQG7AxkB/wGzAfQMAAF6ApoBegJZAVMCegLlAaABLgZQAS8B/wUAAewB/wLy
-        AbwCBwHwAe8BBwP/AfQBkgEHAbwCBwLxAu8CtgGOAf8IAAH/AZkBwwGaAXoCmgJ6AcMJdAGZCAABvAIH
-        AbwB8ALxAfABvAEHAe8BvAMZAbsEGQG7AxkB/wGzAfQMAAF6AcMC9gHDAaABmgV6AnQBGgb/BQAB7wHt
-        AewB9wHwAwcB8QHtAe8C8QGSAfcB8gEHAe8BBwHxAuwBtgHdAbYB8wH/CAAB/wGZARoBmgV6AcMBmgGZ
-        AfQG9gH/CAADBwG8AfAC8QHwAbwBBwHvAQcDGQG7BBkBuwMZAf8BswH0DAABegHDAZoBegF1AVMBdQF6
-        AVkBmQEABP8LAAL/AfQB7wG8AQcC7wEHAfIB7wKSAbwB8gEHAu8B8AHvAfAB/wH0AbYB8wsAAZkBmgGg
-        BnoB9gF0AfIB/w4AAbwBBwHyAfME9AHzAfIBBwG7AxkBuwQZAbsDGQH/AbMB9AwAAXoBmgGgAZoCegNZ
-        AZkRAAH/AfQCBwG8A+8BBwHwAvIBvAPvAQcB8gHtAfIB/w4AARoBmgHDBnoBmgHDAXQB9AH/DQAC8AEH
-        Ae8FBwK8BO8BuwTvAbsD7wHzAbMB9AwAAXoC9gHDARoCmgF6AVkBmREAAf8BvAH3AfEBBwzvAbwB8AHt
-        AfIB/w0AAfMBmQHDB3oBwwEaAZkC/wwAAbwB7wEHAbwB8QLyAfEBvAEHAfcBeQJ6AVkBtAFZAnoBWQG0
-        AVkBegFZAcMBswH0DAABegEaAZoBegVZAZkRAAH/Ae0B8AG8AfcBBwHwAQcG7wG8AfAB7wH3AfMB7wH3
-        DgAB9AF0AcMIegHDAZkB8QL/CwADBwK8AvEB8AG8AgcBvAPDAfQEwwH0A8MB/wGzAf8MAAF6AcMB9gHD
-        AaABmgJ6AVkBmREAAf8B8gHvAfAC8QH3AbwB8QEHAu8B8AHxAQcB7wLxAbwB7wH0DwABdAHDAZoHegGa
-        AcMBmQHzAf8LAAIHAfEB8wP/AfQB8wHxAQcBtA6zAf8MAAF5Af8BoAGaBHoBWQGZEwAB8gHvAbwBkgH0
-        AQcB7wHwAe8B9wH0Ae0C8QHvAbwB7wH0EAABmQEaAcMBWQd6AaABGgGZAfQB/woAAQcB8wHyBvAB8wHy
-        AfAbAAF5AaAHegGZFAAB8QHtAfQBAAHzAfcB8AL3AfQB7QH/AQABvAH3Af8RAAEaAZoBwwlZAcMBmQHx
-        Af8KAAK8CPABBwHwGwABmgJ6BOUCegGaGAAB9AHvAf8C9AH/Ae0WAAHzAXkM9gF0Af8KAAH0A7wE8AG8
-        AQcBvAH0GgAB/wEAARsBmgR6AZoBGwEAAf8XAAH/AQcE9wHwFgAB/wGZDXQB/wsAAf8B8wbxAfMB//8A
-        0wABQgFNAT4HAAE+AwABKAMAAYADAAFAAwABAQEAAQEGAAEEFgAD//8A/wADAAj/AfwBDwP/AeEC/wH+
-        AQ8C/wH8AgABBwHwAQMD/wHgAX8B/wH+AQcC/wHwAgABAwHgAQEBxwL/AeABHwL/AQMC/wHwAgABAwHg
-        AQEBgAF/Af8B8AEPAv8BAAL/AfACAAEDAeACAAEfAf8BEAEIAv8BgAF/Af8B8AIAAQMB4AIAAR8B/gIA
-        AX8B/wGAAT8B/wHwAgABAwHgAgABPwH8AgABPwH/AcABHwH/AfACAAEDAeACAAE/AfgCAAEfAf8BwAEP
-        Af8B8AIAAQMB4AIAAREB+AIAAR8B/wHAAQcB/wHwAgABAwHgAgABAQH4AgABPwH/AeABAwH/AfACAAED
-        AeACAAEBAfgCAAE/Af8B4AEBAf8B8AIAAQMB4AIAAQEB4AIAAQ8B/gIAAf8B8AIAAQMB4AIAAQEB4AIA
-        AQcB/AIAAX8B8AIAAQMB4AIAAQEB4AIAAQcB/gIAAR8B8AIAAQMB8AIAAQEB4AEDAcABAQH+AgABDwHg
-        AgABAwHwAgABAQHgAQMBgAEBAf4CAAEPAcACAAEDAegCAAEBAeACAAEBAf4CAAEfAcACAAEDAf8BwAEA
-        AQEB8AIAAQEB/gIAAR8B4AIAAQMB/wHAAQABAQHwAgABAQH+AgABHwHgAgABAwH/AcABCAF/AfACAAEH
-        Af8BAAEHAf8B4AIAAQMB/wHAAQ8B/wH4AgABPwH/AQABAwH/AeACAAEDAf8BwAEPAf8B+AIAAR8B/wEA
-        AQEB/wHgAgABAwH/AcABDwH/AfgCAAE/Af8CAAH/AeACAAEDAf8BwAEPAf8B+AIAAT8B/wGAAQAB/wHg
-        AgABAwH/AcABDwH/Af4CAAF/Af8BgAEAAX8B4AEBA/8BwAEPAv8BEAEIAv8BgAEAAX8B4AEBA/8BwAEP
-        Av8B8AEfAv8BgAEAAX8B4AEBA/8BoAEXAv8B8AEfAv8BgAEAAX8B8AEDOv8L
-</value>
-  </data>
-  <data name="tctlMain.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 29</value>
-  </data>
-  <data name="tctlMain.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 4, 3, 4</value>
-  </data>
-  <data name="tctlMain.Size" type="System.Drawing.Size, System.Drawing">
-    <value>966, 516</value>
-  </data>
-  <data name="tctlMain.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;tctlMain.Name" xml:space="preserve">
-    <value>tctlMain</value>
-  </data>
-  <data name="&gt;&gt;tctlMain.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tctlMain.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tctlMain.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="tsmiEditKurse.Text" xml:space="preserve">
+    <value>Kurse bearbeiten...</value>
   </data>
   <data name="pnlDonate.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left, Right</value>
   </data>
+  <data name="&gt;&gt;GroupBox2.Name" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.Parent" xml:space="preserve">
+    <value>pnlDonate</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pnlDonate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 545</value>
+  </data>
+  <data name="pnlDonate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>966, 54</value>
+  </data>
+  <data name="pnlDonate.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;pnlDonate.Name" xml:space="preserve">
+    <value>pnlDonate</value>
+  </data>
+  <data name="&gt;&gt;pnlDonate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pnlDonate.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;pnlDonate.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
   <data name="GroupBox2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateETH.Name" xml:space="preserve">
+    <value>cmdDonateETH</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateETH.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateETH.Parent" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateETH.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateBCH.Name" xml:space="preserve">
+    <value>cmdDonateBCH</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateBCH.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateBCH.Parent" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateBCH.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;Label10.Name" xml:space="preserve">
+    <value>Label10</value>
+  </data>
+  <data name="&gt;&gt;Label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label10.Parent" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;Label10.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateLTC.Name" xml:space="preserve">
+    <value>cmdDonateLTC</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateLTC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateLTC.Parent" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateLTC.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateBTC.Name" xml:space="preserve">
+    <value>cmdDonateBTC</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateBTC.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateBTC.Parent" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;cmdDonateBTC.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;lblDonate.Name" xml:space="preserve">
+    <value>lblDonate</value>
+  </data>
+  <data name="&gt;&gt;lblDonate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDonate.Parent" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;lblDonate.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="GroupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, -3</value>
+  </data>
+  <data name="GroupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>952, 54</value>
+  </data>
+  <data name="GroupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.Name" xml:space="preserve">
+    <value>GroupBox2</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.Parent" xml:space="preserve">
+    <value>pnlDonate</value>
+  </data>
+  <data name="&gt;&gt;GroupBox2.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="cmdDonateETH.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3881,48 +4958,6 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;lblDonate.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="GroupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, -3</value>
-  </data>
-  <data name="GroupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>952, 54</value>
-  </data>
-  <data name="GroupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;GroupBox2.Name" xml:space="preserve">
-    <value>GroupBox2</value>
-  </data>
-  <data name="&gt;&gt;GroupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;GroupBox2.Parent" xml:space="preserve">
-    <value>pnlDonate</value>
-  </data>
-  <data name="&gt;&gt;GroupBox2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="pnlDonate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 545</value>
-  </data>
-  <data name="pnlDonate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>966, 54</value>
-  </data>
-  <data name="pnlDonate.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;pnlDonate.Name" xml:space="preserve">
-    <value>pnlDonate</value>
-  </data>
-  <data name="&gt;&gt;pnlDonate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pnlDonate.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;pnlDonate.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
   <data name="lblDebug.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -4058,6 +5093,9 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;ThreadsafeStatusStrip1.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <metadata name="EnhancedToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -5815,22 +6853,16 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   <data name="&gt;&gt;DateiToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;DatabaseSaveMenuItem.Name" xml:space="preserve">
-    <value>DatabaseSaveMenuItem</value>
-  </data>
-  <data name="&gt;&gt;DatabaseSaveMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;DatabaseLoadMenuItem.Name" xml:space="preserve">
     <value>DatabaseLoadMenuItem</value>
   </data>
   <data name="&gt;&gt;DatabaseLoadMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;RecentFilesListMenuItem.Name" xml:space="preserve">
-    <value>RecentFilesListMenuItem</value>
+  <data name="&gt;&gt;DatabaseSaveMenuItem.Name" xml:space="preserve">
+    <value>DatabaseSaveMenuItem</value>
   </data>
-  <data name="&gt;&gt;RecentFilesListMenuItem.Type" xml:space="preserve">
+  <data name="&gt;&gt;DatabaseSaveMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;ToolStripSeparator12.Name" xml:space="preserve">
@@ -6198,6 +7230,12 @@ entweder steuerneutral oder als steuerlich relevanter Vorgang.</value>
   </data>
   <data name="&gt;&gt;EnhancedToolTip1.Type" xml:space="preserve">
     <value>CoinTracer.EnhancedToolTip, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;RecentDBsToolStripMenuItem.Name" xml:space="preserve">
+    <value>RecentDBsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;RecentDBsToolStripMenuItem.Type" xml:space="preserve">
+    <value>CoinTracer.RecentFilesToolStripMenuItem, CoinTracer, Version=0.9.7.3, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmMain</value>

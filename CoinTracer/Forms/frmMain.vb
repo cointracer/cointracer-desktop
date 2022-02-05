@@ -216,8 +216,8 @@ Public Class frmMain
     Protected Overrides Sub ScaleControl(factor As SizeF, specified As BoundsSpecified)
         MyBase.ScaleControl(factor, specified)
         ' Record the running scale factor used
-        Me.currentScaleFactor.Width *= factor.Width
-        Me.currentScaleFactor.Height *= factor.Height
+        currentScaleFactor.Width *= factor.Width
+        currentScaleFactor.Height *= factor.Height
         ' check, if text on buttons fits into width
         For Each btn As PaddingButton In New List(Of PaddingButton) From {cmdCourses}
             With btn
@@ -240,7 +240,18 @@ Public Class frmMain
     Private Const TML_JOB_FETCHCOURSES As String = "FetchCourses"
     Private Const TML_JOB_CHECKFORUPDATE As String = "CheckForUpdate"
 
-    Private ShownWarnings As Integer
+    ' Keeps track of the no of disclaimer warnings shown to the user.
+    Private _DisclaimerWarningsShown As Integer
+    Private Const MAXDISCLAIMERWARNINGS As Integer = 3
+
+    ' Inidicates the circumstances under which a form_load takes place
+    Private Enum ReloadTypes
+        FirstLoad = 0
+        SoftReload
+        DatabaseLoaded
+    End Enum
+
+    Private _ReloadType As ReloadTypes
 
     ''' <summary>
     ''' Gibt den Thread-Manager der Formulars zurück.
@@ -349,71 +360,80 @@ Public Class frmMain
         Me.Button1.Visible = False
 #End If
 
-        ' Initialize logging
-        My.Application.Log.DefaultFileLogWriter.CustomLocation = GetFolderPath(SpecialFolder.ApplicationData) & "\" & Application.ProductName
+        ' Initializations only needed the 1st time we are starting...
+        If _ReloadType = ReloadTypes.FirstLoad Then
 
-        ' Labels & Co.
-        lblDonate.Text = String.Format(MyStrings.mainDonateAdvice)
-        Me.Text = Application.ProductName & " " & Application.ProductVersion & " (public beta)"
-        PlatformManager.LoadImportComboBox(cbxImports, False)
+            ' Initialize logging
+            My.Application.Log.DefaultFileLogWriter.CustomLocation = GetFolderPath(SpecialFolder.ApplicationData) & "\" & Application.ProductName
 
-        ' Reset number of shown warnings
-        ShownWarnings = 0
+            ' Labels & Co.
+            lblDonate.Text = String.Format(MyStrings.mainDonateAdvice)
+            Text = Application.ProductName & " " & Application.ProductVersion & " (public beta)"
+            PlatformManager.LoadImportComboBox(cbxImports, False)
 
-        ' Restore settings from My.Settings
-        Try
-            Dim SplitDis As Long = My.Settings.Layout_SplitterDistance1 * spltCntDashboard.Width / 1000
-            If SplitDis > 100 Then
-                spltCntDashboard.SplitterDistance = SplitDis
-            Else
-                spltCntDashboard.SplitterDistance = 613
+            ' Reset number of shown disclaimer warnings
+            _DisclaimerWarningsShown = 0
+
+            ' Restore settings from My.Settings
+            Try
+                Dim SplitDis As Long = My.Settings.Layout_SplitterDistance1 * spltCntDashboard.Width / 1000
+                If SplitDis > 100 Then
+                    spltCntDashboard.SplitterDistance = SplitDis
+                Else
+                    spltCntDashboard.SplitterDistance = 613
+                End If
+                SplitDis = My.Settings.Layout_SplitterDistance2 * spltCntGainings.Height / 1000
+                If SplitDis > 50 Then
+                    spltCntGainings.SplitterDistance = SplitDis
+                Else
+                    spltCntGainings.SplitterDistance = 159
+                End If
+                ' Initialize values for transfer detection
+                TransferDetection.Init()
+                ' Initialize recent files menu
+                RecentDBsToolStripMenuItem.UpdateMenuEntries()
+            Catch ex As Exception
+                ' Don't care...
+            End Try
+            If My.Settings.LastImportMethod >= 0 AndAlso My.Settings.LastImportMethod < cbxImports.Items.Count Then
+                cbxImports.SelectedIndex = My.Settings.LastImportMethod
             End If
-            SplitDis = My.Settings.Layout_SplitterDistance2 * spltCntGainings.Height / 1000
-            If SplitDis > 50 Then
-                spltCntGainings.SplitterDistance = SplitDis
+
+            If IsNumeric(My.Settings.ReportDetail1) Then
+                cbxReportTransfers.SelectedIndex = My.Settings.ReportDetail1
             Else
-                spltCntGainings.SplitterDistance = 159
+                cbxReportTransfers.SelectedIndex = 0
             End If
-            ' Initialize values for transfer detection
-            TransferDetection.Init()
-            ' Initialize recent files menu
-            UpdateRecentFileMenuEntries()
-        Catch ex As Exception
-            ' Don't care...
-        End Try
-        If My.Settings.LastImportMethod >= 0 AndAlso My.Settings.LastImportMethod < cbxImports.Items.Count Then
-            cbxImports.SelectedIndex = My.Settings.LastImportMethod
+            If My.Settings.ReportDetail2 = "1" Then
+                cbxReportTradeSelection.SelectedIndex = 1
+            Else
+                cbxReportTradeSelection.SelectedIndex = 0
+            End If
+            tbxTaxNumber.Text = My.Settings.TaxNumber
+            tbxUserName.Text = My.Settings.UserName
+            tbxReportAdvice.Text = My.Settings.ReportComment
+
         End If
 
-        If IsNumeric(My.Settings.ReportDetail1) Then
-            cbxReportTransfers.SelectedIndex = My.Settings.ReportDetail1
-        Else
-            cbxReportTransfers.SelectedIndex = 0
-        End If
-        If My.Settings.ReportDetail2 = "1" Then
-            cbxReportTradeSelection.SelectedIndex = 1
-        Else
-            cbxReportTradeSelection.SelectedIndex = 0
-        End If
-        tbxTaxNumber.Text = My.Settings.TaxNumber
-        tbxUserName.Text = My.Settings.UserName
-        tbxReportAdvice.Text = My.Settings.ReportComment
 
-        ' Initialize database and update it if needed
-        Try
-            Dim DBInitialize As New DBInit
-            With DBInitialize
-                .InitDatabase(_DBName)
-                .UpdateDatabase()
-                _cnn = .Connection
-            End With
-        Catch ex As Exception
-            DefaultErrorHandler(ex, ex.Message, True)
-            Exit Sub
-        End Try
+        If _ReloadType <> ReloadTypes.DatabaseLoaded Then
+            ' Initialize database and update it if needed
+            Try
+                Dim DBInitialize As New DBInit
+                With DBInitialize
+                    .InitDatabase(_DBName)
+                    .UpdateDatabase()
+                    _cnn = .Connection
+                End With
+            Catch ex As Exception
+                ' Any other error or we are in a soft reload-process: show message and quit
+                DefaultErrorHandler(ex, ex.Message, True)
+                Exit Sub
+            End Try
+        End If
 
-        _DB = New DBHelper(Me.Connection)
-        _CM = New CourseManager(Me.Connection)
+        _DB = New DBHelper(Connection)
+        _CM = New CourseManager(Connection)
 
         ' TradeValueManager initialisieren
         _TVM = New TradeValueManager(_DB.Connection, Me)
@@ -422,10 +442,10 @@ Public Class frmMain
         _TML = New ThreadManagerLight(ThreadsafeStatusStrip1)
 
         ' Report-Helper initialisieren
-        _RP = New CTReport(Me.Connection)
+        _RP = New CTReport(Connection)
 
         ' Haltefrist-Control an Datenbank anbinden
-        dpctlHaltefrist.InitData(Me.Connection)
+        dpctlHaltefrist.InitData(Connection)
 
         RefreshCourseDisplays()
 
@@ -523,10 +543,13 @@ Public Class frmMain
         HandleOfflineMode()
 
         ' Hintergrundbild für TabPages laden
-        _BckGrndImg = My.Resources.ct_icon_clp_lgt
+        _BckGrndImg = ct_icon_clp_lgt
 
         ' Gewünschte Prozesse zum Start initiieren
         StartInitialBackgroundActions()
+
+        ' from now on, each future call of the load function is a soft reload
+        _ReloadType = ReloadTypes.SoftReload
 
     End Sub
 
@@ -822,7 +845,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BeendenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeendenToolStripMenuItem.Click
-        Me.Close()
+        Close()
     End Sub
 
     Private Sub cmdReloadDash_Click(sender As Object, e As EventArgs) Handles cmdReloadDash.Click
@@ -1018,9 +1041,9 @@ Public Class frmMain
     End Sub
 
     Public Sub ShowDisclaimer(Optional DoShow As Boolean = False)
-        If ShownWarnings < 3 Or DoShow Then
+        If _DisclaimerWarningsShown < MAXDISCLAIMERWARNINGS OrElse DoShow Then
             MessageBox.Show(DisclaimerContent.CompleteDisclaimer, MyStrings.mainMsgDisclaimerTitle, MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
-            ShownWarnings += 1
+            _DisclaimerWarningsShown += 1
         End If
     End Sub
 
@@ -1200,7 +1223,6 @@ Public Class frmMain
     End Sub
 
 
-
     ''' <summary>
     ''' Öffnen einer Datenbank-Datei (Aktuelle wird als *.bak gespeichert)
     ''' </summary>
@@ -1220,6 +1242,7 @@ Public Class frmMain
             End With
         End If
     End Sub
+
 
     ''' <summary>
     ''' Loads a given sqlite database file as new database for this application
@@ -1243,86 +1266,21 @@ Public Class frmMain
             ' Und jetzt Backup-Datei als Live-Datei kopieren
             My.Computer.FileSystem.CopyFile(Filename, DBInit.DatabaseFile, True)
             ' Datenbank "einklinken"
-            PushToRecentFiles(Filename)
-            DBInit.InitDatabase()
+            RecentDBsToolStripMenuItem.AddFile(Filename)
+            ' DBInit.InitDatabase()
             frmMain_Load(Me, New EventArgs)
             ReloadTablesTab()
             ClearReportsGrid()
             Cursor.Current = Cursors.Default
             If Verbose Then
                 MessageBox.Show(String.Format(MyStrings.mainMsgLoadDBSuccess, NewLine),
-                            MyStrings.mainMsgLoadDBSuccessTitle,
-                            MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                MyStrings.mainMsgLoadDBSuccessTitle,
+                                MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
             Cursor.Current = Cursors.Default
             DefaultErrorHandler(ex, String.Format(MyStrings.mainMsgLoadDBError, NewLine, ex.Message))
         End Try
-    End Sub
-
-    ''' <summary>
-    ''' Pushes a file onto the stack of recently used (database) files
-    ''' </summary>
-    ''' <param name="Filename">Fully qualified name of database file</param>
-    Private Sub PushToRecentFiles(Filename As String)
-        With My.Settings
-            If .RecentFilesList.Length = 0 Then
-                .RecentFilesList = Filename
-            Else
-                ' Check if file is already in list
-                If Not .RecentFilesList.Contains(Filename) Then
-                    ' Add file
-                    Dim FilesList As String() = (Filename & "|" & .RecentFilesList).Split("|"c)
-                    If FilesList.Length > 2 Then
-                        Array.Resize(FilesList, 2)
-                    End If
-                    .RecentFilesList = String.Join("|", FilesList)
-                End If
-            End If
-        End With
-        UpdateRecentFileMenuEntries()
-    End Sub
-
-    Private Sub UpdateRecentFileMenuEntries()
-        Dim FilesList As String() = My.Settings.RecentFilesList.Split("|"c)
-        With cmnRecentFiles
-            .Items.Clear()
-            If FilesList?.Length > 0 AndAlso FilesList(0).Length > 0 Then
-                ' (re)build menu entries
-                RecentFilesListMenuItem.Visible = True
-                For i = 0 To FilesList.Length - 1
-                    .Items.Add(i + 1 & ": " & FilesList(i), Nothing, New EventHandler(AddressOf RecentFilesClickHandler))
-                    With .Items.Item(.Items.Count - 1)
-                        .Tag = FilesList(i)
-                    End With
-                Next
-                ' Add separator and delete entry
-                .Items.Add(New ToolStripSeparator)
-                .Items.Add(MyStrings.mnuItmClearRecentDbFiles, ct_erase, New EventHandler(AddressOf ClearRecentFilesClickHandler))
-            Else
-                ' Disable menu entry
-                RecentFilesListMenuItem.Visible = False
-            End If
-        End With
-    End Sub
-
-    ''' <summary>
-    ''' Handles Click on one of the recent database files menu entries.
-    ''' Loads the corresponding database file.
-    ''' </summary>
-    Private Sub RecentFilesClickHandler(sender As Object, e As EventArgs)
-        Dim Item As ToolStripDropDownItem = TryCast(sender, ToolStripDropDownItem)
-        If Item?.Tag?.ToString.Length > 0 Then
-            LoadDatabase(Item.Tag, True)
-        End If
-    End Sub
-
-    ''' <summary>
-    ''' Clears the recent files list
-    ''' </summary>
-    Private Sub ClearRecentFilesClickHandler(sender As Object, e As EventArgs)
-        My.Settings.RecentFilesList = String.Empty
-        UpdateRecentFileMenuEntries()
     End Sub
 
 
@@ -2009,6 +1967,7 @@ Public Class frmMain
 
         ' Fügen Sie Initialisierungen nach dem InitializeComponent()-Aufruf hinzu.
         _DBName = DBInit.DBDEFAULTNAME
+        _ReloadType = ReloadTypes.FirstLoad
 
     End Sub
 
@@ -2202,13 +2161,26 @@ Public Class frmMain
             End With
             ' Final response
             MessageBox.Show(String.Format(MyStrings.moveTradesMsgSuccess, TradesMoving, NewPlatformName, NewPlatformID),
-                               MyStrings.moveTradesMsgTitle,
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Information)
+                            MyStrings.moveTradesMsgTitle,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information)
             FillDataTimesGrid()
             Return
         End If
     End Sub
+
+
+    ''' <summary>
+    ''' Load a database file from the recent files list
+    ''' </summary>
+    Private Sub RecentDBsToolStripMenuItem_FileEntryClicked(Filename As String) Handles RecentDBsToolStripMenuItem.FileEntryClicked
+        If MessageBox.Show(String.Format(MyStrings.mainMsgLoadDBWarning, Environment.NewLine),
+                           MyStrings.mainMsgLoadDBWarningTitle, MessageBoxButtons.OKCancel,
+                           MessageBoxIcon.Exclamation) = Windows.Forms.DialogResult.OK Then
+            LoadDatabase(Filename, True)
+        End If
+    End Sub
+
 
 #If CONFIG = "Debug" Then
 

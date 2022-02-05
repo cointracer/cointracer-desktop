@@ -1250,4 +1250,7 @@ Mit Abbrechen brechen Sie den Import ab.</value>
   <data name="mnuItmClearRecentDbFiles" xml:space="preserve">
     <value>Dateiverlauf löschen</value>
   </data>
+  <data name="initDbInitializeError" xml:space="preserve">
+    <value>Beim Initialisieren das Datenbank ist ein Fehler aufgetreten! Die aktuelle Datenbank kann nicht verwendet werden.{0}{0}({1})</value>
+  </data>
 </root>

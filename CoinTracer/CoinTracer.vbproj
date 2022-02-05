@@ -367,6 +367,12 @@
     <Compile Include="UserControls\HooveredListBox.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UserControls\RecentFilesToolStripMenuItem.Designer.vb">
+      <DependentUpon>RecentFilesToolStripMenuItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\RecentFilesToolStripMenuItem.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UserControls\TouchedDateTimePicker.Designer.vb">
       <DependentUpon>TouchedDateTimePicker.vb</DependentUpon>
     </Compile>
@@ -910,6 +916,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GainingsDisplay.vb</DependentUpon>
       <culture>en</culture>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\RecentFilesToolStripMenuItem.resx">
+      <DependentUpon>RecentFilesToolStripMenuItem.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ThreadsafeStatusStrip.de.resx">
       <AutoGen>True</AutoGen>

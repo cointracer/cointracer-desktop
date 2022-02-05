@@ -147,25 +147,25 @@ Partial Class frmMain
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.spltCntDashboard = New System.Windows.Forms.SplitContainer()
         Me.grpBestand = New System.Windows.Forms.GroupBox()
         Me.TableLayoutPanel3 = New System.Windows.Forms.TableLayoutPanel()
@@ -199,10 +199,9 @@ Partial Class frmMain
         Me.cmdImportApi = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.DateiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DatabaseSaveMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DatabaseLoadMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RecentFilesListMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.cmnRecentFiles = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.DatabaseSaveMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator()
         Me.BeendenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExtrasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -349,6 +348,7 @@ Partial Class frmMain
         Me.DataGridViewAutoFilterTextBoxColumn7 = New CoinTracer.DataGridViewAutoFilterTextBoxColumn()
         Me.ThreadsafeStatusStrip1 = New CoinTracer.ThreadsafeStatusStrip()
         Me.EnhancedToolTip1 = New CoinTracer.EnhancedToolTip()
+        Me.RecentDBsToolStripMenuItem = New CoinTracer.RecentFilesToolStripMenuItem()
         CType(Me.spltCntDashboard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.spltCntDashboard.Panel1.SuspendLayout()
         Me.spltCntDashboard.Panel2.SuspendLayout()
@@ -569,8 +569,8 @@ Partial Class frmMain
         '
         'Wallet
         '
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Wallet.DefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Wallet.DefaultCellStyle = DataGridViewCellStyle20
         Me.Wallet.Frozen = True
         resources.ApplyResources(Me.Wallet, "Wallet")
         Me.Wallet.Name = "Wallet"
@@ -578,8 +578,8 @@ Partial Class frmMain
         '
         'Zeitpunkt
         '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Zeitpunkt.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Zeitpunkt.DefaultCellStyle = DataGridViewCellStyle21
         Me.Zeitpunkt.Frozen = True
         resources.ApplyResources(Me.Zeitpunkt, "Zeitpunkt")
         Me.Zeitpunkt.Name = "Zeitpunkt"
@@ -674,15 +674,9 @@ Partial Class frmMain
         '
         'DateiToolStripMenuItem
         '
-        Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DatabaseLoadMenuItem, Me.RecentFilesListMenuItem, Me.DatabaseSaveMenuItem, Me.ToolStripSeparator12, Me.BeendenToolStripMenuItem})
+        Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DatabaseLoadMenuItem, Me.RecentDBsToolStripMenuItem, Me.DatabaseSaveMenuItem, Me.ToolStripSeparator12, Me.BeendenToolStripMenuItem})
         Me.DateiToolStripMenuItem.Name = "DateiToolStripMenuItem"
         resources.ApplyResources(Me.DateiToolStripMenuItem, "DateiToolStripMenuItem")
-        '
-        'DatabaseSaveMenuItem
-        '
-        Me.DatabaseSaveMenuItem.Image = Global.CoinTracer.My.Resources.Resources.ct_db_save
-        Me.DatabaseSaveMenuItem.Name = "DatabaseSaveMenuItem"
-        resources.ApplyResources(Me.DatabaseSaveMenuItem, "DatabaseSaveMenuItem")
         '
         'DatabaseLoadMenuItem
         '
@@ -690,17 +684,16 @@ Partial Class frmMain
         Me.DatabaseLoadMenuItem.Name = "DatabaseLoadMenuItem"
         resources.ApplyResources(Me.DatabaseLoadMenuItem, "DatabaseLoadMenuItem")
         '
-        'RecentFilesListMenuItem
-        '
-        Me.RecentFilesListMenuItem.DropDown = Me.cmnRecentFiles
-        Me.RecentFilesListMenuItem.Name = "RecentFilesListMenuItem"
-        resources.ApplyResources(Me.RecentFilesListMenuItem, "RecentFilesListMenuItem")
-        '
         'cmnRecentFiles
         '
         Me.cmnRecentFiles.Name = "cmnRecentFiles"
-        Me.cmnRecentFiles.OwnerItem = Me.RecentFilesListMenuItem
         resources.ApplyResources(Me.cmnRecentFiles, "cmnRecentFiles")
+        '
+        'DatabaseSaveMenuItem
+        '
+        Me.DatabaseSaveMenuItem.Image = Global.CoinTracer.My.Resources.Resources.ct_db_save
+        Me.DatabaseSaveMenuItem.Name = "DatabaseSaveMenuItem"
+        resources.ApplyResources(Me.DatabaseSaveMenuItem, "DatabaseSaveMenuItem")
         '
         'ToolStripSeparator12
         '
@@ -1213,10 +1206,10 @@ Partial Class frmMain
         'AmountCoins
         '
         Me.AmountCoins.DataPropertyName = "Coin-Menge"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle3.Format = "0.########"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.AmountCoins.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle22.Format = "0.########"
+        DataGridViewCellStyle22.NullValue = Nothing
+        Me.AmountCoins.DefaultCellStyle = DataGridViewCellStyle22
         Me.AmountCoins.FillWeight = 102.0!
         resources.ApplyResources(Me.AmountCoins, "AmountCoins")
         Me.AmountCoins.Name = "AmountCoins"
@@ -1234,10 +1227,10 @@ Partial Class frmMain
         'Total
         '
         Me.Total.DataPropertyName = "Gesamtpreis"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "0.########"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.Total.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle23.Format = "0.########"
+        DataGridViewCellStyle23.NullValue = Nothing
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle23
         resources.ApplyResources(Me.Total, "Total")
         Me.Total.Name = "Total"
         Me.Total.ReadOnly = True
@@ -1245,10 +1238,10 @@ Partial Class frmMain
         'CoinAnteil
         '
         Me.CoinAnteil.DataPropertyName = "Coin-Anteil"
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle5.Format = "0.########"
-        DataGridViewCellStyle5.NullValue = Nothing
-        Me.CoinAnteil.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle24.Format = "0.########"
+        DataGridViewCellStyle24.NullValue = Nothing
+        Me.CoinAnteil.DefaultCellStyle = DataGridViewCellStyle24
         resources.ApplyResources(Me.CoinAnteil, "CoinAnteil")
         Me.CoinAnteil.Name = "CoinAnteil"
         Me.CoinAnteil.ReadOnly = True
@@ -1256,10 +1249,10 @@ Partial Class frmMain
         'Wert_EUR
         '
         Me.Wert_EUR.DataPropertyName = "Wert EUR"
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "N2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.Wert_EUR.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle25.Format = "N2"
+        DataGridViewCellStyle25.NullValue = Nothing
+        Me.Wert_EUR.DefaultCellStyle = DataGridViewCellStyle25
         resources.ApplyResources(Me.Wert_EUR, "Wert_EUR")
         Me.Wert_EUR.Name = "Wert_EUR"
         Me.Wert_EUR.ReadOnly = True
@@ -1267,10 +1260,10 @@ Partial Class frmMain
         'Kurs_EUR
         '
         Me.Kurs_EUR.DataPropertyName = "Kurs EUR"
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle7.Format = "N2"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.Kurs_EUR.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle26.Format = "N2"
+        DataGridViewCellStyle26.NullValue = Nothing
+        Me.Kurs_EUR.DefaultCellStyle = DataGridViewCellStyle26
         resources.ApplyResources(Me.Kurs_EUR, "Kurs_EUR")
         Me.Kurs_EUR.Name = "Kurs_EUR"
         Me.Kurs_EUR.ReadOnly = True
@@ -1288,9 +1281,9 @@ Partial Class frmMain
         '
         Me.Kaufdatum.CaptionAllValues = "(Alles auswählen)"
         Me.Kaufdatum.DataPropertyName = "Anschaffungsdatum"
-        DataGridViewCellStyle8.Format = "d"
-        DataGridViewCellStyle8.NullValue = "-"
-        Me.Kaufdatum.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle27.Format = "d"
+        DataGridViewCellStyle27.NullValue = "-"
+        Me.Kaufdatum.DefaultCellStyle = DataGridViewCellStyle27
         resources.ApplyResources(Me.Kaufdatum, "Kaufdatum")
         Me.Kaufdatum.Name = "Kaufdatum"
         Me.Kaufdatum.ReadOnly = True
@@ -1298,9 +1291,9 @@ Partial Class frmMain
         'OrgPriceEUR
         '
         Me.OrgPriceEUR.DataPropertyName = "Kaufpreis EUR"
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle9.Format = "N2"
-        Me.OrgPriceEUR.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle28.Format = "N2"
+        Me.OrgPriceEUR.DefaultCellStyle = DataGridViewCellStyle28
         resources.ApplyResources(Me.OrgPriceEUR, "OrgPriceEUR")
         Me.OrgPriceEUR.Name = "OrgPriceEUR"
         Me.OrgPriceEUR.ReadOnly = True
@@ -1308,10 +1301,10 @@ Partial Class frmMain
         'KaufkursEUR
         '
         Me.KaufkursEUR.DataPropertyName = "Kaufkurs EUR"
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle10.Format = "N2"
-        DataGridViewCellStyle10.NullValue = Nothing
-        Me.KaufkursEUR.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle29.Format = "N2"
+        DataGridViewCellStyle29.NullValue = Nothing
+        Me.KaufkursEUR.DefaultCellStyle = DataGridViewCellStyle29
         resources.ApplyResources(Me.KaufkursEUR, "KaufkursEUR")
         Me.KaufkursEUR.Name = "KaufkursEUR"
         Me.KaufkursEUR.ReadOnly = True
@@ -1319,10 +1312,10 @@ Partial Class frmMain
         'VerkaufspreisEUR
         '
         Me.VerkaufspreisEUR.DataPropertyName = "Verkaufspreis EUR"
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle11.Format = "N2"
-        DataGridViewCellStyle11.NullValue = Nothing
-        Me.VerkaufspreisEUR.DefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle30.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle30.Format = "N2"
+        DataGridViewCellStyle30.NullValue = Nothing
+        Me.VerkaufspreisEUR.DefaultCellStyle = DataGridViewCellStyle30
         Me.VerkaufspreisEUR.FillWeight = 120.0!
         resources.ApplyResources(Me.VerkaufspreisEUR, "VerkaufspreisEUR")
         Me.VerkaufspreisEUR.Name = "VerkaufspreisEUR"
@@ -1331,10 +1324,10 @@ Partial Class frmMain
         'Gaining
         '
         Me.Gaining.DataPropertyName = "Gewinn EUR"
-        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle12.Format = "N2"
-        DataGridViewCellStyle12.NullValue = Nothing
-        Me.Gaining.DefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle31.Format = "N2"
+        DataGridViewCellStyle31.NullValue = Nothing
+        Me.Gaining.DefaultCellStyle = DataGridViewCellStyle31
         resources.ApplyResources(Me.Gaining, "Gaining")
         Me.Gaining.Name = "Gaining"
         Me.Gaining.ReadOnly = True
@@ -1343,8 +1336,8 @@ Partial Class frmMain
         '
         Me.TaxFree.CaptionAllValues = "(Alles auswählen)"
         Me.TaxFree.DataPropertyName = "Steuerfrei"
-        DataGridViewCellStyle13.NullValue = "-"
-        Me.TaxFree.DefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle32.NullValue = "-"
+        Me.TaxFree.DefaultCellStyle = DataGridViewCellStyle32
         resources.ApplyResources(Me.TaxFree, "TaxFree")
         Me.TaxFree.Name = "TaxFree"
         Me.TaxFree.ReadOnly = True
@@ -1645,7 +1638,6 @@ Partial Class frmMain
         '
         Me.cmnBerechnungen.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsmiViewCalculations, Me.tsmiEraseCalculation})
         Me.cmnBerechnungen.Name = "cmnImporte"
-        Me.cmnBerechnungen.OwnerItem = Me.RecentFilesListMenuItem
         resources.ApplyResources(Me.cmnBerechnungen, "cmnBerechnungen")
         '
         'tsmiViewCalculations
@@ -1744,16 +1736,16 @@ Partial Class frmMain
         '
         'DataGridViewTextBoxColumn1
         '
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn1.DefaultCellStyle = DataGridViewCellStyle33
         Me.DataGridViewTextBoxColumn1.Frozen = True
         resources.ApplyResources(Me.DataGridViewTextBoxColumn1, "DataGridViewTextBoxColumn1")
         Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         '
         'DataGridViewTextBoxColumn2
         '
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle34
         Me.DataGridViewTextBoxColumn2.Frozen = True
         resources.ApplyResources(Me.DataGridViewTextBoxColumn2, "DataGridViewTextBoxColumn2")
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
@@ -1788,10 +1780,10 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn5
         '
         Me.DataGridViewTextBoxColumn5.DataPropertyName = "Menge Coins"
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle16.Format = "N6"
-        DataGridViewCellStyle16.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle35.Format = "N6"
+        DataGridViewCellStyle35.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn5.DefaultCellStyle = DataGridViewCellStyle35
         resources.ApplyResources(Me.DataGridViewTextBoxColumn5, "DataGridViewTextBoxColumn5")
         Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         '
@@ -1812,10 +1804,10 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn7
         '
         Me.DataGridViewTextBoxColumn7.DataPropertyName = "Preis EUR"
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle17.Format = "N2"
-        DataGridViewCellStyle17.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle36.Format = "N2"
+        DataGridViewCellStyle36.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn7.DefaultCellStyle = DataGridViewCellStyle36
         resources.ApplyResources(Me.DataGridViewTextBoxColumn7, "DataGridViewTextBoxColumn7")
         Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
         '
@@ -1828,19 +1820,19 @@ Partial Class frmMain
         'DataGridViewTextBoxColumn9
         '
         Me.DataGridViewTextBoxColumn9.DataPropertyName = "Kaufpreis EUR"
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle18.Format = "N2"
-        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle37.Format = "N2"
+        Me.DataGridViewTextBoxColumn9.DefaultCellStyle = DataGridViewCellStyle37
         resources.ApplyResources(Me.DataGridViewTextBoxColumn9, "DataGridViewTextBoxColumn9")
         Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
         '
         'DataGridViewTextBoxColumn10
         '
         Me.DataGridViewTextBoxColumn10.DataPropertyName = "Gewinn EUR"
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle19.Format = "N2"
-        DataGridViewCellStyle19.NullValue = Nothing
-        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle38.Format = "N2"
+        DataGridViewCellStyle38.NullValue = Nothing
+        Me.DataGridViewTextBoxColumn10.DefaultCellStyle = DataGridViewCellStyle38
         resources.ApplyResources(Me.DataGridViewTextBoxColumn10, "DataGridViewTextBoxColumn10")
         Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
         '
@@ -1855,6 +1847,13 @@ Partial Class frmMain
         '
         resources.ApplyResources(Me.ThreadsafeStatusStrip1, "ThreadsafeStatusStrip1")
         Me.ThreadsafeStatusStrip1.Name = "ThreadsafeStatusStrip1"
+        '
+        'RecentDBsToolStripMenuItem
+        '
+        Me.RecentDBsToolStripMenuItem.MaxItems = 10
+        Me.RecentDBsToolStripMenuItem.Name = "RecentDBsToolStripMenuItem"
+        Me.RecentDBsToolStripMenuItem.SettingsItemName = "RecentFilesList"
+        resources.ApplyResources(Me.RecentDBsToolStripMenuItem, "RecentDBsToolStripMenuItem")
         '
         'frmMain
         '
@@ -2011,6 +2010,6 @@ Partial Class frmMain
     Friend WithEvents VerkaufspreisEUR As DataGridViewTextBoxColumn
     Friend WithEvents Gaining As DataGridViewTextBoxColumn
     Friend WithEvents TaxFree As DataGridViewAutoFilterTextBoxColumn
-    Friend WithEvents RecentFilesListMenuItem As ToolStripMenuItem
     Friend WithEvents cmnRecentFiles As ContextMenuStrip
+    Friend WithEvents RecentDBsToolStripMenuItem As RecentFilesToolStripMenuItem
 End Class
