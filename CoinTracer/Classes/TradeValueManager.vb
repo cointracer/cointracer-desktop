@@ -833,6 +833,8 @@ Public Class TradeValueManager
         Dim AllWritten As Boolean
         Dim TotalOutRows As Long
 
+        _TCS = _Parentform.TaxReportSettings
+
         Cursor.Current = Cursors.WaitCursor
         InitProgressForm(MyStrings.calcGainingsInitProgressMessage)
         Try
@@ -1027,6 +1029,9 @@ Public Class TradeValueManager
                 _CalcParams.AssignTrades.RemoveAt(0)
                 _CalcParams.TradeIDsCleared.Add(Trade.ID)
             End If
+        Else
+            ' This trade has already been cleared: remove from stack
+            _CalcParams.AssignTrades.RemoveAt(0)
         End If
     End Sub
 
