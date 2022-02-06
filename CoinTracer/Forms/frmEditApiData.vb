@@ -158,9 +158,9 @@ Public Class frmEditApiData
 
     Private Sub frmEditApiData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        Dim PlattformenTA As New PlattformenTableAdapter
-        PlattformenTA.FillByApiImports(CoinTracerDataSet.Plattformen)   ' TODO: Remove the binance part when it's time
-        PlattformenTA.Dispose()
+        'Dim PlattformenTA As New PlattformenTableAdapter
+        'PlattformenTA.FillByApiImports(CoinTracerDataSet.Plattformen)   ' TODO: Remove the binance part when it's time
+        'PlattformenTA.Dispose()
 
         _NewRows = New List(Of Long)
 
@@ -174,6 +174,7 @@ Public Class frmEditApiData
         _RecordsModified = 0
         If _StartID >= 0 Then
             ApiDatenBindingSource.Position = ApiDatenBindingSource.Find("ID", StartID)
+            ApiDatenBindingSource_CurrentChanged(Nothing, Nothing)
             If _TargetTime <> DATENULLVALUE Then
                 LastImportTimestampDateTimePicker.Value = _TargetTime
                 LastImportTimestampDateTimePicker.Focus()

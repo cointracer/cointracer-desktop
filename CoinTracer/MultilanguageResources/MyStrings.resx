@@ -1242,7 +1242,9 @@ Erstellen einer Deposit- oder Withdrawal-History:
 
 Wählen Sie Ja, um den Trade zu einem Gegenwert von 0,00 EUR zu importieren.
 Wählen Sie Nein, um den Trade zu ignorieren (und nicht zu importieren).
-Mit Abbrechen brechen Sie den Import ab.</value>
+Mit Abbrechen brechen Sie den Import ab.
+
+(Hinweis: Unter 'Extras' -&gt; 'Einstellungen' -&gt; 'Import-Einstellungen' können Sie festlegen, ab welchem Trade-Betrag diese Warnung erscheint.)</value>
   </data>
   <data name="importMsgKrakenWarningNoSecondEntryTitle" xml:space="preserve">
     <value>Fehlende Gegenbuchung in Import-Daten</value>

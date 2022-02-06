@@ -1,9 +1,27 @@
 ﻿******************************************************
+Version 0.9.7.4 / 06.02.2022
+----------------------------
+
+Verbesserungen:
+- Import für Kraken.com überarbeitet: Fehlende Gegen-
+  buchungen führen jetzt nicht mehr zwangsläufig zu 
+  einem Import-Abbruch. Toleranzgrenze kann in den 
+  Applikations-Einstellungen gesetzt werden.
+- Fehler behoben, der bei der automatischen Neuanlage
+  von Konten auftreten konnte.
+- Neue Tabelle "Konten-Aliase" kann über die Tabellen-
+  pflege bearbeitet werden.
+- Schnellzugriff auf zuletzt geöffnete Datenbank-Dateien
+  eingebaut.
+- Kleinere GUI-Verbesserungen.
+
+
+******************************************************
 Version 0.9.7.3 / 23.01.2022
 ----------------------------
 
 Verbesserungen:
-- Hotfix damit Datenbank-Updates von vorherigen Versionen
+- Hotfix, damit Datenbank-Updates von vorherigen Versionen
   korrekt durchgeführt werden.
 
 

@@ -1880,7 +1880,9 @@ Namespace My.Resources
         '''
         '''Wählen Sie Ja, um den Trade zu einem Gegenwert von 0,00 EUR zu importieren.
         '''Wählen Sie Nein, um den Trade zu ignorieren (und nicht zu importieren).
-        '''Mit Abbrechen brechen Sie den Import ab. ähnelt.
+        '''Mit Abbrechen brechen Sie den Import ab.
+        '''
+        '''(Hinweis: Unter &apos;Extras&apos; -&gt; &apos;Einstellungen&apos; -&gt; &apos;Import-Einstellungen&apos; können Sie festlegen, ab welchem Trade-Betrag diese Warnung erscheint.) ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgKrakenWarningNoSecondEntry() As String
             Get

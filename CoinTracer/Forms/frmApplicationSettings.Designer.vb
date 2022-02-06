@@ -26,15 +26,41 @@ Partial Class frmApplicationSettings
         Dim TolerancePercentLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmApplicationSettings))
         Dim ToleranceMinutesLabel As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim Label12 As System.Windows.Forms.Label
         Me.lblMinutesToHours = New System.Windows.Forms.Label()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.lblCategory = New System.Windows.Forms.Label()
         Me.lbxCategories = New CoinTracer.HooveredListBox()
-        Me.pnlTransferDetection = New System.Windows.Forms.Panel()
+        Me.pnlMessages = New System.Windows.Forms.Panel()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmdOpenLogLocation = New System.Windows.Forms.Button()
+        Me.cbxLogLevel = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.grpMeldungen = New System.Windows.Forms.GroupBox()
+        Me.grdDataMessages = New System.Windows.Forms.DataGridView()
+        Me.MessageQualifier = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MessageDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Action = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.pnlDisplaySettings = New System.Windows.Forms.Panel()
+        Me.grpDisplaySettings = New System.Windows.Forms.GroupBox()
+        Me.grpBestand = New System.Windows.Forms.GroupBox()
+        Me.rbBestandUSD = New System.Windows.Forms.RadioButton()
+        Me.rbBestandEUR = New System.Windows.Forms.RadioButton()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.pnlDirectories = New System.Windows.Forms.Panel()
+        Me.grpDirectories = New System.Windows.Forms.GroupBox()
+        Me.cmdBrowseDBFolder = New System.Windows.Forms.Button()
+        Me.tbxDBFolder = New System.Windows.Forms.TextBox()
+        Me.rbDBCustom = New System.Windows.Forms.RadioButton()
+        Me.rbDBProgram = New System.Windows.Forms.RadioButton()
+        Me.rbDBUser = New System.Windows.Forms.RadioButton()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.pnlImportSettings = New System.Windows.Forms.Panel()
         Me.grpTransferDetection = New System.Windows.Forms.GroupBox()
         Me.ToleranceMinutesTextBox = New CoinTracer.MinutesTextbox()
         Me.cmdTransferDetection = New System.Windows.Forms.Button()
@@ -66,28 +92,6 @@ Partial Class frmApplicationSettings
         Me.rbOnlineMode = New System.Windows.Forms.RadioButton()
         Me.rbOfflineMode = New System.Windows.Forms.RadioButton()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.pnlMessages = New System.Windows.Forms.Panel()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.cmdOpenLogLocation = New System.Windows.Forms.Button()
-        Me.cbxLogLevel = New System.Windows.Forms.ComboBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.grpMeldungen = New System.Windows.Forms.GroupBox()
-        Me.grdDataMessages = New System.Windows.Forms.DataGridView()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.pnlDisplaySettings = New System.Windows.Forms.Panel()
-        Me.grpDisplaySettings = New System.Windows.Forms.GroupBox()
-        Me.grpBestand = New System.Windows.Forms.GroupBox()
-        Me.rbBestandUSD = New System.Windows.Forms.RadioButton()
-        Me.rbBestandEUR = New System.Windows.Forms.RadioButton()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.pnlDirectories = New System.Windows.Forms.Panel()
-        Me.grpDirectories = New System.Windows.Forms.GroupBox()
-        Me.cmdBrowseDBFolder = New System.Windows.Forms.Button()
-        Me.tbxDBFolder = New System.Windows.Forms.TextBox()
-        Me.rbDBCustom = New System.Windows.Forms.RadioButton()
-        Me.rbDBProgram = New System.Windows.Forms.RadioButton()
-        Me.rbDBUser = New System.Windows.Forms.RadioButton()
-        Me.Label10 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.cmdCancel = New System.Windows.Forms.Button()
         Me.cmdOK = New System.Windows.Forms.Button()
@@ -96,25 +100,16 @@ Partial Class frmApplicationSettings
         Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewButtonColumn1 = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.EnhancedToolTip1 = New CoinTracer.EnhancedToolTip()
-        Me.MessageQualifier = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.MessageDescription = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Action = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.grpImportKraken = New System.Windows.Forms.GroupBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.KrakenZeroTradeTextBox = New System.Windows.Forms.TextBox()
         TolerancePercentLabel = New System.Windows.Forms.Label()
         ToleranceMinutesLabel = New System.Windows.Forms.Label()
+        Label12 = New System.Windows.Forms.Label()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
-        Me.pnlTransferDetection.SuspendLayout()
-        Me.grpTransferDetection.SuspendLayout()
-        Me.pnlSecurity.SuspendLayout()
-        Me.grpSecurity.SuspendLayout()
-        Me.pnlOnlineSettings.SuspendLayout()
-        Me.grpOnlineMode.SuspendLayout()
-        Me.Panel2.SuspendLayout()
-        Me.pnlOnline3.SuspendLayout()
-        Me.pnlOnline2.SuspendLayout()
-        Me.pnlOnline1.SuspendLayout()
         Me.pnlMessages.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.grpMeldungen.SuspendLayout()
@@ -124,7 +119,18 @@ Partial Class frmApplicationSettings
         Me.grpBestand.SuspendLayout()
         Me.pnlDirectories.SuspendLayout()
         Me.grpDirectories.SuspendLayout()
+        Me.pnlImportSettings.SuspendLayout()
+        Me.grpTransferDetection.SuspendLayout()
+        Me.pnlSecurity.SuspendLayout()
+        Me.grpSecurity.SuspendLayout()
+        Me.pnlOnlineSettings.SuspendLayout()
+        Me.grpOnlineMode.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.pnlOnline3.SuspendLayout()
+        Me.pnlOnline2.SuspendLayout()
+        Me.pnlOnline1.SuspendLayout()
         Me.Panel1.SuspendLayout()
+        Me.grpImportKraken.SuspendLayout()
         Me.SuspendLayout()
         '
         'TolerancePercentLabel
@@ -154,12 +160,12 @@ Partial Class frmApplicationSettings
         '
         'SplitContainer1.Panel2
         '
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlImportSettings)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlSecurity)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlOnlineSettings)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlMessages)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlDisplaySettings)
         Me.SplitContainer1.Panel2.Controls.Add(Me.pnlDirectories)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlTransferDetection)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlSecurity)
-        Me.SplitContainer1.Panel2.Controls.Add(Me.pnlOnlineSettings)
         '
         'lblCategory
         '
@@ -175,11 +181,203 @@ Partial Class frmApplicationSettings
         Me.lbxCategories.Items.AddRange(New Object() {resources.GetString("lbxCategories.Items"), resources.GetString("lbxCategories.Items1"), resources.GetString("lbxCategories.Items2"), resources.GetString("lbxCategories.Items3"), resources.GetString("lbxCategories.Items4"), resources.GetString("lbxCategories.Items5")})
         Me.lbxCategories.Name = "lbxCategories"
         '
-        'pnlTransferDetection
+        'pnlMessages
         '
-        Me.pnlTransferDetection.Controls.Add(Me.grpTransferDetection)
-        resources.ApplyResources(Me.pnlTransferDetection, "pnlTransferDetection")
-        Me.pnlTransferDetection.Name = "pnlTransferDetection"
+        Me.pnlMessages.Controls.Add(Me.GroupBox1)
+        Me.pnlMessages.Controls.Add(Me.grpMeldungen)
+        resources.ApplyResources(Me.pnlMessages, "pnlMessages")
+        Me.pnlMessages.Name = "pnlMessages"
+        '
+        'GroupBox1
+        '
+        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
+        Me.GroupBox1.Controls.Add(Me.cmdOpenLogLocation)
+        Me.GroupBox1.Controls.Add(Me.cbxLogLevel)
+        Me.GroupBox1.Controls.Add(Me.Label9)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.TabStop = False
+        '
+        'cmdOpenLogLocation
+        '
+        resources.ApplyResources(Me.cmdOpenLogLocation, "cmdOpenLogLocation")
+        Me.cmdOpenLogLocation.Name = "cmdOpenLogLocation"
+        Me.EnhancedToolTip1.SetToolTip(Me.cmdOpenLogLocation, resources.GetString("cmdOpenLogLocation.ToolTip"))
+        Me.cmdOpenLogLocation.UseVisualStyleBackColor = True
+        '
+        'cbxLogLevel
+        '
+        resources.ApplyResources(Me.cbxLogLevel, "cbxLogLevel")
+        Me.cbxLogLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxLogLevel.FormattingEnabled = True
+        Me.cbxLogLevel.Items.AddRange(New Object() {resources.GetString("cbxLogLevel.Items"), resources.GetString("cbxLogLevel.Items1"), resources.GetString("cbxLogLevel.Items2"), resources.GetString("cbxLogLevel.Items3")})
+        Me.cbxLogLevel.Name = "cbxLogLevel"
+        '
+        'Label9
+        '
+        resources.ApplyResources(Me.Label9, "Label9")
+        Me.Label9.Name = "Label9"
+        '
+        'grpMeldungen
+        '
+        resources.ApplyResources(Me.grpMeldungen, "grpMeldungen")
+        Me.grpMeldungen.Controls.Add(Me.grdDataMessages)
+        Me.grpMeldungen.Controls.Add(Me.Label7)
+        Me.grpMeldungen.Name = "grpMeldungen"
+        Me.grpMeldungen.TabStop = False
+        '
+        'grdDataMessages
+        '
+        Me.grdDataMessages.AllowUserToAddRows = False
+        Me.grdDataMessages.AllowUserToDeleteRows = False
+        resources.ApplyResources(Me.grdDataMessages, "grdDataMessages")
+        Me.grdDataMessages.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        Me.grdDataMessages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.grdDataMessages.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MessageQualifier, Me.MessageDescription, Me.Action})
+        Me.grdDataMessages.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.grdDataMessages.Name = "grdDataMessages"
+        Me.grdDataMessages.ReadOnly = True
+        Me.grdDataMessages.RowHeadersVisible = False
+        '
+        'MessageQualifier
+        '
+        Me.MessageQualifier.DataPropertyName = "MessageQualifier"
+        Me.MessageQualifier.FillWeight = 10.0!
+        Me.MessageQualifier.Frozen = True
+        resources.ApplyResources(Me.MessageQualifier, "MessageQualifier")
+        Me.MessageQualifier.Name = "MessageQualifier"
+        Me.MessageQualifier.ReadOnly = True
+        '
+        'MessageDescription
+        '
+        Me.MessageDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.MessageDescription.DataPropertyName = "MessageDescription"
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.MessageDescription.DefaultCellStyle = DataGridViewCellStyle5
+        Me.MessageDescription.FillWeight = 90.0!
+        resources.ApplyResources(Me.MessageDescription, "MessageDescription")
+        Me.MessageDescription.Name = "MessageDescription"
+        Me.MessageDescription.ReadOnly = True
+        '
+        'Action
+        '
+        Me.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
+        Me.Action.DataPropertyName = "Action"
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Action.DefaultCellStyle = DataGridViewCellStyle6
+        Me.Action.FillWeight = 40.0!
+        resources.ApplyResources(Me.Action, "Action")
+        Me.Action.Name = "Action"
+        Me.Action.ReadOnly = True
+        Me.Action.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        '
+        'Label7
+        '
+        resources.ApplyResources(Me.Label7, "Label7")
+        Me.Label7.Name = "Label7"
+        '
+        'pnlDisplaySettings
+        '
+        Me.pnlDisplaySettings.Controls.Add(Me.grpDisplaySettings)
+        resources.ApplyResources(Me.pnlDisplaySettings, "pnlDisplaySettings")
+        Me.pnlDisplaySettings.Name = "pnlDisplaySettings"
+        '
+        'grpDisplaySettings
+        '
+        resources.ApplyResources(Me.grpDisplaySettings, "grpDisplaySettings")
+        Me.grpDisplaySettings.Controls.Add(Me.grpBestand)
+        Me.grpDisplaySettings.Name = "grpDisplaySettings"
+        Me.grpDisplaySettings.TabStop = False
+        '
+        'grpBestand
+        '
+        Me.grpBestand.Controls.Add(Me.rbBestandUSD)
+        Me.grpBestand.Controls.Add(Me.rbBestandEUR)
+        Me.grpBestand.Controls.Add(Me.Label8)
+        resources.ApplyResources(Me.grpBestand, "grpBestand")
+        Me.grpBestand.Name = "grpBestand"
+        Me.grpBestand.TabStop = False
+        '
+        'rbBestandUSD
+        '
+        resources.ApplyResources(Me.rbBestandUSD, "rbBestandUSD")
+        Me.rbBestandUSD.Name = "rbBestandUSD"
+        Me.rbBestandUSD.TabStop = True
+        Me.rbBestandUSD.UseVisualStyleBackColor = True
+        '
+        'rbBestandEUR
+        '
+        resources.ApplyResources(Me.rbBestandEUR, "rbBestandEUR")
+        Me.rbBestandEUR.Name = "rbBestandEUR"
+        Me.rbBestandEUR.TabStop = True
+        Me.rbBestandEUR.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        resources.ApplyResources(Me.Label8, "Label8")
+        Me.Label8.Name = "Label8"
+        '
+        'pnlDirectories
+        '
+        Me.pnlDirectories.Controls.Add(Me.grpDirectories)
+        resources.ApplyResources(Me.pnlDirectories, "pnlDirectories")
+        Me.pnlDirectories.Name = "pnlDirectories"
+        '
+        'grpDirectories
+        '
+        resources.ApplyResources(Me.grpDirectories, "grpDirectories")
+        Me.grpDirectories.Controls.Add(Me.cmdBrowseDBFolder)
+        Me.grpDirectories.Controls.Add(Me.tbxDBFolder)
+        Me.grpDirectories.Controls.Add(Me.rbDBCustom)
+        Me.grpDirectories.Controls.Add(Me.rbDBProgram)
+        Me.grpDirectories.Controls.Add(Me.rbDBUser)
+        Me.grpDirectories.Controls.Add(Me.Label10)
+        Me.grpDirectories.Name = "grpDirectories"
+        Me.grpDirectories.TabStop = False
+        '
+        'cmdBrowseDBFolder
+        '
+        resources.ApplyResources(Me.cmdBrowseDBFolder, "cmdBrowseDBFolder")
+        Me.cmdBrowseDBFolder.Name = "cmdBrowseDBFolder"
+        Me.cmdBrowseDBFolder.UseVisualStyleBackColor = True
+        '
+        'tbxDBFolder
+        '
+        resources.ApplyResources(Me.tbxDBFolder, "tbxDBFolder")
+        Me.tbxDBFolder.Name = "tbxDBFolder"
+        '
+        'rbDBCustom
+        '
+        resources.ApplyResources(Me.rbDBCustom, "rbDBCustom")
+        Me.rbDBCustom.Name = "rbDBCustom"
+        Me.rbDBCustom.TabStop = True
+        Me.rbDBCustom.UseVisualStyleBackColor = True
+        '
+        'rbDBProgram
+        '
+        resources.ApplyResources(Me.rbDBProgram, "rbDBProgram")
+        Me.rbDBProgram.Name = "rbDBProgram"
+        Me.rbDBProgram.TabStop = True
+        Me.rbDBProgram.UseVisualStyleBackColor = True
+        '
+        'rbDBUser
+        '
+        resources.ApplyResources(Me.rbDBUser, "rbDBUser")
+        Me.rbDBUser.Name = "rbDBUser"
+        Me.rbDBUser.TabStop = True
+        Me.rbDBUser.UseVisualStyleBackColor = True
+        '
+        'Label10
+        '
+        resources.ApplyResources(Me.Label10, "Label10")
+        Me.Label10.Name = "Label10"
+        '
+        'pnlImportSettings
+        '
+        Me.pnlImportSettings.Controls.Add(Me.grpImportKraken)
+        Me.pnlImportSettings.Controls.Add(Me.grpTransferDetection)
+        resources.ApplyResources(Me.pnlImportSettings, "pnlImportSettings")
+        Me.pnlImportSettings.Name = "pnlImportSettings"
         '
         'grpTransferDetection
         '
@@ -396,164 +594,6 @@ Partial Class frmApplicationSettings
         resources.ApplyResources(Me.Label1, "Label1")
         Me.Label1.Name = "Label1"
         '
-        'pnlMessages
-        '
-        Me.pnlMessages.Controls.Add(Me.GroupBox1)
-        Me.pnlMessages.Controls.Add(Me.grpMeldungen)
-        resources.ApplyResources(Me.pnlMessages, "pnlMessages")
-        Me.pnlMessages.Name = "pnlMessages"
-        '
-        'GroupBox1
-        '
-        resources.ApplyResources(Me.GroupBox1, "GroupBox1")
-        Me.GroupBox1.Controls.Add(Me.cmdOpenLogLocation)
-        Me.GroupBox1.Controls.Add(Me.cbxLogLevel)
-        Me.GroupBox1.Controls.Add(Me.Label9)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.TabStop = False
-        '
-        'cmdOpenLogLocation
-        '
-        resources.ApplyResources(Me.cmdOpenLogLocation, "cmdOpenLogLocation")
-        Me.cmdOpenLogLocation.Name = "cmdOpenLogLocation"
-        Me.EnhancedToolTip1.SetToolTip(Me.cmdOpenLogLocation, resources.GetString("cmdOpenLogLocation.ToolTip"))
-        Me.cmdOpenLogLocation.UseVisualStyleBackColor = True
-        '
-        'cbxLogLevel
-        '
-        resources.ApplyResources(Me.cbxLogLevel, "cbxLogLevel")
-        Me.cbxLogLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cbxLogLevel.FormattingEnabled = True
-        Me.cbxLogLevel.Items.AddRange(New Object() {resources.GetString("cbxLogLevel.Items"), resources.GetString("cbxLogLevel.Items1"), resources.GetString("cbxLogLevel.Items2"), resources.GetString("cbxLogLevel.Items3")})
-        Me.cbxLogLevel.Name = "cbxLogLevel"
-        '
-        'Label9
-        '
-        resources.ApplyResources(Me.Label9, "Label9")
-        Me.Label9.Name = "Label9"
-        '
-        'grpMeldungen
-        '
-        resources.ApplyResources(Me.grpMeldungen, "grpMeldungen")
-        Me.grpMeldungen.Controls.Add(Me.grdDataMessages)
-        Me.grpMeldungen.Controls.Add(Me.Label7)
-        Me.grpMeldungen.Name = "grpMeldungen"
-        Me.grpMeldungen.TabStop = False
-        '
-        'grdDataMessages
-        '
-        Me.grdDataMessages.AllowUserToAddRows = False
-        Me.grdDataMessages.AllowUserToDeleteRows = False
-        resources.ApplyResources(Me.grdDataMessages, "grdDataMessages")
-        Me.grdDataMessages.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
-        Me.grdDataMessages.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.grdDataMessages.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.MessageQualifier, Me.MessageDescription, Me.Action})
-        Me.grdDataMessages.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.grdDataMessages.Name = "grdDataMessages"
-        Me.grdDataMessages.ReadOnly = True
-        Me.grdDataMessages.RowHeadersVisible = False
-        '
-        'Label7
-        '
-        resources.ApplyResources(Me.Label7, "Label7")
-        Me.Label7.Name = "Label7"
-        '
-        'pnlDisplaySettings
-        '
-        Me.pnlDisplaySettings.Controls.Add(Me.grpDisplaySettings)
-        resources.ApplyResources(Me.pnlDisplaySettings, "pnlDisplaySettings")
-        Me.pnlDisplaySettings.Name = "pnlDisplaySettings"
-        '
-        'grpDisplaySettings
-        '
-        resources.ApplyResources(Me.grpDisplaySettings, "grpDisplaySettings")
-        Me.grpDisplaySettings.Controls.Add(Me.grpBestand)
-        Me.grpDisplaySettings.Name = "grpDisplaySettings"
-        Me.grpDisplaySettings.TabStop = False
-        '
-        'grpBestand
-        '
-        Me.grpBestand.Controls.Add(Me.rbBestandUSD)
-        Me.grpBestand.Controls.Add(Me.rbBestandEUR)
-        Me.grpBestand.Controls.Add(Me.Label8)
-        resources.ApplyResources(Me.grpBestand, "grpBestand")
-        Me.grpBestand.Name = "grpBestand"
-        Me.grpBestand.TabStop = False
-        '
-        'rbBestandUSD
-        '
-        resources.ApplyResources(Me.rbBestandUSD, "rbBestandUSD")
-        Me.rbBestandUSD.Name = "rbBestandUSD"
-        Me.rbBestandUSD.TabStop = True
-        Me.rbBestandUSD.UseVisualStyleBackColor = True
-        '
-        'rbBestandEUR
-        '
-        resources.ApplyResources(Me.rbBestandEUR, "rbBestandEUR")
-        Me.rbBestandEUR.Name = "rbBestandEUR"
-        Me.rbBestandEUR.TabStop = True
-        Me.rbBestandEUR.UseVisualStyleBackColor = True
-        '
-        'Label8
-        '
-        resources.ApplyResources(Me.Label8, "Label8")
-        Me.Label8.Name = "Label8"
-        '
-        'pnlDirectories
-        '
-        Me.pnlDirectories.Controls.Add(Me.grpDirectories)
-        resources.ApplyResources(Me.pnlDirectories, "pnlDirectories")
-        Me.pnlDirectories.Name = "pnlDirectories"
-        '
-        'grpDirectories
-        '
-        resources.ApplyResources(Me.grpDirectories, "grpDirectories")
-        Me.grpDirectories.Controls.Add(Me.cmdBrowseDBFolder)
-        Me.grpDirectories.Controls.Add(Me.tbxDBFolder)
-        Me.grpDirectories.Controls.Add(Me.rbDBCustom)
-        Me.grpDirectories.Controls.Add(Me.rbDBProgram)
-        Me.grpDirectories.Controls.Add(Me.rbDBUser)
-        Me.grpDirectories.Controls.Add(Me.Label10)
-        Me.grpDirectories.Name = "grpDirectories"
-        Me.grpDirectories.TabStop = False
-        '
-        'cmdBrowseDBFolder
-        '
-        resources.ApplyResources(Me.cmdBrowseDBFolder, "cmdBrowseDBFolder")
-        Me.cmdBrowseDBFolder.Name = "cmdBrowseDBFolder"
-        Me.cmdBrowseDBFolder.UseVisualStyleBackColor = True
-        '
-        'tbxDBFolder
-        '
-        resources.ApplyResources(Me.tbxDBFolder, "tbxDBFolder")
-        Me.tbxDBFolder.Name = "tbxDBFolder"
-        '
-        'rbDBCustom
-        '
-        resources.ApplyResources(Me.rbDBCustom, "rbDBCustom")
-        Me.rbDBCustom.Name = "rbDBCustom"
-        Me.rbDBCustom.TabStop = True
-        Me.rbDBCustom.UseVisualStyleBackColor = True
-        '
-        'rbDBProgram
-        '
-        resources.ApplyResources(Me.rbDBProgram, "rbDBProgram")
-        Me.rbDBProgram.Name = "rbDBProgram"
-        Me.rbDBProgram.TabStop = True
-        Me.rbDBProgram.UseVisualStyleBackColor = True
-        '
-        'rbDBUser
-        '
-        resources.ApplyResources(Me.rbDBUser, "rbDBUser")
-        Me.rbDBUser.Name = "rbDBUser"
-        Me.rbDBUser.TabStop = True
-        Me.rbDBUser.UseVisualStyleBackColor = True
-        '
-        'Label10
-        '
-        resources.ApplyResources(Me.Label10, "Label10")
-        Me.Label10.Name = "Label10"
-        '
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.cmdCancel)
@@ -587,8 +627,8 @@ Partial Class frmApplicationSettings
         '
         Me.DataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.DataGridViewTextBoxColumn2.DataPropertyName = "MessageDescription"
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewTextBoxColumn2.DefaultCellStyle = DataGridViewCellStyle7
         Me.DataGridViewTextBoxColumn2.Frozen = True
         resources.ApplyResources(Me.DataGridViewTextBoxColumn2, "DataGridViewTextBoxColumn2")
         Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
@@ -598,8 +638,8 @@ Partial Class frmApplicationSettings
         '
         Me.DataGridViewButtonColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells
         Me.DataGridViewButtonColumn1.DataPropertyName = "Action"
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.DataGridViewButtonColumn1.DefaultCellStyle = DataGridViewCellStyle8
         Me.DataGridViewButtonColumn1.FillWeight = 75.0!
         Me.DataGridViewButtonColumn1.Frozen = True
         resources.ApplyResources(Me.DataGridViewButtonColumn1, "DataGridViewButtonColumn1")
@@ -608,38 +648,29 @@ Partial Class frmApplicationSettings
         Me.DataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridViewButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         '
-        'MessageQualifier
+        'grpImportKraken
         '
-        Me.MessageQualifier.DataPropertyName = "MessageQualifier"
-        Me.MessageQualifier.FillWeight = 10.0!
-        Me.MessageQualifier.Frozen = True
-        resources.ApplyResources(Me.MessageQualifier, "MessageQualifier")
-        Me.MessageQualifier.Name = "MessageQualifier"
-        Me.MessageQualifier.ReadOnly = True
+        resources.ApplyResources(Me.grpImportKraken, "grpImportKraken")
+        Me.grpImportKraken.Controls.Add(Label12)
+        Me.grpImportKraken.Controls.Add(Me.KrakenZeroTradeTextBox)
+        Me.grpImportKraken.Controls.Add(Me.Label11)
+        Me.grpImportKraken.Name = "grpImportKraken"
+        Me.grpImportKraken.TabStop = False
         '
-        'MessageDescription
+        'Label11
         '
-        Me.MessageDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.MessageDescription.DataPropertyName = "MessageDescription"
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.MessageDescription.DefaultCellStyle = DataGridViewCellStyle1
-        Me.MessageDescription.FillWeight = 90.0!
-        resources.ApplyResources(Me.MessageDescription, "MessageDescription")
-        Me.MessageDescription.Name = "MessageDescription"
-        Me.MessageDescription.ReadOnly = True
+        resources.ApplyResources(Me.Label11, "Label11")
+        Me.Label11.Name = "Label11"
         '
-        'Action
+        'Label12
         '
-        Me.Action.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
-        Me.Action.DataPropertyName = "Action"
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Action.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Action.FillWeight = 40.0!
-        resources.ApplyResources(Me.Action, "Action")
-        Me.Action.Name = "Action"
-        Me.Action.ReadOnly = True
-        Me.Action.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Action.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        resources.ApplyResources(Label12, "Label12")
+        Label12.Name = "Label12"
+        '
+        'KrakenZeroTradeTextBox
+        '
+        resources.ApplyResources(Me.KrakenZeroTradeTextBox, "KrakenZeroTradeTextBox")
+        Me.KrakenZeroTradeTextBox.Name = "KrakenZeroTradeTextBox"
         '
         'frmApplicationSettings
         '
@@ -659,7 +690,20 @@ Partial Class frmApplicationSettings
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
-        Me.pnlTransferDetection.ResumeLayout(False)
+        Me.pnlMessages.ResumeLayout(False)
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.grpMeldungen.ResumeLayout(False)
+        Me.grpMeldungen.PerformLayout()
+        CType(Me.grdDataMessages, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.pnlDisplaySettings.ResumeLayout(False)
+        Me.grpDisplaySettings.ResumeLayout(False)
+        Me.grpBestand.ResumeLayout(False)
+        Me.grpBestand.PerformLayout()
+        Me.pnlDirectories.ResumeLayout(False)
+        Me.grpDirectories.ResumeLayout(False)
+        Me.grpDirectories.PerformLayout()
+        Me.pnlImportSettings.ResumeLayout(False)
         Me.grpTransferDetection.ResumeLayout(False)
         Me.grpTransferDetection.PerformLayout()
         Me.pnlSecurity.ResumeLayout(False)
@@ -676,20 +720,9 @@ Partial Class frmApplicationSettings
         Me.pnlOnline2.PerformLayout()
         Me.pnlOnline1.ResumeLayout(False)
         Me.pnlOnline1.PerformLayout()
-        Me.pnlMessages.ResumeLayout(False)
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
-        Me.grpMeldungen.ResumeLayout(False)
-        Me.grpMeldungen.PerformLayout()
-        CType(Me.grdDataMessages, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.pnlDisplaySettings.ResumeLayout(False)
-        Me.grpDisplaySettings.ResumeLayout(False)
-        Me.grpBestand.ResumeLayout(False)
-        Me.grpBestand.PerformLayout()
-        Me.pnlDirectories.ResumeLayout(False)
-        Me.grpDirectories.ResumeLayout(False)
-        Me.grpDirectories.PerformLayout()
         Me.Panel1.ResumeLayout(False)
+        Me.grpImportKraken.ResumeLayout(False)
+        Me.grpImportKraken.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -751,7 +784,7 @@ Partial Class frmApplicationSettings
     Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents cbxLogLevel As System.Windows.Forms.ComboBox
-    Friend WithEvents pnlTransferDetection As System.Windows.Forms.Panel
+    Friend WithEvents pnlImportSettings As System.Windows.Forms.Panel
     Friend WithEvents grpTransferDetection As System.Windows.Forms.GroupBox
     Friend WithEvents lblTransferDetection As System.Windows.Forms.Label
     Friend WithEvents TolerancePercentTextBox As System.Windows.Forms.TextBox
@@ -762,4 +795,7 @@ Partial Class frmApplicationSettings
     Friend WithEvents MessageQualifier As DataGridViewTextBoxColumn
     Friend WithEvents MessageDescription As DataGridViewTextBoxColumn
     Friend WithEvents Action As DataGridViewButtonColumn
+    Friend WithEvents grpImportKraken As GroupBox
+    Friend WithEvents KrakenZeroTradeTextBox As TextBox
+    Friend WithEvents Label11 As Label
 End Class

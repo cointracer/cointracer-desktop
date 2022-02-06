@@ -212,13 +212,13 @@ Public Class MsgBoxEx
     ''' </summary>
     ''' <param name="MessageBoxQualifier">Eindeutiger Identifizierer für diese Meldung. Bitte daran denken, diesen auch in frmApplicationSettings->LoadSettingsToForm einzupflegen!</param>
     ''' <param name="DefaultResult">Standard-Result, wenn die Meldung durch den User ausgeblendet wurde</param>
-    Public Shared Function ShowWithNotAgainOption(ByVal MessageBoxQualifier As String, _
-                                               ByVal DefaultResult As DialogResult, _
-                                               ByVal Text As String, _
-                                               Optional ByVal Caption As String = "%APPNAME%", _
-                                               Optional ByVal Buttons As System.Windows.Forms.MessageBoxButtons = MessageBoxButtons.OK, _
-                                               Optional ByVal Icon As System.Windows.Forms.MessageBoxIcon = MessageBoxIcon.None, _
-                                               Optional ByVal DefaultButton As System.Windows.Forms.MessageBoxDefaultButton = MessageBoxDefaultButton.Button1) As DialogResult
+    Public Shared Function ShowWithNotAgainOption(ByVal MessageBoxQualifier As String,
+                                                  ByVal DefaultResult As DialogResult,
+                                                  ByVal Text As String,
+                                                  Optional ByVal Caption As String = "%APPNAME%",
+                                                  Optional ByVal Buttons As MessageBoxButtons = MessageBoxButtons.OK,
+                                                  Optional ByVal Icon As System.Windows.Forms.MessageBoxIcon = MessageBoxIcon.None,
+                                                  Optional ByVal DefaultButton As System.Windows.Forms.MessageBoxDefaultButton = MessageBoxDefaultButton.Button1) As DialogResult
         If Caption = "%APPNAME%" Then
             Caption = Application.ProductName
         End If
@@ -229,7 +229,7 @@ Public Class MsgBoxEx
             Return Result
         Else
             ' Kein Standard gesetzt, also MessageBox mit Zusatz-Button anzeigen
-            Dim NewButtons As System.Windows.Forms.MessageBoxButtons
+            Dim NewButtons As MessageBoxButtons
             Dim ButtonLabels As String()
             Select Case Buttons
                 Case MessageBoxButtons.OK

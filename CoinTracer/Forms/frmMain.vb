@@ -2216,14 +2216,6 @@ Public Class frmMain
         End With
     End Sub
 
-    Private Sub grdTrades_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdTrades.CellDoubleClick
-
-    End Sub
-
-    Private Sub grdTables_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdPlattformen.CellDoubleClick, grdKurse.CellDoubleClick, grdKontenAliases.CellDoubleClick, grdKonten.CellDoubleClick, grdBerechnungen.CellDoubleClick
-
-    End Sub
-
 #End If
 
 End Class

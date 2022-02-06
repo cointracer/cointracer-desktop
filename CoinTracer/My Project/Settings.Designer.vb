@@ -356,7 +356,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("159")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("536")>  _
         Public Property Layout_SplitterDistance2() As Long
             Get
                 Return CType(Me("Layout_SplitterDistance2"),Long)
@@ -383,13 +383,13 @@ Namespace My
          Global.System.Configuration.DefaultSettingValueAttribute("de-DE")>
         Public Property CurrentCulture() As String
             Get
-                Return CType(Me("CurrentCulture"),String)
+                Return CType(Me("CurrentCulture"), String)
             End Get
             Set
-                Me("CurrentCulture") = value
+                Me("CurrentCulture") = Value
             End Set
         End Property
-        
+
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
@@ -435,6 +435,18 @@ Namespace My
             End Get
             Set
                 Me("RecentFilesList") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0.00006")>  _
+        Public Property ImportKrakenZeroValueTradeLimit() As Decimal
+            Get
+                Return CType(Me("ImportKrakenZeroValueTradeLimit"),Decimal)
+            End Get
+            Set
+                Me("ImportKrakenZeroValueTradeLimit") = value
             End Set
         End Property
     End Class

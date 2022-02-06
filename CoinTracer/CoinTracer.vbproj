@@ -1161,6 +1161,11 @@
     <None Include="Resources\arrow-refresh-small-icon-32x32.png" />
     <None Include="Resources\arrow-refresh-small-icon-24x24.png" />
     <None Include="Resources\edit_exporttable_icon_16x16.png" />
+    <None Include="Resources\help_32x32.png" />
+    <None Include="Resources\disclaim_16x16.png" />
+    <None Include="Resources\help_16x16.png" />
+    <None Include="Resources\info_16x16.png" />
+    <None Include="Resources\arrow-refresh-small-icon-16x16.png" />
     <Content Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />

@@ -171,6 +171,7 @@ Public Class frmApplicationSettings
             MsgList.Add({"ImportBitcoinDe", "Tradedaten-Import: Hinweis zu Bitcoin.de (CSV)"})
             MsgList.Add({"ImportBitcoinDeApi", "Tradedaten-Import: Hinweis zu Bitcoin.de (API-Import)"})
             MsgList.Add({"ImportKrakenCSV", "Tradedaten-Import: Hinweis zu Kraken.com (CSV-Import)"})
+            ' MsgList.Add({"ImportKrakenMissingCounterEntry", "Tradedaten-Import Kraken.com: Hinweis zu fehlender Gegenbuchung"})
             MsgList.Add({"ImportBitfinexCom", "Tradedaten-Import: Hinweis zu Bitfinex.com"})
             MsgList.Add({"ImportBitfinexApiWarning", "Tradedaten-Import: Warnhinweis zum Bitfinex-API-Import"})
             MsgList.Add({"ImportPoloniexCom", "Tradedaten-Import: Hinweis zu Poloniex.com"})
@@ -199,12 +200,12 @@ Public Class frmApplicationSettings
             rbBestandEUR.Checked = My.Settings.InventoryPricesCurrency = "EUR"
             rbBestandUSD.Checked = Not rbBestandEUR.Checked
         End If
-        ' Transfer detection
+        ' Import settings
         If CertainPanel = 5 Or CertainPanel = -1 Then
             ToleranceMinutesTextBox.Text = TransferDetection.MinutesTolerance.ToString("#########0", CultureInfo.InvariantCulture)
             TolerancePercentTextBox.Text = (TransferDetection.AmountPercentTolerance * 100).ToString("#########0", CultureInfo.InvariantCulture)
         End If
-
+        KrakenZeroTradeTextBox.Text = My.Settings.ImportKrakenZeroValueTradeLimit.ToString("#0.0#############", CultureInfo.DefaultThreadCurrentUICulture)
 
     End Sub
 
@@ -240,6 +241,14 @@ Public Class frmApplicationSettings
         TransferDetection.MinutesTolerance = CInt(Math.Abs(CInt(ToleranceMinutesTextBox.Text)))
         TransferDetection.AmountPercentTolerance = CInt(Math.Abs(CInt(TolerancePercentTextBox.Text))) / 100
         TransferDetection.Save()
+        ' Kraken import zero trade limit
+        Dim KrakenZeroTradeLimit As Decimal
+        If Decimal.TryParse(KrakenZeroTradeTextBox.Text, KrakenZeroTradeLimit) Then
+            My.Settings.ImportKrakenZeroValueTradeLimit = KrakenZeroTradeLimit
+        Else
+            ' Invalid entry - use default value
+            My.Settings.ImportKrakenZeroValueTradeLimit = 0.00006
+        End If
         ' Pfade & Verzeichnisse
         Dim NewConnection As SQLite.SQLiteConnection = Nothing
         Dim DataDirType As DataBaseDirectories
@@ -280,7 +289,7 @@ Public Class frmApplicationSettings
         pnlDirectories.Visible = lbxCategories.SelectedIndex = 2
         pnlMessages.Visible = lbxCategories.SelectedIndex = 3
         pnlDisplaySettings.Visible = lbxCategories.SelectedIndex = 4
-        pnlTransferDetection.Visible = lbxCategories.SelectedIndex = 5
+        pnlImportSettings.Visible = lbxCategories.SelectedIndex = 5
         SetFormTitle()
     End Sub
 

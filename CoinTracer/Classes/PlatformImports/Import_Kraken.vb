@@ -182,8 +182,7 @@ Public Class Import_Kraken
 
     End Class
 
-    Friend Const KRAKEN_ZEROVALUETRADELIMIT As Decimal = 0.00002   ' Trades below this value do not need a second line in the trade data (assuming the value of this second line would be zero)
-    Private Const KRAKEN_IMPORT_TRADES = 65
+    Private Const KRAKEN_IMPORT_TRADES = 65 ' SubType for importing trades (instead of legder entries)
 
     Private Shared Function ExtractAssetCode(ByRef AssetRaw As String) As String
         If AssetRaw.StartsWith("X"c) Or AssetRaw.StartsWith("Z"c) Then
@@ -319,6 +318,8 @@ Public Class Import_Kraken
                     Dim TargetIR As Import_KrakenDataSet.LedgerRow
                     Dim SourceKontoRow As KontenRow
                     Dim DlgResult As DialogResult
+                    Dim ZeroValueTradeLimit As Decimal = My.Settings.ImportKrakenZeroValueTradeLimit
+
                     For Each IR As Import_KrakenDataSet.LedgerRow In ImportLedersTb
                         l = IR.ID + 1
                         UpdateProgress(AllLines, l, MyStrings.importMsgKrakenFileCheckLines, 50 + (l * 50 / AllLines))
@@ -407,10 +408,10 @@ Public Class Import_Kraken
                                                                  End Function).FirstOrDefault()
                                     If IR2nd Is Nothing Then
                                         ' No matching row found. This is only acceptable for very small amounts
-                                        If IR.amount <= KRAKEN_ZEROVALUETRADELIMIT Then
+                                        If IR.amount <= ZeroValueTradeLimit Then
                                             DlgResult = DialogResult.Yes
                                         ElseIf MainImportObject.SilentMode Then
-                                            DlgResult = DialogResult.Cancel
+                                            DlgResult = DialogResult.Yes
                                         Else
                                             DlgResult = MsgBoxEx.ShowInFront(String.Format(MyStrings.importMsgKrakenWarningNoSecondEntry, IR.txid, l, IR.amount.ToString(Import.INFONUMBERFORMAT, CultureInfo.InvariantCulture), IR.asset),
                                                                              MyStrings.importMsgKrakenWarningNoSecondEntryTitle,

@@ -81,6 +81,7 @@ Friend Class Import_Kraken_Api
             Dim KontoRow As KontenRow
             Dim LedgerError As KrakenApiMissingLederErrors
             Dim SkipGetNextLedgerItem As Boolean = False
+            Dim ZeroTradeLimit As Decimal = My.Settings.ImportKrakenZeroValueTradeLimit
 
             ' Kraken-API-Ledgerabruf initialisieren
             EndTimestamp = Math.Max(EndTimestamp, -1)
@@ -222,7 +223,7 @@ Friend Class Import_Kraken_Api
                                     End If
                                 End If
                                 If LedgerError > KrakenApiMissingLederErrors.NoError Then
-                                    If TLO.Amount <= Import_Kraken.KRAKEN_ZEROVALUETRADELIMIT Then
+                                    If TLO.Amount <= ZeroTradeLimit Then
                                         DlgResult = DialogResult.Yes
                                     ElseIf MainImportObject.SilentMode Then
                                         DlgResult = DialogResult.Cancel

@@ -78,7 +78,7 @@
       <Value Profile="(Default)">613</Value>
     </Setting>
     <Setting Name="Layout_SplitterDistance2" Type="System.Int64" Scope="User">
-      <Value Profile="(Default)">159</Value>
+      <Value Profile="(Default)">536</Value>
     </Setting>
     <Setting Name="LogLevel" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
@@ -105,6 +105,9 @@
     </Setting>
     <Setting Name="RecentFilesList" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ImportKrakenZeroValueTradeLimit" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.00006</Value>
     </Setting>
   </Settings>
 </SettingsFile>
