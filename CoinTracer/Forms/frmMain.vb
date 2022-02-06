@@ -498,6 +498,7 @@ Public Class frmMain
         grdTrades.BindGrid(New VW_TradesTableAdapter())
         grdImporte.BindGrid(New VW_ImporteTableAdapter())
         grdKonten.BindGrid(New VW_KontenTableAdapter())
+        grdKontenAliases.BindGrid(New VW_KontenAliasesTableAdapter())
         grdPlattformen.BindGrid(New VW_PlattformenTableAdapter())
         grdKurse.BindGrid(New VW_KurseTableAdapter())
         grdBerechnungen.BindGrid(New VW_BerechnungenTableAdapter())
@@ -1304,9 +1305,12 @@ Public Class frmMain
                 ' Konten
                 Grd = grdKonten
             Case 4
+                ' KontenAliases
+                Grd = grdKontenAliases
+            Case 5
                 ' Kurse
                 Grd = grdKurse
-            Case 5
+            Case 6
                 ' Kurse
                 Grd = grdBerechnungen
             Case Else
@@ -1719,6 +1723,7 @@ Public Class frmMain
 
     Private Sub tsmiEditTables_Click(sender As Object, e As EventArgs) Handles tsmiEditPlattformen.Click,
         tsmiEditKonten.Click,
+        tsmiEditKontenAliases.Click,
         tsmiEditKurse.Click,
         tsmiViewCalculations.Click
         Dim ShowForm As Object
@@ -1726,7 +1731,11 @@ Public Class frmMain
         Cursor = Cursors.WaitCursor
         Try
             Select Case tctlTables.SelectedIndex    ' sender.Name
-                Case 4  ' "tsmiEditKurse"
+                Case 4  '"tsmiEditKontenAliases"
+                    Grd = grdKontenAliases
+                    ShowForm = New frmEditKontenAliases
+                    _DB.Reset_DataAdapter(TableNames.KontenAliases)
+                Case 5  ' "tsmiEditKurse"
                     Grd = grdKurse
                     ShowForm = New frmEditCourses
                     _DB.Reset_DataAdapter(TableNames.Kurse)
@@ -1734,7 +1743,7 @@ Public Class frmMain
                     Grd = grdPlattformen
                     ShowForm = New frmEditPlattformen
                     _DB.Reset_DataAdapter(TableNames.Plattformen)
-                Case 5  ' "tsmiViewCalculations"
+                Case 6  ' "tsmiViewCalculations"
                     Grd = grdBerechnungen
                     ShowForm = New frmViewCalculations
                     ' _DB.Reset_DataAdapter(TableNames.Kalkulationen)
@@ -1747,11 +1756,17 @@ Public Class frmMain
             Cursor = Cursors.Default
             With ShowForm
                 If Grd.SelectedCells.Count > 0 Then
-                    .StartID = Grd.Rows(Grd.CurrentCell.RowIndex).Cells(0).Value
+                    If Grd Is grdKontenAliases Then
+                        ' Treat KonenAliases differently regarding finding the clicked entry
+                        .StartCode = Grd.Rows(Grd.CurrentCell.RowIndex).Cells(0).Value
+                        .StartAlias = Grd.Rows(Grd.CurrentCell.RowIndex).Cells(1).Value
+                    Else
+                        .StartID = Grd.Rows(Grd.CurrentCell.RowIndex).Cells(0).Value
+                    End If
                 End If
                 If .ShowDialog(Me) = DialogResult.OK OrElse .RecordsModified > 0 Then
                     ' Bei geänderten Plattformdaten ggf. Gewinn neu berechnen
-                    If .RecordsModified > 0 AndAlso tctlTables.SelectedIndex = 2 Then
+                    If .RecordsModified > 0 AndAlso Grd Is grdPlattformen Then
                         _DB.Reset_DataAdapter(TableNames.Kalkulationen)
                         If _DB.DataTable(TableNames.Kalkulationen).Rows.Count > 0 Then
                             If MessageBox.Show("Sie haben Plattform-Daten geändert. Um eventuelle Auswirkungen auf die Gewinnberechnung " &
@@ -2028,6 +2043,7 @@ Public Class frmMain
     Private Sub grdTables_CellDoubleClick(sender As Object, e As EventArgs) Handles grdBerechnungen.CellDoubleClick,
             grdPlattformen.CellDoubleClick,
             grdKonten.CellDoubleClick,
+            grdKontenAliases.CellDoubleClick,
             grdKurse.CellDoubleClick
         Select Case sender.Name
             Case "grdBerechnungen"
@@ -2036,6 +2052,8 @@ Public Class frmMain
                 tsmiEditTables_Click(tsmiEditPlattformen, Nothing)
             Case "grdKonten"
                 tsmiEditTables_Click(tsmiEditKonten, Nothing)
+            Case "grdKontenAliases"
+                tsmiEditTables_Click(tsmiEditKontenAliases, Nothing)
             Case "grdKurse"
                 tsmiEditTables_Click(tsmiEditKurse, Nothing)
         End Select
@@ -2196,6 +2214,14 @@ Public Class frmMain
             .UpdateDatabase()
             frmMain_Load(Me, New EventArgs)
         End With
+    End Sub
+
+    Private Sub grdTrades_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdTrades.CellDoubleClick
+
+    End Sub
+
+    Private Sub grdTables_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles grdPlattformen.CellDoubleClick, grdKurse.CellDoubleClick, grdKontenAliases.CellDoubleClick, grdKonten.CellDoubleClick, grdBerechnungen.CellDoubleClick
+
     End Sub
 
 #End If

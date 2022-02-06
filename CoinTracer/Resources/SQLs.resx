@@ -692,4 +692,8 @@ where (t.TradeTypID in (3, 4, 7) or (t.TradeTypID = 5 and not zk.IstFiat)) and n
 group by sz.ID, t.ID, a.InTradeID, a.InTransferID, a.TransferIdHistory, a.OutTradeID
 order by sz.ID, t.Zeitpunkt, tt.ID, t.ID, a.TxID</value>
   </data>
+  <data name="db_v45_01" xml:space="preserve">
+    <value>CREATE VIEW "VW_KontenAliases" AS 
+select Code as [Konto-Code], Alias as [Konto-Alias] from KontenAliases order by Code, Alias</value>
+  </data>
 </root>

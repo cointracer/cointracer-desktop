@@ -58,6 +58,7 @@ Public Class DBHelper
         Trades
         TradeTypen
         Konten
+        KontenAliases
         Plattformen
         Importe
         TradeTx

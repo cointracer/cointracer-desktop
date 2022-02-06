@@ -788,5 +788,15 @@ Namespace My.Resources
                 Return ResourceManager.GetString("db_v44_03", resourceCulture)
             End Get
         End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_KontenAliases&quot; AS 
+        '''select Code as [Konto-Code], Alias as [Konto-Alias] from KontenAliases order by Code, Alias ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v45_01() As String
+            Get
+                Return ResourceManager.GetString("db_v45_01", resourceCulture)
+            End Get
+        End Property
     End Class
 End Namespace

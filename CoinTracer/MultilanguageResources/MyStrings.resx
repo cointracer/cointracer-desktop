@@ -1253,4 +1253,13 @@ Mit Abbrechen brechen Sie den Import ab.</value>
   <data name="initDbInitializeError" xml:space="preserve">
     <value>Beim Initialisieren das Datenbank ist ein Fehler aufgetreten! Die aktuelle Datenbank kann nicht verwendet werden.{0}{0}({1})</value>
   </data>
+  <data name="editAccountAliasesMsgTitle" xml:space="preserve">
+    <value>Konten-Aliase bearbeiten</value>
+  </data>
+  <data name="editAccountAliasesRowErrorDuplicateEntry" xml:space="preserve">
+    <value>Der Alias '{1}' ist für den Konto-Code '{0}' schon vorhanden. Bitte ändern Sie den Eintrag oder löschen Sie die Zeile.</value>
+  </data>
+  <data name="editAccountAliasesRowErrorTitle" xml:space="preserve">
+    <value>Fehler in Datenzeile</value>
+  </data>
 </root>

@@ -668,6 +668,33 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Konten-Aliase bearbeiten ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property editAccountAliasesMsgTitle() As String
+            Get
+                Return ResourceManager.GetString("editAccountAliasesMsgTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Der Alias &apos;{1}&apos; ist für den Konto-Code &apos;{0}&apos; schon vorhanden. Bitte ändern Sie den Eintrag oder löschen Sie die Zeile. ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property editAccountAliasesRowErrorDuplicateEntry() As String
+            Get
+                Return ResourceManager.GetString("editAccountAliasesRowErrorDuplicateEntry", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Fehler in Datenzeile ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property editAccountAliasesRowErrorTitle() As String
+            Get
+                Return ResourceManager.GetString("editAccountAliasesRowErrorTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Möchten Sie diesen Datensatz inkl. des zugehörigen Gebühren-Kontos wirklich löschen? ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property editAccountMsgDeleteFee() As String
