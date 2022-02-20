@@ -1145,6 +1145,60 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Kauf von {0} {1} / Kurs {2} {3} / {4} Gebühr ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoPoloniexBuy() As String
+            Get
+                Return ResourceManager.GetString("importInfoPoloniexBuy", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Einzahlung von Adresse {0} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoPoloniexDeposit() As String
+            Get
+                Return ResourceManager.GetString("importInfoPoloniexDeposit", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die  / Order {0} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoPoloniexOrderAppendix() As String
+            Get
+                Return ResourceManager.GetString("importInfoPoloniexOrderAppendix", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Verkauf von {0} {1} / Kurs {2} {3} / {4} Gebühr ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoPoloniexSell() As String
+            Get
+                Return ResourceManager.GetString("importInfoPoloniexSell", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Kauf von {5} {3} / Preis {0} {1} / {4} Gebühr ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoPoloniexSellCoins2Coins() As String
+            Get
+                Return ResourceManager.GetString("importInfoPoloniexSellCoins2Coins", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Auszahlung auf Adresse {0} ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importInfoPoloniexWithdrawal() As String
+            Get
+                Return ResourceManager.GetString("importInfoPoloniexWithdrawal", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Gebühr zu Trade Referenz {0} ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importInfoTradeFee() As String
@@ -1918,6 +1972,29 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Sie können von Poloniex.com drei Arten von History-Daten importieren: Die Trade-History, die Withdrawal-History und die Deposit-History. Wählen Sie die gewünschten Datei im nächsten Dialogfenster aus. Mehrere Dateien müssen Sie nacheinander einzeln importieren.
+        '''
+        '''Weitere Hinweise:
+        '''
+        '''1. Zum Exportieren der Trade-History wählen Sie auf Poloniex.com oben rechts erst &quot;Activity&quot;, dann &quot;Export&quot;. 
+        '''Anschließend stellen Sie als &quot;Activity Type&quot; &quot;Trades&quot; ein, wählen den gewünschten Export-Zeitraum und klicken auf &quot; [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgPoloniexCSV() As String
+            Get
+                Return ResourceManager.GetString("importMsgPoloniexCSV", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Hinweise zum Import von Poloniex.com ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importMsgPoloniexCSVTitle() As String
+            Get
+                Return ResourceManager.GetString("importMsgPoloniexCSVTitle", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Sucht eine lokalisierte Zeichenfolge, die Fehler beim Öffnen der Datei(en):  ähnelt.
         '''</summary>
         Friend Shared ReadOnly Property importMsgReadFileError() As String
@@ -2166,6 +2243,15 @@ Namespace My.Resources
         Friend Shared ReadOnly Property importOpenFileTitleLitecoinCore() As String
             Get
                 Return ResourceManager.GetString("importOpenFileTitleLitecoinCore", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die Wählen Sie die zu importierenden Exportdatei von Poloniex.com aus... ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property importOpenFileTitlePoloniex() As String
+            Get
+                Return ResourceManager.GetString("importOpenFileTitlePoloniex", resourceCulture)
             End Get
         End Property
         

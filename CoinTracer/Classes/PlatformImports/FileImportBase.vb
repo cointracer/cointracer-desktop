@@ -542,7 +542,7 @@ Public MustInherit Class FileImportBase
                                               ByVal Line As Long,
                                               ByRef ex As Exception) As Long Implements IFileImport.FileImportError
         Cursor.Current = Cursors.Default
-        ErrorCounter -= 1
+        If ErrorCounter > 0 Then ErrorCounter -= 1
         Dim ErrorMessage As String = String.Format(My.Resources.MyStrings.importMsgInvalidDataInLine,
                                                        Environment.NewLine,
                                                        Line.ToString(Import.MESSAGENUMBERFORMAT),

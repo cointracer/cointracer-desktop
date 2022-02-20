@@ -1326,7 +1326,9 @@ Public Class frmMain
             Grd.Reload()
             ' and restore the selection
             For Each cell In CellsBackup
-                Grd.Rows(cell(0)).Cells(cell(1)).Selected = True
+                If Grd.Rows.Count > cell(0) Then
+                    Grd.Rows(cell(0)).Cells(cell(1)).Selected = True
+                End If
             Next
         Else
             ' or just reload and switch to first row

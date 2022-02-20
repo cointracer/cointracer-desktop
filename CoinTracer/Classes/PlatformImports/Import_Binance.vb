@@ -737,6 +737,7 @@ Public Class Import_Binance
 
                     Catch ex As Exception
                         If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            DestroyProgressForm()
                             Return False
                             Exit Function
                         End If
@@ -819,6 +820,7 @@ Public Class Import_Binance
 
                     Catch ex As Exception
                         If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            DestroyProgressForm()
                             Return False
                             Exit Function
                         End If
@@ -909,6 +911,7 @@ Public Class Import_Binance
 
                     Catch ex As Exception
                         If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            DestroyProgressForm()
                             Return False
                             Exit Function
                         End If
@@ -950,6 +953,7 @@ Public Class Import_Binance
                         End If
                     Catch ex As Exception
                         If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            DestroyProgressForm()
                             Return False
                             Exit Function
                         End If
@@ -1073,6 +1077,7 @@ Public Class Import_Binance
 
                     Catch ex As Exception
                         If FileImportError(ErrorCounter, i + 1, ex) = 0 Then
+                            DestroyProgressForm()
                             Return False
                             Exit Function
                         End If

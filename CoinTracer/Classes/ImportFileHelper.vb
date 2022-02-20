@@ -381,36 +381,6 @@ Public Class ImportFileHelper
             .SubType = 0
         End With
         Cnt += 1
-        ' Poloniex.com (Withdrawal- oder Deposit-History)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Poloniex)
-            .PlatformName = "Poloniex.com"
-            .FilesFirstLine = "Date,Currency,Amount,Address,Status"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 0
-        End With
-        Cnt += 1
-        ' Poloniex.com (Trade-History ohne 'Category' und 'Order Number', wahrscheinlich älteres Format)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Poloniex)
-            .PlatformName = "Poloniex.com"
-            .FilesFirstLine = "Date,Market,Type,Price,Amount,Total,Fee,Base Total Less Fee,Quote Total Less Fee"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 1
-        End With
-        Cnt += 1
-        ' Poloniex.com (Trade-History mit 'Category' und 'Order Number', neueres Format)
-        ReDim Preserve _AllPlatforms(Cnt)
-        With _AllPlatforms(Cnt)
-            .PlatformID = CInt(PlatformManager.Platforms.Poloniex)
-            .PlatformName = "Poloniex.com"
-            .FilesFirstLine = "Date,Market,Category,Type,Price,Amount,Total,Fee,Order Number,Base Total Less Fee,Quote Total Less Fee"
-            .MatchingType = ImportFileMatchingTypes.StartsWithMatch
-            .SubType = 0
-        End With
-        Cnt += 1
 
         ' Discover and add all platform headers from FileImportBase derived classes
         Dim FileImport As IFileImport

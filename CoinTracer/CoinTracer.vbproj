@@ -199,6 +199,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Classes\AccountInfos.vb" />
+    <Compile Include="Classes\PlatformImports\Import_Poloniex.vb" />
     <Compile Include="Classes\XLSHelper.vb" />
     <Compile Include="Classes\CSVReaderWriter.vb" />
     <Compile Include="Classes\IDataFileHelper.vb" />

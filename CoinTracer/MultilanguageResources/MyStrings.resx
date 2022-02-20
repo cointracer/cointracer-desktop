@@ -1264,4 +1264,41 @@ Mit Abbrechen brechen Sie den Import ab.
   <data name="editAccountAliasesRowErrorTitle" xml:space="preserve">
     <value>Fehler in Datenzeile</value>
   </data>
+  <data name="importInfoPoloniexBuy" xml:space="preserve">
+    <value>Kauf von {0} {1} / Kurs {2} {3} / {4} Gebühr</value>
+  </data>
+  <data name="importInfoPoloniexDeposit" xml:space="preserve">
+    <value>Einzahlung von Adresse {0}</value>
+  </data>
+  <data name="importInfoPoloniexOrderAppendix" xml:space="preserve">
+    <value> / Order {0}</value>
+  </data>
+  <data name="importInfoPoloniexSell" xml:space="preserve">
+    <value>Verkauf von {0} {1} / Kurs {2} {3} / {4} Gebühr</value>
+  </data>
+  <data name="importInfoPoloniexSellCoins2Coins" xml:space="preserve">
+    <value>Kauf von {5} {3} / Preis {0} {1} / {4} Gebühr</value>
+  </data>
+  <data name="importInfoPoloniexWithdrawal" xml:space="preserve">
+    <value>Auszahlung auf Adresse {0}</value>
+  </data>
+  <data name="importMsgPoloniexCSV" xml:space="preserve">
+    <value>Sie können von Poloniex.com drei Arten von History-Daten importieren: Die Trade-History, die Withdrawal-History und die Deposit-History. Wählen Sie die gewünschten Datei im nächsten Dialogfenster aus. Mehrere Dateien müssen Sie nacheinander einzeln importieren.
+
+Weitere Hinweise:
+
+1. Zum Exportieren der Trade-History wählen Sie auf Poloniex.com oben rechts erst "Activity", dann "Export". 
+Anschließend stellen Sie als "Activity Type" "Trades" ein, wählen den gewünschten Export-Zeitraum und klicken auf "Download".
+ 
+2. Zum Exportieren der Deposit- oder Withdrawal-History gehen Sie ähnlich vor: Rechts oben auf "Activity", dann "Export". 
+Anschließend stellen Sie als "Activity Type" "Deposits" bzw. "Withdrawals" ein, wählen den gewünschten Export-Zeitraum und klicken auf "Download".
+
+3. Andere Activity Types wie "Distributions" oder "Lending" können aktuell nicht verarbeitet werden!</value>
+  </data>
+  <data name="importMsgPoloniexCSVTitle" xml:space="preserve">
+    <value>Hinweise zum Import von Poloniex.com</value>
+  </data>
+  <data name="importOpenFileTitlePoloniex" xml:space="preserve">
+    <value>Wählen Sie die zu importierenden Exportdatei von Poloniex.com aus...</value>
+  </data>
 </root>
