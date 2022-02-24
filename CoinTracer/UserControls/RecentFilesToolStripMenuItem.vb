@@ -1,6 +1,6 @@
-﻿'  **************************************
+'  **************************************
 '  *
-'  * Copyright 2013-2021 Andreas Nebinger
+'  * Copyright 2013-2022 Andreas Nebinger
 '  *
 '  * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
 '    Folgeversionen der EUPL ("Lizenz");
@@ -28,7 +28,6 @@
 '  * See the Licence for the specific language governing permissions and limitations under the Licence.
 '  *
 '  **************************************
-
 
 Imports System.ComponentModel
 Imports CoinTracer.My.Resources
