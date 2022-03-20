@@ -798,5 +798,34 @@ Namespace My.Resources
                 Return ResourceManager.GetString("db_v45_01", resourceCulture)
             End Get
         End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die DROP VIEW IF EXISTS &quot;VW_Balances&quot; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v46_01() As String
+            Get
+                Return ResourceManager.GetString("db_v46_01", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Sucht eine lokalisierte Zeichenfolge, die CREATE VIEW &quot;VW_Balances&quot; AS 
+        '''select 
+        '''	ZielPlattformID PlattformID, 
+        '''	ZielKontoID KontoID,
+        '''	ZeitpunktZiel Zeitpunkt,
+        '''	cast(round(sum(BetragNachGebuehr),8) as NUMERIC) Zugang, 
+        '''	cast(0 as NUMERIC) Abgang,
+        '''	round(sum(BetragNachGebuehr),8) Betrag,
+        '''	1 as SollHaben,
+        '''	case when TradeTypID = 3 and QuellKontoID = 101 then QuellBetrag else NULL end BetragEUR,
+        '''	case when TradeTypID = 3 and QuellKontoID = 102 then QuellBetrag else NULL end BetragUSD
+        '''from Trades where not Entwertet and (TradeTypID &lt;&gt; 9 or Zi [Rest der Zeichenfolge wurde abgeschnitten]&quot;; ähnelt.
+        '''</summary>
+        Friend Shared ReadOnly Property db_v46_02() As String
+            Get
+                Return ResourceManager.GetString("db_v46_02", resourceCulture)
+            End Get
+        End Property
     End Class
 End Namespace

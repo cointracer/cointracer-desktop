@@ -252,6 +252,35 @@ Namespace CoinTracerDataSetTableAdapters
             Count = Fill(dataTable)
             Return Count
         End Function
+        ''' <summary>
+        ''' Fills a datatable filtered by Trade Types.
+        ''' </summary>
+        ''' <param name="dataTable">datatable to fill</param>
+        ''' <param name="TradeTypesArray">Array of TradeTypIDs. If empty, all rows but those of type fee are selected.</param>
+        ''' <returns></returns>
+        Public Function FillByTradesTypes(ByVal dataTable As CoinTracerDataSet.TradesDataTable,
+                                          ByRef TradeTypesArray() As Integer) As Integer
+            Dim stSelect As String
+            Dim Count As Integer
+            If (_commandCollection Is Nothing) Or ClearBeforeFill Then
+                InitCommandCollection()
+            End If
+            stSelect = _commandCollection(0).CommandText
+            Dim WhereExpression As String
+            If TradeTypesArray?.Length > 0 Then
+                WhereExpression = " WHERE NOT Entwertet AND TradeTypID IN (" & String.Join(",", TradeTypesArray) & ") "
+            Else
+                WhereExpression = " WHERE NOT Entwertet AND TradeTypID <> " & CInt(DBHelper.TradeTypen.Gebühr) & " "
+            End If
+            ' Append the given expression
+            If stSelect.ToUpper.Contains("ORDER BY") Then
+                _commandCollection(0).CommandText = stSelect.Replace("ORDER BY", WhereExpression & " ORDER BY")
+            Else
+                _commandCollection(0).CommandText &= " " & WhereExpression
+            End If
+            Count = Fill(dataTable)
+            Return Count
+        End Function
     End Class
 
     Partial Public Class TradesWerteTableAdapter

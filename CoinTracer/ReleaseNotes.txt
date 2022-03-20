@@ -1,4 +1,18 @@
 ﻿******************************************************
+Version 0.9.7.6 / 20.03.2022
+----------------------------
+
+Verbesserungen:
+- Berechnung der Bestände auf dem Übersichts-Tab überarbeitet.
+- GUI-Fehler beim Wiederherstellen gefilterter Trade-
+  Zeilen nach dem Bearbeiten behoben.
+- Fehler beim Anlegen von API-Importen behoben: Jetzt 
+  können nur noch Plattformen ausgewählt werden, für die
+  ein API-Import überhaupt umgesetzt ist (und nicht mehr
+  alle Plattformen).
+
+
+******************************************************
 Version 0.9.7.5 / 20.02.2022
 ----------------------------
 

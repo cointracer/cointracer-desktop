@@ -1,37 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
- **************************************
- *
- * Copyright 2013-2022 Andreas Nebinger
- *
- * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
-   Folgeversionen der EUPL ("Lizenz");
- * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
-
- * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
- 
- * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
-   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
-   ausdrücklich oder stillschweigend - verbreitet.
- * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
-
- =======
- English
- =======
- 
- * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
-   subsequent versions of the EUPL (the "Licence");
- * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
- 
- * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
- 
- * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
-   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the Licence for the specific language governing permissions and limitations under the Licence.
- *
- **************************************
--->
-
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -728,5 +695,36 @@ order by sz.ID, t.Zeitpunkt, tt.ID, t.ID, a.TxID</value>
   <data name="db_v45_01" xml:space="preserve">
     <value>CREATE VIEW "VW_KontenAliases" AS 
 select Code as [Konto-Code], Alias as [Konto-Alias] from KontenAliases order by Code, Alias</value>
+  </data>
+  <data name="db_v46_01" xml:space="preserve">
+    <value>DROP VIEW IF EXISTS "VW_Balances"</value>
+  </data>
+  <data name="db_v46_02" xml:space="preserve">
+    <value>CREATE VIEW "VW_Balances" AS 
+select 
+	ZielPlattformID PlattformID, 
+	ZielKontoID KontoID,
+	ZeitpunktZiel Zeitpunkt,
+	cast(round(sum(BetragNachGebuehr),8) as NUMERIC) Zugang, 
+	cast(0 as NUMERIC) Abgang,
+	round(sum(BetragNachGebuehr),8) Betrag,
+	1 as SollHaben,
+	case when TradeTypID = 3 and QuellKontoID = 101 then QuellBetrag else NULL end BetragEUR,
+	case when TradeTypID = 3 and QuellKontoID = 102 then QuellBetrag else NULL end BetragUSD
+from Trades where not Entwertet and (TradeTypID &lt;&gt; 9 or ZielKontoID = 224)
+group by ZielPlattformID, ZielKontoID, ZeitpunktZiel
+union all
+select 
+	QuellPlattformID, 
+	QuellKontoID, 
+	Zeitpunkt,
+	cast(0 as NUMERIC),
+	cast(round(sum(QuellBetrag),8) as NUMERIC),
+	cast(round(-sum(QuellBetrag),8) as NUMERIC),
+	0,
+	case when TradeTypID = 4 and ZielKontoID = 101 then -BetragNachGebuehr when TradeTypID = 7 then 0 else NULL end,
+	case when TradeTypID = 4 and ZielKontoID = 102 then -BetragNachGebuehr when TradeTypID = 7 then 0 else NULL end
+from Trades where not Entwertet and (TradeTypID &lt;&gt; 9 or QuellKontoID = 224)
+group by QuellPlattformID, QuellKontoID, Zeitpunkt</value>
   </data>
 </root>

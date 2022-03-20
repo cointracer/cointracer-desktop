@@ -81,6 +81,8 @@ Partial Public Class CoinTracerDataSet
     
     Private tableVW_KontenAliases As VW_KontenAliasesDataTable
     
+    Private tableApiPlattformen As ApiPlattformenDataTable
+    
     Private relationImporte_Plattformen As Global.System.Data.DataRelation
     
     Private relationKalkulationen_Szenarien As Global.System.Data.DataRelation
@@ -221,6 +223,9 @@ Partial Public Class CoinTracerDataSet
             End If
             If (Not (ds.Tables("VW_KontenAliases")) Is Nothing) Then
                 MyBase.Tables.Add(New VW_KontenAliasesDataTable(ds.Tables("VW_KontenAliases")))
+            End If
+            If (Not (ds.Tables("ApiPlattformen")) Is Nothing) Then
+                MyBase.Tables.Add(New ApiPlattformenDataTable(ds.Tables("ApiPlattformen")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -521,6 +526,16 @@ Partial Public Class CoinTracerDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property ApiPlattformen() As ApiPlattformenDataTable
+        Get
+            Return Me.tableApiPlattformen
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -669,6 +684,9 @@ Partial Public Class CoinTracerDataSet
             End If
             If (Not (ds.Tables("VW_KontenAliases")) Is Nothing) Then
                 MyBase.Tables.Add(New VW_KontenAliasesDataTable(ds.Tables("VW_KontenAliases")))
+            End If
+            If (Not (ds.Tables("ApiPlattformen")) Is Nothing) Then
+                MyBase.Tables.Add(New ApiPlattformenDataTable(ds.Tables("ApiPlattformen")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -870,6 +888,12 @@ Partial Public Class CoinTracerDataSet
                 Me.tableVW_KontenAliases.InitVars
             End If
         End If
+        Me.tableApiPlattformen = CType(MyBase.Tables("ApiPlattformen"),ApiPlattformenDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableApiPlattformen) Is Nothing) Then
+                Me.tableApiPlattformen.InitVars
+            End If
+        End If
         Me.relationImporte_Plattformen = Me.Relations("Importe_Plattformen")
         Me.relationKalkulationen_Szenarien = Me.Relations("Kalkulationen_Szenarien")
         Me.relationTrades_TradeTypen = Me.Relations("Trades_TradeTypen")
@@ -950,6 +974,8 @@ Partial Public Class CoinTracerDataSet
         MyBase.Tables.Add(Me.tableVW_GainingsReport2)
         Me.tableVW_KontenAliases = New VW_KontenAliasesDataTable()
         MyBase.Tables.Add(Me.tableVW_KontenAliases)
+        Me.tableApiPlattformen = New ApiPlattformenDataTable()
+        MyBase.Tables.Add(Me.tableApiPlattformen)
         Me.relationImporte_Plattformen = New Global.System.Data.DataRelation("Importe_Plattformen", New Global.System.Data.DataColumn() {Me.tableImporte.PlattformIDColumn}, New Global.System.Data.DataColumn() {Me.tablePlattformen.IDColumn}, false)
         Me.Relations.Add(Me.relationImporte_Plattformen)
         Me.relationKalkulationen_Szenarien = New Global.System.Data.DataRelation("Kalkulationen_Szenarien", New Global.System.Data.DataColumn() {Me.tableKalkulationen.SzenarioIDColumn}, New Global.System.Data.DataColumn() {Me.tableSzenarien.IDColumn}, false)
@@ -1150,6 +1176,12 @@ Partial Public Class CoinTracerDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Private Function ShouldSerializeApiPlattformen() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Private Sub SchemaChanged(ByVal sender As Object, ByVal e As Global.System.ComponentModel.CollectionChangeEventArgs)
         If (e.Action = Global.System.ComponentModel.CollectionChangeAction.Remove) Then
             Me.InitVars
@@ -1289,6 +1321,9 @@ Partial Public Class CoinTracerDataSet
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
     Public Delegate Sub VW_KontenAliasesRowChangeEventHandler(ByVal sender As Object, ByVal e As VW_KontenAliasesRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Delegate Sub ApiPlattformenRowChangeEventHandler(ByVal sender As Object, ByVal e As ApiPlattformenRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -11618,6 +11653,427 @@ Partial Public Class CoinTracerDataSet
     End Class
     
     '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class ApiPlattformenDataTable
+        Inherits Global.System.Data.TypedTableBase(Of ApiPlattformenRow)
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        Private columnBezeichnung As Global.System.Data.DataColumn
+        
+        Private columnCode As Global.System.Data.DataColumn
+        
+        Private columnBeschreibung As Global.System.Data.DataColumn
+        
+        Private columnSortID As Global.System.Data.DataColumn
+        
+        Private columnFix As Global.System.Data.DataColumn
+        
+        Private columnBoerse As Global.System.Data.DataColumn
+        
+        Private columnEigen As Global.System.Data.DataColumn
+        
+        Private columnApiBaseUrl As Global.System.Data.DataColumn
+        
+        Private columnIstDown As Global.System.Data.DataColumn
+        
+        Private columnDownSeit As Global.System.Data.DataColumn
+        
+        Private columnImportZiel As Global.System.Data.DataColumn
+        
+        Private columnImportEindeutig As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "ApiPlattformen"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BezeichnungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBezeichnung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property CodeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCode
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BeschreibungColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBeschreibung
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property SortIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnSortID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property FixColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFix
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property BoerseColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBoerse
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property EigenColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnEigen
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ApiBaseUrlColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnApiBaseUrl
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property IstDownColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIstDown
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property DownSeitColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDownSeit
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ImportZielColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnImportZiel
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property ImportEindeutigColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnImportEindeutig
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As ApiPlattformenRow
+            Get
+                Return CType(Me.Rows(index),ApiPlattformenRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event ApiPlattformenRowChanging As ApiPlattformenRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event ApiPlattformenRowChanged As ApiPlattformenRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event ApiPlattformenRowDeleting As ApiPlattformenRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Event ApiPlattformenRowDeleted As ApiPlattformenRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Sub AddApiPlattformenRow(ByVal row As ApiPlattformenRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overloads Function AddApiPlattformenRow(ByVal ID As Long, ByVal Bezeichnung As String, ByVal Code As String, ByVal Beschreibung As String, ByVal SortID As Long, ByVal Fix As Boolean, ByVal Boerse As Boolean, ByVal Eigen As Boolean, ByVal ApiBaseUrl As String, ByVal IstDown As Boolean, ByVal DownSeit As Date, ByVal ImportZiel As Boolean, ByVal ImportEindeutig As Boolean) As ApiPlattformenRow
+            Dim rowApiPlattformenRow As ApiPlattformenRow = CType(Me.NewRow,ApiPlattformenRow)
+            Dim columnValuesArray() As Object = New Object() {ID, Bezeichnung, Code, Beschreibung, SortID, Fix, Boerse, Eigen, ApiBaseUrl, IstDown, DownSeit, ImportZiel, ImportEindeutig}
+            rowApiPlattformenRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowApiPlattformenRow)
+            Return rowApiPlattformenRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function FindByID(ByVal ID As Long) As ApiPlattformenRow
+            Return CType(Me.Rows.Find(New Object() {ID}),ApiPlattformenRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As ApiPlattformenDataTable = CType(MyBase.Clone,ApiPlattformenDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New ApiPlattformenDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnID = MyBase.Columns("ID")
+            Me.columnBezeichnung = MyBase.Columns("Bezeichnung")
+            Me.columnCode = MyBase.Columns("Code")
+            Me.columnBeschreibung = MyBase.Columns("Beschreibung")
+            Me.columnSortID = MyBase.Columns("SortID")
+            Me.columnFix = MyBase.Columns("Fix")
+            Me.columnBoerse = MyBase.Columns("Boerse")
+            Me.columnEigen = MyBase.Columns("Eigen")
+            Me.columnApiBaseUrl = MyBase.Columns("ApiBaseUrl")
+            Me.columnIstDown = MyBase.Columns("IstDown")
+            Me.columnDownSeit = MyBase.Columns("DownSeit")
+            Me.columnImportZiel = MyBase.Columns("ImportZiel")
+            Me.columnImportEindeutig = MyBase.Columns("ImportEindeutig")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.columnBezeichnung = New Global.System.Data.DataColumn("Bezeichnung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBezeichnung)
+            Me.columnCode = New Global.System.Data.DataColumn("Code", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCode)
+            Me.columnBeschreibung = New Global.System.Data.DataColumn("Beschreibung", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBeschreibung)
+            Me.columnSortID = New Global.System.Data.DataColumn("SortID", GetType(Long), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnSortID)
+            Me.columnFix = New Global.System.Data.DataColumn("Fix", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFix)
+            Me.columnBoerse = New Global.System.Data.DataColumn("Boerse", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBoerse)
+            Me.columnEigen = New Global.System.Data.DataColumn("Eigen", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnEigen)
+            Me.columnApiBaseUrl = New Global.System.Data.DataColumn("ApiBaseUrl", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnApiBaseUrl)
+            Me.columnIstDown = New Global.System.Data.DataColumn("IstDown", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIstDown)
+            Me.columnDownSeit = New Global.System.Data.DataColumn("DownSeit", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDownSeit)
+            Me.columnImportZiel = New Global.System.Data.DataColumn("ImportZiel", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnImportZiel)
+            Me.columnImportEindeutig = New Global.System.Data.DataColumn("ImportEindeutig", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnImportEindeutig)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
+            Me.columnID.AllowDBNull = false
+            Me.columnID.Unique = true
+            Me.columnBezeichnung.MaxLength = 50
+            Me.columnCode.MaxLength = 20
+            Me.columnBeschreibung.MaxLength = 200
+            Me.columnApiBaseUrl.MaxLength = 250
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function NewApiPlattformenRow() As ApiPlattformenRow
+            Return CType(Me.NewRow,ApiPlattformenRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New ApiPlattformenRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(ApiPlattformenRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.ApiPlattformenRowChangedEvent) Is Nothing) Then
+                RaiseEvent ApiPlattformenRowChanged(Me, New ApiPlattformenRowChangeEvent(CType(e.Row,ApiPlattformenRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.ApiPlattformenRowChangingEvent) Is Nothing) Then
+                RaiseEvent ApiPlattformenRowChanging(Me, New ApiPlattformenRowChangeEvent(CType(e.Row,ApiPlattformenRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.ApiPlattformenRowDeletedEvent) Is Nothing) Then
+                RaiseEvent ApiPlattformenRowDeleted(Me, New ApiPlattformenRowChangeEvent(CType(e.Row,ApiPlattformenRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.ApiPlattformenRowDeletingEvent) Is Nothing) Then
+                RaiseEvent ApiPlattformenRowDeleting(Me, New ApiPlattformenRowChangeEvent(CType(e.Row,ApiPlattformenRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub RemoveApiPlattformenRow(ByVal row As ApiPlattformenRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As CoinTracerDataSet = New CoinTracerDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "ApiPlattformenDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
     Partial Public Class _VersionsRow
@@ -18210,6 +18666,357 @@ Partial Public Class CoinTracerDataSet
     End Class
     
     '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class ApiPlattformenRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableApiPlattformen As ApiPlattformenDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableApiPlattformen = CType(Me.Table,ApiPlattformenDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ID() As Long
+            Get
+                Return CType(Me(Me.tableApiPlattformen.IDColumn),Long)
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Bezeichnung() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.BezeichnungColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Bezeichnung in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.BezeichnungColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Code() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.CodeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Code in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.CodeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Beschreibung() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.BeschreibungColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Beschreibung in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.BeschreibungColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property SortID() As Long
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.SortIDColumn),Long)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte SortID in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.SortIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Fix() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.FixColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Fix in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.FixColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Boerse() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.BoerseColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Boerse in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.BoerseColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property Eigen() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.EigenColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Eigen in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.EigenColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ApiBaseUrl() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.ApiBaseUrlColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ApiBaseUrl in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.ApiBaseUrlColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property IstDown() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.IstDownColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte IstDown in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.IstDownColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property DownSeit() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.DownSeitColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte DownSeit in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.DownSeitColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ImportZiel() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.ImportZielColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ImportZiel in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.ImportZielColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ImportEindeutig() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableApiPlattformen.ImportEindeutigColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ImportEindeutig in Tabelle ApiPlattformen ist DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableApiPlattformen.ImportEindeutigColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBezeichnungNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.BezeichnungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBezeichnungNull()
+            Me(Me.tableApiPlattformen.BezeichnungColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsCodeNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.CodeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetCodeNull()
+            Me(Me.tableApiPlattformen.CodeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBeschreibungNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.BeschreibungColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBeschreibungNull()
+            Me(Me.tableApiPlattformen.BeschreibungColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsSortIDNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.SortIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetSortIDNull()
+            Me(Me.tableApiPlattformen.SortIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsFixNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.FixColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetFixNull()
+            Me(Me.tableApiPlattformen.FixColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsBoerseNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.BoerseColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetBoerseNull()
+            Me(Me.tableApiPlattformen.BoerseColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsEigenNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.EigenColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetEigenNull()
+            Me(Me.tableApiPlattformen.EigenColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsApiBaseUrlNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.ApiBaseUrlColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetApiBaseUrlNull()
+            Me(Me.tableApiPlattformen.ApiBaseUrlColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsIstDownNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.IstDownColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetIstDownNull()
+            Me(Me.tableApiPlattformen.IstDownColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsDownSeitNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.DownSeitColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetDownSeitNull()
+            Me(Me.tableApiPlattformen.DownSeitColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsImportZielNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.ImportZielColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetImportZielNull()
+            Me(Me.tableApiPlattformen.ImportZielColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Function IsImportEindeutigNull() As Boolean
+            Return Me.IsNull(Me.tableApiPlattformen.ImportEindeutigColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub SetImportEindeutigNull()
+            Me(Me.tableApiPlattformen.ImportEindeutigColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
@@ -19203,6 +20010,42 @@ Partial Public Class CoinTracerDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public ReadOnly Property Row() As VW_KontenAliasesRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+    Public Class ApiPlattformenRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As ApiPlattformenRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New(ByVal row As ApiPlattformenRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public ReadOnly Property Row() As ApiPlattformenRow
             Get
                 Return Me.eventRow
             End Get
@@ -33337,6 +34180,786 @@ Namespace CoinTracerDataSetTableAdapters
     End Class
     
     '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class ApiPlattformenTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SQLite.SQLiteDataAdapter
+        
+        Private _connection As Global.System.Data.SQLite.SQLiteConnection
+        
+        Private _transaction As Global.System.Data.SQLite.SQLiteTransaction
+        
+        Private _commandCollection() As Global.System.Data.SQLite.SQLiteCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SQLite.SQLiteDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SQLite.SQLiteConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SQLite.SQLiteCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SQLite.SQLiteTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SQLite.SQLiteCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SQLite.SQLiteDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "ApiPlattformen"
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("Bezeichnung", "Bezeichnung")
+            tableMapping.ColumnMappings.Add("Code", "Code")
+            tableMapping.ColumnMappings.Add("Beschreibung", "Beschreibung")
+            tableMapping.ColumnMappings.Add("SortID", "SortID")
+            tableMapping.ColumnMappings.Add("Fix", "Fix")
+            tableMapping.ColumnMappings.Add("Boerse", "Boerse")
+            tableMapping.ColumnMappings.Add("Eigen", "Eigen")
+            tableMapping.ColumnMappings.Add("ApiBaseUrl", "ApiBaseUrl")
+            tableMapping.ColumnMappings.Add("IstDown", "IstDown")
+            tableMapping.ColumnMappings.Add("DownSeit", "DownSeit")
+            tableMapping.ColumnMappings.Add("ImportZiel", "ImportZiel")
+            tableMapping.ColumnMappings.Add("ImportEindeutig", "ImportEindeutig")
+            Me._adapter.TableMappings.Add(tableMapping)
+            Me._adapter.DeleteCommand = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._adapter.DeleteCommand.Connection = Me.Connection
+            Me._adapter.DeleteCommand.CommandText = "DELETE FROM [main].[sqlite_default_schema].[Plattformen] WHERE (([ID] = @Original"& _ 
+                "_ID) AND ((@IsNull_Bezeichnung = 1 AND [Bezeichnung] IS NULL) OR ([Bezeichnung] "& _ 
+                "= @Original_Bezeichnung)) AND ((@IsNull_Code = 1 AND [Code] IS NULL) OR ([Code] "& _ 
+                "= @Original_Code)) AND ((@IsNull_Beschreibung = 1 AND [Beschreibung] IS NULL) OR"& _ 
+                " ([Beschreibung] = @Original_Beschreibung)) AND ((@IsNull_SortID = 1 AND [SortID"& _ 
+                "] IS NULL) OR ([SortID] = @Original_SortID)) AND ((@IsNull_Fix = 1 AND [Fix] IS "& _ 
+                "NULL) OR ([Fix] = @Original_Fix)) AND ((@IsNull_Boerse = 1 AND [Boerse] IS NULL)"& _ 
+                " OR ([Boerse] = @Original_Boerse)) AND ((@IsNull_Eigen = 1 AND [Eigen] IS NULL) "& _ 
+                "OR ([Eigen] = @Original_Eigen)) AND ((@IsNull_ApiBaseUrl = 1 AND [ApiBaseUrl] IS"& _ 
+                " NULL) OR ([ApiBaseUrl] = @Original_ApiBaseUrl)) AND ((@IsNull_IstDown = 1 AND ["& _ 
+                "IstDown] IS NULL) OR ([IstDown] = @Original_IstDown)) AND ((@IsNull_DownSeit = 1"& _ 
+                " AND [DownSeit] IS NULL) OR ([DownSeit] = @Original_DownSeit)) AND ((@IsNull_Imp"& _ 
+                "ortZiel = 1 AND [ImportZiel] IS NULL) OR ([ImportZiel] = @Original_ImportZiel)) "& _ 
+                "AND ((@IsNull_ImportEindeutig = 1 AND [ImportEindeutig] IS NULL) OR ([ImportEind"& _ 
+                "eutig] = @Original_ImportEindeutig)))"
+            Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
+            Dim param As Global.System.Data.SQLite.SQLiteParameter = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "ID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Bezeichnung"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Bezeichnung"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Bezeichnung"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Bezeichnung"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Code"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Code"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Beschreibung"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Beschreibung"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Beschreibung"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Beschreibung"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_SortID"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "SortID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_SortID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "SortID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Fix"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Fix"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Fix"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Fix"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Boerse"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Boerse"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Boerse"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Boerse"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Eigen"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Eigen"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Eigen"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Eigen"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_ApiBaseUrl"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "ApiBaseUrl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ApiBaseUrl"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "ApiBaseUrl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_IstDown"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "IstDown"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_IstDown"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "IstDown"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_DownSeit"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "DownSeit"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_DownSeit"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.SourceColumn = "DownSeit"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_ImportZiel"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "ImportZiel"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ImportZiel"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "ImportZiel"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_ImportEindeutig"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "ImportEindeutig"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ImportEindeutig"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "ImportEindeutig"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.DeleteCommand.Parameters.Add(param)
+            Me._adapter.InsertCommand = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._adapter.InsertCommand.Connection = Me.Connection
+            Me._adapter.InsertCommand.CommandText = "INSERT INTO [main].[sqlite_default_schema].[Plattformen] ([ID], [Bezeichnung], [C"& _ 
+                "ode], [Beschreibung], [SortID], [Fix], [Boerse], [Eigen], [ApiBaseUrl], [IstDown"& _ 
+                "], [DownSeit], [ImportZiel], [ImportEindeutig]) VALUES (@ID, @Bezeichnung, @Code"& _ 
+                ", @Beschreibung, @SortID, @Fix, @Boerse, @Eigen, @ApiBaseUrl, @IstDown, @DownSei"& _ 
+                "t, @ImportZiel, @ImportEindeutig)"
+            Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "ID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Bezeichnung"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Bezeichnung"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Code"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Code"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Beschreibung"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Beschreibung"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@SortID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "SortID"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Fix"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Fix"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Boerse"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Boerse"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Eigen"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Eigen"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ApiBaseUrl"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "ApiBaseUrl"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IstDown"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "IstDown"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@DownSeit"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.SourceColumn = "DownSeit"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ImportZiel"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "ImportZiel"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ImportEindeutig"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "ImportEindeutig"
+            Me._adapter.InsertCommand.Parameters.Add(param)
+            Me._adapter.UpdateCommand = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._adapter.UpdateCommand.Connection = Me.Connection
+            Me._adapter.UpdateCommand.CommandText = "UPDATE [main].[sqlite_default_schema].[Plattformen] SET [ID] = @ID, [Bezeichnung]"& _ 
+                " = @Bezeichnung, [Code] = @Code, [Beschreibung] = @Beschreibung, [SortID] = @Sor"& _ 
+                "tID, [Fix] = @Fix, [Boerse] = @Boerse, [Eigen] = @Eigen, [ApiBaseUrl] = @ApiBase"& _ 
+                "Url, [IstDown] = @IstDown, [DownSeit] = @DownSeit, [ImportZiel] = @ImportZiel, ["& _ 
+                "ImportEindeutig] = @ImportEindeutig WHERE (([ID] = @Original_ID) AND ((@IsNull_B"& _ 
+                "ezeichnung = 1 AND [Bezeichnung] IS NULL) OR ([Bezeichnung] = @Original_Bezeichn"& _ 
+                "ung)) AND ((@IsNull_Code = 1 AND [Code] IS NULL) OR ([Code] = @Original_Code)) A"& _ 
+                "ND ((@IsNull_Beschreibung = 1 AND [Beschreibung] IS NULL) OR ([Beschreibung] = @"& _ 
+                "Original_Beschreibung)) AND ((@IsNull_SortID = 1 AND [SortID] IS NULL) OR ([Sort"& _ 
+                "ID] = @Original_SortID)) AND ((@IsNull_Fix = 1 AND [Fix] IS NULL) OR ([Fix] = @O"& _ 
+                "riginal_Fix)) AND ((@IsNull_Boerse = 1 AND [Boerse] IS NULL) OR ([Boerse] = @Ori"& _ 
+                "ginal_Boerse)) AND ((@IsNull_Eigen = 1 AND [Eigen] IS NULL) OR ([Eigen] = @Origi"& _ 
+                "nal_Eigen)) AND ((@IsNull_ApiBaseUrl = 1 AND [ApiBaseUrl] IS NULL) OR ([ApiBaseU"& _ 
+                "rl] = @Original_ApiBaseUrl)) AND ((@IsNull_IstDown = 1 AND [IstDown] IS NULL) OR"& _ 
+                " ([IstDown] = @Original_IstDown)) AND ((@IsNull_DownSeit = 1 AND [DownSeit] IS N"& _ 
+                "ULL) OR ([DownSeit] = @Original_DownSeit)) AND ((@IsNull_ImportZiel = 1 AND [Imp"& _ 
+                "ortZiel] IS NULL) OR ([ImportZiel] = @Original_ImportZiel)) AND ((@IsNull_Import"& _ 
+                "Eindeutig = 1 AND [ImportEindeutig] IS NULL) OR ([ImportEindeutig] = @Original_I"& _ 
+                "mportEindeutig)))"
+            Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "ID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Bezeichnung"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Bezeichnung"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Code"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Code"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Beschreibung"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Beschreibung"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@SortID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "SortID"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Fix"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Fix"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Boerse"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Boerse"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Eigen"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Eigen"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ApiBaseUrl"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "ApiBaseUrl"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IstDown"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "IstDown"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@DownSeit"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.SourceColumn = "DownSeit"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ImportZiel"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "ImportZiel"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@ImportEindeutig"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "ImportEindeutig"
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "ID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Bezeichnung"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Bezeichnung"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Bezeichnung"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Bezeichnung"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Code"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Code"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Code"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Beschreibung"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Beschreibung"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Beschreibung"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "Beschreibung"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_SortID"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "SortID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_SortID"
+            param.DbType = Global.System.Data.DbType.Int64
+            param.DbType = Global.System.Data.DbType.Int64
+            param.SourceColumn = "SortID"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Fix"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Fix"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Fix"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Fix"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Boerse"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Boerse"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Boerse"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Boerse"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_Eigen"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "Eigen"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_Eigen"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "Eigen"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_ApiBaseUrl"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "ApiBaseUrl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ApiBaseUrl"
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.DbType = Global.System.Data.DbType.AnsiString
+            param.SourceColumn = "ApiBaseUrl"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_IstDown"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "IstDown"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_IstDown"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "IstDown"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_DownSeit"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "DownSeit"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_DownSeit"
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.DbType = Global.System.Data.DbType.DateTime
+            param.SourceColumn = "DownSeit"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_ImportZiel"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "ImportZiel"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ImportZiel"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "ImportZiel"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@IsNull_ImportEindeutig"
+            param.DbType = Global.System.Data.DbType.Int32
+            param.DbType = Global.System.Data.DbType.Int32
+            param.SourceColumn = "ImportEindeutig"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            param.SourceColumnNullMapping = true
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+            param = New Global.System.Data.SQLite.SQLiteParameter()
+            param.ParameterName = "@Original_ImportEindeutig"
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.DbType = Global.System.Data.DbType.[Boolean]
+            param.SourceColumn = "ImportEindeutig"
+            param.SourceVersion = Global.System.Data.DataRowVersion.Original
+            Me._adapter.UpdateCommand.Parameters.Add(param)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SQLite.SQLiteConnection()
+            Me._connection.ConnectionString = Global.CoinTracer.My.MySettings.Default.CoinTracerCS
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SQLite.SQLiteCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SQLite.SQLiteCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT * FROM Plattformen WHERE ID IN (202, 206, 207)"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As CoinTracerDataSet.ApiPlattformenDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataTable As CoinTracerDataSet.ApiPlattformenDataTable) As Integer
+            Return Me.Adapter.Update(dataTable)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataSet As CoinTracerDataSet) As Integer
+            Return Me.Adapter.Update(dataSet, "ApiPlattformen")
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRow As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(New Global.System.Data.DataRow() {dataRow})
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+        Public Overloads Overridable Function Update(ByVal dataRows() As Global.System.Data.DataRow) As Integer
+            Return Me.Adapter.Update(dataRows)
+        End Function
+    End Class
+    
+    '''<summary>
     '''TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     '''</summary>
     <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
@@ -33378,6 +35001,8 @@ Namespace CoinTracerDataSetTableAdapters
         Private _tradeTxTableAdapter As TradeTxTableAdapter
         
         Private _kontenAliasesTableAdapter As KontenAliasesTableAdapter
+        
+        Private _apiPlattformenTableAdapter As ApiPlattformenTableAdapter
         
         Private _backupDataSetBeforeUpdate As Boolean
         
@@ -33605,6 +35230,20 @@ Namespace CoinTracerDataSetTableAdapters
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"),  _
+         Global.System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso"& _ 
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3"& _ 
+            "a", "System.Drawing.Design.UITypeEditor")>  _
+        Public Property ApiPlattformenTableAdapter() As ApiPlattformenTableAdapter
+            Get
+                Return Me._apiPlattformenTableAdapter
+            End Get
+            Set
+                Me._apiPlattformenTableAdapter = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Public Property BackupDataSetBeforeUpdate() As Boolean
             Get
@@ -33683,6 +35322,10 @@ Namespace CoinTracerDataSetTableAdapters
                             AndAlso (Not (Me._kontenAliasesTableAdapter.Connection) Is Nothing)) Then
                     Return Me._kontenAliasesTableAdapter.Connection
                 End If
+                If ((Not (Me._apiPlattformenTableAdapter) Is Nothing)  _
+                            AndAlso (Not (Me._apiPlattformenTableAdapter.Connection) Is Nothing)) Then
+                    Return Me._apiPlattformenTableAdapter.Connection
+                End If
                 Return Nothing
             End Get
             Set
@@ -33739,6 +35382,9 @@ Namespace CoinTracerDataSetTableAdapters
                     count = (count + 1)
                 End If
                 If (Not (Me._kontenAliasesTableAdapter) Is Nothing) Then
+                    count = (count + 1)
+                End If
+                If (Not (Me._apiPlattformenTableAdapter) Is Nothing) Then
                     count = (count + 1)
                 End If
                 Return count
@@ -33887,6 +35533,15 @@ Namespace CoinTracerDataSetTableAdapters
                     allChangedRows.AddRange(updatedRows)
                 End If
             End If
+            If (Not (Me._apiPlattformenTableAdapter) Is Nothing) Then
+                Dim updatedRows() As Global.System.Data.DataRow = dataSet.ApiPlattformen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.ModifiedCurrent)
+                updatedRows = Me.GetRealUpdatedRows(updatedRows, allAddedRows)
+                If ((Not (updatedRows) Is Nothing)  _
+                            AndAlso (0 < updatedRows.Length)) Then
+                    result = (result + Me._apiPlattformenTableAdapter.Update(updatedRows))
+                    allChangedRows.AddRange(updatedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -34017,6 +35672,14 @@ Namespace CoinTracerDataSetTableAdapters
                     allAddedRows.AddRange(addedRows)
                 End If
             End If
+            If (Not (Me._apiPlattformenTableAdapter) Is Nothing) Then
+                Dim addedRows() As Global.System.Data.DataRow = dataSet.ApiPlattformen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Added)
+                If ((Not (addedRows) Is Nothing)  _
+                            AndAlso (0 < addedRows.Length)) Then
+                    result = (result + Me._apiPlattformenTableAdapter.Update(addedRows))
+                    allAddedRows.AddRange(addedRows)
+                End If
+            End If
             Return result
         End Function
         
@@ -34027,6 +35690,14 @@ Namespace CoinTracerDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")>  _
         Private Function UpdateDeletedRows(ByVal dataSet As CoinTracerDataSet, ByVal allChangedRows As Global.System.Collections.Generic.List(Of Global.System.Data.DataRow)) As Integer
             Dim result As Integer = 0
+            If (Not (Me._apiPlattformenTableAdapter) Is Nothing) Then
+                Dim deletedRows() As Global.System.Data.DataRow = dataSet.ApiPlattformen.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
+                If ((Not (deletedRows) Is Nothing)  _
+                            AndAlso (0 < deletedRows.Length)) Then
+                    result = (result + Me._apiPlattformenTableAdapter.Update(deletedRows))
+                    allChangedRows.AddRange(deletedRows)
+                End If
+            End If
             If (Not (Me._kontenTableAdapter) Is Nothing) Then
                 Dim deletedRows() As Global.System.Data.DataRow = dataSet.Konten.Select(Nothing, Nothing, Global.System.Data.DataViewRowState.Deleted)
                 If ((Not (deletedRows) Is Nothing)  _
@@ -34263,6 +35934,11 @@ Namespace CoinTracerDataSetTableAdapters
                 Throw New Global.System.ArgumentException("Für alle von einem TableAdapterManager verwalteten Instanzen von TableAdapter mus"& _ 
                         "s die gleiche Verbindungszeichenfolge verwendet werden.")
             End If
+            If ((Not (Me._apiPlattformenTableAdapter) Is Nothing)  _
+                        AndAlso (Me.MatchTableAdapterConnection(Me._apiPlattformenTableAdapter.Connection) = false)) Then
+                Throw New Global.System.ArgumentException("Für alle von einem TableAdapterManager verwalteten Instanzen von TableAdapter mus"& _ 
+                        "s die gleiche Verbindungszeichenfolge verwendet werden.")
+            End If
             Dim workConnection As Global.System.Data.IDbConnection = Me.Connection
             If (workConnection Is Nothing) Then
                 Throw New Global.System.ApplicationException("TableAdapterManager enthält keine Verbindungsinformationen. Legen Sie jede TableA"& _ 
@@ -34432,6 +36108,15 @@ Namespace CoinTracerDataSetTableAdapters
                         adaptersWithAcceptChangesDuringUpdate.Add(Me._kontenAliasesTableAdapter.Adapter)
                     End If
                 End If
+                If (Not (Me._apiPlattformenTableAdapter) Is Nothing) Then
+                    revertConnections.Add(Me._apiPlattformenTableAdapter, Me._apiPlattformenTableAdapter.Connection)
+                    Me._apiPlattformenTableAdapter.Connection = CType(workConnection,Global.System.Data.SQLite.SQLiteConnection)
+                    Me._apiPlattformenTableAdapter.Transaction = CType(workTransaction,Global.System.Data.SQLite.SQLiteTransaction)
+                    If Me._apiPlattformenTableAdapter.Adapter.AcceptChangesDuringUpdate Then
+                        Me._apiPlattformenTableAdapter.Adapter.AcceptChangesDuringUpdate = false
+                        adaptersWithAcceptChangesDuringUpdate.Add(Me._apiPlattformenTableAdapter.Adapter)
+                    End If
+                End If
                 '
                 '---- Perform updates -----------
                 '
@@ -34551,6 +36236,10 @@ Namespace CoinTracerDataSetTableAdapters
                 If (Not (Me._kontenAliasesTableAdapter) Is Nothing) Then
                     Me._kontenAliasesTableAdapter.Connection = CType(revertConnections(Me._kontenAliasesTableAdapter),Global.System.Data.SQLite.SQLiteConnection)
                     Me._kontenAliasesTableAdapter.Transaction = Nothing
+                End If
+                If (Not (Me._apiPlattformenTableAdapter) Is Nothing) Then
+                    Me._apiPlattformenTableAdapter.Connection = CType(revertConnections(Me._apiPlattformenTableAdapter),Global.System.Data.SQLite.SQLiteConnection)
+                    Me._apiPlattformenTableAdapter.Transaction = Nothing
                 End If
                 If (0 < adaptersWithAcceptChangesDuringUpdate.Count) Then
                     Dim adapters((adaptersWithAcceptChangesDuringUpdate.Count) - 1) As Global.System.Data.Common.DataAdapter

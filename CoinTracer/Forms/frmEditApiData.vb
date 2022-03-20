@@ -80,7 +80,7 @@ Public Class frmEditApiData
     Public Function ProcessPasswordProtection() As Boolean
 
         ' Tabellen füllen (wg. Abfrage der Anzahl unten)
-        PlattformenTableAdapter.Fill(CoinTracerDataSet.Plattformen)
+        ApiPlattformenTableAdapter.Fill(CoinTracerDataSet.ApiPlattformen)
         ApiDatenTableAdapter.Fill(CoinTracerDataSet.ApiDaten)
 
         Dim Import As New Import(frmMain.CointracerDatabase)
@@ -157,6 +157,8 @@ Public Class frmEditApiData
     End Function
 
     Private Sub frmEditApiData_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: Diese Codezeile lädt Daten in die Tabelle "CoinTracerDataSet.ApiPlattformen". Sie können sie bei Bedarf verschieben oder entfernen.
+        Me.ApiPlattformenTableAdapter.Fill(Me.CoinTracerDataSet.ApiPlattformen)
 
         'Dim PlattformenTA As New PlattformenTableAdapter
         'PlattformenTA.FillByApiImports(CoinTracerDataSet.Plattformen)   ' TODO: Remove the binance part when it's time
@@ -165,8 +167,8 @@ Public Class frmEditApiData
         _NewRows = New List(Of Long)
 
         ' PlattformenComboBox
-        PlattformenBindingSource.DataSource = CoinTracerDataSet
-        PlattformenBindingSource.DataMember = "Plattformen"
+        ApiPlattformenBindingSource.DataSource = CoinTracerDataSet
+        ApiPlattformenBindingSource.DataMember = "ApiPlattformen"
         Dim b As New Binding("SelectedValue",
              ApiDatenBindingSource, "PlattformID", True)
         PlattformIDComboBox.DataBindings.Add(b)

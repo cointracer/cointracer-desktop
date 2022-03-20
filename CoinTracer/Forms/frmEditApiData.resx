@@ -1,37 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!--
- **************************************
- *
- * Copyright 2013-2022 Andreas Nebinger
- *
- * Lizenziert unter der EUPL, Version 1.2 oder - sobald diese von der Europäischen Kommission genehmigt wurden -
-   Folgeversionen der EUPL ("Lizenz");
- * Sie dürfen dieses Werk ausschließlich gemäß dieser Lizenz nutzen. Eine Kopie der Lizenz finden Sie hier:
-
- * https://joinup.ec.europa.eu/release/eupl/v12  (oder in der in diesem Projekt enthaltenden Datei "Lizenz.txt")
- 
- * Sofern nicht durch anwendbare Rechtsvorschriften gefordert oder in schriftlicher Form vereinbart, wird die
-   unter der Lizenz verbreitete Software "so wie sie ist", OHNE JEGLICHE GEWÄHRLEISTUNG ODER BEDINGUNGEN -
-   ausdrücklich oder stillschweigend - verbreitet.
- * Die sprachspezifischen Genehmigungen und Beschränkungen unter der Lizenz sind dem Lizenztext zu entnehmen.
-
- =======
- English
- =======
- 
- * Licensed under the EUPL, Version 1.2 or - as soon they will be approved by the European Commission -
-   subsequent versions of the EUPL (the "Licence");
- * You may not use this work except in compliance with the Licence. You may obtain a copy of the Licence at:
- 
- * https://joinup.ec.europa.eu/release/eupl/v12  (or in the file "License.txt", which is part of this project)
- 
- * Unless required by applicable law or agreed to in writing, software distributed under the Licence is
-   distributed on an "AS IS" basis, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the Licence for the specific language governing permissions and limitations under the Licence.
- *
- **************************************
--->
-
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -219,6 +186,9 @@
   <metadata name="AktivLabel.GenerateMember" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>False</value>
   </metadata>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>211, 56</value>
+  </metadata>
   <data name="AktivLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -234,9 +204,6 @@
   <data name="AktivLabel.Text" xml:space="preserve">
     <value>Aktiv:</value>
   </data>
-  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>211, 56</value>
-  </metadata>
   <data name="AktivLabel.ToolTip" xml:space="preserve">
     <value>Zeigt an, ob diese Daten beim API-Import verwendet werden sollen.</value>
   </data>
@@ -703,6 +670,9 @@
   <data name="&gt;&gt;ApiDatenBindingNavigator.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <metadata name="CoinTracerDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <data name="IDTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>97, 9</value>
   </data>
@@ -746,7 +716,7 @@
     <value>CallDelayNumericUpDown</value>
   </data>
   <data name="&gt;&gt;CallDelayNumericUpDown.Type" xml:space="preserve">
-    <value>CoinTracer.TouchedNumericUpDown, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.TouchedNumericUpDown, CoinTracer, Version=0.9.7.5, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;CallDelayNumericUpDown.Parent" xml:space="preserve">
     <value>pnlDetails</value>
@@ -770,7 +740,7 @@
     <value>ccbBitfinexCurrencies</value>
   </data>
   <data name="&gt;&gt;ccbBitfinexCurrencies.Type" xml:space="preserve">
-    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CheckComboBox.CheckedComboBox, CoinTracer, Version=0.9.7.5, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ccbBitfinexCurrencies.Parent" xml:space="preserve">
     <value>pnlDetails</value>
@@ -928,8 +898,8 @@
   <data name="&gt;&gt;BezeichnungTextBox.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <metadata name="PlattformenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+  <metadata name="ApiPlattformenBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>499, 56</value>
   </metadata>
   <data name="PlattformIDComboBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>97, 38</value>
@@ -1218,28 +1188,13 @@
     <value>True</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>70</value>
+    <value>101</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>7, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>506, 442</value>
-  </data>
-  <data name="Label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="Label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 29</value>
-  </data>
-  <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>486, 37</value>
-  </data>
-  <data name="Label3.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="Label3.Text" xml:space="preserve">
-    <value>Konfigurieren Sie hier beliebig viele API-Zugangsdaten für die unterstützten Trading-Plattformen. Um Einzelne zu deaktivieren entfernen Sie das Häkchen bei "aktiv".</value>
   </data>
   <data name="&gt;&gt;Label3.Name" xml:space="preserve">
     <value>Label3</value>
@@ -1252,24 +1207,6 @@
   </data>
   <data name="&gt;&gt;Label3.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="Label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="Label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9.75pt, style=Bold</value>
-  </data>
-  <data name="Label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 8</value>
-  </data>
-  <data name="Label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 17</value>
-  </data>
-  <data name="Label4.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="Label4.Text" xml:space="preserve">
-    <value>API-Zugangsdaten bearbeiten</value>
   </data>
   <data name="&gt;&gt;Label4.Name" xml:space="preserve">
     <value>Label4</value>
@@ -1329,7 +1266,7 @@
     <value>CoinTracerDataSet</value>
   </data>
   <data name="&gt;&gt;CoinTracerDataSet.Type" xml:space="preserve">
-    <value>CoinTracer.CoinTracerDataSet, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CoinTracerDataSet, CoinTracer, Version=0.9.7.5, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;BindingNavigatorCountItem.Name" xml:space="preserve">
     <value>BindingNavigatorCountItem</value>
@@ -1397,12 +1334,6 @@
   <data name="&gt;&gt;BindingNavigatorDeleteItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;PlattformenBindingSource.Name" xml:space="preserve">
-    <value>PlattformenBindingSource</value>
-  </data>
-  <data name="&gt;&gt;PlattformenBindingSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;ErrProvider.Name" xml:space="preserve">
     <value>ErrProvider</value>
   </data>
@@ -1419,19 +1350,25 @@
     <value>TableAdapterManager</value>
   </data>
   <data name="&gt;&gt;TableAdapterManager.Type" xml:space="preserve">
-    <value>CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager, CoinTracer, Version=0.9.7.5, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;ApiDatenTableAdapter.Name" xml:space="preserve">
     <value>ApiDatenTableAdapter</value>
   </data>
   <data name="&gt;&gt;ApiDatenTableAdapter.Type" xml:space="preserve">
-    <value>CoinTracer.CoinTracerDataSetTableAdapters.ApiDatenTableAdapter, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.ApiDatenTableAdapter, CoinTracer, Version=0.9.7.5, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;PlattformenTableAdapter.Name" xml:space="preserve">
-    <value>PlattformenTableAdapter</value>
+  <data name="&gt;&gt;ApiPlattformenBindingSource.Name" xml:space="preserve">
+    <value>ApiPlattformenBindingSource</value>
   </data>
-  <data name="&gt;&gt;PlattformenTableAdapter.Type" xml:space="preserve">
-    <value>CoinTracer.CoinTracerDataSetTableAdapters.PlattformenTableAdapter, CoinTracer, Version=0.9.4.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;ApiPlattformenBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ApiPlattformenTableAdapter.Name" xml:space="preserve">
+    <value>ApiPlattformenTableAdapter</value>
+  </data>
+  <data name="&gt;&gt;ApiPlattformenTableAdapter.Type" xml:space="preserve">
+    <value>CoinTracer.CoinTracerDataSetTableAdapters.ApiPlattformenTableAdapter, CoinTracer, Version=0.9.7.5, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmEditApiData</value>
@@ -1439,13 +1376,73 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Label3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="Label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 29</value>
+  </data>
+  <data name="Label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>486, 37</value>
+  </data>
+  <data name="Label3.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="Label3.Text" xml:space="preserve">
+    <value>Konfigurieren Sie hier beliebig viele API-Zugangsdaten für die unterstützten Trading-Plattformen. Um Einzelne zu deaktivieren entfernen Sie das Häkchen bei "aktiv".</value>
+  </data>
+  <data name="&gt;&gt;Label3.Name" xml:space="preserve">
+    <value>Label3</value>
+  </data>
+  <data name="&gt;&gt;Label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label3.Parent" xml:space="preserve">
+    <value>pnlEditTrades</value>
+  </data>
+  <data name="&gt;&gt;Label3.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="Label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="Label4.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9.75pt, style=Bold</value>
+  </data>
+  <data name="Label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 8</value>
+  </data>
+  <data name="Label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>192, 17</value>
+  </data>
+  <data name="Label4.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="Label4.Text" xml:space="preserve">
+    <value>API-Zugangsdaten bearbeiten</value>
+  </data>
+  <data name="&gt;&gt;Label4.Name" xml:space="preserve">
+    <value>Label4</value>
+  </data>
+  <data name="&gt;&gt;Label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Label4.Parent" xml:space="preserve">
+    <value>pnlEditTrades</value>
+  </data>
+  <data name="&gt;&gt;Label4.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="ToolTip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>211, 56</value>
+  </metadata>
   <metadata name="TableAdapterManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>553, 17</value>
   </metadata>
   <metadata name="ApiDatenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>360, 17</value>
   </metadata>
-  <metadata name="PlattformenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>310, 56</value>
+  <metadata name="ApiPlattformenTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>712, 56</value>
   </metadata>
 </root>

@@ -86,6 +86,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
         Dim selectedFilterValue As String
         Dim currentColumnFilter As String
         Dim currentColumnFilterItems() As String
+        Dim dataFilter As String
     End Structure
     Private _filterBackup As FilterSettings
 
@@ -1692,6 +1693,7 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
             .currentColumnFilterItems = currentColumnFilterItems.Clone
             .filtered = filtered
             .selectedFilterValue = selectedFilterValue
+            .dataFilter = TryCast(DataGridView.DataSource, IBindingListView).Filter
             If DataGridView.SortedColumn Is OwningColumn Then
                 .SortDir = DataGridView.SortOrder
             Else
@@ -1708,7 +1710,14 @@ Public Class DataGridViewAutoFilterColumnHeaderCell
                 currentColumnFilterItems = .currentColumnFilterItems.Clone
                 filtered = .filtered
                 selectedFilterValue = .selectedFilterValue
-                UpdateFilter()
+                ' Restore the actual filter expression
+                Try
+                    Dim data As IBindingListView = TryCast(DataGridView.DataSource, IBindingListView)
+                    data.Filter = .dataFilter
+                Catch ex As InvalidExpressionException
+                    Throw New NotSupportedException("Invalid expression: " & .dataFilter, ex)
+                End Try
+                ' UpdateFilter()
             End If
             If .SortDir = SortOrder.Ascending Then
                 DataGridView.Sort(OwningColumn, ListSortDirection.Ascending)

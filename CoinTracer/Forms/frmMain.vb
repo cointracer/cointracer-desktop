@@ -36,6 +36,7 @@ Imports System.Net
 Imports System.ComponentModel
 Imports CoinTracer.CoinTracerDataSetTableAdapters
 Imports CoinTracer.My.Resources
+Imports System.Linq
 
 Public Class frmMain
 
@@ -616,14 +617,14 @@ Public Class frmMain
                 With dshgrdBestaende
                     .SetSQL(String.Format("select k.IstFiat, case k.IstFiat when 1 then 'Währung' else 'Coins' end Art, k.Bezeichnung, " &
                             "case p.Eigen when 1 then p.Bezeichnung else '(' || p.Bezeichnung || ')' end PlattformBezeichnung, " &
-                            "round(sum(case SollHaben when 1 then Betrag else 0 end),8) Haben, " &
-                            "round(sum(case SollHaben when 0 then Betrag else 0 end),8) Soll, " &
+                            "round(sum(Zugang),8) Haben, " &
+                            "round(sum(Abgang),8) Soll, " &
                             "round(sum(Betrag),8) Bestand, " &
-                            "round(sum(case SollHaben when 1 then ifnull(Betrag{0},0) else 0 end) / sum(case when SollHaben = 1 and Betrag{0} is not Null then _BetragNetto else 0 end),2) Kaufpreis{0}, " &
+                            "round(sum(case SollHaben when 1 then ifnull(Betrag{0},0) else 0 end) / sum(case when SollHaben = 1 and Betrag{0} is not Null then Betrag else 0 end),2) Kaufpreis{0}, " &
                             "round(sum(case SollHaben when 0 then ifnull(Betrag{0},0) else 0 end) / sum(case when SollHaben = 0 and Betrag{0} is not Null then Betrag else 0 end),2) Verkaufspreis{0} " &
-                            "from VW_ZugangAbgang d left join Konten k on d.KontoID = k.ID " &
-                            "left join Plattformen p on d.Plattform = p.ID", My.Settings.InventoryPricesCurrency),
-                            "k.Eigen=1", "KontoID, d.Plattform", "k.IstFiat, k.SortID, p.SortID")
+                            "from VW_Balances d left join Konten k on d.KontoID = k.ID " &
+                            "left join Plattformen p on d.PlattformID = p.ID", My.Settings.InventoryPricesCurrency),
+                            "k.Eigen=1", "KontoID, d.PlattformID", "k.IstFiat, k.SortID, p.SortID")
                     .Reload()
                     .Columns("Plattform").Visible = True
                     .Columns("Art").Visible = False
@@ -644,13 +645,13 @@ Public Class frmMain
             Else
                 ' Nur Bestände, ohne Plattform-Informationen
                 With dshgrdBestaende
-                    .SetSQL(String.Format("select k.IstFiat, case k.IstFiat when 1 then 'Währung' else 'Coins' end Art, k.Bezeichnung, '', round(sum(case SollHaben when 1 then Betrag else 0 end),8) Haben, " &
-                        "round(sum(case SollHaben when 0 then Betrag else 0 end),8) Soll, " &
+                    .SetSQL(String.Format("select k.IstFiat, case k.IstFiat when 1 then 'Währung' else 'Coins' end Art, k.Bezeichnung, '', round(sum(Zugang),8) Haben, " &
+                        "round(sum(Abgang),8) Soll, " &
                         "round(sum(Betrag),8) Bestand, " &
-                        "round(sum(case SollHaben when 1 then ifnull(Betrag{0},0) else 0 end) / sum(case when SollHaben = 1 and Betrag{0} is not Null then _BetragNetto else 0 end),2) Kaufpreis{0}, " &
+                        "round(sum(case SollHaben when 1 then ifnull(Betrag{0},0) else 0 end) / sum(case when SollHaben = 1 and Betrag{0} is not Null then Betrag else 0 end),2) Kaufpreis{0}, " &
                         "round(sum(case SollHaben when 0 then ifnull(Betrag{0},0) else 0 end) / sum(case when SollHaben = 0 and Betrag{0} is not Null then Betrag else 0 end),2) Verkaufspreis{0} " &
-                        "from VW_ZugangAbgang d left join Konten k on d.KontoID = k.ID " &
-                        "left join Plattformen p on d.Plattform = p.ID", My.Settings.InventoryPricesCurrency),
+                        "from VW_Balances d left join Konten k on d.KontoID = k.ID " &
+                        "left join Plattformen p on d.PlattformID = p.ID", My.Settings.InventoryPricesCurrency),
                         "k.Eigen=1 and p.Eigen=1", "KontoID", "k.IstFiat, k.SortID")
                     .Reload()
                     .Columns("Plattform").Visible = False
@@ -1069,7 +1070,7 @@ Public Class frmMain
         ' Debug.Print(Thread.CurrentThread.CurrentUICulture.ToString)
         ' Thread.CurrentThread.CurrentUICulture = New CultureInfo("de-DE")
         ' frmEditTransfers.ShowDialog(Me)
-        Dim IFH As New ImportFileHelper({"test,test,test"})
+        RestoreFeeEntries({TradeTypen.Kauf, TradeTypen.Verkauf, TradeTypen.Transfer})
     End Sub
 
     Private Sub cmdCourses_Click(sender As Object, e As EventArgs) Handles cmdCourses.Click
@@ -2199,6 +2200,56 @@ Public Class frmMain
                            MessageBoxIcon.Exclamation) = Windows.Forms.DialogResult.OK Then
             LoadDatabase(Filename, True)
         End If
+    End Sub
+
+
+    ''' <summary>
+    ''' Checks all trade rows of the given TradeTypID wheter they have corresponding fee row.
+    ''' Creates these, if neccessary
+    ''' </summary>
+    ''' <param name="Tradetypes">Array of TradeTypIDs to check</param>
+    Private Sub RestoreFeeEntries(ByRef Tradetypes() As TradeTypen)
+        With New TradesTableAdapter
+            Dim TradesToCheck As New CoinTracerDataSet.TradesDataTable
+            If .FillByTradesTypes(TradesToCheck, Tradetypes) = 0 Then
+                ' No relevant trade rows - we are done
+                Exit Sub
+            End If
+            Dim FeeAmount As Decimal
+            Dim FeeRows As New CoinTracerDataSet.TradesDataTable
+            .FillByTradesTypes(FeeRows, {TradeTypen.Gebühr})
+            ' Check each trade row
+            For Each TradeToCheck As CoinTracerDataSet.TradesRow In TradesToCheck.Rows
+                FeeAmount = Math.Abs(TradeToCheck.QuellBetrag - TradeToCheck.QuellBetragNachGebuehr)
+                If FeeAmount > 0 Then
+                    ' There should ba a fee for source amounts - search it
+                    If FeeRows.FirstOrDefault(Function(t)
+                                                  Return (t.QuellKontoID = TradeToCheck.QuellKontoID AndAlso
+                                                  t.QuellBetrag = FeeAmount AndAlso
+                                                  t.QuellPlattformID = TradeToCheck.QuellPlattformID AndAlso
+                                                  t.Zeitpunkt = TradeToCheck.Zeitpunkt)
+                                              End Function) Is Nothing Then
+                        ' Nothing found - create it!
+                        Debug.Print("Create fee row for trade ID " & TradeToCheck.ID)
+
+                    End If
+                End If
+                FeeAmount = Math.Abs(TradeToCheck.ZielBetrag - TradeToCheck.BetragNachGebuehr)
+                If FeeAmount > 0 Then
+                    ' There should ba a fee for target amounts - search it
+                    If FeeRows.FirstOrDefault(Function(t)
+                                                  Return (t.QuellKontoID = TradeToCheck.ZielKontoID AndAlso
+                                                  t.QuellBetrag = FeeAmount AndAlso
+                                                  t.QuellPlattformID = TradeToCheck.ZielPlattformID AndAlso
+                                                  t.Zeitpunkt = TradeToCheck.Zeitpunkt)
+                                              End Function) Is Nothing Then
+                        ' Nothing found - create it!
+                        Debug.Print("Create fee row for trade ID " & TradeToCheck.ID)
+
+                    End If
+                End If
+            Next
+        End With
     End Sub
 
 

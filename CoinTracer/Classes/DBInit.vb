@@ -385,7 +385,7 @@ Public Class DBInit
         New SqlUpdateSequenceStruct(VersionID:=37, CustomAction:=3),
         New SqlUpdateSequenceStruct(VersionID:=40, CustomAction:=4, Message:=MyStrings.dbUpdateMsgReportReset),
         New SqlUpdateSequenceStruct(VersionID:=44, CustomAction:=5),
-        New SqlUpdateSequenceStruct(VersionID:=45, CustomAction:=-1)    ' <-- just insert the latest db version number here
+        New SqlUpdateSequenceStruct(VersionID:=46, CustomAction:=-1)    ' <-- just insert the latest db version number here
     }
 
 

@@ -61,7 +61,6 @@ Partial Class frmEditApiData
         Me.ApiKeyTextBox = New System.Windows.Forms.TextBox()
         Me.BezeichnungTextBox = New System.Windows.Forms.TextBox()
         Me.PlattformIDComboBox = New System.Windows.Forms.ComboBox()
-        Me.PlattformenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ZeitpunktTextBox = New System.Windows.Forms.TextBox()
         Me.AktivCheckBox = New System.Windows.Forms.CheckBox()
         Me.LastImportTimestampTextBox = New System.Windows.Forms.TextBox()
@@ -77,7 +76,8 @@ Partial Class frmEditApiData
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
         Me.TableAdapterManager = New CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager()
         Me.ApiDatenTableAdapter = New CoinTracer.CoinTracerDataSetTableAdapters.ApiDatenTableAdapter()
-        Me.PlattformenTableAdapter = New CoinTracer.CoinTracerDataSetTableAdapters.PlattformenTableAdapter()
+        Me.ApiPlattformenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ApiPlattformenTableAdapter = New CoinTracer.CoinTracerDataSetTableAdapters.ApiPlattformenTableAdapter()
         IDLabel = New System.Windows.Forms.Label()
         ZeitpunktLabel = New System.Windows.Forms.Label()
         AktivLabel = New System.Windows.Forms.Label()
@@ -92,9 +92,9 @@ Partial Class frmEditApiData
         CType(Me.CoinTracerDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlDetails.SuspendLayout()
         CType(Me.CallDelayNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PlattformenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ErrProvider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlEditTrades.SuspendLayout()
+        CType(Me.ApiPlattformenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'IDLabel
@@ -354,18 +354,13 @@ Partial Class frmEditApiData
         '
         'PlattformIDComboBox
         '
-        Me.PlattformIDComboBox.DataSource = Me.PlattformenBindingSource
+        Me.PlattformIDComboBox.DataSource = Me.ApiPlattformenBindingSource
         Me.PlattformIDComboBox.DisplayMember = "Bezeichnung"
         Me.PlattformIDComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.PlattformIDComboBox.FormattingEnabled = True
         resources.ApplyResources(Me.PlattformIDComboBox, "PlattformIDComboBox")
         Me.PlattformIDComboBox.Name = "PlattformIDComboBox"
         Me.PlattformIDComboBox.ValueMember = "ID"
-        '
-        'PlattformenBindingSource
-        '
-        Me.PlattformenBindingSource.DataMember = "Plattformen"
-        Me.PlattformenBindingSource.DataSource = Me.CoinTracerDataSet
         '
         'ZeitpunktTextBox
         '
@@ -446,17 +441,20 @@ Partial Class frmEditApiData
         '
         Me.TableAdapterManager._VersionsTableAdapter = Nothing
         Me.TableAdapterManager.ApiDatenTableAdapter = Me.ApiDatenTableAdapter
+        Me.TableAdapterManager.ApiPlattformenTableAdapter = Nothing
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
         Me.TableAdapterManager.BestaendeTableAdapter = Nothing
         Me.TableAdapterManager.ImporteTableAdapter = Nothing
         Me.TableAdapterManager.KalkulationenTableAdapter = Nothing
         Me.TableAdapterManager.KonfigurationTableAdapter = Nothing
+        Me.TableAdapterManager.KontenAliasesTableAdapter = Nothing
         Me.TableAdapterManager.KontenTableAdapter = Nothing
         Me.TableAdapterManager.KurseTableAdapter = Nothing
         Me.TableAdapterManager.PlattformenTableAdapter = Nothing
         Me.TableAdapterManager.SzenarienTableAdapter = Nothing
         Me.TableAdapterManager.TradesTableAdapter = Nothing
         Me.TableAdapterManager.TradesWerteTableAdapter = Nothing
+        Me.TableAdapterManager.TradeTxTableAdapter = Nothing
         Me.TableAdapterManager.TradeTypenTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = CoinTracer.CoinTracerDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
@@ -464,9 +462,14 @@ Partial Class frmEditApiData
         '
         Me.ApiDatenTableAdapter.ClearBeforeFill = True
         '
-        'PlattformenTableAdapter
+        'ApiPlattformenBindingSource
         '
-        Me.PlattformenTableAdapter.ClearBeforeFill = True
+        Me.ApiPlattformenBindingSource.DataMember = "ApiPlattformen"
+        Me.ApiPlattformenBindingSource.DataSource = Me.CoinTracerDataSet
+        '
+        'ApiPlattformenTableAdapter
+        '
+        Me.ApiPlattformenTableAdapter.ClearBeforeFill = True
         '
         'frmEditApiData
         '
@@ -491,10 +494,10 @@ Partial Class frmEditApiData
         Me.pnlDetails.ResumeLayout(False)
         Me.pnlDetails.PerformLayout()
         CType(Me.CallDelayNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PlattformenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ErrProvider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlEditTrades.ResumeLayout(False)
         Me.pnlEditTrades.PerformLayout()
+        CType(Me.ApiPlattformenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -530,8 +533,6 @@ Partial Class frmEditApiData
     Friend WithEvents ApiSecretTextBox As System.Windows.Forms.TextBox
     Friend WithEvents ApiKeyTextBox As System.Windows.Forms.TextBox
     Friend WithEvents BezeichnungTextBox As System.Windows.Forms.TextBox
-    Friend WithEvents PlattformenBindingSource As System.Windows.Forms.BindingSource
-    Friend WithEvents PlattformenTableAdapter As CoinTracer.CoinTracerDataSetTableAdapters.PlattformenTableAdapter
     Friend WithEvents ApiKeyDecryptedTextBox As System.Windows.Forms.TextBox
     Friend WithEvents ApiSecretDecryptedTextBox As System.Windows.Forms.TextBox
     Friend WithEvents lblHinweise As System.Windows.Forms.Label
@@ -545,4 +546,6 @@ Partial Class frmEditApiData
     Friend WithEvents ccbBitfinexCurrencies As CheckComboBox.CheckedComboBox
     Friend WithEvents CallDelayLabel As Label
     Friend WithEvents CallDelayNumericUpDown As TouchedNumericUpDown
+    Friend WithEvents ApiPlattformenBindingSource As BindingSource
+    Friend WithEvents ApiPlattformenTableAdapter As CoinTracerDataSetTableAdapters.ApiPlattformenTableAdapter
 End Class
