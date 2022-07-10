@@ -603,10 +603,13 @@ Namespace KrakenClient
                                    Optional type As String = "all",
                                    Optional start As Double = 0,
                                    Optional [end] As Double = 0,
-                                   Optional ofs As String = "") As String
+                                   Optional ofs As String = "0") As String
             Dim reqs As String = String.Format("&ofs={0}", ofs)
             If Not String.IsNullOrEmpty(aclass) Then
-                reqs += String.Format("&aclass={0}", asset)
+                reqs += String.Format("&aclass={0}", aclass)
+            End If
+            If Not String.IsNullOrEmpty(asset) Then
+                reqs += String.Format("&asset={0}", asset)
             End If
             If Not String.IsNullOrEmpty(type) Then
                 reqs += String.Format("&type={0}", type)

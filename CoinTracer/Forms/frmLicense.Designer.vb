@@ -90,7 +90,7 @@ Partial Class frmLicense
         Me.LabelCopyright.Name = "LabelCopyright"
         Me.LabelCopyright.Size = New System.Drawing.Size(677, 20)
         Me.LabelCopyright.TabIndex = 4
-        Me.LabelCopyright.Text = "Copyright 2013-2021 Andreas Nebinger"
+        Me.LabelCopyright.Text = "Copyright 2013-2022 Andreas Nebinger"
         Me.LabelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'LabelLicenseHeader
